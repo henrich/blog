@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Forget me not... on Forget me not...</title>
-    <link>http://b.ma-aya.to/index.xml</link>
+    <link>https://henrich.github.io/blog/index.xml</link>
     <description>Recent content in Forget me not... on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
@@ -10,16 +10,16 @@
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
     <lastBuildDate>Sat, 13 Feb 2016 00:00:00 +0900</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
             <title>ISOファイルのマウントが残っていてemergency modeで起動</title>
-            <link>http://b.ma-aya.to/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
+            <link>https://henrich.github.io/blog/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
             <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
+            <guid>https://henrich.github.io/blog/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
             <description>&lt;p&gt;デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）&lt;/p&gt;
 
 &lt;p&gt;前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。&lt;/p&gt;
@@ -40,10 +40,10 @@
         
           <item>
             <title>debsnapコケた</title>
-            <link>http://b.ma-aya.to/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
             <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
             <description>
 
 &lt;h1 id=&#34;gbpのオプションで-debsnap&#34;&gt;gbpのオプションで&amp;ndash;debsnap&lt;/h1&gt;
@@ -80,10 +80,10 @@ Yes, those files are exactly same one.
         
           <item>
             <title>libxmlbird のビルド直してた</title>
-            <link>http://b.ma-aya.to/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
             <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
             <description>&lt;p&gt;libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。&lt;a href=&#34;https://birdfont.org/bugtracker/view.php?id=101&#34;&gt;upstreamに報告済み&lt;/a&gt;。あと、git repoでタグ打ちがないのも。&lt;/p&gt;
 </description>
           </item>
@@ -94,10 +94,10 @@ Yes, those files are exactly same one.
         
           <item>
             <title>libxmlbird のビルド直してた</title>
-            <link>http://b.ma-aya.to/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
             <pubDate>Mon, 29 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
             <description>&lt;p&gt;libxmlbirdのビルド、*kfreeBSDなプラットフォームで&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;amp;arch=kfreebsd-amd64&amp;amp;ver=1.0.4-2&amp;amp;stamp=1434758939&#34;&gt;ビルド死んでる&lt;/a&gt;のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。&lt;/p&gt;
 
 &lt;p&gt;sparcでのビルド失敗は&lt;/p&gt;
@@ -130,10 +130,10 @@ ImportError: No module named pkg_resources
         
           <item>
             <title>autopkgtest触ってみた（らしい）</title>
-            <link>http://b.ma-aya.to/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
             <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
             <description>&lt;p&gt;Perlパッケージのautopkgtestについては&lt;a href=&#34;https://pkg-perl.alioth.debian.org/autopkgtest.html&#34;&gt;サイト&lt;/a&gt;に記述がある。&lt;/p&gt;
 
 &lt;p&gt;Testsuite: autopkgtest-pkg-perl&lt;/p&gt;
@@ -232,10 +232,10 @@ gpg: key 0FB272FB marked as ultimately trusted
         
           <item>
             <title>dh-make-perlでPerlモジュールが半自動でDebianパッケージに</title>
-            <link>http://b.ma-aya.to/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
             <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
             <description>&lt;p&gt;dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ dh-make-perl 
@@ -395,10 +395,10 @@ Description: XS based CSS minifier
         
           <item>
             <title>testでskippedが多い場合は依存関係が満たされてないかもしれない</title>
-            <link>http://b.ma-aya.to/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
             <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
             <description>&lt;p&gt;さて、ドキュメントにはテストについて色々書いてありました。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;PERL_DL_NONLAZY=1 /usr/bin/perl &amp;quot;-MExtUtils::Command::MM&amp;quot; &amp;quot;-MTest::Harness&amp;quot; &amp;quot;-e&amp;quot; &amp;quot;undef *Test::Harness::Switches; test_harness(1, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&amp;quot; t/*.t
@@ -441,10 +441,10 @@ Result: PASS
         
           <item>
             <title>git repoとdh-make</title>
-            <link>http://b.ma-aya.to/blog/2015/06/23/git-repo%E3%81%A8dh-make/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/23/git-repo%E3%81%A8dh-make/</link>
             <pubDate>Tue, 23 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/23/git-repo%E3%81%A8dh-make/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/23/git-repo%E3%81%A8dh-make/</guid>
             <description>&lt;p&gt;一度upstream tarballを元にdh-makeでパッケージを作った。
 で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。&lt;/p&gt;
 
@@ -484,10 +484,10 @@ gbp buildpackage
         
           <item>
             <title>proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</title>
-            <link>http://b.ma-aya.to/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</link>
             <pubDate>Mon, 22 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</guid>
             <description>&lt;p&gt;proposed-updatesリポジトリにパッケージをアップロードする際、
 changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？&lt;/p&gt;
 
@@ -503,10 +503,10 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
         
           <item>
             <title>gbpとpbuilderのオプション</title>
-            <link>http://b.ma-aya.to/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
             <pubDate>Fri, 19 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
             <description>&lt;pre&gt;&lt;code&gt;gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -537,10 +537,10 @@ dpkg-genchanges: not including original source code in upload
         
           <item>
             <title>reproducible build対応作業</title>
-            <link>http://b.ma-aya.to/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</link>
             <pubDate>Sat, 06 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</guid>
             <description>&lt;p&gt;JDのreproducible buildがエラーになってるのは&lt;a href=&#34;https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros&#34;&gt;DATEとかを展開するMacroが入ってるから&lt;/a&gt;、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。&lt;/p&gt;
 
 &lt;p&gt;fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに&lt;a href=&#34;https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html&#34;&gt;&amp;ldquo;timestamps_difference_by_unzip&amp;rdquo;でunreproducibleだった&lt;/a&gt;のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。&lt;/p&gt;
@@ -577,10 +577,10 @@ vars = ((&#39;VERSION&#39;, VERSION),
         
           <item>
             <title>twitter-textパッケージとか</title>
-            <link>http://b.ma-aya.to/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
             <pubDate>Tue, 02 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
             <description>&lt;p&gt;ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに&lt;a href=&#34;https://github.com/twitter/twitter-text-rb&#34;&gt;まとめられていた&lt;/a&gt;。
 これはtwitter-textパッケージから色々生成するほうがいいよね、ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688&#34;&gt;Todoをバグとして登録しておく&lt;/a&gt;ことにした。&lt;/p&gt;
 
@@ -594,10 +594,10 @@ vars = ((&#39;VERSION&#39;, VERSION),
         
           <item>
             <title>Debian Policyはi18nできないかな</title>
-            <link>http://b.ma-aya.to/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</link>
             <pubDate>Mon, 01 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</guid>
             <description>&lt;pre&gt;&lt;code&gt;$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
 policy.sgml:178: (po4a::sgml)
                不明なタグ HTTPSITE
@@ -622,10 +622,10 @@ policy.sgml:178: (po4a::sgml)
         
           <item>
             <title>bash-completionとか</title>
-            <link>http://b.ma-aya.to/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
             <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
             <description>&lt;p&gt;ほぼ寝込んでいたので、&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321&#34;&gt;dcut のbash completion&lt;/a&gt;をコピペで作って投げただけです。&lt;/p&gt;
 </description>
           </item>
@@ -636,10 +636,10 @@ policy.sgml:178: (po4a::sgml)
         
           <item>
             <title>os-autoinst</title>
-            <link>http://b.ma-aya.to/blog/2015/05/31/os-autoinst/</link>
+            <link>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</link>
             <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/05/31/os-autoinst/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</guid>
             <description>&lt;p&gt;ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、&lt;a href=&#34;http://bugs.debian.org/690244&#34;&gt;RFPになっていたのをITPに戻しました&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。&lt;/p&gt;

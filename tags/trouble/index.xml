@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Trouble on Forget me not...</title>
-    <link>http://b.ma-aya.to/tags/trouble/index.xml</link>
+    <link>https://henrich.github.io/blog/tags/trouble/index.xml</link>
     <description>Recent content in Trouble on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <atom:link href="/tags/trouble/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/blog/tags/trouble/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
             <title>ISOファイルのマウントが残っていてemergency modeで起動</title>
-            <link>http://b.ma-aya.to/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
+            <link>https://henrich.github.io/blog/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
             <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
+            <guid>https://henrich.github.io/blog/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
             <description>&lt;p&gt;デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）&lt;/p&gt;
 
 &lt;p&gt;前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。&lt;/p&gt;
@@ -39,10 +39,10 @@
         
           <item>
             <title>debsnapコケた</title>
-            <link>http://b.ma-aya.to/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
             <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
             <description>
 
 &lt;h1 id=&#34;gbpのオプションで-debsnap&#34;&gt;gbpのオプションで&amp;ndash;debsnap&lt;/h1&gt;
@@ -79,10 +79,10 @@ Yes, those files are exactly same one.
         
           <item>
             <title>gbpとpbuilderのオプション</title>
-            <link>http://b.ma-aya.to/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
+            <link>https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
             <pubDate>Fri, 19 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>http://b.ma-aya.to/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
+            <guid>https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
             <description>&lt;pre&gt;&lt;code&gt;gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
