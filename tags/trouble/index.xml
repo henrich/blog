@@ -43,11 +43,7 @@
             <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
-            <description>
-
-&lt;h1 id=&#34;gbpのオプションで-debsnap&#34;&gt;gbpのオプションで&amp;ndash;debsnap&lt;/h1&gt;
-
-&lt;p&gt;gbp import-dscs &amp;ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？&lt;/p&gt;
+            <description>&lt;p&gt;gbp import-dscs &amp;ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ debsnap sylpheed 3.2.0-1 --force -v
 Getting json http://snapshot.debian.org/mr/package/sylpheed/
