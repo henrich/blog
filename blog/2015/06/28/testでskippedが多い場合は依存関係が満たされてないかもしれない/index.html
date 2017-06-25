@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="testでskippedが多い場合は依存関係が満たされてないかもしれない">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>testでskippedが多い場合は依存関係が満たされてないかもしれない &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://b.ma-aya.to//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://b.ma-aya.to//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://b.ma-aya.to//css/style.css">
+
+
+    
+    <script src="http://b.ma-aya.to//js/jquery.min-2.1.4.js"></script>
+    <script src="http://b.ma-aya.to//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://b.ma-aya.to/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://b.ma-aya.to/">Home</a></li>
+                    <li><a href="http://b.ma-aya.to//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>testでskippedが多い場合は依存関係が満たされてないかもしれない</h3>
+				<span class="label label-primary">Sun, Jun 28, 2015</span> in 
+				 using tags
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>さて、ドキュメントにはテストについて色々書いてありました。</p>
+
+<pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl &quot;-MExtUtils::Command::MM&quot; &quot;-MTest::Harness&quot; &quot;-e&quot; &quot;undef *Test::Harness::Switches; test_harness(1, 'blib/lib', 'blib/arch')&quot; t/*.t
+t/00-compile.t ................ 
+1..1
+ok 1 - DBIx::Class::OptimisticLocking loaded ok
+ok
+t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
+t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
+t/03-all.t .................... skipped: needs DBD::SQLite for testing
+t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
+t/05-version.t ................ skipped: needs DBD::SQLite for testing
+t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
+t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
+t/08-none.t ................... skipped: needs DBD::SQLite for testing
+t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
+t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
+All tests successful.
+Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
+Result: PASS
+</code></pre>
+
+<p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
+
+<p>結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。</p>
+
+<p>もうひとつは些細な話ですがパラレルビルドの話「dh $@ &ndash;parallel」という形で渡せば</p>
+
+<pre><code>   dh_auto_build -O--parallel
+	make -j4
+</code></pre>
+
+<p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="http://b.ma-aya.to//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

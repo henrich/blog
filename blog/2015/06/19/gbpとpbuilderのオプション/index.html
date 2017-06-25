@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="gbpとpbuilderのオプション">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>gbpとpbuilderのオプション &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://b.ma-aya.to//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://b.ma-aya.to//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://b.ma-aya.to//css/style.css">
+
+
+    
+    <script src="http://b.ma-aya.to//js/jquery.min-2.1.4.js"></script>
+    <script src="http://b.ma-aya.to//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://b.ma-aya.to/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://b.ma-aya.to/">Home</a></li>
+                    <li><a href="http://b.ma-aya.to//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>gbpとpbuilderのオプション</h3>
+				<span class="label label-primary">Fri, Jun 19, 2015</span> in 
+				 using tags
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+					 , 
+					<a href="/tags/trouble">trouble</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<pre><code>gbp buildpackage --git-pbuilder-options=&quot;-sa&quot;
+</code></pre>
+
+<p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
+
+<pre><code>sudo cowbuilder --build --debbuildopt=&quot;-sa&quot; libxmlbird_1.0.4-2.dsc
+</code></pre>
+
+<p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
+
+<pre><code>$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
+gbp:info: Orig tarball 'libxmlbird_1.0.4.orig.tar.xz' not found at '../tarballs/'
+gbp:info: Exporting 'HEAD' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp'
+gbp:info: Moving '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4'
+Building with cowbuilder for distribution sid
+I: using cowbuilder as pbuilder
+(snip)
+dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
+ dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
+dpkg-genchanges: not including original source code in upload
+</code></pre>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="http://b.ma-aya.to//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

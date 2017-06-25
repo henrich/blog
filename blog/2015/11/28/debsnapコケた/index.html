@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="debsnapコケた">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>debsnapコケた &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://b.ma-aya.to//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://b.ma-aya.to//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://b.ma-aya.to//css/style.css">
+
+
+    
+    <script src="http://b.ma-aya.to//js/jquery.min-2.1.4.js"></script>
+    <script src="http://b.ma-aya.to//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://b.ma-aya.to/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://b.ma-aya.to/">Home</a></li>
+                    <li><a href="http://b.ma-aya.to//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>debsnapコケた</h3>
+				<span class="label label-primary">Sat, Nov 28, 2015</span> in 
+				 using tags
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+					 , 
+					<a href="/tags/trouble">trouble</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<h1 id="gbpのオプションで-debsnap">gbpのオプションで&ndash;debsnap</h1>
+
+<p>gbp import-dscs &ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？</p>
+
+<pre><code>$ debsnap sylpheed 3.2.0-1 --force -v
+Getting json http://snapshot.debian.org/mr/package/sylpheed/
+Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1
+Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6
+Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c
+Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35
+
+It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz
+
+a41a8e2fc3c5e4935f30c7bacff8d72508546e35:
+sylpheed_3.2.0~rc0.orig.tar.gz
+Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. 
+Size: 4925789
+sylpheed_3.2.0.orig.tar.gz
+Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. 
+Size: 4925789
+
+Yes, those files are exactly same one.
+
+[{&quot;name&quot;: &quot;sylpheed_3.2.0~rc0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120625T162322Z&quot;, &quot;size&quot;: 4925789}, {&quot;name&quot;: &quot;sylpheed_3.2.0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120629T161126Z&quot;, &quot;size&quot;: 4925789}],
+</code></pre>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="http://b.ma-aya.to//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

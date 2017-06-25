@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="dh-make-perlでPerlモジュールが半自動でDebianパッケージに">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>dh-make-perlでPerlモジュールが半自動でDebianパッケージに &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://b.ma-aya.to//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://b.ma-aya.to//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://b.ma-aya.to//css/style.css">
+
+
+    
+    <script src="http://b.ma-aya.to//js/jquery.min-2.1.4.js"></script>
+    <script src="http://b.ma-aya.to//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://b.ma-aya.to/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://b.ma-aya.to/">Home</a></li>
+                    <li><a href="http://b.ma-aya.to//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>dh-make-perlでPerlモジュールが半自動でDebianパッケージに</h3>
+				<span class="label label-primary">Sun, Jun 28, 2015</span> in 
+				 using tags
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。</p>
+
+<pre><code>$ dh-make-perl 
+== dh-make-perl 0.86 ==
+Trying /home/henrich/src/qa/../qa.tar.gz... not found.
+Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
+Trying /home/henrich/src/qa/../qa.tar.xz... not found.
+Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
+WARNING: Neither META.json nor META.yml was found
+Unable to determine dist name, no Build.PL, no Makefile.PL
+Please use --cpan.
+</code></pre>
+
+<p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
+
+<pre><code>$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
+== dh-make-perl 0.86 ==
+
+CPAN.pm requires configuration, but most of it can be done automatically.
+If you answer 'no' below, you will enter an interactive dialog for each
+configuration option instead.
+
+Would you like to configure as much as possible automatically? [yes]
+
+ &lt;install_help&gt;
+
+Warning: You do not have write permission for Perl library directories.
+
+To install modules, you need to configure a local Perl library directory or
+escalate your privileges.  CPAN can help you by bootstrapping the local::lib
+module or by configuring itself to use 'sudo' (if available).  You may also
+resolve this problem manually if you need to customize your setup.
+
+What approach do you want?  (Choose 'local::lib', 'sudo' or 'manual')
+ [local::lib] 
+
+
+Autoconfiguration complete.
+
+Attempting to bootstrap local::lib...
+(snip)
+PATH=&quot;/home/henrich/perl5/bin${PATH+:}${PATH}&quot;; export PATH;
+PERL5LIB=&quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&quot;; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT=&quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&quot;; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT=&quot;--install_base \&quot;/home/henrich/perl5\&quot;&quot;; export PERL_MB_OPT;
+PERL_MM_OPT=&quot;INSTALL_BASE=/home/henrich/perl5&quot;; export PERL_MM_OPT;
+
+Would you like me to append that to /home/henrich/.bashrc now? [yes] 
+(snip)
+</code></pre>
+
+<p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
+
+<pre><code>henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
+commit a1a9d209742905d33a3ffee587c32b7a5360a521
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Sun Jun 28 00:12:59 2015 +0900
+
+    Initial packaging by dh-make-perl 0.84
+
+commit 29943cd28971248efb43e0e940957bf5086e118e
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Sun Jun 28 00:10:38 2015 +0900
+
+    Import original source of DBIx-Class-OptimisticLocking 0.02
+</code></pre>
+
+<p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
+
+<p>debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。</p>
+
+<p>debian/copyrightもcpanから取ってきて記述されるようです。</p>
+
+<pre><code>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
+Upstream-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
+Upstream-Name: DBIx-Class-OptimisticLocking
+DISCLAIMER: This copyright info was automatically extracted
+ from the perl module. It may not be accurate, so you better
+ check the module sources in order to ensure the module for its
+ inclusion in Debian or for general legal information. Please,
+ if licensing information is incorrectly generated, file a bug
+ on dh-make-perl.
+ NOTE: Don't forget to remove this disclaimer once you are happy
+ with this file.
+</code></pre>
+
+<p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
+
+<p>debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。</p>
+
+<p>debian/upstream/metadataなんてファイルも出来てました。中身は</p>
+
+<pre><code>Archive: CPAN
+Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
+Name: DBIx-Class-OptimisticLocking
+Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
+</code></pre>
+
+<p>ほー。いたれりつくせりですね。</p>
+
+<p>あとはgit-buildpackageでビルドしてしまえばOKです。</p>
+
+<p>ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると</p>
+
+<pre><code>**********
+WARNING: a package named
+              'libsql-abstract-perl'
+         is already available in APT repositories
+Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
+Description: module to generate SQL from Perl data structures
+</code></pre>
+
+<p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
+
+<p>モジュールがcpanにない場合には</p>
+
+<pre><code>$ dh-make-perl --cpan selenium-remote-driver-perl
+== dh-make-perl 0.86 ==
+Reading '/home/henrich/.local/share/.cpan/Metadata'
+  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
+Can't find 'selenium::remote::driver::perl' module or distribution on CPAN
+</code></pre>
+
+<p>のように出てきます。</p>
+
+<p>また、変換の際にモジュールが依存する別のモジュールがない場合には</p>
+
+<pre><code>Needs the following modules for which there are no debian packages available:
+ - Time::Mock
+</code></pre>
+
+<p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
+
+<pre><code>Needs the following modules for which there are no debian packages available:
+ - CSS::Minifier::XS
+ - JavaScript::Minifier::XS
+</code></pre>
+
+<p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
+
+<pre><code>**********
+WARNING: a package named
+              'libcss-minifier-xs-perl'
+         is already available in APT repositories
+Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
+Description: XS based CSS minifier
+</code></pre>
+
+<p>と出てきてしまいました。あらら。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="http://b.ma-aya.to//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

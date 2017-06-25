@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="autopkgtest触ってみた（らしい）">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>autopkgtest触ってみた（らしい） &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://b.ma-aya.to//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://b.ma-aya.to//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://b.ma-aya.to//css/style.css">
+
+
+    
+    <script src="http://b.ma-aya.to//js/jquery.min-2.1.4.js"></script>
+    <script src="http://b.ma-aya.to//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://b.ma-aya.to/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://b.ma-aya.to/">Home</a></li>
+                    <li><a href="http://b.ma-aya.to//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>autopkgtest触ってみた（らしい）</h3>
+				<span class="label label-primary">Sun, Jun 28, 2015</span> in 
+				 using tags
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
+
+<p>Testsuite: autopkgtest-pkg-perl</p>
+
+<p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
+
+<p>実施されるテストは
+* smoke
+* use.t
+* syntax.t
+で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
+
+<p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
+
+<pre><code>$ sudo apt-get install sbuild
+$ sudo mkdir -p /srv/chroot/sid
+$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
+</code></pre>
+
+<pre><code>[sid-amd64-sbuild]
+type=directory
+description=Debian sid/amd64 autobuilder
+directory=/srv/chroot/sid
+groups=root,sbuild
+root-groups=root,sbuild
+profile=sbuild
+
+users=henrich
+root-users=henrich
+</code></pre>
+
+<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-run [20:22:46]: version 3.14.3
+adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
+adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+</code></pre>
+
+<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
+
+<pre><code>#union-type=aufs
+#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
+</code></pre>
+
+<p>とやってみたのだけど、</p>
+
+<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-run [20:23:06]: version 3.14.3
+adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+Traceback (most recent call last):
+  File &quot;/usr/bin/adt-virt-schroot&quot;, line 190, in &lt;module&gt;
+    parse_args()
+  File &quot;/usr/bin/adt-virt-schroot&quot;, line 96, in parse_args
+    (key, val) = entry.split(&quot;=&quot;, 2)
+ValueError: too many values to unpack (expected 2)
+adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+</code></pre>
+
+<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
+
+<pre><code>[sid-test]
+type=file
+description=test
+file=/srv/chroot/test/base.tgz
+groups=root,sbuild
+root-groups=root,sbuild
+profile=sbuild
+
+users=henrich
+root-users=henrich
+</code></pre>
+
+<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+adt-run [18:52:38]: version 3.14.3
+adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+adt-run [18:52:41]: testbed dpkg architecture: amd64
+adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
++ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
+gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg' created
+gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg' created
+++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&gt;++++++++++...............+++++
+
+Not enough random bytes available.  Please do some other work to give
+the OS a chance to collect more entropy! (Need 188 more bytes)
+gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
+gpg: key 0FB272FB marked as ultimately trusted
+</code></pre>
+
+<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="http://b.ma-aya.to//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

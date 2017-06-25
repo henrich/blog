@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Forget me not... on Forget me not...</title>
+    <link>http://b.ma-aya.to/index.xml</link>
+    <description>Recent content in Forget me not... on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>2015-  Hideki Yamane</copyright>
+    <lastBuildDate>Sat, 13 Feb 2016 00:00:00 +0900</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>ISOファイルのマウントが残っていてemergency modeで起動</title>
+            <link>http://b.ma-aya.to/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
+            <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
+            <description>&lt;p&gt;デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）&lt;/p&gt;
+
+&lt;p&gt;前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/dev/loop0     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
+#/dev/loop2     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51        udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
+#Entry for /dev/loop1 :
+#UUID=2015-10-30-20-02-13-00    /media/henrich/J_SSS_X64FRE_JA-JP_DV91  udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なんなんだこれは。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>debsnapコケた</title>
+            <link>http://b.ma-aya.to/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
+            <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
+            <description>
+
+&lt;h1 id=&#34;gbpのオプションで-debsnap&#34;&gt;gbpのオプションで&amp;ndash;debsnap&lt;/h1&gt;
+
+&lt;p&gt;gbp import-dscs &amp;ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ debsnap sylpheed 3.2.0-1 --force -v
+Getting json http://snapshot.debian.org/mr/package/sylpheed/
+Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1
+Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6
+Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c
+Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35
+
+It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz
+
+a41a8e2fc3c5e4935f30c7bacff8d72508546e35:
+sylpheed_3.2.0~rc0.orig.tar.gz
+Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. 
+Size: 4925789
+sylpheed_3.2.0.orig.tar.gz
+Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. 
+Size: 4925789
+
+Yes, those files are exactly same one.
+
+[{&amp;quot;name&amp;quot;: &amp;quot;sylpheed_3.2.0~rc0.orig.tar.gz&amp;quot;, &amp;quot;archive_name&amp;quot;: &amp;quot;debian&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/pool/main/s/sylpheed&amp;quot;, &amp;quot;first_seen&amp;quot;: &amp;quot;20120625T162322Z&amp;quot;, &amp;quot;size&amp;quot;: 4925789}, {&amp;quot;name&amp;quot;: &amp;quot;sylpheed_3.2.0.orig.tar.gz&amp;quot;, &amp;quot;archive_name&amp;quot;: &amp;quot;debian&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/pool/main/s/sylpheed&amp;quot;, &amp;quot;first_seen&amp;quot;: &amp;quot;20120629T161126Z&amp;quot;, &amp;quot;size&amp;quot;: 4925789}],
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>libxmlbird のビルド直してた</title>
+            <link>http://b.ma-aya.to/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <description>&lt;p&gt;libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。&lt;a href=&#34;https://birdfont.org/bugtracker/view.php?id=101&#34;&gt;upstreamに報告済み&lt;/a&gt;。あと、git repoでタグ打ちがないのも。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>libxmlbird のビルド直してた</title>
+            <link>http://b.ma-aya.to/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <pubDate>Mon, 29 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <description>&lt;p&gt;libxmlbirdのビルド、*kfreeBSDなプラットフォームで&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;amp;arch=kfreebsd-amd64&amp;amp;ver=1.0.4-2&amp;amp;stamp=1434758939&#34;&gt;ビルド死んでる&lt;/a&gt;のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。&lt;/p&gt;
+
+&lt;p&gt;sparcでのビルド失敗は&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Traceback (most recent call last):
+  File &amp;quot;/usr/bin/doit&amp;quot;, line 5, in &amp;lt;module&amp;gt;
+    from pkg_resources import load_entry_point
+ImportError: No module named pkg_resources
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;…なんでモジュールが無いというのか？&lt;/p&gt;
+
+&lt;p&gt;ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
+さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、&lt;a href=&#34;https://tracker.debian.org/news/691093&#34;&gt;python-doitのバージョンが違う&lt;/a&gt;。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。&lt;/p&gt;
+
+&lt;p&gt;新しいバージョンになると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。&lt;/p&gt;
+
+&lt;p&gt;それからbirdfontもpython-doit使ってるのでこれも直した。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>autopkgtest触ってみた（らしい）</title>
+            <link>http://b.ma-aya.to/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
+            <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
+            <description>&lt;p&gt;Perlパッケージのautopkgtestについては&lt;a href=&#34;https://pkg-perl.alioth.debian.org/autopkgtest.html&#34;&gt;サイト&lt;/a&gt;に記述がある。&lt;/p&gt;
+
+&lt;p&gt;Testsuite: autopkgtest-pkg-perl&lt;/p&gt;
+
+&lt;p&gt;をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）&lt;/p&gt;
+
+&lt;p&gt;実施されるテストは
+* smoke
+* use.t
+* syntax.t
+で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。&lt;/p&gt;
+
+&lt;p&gt;実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install sbuild
+$ sudo mkdir -p /srv/chroot/sid
+$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[sid-amd64-sbuild]
+type=directory
+description=Debian sid/amd64 autobuilder
+directory=/srv/chroot/sid
+groups=root,sbuild
+root-groups=root,sbuild
+profile=sbuild
+
+users=henrich
+root-users=henrich
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-run [20:22:46]: version 3.14.3
+adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-virt-schroot requires ephemeral schroot sessions. Set a &amp;quot;union-type&amp;quot; or use a tarball schroot
+adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: [&#39;BrokenPipeError: [Errno 32] Broken pipe\n&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最初はunion-typeの指定エラーがでたのでこれを追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#union-type=aufs
+#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とやってみたのだけど、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-run [20:23:06]: version 3.14.3
+adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+Traceback (most recent call last):
+  File &amp;quot;/usr/bin/adt-virt-schroot&amp;quot;, line 190, in &amp;lt;module&amp;gt;
+    parse_args()
+  File &amp;quot;/usr/bin/adt-virt-schroot&amp;quot;, line 96, in parse_args
+    (key, val) = entry.split(&amp;quot;=&amp;quot;, 2)
+ValueError: too many values to unpack (expected 2)
+adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: [&#39;BrokenPipeError: [Errno 32] Broken pipe\n&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[sid-test]
+type=file
+description=test
+file=/srv/chroot/test/base.tgz
+groups=root,sbuild
+root-groups=root,sbuild
+profile=sbuild
+
+users=henrich
+root-users=henrich
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+adt-run [18:52:38]: version 3.14.3
+adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+adt-run [18:52:41]: testbed dpkg architecture: amd64
+adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
++ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
+gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg&#39; created
+gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg&#39; created
+++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&amp;gt;++++++++++...............+++++
+
+Not enough random bytes available.  Please do some other work to give
+the OS a chance to collect more entropy! (Need 188 more bytes)
+gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
+gpg: key 0FB272FB marked as ultimately trusted
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初回だけこれでひたすら待つ羽目になったが、これは動いた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>dh-make-perlでPerlモジュールが半自動でDebianパッケージに</title>
+            <link>http://b.ma-aya.to/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
+            <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
+            <description>&lt;p&gt;dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl 
+== dh-make-perl 0.86 ==
+Trying /home/henrich/src/qa/../qa.tar.gz... not found.
+Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
+Trying /home/henrich/src/qa/../qa.tar.xz... not found.
+Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
+WARNING: Neither META.json nor META.yml was found
+Unable to determine dist name, no Build.PL, no Makefile.PL
+Please use --cpan.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&amp;ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
+== dh-make-perl 0.86 ==
+
+CPAN.pm requires configuration, but most of it can be done automatically.
+If you answer &#39;no&#39; below, you will enter an interactive dialog for each
+configuration option instead.
+
+Would you like to configure as much as possible automatically? [yes]
+
+ &amp;lt;install_help&amp;gt;
+
+Warning: You do not have write permission for Perl library directories.
+
+To install modules, you need to configure a local Perl library directory or
+escalate your privileges.  CPAN can help you by bootstrapping the local::lib
+module or by configuring itself to use &#39;sudo&#39; (if available).  You may also
+resolve this problem manually if you need to customize your setup.
+
+What approach do you want?  (Choose &#39;local::lib&#39;, &#39;sudo&#39; or &#39;manual&#39;)
+ [local::lib] 
+
+
+Autoconfiguration complete.
+
+Attempting to bootstrap local::lib...
+(snip)
+PATH=&amp;quot;/home/henrich/perl5/bin${PATH+:}${PATH}&amp;quot;; export PATH;
+PERL5LIB=&amp;quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&amp;quot;; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT=&amp;quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&amp;quot;; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT=&amp;quot;--install_base \&amp;quot;/home/henrich/perl5\&amp;quot;&amp;quot;; export PERL_MB_OPT;
+PERL_MM_OPT=&amp;quot;INSTALL_BASE=/home/henrich/perl5&amp;quot;; export PERL_MM_OPT;
+
+Would you like me to append that to /home/henrich/.bashrc now? [yes] 
+(snip)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
+commit a1a9d209742905d33a3ffee587c32b7a5360a521
+Author: Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+Date:   Sun Jun 28 00:12:59 2015 +0900
+
+    Initial packaging by dh-make-perl 0.84
+
+commit 29943cd28971248efb43e0e940957bf5086e118e
+Author: Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+Date:   Sun Jun 28 00:10:38 2015 +0900
+
+    Import original source of DBIx-Class-OptimisticLocking 0.02
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。&lt;/p&gt;
+
+&lt;p&gt;debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。&lt;/p&gt;
+
+&lt;p&gt;debian/copyrightもcpanから取ってきて記述されるようです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
+Upstream-Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt;
+Upstream-Name: DBIx-Class-OptimisticLocking
+DISCLAIMER: This copyright info was automatically extracted
+ from the perl module. It may not be accurate, so you better
+ check the module sources in order to ensure the module for its
+ inclusion in Debian or for general legal information. Please,
+ if licensing information is incorrectly generated, file a bug
+ on dh-make-perl.
+ NOTE: Don&#39;t forget to remove this disclaimer once you are happy
+ with this file.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。&lt;/p&gt;
+
+&lt;p&gt;debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。&lt;/p&gt;
+
+&lt;p&gt;debian/upstream/metadataなんてファイルも出来てました。中身は&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Archive: CPAN
+Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt;
+Name: DBIx-Class-OptimisticLocking
+Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ほー。いたれりつくせりですね。&lt;/p&gt;
+
+&lt;p&gt;あとはgit-buildpackageでビルドしてしまえばOKです。&lt;/p&gt;
+
+&lt;p&gt;ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;**********
+WARNING: a package named
+              &#39;libsql-abstract-perl&#39;
+         is already available in APT repositories
+Maintainer: Debian Perl Group &amp;lt;pkg-perl-maintainers@lists.alioth.debian.org&amp;gt;
+Description: module to generate SQL from Perl data structures
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。&lt;/p&gt;
+
+&lt;p&gt;モジュールがcpanにない場合には&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan selenium-remote-driver-perl
+== dh-make-perl 0.86 ==
+Reading &#39;/home/henrich/.local/share/.cpan/Metadata&#39;
+  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
+Can&#39;t find &#39;selenium::remote::driver::perl&#39; module or distribution on CPAN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように出てきます。&lt;/p&gt;
+
+&lt;p&gt;また、変換の際にモジュールが依存する別のモジュールがない場合には&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Needs the following modules for which there are no debian packages available:
+ - Time::Mock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と警告が出てきます。しかし、これも万能というわけでもなく、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Needs the following modules for which there are no debian packages available:
+ - CSS::Minifier::XS
+ - JavaScript::Minifier::XS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と出てきたのでdh-make-perl &amp;ndash;cpan CSS-Minifier-XSしたら&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;**********
+WARNING: a package named
+              &#39;libcss-minifier-xs-perl&#39;
+         is already available in APT repositories
+Maintainer: Debian Perl Group &amp;lt;pkg-perl-maintainers@lists.alioth.debian.org&amp;gt;
+Description: XS based CSS minifier
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と出てきてしまいました。あらら。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>testでskippedが多い場合は依存関係が満たされてないかもしれない</title>
+            <link>http://b.ma-aya.to/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
+            <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
+            <description>&lt;p&gt;さて、ドキュメントにはテストについて色々書いてありました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PERL_DL_NONLAZY=1 /usr/bin/perl &amp;quot;-MExtUtils::Command::MM&amp;quot; &amp;quot;-MTest::Harness&amp;quot; &amp;quot;-e&amp;quot; &amp;quot;undef *Test::Harness::Switches; test_harness(1, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&amp;quot; t/*.t
+t/00-compile.t ................ 
+1..1
+ok 1 - DBIx::Class::OptimisticLocking loaded ok
+ok
+t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
+t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
+t/03-all.t .................... skipped: needs DBD::SQLite for testing
+t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
+t/05-version.t ................ skipped: needs DBD::SQLite for testing
+t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
+t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
+t/08-none.t ................... skipped: needs DBD::SQLite for testing
+t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
+t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
+All tests successful.
+Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
+Result: PASS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。&lt;/p&gt;
+
+&lt;p&gt;結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。&lt;/p&gt;
+
+&lt;p&gt;もうひとつは些細な話ですがパラレルビルドの話「dh $@ &amp;ndash;parallel」という形で渡せば&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   dh_auto_build -O--parallel
+	make -j4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&amp;ndash;parallelが実行される）。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>git repoとdh-make</title>
+            <link>http://b.ma-aya.to/blog/2015/06/23/git-repo%E3%81%A8dh-make/</link>
+            <pubDate>Tue, 23 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/23/git-repo%E3%81%A8dh-make/</guid>
+            <description>&lt;p&gt;一度upstream tarballを元にdh-makeでパッケージを作った。
+で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/os-autoinst/os-autoinst.git
+cd os-autoinst
+git checkout 4.1
+git tag upstream/4.1
+git checkout -b debian
+cp -arp ../os-autoinst-4.1/debian ./
+git add debian
+git commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;debian/gbp.conf はこんな感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[DEFAULT]
+debian-branch=debian
+
+gbp buildpackage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git config remote.pushdefault alioth 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.git/configでoriginじゃないのを追加するコマンドはなんだろう？&lt;/li&gt;
+&lt;li&gt;dh-makeでgit repositoryに対応するにはどうすれば良いのだろう&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</title>
+            <link>http://b.ma-aya.to/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</link>
+            <pubDate>Mon, 22 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</guid>
+            <description>&lt;p&gt;proposed-updatesリポジトリにパッケージをアップロードする際、
+changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？&lt;/p&gt;
+
+&lt;p&gt;疑問が晴れなかったので&lt;a href=&#34;https://lists.debian.org/debian-devel/2015/06/msg00305.html&#34;&gt;debian-develに質問&lt;/a&gt;したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587&#34;&gt;登録しておいた。Bug#789587&lt;/a&gt;です。&lt;/p&gt;
+
+&lt;p&gt;しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>gbpとpbuilderのオプション</title>
+            <link>http://b.ma-aya.to/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
+            <pubDate>Fri, 19 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
+            <description>&lt;pre&gt;&lt;code&gt;gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo cowbuilder --build --debbuildopt=&amp;quot;-sa&amp;quot; libxmlbird_1.0.4-2.dsc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;だとうまくいった。おかしいな、基本的に&amp;ndash;git-pbuilder-optionsと&amp;ndash;debbuildoptは等価ではないのか？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
+gbp:info: Orig tarball &#39;libxmlbird_1.0.4.orig.tar.xz&#39; not found at &#39;../tarballs/&#39;
+gbp:info: Exporting &#39;HEAD&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39;
+gbp:info: Moving &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4&#39;
+Building with cowbuilder for distribution sid
+I: using cowbuilder as pbuilder
+(snip)
+dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
+ dpkg-genchanges -S &amp;gt;../libxmlbird_1.0.4-2_source.changes
+dpkg-genchanges: not including original source code in upload
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>reproducible build対応作業</title>
+            <link>http://b.ma-aya.to/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</link>
+            <pubDate>Sat, 06 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</guid>
+            <description>&lt;p&gt;JDのreproducible buildがエラーになってるのは&lt;a href=&#34;https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros&#34;&gt;DATEとかを展開するMacroが入ってるから&lt;/a&gt;、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。&lt;/p&gt;
+
+&lt;p&gt;fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに&lt;a href=&#34;https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html&#34;&gt;&amp;ldquo;timestamps_difference_by_unzip&amp;rdquo;でunreproducibleだった&lt;/a&gt;のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。&lt;/p&gt;
+
+&lt;p&gt;jruby-joniパッケージは&lt;a href=&#34;https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html&#34;&gt;Java .jar files contain user login in the &lt;code&gt;Built-By&lt;/code&gt; of &lt;code&gt;MANIFEST.MF&lt;/code&gt;&lt;/a&gt;てなことだったので、この辺りを削るパッチを追加することにしました。&lt;/p&gt;
+
+&lt;p&gt;reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。&lt;/p&gt;
+
+&lt;p&gt;birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; def write_config (prefix):
+print (&amp;quot;Writing Config.vala&amp;quot;)
+
+vars = ((&#39;VERSION&#39;, VERSION),
+(&#39;BUILD_TIMESTAMP&#39;, time.asctime( time.localtime(time.time()))),
+(&#39;PREFIX&#39;, prefix),
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>twitter-textパッケージとか</title>
+            <link>http://b.ma-aya.to/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
+            <pubDate>Tue, 02 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
+            <description>&lt;p&gt;ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに&lt;a href=&#34;https://github.com/twitter/twitter-text-rb&#34;&gt;まとめられていた&lt;/a&gt;。
+これはtwitter-textパッケージから色々生成するほうがいいよね、ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688&#34;&gt;Todoをバグとして登録しておく&lt;/a&gt;ことにした。&lt;/p&gt;
+
+&lt;p&gt;あとはjcodingsをアップデートして放り込みなど。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Debian Policyはi18nできないかな</title>
+            <link>http://b.ma-aya.to/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</link>
+            <pubDate>Mon, 01 Jun 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</guid>
+            <description>&lt;pre&gt;&lt;code&gt;$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
+policy.sgml:178: (po4a::sgml)
+               不明なタグ HTTPSITE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ po4a-gettextize --help-format
+有効フォーマット一覧:
+(snip)
+  - sgml: DebianDoc DTD と DocBook DTD。
+(snip)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>bash-completionとか</title>
+            <link>http://b.ma-aya.to/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
+            <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
+            <description>&lt;p&gt;ほぼ寝込んでいたので、&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321&#34;&gt;dcut のbash completion&lt;/a&gt;をコピペで作って投げただけです。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>os-autoinst</title>
+            <link>http://b.ma-aya.to/blog/2015/05/31/os-autoinst/</link>
+            <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>http://b.ma-aya.to/blog/2015/05/31/os-autoinst/</guid>
+            <description>&lt;p&gt;ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、&lt;a href=&#34;http://bugs.debian.org/690244&#34;&gt;RFPになっていたのをITPに戻しました&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。&lt;/p&gt;
+
+&lt;p&gt;あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なので&lt;a href=&#34;https://github.com/os-autoinst/os-autoinst/issues/261&#34;&gt;issue作っておきました&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
