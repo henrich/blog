@@ -9,8 +9,49 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Sat, 13 Feb 2016 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 26 Jun 2017 22:01:11 +0900</lastBuildDate>
     <atom:link href="/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</link>
+            <pubDate>Mon, 26 Jun 2017 22:01:11 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</guid>
+            <description>&lt;p&gt;git-buildpackageでビルドしたのだけど、pristine-tarブランチに作られたファイルから生成されるtarballと最初にアップロードしたorig.tarballとハッシュ値が違うということで蹴られることがある。tarballは都度若干違う値になっちゃうから、そもそもgbp import-origした際にキチンとpristine-tar作るようにしてあるはず、なんだけど、ミスをすることが多々&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;で、どうやってリカバリするかというと、apt source して orig.tarball を差し替える（ダメな場当たり対応。良くやる）というのが思いつくのだけど、ちゃんとpristine-tarブランチのファイルを置き換えた方が良い。&lt;/p&gt;
+
+&lt;p&gt;とはいうものの、このブランチのファイル、どうやって生成しているのかよく分かってない。いっつも単にimport-origしてただけだし。うーん。&lt;/p&gt;
+
+&lt;p&gt;色々試行錯誤した末に、こうしてみた。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;適当なところに apt source &lt;package&gt; でリポジトリにあるorig.tarballを持ってくる&lt;/li&gt;
+&lt;li&gt;適当なところで debcheckout &lt;package&gt; してテンポラリ作業用のgitリポジトリを持ってくる&lt;/li&gt;
+&lt;li&gt;テンポラリgitリポジトリで
+&lt;code&gt;
+$ cd /tmp/&amp;lt;package repo&amp;gt;
+$ git checkout pristine-tar
+$ git rm &amp;lt;該当バージョンのファイル&amp;gt;; git commit -a
+$ git checkout master; git tag -d upstream/&amp;lt;version&amp;gt;
+$ gbp import-orig &amp;lt;orig.tarball&amp;gt;
+&lt;/code&gt;
+などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う
+&lt;code&gt;
+$ cd ~/&amp;lt;package repo&amp;gt;
+$ git checkout pristine-tar
+$ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;回りくどいなーとは思うのだけども。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -623,24 +664,6 @@ policy.sgml:178: (po4a::sgml)
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
             <description>&lt;p&gt;ほぼ寝込んでいたので、&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321&#34;&gt;dcut のbash completion&lt;/a&gt;をコピペで作って投げただけです。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>os-autoinst</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</link>
-            <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</guid>
-            <description>&lt;p&gt;ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、&lt;a href=&#34;http://bugs.debian.org/690244&#34;&gt;RFPになっていたのをITPに戻しました&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。&lt;/p&gt;
-
-&lt;p&gt;あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なので&lt;a href=&#34;https://github.com/os-autoinst/os-autoinst/issues/261&#34;&gt;issue作っておきました&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         
