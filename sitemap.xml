@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://henrich.github.io/blog/blog/2017/06/27/pristine-tar-generation-with-epoch/</loc>
+    <lastmod>2017-06-27T21:22:43+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</loc>
     <lastmod>2017-06-26T22:01:11+09:00</lastmod>
   </url>
@@ -114,19 +119,19 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
-    <lastmod>2017-06-26T22:01:11+09:00</lastmod>
+    <lastmod>2017-06-27T21:22:43+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/</loc>
-    <lastmod>2017-06-26T22:01:11+09:00</lastmod>
+    <lastmod>2017-06-27T21:22:43+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/post/</loc>
-    <lastmod>2017-06-26T22:01:11+09:00</lastmod>
+    <lastmod>2017-06-27T21:22:43+09:00</lastmod>
     <priority>0</priority>
   </url>
   

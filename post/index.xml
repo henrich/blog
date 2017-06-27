@@ -9,8 +9,36 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Mon, 26 Jun 2017 22:01:11 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 27 Jun 2017 21:22:43 +0900</lastBuildDate>
     <atom:link href="/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>pristine tar generation with epoch</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/27/pristine-tar-generation-with-epoch/</link>
+            <pubDate>Tue, 27 Jun 2017 21:22:43 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/blog/2017/06/27/pristine-tar-generation-with-epoch/</guid>
+            <description>&lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
+gbp:info: Tarballs &#39;xfonts-kappa20_0.396.orig.tar.xz&#39; not found at &#39;../tarballs/&#39;
+gbp:error: Pristine-tar couldn&#39;t checkout &amp;quot;xfonts-kappa20_0.396.orig.tar.xz&amp;quot;: fatal: Path &#39;xfonts-kappa20_0.396.orig.tar.xz.delta&#39; does not exist in &#39;refs/heads/pristine-tar&#39;
+pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;何故かprsistine-tarブランチからtarballがチェックアウトできないとな。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
+Switched to branch &#39;pristine-tar&#39;
+henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
+Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -650,20 +678,6 @@ policy.sgml:178: (po4a::sgml)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>bash-completionとか</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
-            <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
-            <description>&lt;p&gt;ほぼ寝込んでいたので、&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321&#34;&gt;dcut のbash completion&lt;/a&gt;をコピペで作って投げただけです。&lt;/p&gt;
 </description>
           </item>
         
