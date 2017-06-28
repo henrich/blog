@@ -9,8 +9,39 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Wed, 28 Jun 2017 20:44:08 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jun 2017 22:00:45 +0900</lastBuildDate>
     <atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>aptの奇妙な出力</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</link>
+            <pubDate>Wed, 28 Jun 2017 22:00:45 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</guid>
+            <description>&lt;pre&gt;&lt;code&gt;582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;console-setup-linux=1.165&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;libavutil55=7:3.2.6-1+b3&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;gvfs-backends=1.30.4-1+b1&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-notify=2.2.6-2+b3&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-visualization=2.2.6-2+b3&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-skins2=2.2.6-2+b3&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc=2.2.6-2+b3&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;mplayer=2:1.3.0-6+b3&#39;] to retrive changelog
+Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;gstreamer1.0-plugins-bad=1.12.1-1+b1&#39;] to retrive changelog
+changelog を読んでいます... 完了
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;??? 何故こんな出力が？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Package: apt
+Version: 1.4.6
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -664,23 +695,6 @@ vars = ((&#39;VERSION&#39;, VERSION),
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>twitter-textパッケージとか</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
-            <pubDate>Tue, 02 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
-            <description>&lt;p&gt;ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに&lt;a href=&#34;https://github.com/twitter/twitter-text-rb&#34;&gt;まとめられていた&lt;/a&gt;。
-これはtwitter-textパッケージから色々生成するほうがいいよね、ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688&#34;&gt;Todoをバグとして登録しておく&lt;/a&gt;ことにした。&lt;/p&gt;
-
-&lt;p&gt;あとはjcodingsをアップデートして放り込みなど。&lt;/p&gt;
 </description>
           </item>
         
