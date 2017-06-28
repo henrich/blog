@@ -15,11 +15,11 @@
       
         
           <item>
-            <title>create backports</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/28/create-backports/</link>
+            <title>久々にbackports</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</link>
             <pubDate>Wed, 28 Jun 2017 20:44:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/28/create-backports/</guid>
+            <guid>https://henrich.github.io/blog/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</guid>
             <description>&lt;p&gt;そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &amp;ndash;bpoでchangelog作成&amp;hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）&lt;/p&gt;
 
 &lt;p&gt;次にbase.cowを作る。&lt;/p&gt;
@@ -46,11 +46,11 @@
       
         
           <item>
-            <title>pristine tar generation with epoch</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/27/pristine-tar-generation-with-epoch/</link>
+            <title>epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</link>
             <pubDate>Tue, 27 Jun 2017 21:22:43 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/27/pristine-tar-generation-with-epoch/</guid>
+            <guid>https://henrich.github.io/blog/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</guid>
             <description>&lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
 gbp:info: Tarballs &#39;xfonts-kappa20_0.396.orig.tar.xz&#39; not found at &#39;../tarballs/&#39;
 gbp:error: Pristine-tar couldn&#39;t checkout &amp;quot;xfonts-kappa20_0.396.orig.tar.xz&amp;quot;: fatal: Path &#39;xfonts-kappa20_0.396.orig.tar.xz.delta&#39; does not exist in &#39;refs/heads/pristine-tar&#39;
