@@ -38,6 +38,12 @@ changelog を読んでいます... 完了
 &lt;pre&gt;&lt;code&gt;Package: apt
 Version: 1.4.6
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Package: apt-listchanges
+Version: 3.12
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;どちらだろうか？&lt;/p&gt;
 </description>
           </item>
         
