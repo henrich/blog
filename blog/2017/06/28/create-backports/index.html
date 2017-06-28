@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="create backports">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>create backports &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>create backports</h3>
+				<span class="label label-primary">Wed, Jun 28, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
+
+<p>次にbase.cowを作る。</p>
+
+<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
+</code></pre>
+
+<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
+
+<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
+</code></pre>
+
+<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
+
+<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
+</code></pre>
+
+<p>以上でアップロード。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
