@@ -14,11 +14,11 @@
       
         
           <item>
-            <title>メンテナのおしごと 17/06/30</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/30/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8-17/06/30/</link>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 30 Jun 2017 23:26:36 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/30/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8-17/06/30/</guid>
+            <guid>https://henrich.github.io/blog/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/debcheck.php?dist=unstable&amp;amp;package=snapper&#34;&gt;snapperのdebcheck&lt;/a&gt;を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&amp;hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
