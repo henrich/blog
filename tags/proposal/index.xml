@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proposal on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/proposal/index.xml</link>
+    <description>Recent content in Proposal on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>2015-  Hideki Yamane</copyright>
+    <atom:link href="/blog/tags/proposal/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>提案めも</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
+            <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation&#34;&gt;pkg-configとpkgconfigの入れ替え話&lt;/a&gt;もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/ChangeSet&#34;&gt;https://fedoraproject.org/wiki/Releases/26/ChangeSet&lt;/a&gt; のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
+
+&lt;ul&gt;
+&lt;li&gt;現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう&lt;/li&gt;
+&lt;li&gt;開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう&lt;/li&gt;
+&lt;li&gt;ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）&lt;/li&gt;
+&lt;li&gt;リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/Schedule&#34;&gt;https://fedoraproject.org/wiki/Releases/26/Schedule&lt;/a&gt; を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt; をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&amp;rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
