@@ -30,7 +30,11 @@
 &lt;li&gt;ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）&lt;/li&gt;
 &lt;li&gt;リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/Schedule&#34;&gt;https://fedoraproject.org/wiki/Releases/26/Schedule&lt;/a&gt; を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/Schedule&#34;&gt;https://fedoraproject.org/wiki/Releases/26/Schedule&lt;/a&gt; を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
+
+&lt;ul&gt;
+&lt;li&gt;→ &lt;a href=&#34;https://wiki.debian.org/upstream-schedule&#34;&gt;https://wiki.debian.org/upstream-schedule&lt;/a&gt; を作ってみた。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt; をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&amp;rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？&lt;/li&gt;
 &lt;/ul&gt;
 </description>
