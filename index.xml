@@ -9,8 +9,142 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Wed, 28 Jun 2017 22:00:45 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 30 Jun 2017 23:26:36 +0900</lastBuildDate>
     <atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>メンテナのおしごと 17/06/30</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/30/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8-17/06/30/</link>
+            <pubDate>Fri, 30 Jun 2017 23:26:36 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/blog/2017/06/30/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8-17/06/30/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/debcheck.php?dist=unstable&amp;amp;package=snapper&#34;&gt;snapperのdebcheck&lt;/a&gt;を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&amp;hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service
+I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これは減らせるだろうか？&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://buildd.debian.org/status/package.php?p=os-autoinst&#34;&gt;os-autoinst&lt;/a&gt;も同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。&lt;/p&gt;
+
+&lt;p&gt;qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？&lt;/p&gt;
+
+&lt;p&gt;アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&amp;hellip;。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932&#34;&gt;美咲フォントのバグレポート&lt;/a&gt;、内容を精査。直ってたので閉じておいた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 29 Jun 2017 20:30:03 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;screenfetch、&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489&#34;&gt;Ubuntu側のバグ登録&lt;/a&gt;を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&amp;hellip;&lt;/li&gt;
+&lt;li&gt;apt show pgf&amp;hellip;パッケージは確かに存在しない。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/pkg/pgf&#34;&gt;trackerのページ&lt;/a&gt;で確認すると、最後のは&lt;a href=&#34;https://tracker.debian.org/news/583320&#34;&gt;[2014-11-03] Removed 2.10-1 from unstable&lt;/a&gt;&amp;hellip;なになに？「integrated into texlive」？&lt;/li&gt;
+&lt;li&gt;ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）&lt;/li&gt;
+&lt;li&gt;debsignしてdputして終わり。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
+--- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
++++ whizzytex-1.3.2/debian/changelog    2017-06-29 20:11:36.000000000 +0900
+@@ -1,3 +1,11 @@
++whizzytex (1.3.2-1.4) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * debian/control
++    - fix Build-Depends since pgf is intergrated into TeXLive.
++
++ -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Thu, 29 Jun 2017 20:11:36 +0900
++
+ whizzytex (1.3.2-1.3) unstable; urgency=medium
+
+   * Non-maintainer upload.
+diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
+--- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
++++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
+@@ -2,7 +2,7 @@
+ Section: tex
+ Priority: optional
+ Maintainer: Junichi Uekawa &amp;lt;dancer@debian.org&amp;gt;
+-Build-Depends-Indep: hevea (&amp;gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
++Build-Depends-Indep: hevea (&amp;gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
+ Build-Depends: debhelper (&amp;gt;&amp;gt; 7.0.50~)
+ Standards-Version: 3.7.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861363&#34;&gt;poppler-dataへのバグレポート&lt;/a&gt;をチェック。レポートにも書いてある通り、&lt;a href=&#34;https://bugzilla.redhat.com/show_bug.cgi?id=842351&#34;&gt;RHBZを確認&lt;/a&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。&lt;/li&gt;
+&lt;li&gt;なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。&lt;/li&gt;
+&lt;li&gt;ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;# cidToUnicode, nameToUnicode and unicodeMap data files
+# are under the COPYING.gpl2 license
+# Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The files in the Resource directory and any subdirectories thereof
+are also part of GPL Ghostscript, with the explicit exception of
+the files in the CMap subdirectory (except &amp;quot;Identity-UTF16-H&amp;quot;,
+which is part of GPL Ghostscript). The CMap files are copyright
+Adobe Systems Incorporated and covered by a separate, Affero GPL
+compatible license.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あれ？AGPLな気がするんだけど… debian/copyrightでチェックしよう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Files: Resource/CMap/Identity-UTF16-H
+Copyright: 2003, Artifex Software
+License-Grant:
+ GPL Ghostscript is free software; you can redistribute it and/or modify
+ it under the terms the GNU Affero General Public License as published
+ by the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+License: AGPL-3+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;だよねぇ。Fedoraの方は間違いだと思う。&lt;/p&gt;
+
+&lt;p&gt;upstream tarball をもう一つ追加して対応、なんだけど git-buildpackage が multiple
+upstream tarball に対応してないのがアレ。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.staff.science.uu.nl/~penni101/mirmon/&#34;&gt;mirmon&lt;/a&gt; のtypoにLintianがうるさく感じたのでパッチをメール。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -627,80 +761,6 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
 &lt;p&gt;疑問が晴れなかったので&lt;a href=&#34;https://lists.debian.org/debian-devel/2015/06/msg00305.html&#34;&gt;debian-develに質問&lt;/a&gt;したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587&#34;&gt;登録しておいた。Bug#789587&lt;/a&gt;です。&lt;/p&gt;
 
 &lt;p&gt;しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>gbpとpbuilderのオプション</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
-            <pubDate>Fri, 19 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
-            <description>&lt;pre&gt;&lt;code&gt;gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo cowbuilder --build --debbuildopt=&amp;quot;-sa&amp;quot; libxmlbird_1.0.4-2.dsc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;だとうまくいった。おかしいな、基本的に&amp;ndash;git-pbuilder-optionsと&amp;ndash;debbuildoptは等価ではないのか？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
-gbp:info: Orig tarball &#39;libxmlbird_1.0.4.orig.tar.xz&#39; not found at &#39;../tarballs/&#39;
-gbp:info: Exporting &#39;HEAD&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39;
-gbp:info: Moving &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4&#39;
-Building with cowbuilder for distribution sid
-I: using cowbuilder as pbuilder
-(snip)
-dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
- dpkg-genchanges -S &amp;gt;../libxmlbird_1.0.4-2_source.changes
-dpkg-genchanges: not including original source code in upload
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>reproducible build対応作業</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</link>
-            <pubDate>Sat, 06 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</guid>
-            <description>&lt;p&gt;JDのreproducible buildがエラーになってるのは&lt;a href=&#34;https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros&#34;&gt;DATEとかを展開するMacroが入ってるから&lt;/a&gt;、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。&lt;/p&gt;
-
-&lt;p&gt;fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに&lt;a href=&#34;https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html&#34;&gt;&amp;ldquo;timestamps_difference_by_unzip&amp;rdquo;でunreproducibleだった&lt;/a&gt;のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。&lt;/p&gt;
-
-&lt;p&gt;jruby-joniパッケージは&lt;a href=&#34;https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html&#34;&gt;Java .jar files contain user login in the &lt;code&gt;Built-By&lt;/code&gt; of &lt;code&gt;MANIFEST.MF&lt;/code&gt;&lt;/a&gt;てなことだったので、この辺りを削るパッチを追加することにしました。&lt;/p&gt;
-
-&lt;p&gt;reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/buildflags.mk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。&lt;/p&gt;
-
-&lt;p&gt;birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; def write_config (prefix):
-print (&amp;quot;Writing Config.vala&amp;quot;)
-
-vars = ((&#39;VERSION&#39;, VERSION),
-(&#39;BUILD_TIMESTAMP&#39;, time.asctime( time.localtime(time.time()))),
-(&#39;PREFIX&#39;, prefix),
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。&lt;/p&gt;
 </description>
           </item>
         
