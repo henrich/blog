@@ -60,7 +60,72 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/">git repoとdh-make</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 23, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>一度upstream tarballを元にdh-makeでパッケージを作った。
+で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。</p>
+
+<pre><code>git clone https://github.com/os-autoinst/os-autoinst.git
+cd os-autoinst
+git checkout 4.1
+git tag upstream/4.1
+git checkout -b debian
+cp -arp ../os-autoinst-4.1/debian ./
+git add debian
+git commit
+</code></pre>
+
+<p>debian/gbp.conf はこんな感じ。</p>
+
+<pre><code>[DEFAULT]
+debian-branch=debian
+
+gbp buildpackage
+</code></pre>
+
+<p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
+
+<pre><code>git config remote.pushdefault alioth 
+</code></pre>
+
+<ul>
+<li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
+<li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
 						<small><span class="label label-primary">
 							
 								Mon, Jun 22, 2015
@@ -104,7 +169,7 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/">gbpとpbuilderのオプション</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/">gbpとpbuilderのオプション</a></h3>
 						<small><span class="label label-primary">
 							
 								Fri, Jun 19, 2015
@@ -163,7 +228,7 @@ dpkg-genchanges: not including original source code in upload
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
 						<small><span class="label label-primary">
 							
 								Sat, Jun 6, 2015
@@ -225,7 +290,7 @@ vars = (('VERSION', VERSION),
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
 						<small><span class="label label-primary">
 							
 								Tue, Jun 2, 2015
@@ -249,56 +314,6 @@ vars = (('VERSION', VERSION),
 これはtwitter-textパッケージから色々生成するほうがいいよね、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688">Todoをバグとして登録しておく</a>ことにした。</p>
 
 <p>あとはjcodingsをアップデートして放り込みなど。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/">Debian Policyはi18nできないかな</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 1, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
-policy.sgml:178: (po4a::sgml)
-               不明なタグ HTTPSITE
-</code></pre>
-
-<p>で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、</p>
-
-<pre><code>$ po4a-gettextize --help-format
-有効フォーマット一覧:
-(snip)
-  - sgml: DebianDoc DTD と DocBook DTD。
-(snip)
-</code></pre>
-
-<p>とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。</p>
 
 					
 				</div>

@@ -60,7 +60,58 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 1, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>darts をアップデート。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
+<li>mecab-naist-jdic をアップデート。特にこれということもなく。</li>
+<li>unidic-mecab をアップデート。dh10でスッキリと。</li>
+<li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
+<li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>
+<li>mecab-jumandic をアップデート。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。<code>$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz</code>っと。</li>
+</ul>
+
+<pre><code>git-buildpackage (0.8.17) unstable; urgency=medium
+(snip)
+  * [956982c] New command 'pristine-tar'
+    This allows one to run the pristine-tar import at a later point.  This
+    is useful when using component tarballs and we need to reference the
+    right trees for the commits.
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
 						<small><span class="label label-primary">
 							
 								Fri, Jun 30, 2017
@@ -115,7 +166,7 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
 								Fri, Jun 30, 2017
@@ -171,7 +222,7 @@ I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
 								Thu, Jun 29, 2017
@@ -293,7 +344,7 @@ upstream tarball に対応してないのがアレ。</p>
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
 						<small><span class="label label-primary">
 							
 								Wed, Jun 28, 2017
@@ -334,59 +385,6 @@ Version: 3.12
 </code></pre>
 
 <p>どちらだろうか？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jun 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
-
-<p>次にbase.cowを作る。</p>
-
-<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
-</code></pre>
-
-<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
-
-<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
-</code></pre>
-
-<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
-</code></pre>
-
-<p>以上でアップロード。</p>
 
 					
 				</div>

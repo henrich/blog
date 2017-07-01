@@ -15,10 +15,10 @@
         
           <item>
             <title>proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</link>
             <pubDate>Mon, 22 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</guid>
             <description>&lt;p&gt;proposed-updatesリポジトリにパッケージをアップロードする際、
 changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？&lt;/p&gt;
 
@@ -34,10 +34,10 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
         
           <item>
             <title>twitter-textパッケージとか</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
             <pubDate>Tue, 02 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
             <description>&lt;p&gt;ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに&lt;a href=&#34;https://github.com/twitter/twitter-text-rb&#34;&gt;まとめられていた&lt;/a&gt;。
 これはtwitter-textパッケージから色々生成するほうがいいよね、ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688&#34;&gt;Todoをバグとして登録しておく&lt;/a&gt;ことにした。&lt;/p&gt;
 
@@ -51,10 +51,10 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
         
           <item>
             <title>bash-completionとか</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
             <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
             <description>&lt;p&gt;ほぼ寝込んでいたので、&lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321&#34;&gt;dcut のbash completion&lt;/a&gt;をコピペで作って投げただけです。&lt;/p&gt;
 </description>
           </item>
@@ -65,10 +65,10 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
         
           <item>
             <title>os-autoinst</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</link>
+            <link>https://henrich.github.io/blog/2015/05/31/os-autoinst/</link>
             <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/31/os-autoinst/</guid>
             <description>&lt;p&gt;ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、&lt;a href=&#34;http://bugs.debian.org/690244&#34;&gt;RFPになっていたのをITPに戻しました&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。&lt;/p&gt;
@@ -83,10 +83,10 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
         
           <item>
             <title>まだまだdevelopers-reference</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/</link>
+            <link>https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/</link>
             <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/</guid>
             <description>&lt;p&gt;相変わらずdevelopers-referenceにちょっかいを出している。&lt;/p&gt;
 
 &lt;ul&gt;
@@ -103,10 +103,10 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
         
           <item>
             <title>Hyper-Vサポートまわりとか</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/</link>
+            <link>https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/</link>
             <pubDate>Sat, 30 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/</guid>
             <description>&lt;p&gt;色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな
 * カーネル内のドライバ
 * カーネルのソースに含まれているtools/hv内のデーモン&lt;/p&gt;
@@ -156,10 +156,10 @@ e.g. GRUB_CMDLINE_LINUX=&amp;quot;video=hyperv_fb:1280x1024&amp;quot;
         
           <item>
             <title>xmltoがらみとOrphanという言葉の語感</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</link>
+            <link>https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</link>
             <pubDate>Sat, 30 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</guid>
             <description>&lt;p&gt;upstreamの方にパッチの話をしたら「もう&lt;a href=&#34;https://fedorahosted.org/xmlto/changeset/76&#34;&gt;svn&lt;/a&gt;に取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。&lt;/p&gt;
 
 &lt;p&gt;あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。
@@ -173,10 +173,10 @@ e.g. GRUB_CMDLINE_LINUX=&amp;quot;video=hyperv_fb:1280x1024&amp;quot;
         
           <item>
             <title>developers-referenceへパッチ</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</link>
+            <link>https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</link>
             <pubDate>Thu, 28 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://www.debian.org/doc/manuals/developers-reference/&#34;&gt;developers-reference&lt;/a&gt;がここの所ずっとアップデートされていない。
 せっかくfuzzyを潰したというのに、パッケージのほうが更新されないため、サイトの方は未訳のままに見える。&lt;/p&gt;
 
@@ -193,10 +193,10 @@ e.g. GRUB_CMDLINE_LINUX=&amp;quot;video=hyperv_fb:1280x1024&amp;quot;
         
           <item>
             <title>debcheckoutへパッチ</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</link>
+            <link>https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</link>
             <pubDate>Mon, 18 May 2015 01:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</guid>
             <description>&lt;p&gt;Debianパッケージのソースを取得したいときには「apt-get source」を使う。
 だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。&lt;/p&gt;
 

@@ -9,17 +9,46 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Fri, 30 Jun 2017 23:48:25 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 01 Jul 2017 08:28:22 +0900</lastBuildDate>
     <atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 01 Jul 2017 08:28:22 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;darts をアップデート。未だにVcs-* をhttpsにしてなかったとは&amp;hellip;&lt;/li&gt;
+&lt;li&gt;mecab-naist-jdic をアップデート。特にこれということもなく。&lt;/li&gt;
+&lt;li&gt;unidic-mecab をアップデート。dh10でスッキリと。&lt;/li&gt;
+&lt;li&gt;naist-jdic、&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960&#34;&gt;LPのバグ報告&lt;/a&gt;がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&amp;hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、&lt;code&gt;$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/&lt;/code&gt; などとしてchroot作ってテスト。再現せず。だよねー&lt;/li&gt;
+&lt;li&gt;mecab、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;バグ報告&lt;/a&gt;を確認。どうすっかなーというところで今日は見送りかな。&lt;/li&gt;
+&lt;li&gt;mecab-jumandic をアップデート。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。&lt;code&gt;$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz&lt;/code&gt;っと。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;git-buildpackage (0.8.17) unstable; urgency=medium
+(snip)
+  * [956982c] New command &#39;pristine-tar&#39;
+    This allows one to run the pristine-tar import at a later point.  This
+    is useful when using component tarballs and we need to reference the
+    right trees for the commits.
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>提案めも</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
+            <link>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
             <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation&#34;&gt;pkg-configとpkgconfigの入れ替え話&lt;/a&gt;もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/ChangeSet&#34;&gt;https://fedoraproject.org/wiki/Releases/26/ChangeSet&lt;/a&gt; のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
@@ -46,10 +75,10 @@
         
           <item>
             <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <link>https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 30 Jun 2017 23:26:36 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/debcheck.php?dist=unstable&amp;amp;package=snapper&#34;&gt;snapperのdebcheck&lt;/a&gt;を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&amp;hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
@@ -80,10 +109,10 @@ I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4
         
           <item>
             <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <link>https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Thu, 29 Jun 2017 20:30:03 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;screenfetch、&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489&#34;&gt;Ubuntu側のバグ登録&lt;/a&gt;を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -180,10 +209,10 @@ upstream tarball に対応してないのがアレ。&lt;/p&gt;
         
           <item>
             <title>aptの奇妙な出力</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</link>
+            <link>https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</link>
             <pubDate>Wed, 28 Jun 2017 22:00:45 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</guid>
             <description>&lt;pre&gt;&lt;code&gt;582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
 Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;console-setup-linux=1.165&#39;] to retrive changelog
 Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;libavutil55=7:3.2.6-1+b3&#39;] to retrive changelog
@@ -217,10 +246,10 @@ Version: 3.12
         
           <item>
             <title>久々にbackports</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</link>
+            <link>https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</link>
             <pubDate>Wed, 28 Jun 2017 20:44:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</guid>
             <description>&lt;p&gt;そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &amp;ndash;bpoでchangelog作成&amp;hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）&lt;/p&gt;
 
 &lt;p&gt;次にbase.cowを作る。&lt;/p&gt;
@@ -248,10 +277,10 @@ Version: 3.12
         
           <item>
             <title>epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</link>
+            <link>https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</link>
             <pubDate>Tue, 27 Jun 2017 21:22:43 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</guid>
             <description>&lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
 gbp:info: Tarballs &#39;xfonts-kappa20_0.396.orig.tar.xz&#39; not found at &#39;../tarballs/&#39;
 gbp:error: Pristine-tar couldn&#39;t checkout &amp;quot;xfonts-kappa20_0.396.orig.tar.xz&amp;quot;: fatal: Path &#39;xfonts-kappa20_0.396.orig.tar.xz.delta&#39; does not exist in &#39;refs/heads/pristine-tar&#39;
@@ -276,10 +305,10 @@ Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.or
         
           <item>
             <title>ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</title>
-            <link>https://henrich.github.io/blog/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</link>
+            <link>https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</link>
             <pubDate>Mon, 26 Jun 2017 22:01:11 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</guid>
+            <guid>https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</guid>
             <description>&lt;p&gt;git-buildpackageでビルドしたのだけど、pristine-tarブランチに作られたファイルから生成されるtarballと最初にアップロードしたorig.tarballとハッシュ値が違うということで蹴られることがある。tarballは都度若干違う値になっちゃうから、そもそもgbp import-origした際にキチンとpristine-tar作るようにしてあるはず、なんだけど、ミスをすることが多々&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;で、どうやってリカバリするかというと、apt source して orig.tarball を差し替える（ダメな場当たり対応。良くやる）というのが思いつくのだけど、ちゃんとpristine-tarブランチのファイルを置き換えた方が良い。&lt;/p&gt;
@@ -317,10 +346,10 @@ $ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar
         
           <item>
             <title>ISOファイルのマウントが残っていてemergency modeで起動</title>
-            <link>https://henrich.github.io/blog/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
+            <link>https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
             <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
+            <guid>https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
             <description>&lt;p&gt;デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）&lt;/p&gt;
 
 &lt;p&gt;前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。&lt;/p&gt;
@@ -341,10 +370,10 @@ $ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar
         
           <item>
             <title>debsnapコケた</title>
-            <link>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
             <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
             <description>&lt;p&gt;gbp import-dscs &amp;ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ debsnap sylpheed 3.2.0-1 --force -v
@@ -377,10 +406,10 @@ Yes, those files are exactly same one.
         
           <item>
             <title>libxmlbird のビルド直してた</title>
-            <link>https://henrich.github.io/blog/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
             <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
             <description>&lt;p&gt;libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。&lt;a href=&#34;https://birdfont.org/bugtracker/view.php?id=101&#34;&gt;upstreamに報告済み&lt;/a&gt;。あと、git repoでタグ打ちがないのも。&lt;/p&gt;
 </description>
           </item>
@@ -391,10 +420,10 @@ Yes, those files are exactly same one.
         
           <item>
             <title>libxmlbird のビルド直してた</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
             <pubDate>Mon, 29 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
             <description>&lt;p&gt;libxmlbirdのビルド、*kfreeBSDなプラットフォームで&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;amp;arch=kfreebsd-amd64&amp;amp;ver=1.0.4-2&amp;amp;stamp=1434758939&#34;&gt;ビルド死んでる&lt;/a&gt;のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。&lt;/p&gt;
 
 &lt;p&gt;sparcでのビルド失敗は&lt;/p&gt;
@@ -427,10 +456,10 @@ ImportError: No module named pkg_resources
         
           <item>
             <title>autopkgtest触ってみた（らしい）</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
+            <link>https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
             <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
+            <guid>https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
             <description>&lt;p&gt;Perlパッケージのautopkgtestについては&lt;a href=&#34;https://pkg-perl.alioth.debian.org/autopkgtest.html&#34;&gt;サイト&lt;/a&gt;に記述がある。&lt;/p&gt;
 
 &lt;p&gt;Testsuite: autopkgtest-pkg-perl&lt;/p&gt;
@@ -529,10 +558,10 @@ gpg: key 0FB272FB marked as ultimately trusted
         
           <item>
             <title>dh-make-perlでPerlモジュールが半自動でDebianパッケージに</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
+            <link>https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
             <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
+            <guid>https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
             <description>&lt;p&gt;dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ dh-make-perl 
@@ -692,10 +721,10 @@ Description: XS based CSS minifier
         
           <item>
             <title>testでskippedが多い場合は依存関係が満たされてないかもしれない</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
+            <link>https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
             <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
+            <guid>https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
             <description>&lt;p&gt;さて、ドキュメントにはテストについて色々書いてありました。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;PERL_DL_NONLAZY=1 /usr/bin/perl &amp;quot;-MExtUtils::Command::MM&amp;quot; &amp;quot;-MTest::Harness&amp;quot; &amp;quot;-e&amp;quot; &amp;quot;undef *Test::Harness::Switches; test_harness(1, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&amp;quot; t/*.t
@@ -729,49 +758,6 @@ Result: PASS
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&amp;ndash;parallelが実行される）。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>git repoとdh-make</title>
-            <link>https://henrich.github.io/blog/blog/2015/06/23/git-repo%E3%81%A8dh-make/</link>
-            <pubDate>Tue, 23 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/06/23/git-repo%E3%81%A8dh-make/</guid>
-            <description>&lt;p&gt;一度upstream tarballを元にdh-makeでパッケージを作った。
-で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/os-autoinst/os-autoinst.git
-cd os-autoinst
-git checkout 4.1
-git tag upstream/4.1
-git checkout -b debian
-cp -arp ../os-autoinst-4.1/debian ./
-git add debian
-git commit
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;debian/gbp.conf はこんな感じ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[DEFAULT]
-debian-branch=debian
-
-gbp buildpackage
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git config remote.pushdefault alioth 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.git/configでoriginじゃないのを追加するコマンドはなんだろう？&lt;/li&gt;
-&lt;li&gt;dh-makeでgit repositoryに対応するにはどうすれば良いのだろう&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

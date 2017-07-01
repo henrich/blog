@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="pristine tar generation with epoch">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>pristine tar generation with epoch &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -54,8 +54,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>pristine tar generation with epoch</h3>
-				<span class="label label-primary">Tue, Jun 27, 2017</span> in 
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Jul 1, 2017</span> in 
 				 using tags
 				
 					
@@ -67,21 +67,22 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<pre><code>$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
-gbp:info: Tarballs 'xfonts-kappa20_0.396.orig.tar.xz' not found at '../tarballs/'
-gbp:error: Pristine-tar couldn't checkout &quot;xfonts-kappa20_0.396.orig.tar.xz&quot;: fatal: Path 'xfonts-kappa20_0.396.orig.tar.xz.delta' does not exist in 'refs/heads/pristine-tar'
-pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
+			<ul>
+<li>darts をアップデート。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
+<li>mecab-naist-jdic をアップデート。特にこれということもなく。</li>
+<li>unidic-mecab をアップデート。dh10でスッキリと。</li>
+<li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
+<li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>
+<li>mecab-jumandic をアップデート。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。<code>$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz</code>っと。</li>
+</ul>
+
+<pre><code>git-buildpackage (0.8.17) unstable; urgency=medium
+(snip)
+  * [956982c] New command 'pristine-tar'
+    This allows one to run the pristine-tar import at a later point.  This
+    is useful when using component tarballs and we need to reference the
+    right trees for the commits.
 </code></pre>
-
-<p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
-
-<pre><code>henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
-Switched to branch 'pristine-tar'
-henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
-Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
-</code></pre>
-
-<p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
 
 		</div>
 	</div>

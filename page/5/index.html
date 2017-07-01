@@ -60,7 +60,57 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/">bash-completionとか</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/">Debian Policyはi18nできないかな</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 1, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
+policy.sgml:178: (po4a::sgml)
+               不明なタグ HTTPSITE
+</code></pre>
+
+<p>で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、</p>
+
+<pre><code>$ po4a-gettextize --help-format
+有効フォーマット一覧:
+(snip)
+  - sgml: DebianDoc DTD と DocBook DTD。
+(snip)
+</code></pre>
+
+<p>とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/">bash-completionとか</a></h3>
 						<small><span class="label label-primary">
 							
 								Sun, May 31, 2015
@@ -99,7 +149,7 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/">os-autoinst</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/os-autoinst/">os-autoinst</a></h3>
 						<small><span class="label label-primary">
 							
 								Sun, May 31, 2015
@@ -145,7 +195,7 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
 						<small><span class="label label-primary">
 							
 								Sun, May 31, 2015
@@ -190,7 +240,7 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/">Hyper-Vサポートまわりとか</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/">Hyper-Vサポートまわりとか</a></h3>
 						<small><span class="label label-primary">
 							
 								Sat, May 30, 2015
@@ -250,51 +300,6 @@ Failed to get D-Bus connection: No such file or directory
 <pre><code>If you want to change screen resolution, please add &quot;video=hyperv_fb:vertical x horizontal&quot; to GRUB_CMDLINE_LINUX in /etc/default/grub and run update-grub
 e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
 </code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/">xmltoがらみとOrphanという言葉の語感</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, May 30, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-								 , 
-							<a href="/blog/tags/upstream">upstream</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>upstreamの方にパッチの話をしたら「もう<a href="https://fedorahosted.org/xmlto/changeset/76">svn</a>に取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。</p>
-
-<p>あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。
-個人的にはOrphanという言葉はあまりよくなく、彼のメールにもあった「fresh blood」を使うのが良いんじゃないかな、と感じる。Needs Fresh Blood, 略してNFB。</p>
 
 					
 				</div>

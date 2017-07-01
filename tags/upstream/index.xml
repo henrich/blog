@@ -15,10 +15,10 @@
         
           <item>
             <title>libxmlbird のビルド直してた</title>
-            <link>https://henrich.github.io/blog/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+            <link>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
             <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+            <guid>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
             <description>&lt;p&gt;libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。&lt;a href=&#34;https://birdfont.org/bugtracker/view.php?id=101&#34;&gt;upstreamに報告済み&lt;/a&gt;。あと、git repoでタグ打ちがないのも。&lt;/p&gt;
 </description>
           </item>
@@ -29,10 +29,10 @@
         
           <item>
             <title>os-autoinst</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</link>
+            <link>https://henrich.github.io/blog/2015/05/31/os-autoinst/</link>
             <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/31/os-autoinst/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/31/os-autoinst/</guid>
             <description>&lt;p&gt;ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、&lt;a href=&#34;http://bugs.debian.org/690244&#34;&gt;RFPになっていたのをITPに戻しました&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。&lt;/p&gt;
@@ -47,10 +47,10 @@
         
           <item>
             <title>xmltoがらみとOrphanという言葉の語感</title>
-            <link>https://henrich.github.io/blog/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</link>
+            <link>https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</link>
             <pubDate>Sat, 30 May 2015 00:00:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</guid>
+            <guid>https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</guid>
             <description>&lt;p&gt;upstreamの方にパッチの話をしたら「もう&lt;a href=&#34;https://fedorahosted.org/xmlto/changeset/76&#34;&gt;svn&lt;/a&gt;に取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。&lt;/p&gt;
 
 &lt;p&gt;あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。
