@@ -69,7 +69,7 @@
 			<br>
 			<ul>
 <li><a href="https://tracker.debian.org/news/852775">darts をアップデート</a>。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
-<li><a href="(https://tracker.debian.org/news/852940)">mecab-naist-jdic をアップデート</a>。特にこれということもなく。</li>
+<li><a href="https://tracker.debian.org/news/852940">mecab-naist-jdic をアップデート</a>。特にこれということもなく。</li>
 <li><a href="https://tracker.debian.org/news/852917">unidic-mecab をアップデート</a> 。dh10でスッキリと。</li>
 <li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
 <li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>

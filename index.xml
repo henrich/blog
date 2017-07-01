@@ -22,7 +22,7 @@
             <guid>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852775&#34;&gt;darts をアップデート&lt;/a&gt;。未だにVcs-* をhttpsにしてなかったとは&amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;(https://tracker.debian.org/news/852940)&#34;&gt;mecab-naist-jdic をアップデート&lt;/a&gt;。特にこれということもなく。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852940&#34;&gt;mecab-naist-jdic をアップデート&lt;/a&gt;。特にこれということもなく。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852917&#34;&gt;unidic-mecab をアップデート&lt;/a&gt; 。dh10でスッキリと。&lt;/li&gt;
 &lt;li&gt;naist-jdic、&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960&#34;&gt;LPのバグ報告&lt;/a&gt;がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&amp;hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、&lt;code&gt;$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/&lt;/code&gt; などとしてchroot作ってテスト。再現せず。だよねー&lt;/li&gt;
 &lt;li&gt;mecab、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;バグ報告&lt;/a&gt;を確認。どうすっかなーというところで今日は見送りかな。&lt;/li&gt;
