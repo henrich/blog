@@ -33,7 +33,7 @@
 
 &lt;p&gt;昔debconfでpleiadesを自動で有効化しようとしたが、他のパッケージを触るので無効にした際に消してしまったREADME.Debianを復活させた。今まで相当不親切だったな&amp;hellip;いかんいかん。&lt;/p&gt;
 
-&lt;p&gt;その他lintianに従って諸々。&lt;/p&gt;
+&lt;p&gt;その他lintianに従って諸々&amp;hellip;と&lt;a href=&#34;https://tracker.debian.org/news/853079&#34;&gt;作業記録のまとめ&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         
