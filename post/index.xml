@@ -9,8 +9,36 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Sat, 01 Jul 2017 08:28:22 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jul 2017 08:08:23 +0900</lastBuildDate>
     <atom:link href="/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 02 Jul 2017 08:08:23 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日はNew upstream releaseがあったpleiadesから。&lt;/p&gt;
+
+&lt;p&gt;まずは適当にビルド&amp;hellip;ってpatchが通らない。ですよねー。ということでquiltでセコセコとpush -fして .rej ファイルを確認して修正する作業から。パッチを見てると&lt;code&gt;./lib/javassist/javassist.jar ./lib/apache/commons-io.jar ./lib/apache/commons-lang.jar&lt;/code&gt; が&lt;code&gt;./lib/javassist/javassist.jar&lt;/code&gt; だけになってた。ということはcommons-ioと-langは要らないの？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;・Pleiades に含まれる Commons IO などのライブリが他のプラグインと競合しないようにソースを取り込んでパッケージ変更
+　(依存は Javassist のみ)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なるほど&amp;hellip;取り込んじゃったのか。ということで依存関係落として作ったdebをインストールしてみて動作に支障は無いことを確認して依存関係をdropしたものをマージ&amp;hellip;したけど、よく考えたら作業環境には他の依存でlibcommons-*が含まれてるんだった&amp;hellip;改めてVM作ってその中で動作確認（&amp;hellip;これこそautopkgtestしたほうが良いよね、私）。&lt;/p&gt;
+
+&lt;p&gt;パッチで無効化していた機能、よくよくみたらビルドオプションで無効にできるじゃん、ということで動作確認してdrop。&lt;/p&gt;
+
+&lt;p&gt;昔debconfでpleiadesを自動で有効化しようとしたが、他のパッケージを触るので無効にした際に消してしまったREADME.Debianを復活させた。今まで相当不親切だったな&amp;hellip;いかんいかん。&lt;/p&gt;
+
+&lt;p&gt;その他lintianに従って諸々。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -718,52 +746,6 @@ Description: XS based CSS minifier
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;と出てきてしまいました。あらら。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>testでskippedが多い場合は依存関係が満たされてないかもしれない</title>
-            <link>https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
-            <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
-            <description>&lt;p&gt;さて、ドキュメントにはテストについて色々書いてありました。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;PERL_DL_NONLAZY=1 /usr/bin/perl &amp;quot;-MExtUtils::Command::MM&amp;quot; &amp;quot;-MTest::Harness&amp;quot; &amp;quot;-e&amp;quot; &amp;quot;undef *Test::Harness::Switches; test_harness(1, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&amp;quot; t/*.t
-t/00-compile.t ................ 
-1..1
-ok 1 - DBIx::Class::OptimisticLocking loaded ok
-ok
-t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
-t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
-t/03-all.t .................... skipped: needs DBD::SQLite for testing
-t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
-t/05-version.t ................ skipped: needs DBD::SQLite for testing
-t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
-t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
-t/08-none.t ................... skipped: needs DBD::SQLite for testing
-t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
-t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
-All tests successful.
-Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
-Result: PASS
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。&lt;/p&gt;
-
-&lt;p&gt;結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。&lt;/p&gt;
-
-&lt;p&gt;もうひとつは些細な話ですがパラレルビルドの話「dh $@ &amp;ndash;parallel」という形で渡せば&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;   dh_auto_build -O--parallel
-	make -j4
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&amp;ndash;parallelが実行される）。&lt;/p&gt;
 </description>
           </item>
         
