@@ -9,8 +9,93 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Sun, 02 Jul 2017 08:08:23 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jan 2100 06:58:34 +0900</lastBuildDate>
     <atom:link href="/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>future work</title>
+            <link>https://henrich.github.io/blog/2100/01/01/future-work/</link>
+            <pubDate>Fri, 01 Jan 2100 06:58:34 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2100/01/01/future-work/</guid>
+            <description>
+
+&lt;h1 id=&#34;とりあえずのtodoリスト&#34;&gt;とりあえずのTodoリスト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
+&lt;li&gt;mecab-jumandicのリグレッション直す&lt;/li&gt;
+&lt;li&gt;libmojolicious-plugin-assetpack-perl アップロードする&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=842631&#34;&gt;birdfontのパッチ&lt;/a&gt;を精査する&lt;/li&gt;
+&lt;li&gt;libuninameslist の debian/copyright を 1.0 にする&lt;/li&gt;
+&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;birdfontのtagまち&lt;/li&gt;
+&lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
+&lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>CVSからGitへの移行</title>
+            <link>https://henrich.github.io/blog/2017/07/02/cvs%E3%81%8B%E3%82%89git%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C/</link>
+            <pubDate>Sun, 02 Jul 2017 17:16:43 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/02/cvs%E3%81%8B%E3%82%89git%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C/</guid>
+            <description>&lt;p&gt;コンバートにはcvs2gitコマンドが一番良さそう&amp;hellip;なのだけど、これcvs2svnパッケージに入ってるので最初気づかなかった。&lt;/p&gt;
+
+&lt;p&gt;利用には現在のリポジトリを生の形式で取得する必要があった（git cloneじゃなくて）。幸い、git.debian.orgにssh出来たのでこれで取得してscpして取ってきた。&lt;/p&gt;
+
+&lt;p&gt;$ git log |grep ^Author|sort |uniq &amp;gt; ~/tmp/cvs-author-list
+$ wc -l ~/tmp/cvs-author-list
+368 /home/henrich/tmp/cvs-author-list&lt;/p&gt;
+
+&lt;p&gt;おおぅ&amp;hellip;この人数取ってくるのか。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://db.debian.org/doc-direct.html&#34;&gt;https://db.debian.org/doc-direct.html&lt;/a&gt; でLDAP情報の取得があるので、ここを確認しよう&amp;hellip;LDAPアクセスは制限されてるが、*.debian.orgなマシンからアクセスすればいいらしい。つまり、SSHで入れれば大丈夫（ん？ということはporterboxもいいのか？）people.debian.orgがオススメらしいので、入る。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;henrich@paradis:~$ ldapsearch -x uid=henrich cn sn
+# extended LDIF
+#
+# LDAPv3
+# base &amp;lt;dc=debian,dc=org&amp;gt; (default) with scope subtree
+# filter: uid=henrich
+# requesting: cn sn
+#
+
+# henrich, users, debian.org
+dn: uid=henrich,ou=users,dc=debian,dc=org
+cn: Hideki
+sn: Yamane
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Author_transforms={
+    &#39;jrandom&#39; : (&#39;J. Random&#39;, &#39;jrandom@example.com&#39;),
+    &#39;mhagger&#39; : &#39;Michael Haggerty &amp;lt;mhagger@alum.mit.edu&amp;gt;&#39;,
+    &#39;brane&#39; : (u&#39;Branko Čibej&#39;, &#39;brane@xbc.nu&#39;),
+    &#39;ringstrom&#39; : &#39;Tobias Ringström &amp;lt;tobias@ringstrom.mine.nu&amp;gt;&#39;,
+    &#39;dionisos&#39; : (u&#39;Erik Hülsmann&#39;, &#39;e.huelsmann@gmx.net&#39;),
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記の形式で&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -495,271 +580,6 @@ ImportError: No module named pkg_resources
 &lt;p&gt;を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。&lt;/p&gt;
 
 &lt;p&gt;それからbirdfontもpython-doit使ってるのでこれも直した。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>autopkgtest触ってみた（らしい）</title>
-            <link>https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
-            <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
-            <description>&lt;p&gt;Perlパッケージのautopkgtestについては&lt;a href=&#34;https://pkg-perl.alioth.debian.org/autopkgtest.html&#34;&gt;サイト&lt;/a&gt;に記述がある。&lt;/p&gt;
-
-&lt;p&gt;Testsuite: autopkgtest-pkg-perl&lt;/p&gt;
-
-&lt;p&gt;をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）&lt;/p&gt;
-
-&lt;p&gt;実施されるテストは
-* smoke
-* use.t
-* syntax.t
-で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。&lt;/p&gt;
-
-&lt;p&gt;実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install sbuild
-$ sudo mkdir -p /srv/chroot/sid
-$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;[sid-amd64-sbuild]
-type=directory
-description=Debian sid/amd64 autobuilder
-directory=/srv/chroot/sid
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:22:46]: version 3.14.3
-adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-virt-schroot requires ephemeral schroot sessions. Set a &amp;quot;union-type&amp;quot; or use a tarball schroot
-adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: [&#39;BrokenPipeError: [Errno 32] Broken pipe\n&#39;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;最初はunion-typeの指定エラーがでたのでこれを追加&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#union-type=aufs
-#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とやってみたのだけど、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:23:06]: version 3.14.3
-adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-Traceback (most recent call last):
-  File &amp;quot;/usr/bin/adt-virt-schroot&amp;quot;, line 190, in &amp;lt;module&amp;gt;
-    parse_args()
-  File &amp;quot;/usr/bin/adt-virt-schroot&amp;quot;, line 96, in parse_args
-    (key, val) = entry.split(&amp;quot;=&amp;quot;, 2)
-ValueError: too many values to unpack (expected 2)
-adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: [&#39;BrokenPipeError: [Errno 32] Broken pipe\n&#39;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[sid-test]
-type=file
-description=test
-file=/srv/chroot/test/base.tgz
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:38]: version 3.14.3
-adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:41]: testbed dpkg architecture: amd64
-adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
-+ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
-gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg&#39; created
-gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg&#39; created
-++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&amp;gt;++++++++++...............+++++
-
-Not enough random bytes available.  Please do some other work to give
-the OS a chance to collect more entropy! (Need 188 more bytes)
-gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
-gpg: key 0FB272FB marked as ultimately trusted
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;初回だけこれでひたすら待つ羽目になったが、これは動いた。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>dh-make-perlでPerlモジュールが半自動でDebianパッケージに</title>
-            <link>https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
-            <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
-            <description>&lt;p&gt;dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dh-make-perl 
-== dh-make-perl 0.86 ==
-Trying /home/henrich/src/qa/../qa.tar.gz... not found.
-Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
-Trying /home/henrich/src/qa/../qa.tar.xz... not found.
-Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
-WARNING: Neither META.json nor META.yml was found
-Unable to determine dist name, no Build.PL, no Makefile.PL
-Please use --cpan.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&amp;ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
-== dh-make-perl 0.86 ==
-
-CPAN.pm requires configuration, but most of it can be done automatically.
-If you answer &#39;no&#39; below, you will enter an interactive dialog for each
-configuration option instead.
-
-Would you like to configure as much as possible automatically? [yes]
-
- &amp;lt;install_help&amp;gt;
-
-Warning: You do not have write permission for Perl library directories.
-
-To install modules, you need to configure a local Perl library directory or
-escalate your privileges.  CPAN can help you by bootstrapping the local::lib
-module or by configuring itself to use &#39;sudo&#39; (if available).  You may also
-resolve this problem manually if you need to customize your setup.
-
-What approach do you want?  (Choose &#39;local::lib&#39;, &#39;sudo&#39; or &#39;manual&#39;)
- [local::lib] 
-
-
-Autoconfiguration complete.
-
-Attempting to bootstrap local::lib...
-(snip)
-PATH=&amp;quot;/home/henrich/perl5/bin${PATH+:}${PATH}&amp;quot;; export PATH;
-PERL5LIB=&amp;quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&amp;quot;; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT=&amp;quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&amp;quot;; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT=&amp;quot;--install_base \&amp;quot;/home/henrich/perl5\&amp;quot;&amp;quot;; export PERL_MB_OPT;
-PERL_MM_OPT=&amp;quot;INSTALL_BASE=/home/henrich/perl5&amp;quot;; export PERL_MM_OPT;
-
-Would you like me to append that to /home/henrich/.bashrc now? [yes] 
-(snip)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
-commit a1a9d209742905d33a3ffee587c32b7a5360a521
-Author: Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
-Date:   Sun Jun 28 00:12:59 2015 +0900
-
-    Initial packaging by dh-make-perl 0.84
-
-commit 29943cd28971248efb43e0e940957bf5086e118e
-Author: Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
-Date:   Sun Jun 28 00:10:38 2015 +0900
-
-    Import original source of DBIx-Class-OptimisticLocking 0.02
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。&lt;/p&gt;
-
-&lt;p&gt;debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。&lt;/p&gt;
-
-&lt;p&gt;debian/copyrightもcpanから取ってきて記述されるようです。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
-Upstream-Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt;
-Upstream-Name: DBIx-Class-OptimisticLocking
-DISCLAIMER: This copyright info was automatically extracted
- from the perl module. It may not be accurate, so you better
- check the module sources in order to ensure the module for its
- inclusion in Debian or for general legal information. Please,
- if licensing information is incorrectly generated, file a bug
- on dh-make-perl.
- NOTE: Don&#39;t forget to remove this disclaimer once you are happy
- with this file.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。&lt;/p&gt;
-
-&lt;p&gt;debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。&lt;/p&gt;
-
-&lt;p&gt;debian/upstream/metadataなんてファイルも出来てました。中身は&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Archive: CPAN
-Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ほー。いたれりつくせりですね。&lt;/p&gt;
-
-&lt;p&gt;あとはgit-buildpackageでビルドしてしまえばOKです。&lt;/p&gt;
-
-&lt;p&gt;ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;**********
-WARNING: a package named
-              &#39;libsql-abstract-perl&#39;
-         is already available in APT repositories
-Maintainer: Debian Perl Group &amp;lt;pkg-perl-maintainers@lists.alioth.debian.org&amp;gt;
-Description: module to generate SQL from Perl data structures
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。&lt;/p&gt;
-
-&lt;p&gt;モジュールがcpanにない場合には&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan selenium-remote-driver-perl
-== dh-make-perl 0.86 ==
-Reading &#39;/home/henrich/.local/share/.cpan/Metadata&#39;
-  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
-Can&#39;t find &#39;selenium::remote::driver::perl&#39; module or distribution on CPAN
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;のように出てきます。&lt;/p&gt;
-
-&lt;p&gt;また、変換の際にモジュールが依存する別のモジュールがない場合には&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Needs the following modules for which there are no debian packages available:
- - Time::Mock
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と警告が出てきます。しかし、これも万能というわけでもなく、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Needs the following modules for which there are no debian packages available:
- - CSS::Minifier::XS
- - JavaScript::Minifier::XS
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と出てきたのでdh-make-perl &amp;ndash;cpan CSS-Minifier-XSしたら&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;**********
-WARNING: a package named
-              &#39;libcss-minifier-xs-perl&#39;
-         is already available in APT repositories
-Maintainer: Debian Perl Group &amp;lt;pkg-perl-maintainers@lists.alioth.debian.org&amp;gt;
-Description: XS based CSS minifier
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;と出てきてしまいました。あらら。&lt;/p&gt;
 </description>
           </item>
         

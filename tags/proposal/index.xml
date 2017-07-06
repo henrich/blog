@@ -14,6 +14,63 @@
       
         
           <item>
+            <title>CVSからGitへの移行</title>
+            <link>https://henrich.github.io/blog/2017/07/02/cvs%E3%81%8B%E3%82%89git%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C/</link>
+            <pubDate>Sun, 02 Jul 2017 17:16:43 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/02/cvs%E3%81%8B%E3%82%89git%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C/</guid>
+            <description>&lt;p&gt;コンバートにはcvs2gitコマンドが一番良さそう&amp;hellip;なのだけど、これcvs2svnパッケージに入ってるので最初気づかなかった。&lt;/p&gt;
+
+&lt;p&gt;利用には現在のリポジトリを生の形式で取得する必要があった（git cloneじゃなくて）。幸い、git.debian.orgにssh出来たのでこれで取得してscpして取ってきた。&lt;/p&gt;
+
+&lt;p&gt;$ git log |grep ^Author|sort |uniq &amp;gt; ~/tmp/cvs-author-list
+$ wc -l ~/tmp/cvs-author-list
+368 /home/henrich/tmp/cvs-author-list&lt;/p&gt;
+
+&lt;p&gt;おおぅ&amp;hellip;この人数取ってくるのか。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://db.debian.org/doc-direct.html&#34;&gt;https://db.debian.org/doc-direct.html&lt;/a&gt; でLDAP情報の取得があるので、ここを確認しよう&amp;hellip;LDAPアクセスは制限されてるが、*.debian.orgなマシンからアクセスすればいいらしい。つまり、SSHで入れれば大丈夫（ん？ということはporterboxもいいのか？）people.debian.orgがオススメらしいので、入る。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;henrich@paradis:~$ ldapsearch -x uid=henrich cn sn
+# extended LDIF
+#
+# LDAPv3
+# base &amp;lt;dc=debian,dc=org&amp;gt; (default) with scope subtree
+# filter: uid=henrich
+# requesting: cn sn
+#
+
+# henrich, users, debian.org
+dn: uid=henrich,ou=users,dc=debian,dc=org
+cn: Hideki
+sn: Yamane
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Author_transforms={
+    &#39;jrandom&#39; : (&#39;J. Random&#39;, &#39;jrandom@example.com&#39;),
+    &#39;mhagger&#39; : &#39;Michael Haggerty &amp;lt;mhagger@alum.mit.edu&amp;gt;&#39;,
+    &#39;brane&#39; : (u&#39;Branko Čibej&#39;, &#39;brane@xbc.nu&#39;),
+    &#39;ringstrom&#39; : &#39;Tobias Ringström &amp;lt;tobias@ringstrom.mine.nu&amp;gt;&#39;,
+    &#39;dionisos&#39; : (u&#39;Erik Hülsmann&#39;, &#39;e.huelsmann@gmx.net&#39;),
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記の形式で&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>提案めも</title>
             <link>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
             <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
