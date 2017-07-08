@@ -25,11 +25,8 @@
 
 &lt;ul&gt;
 &lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
-&lt;li&gt;mecab-jumandicのリグレッション直す&lt;/li&gt;
-&lt;li&gt;libmojolicious-plugin-assetpack-perl アップロードする&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=842631&#34;&gt;birdfontのパッチ&lt;/a&gt;を精査する&lt;/li&gt;
-&lt;li&gt;libuninameslist の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;libuninameslistのmulti-arch対応&lt;/li&gt;
 &lt;li&gt;birdfontのtagまち&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;

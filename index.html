@@ -86,11 +86,8 @@
 
 <ul>
 <li>poppler-dataアップロードする</li>
-<li>mecab-jumandicのリグレッション直す</li>
-<li>libmojolicious-plugin-assetpack-perl アップロードする</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=842631">birdfontのパッチ</a>を精査する</li>
-<li>libuninameslist の debian/copyright を 1.0 にする</li>
 <li>openQAをビルドできるように、必要なツールをパッケージにする</li>
+<li>libuninameslistのmulti-arch対応</li>
 <li>birdfontのtagまち</li>
 <li>fonts-vlgothic の debian/copyright を 1.0 にする</li>
 <li>octiconsをビルドできるように、必要なツールをパッケージにする</li>
@@ -113,18 +110,15 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/02/cvs%E3%81%8B%E3%82%89git%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C/">CVSからGitへの移行</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Jul 2, 2017
+								Sat, Jul 8, 2017
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/proposal">proposal</a>
 						
 					</small>
 				</div>
@@ -133,50 +127,37 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>コンバートにはcvs2gitコマンドが一番良さそう&hellip;なのだけど、これcvs2svnパッケージに入ってるので最初気づかなかった。</p>
+						<p>mecab-jumandicパッケージのリグレッションを作ってしまったので、<a href="https://tracker.debian.org/news/854524">直した</a>。</p>
 
-<p>利用には現在のリポジトリを生の形式で取得する必要があった（git cloneじゃなくて）。幸い、git.debian.orgにssh出来たのでこれで取得してscpして取ってきた。</p>
+<p>autopkgtestのネタとかとして使えないかなぁ、と思う。</p>
 
-<p>$ git log |grep ^Author|sort |uniq &gt; ~/tmp/cvs-author-list
-$ wc -l ~/tmp/cvs-author-list
-368 /home/henrich/tmp/cvs-author-list</p>
+<hr />
 
-<p>おおぅ&hellip;この人数取ってくるのか。</p>
+<p><a href="https://tracker.debian.org/news/854586">libmojolicious-plugin-assetpack-perlアップロード</a>。
+Lintianがtypoを報告してきていたので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126">pull request</a>。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。</p>
 
-<p><a href="https://db.debian.org/doc-direct.html">https://db.debian.org/doc-direct.html</a> でLDAP情報の取得があるので、ここを確認しよう&hellip;LDAPアクセスは制限されてるが、*.debian.orgなマシンからアクセスすればいいらしい。つまり、SSHで入れれば大丈夫（ん？ということはporterboxもいいのか？）people.debian.orgがオススメらしいので、入る。</p>
+<hr />
 
-<pre><code>henrich@paradis:~$ ldapsearch -x uid=henrich cn sn
-# extended LDIF
-#
-# LDAPv3
-# base &lt;dc=debian,dc=org&gt; (default) with scope subtree
-# filter: uid=henrich
-# requesting: cn sn
-#
+<p>poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。</p>
 
-# henrich, users, debian.org
-dn: uid=henrich,ou=users,dc=debian,dc=org
-cn: Hideki
-sn: Yamane
-
-# search result
-search: 2
-result: 0 Success
-
-# numResponses: 2
-# numEntries: 1
+<pre><code>poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
 </code></pre>
 
-<pre><code>Author_transforms={
-    'jrandom' : ('J. Random', 'jrandom@example.com'),
-    'mhagger' : 'Michael Haggerty &lt;mhagger@alum.mit.edu&gt;',
-    'brane' : (u'Branko Čibej', 'brane@xbc.nu'),
-    'ringstrom' : 'Tobias Ringström &lt;tobias@ringstrom.mine.nu&gt;',
-    'dionisos' : (u'Erik Hülsmann', 'e.huelsmann@gmx.net'),
-}
+<hr />
+
+<p>libuninameslistのdebian/copyright を 1.0 にして<a href="https://tracker.debian.org/news/854587">アップロード</a>。次はmulti-arch絡みのsuggestion対応するかね&hellip;</p>
+
+<pre><code>libuninameslist-dev could be marked Multi-Arch: same
+libuninameslist1 could be marked Multi-Arch: same
 </code></pre>
 
-<p>上記の形式で</p>
+<hr />
+
+<ul>
+<li>openQAをビルドできるように、必要なツールをパッケージにする</li>
+</ul>
+
+<p>そもそも何が足りてないのか？という問題が。</p>
 
 					
 				</div>
