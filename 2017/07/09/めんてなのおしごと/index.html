@@ -82,6 +82,19 @@ cpanm --installdeps --with-feature=test .
 %endif
 </code></pre>
 
+<p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&rdquo;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
+
+<pre><code>libmojolicious-perl
+libwww-perl
+libtimedate-perl
+perltidy
+libdbix-class-perl
+libscalar-list-utils-perl
+libtest-simple-perl
+liburi-perl
+libcgi-pm-perl
+</code></pre>
+
 <h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
 
 <pre><code>$ dh-make-perl --cpan SQL::SplitStatement
