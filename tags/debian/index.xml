@@ -29,7 +29,7 @@
 &lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする
 
 &lt;ul&gt;
-&lt;li&gt;SQL::SplitStatement([Bug#]())&lt;/li&gt;
+&lt;li&gt;SQL::SplitStatement(&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752&#34;&gt;Bug#867752&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;libuninameslistのmulti-arch対応
@@ -90,7 +90,11 @@ Needs the following modules for which there are no debian packages available:
 
 &lt;p&gt;(あと&lt;code&gt;upstream/metadata&lt;/code&gt;なるファイルが作成されてたのだけど、これはAppStreamがらみ？)&lt;/p&gt;
 
-&lt;p&gt;ここまで出来たのでlibsql-splitstatement-perlもITP、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752&#34;&gt;Bug#867752&lt;/a&gt;として登録。&lt;/p&gt;
+&lt;p&gt;ここまで出来たのでlibsql-splitstatement-perlもITP、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752&#34;&gt;Bug#867752&lt;/a&gt;として登録、NEW queueへとアップロードしておいた&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;気分転換に&lt;a href=&#34;https://tracker.debian.org/news/854888&#34;&gt;xgridfitを更新&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         
