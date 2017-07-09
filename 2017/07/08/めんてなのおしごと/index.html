@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -54,15 +54,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Jul 8, 2017</span> in 
 				 using tags
 				
 					
 					<a href="/blog/tags/debian">debian</a>
-				
-					 , 
-					<a href="/blog/tags/todo">todo</a>
 				
 			</small>
 		</div>
@@ -70,19 +67,29 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
+			<p>mecab-jumandicパッケージのリグレッションを作ってしまったので、<a href="https://tracker.debian.org/news/854524">直した</a>。</p>
 
-<h1 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h1>
+<p>autopkgtestのネタとかとして使えないかなぁ、と思う。</p>
 
-<ul>
-<li>debian-policyをSphinxに変換する</li>
-<li>poppler-dataアップロードする</li>
-<li>openQAをビルドできるように、必要なツールをパッケージにする</li>
-<li>libuninameslistのmulti-arch対応</li>
-<li>fonts-vlgothic の debian/copyright を 1.0 にする</li>
-<li>octiconsをビルドできるように、必要なツールをパッケージにする</li>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-</ul>
+<hr />
+
+<p><a href="https://tracker.debian.org/news/854586">libmojolicious-plugin-assetpack-perlアップロード</a>。
+Lintianがtypoを報告してきていたので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126">pull request</a>。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。</p>
+
+<hr />
+
+<p>poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。</p>
+
+<pre><code>poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
+</code></pre>
+
+<hr />
+
+<p>libuninameslistのdebian/copyright を 1.0 にして<a href="https://tracker.debian.org/news/854587">アップロード</a>。次はmulti-arch絡みのsuggestion対応するかね&hellip;</p>
+
+<pre><code>libuninameslist-dev could be marked Multi-Arch: same
+libuninameslist1 could be marked Multi-Arch: same
+</code></pre>
 
 		</div>
 	</div>

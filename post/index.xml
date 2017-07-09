@@ -25,13 +25,41 @@
 &lt;h1 id=&#34;とりあえずのtodoリスト&#34;&gt;とりあえずのTodoリスト&lt;/h1&gt;
 
 &lt;ul&gt;
+&lt;li&gt;debian-policyをSphinxに変換する&lt;/li&gt;
 &lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
 &lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;libuninameslistのmulti-arch対応&lt;/li&gt;
-&lt;li&gt;birdfontのtagまち&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 09 Jul 2017 15:12:24 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;birdfontのtag打ちが抜けてたのでupstreamにping、&lt;a href=&#34;https://twitter.com/Birdfont/status/883712098609573889&#34;&gt;pushしてもらえた&lt;/a&gt;ので&lt;a href=&#34;https://tracker.debian.org/news/854863&#34;&gt;uploadした&lt;/a&gt;。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？&lt;a href=&#34;https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1&#34;&gt;upstreamのspecファイルを確認&lt;/a&gt;すると、testを実行するときだけ指定するとかなのかな。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;%if %{with tests}
+cpanm --installdeps --with-feature=test . 
+%endif
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
@@ -68,14 +96,6 @@ Lintianがtypoを報告してきていたので&lt;a href=&#34;https://github.co
 &lt;pre&gt;&lt;code&gt;libuninameslist-dev could be marked Multi-Arch: same
 libuninameslist1 could be marked Multi-Arch: same
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;そもそも何が足りてないのか？という問題が。&lt;/p&gt;
 </description>
           </item>
         
@@ -528,42 +548,6 @@ Yes, those files are exactly same one.
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
             <description>&lt;p&gt;libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。&lt;a href=&#34;https://birdfont.org/bugtracker/view.php?id=101&#34;&gt;upstreamに報告済み&lt;/a&gt;。あと、git repoでタグ打ちがないのも。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>libxmlbird のビルド直してた</title>
-            <link>https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
-            <pubDate>Mon, 29 Jun 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
-            <description>&lt;p&gt;libxmlbirdのビルド、*kfreeBSDなプラットフォームで&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;amp;arch=kfreebsd-amd64&amp;amp;ver=1.0.4-2&amp;amp;stamp=1434758939&#34;&gt;ビルド死んでる&lt;/a&gt;のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。&lt;/p&gt;
-
-&lt;p&gt;sparcでのビルド失敗は&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Traceback (most recent call last):
-  File &amp;quot;/usr/bin/doit&amp;quot;, line 5, in &amp;lt;module&amp;gt;
-    from pkg_resources import load_entry_point
-ImportError: No module named pkg_resources
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;…なんでモジュールが無いというのか？&lt;/p&gt;
-
-&lt;p&gt;ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
-さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、&lt;a href=&#34;https://tracker.debian.org/news/691093&#34;&gt;python-doitのバージョンが違う&lt;/a&gt;。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。&lt;/p&gt;
-
-&lt;p&gt;新しいバージョンになると&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。&lt;/p&gt;
-
-&lt;p&gt;それからbirdfontもpython-doit使ってるのでこれも直した。&lt;/p&gt;
 </description>
           </item>
         
