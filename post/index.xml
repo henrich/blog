@@ -27,11 +27,22 @@
 &lt;ul&gt;
 &lt;li&gt;debian-policyをSphinxに変換する&lt;/li&gt;
 &lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
-&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;libuninameslistのmulti-arch対応&lt;/li&gt;
+&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする
+
+&lt;ul&gt;
+&lt;li&gt;SQL::SplitStatement([Bug#]())&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;libuninameslistのmulti-arch対応
+
+&lt;ul&gt;
+&lt;li&gt;libuninameslist-dev could be marked Multi-Arch: same&lt;/li&gt;
+&lt;li&gt;libuninameslist1 could be marked Multi-Arch: same&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -46,13 +57,13 @@
             <pubDate>Sun, 09 Jul 2017 15:12:24 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;birdfontのtag打ちが抜けてたのでupstreamにping、&lt;a href=&#34;https://twitter.com/Birdfont/status/883712098609573889&#34;&gt;pushしてもらえた&lt;/a&gt;ので&lt;a href=&#34;https://tracker.debian.org/news/854863&#34;&gt;uploadした&lt;/a&gt;。&lt;/p&gt;
+            <description>
+
+&lt;p&gt;birdfontのtag打ちが抜けてたのでupstreamにping、&lt;a href=&#34;https://twitter.com/Birdfont/status/883712098609573889&#34;&gt;pushしてもらえた&lt;/a&gt;ので&lt;a href=&#34;https://tracker.debian.org/news/854863&#34;&gt;uploadした&lt;/a&gt;。&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;ul&gt;
-&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&#34;openqaをビルドできるように-必要なツールをパッケージにする&#34;&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/h2&gt;
 
 &lt;p&gt;そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？&lt;a href=&#34;https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1&#34;&gt;upstreamのspecファイルを確認&lt;/a&gt;すると、testを実行するときだけ指定するとかなのかな。&lt;/p&gt;
 
@@ -60,6 +71,27 @@
 cpanm --installdeps --with-feature=test . 
 %endif
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;sql-splitstatementがパッケージになってないので依存パッケージをアップロード&#34;&gt;SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan SQL::SplitStatement
+== dh-make-perl 0.95 ==
+(snip)
+Needs the following debian packages during building: perl (&amp;gt;= 5.8.9), libtest-exception-perl (&amp;gt;= 0.27)
+Needs the following modules for which there are no debian packages available:
+ - SQL::Tokenizer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あら、また足りない&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan SQL::Tokenizer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とりあえずlibsql-tokenizer-perlをITP、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750&#34;&gt;Bug#867750&lt;/a&gt;として登録。そしてNEW queueへとアップロードしておいた。&lt;/p&gt;
+
+&lt;p&gt;(あと&lt;code&gt;upstream/metadata&lt;/code&gt;なるファイルが作成されてたのだけど、これはAppStreamがらみ？)&lt;/p&gt;
+
+&lt;p&gt;ここまで出来たのでlibsql-splitstatement-perlもITP、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752&#34;&gt;Bug#867752&lt;/a&gt;として登録。&lt;/p&gt;
 </description>
           </item>
         

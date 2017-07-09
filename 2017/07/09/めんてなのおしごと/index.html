@@ -67,13 +67,13 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
+			
+
+<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
 
 <hr />
 
-<ul>
-<li>openQAをビルドできるように、必要なツールをパッケージにする</li>
-</ul>
+<h2 id="openqaをビルドできるように-必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
 
 <p>そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？<a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">upstreamのspecファイルを確認</a>すると、testを実行するときだけ指定するとかなのかな。</p>
 
@@ -81,6 +81,27 @@
 cpanm --installdeps --with-feature=test . 
 %endif
 </code></pre>
+
+<h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
+
+<pre><code>$ dh-make-perl --cpan SQL::SplitStatement
+== dh-make-perl 0.95 ==
+(snip)
+Needs the following debian packages during building: perl (&gt;= 5.8.9), libtest-exception-perl (&gt;= 0.27)
+Needs the following modules for which there are no debian packages available:
+ - SQL::Tokenizer
+</code></pre>
+
+<p>あら、また足りない&hellip;</p>
+
+<pre><code>$ dh-make-perl --cpan SQL::Tokenizer
+</code></pre>
+
+<p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
+
+<p>(あと<code>upstream/metadata</code>なるファイルが作成されてたのだけど、これはAppStreamがらみ？)</p>
+
+<p>ここまで出来たのでlibsql-splitstatement-perlもITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752">Bug#867752</a>として登録。</p>
 
 		</div>
 	</div>
