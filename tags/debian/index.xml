@@ -42,7 +42,32 @@
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
+&lt;li&gt;apt-listchangesのdebconfメッセージを訳しておく&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
+&lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 11 Jul 2017 21:32:30 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/dmd/?henrich%40debian.org#todo&#34;&gt;maintainer dashboard&lt;/a&gt;を覗いて、fonts-konatuのupstreamのURLが変わっていたのを思い出したので&lt;a href=&#34;https://tracker.debian.org/news/855486&#34;&gt;対応&lt;/a&gt;。さらにfonts-kilojiもupstreamのURLが変わってたようなのでこちらも[対応]()。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;krb5でsaslバックエンドなLDAPが使えるようになってない、というのを見かけたので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868035&#34;&gt;判る範囲でBTS&lt;/a&gt;しておいた。&lt;/p&gt;
 </description>
           </item>
         
@@ -64,6 +89,27 @@
 &lt;p&gt;とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&amp;gt;= 0.06~dfsg)を指定するようにして回避。&lt;/p&gt;
 
 &lt;hr /&gt;
+
+&lt;p&gt;試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&amp;hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&amp;gt;256)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&amp;hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&amp;hellip;まだまだ先が長い。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code&gt;#requires &#39;Mojolicious::Plugin::Bootstrap3&#39;;&lt;/code&gt;とあるのでこちらもdh-make-perlで。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
+(snip)
+Can&#39;t find &#39;Mojolicious::Plugin::Bootstrap3&#39; module or distribution on CPAN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なんですと？&lt;/p&gt;
+
+&lt;p&gt;検索すると&lt;a href=&#34;https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm&#34;&gt;https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm&lt;/a&gt; にあるのだけども。。。？…おおぅ&lt;code&gt;Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.&lt;/code&gt;と&lt;a href=&#34;https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm&#34;&gt;ある&lt;/a&gt;
+ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。&lt;/p&gt;
 </description>
           </item>
         
@@ -567,42 +613,6 @@ $ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;なんなんだこれは。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>debsnapコケた</title>
-            <link>https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
-            <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
-            <description>&lt;p&gt;gbp import-dscs &amp;ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ debsnap sylpheed 3.2.0-1 --force -v
-Getting json http://snapshot.debian.org/mr/package/sylpheed/
-Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1
-Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6
-Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c
-Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35
-
-It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz
-
-a41a8e2fc3c5e4935f30c7bacff8d72508546e35:
-sylpheed_3.2.0~rc0.orig.tar.gz
-Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. 
-Size: 4925789
-sylpheed_3.2.0.orig.tar.gz
-Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. 
-Size: 4925789
-
-Yes, those files are exactly same one.
-
-[{&amp;quot;name&amp;quot;: &amp;quot;sylpheed_3.2.0~rc0.orig.tar.gz&amp;quot;, &amp;quot;archive_name&amp;quot;: &amp;quot;debian&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/pool/main/s/sylpheed&amp;quot;, &amp;quot;first_seen&amp;quot;: &amp;quot;20120625T162322Z&amp;quot;, &amp;quot;size&amp;quot;: 4925789}, {&amp;quot;name&amp;quot;: &amp;quot;sylpheed_3.2.0.orig.tar.gz&amp;quot;, &amp;quot;archive_name&amp;quot;: &amp;quot;debian&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/pool/main/s/sylpheed&amp;quot;, &amp;quot;first_seen&amp;quot;: &amp;quot;20120629T161126Z&amp;quot;, &amp;quot;size&amp;quot;: 4925789}],
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         

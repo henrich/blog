@@ -61,9 +61,6 @@
 					
 					<a href="/blog/tags/debian">debian</a>
 				
-					 , 
-					<a href="/blog/tags/"></a>
-				
 			</small>
 		</div>
 	</div>
@@ -78,6 +75,27 @@
 <p>とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&gt;= 0.06~dfsg)を指定するようにして回避。</p>
 
 <hr />
+
+<p>試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。</p>
+
+<pre><code>E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&gt;256)
+</code></pre>
+
+<p>libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&hellip;まだまだ先が長い。</p>
+
+<hr />
+
+<p><code>#requires 'Mojolicious::Plugin::Bootstrap3';</code>とあるのでこちらもdh-make-perlで。</p>
+
+<pre><code>$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
+(snip)
+Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
+</code></pre>
+
+<p>なんですと？</p>
+
+<p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
+ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
 
 		</div>
 	</div>
