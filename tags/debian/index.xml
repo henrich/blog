@@ -25,23 +25,17 @@
 
 &lt;ul&gt;
 &lt;li&gt;debian-policyをSphinxに変換する&lt;/li&gt;
-&lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
+&lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする
 
 &lt;ul&gt;
 &lt;li&gt;Selenium::Remote::Driver &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569&#34;&gt;Bug#839569&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;libuninameslistのmulti-arch対応
-
-&lt;ul&gt;
-&lt;li&gt;libuninameslist-dev could be marked Multi-Arch: same&lt;/li&gt;
-&lt;li&gt;libuninameslist1 could be marked Multi-Arch: same&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;apt-listchangesのdebconfメッセージを訳しておく&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
 
@@ -69,6 +63,12 @@
 &lt;li&gt;fonts-tomsontalksの&lt;a href=&#34;https://tracker.debian.org/news/855734&#34;&gt;debian/watchファイルを修正、他&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;もう一つmadfuloadについても&lt;a href=&#34;https://tracker.debian.org/news/855736&#34;&gt;watchファイルの修正他&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;さらにfonts-ocr-aも&lt;a href=&#34;https://tracker.debian.org/news/855738&#34;&gt;watchファイルの修正他&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Todoリストから「libuninameslistのmulti-arch対応」実施。&amp;ndash;deleyed 2 で放り込んでおく。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
