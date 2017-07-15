@@ -14,20 +14,12 @@
       
         
           <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 10 Jul 2017 04:41:24 +0900</pubDate>
+            <title>maintainer work 0716</title>
+            <link>https://henrich.github.io/blog/2017/07/15/maintainer-work-0716/</link>
+            <pubDate>Sat, 15 Jul 2017 09:12:33 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;昨日に引き続いてopenQAがらみ。パッケージになっていなかった&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867829&#34;&gt;libmojo-rabbitmq-client-perlをITPしてアップロード&lt;/a&gt;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; pbuilder-satisfydepends-dummy : Depends: libnet-amqp-perl (&amp;gt;= 0.06) but it is not going to be installed
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&amp;gt;= 0.06~dfsg)を指定するようにして回避。&lt;/p&gt;
-
-&lt;hr /&gt;
-</description>
+            <guid>https://henrich.github.io/blog/2017/07/15/maintainer-work-0716/</guid>
+            <description></description>
           </item>
         
       

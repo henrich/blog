@@ -33,15 +33,16 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
-&lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;apt-listchangesのdebconfメッセージを訳しておく&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
+&lt;li&gt;fontforgeパッケージの更新をどうするか&lt;/li&gt;
+&lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>

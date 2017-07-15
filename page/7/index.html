@@ -60,6 +60,91 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/">bash-completionとか</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 31, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ほぼ寝込んでいたので、<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321">dcut のbash completion</a>をコピペで作って投げただけです。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/os-autoinst/">os-autoinst</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 31, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+								 , 
+							<a href="/blog/tags/upstream">upstream</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、<a href="http://bugs.debian.org/690244">RFPになっていたのをITPに戻しました</a>。</p>
+
+<p>ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。</p>
+
+<p>あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なので<a href="https://github.com/os-autoinst/os-autoinst/issues/261">issue作っておきました</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
 						<small><span class="label label-primary">
 							
@@ -223,99 +308,6 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">developers-referenceへパッチ</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, May 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://www.debian.org/doc/manuals/developers-reference/">developers-reference</a>がここの所ずっとアップデートされていない。
-せっかくfuzzyを潰したというのに、パッケージのほうが更新されないため、サイトの方は未訳のままに見える。</p>
-
-<p>どうするんだろう？ということでuploaderにメールしたら「I would welcome a patch.」とな。
-ああそうかい、やるよやるよ、ということで<a href="http://bugs.debian.org/developers-reference">BTS</a>に溜まっていたパッチをまとめたものと、epubがらみでのエラーの修正やら、wheezy-&gt;jessieに合わせた変更などをgit format-patchで作って送りつけた。</p>
-
-<p>その際にepubの方のエラーでxmltoを見る機会があったのだけど、これもアップデートが3年ぐらい滞ってるし、パッチも放置されてたのでメンテナに「アップデートしたいんだけど」とメールして、忘れないうちにDeleyed queue/15に放り込み。upstreamの方にも<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738629#16">BTSにあったパッチを送りつけておいた</a>。やれやれ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">debcheckoutへパッチ</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, May 18, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Debianパッケージのソースを取得したいときには「apt-get source」を使う。
-だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。</p>
-
-<p>とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。</p>
-
-<p>debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立って<a href="http://sources.debian.net/src/devscripts/2.15.4/scripts/debcheckout.pl/">debcheckoutの中身</a>を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。</p>
-
-<p>じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して
-<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=739104#15">Bug#739104</a>
-へパッチをポストしておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -356,12 +348,15 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
         class="active"><a href="/blog/page/7/">7</a></li>
         
         <li
-        class="disabled">
-        <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        ><a href="/blog/page/8/">8</a></li>
+        
+        <li
+        >
+        <a href="/blog/page/8/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/blog/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/blog/page/8/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
