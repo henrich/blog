@@ -54,6 +54,34 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 15 Jul 2017 09:12:35 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>
+
+&lt;p&gt;M+ BITMAP FONTSのパッチを&lt;a href=&#34;https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html&#34;&gt;upstreamに送付&lt;/a&gt;完了。やれやれ。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/&#34;&gt;openSUSE Conference Asia&lt;/a&gt;
+の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。&lt;/p&gt;
+
+&lt;p&gt;さてsubmit&amp;hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&amp;hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;You have used 99 words. Abstracts must be between 150 and 500 words.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;150-wordsつらい-ω&#34;&gt;150 wordsつらい(´・ω・`)&lt;/h2&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 14 Jul 2017 23:11:35 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -555,37 +583,6 @@ Version: 3.12
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;どちらだろうか？&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>久々にbackports</title>
-            <link>https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</link>
-            <pubDate>Wed, 28 Jun 2017 20:44:08 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</guid>
-            <description>&lt;p&gt;そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &amp;ndash;bpoでchangelog作成&amp;hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）&lt;/p&gt;
-
-&lt;p&gt;次にbase.cowを作る。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あとはビルドするだけ。。。でもlintianが&lt;a href=&#34;https://lintian.debian.org/tags/backports-changes-missing.html&#34;&gt;backports-changes-missing&lt;/a&gt;なる警告を出す。ふむふむ。。。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;It is recommended to include all changelog entries since the last version on debian-backports or since stable if it&#39;s the first version. You should do this by passing &amp;quot;-v&amp;quot; to dpkg-buildpackage. Eg: &amp;quot;debuild -v0.7.5-2&amp;quot;, where &amp;quot;0.7.5-2&amp;quot; is the version in stable. If the package wasn&#39;t in stable or backports before you don&#39;t have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なるほど。-v&lt;version&gt; とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&amp;ndash;debbuildoptsを指定、ね。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&amp;quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&amp;quot; --git-ignore-branch
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;以上でアップロード。&lt;/p&gt;
 </description>
           </item>
         
