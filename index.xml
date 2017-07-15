@@ -32,9 +32,7 @@
 &lt;ul&gt;
 &lt;li&gt;Selenium::Remote::Driver &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569&#34;&gt;Bug#839569&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;poppler-dataアップロードする&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;apt-listchangesのdebconfメッセージを訳しておく&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
 
 &lt;ul&gt;
@@ -81,7 +79,6 @@
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856447&#34;&gt;docx2txt&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856445&#34;&gt;riece&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856446&#34;&gt;g-wrap&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[tiarra]()&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
