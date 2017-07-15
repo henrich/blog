@@ -59,21 +59,21 @@
             <pubDate>Sat, 15 Jul 2017 09:12:35 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>
-
-&lt;p&gt;M+ BITMAP FONTSのパッチを&lt;a href=&#34;https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html&#34;&gt;upstreamに送付&lt;/a&gt;完了。やれやれ。&lt;/p&gt;
+            <description>&lt;p&gt;M+ BITMAP FONTSのパッチを&lt;a href=&#34;https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html&#34;&gt;upstreamに送付&lt;/a&gt;完了。やれやれ。&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/&#34;&gt;openSUSE Conference Asia&lt;/a&gt;
 の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。&lt;/p&gt;
 
-&lt;p&gt;さてsubmit&amp;hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&amp;hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。&lt;/p&gt;
+&lt;p&gt;さてsubmit&amp;hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&amp;hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&amp;hellip;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;You have used 99 words. Abstracts must be between 150 and 500 words.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;150-wordsつらい-ω&#34;&gt;150 wordsつらい(´・ω・`)&lt;/h2&gt;
+&lt;p&gt;&amp;hellip;150 wordsつらい(´・ω・`)&lt;/p&gt;
+
+&lt;hr /&gt;
 </description>
           </item>
         
