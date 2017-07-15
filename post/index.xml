@@ -66,7 +66,7 @@
 &lt;p&gt;&lt;a href=&#34;https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/&#34;&gt;openSUSE Conference Asia&lt;/a&gt;
 の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。&lt;/p&gt;
 
-&lt;p&gt;さてsubmit&amp;hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&amp;hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&amp;hellip;&lt;/p&gt;
+&lt;p&gt;さて&lt;a href=&#34;https://events.opensuse.org/&#34;&gt;submit&lt;/a&gt;&amp;hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&amp;hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&amp;hellip;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;You have used 99 words. Abstracts must be between 150 and 500 words.
 &lt;/code&gt;&lt;/pre&gt;
@@ -74,6 +74,27 @@
 &lt;p&gt;&amp;hellip;150 wordsつらい(´・ω・`)&lt;/p&gt;
 
 &lt;hr /&gt;
+
+&lt;p&gt;今日はcollab-maintな奴を更新&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856447&#34;&gt;docx2txt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856445&#34;&gt;riece&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856446&#34;&gt;g-wrap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[tiarra]()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
+E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。&lt;/p&gt;
+
+&lt;p&gt;それと最近のバージョンではMock::Timeが必要なようなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428&#34;&gt;libmock-time-perlをITP&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         

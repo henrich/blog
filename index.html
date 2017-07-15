@@ -148,7 +148,7 @@
 <p><a href="https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/">openSUSE Conference Asia</a>
 の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。</p>
 
-<p>さてsubmit&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
+<p>さて<a href="https://events.opensuse.org/">submit</a>&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
 
 <pre><code>You have used 99 words. Abstracts must be between 150 and 500 words.
 </code></pre>
@@ -156,6 +156,27 @@
 <p>&hellip;150 wordsつらい(´・ω・`)</p>
 
 <hr />
+
+<p>今日はcollab-maintな奴を更新</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/856447">docx2txt</a></li>
+<li><a href="https://tracker.debian.org/news/856445">riece</a></li>
+<li><a href="https://tracker.debian.org/news/856446">g-wrap</a></li>
+<li>[tiarra]()</li>
+</ul>
+
+<hr />
+
+<p>libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&hellip;</p>
+
+<pre><code>E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
+E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
+</code></pre>
+
+<p>これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。</p>
+
+<p>それと最近のバージョンではMock::Timeが必要なようなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428">libmock-time-perlをITP</a>。</p>
 
 					
 				</div>
