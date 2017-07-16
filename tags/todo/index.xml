@@ -60,11 +60,14 @@
             <description>&lt;p&gt;今日のケアリスト。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856538&#34;&gt;xfonts-efont-unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856566&#34;&gt;xfonts-kaname&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856571&#34;&gt;xfonts-shinonome&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856648&#34;&gt;xfonts-naga10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856538&#34;&gt;xfonts-efont-unicode&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856662&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856566&#34;&gt;xfonts-kaname&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856663&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856571&#34;&gt;xfonts-shinonome&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856666&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856648&#34;&gt;xfonts-naga10&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856665&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856650&#34;&gt;tiarra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856669&#34;&gt;libspiro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856686&#34;&gt;xfonts-ayu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856690&#34;&gt;fonts-horai-umefont&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;xfonts-kappa20もアップロードしたが、&lt;code&gt;xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.&lt;/code&gt;と言われてrejectされる&amp;hellip;
 
 &lt;ul&gt;
@@ -73,6 +76,8 @@
 &lt;/ul&gt;
 
 &lt;p&gt;xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&amp;hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&amp;hellip;)。&lt;/p&gt;
+
+&lt;p&gt;その他、ruby-interpriterのdropなど。なぜか&lt;a href=&#34;https://packages.debian.org/sid/ruby2.1&#34;&gt;ruby2.1がarm64のdeb-portsに残ってる&lt;/a&gt;状況なのが不思議。&lt;/p&gt;
 
 &lt;hr /&gt;
 
