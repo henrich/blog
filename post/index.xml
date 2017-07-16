@@ -43,7 +43,65 @@
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 16 Jul 2017 09:12:33 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のケアリスト。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856538&#34;&gt;xfonts-efont-unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856566&#34;&gt;xfonts-kaname&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856571&#34;&gt;xfonts-shinonome&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856648&#34;&gt;xfonts-naga10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856650&#34;&gt;tiarra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;xfonts-kappa20もアップロードしたが、&lt;code&gt;xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.&lt;/code&gt;と言われてrejectされる&amp;hellip;
+
+&lt;ul&gt;
+&lt;li&gt;恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&amp;hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&amp;hellip;)。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;本体側のpo訳してた＼(^o^)／&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、&lt;a href=&#34;https://github.com/gempesaw/Selenium-Remote-Driver&#34;&gt;GitHub&lt;/a&gt;を見るようにする。以下、試行錯誤の結果。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan Selenium::Remote::Driver
+$ cd libselenium-remote-driver-perl
+
+(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
+$ git branch -D upstream
+$ git tag -d upstream/1.20
+
+(空のブランチを作る)
+$ git checkout --orphan upstream
+$ git rm -rf *
+
+(upstreamブランチはGithubのmasterから取得するようにする)
+$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
+$ git pull github
+$ git fetch
+$ git branch -u github/master upstream
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;git checkout --orphan &amp;lt;branch&amp;gt;&lt;/code&gt;はなかなか思いつかない&amp;hellip;&lt;/p&gt;
 </description>
           </item>
         
@@ -565,43 +623,6 @@ upstream tarball に対応してないのがアレ。&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://www.staff.science.uu.nl/~penni101/mirmon/&#34;&gt;mirmon&lt;/a&gt; のtypoにLintianがうるさく感じたのでパッチをメール。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>aptの奇妙な出力</title>
-            <link>https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</link>
-            <pubDate>Wed, 28 Jun 2017 22:00:45 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</guid>
-            <description>&lt;pre&gt;&lt;code&gt;582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;console-setup-linux=1.165&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;libavutil55=7:3.2.6-1+b3&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;gvfs-backends=1.30.4-1+b1&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-notify=2.2.6-2+b3&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-visualization=2.2.6-2+b3&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-skins2=2.2.6-2+b3&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc=2.2.6-2+b3&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;mplayer=2:1.3.0-6+b3&#39;] to retrive changelog
-Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;gstreamer1.0-plugins-bad=1.12.1-1+b1&#39;] to retrive changelog
-changelog を読んでいます... 完了
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;??? 何故こんな出力が？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Package: apt
-Version: 1.4.6
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Package: apt-listchanges
-Version: 3.12
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;どちらだろうか？&lt;/p&gt;
 </description>
           </item>
         

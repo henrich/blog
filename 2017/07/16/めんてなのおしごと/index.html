@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -54,8 +54,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Jul 16, 2017</span> in 
 				 using tags
 				
 					
@@ -70,31 +70,50 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h1 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h1>
+			<p>今日のケアリスト。</p>
 
 <ul>
-<li>debian-policyをSphinxに変換する</li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
+<li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a></li>
+<li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a></li>
+<li><a href="https://tracker.debian.org/news/856571">xfonts-shinonome</a></li>
+<li><a href="https://tracker.debian.org/news/856648">xfonts-naga10</a></li>
+<li><a href="https://tracker.debian.org/news/856650">tiarra</a></li>
+<li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
 
 <ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
+<li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
 </ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
-
-<ul>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-<li>fontforgeパッケージの更新をどうするか</li>
-<li>octiconsをビルドできるように、必要なツールをパッケージにする</li>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>fonts-vlgothic の debian/copyright を 1.0 にする</li>
-</ul></li>
-<li>poppler-dataとxfonts-kappa20アップロードする</li>
 </ul>
+
+<p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
+
+<hr />
+
+<p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
+
+<hr />
+
+<p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
+
+<pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
+$ cd libselenium-remote-driver-perl
+
+(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
+$ git branch -D upstream
+$ git tag -d upstream/1.20
+
+(空のブランチを作る)
+$ git checkout --orphan upstream
+$ git rm -rf *
+
+(upstreamブランチはGithubのmasterから取得するようにする)
+$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
+$ git pull github
+$ git fetch
+$ git branch -u github/master upstream
+</code></pre>
+
+<p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
 
 		</div>
 	</div>
