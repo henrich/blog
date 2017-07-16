@@ -107,6 +107,17 @@ $ git branch -u github/master upstream
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;git checkout --orphan &amp;lt;branch&amp;gt;&lt;/code&gt;はなかなか思いつかない&amp;hellip;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;前に一応チェックした&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489&#34;&gt;screenfetchのLaunchPadへの報告&lt;/a&gt;、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じだけ（鍵は適当）。で、upstream masterでやると&lt;code&gt;CPU: 16x UnknownPOWER8E (raw)&lt;/code&gt;と出てくる。POWER8E (raw)なところを捕まえればいいので、&lt;a href=&#34;https://github.com/KittyKatt/screenFetch/pull/503&#34;&gt;PRを送っておいた&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。&lt;/p&gt;
 </description>
           </item>
         
