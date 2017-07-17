@@ -35,12 +35,14 @@
 &lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
 
 &lt;ul&gt;
+&lt;li&gt;fontforgeパッケージの更新をどうするか&lt;/li&gt;
+&lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
-&lt;li&gt;fontforgeパッケージの更新をどうするか&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://opentype.jp/kouzangyousho.htm&#34;&gt;衡山毛筆フォント行書&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://opentype.jp/kouzansousho.htm&#34;&gt;衡山毛筆フォント草書&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
 &lt;/ul&gt;
@@ -114,7 +116,7 @@ $ git branch -u github/master upstream
 &lt;pre&gt;&lt;code&gt;$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;こんな感じだけ（鍵は適当）。で、upstream masterでやると&lt;code&gt;CPU: 16x UnknownPOWER8E (raw)&lt;/code&gt;と出てくる。POWER8E (raw)なところを捕まえればいいので、&lt;a href=&#34;https://github.com/KittyKatt/screenFetch/pull/503&#34;&gt;PRを送っておいた&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;こんな感じだけ（鍵は適当）。で、upstream masterを実行すると&lt;code&gt;CPU: 16x UnknownPOWER8E (raw)&lt;/code&gt;と出てくる。POWER8E (raw)なところを捕まえればいいので、&lt;a href=&#34;https://github.com/KittyKatt/screenFetch/pull/503&#34;&gt;PRを送っておいた&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。&lt;/p&gt;
 </description>
