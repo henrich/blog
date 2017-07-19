@@ -60,70 +60,6 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jul 10, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>昨日に引き続いてopenQAがらみ。パッケージになっていなかった<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867829">libmojo-rabbitmq-client-perlをITPしてアップロード</a>。</p>
-
-<pre><code> pbuilder-satisfydepends-dummy : Depends: libnet-amqp-perl (&gt;= 0.06) but it is not going to be installed
-</code></pre>
-
-<p>とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&gt;= 0.06~dfsg)を指定するようにして回避。</p>
-
-<hr />
-
-<p>試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。</p>
-
-<pre><code>E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&gt;256)
-</code></pre>
-
-<p>libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&hellip;まだまだ先が長い。</p>
-
-<hr />
-
-<p><code>#requires 'Mojolicious::Plugin::Bootstrap3';</code>とあるのでこちらもdh-make-perlで。</p>
-
-<pre><code>$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
-(snip)
-Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
-</code></pre>
-
-<p>なんですと？</p>
-
-<p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
-ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -371,6 +307,61 @@ Please see the logfiles in /var/log/letsencrypt for more details.
 
 <ul>
 <li>消えたら可哀想だな、ということで<a href="https://tracker.debian.org/news/852950">plumをAdoptした</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/proposal">proposal</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation">pkg-configとpkgconfigの入れ替え話</a>もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。</li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/ChangeSet">https://fedoraproject.org/wiki/Releases/26/ChangeSet</a> のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
+
+<ul>
+<li>現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう</li>
+<li>開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう</li>
+<li>ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）</li>
+<li>リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう</li>
+</ul></li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/Schedule">https://fedoraproject.org/wiki/Releases/26/Schedule</a> を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
+
+<ul>
+<li>→ <a href="https://wiki.debian.org/upstream-schedule">https://wiki.debian.org/upstream-schedule</a> を作ってみた。</li>
+</ul></li>
+<li><a href="http://debian-mirror.sakura.ne.jp/">debian-mirror.sakura.ne.jp</a> をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？</li>
 </ul>
 
 					

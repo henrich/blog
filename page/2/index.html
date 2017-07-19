@@ -60,76 +60,6 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>M+ BITMAP FONTSのパッチを<a href="https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html">upstreamに送付</a>完了。やれやれ。</p>
-
-<hr />
-
-<p><a href="https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/">openSUSE Conference Asia</a>
-の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。</p>
-
-<p>さて<a href="https://events.opensuse.org/">submit</a>&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
-
-<pre><code>You have used 99 words. Abstracts must be between 150 and 500 words.
-</code></pre>
-
-<p>&hellip;150 wordsつらい(´・ω・`)</p>
-
-<hr />
-
-<p>今日はcollab-maintな奴を更新</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/856447">docx2txt</a></li>
-<li><a href="https://tracker.debian.org/news/856445">riece</a></li>
-<li><a href="https://tracker.debian.org/news/856446">g-wrap</a></li>
-</ul>
-
-<hr />
-
-<p>libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&hellip;</p>
-
-<pre><code>E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
-E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
-</code></pre>
-
-<p>これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。</p>
-
-<p>それと最近のバージョンではMock::Timeが必要なようなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428">libmock-time-perlをITP</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -289,6 +219,70 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 <hr />
 
 <p>krb5でsaslバックエンドなLDAPが使えるようになってない、というのを見かけたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868035">判る範囲でBTS</a>しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jul 10, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>昨日に引き続いてopenQAがらみ。パッケージになっていなかった<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867829">libmojo-rabbitmq-client-perlをITPしてアップロード</a>。</p>
+
+<pre><code> pbuilder-satisfydepends-dummy : Depends: libnet-amqp-perl (&gt;= 0.06) but it is not going to be installed
+</code></pre>
+
+<p>とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&gt;= 0.06~dfsg)を指定するようにして回避。</p>
+
+<hr />
+
+<p>試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。</p>
+
+<pre><code>E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&gt;256)
+</code></pre>
+
+<p>libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&hellip;まだまだ先が長い。</p>
+
+<hr />
+
+<p><code>#requires 'Mojolicious::Plugin::Bootstrap3';</code>とあるのでこちらもdh-make-perlで。</p>
+
+<pre><code>$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
+(snip)
+Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
+</code></pre>
+
+<p>なんですと？</p>
+
+<p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
+ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
 
 					
 				</div>
