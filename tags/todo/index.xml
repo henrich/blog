@@ -41,8 +41,6 @@
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://opentype.jp/kouzangyousho.htm&#34;&gt;衡山毛筆フォント行書&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://opentype.jp/kouzansousho.htm&#34;&gt;衡山毛筆フォント草書&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
 &lt;/ul&gt;

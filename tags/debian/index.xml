@@ -41,11 +41,143 @@
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://opentype.jp/kouzangyousho.htm&#34;&gt;衡山毛筆フォント行書&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://opentype.jp/kouzansousho.htm&#34;&gt;衡山毛筆フォント草書&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 19 Jul 2017 19:51:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description></description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 18 Jul 2017 06:40:16 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>
+
+&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/dmd/?henrich%40debian.org#todo&#34;&gt;maintainer dashboard&lt;/a&gt;より。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libmojolicious-plugin-renderfile-perlの&lt;a href=&#34;http://bugs.debian.org/839621&#34;&gt;#839621&lt;/a&gt;を修正。manのtypoは&lt;a href=&#34;https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20&#34;&gt;PR送った&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;libmojolicious-plugin-assetpack-perlもついでに更新&amp;hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;パッケージ一覧&lt;/a&gt;を眺めてのグルーミング作業。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857081&#34;&gt;fonts-kouzan-mouhitsu&lt;/a&gt;。サイトを見に行ったら更新されていたので反映。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;octiconsのビルドにはnpmモジュールが必要&#34;&gt;octiconsのビルドにはnpmモジュールが必要&lt;/h2&gt;
+
+&lt;p&gt;octiconsのビルドに必要なのを見てみるか&amp;hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;quot;devDependencies&amp;quot;: {
+    &amp;quot;autoprefixer&amp;quot;: &amp;quot;^6.3.6&amp;quot;,
+    &amp;quot;ava&amp;quot;: &amp;quot;^0.16.0&amp;quot;,
+    &amp;quot;grunt&amp;quot;: &amp;quot;^1.0.1&amp;quot;,
+    &amp;quot;grunt-contrib-clean&amp;quot;: &amp;quot;^1.0.0&amp;quot;,
+    &amp;quot;grunt-contrib-copy&amp;quot;: &amp;quot;^1.0.0&amp;quot;,
+    &amp;quot;grunt-cssnano&amp;quot;: &amp;quot;^2.1.0&amp;quot;,
+    &amp;quot;grunt-svgmin&amp;quot;: &amp;quot;^4.0.0&amp;quot;,
+    &amp;quot;grunt-svgstore&amp;quot;: &amp;quot;^1.0.0&amp;quot;
+  },
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&amp;hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; [error]   num2fraction: dependency node-num2fraction not in debian
+ [error]   browserslist: dependency node-browserslist not in debian
+ [error]   normalize-range: dependency node-normalize-range not in debian
+ [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
+ [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   postcss: dependency node-postcss not in debian
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;browserslistをnpm2debすると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&amp;hellip;この作業で150個以上のnpmモジュールをパッケージにすることが必要なようだ。マジか&amp;hellip;。&lt;/p&gt;
+
+&lt;h3 id=&#34;パッケージに落とせてない所&#34;&gt;パッケージに落とせてない所&lt;/h3&gt;
+
+&lt;p&gt;css-treeはalpha版しかないからかnpm2debがコケる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm2deb create css-tree
+Traceback (most recent call last):
+  File &amp;quot;/usr/bin/npm2deb&amp;quot;, line 7, in &amp;lt;module&amp;gt;
+    sys.exit(main(sys.argv))
+  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&amp;quot;, line 138, in main
+    args.func(args)
+  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&amp;quot;, line 273, in create
+    npm2deb.start()
+  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&amp;quot;, line 71, in start
+    self.download()
+  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&amp;quot;, line 404, in download
+    raise ValueError(exception)
+ValueError: Error downloading package css-tree
+npm ERR! notarget No compatible version found: css-tree@&#39;*&#39;
+npm ERR! notarget Valid install targets:
+npm ERR! notarget [&amp;quot;1.0.0-alpha&amp;quot;,&amp;quot;1.0.0-alpha2&amp;quot;,&amp;quot;1.0.0-alpha3&amp;quot;,&amp;quot;1.0.0-alpha4&amp;quot;,&amp;quot;1.0.0-alpha5&amp;quot;,&amp;quot;1.0.0-alpha6&amp;quot;,&amp;quot;1.0.0-alpha7&amp;quot;,&amp;quot;1.0.0-alpha8&amp;quot;,&amp;quot;1.0.0-alpha9&amp;quot;,&amp;quot;1.0.0-alpha10&amp;quot;,&amp;quot;1.0.0-alpha11&amp;quot;,&amp;quot;1.0.0-alpha12&amp;quot;,&amp;quot;1.0.0-alpha13&amp;quot;,&amp;quot;1.0.0-alpha14&amp;quot;,&amp;quot;1.0.0-alpha15&amp;quot;,&amp;quot;1.0.0-alpha16&amp;quot;,&amp;quot;1.0.0-alpha17&amp;quot;,&amp;quot;1.0.0-alpha18&amp;quot;,&amp;quot;1.0.0-alpha19&amp;quot;]
+npm ERR! notarget 
+npm ERR! notarget This is most likely not a problem with npm itself.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn&#39;t exist.
+
+npm ERR! System Linux 4.9.0-2-amd64
+npm ERR! command &amp;quot;/usr/bin/nodejs&amp;quot; &amp;quot;/usr/bin/npm&amp;quot; &amp;quot;pack&amp;quot; &amp;quot;css-tree&amp;quot;
+npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
+npm ERR! node -v v4.8.3
+npm ERR! npm -v 1.4.21
+npm ERR! code ETARGET
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
+npm ERR! not ok code 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
+ [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
+ [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
+ [error]   @concordance/react: dependency node-@concordance/react not in debian                              
+ [error]   @types/node: dependency node-@types/node not in debian
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;npm2debでの変換中、気になるメッセージとしては以下。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Using fakeupstream to download npm dist tarballs, because upstream
+git repo is missing tags. Its better to ask upstream to tag their releases
+instead of using npm dist tarballs as dist tarballs may contain pre built files
+and may not include tests.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。&lt;/p&gt;
 </description>
           </item>
         
@@ -499,70 +631,6 @@ Please see the logfiles in /var/log/letsencrypt for more details.
 &lt;ul&gt;
 &lt;li&gt;消えたら可哀想だな、ということで&lt;a href=&#34;https://tracker.debian.org/news/852950&#34;&gt;plumをAdoptした&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>提案めも</title>
-            <link>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
-            <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation&#34;&gt;pkg-configとpkgconfigの入れ替え話&lt;/a&gt;もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/ChangeSet&#34;&gt;https://fedoraproject.org/wiki/Releases/26/ChangeSet&lt;/a&gt; のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
-
-&lt;ul&gt;
-&lt;li&gt;現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう&lt;/li&gt;
-&lt;li&gt;開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう&lt;/li&gt;
-&lt;li&gt;ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）&lt;/li&gt;
-&lt;li&gt;リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/Schedule&#34;&gt;https://fedoraproject.org/wiki/Releases/26/Schedule&lt;/a&gt; を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
-
-&lt;ul&gt;
-&lt;li&gt;→ &lt;a href=&#34;https://wiki.debian.org/upstream-schedule&#34;&gt;https://wiki.debian.org/upstream-schedule&lt;/a&gt; を作ってみた。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt; をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&amp;rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 30 Jun 2017 23:26:36 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/debcheck.php?dist=unstable&amp;amp;package=snapper&#34;&gt;snapperのdebcheck&lt;/a&gt;を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&amp;hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
-I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service
-I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service
-I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これは減らせるだろうか？&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://buildd.debian.org/status/package.php?p=os-autoinst&#34;&gt;os-autoinst&lt;/a&gt;も同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。&lt;/p&gt;
-
-&lt;p&gt;qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？&lt;/p&gt;
-
-&lt;p&gt;アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&amp;hellip;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932&#34;&gt;美咲フォントのバグレポート&lt;/a&gt;、内容を精査。直ってたので閉じておいた。&lt;/p&gt;
 </description>
           </item>
         

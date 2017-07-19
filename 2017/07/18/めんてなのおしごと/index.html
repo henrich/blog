@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Tue, Jul 18, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>より。</p>
+
+<ul>
+<li>libmojolicious-plugin-renderfile-perlの<a href="http://bugs.debian.org/839621">#839621</a>を修正。manのtypoは<a href="https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20">PR送った</a>。</li>
+<li>libmojolicious-plugin-assetpack-perlもついでに更新&hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&hellip;</li>
+</ul>
+
+<hr />
+
+<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857081">fonts-kouzan-mouhitsu</a>。サイトを見に行ったら更新されていたので反映。</li>
+</ul>
+
+<hr />
+
+<h2 id="octiconsのビルドにはnpmモジュールが必要">octiconsのビルドにはnpmモジュールが必要</h2>
+
+<p>octiconsのビルドに必要なのを見てみるか&hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。</p>
+
+<pre><code>  &quot;devDependencies&quot;: {
+    &quot;autoprefixer&quot;: &quot;^6.3.6&quot;,
+    &quot;ava&quot;: &quot;^0.16.0&quot;,
+    &quot;grunt&quot;: &quot;^1.0.1&quot;,
+    &quot;grunt-contrib-clean&quot;: &quot;^1.0.0&quot;,
+    &quot;grunt-contrib-copy&quot;: &quot;^1.0.0&quot;,
+    &quot;grunt-cssnano&quot;: &quot;^2.1.0&quot;,
+    &quot;grunt-svgmin&quot;: &quot;^4.0.0&quot;,
+    &quot;grunt-svgstore&quot;: &quot;^1.0.0&quot;
+  },
+</code></pre>
+
+<p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
+
+<pre><code> [error]   num2fraction: dependency node-num2fraction not in debian
+ [error]   browserslist: dependency node-browserslist not in debian
+ [error]   normalize-range: dependency node-normalize-range not in debian
+ [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
+ [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   postcss: dependency node-postcss not in debian
+</code></pre>
+
+<p>browserslistをnpm2debすると</p>
+
+<pre><code> [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
+</code></pre>
+
+<p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で150個以上のnpmモジュールをパッケージにすることが必要なようだ。マジか&hellip;。</p>
+
+<h3 id="パッケージに落とせてない所">パッケージに落とせてない所</h3>
+
+<p>css-treeはalpha版しかないからかnpm2debがコケる。</p>
+
+<pre><code>$ npm2deb create css-tree
+Traceback (most recent call last):
+  File &quot;/usr/bin/npm2deb&quot;, line 7, in &lt;module&gt;
+    sys.exit(main(sys.argv))
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 138, in main
+    args.func(args)
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 273, in create
+    npm2deb.start()
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 71, in start
+    self.download()
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 404, in download
+    raise ValueError(exception)
+ValueError: Error downloading package css-tree
+npm ERR! notarget No compatible version found: css-tree@'*'
+npm ERR! notarget Valid install targets:
+npm ERR! notarget [&quot;1.0.0-alpha&quot;,&quot;1.0.0-alpha2&quot;,&quot;1.0.0-alpha3&quot;,&quot;1.0.0-alpha4&quot;,&quot;1.0.0-alpha5&quot;,&quot;1.0.0-alpha6&quot;,&quot;1.0.0-alpha7&quot;,&quot;1.0.0-alpha8&quot;,&quot;1.0.0-alpha9&quot;,&quot;1.0.0-alpha10&quot;,&quot;1.0.0-alpha11&quot;,&quot;1.0.0-alpha12&quot;,&quot;1.0.0-alpha13&quot;,&quot;1.0.0-alpha14&quot;,&quot;1.0.0-alpha15&quot;,&quot;1.0.0-alpha16&quot;,&quot;1.0.0-alpha17&quot;,&quot;1.0.0-alpha18&quot;,&quot;1.0.0-alpha19&quot;]
+npm ERR! notarget 
+npm ERR! notarget This is most likely not a problem with npm itself.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! System Linux 4.9.0-2-amd64
+npm ERR! command &quot;/usr/bin/nodejs&quot; &quot;/usr/bin/npm&quot; &quot;pack&quot; &quot;css-tree&quot;
+npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
+npm ERR! node -v v4.8.3
+npm ERR! npm -v 1.4.21
+npm ERR! code ETARGET
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
+npm ERR! not ok code 0
+</code></pre>
+
+<p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
+
+<pre><code> [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
+ [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
+ [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
+ [error]   @concordance/react: dependency node-@concordance/react not in debian                              
+ [error]   @types/node: dependency node-@types/node not in debian
+</code></pre>
+
+<p>npm2debでの変換中、気になるメッセージとしては以下。</p>
+
+<pre><code>Using fakeupstream to download npm dist tarballs, because upstream
+git repo is missing tags. Its better to ask upstream to tag their releases
+instead of using npm dist tarballs as dist tarballs may contain pre built files
+and may not include tests.
+</code></pre>
+
+<p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
