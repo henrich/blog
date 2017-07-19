@@ -117,7 +117,7 @@
  [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&amp;hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&amp;hellip;この作業で150個以上のnpmモジュールをパッケージにすることが必要なようだ。マジか&amp;hellip;。&lt;/p&gt;
+&lt;p&gt;&amp;hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&amp;hellip;この作業で&lt;strong&gt;150個以上のnpmモジュールをdebパッケージにすることが必要&lt;/strong&gt;なようだ。マジか&amp;hellip;。&lt;/p&gt;
 
 &lt;h3 id=&#34;パッケージに落とせてない所&#34;&gt;パッケージに落とせてない所&lt;/h3&gt;
 
