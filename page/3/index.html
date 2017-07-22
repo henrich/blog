@@ -60,6 +60,46 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 14, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
+
+<ul>
+<li>ちょっとした待ち時間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">バグ報告</a>の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。<code>mv README.pod README</code>したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -256,93 +296,6 @@ Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 9, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
-
-<hr />
-
-<h2 id="openqaをビルドできるように-必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
-
-<p>そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？<a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">upstreamのspecファイルを確認</a>すると、testを実行するときだけ指定するとかなのかな。</p>
-
-<pre><code>%if %{with tests}
-cpanm --installdeps --with-feature=test . 
-%endif
-</code></pre>
-
-<p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&rdquo;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
-
-<pre><code>libmojolicious-perl
-libwww-perl
-libtimedate-perl
-perltidy
-libdbix-class-perl
-libscalar-list-utils-perl
-libtest-simple-perl
-liburi-perl
-libcgi-pm-perl
-</code></pre>
-
-<h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
-
-<pre><code>$ dh-make-perl --cpan SQL::SplitStatement
-== dh-make-perl 0.95 ==
-(snip)
-Needs the following debian packages during building: perl (&gt;= 5.8.9), libtest-exception-perl (&gt;= 0.27)
-Needs the following modules for which there are no debian packages available:
- - SQL::Tokenizer
-</code></pre>
-
-<p>あら、また足りない&hellip;</p>
-
-<pre><code>$ dh-make-perl --cpan SQL::Tokenizer
-</code></pre>
-
-<p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
-
-<p>(あと<code>upstream/metadata</code>なるファイルが作成されてたのだけど、これはAppStreamがらみ？)</p>
-
-<p>ここまで出来たのでlibsql-splitstatement-perlもITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752">Bug#867752</a>として登録、NEW queueへとアップロードしておいた</p>
-
-<hr />
-
-<p>気分転換に<a href="https://tracker.debian.org/news/854888">xgridfitを更新</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -389,12 +342,15 @@ Needs the following modules for which there are no debian packages available:
         ><a href="/blog/page/9/">9</a></li>
         
         <li
+        ><a href="/blog/page/10/">10</a></li>
+        
+        <li
         >
         <a href="/blog/page/4/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/blog/page/9/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/blog/page/10/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>

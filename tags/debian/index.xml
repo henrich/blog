@@ -58,14 +58,10 @@
           <item>
             <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 22 Jul 2017 21:26:41 +0900</pubDate>
+            <pubDate>Sat, 22 Jul 2017 21:37:26 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、&lt;a href=&#34;https://github.com/fontforge/fontforge/issues/3119&#34;&gt;問い合わせ&lt;/a&gt;だけしておく。。。&lt;/li&gt;
-&lt;li&gt;VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、&lt;a href=&#34;https://lists.debian.org/debian-qa/2017/07/msg00031.html&#34;&gt;問い合わせ&lt;/a&gt;だけしておく。。。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+            <description></description>
           </item>
         
       
@@ -90,7 +86,7 @@
 &lt;li&gt;[fonts-kanjistrokeorders]()&lt;/li&gt;
 &lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
 &lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
-&lt;li&gt;[svn-workbench]()&lt;/li&gt;
+&lt;li&gt;[svn-workbench]()。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
 &lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -124,6 +120,23 @@ Creating dynamic image with size 5243928576 bytes (5001MB)...
            Depends: libxml-libxml-perl but it is not going to be installed
 E: Unable to correct problems, you have held broken packages.
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 21 Jul 2017 21:26:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、&lt;a href=&#34;https://github.com/fontforge/fontforge/issues/3119&#34;&gt;問い合わせ&lt;/a&gt;だけしておく。。。&lt;/li&gt;
+&lt;li&gt;VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、&lt;a href=&#34;https://lists.debian.org/debian-qa/2017/07/msg00031.html&#34;&gt;問い合わせ&lt;/a&gt;だけしておく。。。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
@@ -575,71 +588,6 @@ Can&#39;t find &#39;Mojolicious::Plugin::Bootstrap3&#39; module or distribution 
 
 &lt;p&gt;検索すると&lt;a href=&#34;https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm&#34;&gt;https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm&lt;/a&gt; にあるのだけども。。。？…おおぅ&lt;code&gt;Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.&lt;/code&gt;と&lt;a href=&#34;https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm&#34;&gt;ある&lt;/a&gt;
 ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 09 Jul 2017 15:12:24 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>
-
-&lt;p&gt;birdfontのtag打ちが抜けてたのでupstreamにping、&lt;a href=&#34;https://twitter.com/Birdfont/status/883712098609573889&#34;&gt;pushしてもらえた&lt;/a&gt;ので&lt;a href=&#34;https://tracker.debian.org/news/854863&#34;&gt;uploadした&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;openqaをビルドできるように-必要なツールをパッケージにする&#34;&gt;openQAをビルドできるように、必要なツールをパッケージにする&lt;/h2&gt;
-
-&lt;p&gt;そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？&lt;a href=&#34;https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1&#34;&gt;upstreamのspecファイルを確認&lt;/a&gt;すると、testを実行するときだけ指定するとかなのかな。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;%if %{with tests}
-cpanm --installdeps --with-feature=test . 
-%endif
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&amp;rdquo;モジュール名&amp;rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;libmojolicious-perl
-libwww-perl
-libtimedate-perl
-perltidy
-libdbix-class-perl
-libscalar-list-utils-perl
-libtest-simple-perl
-liburi-perl
-libcgi-pm-perl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;sql-splitstatementがパッケージになってないので依存パッケージをアップロード&#34;&gt;SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan SQL::SplitStatement
-== dh-make-perl 0.95 ==
-(snip)
-Needs the following debian packages during building: perl (&amp;gt;= 5.8.9), libtest-exception-perl (&amp;gt;= 0.27)
-Needs the following modules for which there are no debian packages available:
- - SQL::Tokenizer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あら、また足りない&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan SQL::Tokenizer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とりあえずlibsql-tokenizer-perlをITP、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750&#34;&gt;Bug#867750&lt;/a&gt;として登録。そしてNEW queueへとアップロードしておいた。&lt;/p&gt;
-
-&lt;p&gt;(あと&lt;code&gt;upstream/metadata&lt;/code&gt;なるファイルが作成されてたのだけど、これはAppStreamがらみ？)&lt;/p&gt;
-
-&lt;p&gt;ここまで出来たのでlibsql-splitstatement-perlもITP、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752&#34;&gt;Bug#867752&lt;/a&gt;として登録、NEW queueへとアップロードしておいた&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;気分転換に&lt;a href=&#34;https://tracker.debian.org/news/854888&#34;&gt;xgridfitを更新&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         

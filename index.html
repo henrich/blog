@@ -144,11 +144,7 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、<a href="https://github.com/fontforge/fontforge/issues/3119">問い合わせ</a>だけしておく。。。</li>
-<li>VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、<a href="https://lists.debian.org/debian-qa/2017/07/msg00031.html">問い合わせ</a>だけしておく。。。</li>
-</ul>
-
+						
 					
 				</div>
 			</div>
@@ -198,7 +194,7 @@
 <li>[fonts-kanjistrokeorders]()</li>
 <li>[fonts-komatuna]()</li>
 <li>[fonts-ipafont]()</li>
-<li>[svn-workbench]()</li>
+<li>[svn-workbench]()。<a href="https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html">desktopファイルにkeywordが足りない</a>ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。</li>
 <li>fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。</li>
 </ul>
 
@@ -232,6 +228,45 @@ Creating dynamic image with size 5243928576 bytes (5001MB)...
            Depends: libxml-libxml-perl but it is not going to be installed
 E: Unable to correct problems, you have held broken packages.
 </code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 21, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、<a href="https://github.com/fontforge/fontforge/issues/3119">問い合わせ</a>だけしておく。。。</li>
+<li>VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、<a href="https://lists.debian.org/debian-qa/2017/07/msg00031.html">問い合わせ</a>だけしておく。。。</li>
+</ul>
 
 					
 				</div>
@@ -291,55 +326,6 @@ E: Unable to correct problems, you have held broken packages.
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jul 19, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
-
-<ul>
-<li>[snapper]()</li>
-<li>[jruby-joni]()。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
-</ul>
-
-<hr />
-
-<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
-
-<hr />
-
-<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -386,12 +372,15 @@ E: Unable to correct problems, you have held broken packages.
         ><a href="/blog/page/9/">9</a></li>
         
         <li
+        ><a href="/blog/page/10/">10</a></li>
+        
+        <li
         >
         <a href="/blog/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/blog/page/9/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/blog/page/10/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>

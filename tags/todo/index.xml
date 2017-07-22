@@ -73,7 +73,7 @@
 &lt;li&gt;[fonts-kanjistrokeorders]()&lt;/li&gt;
 &lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
 &lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
-&lt;li&gt;[svn-workbench]()&lt;/li&gt;
+&lt;li&gt;[svn-workbench]()。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
 &lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。&lt;/li&gt;
 &lt;/ul&gt;
 
