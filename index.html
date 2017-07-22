@@ -127,10 +127,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Jul 22, 2017
+								Sun, Jul 23, 2017
 							</span>&nbsp;in
 							 using tags
 							
@@ -144,7 +144,30 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li>fonts-breip</li>
+</ul>
+
+<pre><code>  * Team upload.                                       
+  * add epoch to version since upstream releases it as 0.5.1 and previous
+    packaging introduced unnecessary non-upstream files
+  * debian/control
+    - remove Mauro Lizaur &lt;mauro@debian.org&gt; from Uploaders, thank you for
+      your work! (Closes: #869339)                     
+    - add myself to Uploaders.                         
+    - update Vcs-* and use https                       
+    - set Standards-Version: 4.0.0                     
+    - set Build-Depends: debhelper (&gt;= 10)
+  * debian/compat
+    - set 10
+  * add debian/watch
+  * add debian/gbp.conf
+  * debian/copyright
+    - convert to copyright format 1.0
+</code></pre>
+
 					
 				</div>
 			</div>
@@ -195,7 +218,7 @@
 <li>[fonts-komatuna]()</li>
 <li>[fonts-ipafont]()</li>
 <li>[svn-workbench]()。<a href="https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html">desktopファイルにkeywordが足りない</a>ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。</li>
-<li>fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。</li>
+<li>fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。short-name(<a href="https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name)では「public-domain」とハイフン入れるのね。">https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name)では「public-domain」とハイフン入れるのね。</a></li>
 </ul>
 
 <hr />
