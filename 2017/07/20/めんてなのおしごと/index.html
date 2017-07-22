@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Wed, Jul 19, 2017</span> in 
+				<span class="label label-primary">Thu, Jul 20, 2017</span> in 
 				 using tags
 				
 					
@@ -67,20 +67,17 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
-
-<ul>
-<li>[snapper]()</li>
-<li>[jruby-joni]()。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
+			<ul>
+<li>riece、見落としてた<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=857775">バグを閉じた</a></li>
+<li>[fonts-misaki]()</li>
+<li>[fonts-seto]()</li>
+<li>[fonts-dejima-mincho]()</li>
+<li>quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して[アップロード]()
+<code>* Fix &quot;FTBFS with perl 5.26: Unescaped left brace in regex&quot;:
+   escape literal left braces in perl regexp in debian/rules;
+   patch from Niko Tyni.
+   (Closes: #826502)</code></li>
 </ul>
-
-<hr />
-
-<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
-
-<hr />
-
-<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
 
 		</div>
 	</div>

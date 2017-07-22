@@ -60,6 +60,290 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jun 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>screenfetch、<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">Ubuntu側のバグ登録</a>を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。</p>
+
+<hr />
+
+<p>トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。</p>
+
+<ol>
+<li>cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&hellip;</li>
+<li>apt show pgf&hellip;パッケージは確かに存在しない。</li>
+<li><a href="https://tracker.debian.org/pkg/pgf">trackerのページ</a>で確認すると、最後のは<a href="https://tracker.debian.org/news/583320">[2014-11-03] Removed 2.10-1 from unstable</a>&hellip;なになに？「integrated into texlive」？</li>
+<li>ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）</li>
+<li>debsignしてdputして終わり。</li>
+</ol>
+
+<pre><code>diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
+--- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
++++ whizzytex-1.3.2/debian/changelog    2017-06-29 20:11:36.000000000 +0900
+@@ -1,3 +1,11 @@
++whizzytex (1.3.2-1.4) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * debian/control
++    - fix Build-Depends since pgf is intergrated into TeXLive.
++
++ -- Hideki Yamane &lt;henrich@debian.org&gt;  Thu, 29 Jun 2017 20:11:36 +0900
++
+ whizzytex (1.3.2-1.3) unstable; urgency=medium
+
+   * Non-maintainer upload.
+diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
+--- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
++++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
+@@ -2,7 +2,7 @@
+ Section: tex
+ Priority: optional
+ Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
+-Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
++Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
+ Build-Depends: debhelper (&gt;&gt; 7.0.50~)
+ Standards-Version: 3.7.2
+</code></pre>
+
+<hr />
+
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861363">poppler-dataへのバグレポート</a>をチェック。レポートにも書いてある通り、<a href="https://bugzilla.redhat.com/show_bug.cgi?id=842351">RHBZを確認</a>。</p>
+
+<ul>
+<li>何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。</li>
+<li>なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。</li>
+<li>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</li>
+</ul>
+
+<pre><code># cidToUnicode, nameToUnicode and unicodeMap data files
+# are under the COPYING.gpl2 license
+# Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
+</code></pre>
+
+<p>とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると</p>
+
+<pre><code>The files in the Resource directory and any subdirectories thereof
+are also part of GPL Ghostscript, with the explicit exception of
+the files in the CMap subdirectory (except &quot;Identity-UTF16-H&quot;,
+which is part of GPL Ghostscript). The CMap files are copyright
+Adobe Systems Incorporated and covered by a separate, Affero GPL
+compatible license.
+</code></pre>
+
+<p>あれ？AGPLな気がするんだけど… debian/copyrightでチェックしよう。</p>
+
+<pre><code>Files: Resource/CMap/Identity-UTF16-H
+Copyright: 2003, Artifex Software
+License-Grant:
+ GPL Ghostscript is free software; you can redistribute it and/or modify
+ it under the terms the GNU Affero General Public License as published
+ by the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+License: AGPL-3+
+</code></pre>
+
+<p>だよねぇ。Fedoraの方は間違いだと思う。</p>
+
+<p>upstream tarball をもう一つ追加して対応、なんだけど git-buildpackage が multiple
+upstream tarball に対応してないのがアレ。</p>
+
+<hr />
+
+<p><a href="https://www.staff.science.uu.nl/~penni101/mirmon/">mirmon</a> のtypoにLintianがうるさく感じたのでパッチをメール。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jun 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
+Calling ['apt-get', '-qq', 'changelog', 'console-setup-linux=1.165'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'libavutil55=7:3.2.6-1+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'gvfs-backends=1.30.4-1+b1'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-notify=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-visualization=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-skins2=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'mplayer=2:1.3.0-6+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'gstreamer1.0-plugins-bad=1.12.1-1+b1'] to retrive changelog
+changelog を読んでいます... 完了
+</code></pre>
+
+<p>??? 何故こんな出力が？</p>
+
+<pre><code>Package: apt
+Version: 1.4.6
+</code></pre>
+
+<pre><code>Package: apt-listchanges
+Version: 3.12
+</code></pre>
+
+<p>どちらだろうか？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jun 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
+
+<p>次にbase.cowを作る。</p>
+
+<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
+</code></pre>
+
+<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
+
+<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
+</code></pre>
+
+<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
+
+<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
+</code></pre>
+
+<p>以上でアップロード。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/">epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
+gbp:info: Tarballs 'xfonts-kappa20_0.396.orig.tar.xz' not found at '../tarballs/'
+gbp:error: Pristine-tar couldn't checkout &quot;xfonts-kappa20_0.396.orig.tar.xz&quot;: fatal: Path 'xfonts-kappa20_0.396.orig.tar.xz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
+</code></pre>
+
+<p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
+
+<pre><code>henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
+Switched to branch 'pristine-tar'
+henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
+Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
+</code></pre>
+
+<p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/">ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</a></h3>
 						<small><span class="label label-primary">
 							
@@ -105,213 +389,6 @@ $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
 </ul>
 
 <p>回りくどいなーとは思うのだけども。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/">ISOファイルのマウントが残っていてemergency modeで起動</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 13, 2016
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）</p>
-
-<p>前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。</p>
-
-<pre><code>#/dev/loop0     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-#/dev/loop2     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51        udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-#Entry for /dev/loop1 :
-#UUID=2015-10-30-20-02-13-00    /media/henrich/J_SSS_X64FRE_JA-JP_DV91  udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-</code></pre>
-
-<p>なんなんだこれは。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/">debsnapコケた</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Nov 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>gbp import-dscs &ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？</p>
-
-<pre><code>$ debsnap sylpheed 3.2.0-1 --force -v
-Getting json http://snapshot.debian.org/mr/package/sylpheed/
-Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1
-Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6
-Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c
-Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35
-
-It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz
-
-a41a8e2fc3c5e4935f30c7bacff8d72508546e35:
-sylpheed_3.2.0~rc0.orig.tar.gz
-Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. 
-Size: 4925789
-sylpheed_3.2.0.orig.tar.gz
-Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. 
-Size: 4925789
-
-Yes, those files are exactly same one.
-
-[{&quot;name&quot;: &quot;sylpheed_3.2.0~rc0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120625T162322Z&quot;, &quot;size&quot;: 4925789}, {&quot;name&quot;: &quot;sylpheed_3.2.0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120629T161126Z&quot;, &quot;size&quot;: 4925789}],
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Nov 15, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/upstream">upstream</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。<a href="https://birdfont.org/bugtracker/view.php?id=101">upstreamに報告済み</a>。あと、git repoでタグ打ちがないのも。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 29, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
-
-<p>sparcでのビルド失敗は</p>
-
-<pre><code>Traceback (most recent call last):
-  File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-ImportError: No module named pkg_resources
-</code></pre>
-
-<p>…なんでモジュールが無いというのか？</p>
-
-<p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
-さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
-
-<p>新しいバージョンになると</p>
-
-<pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-</code></pre>
-
-<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
-
-<p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
 
 					
 				</div>

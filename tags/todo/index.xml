@@ -57,6 +57,65 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 22 Jul 2017 06:46:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[vmdk-stream-converter]()
+
+&lt;ul&gt;
+&lt;li&gt;LaunchPadで&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995&#34;&gt;Bug登録されてた&lt;/a&gt;から何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;[psphere]()&lt;/li&gt;
+&lt;li&gt;[fonts-kanjistrokeorders]()&lt;/li&gt;
+&lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
+&lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
+&lt;li&gt;[svn-workbench]()&lt;/li&gt;
+&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ&lt;code&gt;@ANY_VERSION@&lt;/code&gt;・&lt;code&gt;@ARCHIVE_EXT@&lt;/code&gt; と書けるのでそれを使うと良いよ、という話をした。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;sylpheedのビルドが全部揃ってないのが気になったので調査。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sylpheed build-depends on missing:
+- libgpgme-dev:hurd-i386 (&amp;gt;= 1.0.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これか。&lt;a href=&#34;https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid&#34;&gt;https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid&lt;/a&gt; を見るとoverride_dh_auto_configureでコケてビルドが失敗している&amp;hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。&lt;a href=&#34;https://people.debian.org/~sthibault/hurd-i386/&#34;&gt;qemuイメージの配布&lt;/a&gt;で新しいイメージが出てたのでそれをベースにやり直してみよう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI
+Converting from raw image file=&amp;quot;debian-hurd-20170613.img&amp;quot; to file=&amp;quot;debian-hurd-converted-20170613.vdi&amp;quot;... 
+Creating dynamic image with size 5243928576 bytes (5001MB)...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思って&lt;code&gt;sudo modprobe vboxdrv&lt;/code&gt;してVBoxを立ち上げなおしてみても同じエラー。&amp;hellip;あ、kernelが変わったせい？ &lt;code&gt;sudo dpkg-reconfigure virtualbox-dkms&lt;/code&gt;してみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&amp;hellip;という謎の対処療法的な解決の仕方でスッキリしない。&lt;/p&gt;
+
+&lt;p&gt;あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ&lt;/p&gt;
+
+&lt;p&gt;ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The following packages have unmet dependencies:
+ texinfo : Depends: perlapi-5.24.1 but it is not installable
+           Depends: libxml-libxml-perl but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 16 Jul 2017 09:12:33 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>

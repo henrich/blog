@@ -57,6 +57,133 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 22 Jul 2017 21:26:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、&lt;a href=&#34;https://github.com/fontforge/fontforge/issues/3119&#34;&gt;問い合わせ&lt;/a&gt;だけしておく。。。&lt;/li&gt;
+&lt;li&gt;VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、&lt;a href=&#34;https://lists.debian.org/debian-qa/2017/07/msg00031.html&#34;&gt;問い合わせ&lt;/a&gt;だけしておく。。。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 22 Jul 2017 06:46:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[vmdk-stream-converter]()
+
+&lt;ul&gt;
+&lt;li&gt;LaunchPadで&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995&#34;&gt;Bug登録されてた&lt;/a&gt;から何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;[psphere]()&lt;/li&gt;
+&lt;li&gt;[fonts-kanjistrokeorders]()&lt;/li&gt;
+&lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
+&lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
+&lt;li&gt;[svn-workbench]()&lt;/li&gt;
+&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ&lt;code&gt;@ANY_VERSION@&lt;/code&gt;・&lt;code&gt;@ARCHIVE_EXT@&lt;/code&gt; と書けるのでそれを使うと良いよ、という話をした。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;sylpheedのビルドが全部揃ってないのが気になったので調査。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sylpheed build-depends on missing:
+- libgpgme-dev:hurd-i386 (&amp;gt;= 1.0.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これか。&lt;a href=&#34;https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid&#34;&gt;https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid&lt;/a&gt; を見るとoverride_dh_auto_configureでコケてビルドが失敗している&amp;hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。&lt;a href=&#34;https://people.debian.org/~sthibault/hurd-i386/&#34;&gt;qemuイメージの配布&lt;/a&gt;で新しいイメージが出てたのでそれをベースにやり直してみよう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI
+Converting from raw image file=&amp;quot;debian-hurd-20170613.img&amp;quot; to file=&amp;quot;debian-hurd-converted-20170613.vdi&amp;quot;... 
+Creating dynamic image with size 5243928576 bytes (5001MB)...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思って&lt;code&gt;sudo modprobe vboxdrv&lt;/code&gt;してVBoxを立ち上げなおしてみても同じエラー。&amp;hellip;あ、kernelが変わったせい？ &lt;code&gt;sudo dpkg-reconfigure virtualbox-dkms&lt;/code&gt;してみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&amp;hellip;という謎の対処療法的な解決の仕方でスッキリしない。&lt;/p&gt;
+
+&lt;p&gt;あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ&lt;/p&gt;
+
+&lt;p&gt;ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The following packages have unmet dependencies:
+ texinfo : Depends: perlapi-5.24.1 but it is not installable
+           Depends: libxml-libxml-perl but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 20 Jul 2017 05:00:31 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;riece、見落としてた&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=857775&#34;&gt;バグを閉じた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[fonts-misaki]()&lt;/li&gt;
+&lt;li&gt;[fonts-seto]()&lt;/li&gt;
+&lt;li&gt;[fonts-dejima-mincho]()&lt;/li&gt;
+&lt;li&gt;quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して[アップロード]()
+&lt;code&gt;* Fix &amp;quot;FTBFS with perl 5.26: Unescaped left brace in regex&amp;quot;:
+   escape literal left braces in perl regexp in debian/rules;
+   patch from Niko Tyni.
+   (Closes: #826502)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 19 Jul 2017 19:51:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;パッケージ一覧&lt;/a&gt;を眺めてのグルーミング作業。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[snapper]()&lt;/li&gt;
+&lt;li&gt;[jruby-joni]()。&lt;a href=&#34;https://lintian.debian.org/tags/missing-classpath.html&#34;&gt;「missing-classpath」&lt;/a&gt;なるwarningを消したい、ということで&lt;code&gt;Class-Path: jcodings.jar&lt;/code&gt;の1行パッチをMANIFEST.MFに追加。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;d-iがrootパスワードの定期変更を推奨しているというツイートを見たので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869&#34;&gt;パッチ作ってBTS&lt;/a&gt;しておいた。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 18 Jul 2017 06:40:16 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -513,149 +640,6 @@ Needs the following modules for which there are no debian packages available:
 &lt;hr /&gt;
 
 &lt;p&gt;気分転換に&lt;a href=&#34;https://tracker.debian.org/news/854888&#34;&gt;xgridfitを更新&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 08 Jul 2017 10:36:32 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;mecab-jumandicパッケージのリグレッションを作ってしまったので、&lt;a href=&#34;https://tracker.debian.org/news/854524&#34;&gt;直した&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;autopkgtestのネタとかとして使えないかなぁ、と思う。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/854586&#34;&gt;libmojolicious-plugin-assetpack-perlアップロード&lt;/a&gt;。
-Lintianがtypoを報告してきていたので&lt;a href=&#34;https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126&#34;&gt;pull request&lt;/a&gt;。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;libuninameslistのdebian/copyright を 1.0 にして&lt;a href=&#34;https://tracker.debian.org/news/854587&#34;&gt;アップロード&lt;/a&gt;。次はmulti-arch絡みのsuggestion対応するかね&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;libuninameslist-dev could be marked Multi-Arch: same
-libuninameslist1 could be marked Multi-Arch: same
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 02 Jul 2017 08:08:23 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今日はNew upstream releaseがあったpleiadesから。&lt;/p&gt;
-
-&lt;p&gt;まずは適当にビルド&amp;hellip;ってpatchが通らない。ですよねー。ということでquiltでセコセコとpush -fして .rej ファイルを確認して修正する作業から。パッチを見てると&lt;code&gt;./lib/javassist/javassist.jar ./lib/apache/commons-io.jar ./lib/apache/commons-lang.jar&lt;/code&gt; が&lt;code&gt;./lib/javassist/javassist.jar&lt;/code&gt; だけになってた。ということはcommons-ioと-langは要らないの？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;・Pleiades に含まれる Commons IO などのライブリが他のプラグインと競合しないようにソースを取り込んでパッケージ変更
-　(依存は Javassist のみ)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なるほど&amp;hellip;取り込んじゃったのか。ということで依存関係落として作ったdebをインストールしてみて動作に支障は無いことを確認して依存関係をdropしたものをマージ&amp;hellip;したけど、よく考えたら作業環境には他の依存でlibcommons-*が含まれてるんだった&amp;hellip;改めてVM作ってその中で動作確認（&amp;hellip;これこそautopkgtestしたほうが良いよね、私）。&lt;/p&gt;
-
-&lt;p&gt;パッチで無効化していた機能、よくよくみたらビルドオプションで無効にできるじゃん、ということで動作確認してdrop。&lt;/p&gt;
-
-&lt;p&gt;昔debconfでpleiadesを自動で有効化しようとしたが、他のパッケージを触るので無効にした際に消してしまったREADME.Debianを復活させた。今まで相当不親切だったな&amp;hellip;いかんいかん。&lt;/p&gt;
-
-&lt;p&gt;その他lintianに従って諸々&amp;hellip;と&lt;a href=&#34;https://tracker.debian.org/news/853079&#34;&gt;作業記録のまとめ&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;debian-mirror.sakura.ne.jp にHTTPS有効にしようとLet&amp;rsquo;s Encryptを入れるべく作業。&lt;a href=&#34;https://certbot.eff.org/#debianjessie-apache&#34;&gt;certbotを使うことにして&lt;/a&gt;、Jessieなのでbackports有効になってるのを確認して &lt;code&gt;$ sudo apt-get install python-certbot-apache -t jessie-backports&lt;/code&gt; してパッケージをインストール、&lt;code&gt;$ sudo certbot --apache&lt;/code&gt; して進める。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(snip)
-Generating key (2048 bits): /etc/letsencrypt/keys/0000_key-certbot.pem
-Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem
-An unexpected error occurred:
-There were too many requests of a given type :: Error creating new cert :: too many certificates already issued for: sakura.ne.jp
-Please see the logfiles in /var/log/letsencrypt for more details.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Oh&amp;hellip; 上位ドメインであるsakura.ne.jpに既に発行しまくってるのでもうダメよ、と出て失敗。Let&amp;rsquo;s Encryptは諦めざるを得ない&amp;hellip;&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 01 Jul 2017 08:28:22 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852775&#34;&gt;darts をアップデート&lt;/a&gt;。未だにVcs-* をhttpsにしてなかったとは&amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852940&#34;&gt;mecab-naist-jdic をアップデート&lt;/a&gt;。特にこれということもなく。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852917&#34;&gt;unidic-mecab をアップデート&lt;/a&gt; 。dh10でスッキリと。&lt;/li&gt;
-&lt;li&gt;naist-jdic、&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960&#34;&gt;LPのバグ報告&lt;/a&gt;がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&amp;hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、&lt;code&gt;$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/&lt;/code&gt; などとしてchroot作ってテスト。再現せず。だよねー&lt;/li&gt;
-&lt;li&gt;mecab、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;バグ報告&lt;/a&gt;を確認。どうすっかなーというところで今日は見送りかな。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/852781&#34;&gt;mecab-jumandic をアップデート&lt;/a&gt;。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。&lt;code&gt;$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz&lt;/code&gt;っと。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;git-buildpackage (0.8.17) unstable; urgency=medium
-(snip)
-  * [956982c] New command &#39;pristine-tar&#39;
-    This allows one to run the pristine-tar import at a later point.  This
-    is useful when using component tarballs and we need to reference the
-    right trees for the commits.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;消えたら可哀想だな、ということで&lt;a href=&#34;https://tracker.debian.org/news/852950&#34;&gt;plumをAdoptした&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>提案めも</title>
-            <link>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
-            <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation&#34;&gt;pkg-configとpkgconfigの入れ替え話&lt;/a&gt;もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/ChangeSet&#34;&gt;https://fedoraproject.org/wiki/Releases/26/ChangeSet&lt;/a&gt; のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
-
-&lt;ul&gt;
-&lt;li&gt;現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう&lt;/li&gt;
-&lt;li&gt;開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう&lt;/li&gt;
-&lt;li&gt;ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）&lt;/li&gt;
-&lt;li&gt;リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Releases/26/Schedule&#34;&gt;https://fedoraproject.org/wiki/Releases/26/Schedule&lt;/a&gt; を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
-
-&lt;ul&gt;
-&lt;li&gt;→ &lt;a href=&#34;https://wiki.debian.org/upstream-schedule&#34;&gt;https://wiki.debian.org/upstream-schedule&lt;/a&gt; を作ってみた。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt; をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&amp;rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         
