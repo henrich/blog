@@ -65,7 +65,7 @@
             <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;fonts-breip&lt;/li&gt;
+&lt;li&gt;fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;  * Team upload.                                       
@@ -85,6 +85,65 @@
   * debian/copyright
     - convert to copyright format 1.0
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ttf-adfとfonts-adfかぶってるよ、問題。
+&lt;a href=&#34;https://bugs.debian.org/869346&#34;&gt;Bug#869346&lt;/a&gt;をみて、古いttf-adfを削除依頼するか&amp;hellip;と思ったのだけど、念の為ソースパッケージを落としている際、どうもorig.tar.gzのサイズが大きく違うのに気づいた。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ls -al fonts-adf_0.20110505.orig.tar.gz ttf-adf_0.20090423.orig.tar.gz 
+-rw-r--r-- 1 henrich henrich  9294398 10月 20  2016 fonts-adf_0.20110505.orig.tar.gz
+-rw-r--r-- 1 henrich henrich 15055654  5月  7  2009 ttf-adf_0.20090423.orig.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これは一体？&amp;hellip;どうやら&lt;a href=&#34;http://arkandis.tuxfamily.org/adffonts.html&#34;&gt;複数のupstream source&lt;/a&gt;をまとめてぶち込んでいるようだ。あんまり筋が良くないなぁ。これ、分割してやったほうがいいと思う。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;昨日のSylpheed on HurdがPerl 5.26 transitionが落ち着いて関連パッケージがインストールできるようになったのでビルドを試す。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;# ./configure --build=i686-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --disable-silent-rules --libdir=${prefix}/lib/i386-gnu --libexecdir=${prefix}/lib/i386-gnu --disable-maintainer-mode --disable-dependency-tracking --enable-static --enable-languages=python cpp qt --infodir=/usr/share/info
+(snip)
+checking build system type... i686-pc-gnu
+checking host system type... Invalid configuration `cpp&#39;: machine `cpp&#39; not recognized
+configure: error: /bin/bash build-aux/config.sub cpp failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あら？ 試しにconfigure の引数に &lt;code&gt;--host=i686-gnu&lt;/code&gt; を指定したら通るようにはなったが、これが自動で引っ張ってこられないのが問題かな&amp;hellip;と思ったら、どうやら &lt;code&gt;--enable-languages=python cpp qt&lt;/code&gt; が問題でおかしな値を引っ張ってきているようだ。これを除去したらとりあえずconfigure通ってビルドできるようになった。ただ、testcaseがコケるのでパッケージは生成できていない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PASS: t-thread1
+PASS: t-thread-keylist
+t-thread-keylist-verify.c:92: GPGME: Too many open files
+FAIL: t-thread-keylist-verify
+stopping gpg-agent 
+PASS: final.test
+======================================
+1 of 26 tests failed
+Please report to http://bugs.gnupg.org
+======================================
+Makefile:852: recipe for target &#39;check-TESTS&#39; failed
+make: *** [check-TESTS] Error 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これはGNUPGのサイトでアカウント作って&lt;a href=&#34;https://dev.gnupg.org/T3294&#34;&gt;報告した&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;configure.acみると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;available_languages=&amp;quot;cl cpp python python2 python3 qt&amp;quot;
+default_languages=&amp;quot;cl cpp python qt&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なので、&lt;code&gt;--enable-languages=python cpp qt&lt;/code&gt; が本当に必要かどうか、他のArchでも削除して問題ないことを確認したら、とりあえずこれを外すだけでもしたい。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;9.1が出ていたので&lt;a href=&#34;http://www.debian.or.jp&#34;&gt;debian.or.jp&lt;/a&gt;の情報を更新。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
@@ -111,7 +170,7 @@
 &lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
 &lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
 &lt;li&gt;[svn-workbench]()。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
-&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。short-name(&lt;a href=&#34;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name)では「public-domain」とハイフン入れるのね。&#34;&gt;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name)では「public-domain」とハイフン入れるのね。&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。&lt;a href=&#34;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name&#34;&gt;short-name&lt;/a&gt;では「public-domain」とハイフン入れるのね。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
