@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="digging into gpgme on hurd">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>digging into gpgme on hurd &middot; Forget me not...</title>
 
    	
     
@@ -54,15 +54,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
+			<h3>digging into gpgme on hurd</h3>
+				<span class="label label-primary">Mon, Jul 24, 2017</span> in 
 				 using tags
 				
 					
 					<a href="/blog/tags/debian">debian</a>
-				
-					 , 
-					<a href="/blog/tags/todo">todo</a>
 				
 			</small>
 		</div>
@@ -70,35 +67,77 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
+			<p>gpgme1.0 on Hurdの続き。</p>
 
-<h1 id="支援について">支援について</h1>
+<pre><code>Running tests using /usr/bin/python2 (2.7)...
+PASS: initial.py
+PASS: t-wrapper.py
+PASS: t-callbacks.py
+FAIL: t-data.py
+FAIL: t-encrypt.py
+FAIL: t-encrypt-sym.py
+FAIL: t-encrypt-sign.py
+FAIL: t-sign.py
+FAIL: t-signers.py
+FAIL: t-decrypt.py
+FAIL: t-verify.py
+FAIL: t-decrypt-verify.py
+FAIL: t-sig-notation.py
+PASS: t-export.py
+PASS: t-import.py
+PASS: t-trustlist.py
+PASS: t-edit.py
+PASS: t-keylist.py
+PASS: t-keylist-from-data.py
+PASS: t-wait.py
+PASS: t-encrypt-large.py
+FAIL: t-file-name.py
+PASS: t-idiomatic.py
+PASS: t-protocol-assuan.py
+FAIL: t-quick-key-creation.py
+FAIL: t-quick-subkey-creation.py
+PASS: t-quick-key-manipulation.py
+PASS: t-quick-key-signing.py
+PASS: final.py
+Running tests using /usr/bin/python3 (3.5)...          
+PASS: initial.py                                       
+PASS: t-wrapper.py                                     
+PASS: t-callbacks.py                                   
+FAIL: t-data.py                                        
+FAIL: t-encrypt.py                                     
+FAIL: t-encrypt-sym.py                                 
+FAIL: t-encrypt-sign.py                                
+FAIL: t-sign.py                                        
+FAIL: t-signers.py                                     
+FAIL: t-decrypt.py
+FAIL: t-verify.py
+FAIL: t-decrypt-verify.py
+FAIL: t-sig-notation.py
+PASS: t-export.py
+PASS: t-import.py
+PASS: t-trustlist.py
+PASS: t-edit.py
+PASS: t-keylist.py
+PASS: t-keylist-from-data.py
+PASS: t-wait.py
+PASS: t-encrypt-large.py
+FAIL: t-file-name.py
+FAIL: t-idiomatic.py
+PASS: t-protocol-assuan.py
+FAIL: t-quick-key-creation.py
+FAIL: t-quick-subkey-creation.py
+PASS: t-quick-key-manipulation.py
+PASS: t-quick-key-signing.py
+PASS: final.py
+58 tests run, 31 succeeded, 27 failed, 0 skipped.
+</code></pre>
 
-<p>henrich @ debian.org 宛に<a href="http://amzn.to/2u7MfE5">Amazonギフト券</a>でのコントリビューションをお待ちしております :-)</p>
+<p>めっちゃコケる。</p>
 
-<h2 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h2>
-
-<ul>
-<li>debian-policyをSphinxに変換する</li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
-
-<ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
-
-<ul>
-<li>fontforgeパッケージの更新をどうするか</li>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-<li>octiconsをビルドできるように、必要なツールをパッケージにする (npmモジュールを160個弱debパッケージにする作業が必要&hellip;)</li>
-<li>fonts-vlgothic の debian/copyright を 1.0 にする</li>
-</ul></li>
-<li>poppler-dataとxfonts-kappa20アップロードする</li>
-</ul>
+<pre><code>GNUPGHOME=/root/gpgme1.0-1.9.0/lang/python/tests LC_ALL=C GPG_AGENT_INFO= top_srcdir=../../.. srcdir=. LD_LIBRARY_PATH=&quot;../../../src/.libs:&quot; /usr/bin/python2 ./run-tests.py \
+  --interpreters=&quot;/usr/bin/python2 /usr/bin/python3&quot; --srcdir=.  \
+  initial.py t-wrapper.py t-callbacks.py t-data.py t-encrypt.py t-encrypt-sym.py t-encrypt-sign.py t-sign.py t-signers.py t-decrypt.py t-verify.py t-decrypt-verify.py t-sig-notation.py t-export.py t-import.py t-trustlist.py t-edit.py t-keylist.py t-keylist-from-data.py t-wait.py t-encrypt-large.py t-file-name.py t-idiomatic.py t-protocol-assuan.py t-quick-key-creation.py t-quick-subkey-creation.py t-quick-key-manipulation.py t-quick-key-signing.py final.py
+</code></pre>
 
 		</div>
 	</div>

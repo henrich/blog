@@ -43,7 +43,7 @@
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
-&lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
+&lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする (npmモジュールを160個弱debパッケージにする作業が必要&amp;hellip;)&lt;/li&gt;
 &lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
@@ -128,7 +128,7 @@ Makefile:852: recipe for target &#39;check-TESTS&#39; failed
 make: *** [check-TESTS] Error 1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;これはGNUPGのサイトでアカウント作って&lt;a href=&#34;https://dev.gnupg.org/T3294&#34;&gt;報告した&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;これはGNUPGのサイトでアカウント作って&lt;a href=&#34;https://dev.gnupg.org/T3294&#34;&gt;報告した&lt;/a&gt;→どうやら新しいバージョン1.9.0がupstreamでは出ているようだったのでこちらで試したら上記のtest caseは通るようになっていたので早速close。ただ、他のテストが通らない&amp;hellip;。&lt;/p&gt;
 
 &lt;p&gt;configure.acみると&lt;/p&gt;
 
