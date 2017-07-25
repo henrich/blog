@@ -45,9 +45,33 @@
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする (npmモジュールを160個弱debパッケージにする作業が必要&amp;hellip;)&lt;/li&gt;
-&lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 25 Jul 2017 21:46:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;grcompiler&amp;hellip;を見てみた。
+
+&lt;ul&gt;
+&lt;li&gt;upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&amp;hellip;gitのmasterから取ってきてもコケる&amp;hellip;これは一体？&lt;/li&gt;
+&lt;li&gt;upstreamが&lt;a href=&#34;https://github.com/silnrsi/grcompiler/tree/master/debian&#34;&gt;debianディレクトリ追加してる&amp;hellip;&lt;/a&gt;困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&amp;hellip;なんだこりゃ。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858733&#34;&gt;fonts-vlgothic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[fonts-kacst-one]()&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -65,11 +89,15 @@
             <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;fonts-kacst-one&lt;/li&gt;
-&lt;li&gt;fonts-takao
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858508&#34;&gt;fonts-kacst-one&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;pristine-tarブランチにコミットし忘れてたのが発覚。apt sourceと&lt;a href=&#34;http://snapshot.debian.org&#34;&gt;snapshot.debian.org&lt;/a&gt;からダウンロードして、&lt;code&gt;gbp pristine-tar commit&lt;/code&gt;で追加。&lt;/li&gt;
+&lt;li&gt;アップロードしてから「あ、ttf-パッケージがあった&amp;hellip;落とし忘れ&amp;hellip;」と気付く。あとでもう一度アップロードしよう。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858510&#34;&gt;fonts-takao&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;pristine-tarブランチにコミットし忘れてたのが発覚。&lt;code&gt;apt source fonts-takao&lt;/code&gt;と&lt;a href=&#34;http://snapshot.debian.org&#34;&gt;snapshot.debian.org&lt;/a&gt;からダウンロードして、&lt;code&gt;gbp pristine-tar commit&lt;/code&gt;で追加。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -172,7 +200,7 @@ PASS: final.py
             <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858132&#34;&gt;fonts-breip&lt;/a&gt;。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;  * Team upload.                                       
@@ -267,17 +295,17 @@ default_languages=&amp;quot;cl cpp python qt&amp;quot;
             <description>&lt;p&gt;今日のグルーミング作業。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;[vmdk-stream-converter]()
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858089&#34;&gt;vmdk-stream-converter&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;LaunchPadで&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995&#34;&gt;Bug登録されてた&lt;/a&gt;から何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;[psphere]()&lt;/li&gt;
-&lt;li&gt;[fonts-kanjistrokeorders]()&lt;/li&gt;
-&lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
-&lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
-&lt;li&gt;[svn-workbench]()。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
-&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。&lt;a href=&#34;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name&#34;&gt;short-name&lt;/a&gt;では「public-domain」とハイフン入れるのね。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858088&#34;&gt;psphere&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858092&#34;&gt;fonts-kanjistrokeorders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858099&#34;&gt;fonts-komatuna&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858098&#34;&gt;fonts-ipafont&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858130&#34;&gt;svn-workbench&lt;/a&gt;。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
+&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。&lt;a href=&#34;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name&#34;&gt;short-name&lt;/a&gt;では「public-domain」とハイフン入れるのね。→&lt;a href=&#34;https://tracker.debian.org/news/858133&#34;&gt;アップロードした&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -342,9 +370,9 @@ E: Unable to correct problems, you have held broken packages.
             <guid>https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;riece、見落としてた&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=857775&#34;&gt;バグを閉じた&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[fonts-misaki]()&lt;/li&gt;
-&lt;li&gt;[fonts-seto]()&lt;/li&gt;
-&lt;li&gt;[fonts-dejima-mincho]()&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857568&#34;&gt;fonts-misaki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857575&#34;&gt;fonts-seto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857641&#34;&gt;fonts-dejima-mincho&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して[アップロード]()
 &lt;code&gt;* Fix &amp;quot;FTBFS with perl 5.26: Unescaped left brace in regex&amp;quot;:
    escape literal left braces in perl regexp in debian/rules;
@@ -367,8 +395,8 @@ E: Unable to correct problems, you have held broken packages.
             <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;パッケージ一覧&lt;/a&gt;を眺めてのグルーミング作業。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;[snapper]()&lt;/li&gt;
-&lt;li&gt;[jruby-joni]()。&lt;a href=&#34;https://lintian.debian.org/tags/missing-classpath.html&#34;&gt;「missing-classpath」&lt;/a&gt;なるwarningを消したい、ということで&lt;code&gt;Class-Path: jcodings.jar&lt;/code&gt;の1行パッチをMANIFEST.MFに追加。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857518&#34;&gt;snapper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857525&#34;&gt;jruby-joni&lt;/a&gt;。&lt;a href=&#34;https://lintian.debian.org/tags/missing-classpath.html&#34;&gt;「missing-classpath」&lt;/a&gt;なるwarningを消したい、ということで&lt;code&gt;Class-Path: jcodings.jar&lt;/code&gt;の1行パッチをMANIFEST.MFに追加。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -691,32 +719,6 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 &lt;ul&gt;
 &lt;li&gt;osdn.jp→.netへの切り替えを作業&amp;hellip;してる間に他にもアップデートできそうなところを見つけたので&lt;a href=&#34;https://tracker.debian.org/news/855956&#34;&gt;xfonts-ayuを更新&lt;/a&gt;&amp;hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/855949&#34;&gt;xfonts-mplusを更新&lt;/a&gt;。M+ BITMAP FONTSのパッチをupstreamに送付&amp;hellip;したのだが届かない。添付だと跳ねられるのかしら？&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 12 Jul 2017 20:16:20 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/dmd/?henrich%40debian.org#todo&#34;&gt;maintainer dashboard&lt;/a&gt;を覗く。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;fonts-tomsontalksの&lt;a href=&#34;https://tracker.debian.org/news/855734&#34;&gt;debian/watchファイルを修正、他&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;もう一つmadfuloadについても&lt;a href=&#34;https://tracker.debian.org/news/855736&#34;&gt;watchファイルの修正他&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;さらにfonts-ocr-aも&lt;a href=&#34;https://tracker.debian.org/news/855738&#34;&gt;watchファイルの修正他&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Todoリストから「libuninameslistのmulti-arch対応」実施。&amp;ndash;deleyed 2 で放り込んでおく。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

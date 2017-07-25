@@ -44,7 +44,6 @@
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
 &lt;li&gt;octiconsをビルドできるように、必要なツールをパッケージにする (npmモジュールを160個弱debパッケージにする作業が必要&amp;hellip;)&lt;/li&gt;
-&lt;li&gt;fonts-vlgothic の debian/copyright を 1.0 にする&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;poppler-dataとxfonts-kappa20アップロードする&lt;/li&gt;
 &lt;/ul&gt;
@@ -64,7 +63,7 @@
             <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858132&#34;&gt;fonts-breip&lt;/a&gt;。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;  * Team upload.                                       
@@ -159,17 +158,17 @@ default_languages=&amp;quot;cl cpp python qt&amp;quot;
             <description>&lt;p&gt;今日のグルーミング作業。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;[vmdk-stream-converter]()
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858089&#34;&gt;vmdk-stream-converter&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;LaunchPadで&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995&#34;&gt;Bug登録されてた&lt;/a&gt;から何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;[psphere]()&lt;/li&gt;
-&lt;li&gt;[fonts-kanjistrokeorders]()&lt;/li&gt;
-&lt;li&gt;[fonts-komatuna]()&lt;/li&gt;
-&lt;li&gt;[fonts-ipafont]()&lt;/li&gt;
-&lt;li&gt;[svn-workbench]()。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
-&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。&lt;a href=&#34;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name&#34;&gt;short-name&lt;/a&gt;では「public-domain」とハイフン入れるのね。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858088&#34;&gt;psphere&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858092&#34;&gt;fonts-kanjistrokeorders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858099&#34;&gt;fonts-komatuna&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858098&#34;&gt;fonts-ipafont&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858130&#34;&gt;svn-workbench&lt;/a&gt;。&lt;a href=&#34;https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html&#34;&gt;desktopファイルにkeywordが足りない&lt;/a&gt;ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。&lt;/li&gt;
+&lt;li&gt;fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。&lt;a href=&#34;https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name&#34;&gt;short-name&lt;/a&gt;では「public-domain」とハイフン入れるのね。→&lt;a href=&#34;https://tracker.debian.org/news/858133&#34;&gt;アップロードした&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
