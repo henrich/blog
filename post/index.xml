@@ -57,6 +57,28 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 26 Jul 2017 21:33:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858925&#34;&gt;fonts-mmceder&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&amp;hellip;とりあえず「1日早められる？」と問い合わせてみる。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 25 Jul 2017 21:46:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -71,8 +93,25 @@
 &lt;li&gt;upstreamが&lt;a href=&#34;https://github.com/silnrsi/grcompiler/tree/master/debian&#34;&gt;debianディレクトリ追加してる&amp;hellip;&lt;/a&gt;困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&amp;hellip;なんだこりゃ。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858733&#34;&gt;fonts-vlgothic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[fonts-kacst-one]()&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858736&#34;&gt;fonts-kacst-one&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858737&#34;&gt;fonts-motoya-l-cedar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858740&#34;&gt;fonts-motoya-l-maruberi&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;モトヤLマルベリ3・Lシーダ3が&lt;a href=&#34;https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67&#34;&gt;Androidのリポジトリから消えていた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&amp;hellip;。shellアクセスできる範囲には無いっぽいし。&lt;a href=&#34;https://osdn.net/cvs/view/mplus-fonts/&#34;&gt;ダウンロード&lt;/a&gt;でいけるのかな？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs2git.options
+$ vi cvs2git.options
+$ cvs2git --options=./cvs2git.options
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;などとやってみたが、必要な情報がtarballの中にはないようだ。&lt;a href=&#34;https://osdn.net/docs-ja/SCM_Migration&#34;&gt;サポートリクエスト&lt;/a&gt;を出して欲しい、ということらしい。あとで問い合わせよう。&lt;/p&gt;
 </description>
           </item>
         
@@ -692,33 +731,6 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 
 &lt;ul&gt;
 &lt;li&gt;ちょっとした待ち時間で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621&#34;&gt;バグ報告&lt;/a&gt;の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。&lt;code&gt;mv README.pod README&lt;/code&gt;したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 13 Jul 2017 19:35:47 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/dmd/?henrich%40debian.org#todo&#34;&gt;maintainer dashboard&lt;/a&gt;を覗く。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;screenfetchの&lt;a href=&#34;https://tracker.debian.org/news/855944&#34;&gt;watchファイルを直した&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;twittering-modeの&lt;a href=&#34;https://tracker.debian.org/news/855945&#34;&gt;watchファイルを直してたやつをNMUした&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;先日のfonts-konatuの更新で&lt;a href=&#34;https://tracker.debian.org/news/855946&#34;&gt;watchファイルが漏れていたので対応した&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;その他も少し。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;osdn.jp→.netへの切り替えを作業&amp;hellip;してる間に他にもアップデートできそうなところを見つけたので&lt;a href=&#34;https://tracker.debian.org/news/855956&#34;&gt;xfonts-ayuを更新&lt;/a&gt;&amp;hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/855949&#34;&gt;xfonts-mplusを更新&lt;/a&gt;。M+ BITMAP FONTSのパッチをupstreamに送付&amp;hellip;したのだが届かない。添付だと跳ねられるのかしら？&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

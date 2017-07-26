@@ -56,6 +56,48 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 25 Jul 2017 21:46:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;grcompiler&amp;hellip;を見てみた。
+
+&lt;ul&gt;
+&lt;li&gt;upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&amp;hellip;gitのmasterから取ってきてもコケる&amp;hellip;これは一体？&lt;/li&gt;
+&lt;li&gt;upstreamが&lt;a href=&#34;https://github.com/silnrsi/grcompiler/tree/master/debian&#34;&gt;debianディレクトリ追加してる&amp;hellip;&lt;/a&gt;困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&amp;hellip;なんだこりゃ。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858733&#34;&gt;fonts-vlgothic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858736&#34;&gt;fonts-kacst-one&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858737&#34;&gt;fonts-motoya-l-cedar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858740&#34;&gt;fonts-motoya-l-maruberi&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;モトヤLマルベリ3・Lシーダ3が&lt;a href=&#34;https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67&#34;&gt;Androidのリポジトリから消えていた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&amp;hellip;。shellアクセスできる範囲には無いっぽいし。&lt;a href=&#34;https://osdn.net/cvs/view/mplus-fonts/&#34;&gt;ダウンロード&lt;/a&gt;でいけるのかな？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs2git.options
+$ vi cvs2git.options
+$ cvs2git --options=./cvs2git.options
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;などとやってみたが、必要な情報がtarballの中にはないようだ。&lt;a href=&#34;https://osdn.net/docs-ja/SCM_Migration&#34;&gt;サポートリクエスト&lt;/a&gt;を出して欲しい、ということらしい。あとで問い合わせよう。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 23 Jul 2017 21:37:26 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>

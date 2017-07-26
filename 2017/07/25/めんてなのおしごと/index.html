@@ -61,6 +61,9 @@
 					
 					<a href="/blog/tags/debian">debian</a>
 				
+					 , 
+					<a href="/blog/tags/todo">todo</a>
+				
 			</small>
 		</div>
 	</div>
@@ -77,8 +80,25 @@
 <li>upstreamが<a href="https://github.com/silnrsi/grcompiler/tree/master/debian">debianディレクトリ追加してる&hellip;</a>困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&hellip;なんだこりゃ。</li>
 </ul></li>
 <li><a href="https://tracker.debian.org/news/858733">fonts-vlgothic</a></li>
-<li>[fonts-kacst-one]()</li>
+<li><a href="https://tracker.debian.org/news/858736">fonts-kacst-one</a></li>
+<li><a href="https://tracker.debian.org/news/858737">fonts-motoya-l-cedar</a></li>
+<li><a href="https://tracker.debian.org/news/858740">fonts-motoya-l-maruberi</a>
+
+<ul>
+<li>モトヤLマルベリ3・Lシーダ3が<a href="https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67">Androidのリポジトリから消えていた</a></li>
+</ul></li>
 </ul>
+
+<hr />
+
+<p>mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&hellip;。shellアクセスできる範囲には無いっぽいし。<a href="https://osdn.net/cvs/view/mplus-fonts/">ダウンロード</a>でいけるのかな？</p>
+
+<pre><code>$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &gt; ./cvs2git.options
+$ vi cvs2git.options
+$ cvs2git --options=./cvs2git.options
+</code></pre>
+
+<p>などとやってみたが、必要な情報がtarballの中にはないようだ。<a href="https://osdn.net/docs-ja/SCM_Migration">サポートリクエスト</a>を出して欲しい、ということらしい。あとで問い合わせよう。</p>
 
 		</div>
 	</div>
