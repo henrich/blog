@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Thu, Jul 20, 2017</span> in 
+				<span class="label label-primary">Thu, Jul 27, 2017</span> in 
 				 using tags
 				
 					
@@ -67,17 +67,34 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<ul>
-<li>riece、見落としてた<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=857775">バグを閉じた</a></li>
-<li><a href="https://tracker.debian.org/news/857568">fonts-misaki</a></li>
-<li><a href="https://tracker.debian.org/news/857575">fonts-seto</a></li>
-<li><a href="https://tracker.debian.org/news/857641">fonts-dejima-mincho</a></li>
-<li>quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して<a href="https://tracker.debian.org/news/857624">アップロード</a>
-<code>* Fix &quot;FTBFS with perl 5.26: Unescaped left brace in regex&quot;:
-   escape literal left braces in perl regexp in debian/rules;
-   patch from Niko Tyni.
-   (Closes: #826502)</code></li>
+			<p>今日のグルーミング</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858988">yudit</a></li>
+<li><a href="https://tracker.debian.org/news/859063">fonts-tomsontalks</a></li>
+<li><a href="https://tracker.debian.org/news/859070">fonts-kacst</a></li>
+<li><a href="https://tracker.debian.org/news/859077">nailgun</a></li>
+<li>fonts-bpg-georgian を見てみたら、upstreamがBoxに色々ソースを置いているようだ、が読めなくて何が最善なのかが全くわからん&hellip;</li>
+<li>fonts-manchufont は途中まで&hellip;。</li>
+<li>fonts-wqy-zenhei は途中まで&hellip;。</li>
+<li>fonts-mikachan は途中まで&hellip;で、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839677">アップロード予告</a>だけしておく。</li>
 </ul>
+
+<p>yudit は以下をなんとかしたいところではある&hellip;とりあえずtypoは直した。</p>
+
+<pre><code>I: yudit: spelling-error-in-binary usr/bin/uniprint pres press
+I: yudit: spelling-error-in-binary usr/bin/yudit preceed precede
+I: yudit: spelling-error-in-binary usr/bin/yudit pres press
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz recommened recommended
+I: yudit: desktop-entry-lacks-keywords-entry usr/share/applications/yudit.desktop
+I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
+</code></pre>
+
+<hr />
+
+<p>mplus-fontsのCVS-&gt;Gitリポジトリ変換を<a href="https://osdn.net/ticket/browse.php?group_id=1&amp;tid=37404">依頼</a>しておく。</p>
 
 		</div>
 	</div>

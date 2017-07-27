@@ -56,6 +56,47 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 27 Jul 2017 09:25:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858988&#34;&gt;yudit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859063&#34;&gt;fonts-tomsontalks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859070&#34;&gt;fonts-kacst&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859077&#34;&gt;nailgun&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fonts-bpg-georgian を見てみたら、upstreamがBoxに色々ソースを置いているようだ、が読めなくて何が最善なのかが全くわからん&amp;hellip;&lt;/li&gt;
+&lt;li&gt;fonts-manchufont は途中まで&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;fonts-wqy-zenhei は途中まで&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;fonts-mikachan は途中まで&amp;hellip;で、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839677&#34;&gt;アップロード予告&lt;/a&gt;だけしておく。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;yudit は以下をなんとかしたいところではある&amp;hellip;とりあえずtypoは直した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;I: yudit: spelling-error-in-binary usr/bin/uniprint pres press
+I: yudit: spelling-error-in-binary usr/bin/yudit preceed precede
+I: yudit: spelling-error-in-binary usr/bin/yudit pres press
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz recommened recommended
+I: yudit: desktop-entry-lacks-keywords-entry usr/share/applications/yudit.desktop
+I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;mplus-fontsのCVS-&amp;gt;Gitリポジトリ変換を&lt;a href=&#34;https://osdn.net/ticket/browse.php?group_id=1&amp;amp;tid=37404&#34;&gt;依頼&lt;/a&gt;しておく。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Wed, 26 Jul 2017 21:33:41 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -68,7 +109,7 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&amp;hellip;とりあえず「1日早められる？」と問い合わせてみる。&lt;/p&gt;
+&lt;p&gt;DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&amp;hellip;とりあえず「1日早められる？」と問い合わせてみる。→無事調整された。&lt;/p&gt;
 </description>
           </item>
         
@@ -411,7 +452,7 @@ E: Unable to correct problems, you have held broken packages.
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857568&#34;&gt;fonts-misaki&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857575&#34;&gt;fonts-seto&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857641&#34;&gt;fonts-dejima-mincho&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して[アップロード]()
+&lt;li&gt;quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して&lt;a href=&#34;https://tracker.debian.org/news/857624&#34;&gt;アップロード&lt;/a&gt;
 &lt;code&gt;* Fix &amp;quot;FTBFS with perl 5.26: Unescaped left brace in regex&amp;quot;:
    escape literal left braces in perl regexp in debian/rules;
    patch from Niko Tyni.
@@ -713,24 +754,6 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 &lt;p&gt;これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。&lt;/p&gt;
 
 &lt;p&gt;それと最近のバージョンではMock::Timeが必要なようなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428&#34;&gt;libmock-time-perlをITP&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 14 Jul 2017 23:11:35 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/dmd/?henrich%40debian.org#todo&#34;&gt;maintainer dashboard&lt;/a&gt;を覗く。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ちょっとした待ち時間で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621&#34;&gt;バグ報告&lt;/a&gt;の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。&lt;code&gt;mv README.pod README&lt;/code&gt;したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         
