@@ -2,14 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bts on Forget me not...</title>
-    <link>https://henrich.github.io/blog/tags/bts/index.xml</link>
+    <link>https://henrich.github.io/blog/tags/bts/</link>
     <description>Recent content in Bts on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <atom:link href="/blog/tags/bts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0900</lastBuildDate>
+    <atom:link href="/blog/tags/bts/" rel="self" type="application/rss+xml" />
     
       
         

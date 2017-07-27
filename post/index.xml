@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Forget me not...</title>
-    <link>https://henrich.github.io/blog/post/index.xml</link>
+    <link>https://henrich.github.io/blog/post/</link>
     <description>Recent content in Posts on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
@@ -10,7 +10,7 @@
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
     <lastBuildDate>Fri, 01 Jan 2100 06:58:34 +0900</lastBuildDate>
-    <atom:link href="/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/blog/post/" rel="self" type="application/rss+xml" />
     
       
         

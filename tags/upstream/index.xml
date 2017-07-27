@@ -2,14 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Upstream on Forget me not...</title>
-    <link>https://henrich.github.io/blog/tags/upstream/index.xml</link>
+    <link>https://henrich.github.io/blog/tags/upstream/</link>
     <description>Recent content in Upstream on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>2015-  Hideki Yamane</copyright>
-    <atom:link href="/blog/tags/upstream/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Nov 2015 00:00:00 +0900</lastBuildDate>
+    <atom:link href="/blog/tags/upstream/" rel="self" type="application/rss+xml" />
     
       
         

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://henrich.github.io/blog/2100/01/01/future-work/</loc>
@@ -263,6 +264,11 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
     <lastmod>2100-01-01T06:58:34+09:00</lastmod>
     <priority>0</priority>
@@ -288,6 +294,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/</loc>
+    <lastmod>2015-06-22T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
