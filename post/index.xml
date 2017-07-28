@@ -67,9 +67,12 @@
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859085&#34;&gt;fonts-ipafont-nonfree&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859086&#34;&gt;fonts-ipafont-nonfree-jisx0208&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859145&#34;&gt;jcodings&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;gnome-todo をちょっとだけ。
 
-&lt;hr /&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/tags/appstream-metadata-in-legacy-location.html&#34;&gt;appstream-metadata-in-legacy-location&lt;/a&gt; は grep で検索して &lt;code&gt;gbp pq import&lt;/code&gt; して Makefile.am を少し書き換え、git commit してパッチを作って対応。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
