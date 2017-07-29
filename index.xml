@@ -57,6 +57,372 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 29 Jul 2017 00:37:27 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>
+
+&lt;p&gt;昨日の gnome-todo の続き。&lt;/p&gt;
+
+&lt;h2 id=&#34;lintian-warningを確認&#34;&gt;lintian warningを確認。&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;W: gnome-todo: gir-section-not-libdevel usr/share/gir-1.0/Gtd-1.0.gir gnome
+N: 
+N:    GObject-Introspection XML files (/usr/share/gir-1.0/Foo-23.gir) must be
+N:    made available in a development package in the libdevel section of the
+N:    archive. This is normally the same libfoo-dev package that contains
+N:    other development files.
+N:    
+N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
+N:    
+N:    Severity: normal, Certainty: certain
+N:    
+N:    Check: gir, Type: binary, source
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;/usr/share/gir-1.0/Gtd-1.0.gir&lt;/code&gt; が含まれてるのに &lt;code&gt;section: gnome&lt;/code&gt; なgnome-todoパッケージはあかんやろ、と。これはlibdevelなlibgnome-todo-devを作って放り込め、ということだな。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;W: gnome-todo: typelib-section-not-introspection usr/lib/x86_64-linux-gnu/girepository-1.0/Gtd-1.0.typelib gnome
+N: 
+N:    GObject-Introspection binary typelibs (Foo-23.typelib) should be made
+N:    available in a GObject-Introspection package in the introspection
+N:    section of the archive, normally named gir1.2-foo-23.
+N:    
+N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
+N:    
+N:    Severity: normal, Certainty: certain
+N:    
+N:    Check: gir, Type: binary, source
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これも &lt;code&gt;section: introspection&lt;/code&gt; なパッケージを作れ、と。どういう名前で作ればいいのかは他のを参考にしよう&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;W: gnome-todo: gir-missing-typelib-dependency usr/share/gir-1.0/Gtd-1.0.gir gir1.2-gtd-1.0
+N: 
+N:    Development packages that contain GObject-Introspection XML files
+N:    (/usr/share/gir-1.0/Foo-23.gir) must depend on the package containing
+N:    the corresponding binary typelib, which is conventionally named
+N:    gir1.2-foo-23. The dependency must be strictly versioned (for example
+N:    gir1.2-foo-23 (= ${binary:Version}) when using debhelper).
+N:    
+N:    Please ignore and override this tag if the typelib is shipped in a
+N:    package whose name does not match the typelib&#39;s machine-readable name,
+N:    and the development package correctly depends on that package instead.
+N:    For example, gir1.2-glib-2.0 is named for the GLib-2.0 typelib, but also
+N:    contains the GObject-2.0 and Gio-2.0 typelibs, so it is correct that
+N:    libglib2.0-dev depends on gir1.2-glib-2.0 but not on gir1.2-gobject-2.0
+N:    or gir1.2-gio-2.0.
+N:    
+N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
+N:    
+N:    Severity: normal, Certainty: possible
+N:    
+N:    Check: gir, Type: binary, source
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;先程の &lt;code&gt;section: introspection&lt;/code&gt; なパッケージは&lt;code&gt;gir1.2-gtd-1.0&lt;/code&gt;でいいのか。で、それに対する依存関係を記述せよ、と。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;W: gnome-todo: typelib-package-name-does-not-match usr/lib/x86_64-linux-gnu/girepository-1.0/Gtd-1.0.typelib gir1.2-gtd-1.0
+N: 
+N:    GObject-Introspection binary typelibs (Foo-23.typelib) should normally
+N:    be made available in a package named gir1.2-foo-23.
+N:    
+N:    Please ignore and override this tag if the typelib is deliberately
+N:    shipped in a package whose name does not match the typelib&#39;s
+N:    machine-readable name. For example, gir1.2-glib-2.0 is named for the
+N:    GLib-2.0 typelib, but also contains the GObject-2.0 and Gio-2.0
+N:    typelibs; this is unconventional, but is allowed.
+N:    
+N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
+N:    
+N:    Severity: normal, Certainty: possible
+N:    
+N:    Check: gir, Type: binary, source
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-gir1.2-gtd-1.0```にtypelibを含めろ、と。&#34;&gt;
+
+## 他のパッケージを参考に
+
+正直lintianの指示は概念だけなので、実際にどう対処するかは既存パッケージを真似るのが手っ取り早い。
+
+* ```apt-cache pkgnames gir1.2-```して適当なパッケージを探し、
+* ```apt source foobar```してソースを眺めて記述を確認し、
+* ```debian/control.in```にパッケージを追加。
+* ```debian/*.install```を追加してどのファイルをどのパッケージに入れるかを決める
+
+ここまででパッケージがビルドできるようになったが、piupartsで既存パッケージからのアップグレードが失敗するんじゃないかな〜と思って眠い頭で実行したらやっぱり失敗した。
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;/tmp/apt-dpkg-install-g8TuRA/0-gir1.2-gtd-1.0_3.24.2-3_amd64.deb
+   /tmp/apt-dpkg-install-g8TuRA/1-gnome-todo-common_3.24.2-3_all.deb
+   /tmp/apt-dpkg-install-g8TuRA/2-libgnome-todo_3.24.2-3_amd64.deb&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。```Conflicts:```か```Breakes:```の記述が必要だよな。多分```Breakes:```が適当。これが完全にreplaceな場合は```Replaces:```を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す...通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。[NEW queue](https://ftp-master.debian.org/new.html)で数日待つことになるだろう。
+
+## 作業結果
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;diff -Nru gnome-todo-3.24.2/debian/changelog gnome-todo-3.24.2/debian/changelog
+&amp;mdash; gnome-todo-3.24.2/debian/changelog  2017-06-18 19:47:46.000000000 +0900
++++ gnome-todo-3.24.2/debian/changelog  2017-07-28 22:52:28.000000000 +0900
+@@ -1,3 +1,12 @@
++gnome-todo (3.24.2-3) experimental; urgency=medium
++
++  * debian/patches
++    - add 0001-deal-with-appstream-metadata-in-legacy-location.patch
++  * debian/{control.in,*.install}
++    - split gnome-todo package to several packages
++
++ &amp;ndash; Hideki Yamane &lt;a href=&#34;mailto:henrich@debian.org&#34;&gt;henrich@debian.org&lt;/a&gt;  Fri, 28 Jul 2017 22:52:28 +0900
++
+ gnome-todo (3.24.2-2) unstable; urgency=medium&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upload to unstable
+diff -Nru gnome-todo-3.24.2/debian/control gnome-todo-3.24.2/debian/control
+&amp;mdash; gnome-todo-3.24.2/debian/control    2017-06-18 19:47:46.000000000 +0900
++++ gnome-todo-3.24.2/debian/control    2017-07-28 22:52:28.000000000 +0900
+@@ -6,7 +6,7 @@
+Section: gnome
+Priority: optional
+Maintainer: Debian GNOME Maintainers &lt;a href=&#34;mailto:pkg-gnome-maintainers@lists.alioth.debian.org&#34;&gt;pkg-gnome-maintainers@lists.alioth.debian.org&lt;/a&gt;
+-Uploaders: Andreas Henriksson &lt;a href=&#34;mailto:andreas@fatal.se&#34;&gt;andreas@fatal.se&lt;/a&gt;, Hideki Yamane &lt;a href=&#34;mailto:henrich@debian.org&#34;&gt;henrich@debian.org&lt;/a&gt;, Michael Biebl &lt;a href=&#34;mailto:biebl@debian.org&#34;&gt;biebl@debian.org&lt;/a&gt;
++Uploaders: Andreas Henriksson &lt;a href=&#34;mailto:andreas@fatal.se&#34;&gt;andreas@fatal.se&lt;/a&gt;, Hideki Yamane &lt;a href=&#34;mailto:henrich@debian.org&#34;&gt;henrich@debian.org&lt;/a&gt;
+Build-Depends: debhelper (&amp;gt;= 10),
+            autoconf-archive,
+            gnome-pkg-tools,
+@@ -30,6 +30,8 @@
+Architecture: any
+Depends: ${shlibs:Depends},
+      ${misc:Depends},&lt;/li&gt;
+&lt;li&gt;gnome-todo-common,&lt;/li&gt;
+&lt;li&gt;libgnome-todo (= ${binary:Version}),
+      evolution-data-server (&amp;gt;= 3.17.1),
+      gsettings-desktop-schemas
+Description: minimalistic personal task manager designed to fit GNOME desktop
+@@ -37,3 +39,56 @@
+the GNOME desktop. Designed from ground up to seamlessly integrate with
+the GNOME desktop environment, To Do enables you to be as productive as
+you want.
++
++Package: gnome-todo-common
++Architecture: all
++Depends: ${misc:Depends},
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: common files for GNOME To Do&lt;/li&gt;
+&lt;li&gt;Library that provides GObject-based interface of GNOME To Do, simplistic&lt;/li&gt;
+&lt;li&gt;personal task manager designed to perfectly fit the GNOME desktop.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains common files.
++
++Package: libgnome-todo
++Section: libs
++Architecture: any
++Depends: ${shlibs:Depends},&lt;/li&gt;
+&lt;li&gt;${misc:Depends},
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: library data for GNOME To Do&lt;/li&gt;
+&lt;li&gt;Library that provides GObject-based interface of GNOME To Do, simplistic&lt;/li&gt;
+&lt;li&gt;personal task manager designed to perfectly fit the GNOME desktop.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains the library files.
++
++Package: libgnome-todo-dev
++Section: libdevel
++Architecture: any
++Depends: ${shlibs:Depends},&lt;/li&gt;
+&lt;li&gt;${misc:Depends},&lt;/li&gt;
+&lt;li&gt;gir1.2-gtd-1.0 (= ${binary:Version}),
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: development library data for GNOME To Do&lt;/li&gt;
+&lt;li&gt;Library that provides GObject-based interface of GNOME To Do, simplistic&lt;/li&gt;
+&lt;li&gt;personal task manager designed to perfectly fit the GNOME desktop.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains the library development files.
++
++Package: gir1.2-gtd-1.0
++Section: introspection
++Architecture: any
++Depends: ${gir:Depends},&lt;/li&gt;
+&lt;li&gt;${shlibs:Depends},&lt;/li&gt;
+&lt;li&gt;${misc:Depends},
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: GObject introspection data for GNOME To Do&lt;/li&gt;
+&lt;li&gt;GNOME To Do is a simplistic personal task manager designed to perfectly fit&lt;/li&gt;
+&lt;li&gt;the GNOME desktop. Designed from ground up to seamlessly integrate with&lt;/li&gt;
+&lt;li&gt;the GNOME desktop environment, To Do enables you to be as productive as&lt;/li&gt;
+&lt;li&gt;you want.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains introspection data for GNOME To Do.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;It can be used by packages using the GIRepository format to generate&lt;/li&gt;
+&lt;li&gt;dynamic bindings.
+diff -Nru gnome-todo-3.24.2/debian/control.in gnome-todo-3.24.2/debian/control.in
+&amp;mdash; gnome-todo-3.24.2/debian/control.in 2017-06-18 19:47:46.000000000 +0900
++++ gnome-todo-3.24.2/debian/control.in 2017-07-28 22:52:28.000000000 +0900
+@@ -26,6 +26,8 @@
+Architecture: any
+Depends: ${shlibs:Depends},
+      ${misc:Depends},&lt;/li&gt;
+&lt;li&gt;gnome-todo-common,&lt;/li&gt;
+&lt;li&gt;libgnome-todo (= ${binary:Version}),
+      evolution-data-server (&amp;gt;= 3.17.1),
+      gsettings-desktop-schemas
+Description: minimalistic personal task manager designed to fit GNOME desktop
+@@ -33,3 +35,56 @@
+the GNOME desktop. Designed from ground up to seamlessly integrate with
+the GNOME desktop environment, To Do enables you to be as productive as
+you want.
++
++Package: gnome-todo-common
++Architecture: all
++Depends: ${misc:Depends},
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: common files for GNOME To Do&lt;/li&gt;
+&lt;li&gt;Library that provides GObject-based interface of GNOME To Do, simplistic&lt;/li&gt;
+&lt;li&gt;personal task manager designed to perfectly fit the GNOME desktop.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains common files.
++
++Package: libgnome-todo
++Section: libs
++Architecture: any
++Depends: ${shlibs:Depends},&lt;/li&gt;
+&lt;li&gt;${misc:Depends},
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: library data for GNOME To Do&lt;/li&gt;
+&lt;li&gt;Library that provides GObject-based interface of GNOME To Do, simplistic&lt;/li&gt;
+&lt;li&gt;personal task manager designed to perfectly fit the GNOME desktop.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains the library files.
++
++Package: libgnome-todo-dev
++Section: libdevel
++Architecture: any
++Depends: ${shlibs:Depends},&lt;/li&gt;
+&lt;li&gt;${misc:Depends},&lt;/li&gt;
+&lt;li&gt;gir1.2-gtd-1.0 (= ${binary:Version}),
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: development library data for GNOME To Do&lt;/li&gt;
+&lt;li&gt;Library that provides GObject-based interface of GNOME To Do, simplistic&lt;/li&gt;
+&lt;li&gt;personal task manager designed to perfectly fit the GNOME desktop.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains the library development files.
++
++Package: gir1.2-gtd-1.0
++Section: introspection
++Architecture: any
++Depends: ${gir:Depends},&lt;/li&gt;
+&lt;li&gt;${shlibs:Depends},&lt;/li&gt;
+&lt;li&gt;${misc:Depends},
++Breaks: gnome-todo (&amp;lt;&amp;lt; 3.24.2-3)
++Description: GObject introspection data for GNOME To Do&lt;/li&gt;
+&lt;li&gt;GNOME To Do is a simplistic personal task manager designed to perfectly fit&lt;/li&gt;
+&lt;li&gt;the GNOME desktop. Designed from ground up to seamlessly integrate with&lt;/li&gt;
+&lt;li&gt;the GNOME desktop environment, To Do enables you to be as productive as&lt;/li&gt;
+&lt;li&gt;you want.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;This package contains introspection data for GNOME To Do.&lt;/li&gt;
+&lt;li&gt;.&lt;/li&gt;
+&lt;li&gt;It can be used by packages using the GIRepository format to generate&lt;/li&gt;
+&lt;li&gt;dynamic bindings.
+diff -Nru gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install
+&amp;mdash; gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1 @@
++usr/lib/&lt;em&gt;/girepository-1.0/&lt;/em&gt;.typelib
+diff -Nru gnome-todo-3.24.2/debian/gnome-todo-common.install gnome-todo-3.24.2/debian/gnome-todo-common.install
+&amp;mdash; gnome-todo-3.24.2/debian/gnome-todo-common.install  1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/gnome-todo-common.install  2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1,6 @@
++usr/share/icons/
++usr/share/locale/
++usr/share/gnome-todo/
++usr/share/metainfo/
++usr/share/dbus-1/
++usr/share/glib-2.0/
+diff -Nru gnome-todo-3.24.2/debian/gnome-todo.install gnome-todo-3.24.2/debian/gnome-todo.install
+&amp;mdash; gnome-todo-3.24.2/debian/gnome-todo.install 1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/gnome-todo.install 2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1,2 @@
++usr/bin/gnome-todo
++usr/share/applications/
+diff -Nru gnome-todo-3.24.2/debian/libgnome-todo-dev.install gnome-todo-3.24.2/debian/libgnome-todo-dev.install
+&amp;mdash; gnome-todo-3.24.2/debian/libgnome-todo-dev.install  1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/libgnome-todo-dev.install  2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1,3 @@
++usr/include/gnome-todo/
++usr/lib/&lt;em&gt;/pkgconfig/gnome-todo.pc
++usr/share/gir-&lt;/em&gt;/Gtd-&lt;em&gt;.gir
+diff -Nru gnome-todo-3.24.2/debian/libgnome-todo.install gnome-todo-3.24.2/debian/libgnome-todo.install
+&amp;mdash; gnome-todo-3.24.2/debian/libgnome-todo.install  1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/libgnome-todo.install  2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1 @@
++usr/lib/&lt;/em&gt;/gnome-todo/
+diff -Nru gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch
+&amp;mdash; gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1,25 @@
++From: Hideki Yamane &lt;a href=&#34;mailto:henrich@debian.org&#34;&gt;henrich@debian.org&lt;/a&gt;
++Date: Fri, 28 Jul 2017 22:51:23 +0900
++Subject: deal with appstream-metadata-in-legacy-location
++
++not /usr/share/appdata/ but /usr/share/metainfo/
++
++Perhaps this patch will be not necessary when build system would move to
++new one.
++&amp;mdash;&lt;/li&gt;
+&lt;li&gt;data/Makefile.am | 2 +-&lt;/li&gt;
+&lt;li&gt;1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff &amp;ndash;git a/data/Makefile.am b/data/Makefile.am
++index 827ee36..af44715 100644
++&amp;mdash; a/data/Makefile.am
+++++ b/data/Makefile.am
++@@ -13,7 +13,7 @@ autostart_DATA = org.gnome.Todo.Autostart.desktop&lt;/li&gt;
+&lt;li&gt;%.desktop: %.desktop.in&lt;/li&gt;
+&lt;li&gt;$(AM_V_GEN) $(MSGFMT) &amp;ndash;desktop &amp;ndash;template $&amp;lt; -d $(top_srcdir)/po -o $@&lt;/li&gt;
+&lt;li&gt;
++-appdatadir = $(datadir)/appdata
+++appdatadir = $(datadir)/metainfo&lt;/li&gt;
+&lt;li&gt;appdata_DATA = $(appdata_in_files:.xml.in=.xml)&lt;/li&gt;
+&lt;li&gt;appdata_in_files = $(srcdir)/appdata/org.gnome.Todo.appdata.xml.in&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;diff -Nru gnome-todo-3.24.2/debian/patches/series gnome-todo-3.24.2/debian/patches/series
+&amp;mdash; gnome-todo-3.24.2/debian/patches/series 1970-01-01 09:00:00.000000000 +0900
++++ gnome-todo-3.24.2/debian/patches/series 2017-07-28 22:52:28.000000000 +0900
+@@ -0,0 +1 @@
++0001-deal-with-appstream-metadata-in-legacy-location.patch
+diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
+&amp;mdash; gnome-todo-3.24.2/debian/rules  2017-06-18 19:47:46.000000000 +0900
++++ gnome-todo-3.24.2/debian/rules  2017-07-28 22:52:28.000000000 +0900
+@@ -28,4 +28,4 @@
+override_dh_auto_install:
+dh_auto_install&lt;/p&gt;
+
+&lt;h1 id=&#34;get-rid-of-non-empty-dependency-libs-in-la-file&#34;&gt;get rid of &amp;ldquo;non-empty-dependency_libs-in-la-file&amp;rdquo;&lt;/h1&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;find $(CURDIR)/debian/gnome-todo -name *.la -delete&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;find $(CURDIR)/debian/ -name *.la -delete
+```&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 28 Jul 2017 09:25:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -659,79 +1025,6 @@ and may not include tests.
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621&#34;&gt;READMEなmanのファイル名がおかしい件&lt;/a&gt;は&lt;a href=&#34;https://lists.debian.org/debian-perl/2017/07/msg00012.html&#34;&gt;debian-perlに飛ばして&lt;/a&gt;ヘルプを乞うてみる&amp;hellip;「READMEは削除しとるで。&lt;a href=&#34;https://sources.debian.net/src/libmojolicious-plugin-authentication-perl/1.29-1/debian/rules/&#34;&gt;こんな風に&lt;/a&gt;」&amp;hellip;な、なるほど。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 16 Jul 2017 09:12:33 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今日のケアリスト。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856538&#34;&gt;xfonts-efont-unicode&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856662&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856566&#34;&gt;xfonts-kaname&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856663&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856571&#34;&gt;xfonts-shinonome&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856666&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856648&#34;&gt;xfonts-naga10&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/856665&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856650&#34;&gt;tiarra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856669&#34;&gt;libspiro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856686&#34;&gt;xfonts-ayu&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856690&#34;&gt;fonts-horai-umefont&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;xfonts-kappa20もアップロードしたが、&lt;code&gt;xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.&lt;/code&gt;と言われてrejectされる&amp;hellip;
-
-&lt;ul&gt;
-&lt;li&gt;恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&amp;hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&amp;hellip;)。&lt;/p&gt;
-
-&lt;p&gt;その他、ruby-interpriterのdropなど。なぜか&lt;a href=&#34;https://packages.debian.org/sid/ruby2.1&#34;&gt;ruby2.1がarm64のdeb-portsに残ってる&lt;/a&gt;状況なのが不思議。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;本体側のpo訳してた＼(^o^)／&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、&lt;a href=&#34;https://github.com/gempesaw/Selenium-Remote-Driver&#34;&gt;GitHub&lt;/a&gt;を見るようにする。以下、試行錯誤の結果。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dh-make-perl --cpan Selenium::Remote::Driver
-$ cd libselenium-remote-driver-perl
-
-(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
-$ git branch -D upstream
-$ git tag -d upstream/1.20
-
-(空のブランチを作る)
-$ git checkout --orphan upstream
-$ git rm -rf *
-
-(upstreamブランチはGithubのmasterから取得するようにする)
-$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
-$ git pull github
-$ git fetch
-$ git branch -u github/master upstream
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;git checkout --orphan &amp;lt;branch&amp;gt;&lt;/code&gt;はなかなか思いつかない&amp;hellip;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;前に一応チェックした&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489&#34;&gt;screenfetchのLaunchPadへの報告&lt;/a&gt;、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;こんな感じだけ（鍵は適当）。で、upstream masterを実行すると&lt;code&gt;CPU: 16x UnknownPOWER8E (raw)&lt;/code&gt;と出てくる。POWER8E (raw)なところを捕まえればいいので、&lt;a href=&#34;https://github.com/KittyKatt/screenFetch/pull/503&#34;&gt;PRを送っておいた&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。&lt;/p&gt;
 </description>
           </item>
         
