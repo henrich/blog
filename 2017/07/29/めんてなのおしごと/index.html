@@ -167,7 +167,7 @@ N:    Check: gir, Type: binary, source
    /tmp/apt-dpkg-install-g8TuRA/2-libgnome-todo_3.24.2-3_amd64.deb</p>
 
 <pre><code>
-ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。```Conflicts:```か```Breakes:```の記述が必要だよな。多分```Breakes:```が適当。これが完全にreplaceな場合は```Replaces:```を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す...通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。[NEW queue](https://ftp-master.debian.org/new.html)で数日待つことになるだろう。
+ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。```Conflicts:``` か ```Breakes:``` の記述が必要だよな。多分 ```Breakes:``` が適当。これが完全にreplaceな場合は ```Replaces:``` を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す...通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。[NEW queue](https://ftp-master.debian.org/new.html)で数日待つことになるだろう。
 
 ## 作業結果
 
@@ -418,8 +418,6 @@ dh_auto_install</p>
 <li><p>find $(CURDIR)/debian/ -name *.la -delete
 ```</p></li>
 </ul>
-
-<hr />
 
 		</div>
 	</div>
