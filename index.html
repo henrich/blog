@@ -223,203 +223,200 @@ N:
 N:    Check: gir, Type: binary, source
 </code></pre>
 
-<pre><code class="language-gir1.2-gtd-1.0```にtypelibを含めろ、と。">
+<p><code>gir1.2-gtd-1.0</code> にtypelibを含めろ、と。</p>
 
-## 他のパッケージを参考に
+<h2 id="他のパッケージを参考に">他のパッケージを参考に</h2>
 
-正直lintianの指示は概念だけなので、実際にどう対処するかは既存パッケージを真似るのが手っ取り早い。
+<p>正直lintianの指示は概念だけなので、実際にどう対処するかは既存パッケージを真似るのが手っ取り早い。</p>
 
-* ```apt-cache pkgnames gir1.2-```して適当なパッケージを探し、
-* ```apt source foobar```してソースを眺めて記述を確認し、
-* ```debian/control.in```にパッケージを追加。
-* ```debian/*.install```を追加してどのファイルをどのパッケージに入れるかを決める
+<ul>
+<li><code>apt-cache pkgnames gir1.2-</code> して適当なパッケージを探し、</li>
+<li><code>apt source foobar</code> してソースを眺めて記述を確認し、</li>
+<li><code>debian/control.in</code> にパッケージを追加。</li>
+<li><code>debian/*.install</code> を追加してどのファイルをどのパッケージに入れるかを決める</li>
+</ul>
 
-ここまででパッケージがビルドできるようになったが、piupartsで既存パッケージからのアップグレードが失敗するんじゃないかな〜と思って眠い頭で実行したらやっぱり失敗した。
+<p>ここまででパッケージがビルドできるようになったが、piupartsで既存パッケージからのアップグレードが失敗するんじゃないかな〜と思って眠い頭で実行したらやっぱり失敗した。</p>
 
-</code></pre>
-
-<p>/tmp/apt-dpkg-install-g8TuRA/0-gir1.2-gtd-1.0_3.24.2-3_amd64.deb
+<pre><code>   /tmp/apt-dpkg-install-g8TuRA/0-gir1.2-gtd-1.0_3.24.2-3_amd64.deb
    /tmp/apt-dpkg-install-g8TuRA/1-gnome-todo-common_3.24.2-3_all.deb
-   /tmp/apt-dpkg-install-g8TuRA/2-libgnome-todo_3.24.2-3_amd64.deb</p>
-
-<pre><code>
-ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。```Conflicts:``` か ```Breakes:``` の記述が必要だよな。多分 ```Breakes:``` が適当。これが完全にreplaceな場合は ```Replaces:``` を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す...通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。[NEW queue](https://ftp-master.debian.org/new.html)で数日待つことになるだろう。
-
-## 作業結果
-
+   /tmp/apt-dpkg-install-g8TuRA/2-libgnome-todo_3.24.2-3_amd64.deb
 </code></pre>
 
-<p>diff -Nru gnome-todo-3.24.2/debian/changelog gnome-todo-3.24.2/debian/changelog
-&mdash; gnome-todo-3.24.2/debian/changelog  2017-06-18 19:47:46.000000000 +0900
+<p>ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。<code>Conflicts:</code> か <code>Breakes:</code> の記述が必要だよな。多分 <code>Breakes:</code> が適当。これが完全にreplaceな場合は <code>Replaces:</code> を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す&hellip;通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。<a href="https://ftp-master.debian.org/new.html">NEW queue</a>で数日待つことになるだろう。</p>
+
+<h2 id="作業結果">作業結果</h2>
+
+<pre><code>diff -Nru gnome-todo-3.24.2/debian/changelog gnome-todo-3.24.2/debian/changelog
+--- gnome-todo-3.24.2/debian/changelog  2017-06-18 19:47:46.000000000 +0900
 +++ gnome-todo-3.24.2/debian/changelog  2017-07-28 22:52:28.000000000 +0900
 @@ -1,3 +1,12 @@
 +gnome-todo (3.24.2-3) experimental; urgency=medium
 +
 +  * debian/patches
-+    - add 0001-deal-with-appstream-metadata-in-legacy-location.patch
++    - add 0001-deal-with-appstream-metadata-in-legacy-location.patch 
 +  * debian/{control.in,*.install}
 +    - split gnome-todo package to several packages
 +
-+ &ndash; Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>  Fri, 28 Jul 2017 22:52:28 +0900
++ -- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 28 Jul 2017 22:52:28 +0900
 +
- gnome-todo (3.24.2-2) unstable; urgency=medium</p>
-
-<ul>
-<li>Upload to unstable
+ gnome-todo (3.24.2-2) unstable; urgency=medium
+ 
+   * Upload to unstable
 diff -Nru gnome-todo-3.24.2/debian/control gnome-todo-3.24.2/debian/control
-&mdash; gnome-todo-3.24.2/debian/control    2017-06-18 19:47:46.000000000 +0900
+--- gnome-todo-3.24.2/debian/control    2017-06-18 19:47:46.000000000 +0900
 +++ gnome-todo-3.24.2/debian/control    2017-07-28 22:52:28.000000000 +0900
 @@ -6,7 +6,7 @@
-Section: gnome
-Priority: optional
-Maintainer: Debian GNOME Maintainers <a href="mailto:pkg-gnome-maintainers@lists.alioth.debian.org">pkg-gnome-maintainers@lists.alioth.debian.org</a>
--Uploaders: Andreas Henriksson <a href="mailto:andreas@fatal.se">andreas@fatal.se</a>, Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>, Michael Biebl <a href="mailto:biebl@debian.org">biebl@debian.org</a>
-+Uploaders: Andreas Henriksson <a href="mailto:andreas@fatal.se">andreas@fatal.se</a>, Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>
-Build-Depends: debhelper (&gt;= 10),
-            autoconf-archive,
-            gnome-pkg-tools,
+ Section: gnome
+ Priority: optional
+ Maintainer: Debian GNOME Maintainers &lt;pkg-gnome-maintainers@lists.alioth.debian.org&gt;
+-Uploaders: Andreas Henriksson &lt;andreas@fatal.se&gt;, Hideki Yamane &lt;henrich@debian.org&gt;, Michael Biebl &lt;biebl@debian.org&gt;
++Uploaders: Andreas Henriksson &lt;andreas@fatal.se&gt;, Hideki Yamane &lt;henrich@debian.org&gt;
+ Build-Depends: debhelper (&gt;= 10),
+                autoconf-archive,
+                gnome-pkg-tools,
 @@ -30,6 +30,8 @@
-Architecture: any
-Depends: ${shlibs:Depends},
-      ${misc:Depends},</li>
-<li>gnome-todo-common,</li>
-<li>libgnome-todo (= ${binary:Version}),
-      evolution-data-server (&gt;= 3.17.1),
-      gsettings-desktop-schemas
-Description: minimalistic personal task manager designed to fit GNOME desktop
+ Architecture: any
+ Depends: ${shlibs:Depends},
+          ${misc:Depends},
++         gnome-todo-common,
++         libgnome-todo (= ${binary:Version}),
+          evolution-data-server (&gt;= 3.17.1),
+          gsettings-desktop-schemas
+ Description: minimalistic personal task manager designed to fit GNOME desktop
 @@ -37,3 +39,56 @@
-the GNOME desktop. Designed from ground up to seamlessly integrate with
-the GNOME desktop environment, To Do enables you to be as productive as
-you want.
+  the GNOME desktop. Designed from ground up to seamlessly integrate with
+  the GNOME desktop environment, To Do enables you to be as productive as
+  you want.
 +
 +Package: gnome-todo-common
 +Architecture: all
 +Depends: ${misc:Depends},
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: common files for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains common files.
++Description: common files for GNOME To Do
++ Library that provides GObject-based interface of GNOME To Do, simplistic
++ personal task manager designed to perfectly fit the GNOME desktop.
++ .
++ This package contains common files.
 +
 +Package: libgnome-todo
 +Section: libs
 +Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},
++Depends: ${shlibs:Depends},
++         ${misc:Depends},
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library files.
++Description: library data for GNOME To Do
++ Library that provides GObject-based interface of GNOME To Do, simplistic
++ personal task manager designed to perfectly fit the GNOME desktop.
++ .
++ This package contains the library files.
 +
 +Package: libgnome-todo-dev
 +Section: libdevel
 +Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},</li>
-<li>gir1.2-gtd-1.0 (= ${binary:Version}),
++Depends: ${shlibs:Depends},
++         ${misc:Depends},
++         gir1.2-gtd-1.0 (= ${binary:Version}),
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: development library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library development files.
++Description: development library data for GNOME To Do
++ Library that provides GObject-based interface of GNOME To Do, simplistic
++ personal task manager designed to perfectly fit the GNOME desktop.
++ .
++ This package contains the library development files.
 +
 +Package: gir1.2-gtd-1.0
 +Section: introspection
 +Architecture: any
-+Depends: ${gir:Depends},</li>
-<li>${shlibs:Depends},</li>
-<li>${misc:Depends},
++Depends: ${gir:Depends},
++         ${shlibs:Depends},
++         ${misc:Depends},
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: GObject introspection data for GNOME To Do</li>
-<li>GNOME To Do is a simplistic personal task manager designed to perfectly fit</li>
-<li>the GNOME desktop. Designed from ground up to seamlessly integrate with</li>
-<li>the GNOME desktop environment, To Do enables you to be as productive as</li>
-<li>you want.</li>
-<li>.</li>
-<li>This package contains introspection data for GNOME To Do.</li>
-<li>.</li>
-<li>It can be used by packages using the GIRepository format to generate</li>
-<li>dynamic bindings.
++Description: GObject introspection data for GNOME To Do
++ GNOME To Do is a simplistic personal task manager designed to perfectly fit
++ the GNOME desktop. Designed from ground up to seamlessly integrate with
++ the GNOME desktop environment, To Do enables you to be as productive as
++ you want.
++ .
++ This package contains introspection data for GNOME To Do.
++ .
++ It can be used by packages using the GIRepository format to generate
++ dynamic bindings.
 diff -Nru gnome-todo-3.24.2/debian/control.in gnome-todo-3.24.2/debian/control.in
-&mdash; gnome-todo-3.24.2/debian/control.in 2017-06-18 19:47:46.000000000 +0900
+--- gnome-todo-3.24.2/debian/control.in 2017-06-18 19:47:46.000000000 +0900
 +++ gnome-todo-3.24.2/debian/control.in 2017-07-28 22:52:28.000000000 +0900
 @@ -26,6 +26,8 @@
-Architecture: any
-Depends: ${shlibs:Depends},
-      ${misc:Depends},</li>
-<li>gnome-todo-common,</li>
-<li>libgnome-todo (= ${binary:Version}),
-      evolution-data-server (&gt;= 3.17.1),
-      gsettings-desktop-schemas
-Description: minimalistic personal task manager designed to fit GNOME desktop
+ Architecture: any
+ Depends: ${shlibs:Depends},
+          ${misc:Depends},
++         gnome-todo-common,
++         libgnome-todo (= ${binary:Version}),
+          evolution-data-server (&gt;= 3.17.1),
+          gsettings-desktop-schemas
+ Description: minimalistic personal task manager designed to fit GNOME desktop
 @@ -33,3 +35,56 @@
-the GNOME desktop. Designed from ground up to seamlessly integrate with
-the GNOME desktop environment, To Do enables you to be as productive as
-you want.
+  the GNOME desktop. Designed from ground up to seamlessly integrate with
+  the GNOME desktop environment, To Do enables you to be as productive as
+  you want.
 +
 +Package: gnome-todo-common
 +Architecture: all
 +Depends: ${misc:Depends},
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: common files for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains common files.
++Description: common files for GNOME To Do
++ Library that provides GObject-based interface of GNOME To Do, simplistic
++ personal task manager designed to perfectly fit the GNOME desktop.
++ .
++ This package contains common files.
 +
 +Package: libgnome-todo
 +Section: libs
 +Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},
++Depends: ${shlibs:Depends},
++         ${misc:Depends},
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library files.
++Description: library data for GNOME To Do
++ Library that provides GObject-based interface of GNOME To Do, simplistic
++ personal task manager designed to perfectly fit the GNOME desktop.
++ .
++ This package contains the library files.
 +
 +Package: libgnome-todo-dev
 +Section: libdevel
 +Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},</li>
-<li>gir1.2-gtd-1.0 (= ${binary:Version}),
++Depends: ${shlibs:Depends},
++         ${misc:Depends},
++         gir1.2-gtd-1.0 (= ${binary:Version}),
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: development library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library development files.
++Description: development library data for GNOME To Do
++ Library that provides GObject-based interface of GNOME To Do, simplistic
++ personal task manager designed to perfectly fit the GNOME desktop.
++ .
++ This package contains the library development files.
 +
 +Package: gir1.2-gtd-1.0
 +Section: introspection
 +Architecture: any
-+Depends: ${gir:Depends},</li>
-<li>${shlibs:Depends},</li>
-<li>${misc:Depends},
++Depends: ${gir:Depends},
++         ${shlibs:Depends},
++         ${misc:Depends},
 +Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: GObject introspection data for GNOME To Do</li>
-<li>GNOME To Do is a simplistic personal task manager designed to perfectly fit</li>
-<li>the GNOME desktop. Designed from ground up to seamlessly integrate with</li>
-<li>the GNOME desktop environment, To Do enables you to be as productive as</li>
-<li>you want.</li>
-<li>.</li>
-<li>This package contains introspection data for GNOME To Do.</li>
-<li>.</li>
-<li>It can be used by packages using the GIRepository format to generate</li>
-<li>dynamic bindings.
++Description: GObject introspection data for GNOME To Do
++ GNOME To Do is a simplistic personal task manager designed to perfectly fit
++ the GNOME desktop. Designed from ground up to seamlessly integrate with
++ the GNOME desktop environment, To Do enables you to be as productive as
++ you want.
++ .
++ This package contains introspection data for GNOME To Do.
++ .
++ It can be used by packages using the GIRepository format to generate
++ dynamic bindings.
 diff -Nru gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install
-&mdash; gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 1970-01-01 09:00:00.000000000 +0900
+--- gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1 @@
-+usr/lib/<em>/girepository-1.0/</em>.typelib
++usr/lib/*/girepository-1.0/*.typelib
 diff -Nru gnome-todo-3.24.2/debian/gnome-todo-common.install gnome-todo-3.24.2/debian/gnome-todo-common.install
-&mdash; gnome-todo-3.24.2/debian/gnome-todo-common.install  1970-01-01 09:00:00.000000000 +0900
+--- gnome-todo-3.24.2/debian/gnome-todo-common.install  1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/gnome-todo-common.install  2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1,6 @@
 +usr/share/icons/
@@ -429,28 +426,28 @@ diff -Nru gnome-todo-3.24.2/debian/gnome-todo-common.install gnome-todo-3.24.2/d
 +usr/share/dbus-1/
 +usr/share/glib-2.0/
 diff -Nru gnome-todo-3.24.2/debian/gnome-todo.install gnome-todo-3.24.2/debian/gnome-todo.install
-&mdash; gnome-todo-3.24.2/debian/gnome-todo.install 1970-01-01 09:00:00.000000000 +0900
+--- gnome-todo-3.24.2/debian/gnome-todo.install 1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/gnome-todo.install 2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1,2 @@
 +usr/bin/gnome-todo
 +usr/share/applications/
 diff -Nru gnome-todo-3.24.2/debian/libgnome-todo-dev.install gnome-todo-3.24.2/debian/libgnome-todo-dev.install
-&mdash; gnome-todo-3.24.2/debian/libgnome-todo-dev.install  1970-01-01 09:00:00.000000000 +0900
+--- gnome-todo-3.24.2/debian/libgnome-todo-dev.install  1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/libgnome-todo-dev.install  2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1,3 @@
 +usr/include/gnome-todo/
-+usr/lib/<em>/pkgconfig/gnome-todo.pc
-+usr/share/gir-</em>/Gtd-<em>.gir
++usr/lib/*/pkgconfig/gnome-todo.pc
++usr/share/gir-*/Gtd-*.gir
 diff -Nru gnome-todo-3.24.2/debian/libgnome-todo.install gnome-todo-3.24.2/debian/libgnome-todo.install
-&mdash; gnome-todo-3.24.2/debian/libgnome-todo.install  1970-01-01 09:00:00.000000000 +0900
+--- gnome-todo-3.24.2/debian/libgnome-todo.install  1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/libgnome-todo.install  2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1 @@
-+usr/lib/</em>/gnome-todo/
++usr/lib/*/gnome-todo/
 diff -Nru gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch
-&mdash; gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 1970-01-01 09:00:00.000000000 +0900
+--- gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1,25 @@
-+From: Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>
++From: Hideki Yamane &lt;henrich@debian.org&gt;
 +Date: Fri, 28 Jul 2017 22:51:23 +0900
 +Subject: deal with appstream-metadata-in-legacy-location
 +
@@ -458,42 +455,38 @@ diff -Nru gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-
 +
 +Perhaps this patch will be not necessary when build system would move to
 +new one.
-+&mdash;</li>
-<li>data/Makefile.am | 2 +-</li>
-<li>1 file changed, 1 insertion(+), 1 deletion(-)
++---
++ data/Makefile.am | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+diff &ndash;git a/data/Makefile.am b/data/Makefile.am
++diff --git a/data/Makefile.am b/data/Makefile.am
 +index 827ee36..af44715 100644
-+&mdash; a/data/Makefile.am
++--- a/data/Makefile.am
 ++++ b/data/Makefile.am
-+@@ -13,7 +13,7 @@ autostart_DATA = org.gnome.Todo.Autostart.desktop</li>
-<li>%.desktop: %.desktop.in</li>
-<li>$(AM_V_GEN) $(MSGFMT) &ndash;desktop &ndash;template $&lt; -d $(top_srcdir)/po -o $@</li>
-<li>
++@@ -13,7 +13,7 @@ autostart_DATA = org.gnome.Todo.Autostart.desktop
++ %.desktop: %.desktop.in
++   $(AM_V_GEN) $(MSGFMT) --desktop --template $&lt; -d $(top_srcdir)/po -o $@
++ 
 +-appdatadir = $(datadir)/appdata
-++appdatadir = $(datadir)/metainfo</li>
-<li>appdata_DATA = $(appdata_in_files:.xml.in=.xml)</li>
-<li>appdata_in_files = $(srcdir)/appdata/org.gnome.Todo.appdata.xml.in</li>
-
-<li><p>diff -Nru gnome-todo-3.24.2/debian/patches/series gnome-todo-3.24.2/debian/patches/series
-&mdash; gnome-todo-3.24.2/debian/patches/series 1970-01-01 09:00:00.000000000 +0900
+++appdatadir = $(datadir)/metainfo
++ appdata_DATA = $(appdata_in_files:.xml.in=.xml)
++ appdata_in_files = $(srcdir)/appdata/org.gnome.Todo.appdata.xml.in
++ 
+diff -Nru gnome-todo-3.24.2/debian/patches/series gnome-todo-3.24.2/debian/patches/series
+--- gnome-todo-3.24.2/debian/patches/series 1970-01-01 09:00:00.000000000 +0900
 +++ gnome-todo-3.24.2/debian/patches/series 2017-07-28 22:52:28.000000000 +0900
 @@ -0,0 +1 @@
 +0001-deal-with-appstream-metadata-in-legacy-location.patch
 diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
-&mdash; gnome-todo-3.24.2/debian/rules  2017-06-18 19:47:46.000000000 +0900
+--- gnome-todo-3.24.2/debian/rules  2017-06-18 19:47:46.000000000 +0900
 +++ gnome-todo-3.24.2/debian/rules  2017-07-28 22:52:28.000000000 +0900
 @@ -28,4 +28,4 @@
-override_dh_auto_install:
-dh_auto_install</p>
-
-<h1 id="get-rid-of-non-empty-dependency-libs-in-la-file">get rid of &ldquo;non-empty-dependency_libs-in-la-file&rdquo;</h1></li>
-
-<li><p>find $(CURDIR)/debian/gnome-todo -name *.la -delete</p></li>
-
-<li><p>find $(CURDIR)/debian/ -name *.la -delete
-```</p></li>
-</ul>
+ override_dh_auto_install:
+    dh_auto_install
+    # get rid of &quot;non-empty-dependency_libs-in-la-file&quot;
+-   find $(CURDIR)/debian/gnome-todo -name *.la -delete
++   find $(CURDIR)/debian/ -name *.la -delete
+</code></pre>
 
 					
 				</div>
