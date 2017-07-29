@@ -405,6 +405,18 @@ diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
 -   find $(CURDIR)/debian/gnome-todo -name *.la -delete
 +   find $(CURDIR)/debian/ -name *.la -delete
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;今日のグルーミング&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859497&#34;&gt;fonts-bpg-georgian&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;debian/copyrightのconvertの際にcopyright holderの記述が website と異なっていて？？？となって調べて回った。その甲斐あって整理できた＆一部フォントが違うライセンスだということもわかったので良かった。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
