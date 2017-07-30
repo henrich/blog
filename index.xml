@@ -57,6 +57,28 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 30 Jul 2017 09:57:32 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;fonts-mikachan、deley-15 に放り込み。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;何か作業しようと思っていたのだが、続きをすっかり忘れていたDebian PolicyのSphinx変換提案、どうやって作業していたのかを思い出したので&lt;a href=&#34;https://github.com/henrich/policydoc/tree/sed-raplacement/convert/scripts&#34;&gt;historyから5行ほどの手順&lt;/a&gt;を送りつけておいた。8/1にSprintがあるらしいので、そこで話題にしてくれるといいなぁ。とりあえずIRCチャンネルに接続だけしてログを取っておこう。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sat, 29 Jul 2017 00:37:27 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -1005,29 +1027,6 @@ and may not include tests.
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 17 Jul 2017 08:45:27 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;グルーミング作業。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;fonts-aoyagi-kouzan-t。&lt;a href=&#34;http://opentype.jp/aoyagikouzanfontt.htm&#34;&gt;サイト&lt;/a&gt;を見に行ったら更新されていたのでこちらも反映して&lt;a href=&#34;https://tracker.debian.org/news/856771&#34;&gt;アップロード&lt;/a&gt;。uscanで自動で確認できるように、ファイル名に日付付けてもらうのをあとでお願いしよう。。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/856772&#34;&gt;fonts-aoyagi-soseki&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621&#34;&gt;READMEなmanのファイル名がおかしい件&lt;/a&gt;は&lt;a href=&#34;https://lists.debian.org/debian-perl/2017/07/msg00012.html&#34;&gt;debian-perlに飛ばして&lt;/a&gt;ヘルプを乞うてみる&amp;hellip;「READMEは削除しとるで。&lt;a href=&#34;https://sources.debian.net/src/libmojolicious-plugin-authentication-perl/1.29-1/debian/rules/&#34;&gt;こんな風に&lt;/a&gt;」&amp;hellip;な、なるほど。&lt;/p&gt;
 </description>
           </item>
         
