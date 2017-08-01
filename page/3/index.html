@@ -60,6 +60,232 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/">digging into gpgme on hurd</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jul 24, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>gpgme1.0 on Hurdの続き。</p>
+
+<pre><code>Running tests using /usr/bin/python2 (2.7)...
+PASS: initial.py
+PASS: t-wrapper.py
+PASS: t-callbacks.py
+FAIL: t-data.py
+FAIL: t-encrypt.py
+FAIL: t-encrypt-sym.py
+FAIL: t-encrypt-sign.py
+FAIL: t-sign.py
+FAIL: t-signers.py
+FAIL: t-decrypt.py
+FAIL: t-verify.py
+FAIL: t-decrypt-verify.py
+FAIL: t-sig-notation.py
+PASS: t-export.py
+PASS: t-import.py
+PASS: t-trustlist.py
+PASS: t-edit.py
+PASS: t-keylist.py
+PASS: t-keylist-from-data.py
+PASS: t-wait.py
+PASS: t-encrypt-large.py
+FAIL: t-file-name.py
+PASS: t-idiomatic.py
+PASS: t-protocol-assuan.py
+FAIL: t-quick-key-creation.py
+FAIL: t-quick-subkey-creation.py
+PASS: t-quick-key-manipulation.py
+PASS: t-quick-key-signing.py
+PASS: final.py
+Running tests using /usr/bin/python3 (3.5)...          
+PASS: initial.py                                       
+PASS: t-wrapper.py                                     
+PASS: t-callbacks.py                                   
+FAIL: t-data.py                                        
+FAIL: t-encrypt.py                                     
+FAIL: t-encrypt-sym.py                                 
+FAIL: t-encrypt-sign.py                                
+FAIL: t-sign.py                                        
+FAIL: t-signers.py                                     
+FAIL: t-decrypt.py
+FAIL: t-verify.py
+FAIL: t-decrypt-verify.py
+FAIL: t-sig-notation.py
+PASS: t-export.py
+PASS: t-import.py
+PASS: t-trustlist.py
+PASS: t-edit.py
+PASS: t-keylist.py
+PASS: t-keylist-from-data.py
+PASS: t-wait.py
+PASS: t-encrypt-large.py
+FAIL: t-file-name.py
+FAIL: t-idiomatic.py
+PASS: t-protocol-assuan.py
+FAIL: t-quick-key-creation.py
+FAIL: t-quick-subkey-creation.py
+PASS: t-quick-key-manipulation.py
+PASS: t-quick-key-signing.py
+PASS: final.py
+58 tests run, 31 succeeded, 27 failed, 0 skipped.
+</code></pre>
+
+<p>めっちゃコケる。</p>
+
+<pre><code>GNUPGHOME=/root/gpgme1.0-1.9.0/lang/python/tests LC_ALL=C GPG_AGENT_INFO= top_srcdir=../../.. srcdir=. LD_LIBRARY_PATH=&quot;../../../src/.libs:&quot; /usr/bin/python2 ./run-tests.py \
+  --interpreters=&quot;/usr/bin/python2 /usr/bin/python3&quot; --srcdir=.  \
+  initial.py t-wrapper.py t-callbacks.py t-data.py t-encrypt.py t-encrypt-sym.py t-encrypt-sign.py t-sign.py t-signers.py t-decrypt.py t-verify.py t-decrypt-verify.py t-sig-notation.py t-export.py t-import.py t-trustlist.py t-edit.py t-keylist.py t-keylist-from-data.py t-wait.py t-encrypt-large.py t-file-name.py t-idiomatic.py t-protocol-assuan.py t-quick-key-creation.py t-quick-subkey-creation.py t-quick-key-manipulation.py t-quick-key-signing.py final.py
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 23, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858132">fonts-breip</a>。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。</li>
+</ul>
+
+<pre><code>  * Team upload.                                       
+  * add epoch to version since upstream releases it as 0.5.1 and previous
+    packaging introduced unnecessary non-upstream files
+  * debian/control
+    - remove Mauro Lizaur &lt;mauro@debian.org&gt; from Uploaders, thank you for
+      your work! (Closes: #869339)                     
+    - add myself to Uploaders.                         
+    - update Vcs-* and use https                       
+    - set Standards-Version: 4.0.0                     
+    - set Build-Depends: debhelper (&gt;= 10)
+  * debian/compat
+    - set 10
+  * add debian/watch
+  * add debian/gbp.conf
+  * debian/copyright
+    - convert to copyright format 1.0
+</code></pre>
+
+<hr />
+
+<ul>
+<li>ttf-adfとfonts-adfかぶってるよ、問題。
+<a href="https://bugs.debian.org/869346">Bug#869346</a>をみて、古いttf-adfを削除依頼するか&hellip;と思ったのだけど、念の為ソースパッケージを落としている際、どうもorig.tar.gzのサイズが大きく違うのに気づいた。</li>
+</ul>
+
+<pre><code>$ ls -al fonts-adf_0.20110505.orig.tar.gz ttf-adf_0.20090423.orig.tar.gz 
+-rw-r--r-- 1 henrich henrich  9294398 10月 20  2016 fonts-adf_0.20110505.orig.tar.gz
+-rw-r--r-- 1 henrich henrich 15055654  5月  7  2009 ttf-adf_0.20090423.orig.tar.gz
+</code></pre>
+
+<p>これは一体？&hellip;どうやら<a href="http://arkandis.tuxfamily.org/adffonts.html">複数のupstream source</a>をまとめてぶち込んでいるようだ。あんまり筋が良くないなぁ。これ、分割してやったほうがいいと思う。</p>
+
+<hr />
+
+<ul>
+<li>昨日のSylpheed on HurdがPerl 5.26 transitionが落ち着いて関連パッケージがインストールできるようになったのでビルドを試す。</li>
+</ul>
+
+<pre><code># ./configure --build=i686-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --disable-silent-rules --libdir=${prefix}/lib/i386-gnu --libexecdir=${prefix}/lib/i386-gnu --disable-maintainer-mode --disable-dependency-tracking --enable-static --enable-languages=python cpp qt --infodir=/usr/share/info
+(snip)
+checking build system type... i686-pc-gnu
+checking host system type... Invalid configuration `cpp': machine `cpp' not recognized
+configure: error: /bin/bash build-aux/config.sub cpp failed
+</code></pre>
+
+<p>あら？ 試しにconfigure の引数に <code>--host=i686-gnu</code> を指定したら通るようにはなったが、これが自動で引っ張ってこられないのが問題かな&hellip;と思ったら、どうやら <code>--enable-languages=python cpp qt</code> が問題でおかしな値を引っ張ってきているようだ。これを除去したらとりあえずconfigure通ってビルドできるようになった。ただ、testcaseがコケるのでパッケージは生成できていない。</p>
+
+<pre><code>PASS: t-thread1
+PASS: t-thread-keylist
+t-thread-keylist-verify.c:92: GPGME: Too many open files
+FAIL: t-thread-keylist-verify
+stopping gpg-agent 
+PASS: final.test
+======================================
+1 of 26 tests failed
+Please report to http://bugs.gnupg.org
+======================================
+Makefile:852: recipe for target 'check-TESTS' failed
+make: *** [check-TESTS] Error 1
+</code></pre>
+
+<p>これはGNUPGのサイトでアカウント作って<a href="https://dev.gnupg.org/T3294">報告した</a>→どうやら新しいバージョン1.9.0がupstreamでは出ているようだったのでこちらで試したら上記のtest caseは通るようになっていたので早速close。ただ、他のテストが通らない&hellip;。</p>
+
+<p>configure.acみると</p>
+
+<pre><code>available_languages=&quot;cl cpp python python2 python3 qt&quot;
+default_languages=&quot;cl cpp python qt&quot;
+</code></pre>
+
+<p>なので、<code>--enable-languages=python cpp qt</code> が本当に必要かどうか、他のArchでも削除して問題ないことを確認したら、とりあえずこれを外すだけでもしたい。</p>
+
+<hr />
+
+<ul>
+<li>9.1が出ていたので<a href="http://www.debian.or.jp">debian.or.jp</a>の情報を更新。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -224,202 +450,6 @@ E: Unable to correct problems, you have held broken packages.
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jul 19, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/857518">snapper</a></li>
-<li><a href="https://tracker.debian.org/news/857525">jruby-joni</a>。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
-</ul>
-
-<hr />
-
-<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
-
-<hr />
-
-<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jul 18, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>どうやら<a href="http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340">3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた</a>ようだ。</p>
-
-<hr />
-
-<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>より。</p>
-
-<ul>
-<li>libmojolicious-plugin-renderfile-perlの<a href="http://bugs.debian.org/839621">#839621</a>を修正。manのtypoは<a href="https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20">PR送った</a>。</li>
-<li>libmojolicious-plugin-assetpack-perlもついでに更新&hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&hellip;</li>
-</ul>
-
-<hr />
-
-<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/857081">fonts-kouzan-mouhitsu</a>。サイトを見に行ったら更新されていたので反映。</li>
-</ul>
-
-<hr />
-
-<h2 id="octiconsのビルドにはnpmモジュールが必要">octiconsのビルドにはnpmモジュールが必要</h2>
-
-<p>octiconsのビルドに必要なのを見てみるか&hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。</p>
-
-<pre><code>  &quot;devDependencies&quot;: {
-    &quot;autoprefixer&quot;: &quot;^6.3.6&quot;,
-    &quot;ava&quot;: &quot;^0.16.0&quot;,
-    &quot;grunt&quot;: &quot;^1.0.1&quot;,
-    &quot;grunt-contrib-clean&quot;: &quot;^1.0.0&quot;,
-    &quot;grunt-contrib-copy&quot;: &quot;^1.0.0&quot;,
-    &quot;grunt-cssnano&quot;: &quot;^2.1.0&quot;,
-    &quot;grunt-svgmin&quot;: &quot;^4.0.0&quot;,
-    &quot;grunt-svgstore&quot;: &quot;^1.0.0&quot;
-  },
-</code></pre>
-
-<p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
-
-<pre><code> [error]   num2fraction: dependency node-num2fraction not in debian
- [error]   browserslist: dependency node-browserslist not in debian
- [error]   normalize-range: dependency node-normalize-range not in debian
- [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
- [error]   caniuse-lite: dependency node-caniuse-lite not in debian
- [error]   postcss: dependency node-postcss not in debian
-</code></pre>
-
-<p>browserslistをnpm2debすると</p>
-
-<pre><code> [error]   caniuse-lite: dependency node-caniuse-lite not in debian
- [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
-</code></pre>
-
-<p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で<strong>150個以上のnpmモジュールをdebパッケージにすることが必要</strong>なようだ。マジか&hellip;。</p>
-
-<h3 id="パッケージに落とせてない所">パッケージに落とせてない所</h3>
-
-<p>css-treeはalpha版しかないからかnpm2debがコケる。</p>
-
-<pre><code>$ npm2deb create css-tree
-Traceback (most recent call last):
-  File &quot;/usr/bin/npm2deb&quot;, line 7, in &lt;module&gt;
-    sys.exit(main(sys.argv))
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 138, in main
-    args.func(args)
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 273, in create
-    npm2deb.start()
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 71, in start
-    self.download()
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 404, in download
-    raise ValueError(exception)
-ValueError: Error downloading package css-tree
-npm ERR! notarget No compatible version found: css-tree@'*'
-npm ERR! notarget Valid install targets:
-npm ERR! notarget [&quot;1.0.0-alpha&quot;,&quot;1.0.0-alpha2&quot;,&quot;1.0.0-alpha3&quot;,&quot;1.0.0-alpha4&quot;,&quot;1.0.0-alpha5&quot;,&quot;1.0.0-alpha6&quot;,&quot;1.0.0-alpha7&quot;,&quot;1.0.0-alpha8&quot;,&quot;1.0.0-alpha9&quot;,&quot;1.0.0-alpha10&quot;,&quot;1.0.0-alpha11&quot;,&quot;1.0.0-alpha12&quot;,&quot;1.0.0-alpha13&quot;,&quot;1.0.0-alpha14&quot;,&quot;1.0.0-alpha15&quot;,&quot;1.0.0-alpha16&quot;,&quot;1.0.0-alpha17&quot;,&quot;1.0.0-alpha18&quot;,&quot;1.0.0-alpha19&quot;]
-npm ERR! notarget 
-npm ERR! notarget This is most likely not a problem with npm itself.
-npm ERR! notarget In most cases you or one of your dependencies are requesting
-npm ERR! notarget a package version that doesn't exist.
-
-npm ERR! System Linux 4.9.0-2-amd64
-npm ERR! command &quot;/usr/bin/nodejs&quot; &quot;/usr/bin/npm&quot; &quot;pack&quot; &quot;css-tree&quot;
-npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
-npm ERR! node -v v4.8.3
-npm ERR! npm -v 1.4.21
-npm ERR! code ETARGET
-npm ERR! 
-npm ERR! Additional logging details can be found in:
-npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
-npm ERR! not ok code 0
-</code></pre>
-
-<p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
-
-<pre><code> [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
- [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
- [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
- [error]   @concordance/react: dependency node-@concordance/react not in debian                              
- [error]   @types/node: dependency node-@types/node not in debian
-</code></pre>
-
-<p>npm2debでの変換中、気になるメッセージとしては以下。</p>
-
-<pre><code>Using fakeupstream to download npm dist tarballs, because upstream
-git repo is missing tags. Its better to ask upstream to tag their releases
-instead of using npm dist tarballs as dist tarballs may contain pre built files
-and may not include tests.
-</code></pre>
-
-<p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -546,13 +576,22 @@ and may not include tests.
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/11/">11</a></li>
+    ><a href="/blog/page/12/">12</a></li>
     
     
     <li
@@ -561,7 +600,7 @@ and may not include tests.
     </li>
     
     <li>
-        <a href="/blog/page/11/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/12/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

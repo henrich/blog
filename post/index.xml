@@ -56,6 +56,43 @@
       
         
           <item>
+            <title>Maintainer Work 0801</title>
+            <link>https://henrich.github.io/blog/2017/08/01/maintainer-work-0801/</link>
+            <pubDate>Tue, 01 Aug 2017 20:16:29 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/08/01/maintainer-work-0801/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/860012&#34;&gt;jcodings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[xfonts-ayu]()。regressionを作ってしまっていたのでそれを修正。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/07/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 31 Jul 2017 22:19:31 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/07/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[fonts-wqy-zenhei]&lt;a href=&#34;https://tracker.debian.org/news/859798)&#34;&gt;https://tracker.debian.org/news/859798)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 30 Jul 2017 09:57:32 +0900</pubDate>
@@ -877,158 +914,6 @@ E: Unable to correct problems, you have held broken packages.
    patch from Niko Tyni.
    (Closes: #826502)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 19 Jul 2017 19:51:41 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;パッケージ一覧&lt;/a&gt;を眺めてのグルーミング作業。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857518&#34;&gt;snapper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857525&#34;&gt;jruby-joni&lt;/a&gt;。&lt;a href=&#34;https://lintian.debian.org/tags/missing-classpath.html&#34;&gt;「missing-classpath」&lt;/a&gt;なるwarningを消したい、ということで&lt;code&gt;Class-Path: jcodings.jar&lt;/code&gt;の1行パッチをMANIFEST.MFに追加。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;d-iがrootパスワードの定期変更を推奨しているというツイートを見たので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869&#34;&gt;パッチ作ってBTS&lt;/a&gt;しておいた。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 18 Jul 2017 06:40:16 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>
-
-&lt;p&gt;どうやら&lt;a href=&#34;http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340&#34;&gt;3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた&lt;/a&gt;ようだ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/dmd/?henrich%40debian.org#todo&#34;&gt;maintainer dashboard&lt;/a&gt;より。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;libmojolicious-plugin-renderfile-perlの&lt;a href=&#34;http://bugs.debian.org/839621&#34;&gt;#839621&lt;/a&gt;を修正。manのtypoは&lt;a href=&#34;https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20&#34;&gt;PR送った&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;libmojolicious-plugin-assetpack-perlもついでに更新&amp;hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;パッケージ一覧&lt;/a&gt;を眺めてのグルーミング作業。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/857081&#34;&gt;fonts-kouzan-mouhitsu&lt;/a&gt;。サイトを見に行ったら更新されていたので反映。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;octiconsのビルドにはnpmモジュールが必要&#34;&gt;octiconsのビルドにはnpmモジュールが必要&lt;/h2&gt;
-
-&lt;p&gt;octiconsのビルドに必要なのを見てみるか&amp;hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  &amp;quot;devDependencies&amp;quot;: {
-    &amp;quot;autoprefixer&amp;quot;: &amp;quot;^6.3.6&amp;quot;,
-    &amp;quot;ava&amp;quot;: &amp;quot;^0.16.0&amp;quot;,
-    &amp;quot;grunt&amp;quot;: &amp;quot;^1.0.1&amp;quot;,
-    &amp;quot;grunt-contrib-clean&amp;quot;: &amp;quot;^1.0.0&amp;quot;,
-    &amp;quot;grunt-contrib-copy&amp;quot;: &amp;quot;^1.0.0&amp;quot;,
-    &amp;quot;grunt-cssnano&amp;quot;: &amp;quot;^2.1.0&amp;quot;,
-    &amp;quot;grunt-svgmin&amp;quot;: &amp;quot;^4.0.0&amp;quot;,
-    &amp;quot;grunt-svgstore&amp;quot;: &amp;quot;^1.0.0&amp;quot;
-  },
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&amp;hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; [error]   num2fraction: dependency node-num2fraction not in debian
- [error]   browserslist: dependency node-browserslist not in debian
- [error]   normalize-range: dependency node-normalize-range not in debian
- [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
- [error]   caniuse-lite: dependency node-caniuse-lite not in debian
- [error]   postcss: dependency node-postcss not in debian
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;browserslistをnpm2debすると&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; [error]   caniuse-lite: dependency node-caniuse-lite not in debian
- [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&amp;hellip;この作業で&lt;strong&gt;150個以上のnpmモジュールをdebパッケージにすることが必要&lt;/strong&gt;なようだ。マジか&amp;hellip;。&lt;/p&gt;
-
-&lt;h3 id=&#34;パッケージに落とせてない所&#34;&gt;パッケージに落とせてない所&lt;/h3&gt;
-
-&lt;p&gt;css-treeはalpha版しかないからかnpm2debがコケる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ npm2deb create css-tree
-Traceback (most recent call last):
-  File &amp;quot;/usr/bin/npm2deb&amp;quot;, line 7, in &amp;lt;module&amp;gt;
-    sys.exit(main(sys.argv))
-  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&amp;quot;, line 138, in main
-    args.func(args)
-  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&amp;quot;, line 273, in create
-    npm2deb.start()
-  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&amp;quot;, line 71, in start
-    self.download()
-  File &amp;quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&amp;quot;, line 404, in download
-    raise ValueError(exception)
-ValueError: Error downloading package css-tree
-npm ERR! notarget No compatible version found: css-tree@&#39;*&#39;
-npm ERR! notarget Valid install targets:
-npm ERR! notarget [&amp;quot;1.0.0-alpha&amp;quot;,&amp;quot;1.0.0-alpha2&amp;quot;,&amp;quot;1.0.0-alpha3&amp;quot;,&amp;quot;1.0.0-alpha4&amp;quot;,&amp;quot;1.0.0-alpha5&amp;quot;,&amp;quot;1.0.0-alpha6&amp;quot;,&amp;quot;1.0.0-alpha7&amp;quot;,&amp;quot;1.0.0-alpha8&amp;quot;,&amp;quot;1.0.0-alpha9&amp;quot;,&amp;quot;1.0.0-alpha10&amp;quot;,&amp;quot;1.0.0-alpha11&amp;quot;,&amp;quot;1.0.0-alpha12&amp;quot;,&amp;quot;1.0.0-alpha13&amp;quot;,&amp;quot;1.0.0-alpha14&amp;quot;,&amp;quot;1.0.0-alpha15&amp;quot;,&amp;quot;1.0.0-alpha16&amp;quot;,&amp;quot;1.0.0-alpha17&amp;quot;,&amp;quot;1.0.0-alpha18&amp;quot;,&amp;quot;1.0.0-alpha19&amp;quot;]
-npm ERR! notarget 
-npm ERR! notarget This is most likely not a problem with npm itself.
-npm ERR! notarget In most cases you or one of your dependencies are requesting
-npm ERR! notarget a package version that doesn&#39;t exist.
-
-npm ERR! System Linux 4.9.0-2-amd64
-npm ERR! command &amp;quot;/usr/bin/nodejs&amp;quot; &amp;quot;/usr/bin/npm&amp;quot; &amp;quot;pack&amp;quot; &amp;quot;css-tree&amp;quot;
-npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
-npm ERR! node -v v4.8.3
-npm ERR! npm -v 1.4.21
-npm ERR! code ETARGET
-npm ERR! 
-npm ERR! Additional logging details can be found in:
-npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
-npm ERR! not ok code 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
- [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
- [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
- [error]   @concordance/react: dependency node-@concordance/react not in debian                              
- [error]   @types/node: dependency node-@types/node not in debian
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;npm2debでの変換中、気になるメッセージとしては以下。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Using fakeupstream to download npm dist tarballs, because upstream
-git repo is missing tags. Its better to ask upstream to tag their releases
-instead of using npm dist tarballs as dist tarballs may contain pre built files
-and may not include tests.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。&lt;/p&gt;
 </description>
           </item>
         
