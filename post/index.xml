@@ -56,16 +56,16 @@
       
         
           <item>
-            <title>Maintainer Work 0801</title>
-            <link>https://henrich.github.io/blog/2017/08/01/maintainer-work-0801/</link>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/08/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 01 Aug 2017 20:16:29 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/08/01/maintainer-work-0801/</guid>
+            <guid>https://henrich.github.io/blog/2017/08/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/860012&#34;&gt;jcodings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[xfonts-ayu]()。regressionを作ってしまっていたのでそれを修正。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/860012&#34;&gt;jcodings&lt;/a&gt;、&lt;a href=&#34;https://tracker.debian.org/news/860053&#34;&gt;もう一つ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/860052&#34;&gt;xfonts-ayu&lt;/a&gt;。regressionを作ってしまっていたのでそれを修正。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
