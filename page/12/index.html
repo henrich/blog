@@ -60,6 +60,219 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 31, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>相変わらずdevelopers-referenceにちょっかいを出している。</p>
+
+<ul>
+<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=172892">Bug#172892</a>は既にCVSの時代じゃないだろう、ということでwontfixタグを勝手につけておいた。</li>
+<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=540975">Bug#540975</a>は直っていたので閉じておいた。</li>
+<li><a href="http://bugs.debian.org/544135">Bug#544135</a>と<a href="http://bugs.debian.org/604193">Bug#604193</a>についてはパッチにコメントをした。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/">Hyper-Vサポートまわりとか</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, May 30, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな
+* カーネル内のドライバ
+* カーネルのソースに含まれているtools/hv内のデーモン</p>
+
+<p>ドライバについては、Jessieの3.16のに4.0ベースのとかをそのままbackportして大丈夫なのかな。ビルドできれば影響範囲はhvドライバのみに収まるような気もする。とりあえず、今のカーネルのをそのまま使うでも使えるっぽい。</p>
+
+<p>デーモンについては<a href="http://yamanxworld.blogspot.jp/2015/02/hyper-v-and-linuxfreebsd.html">こちらにまとめられている</a>が、RHEL/Fedora系統だとhyperv-daemonsメタパッケージに依存している各パッケージで提供しているようだ（はて、デーモンごとにパッケージが細分化されていて、なぜかライセンスも別パッケージになってる…？）。Ubuntuはバージョンごとに色々違うようだ。さて、どうするかな…と思ったが、hyperv-daemonsパッケージでいいかな、と。あとはsystemdサービスをFedoraからパチってきた。それから調整、っと。。。</p>
+
+<p>dh-systemdは以下の理由から使わない方向で、installファイルでコピーするだけにした
+* そもそものパッケージの構成が複雑でdh使ってないので dh $@ &ndash;with systemd が指定できない
+* パッケージ名とサービス名が違う（サービスが３つもある）</p>
+
+<p>途中までで、とりあえず<a href="bugs.debian.org/cgi-bin/bugreport.cgi?bug=782761">無くならないようにパッチを投げておく</a>。</p>
+
+<p>あとはdescriptionをまともにする</p>
+
+<p>実際にHyper-V上のDebianで動作を確認する…ってどうやるんだ？Azureでいいか。</p>
+
+<p>Azureで仮想マシンを作る…ってそのままだとギャラリーにはDebianイメージ無いので、VMDepotという
+ここで有志が作っているイメージを使わせてもらう。とはいえ、どの程度の信頼性が置けるものかというものはあるけども。
+ログインしたらshellが/bin/shだった。chshして、bash-completion入れて、upgradeしてrebootして再度。。。って妙にrebootに時間がかかるな。繋がらない？</p>
+
+<pre><code>sudo systemctl start Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+</code></pre>
+
+<p>あれ。service見当たらないな…手動で起動した。これはパッケージを直す必要があるなぁ。
+でも、３つのサービスのうち、一つが起動しない。ってserviceファイルに/dev/vmbus/hv_fcopyが必要って書いたけど/dev/vmbusが無いんだな。これはHyper-VだとあってAzureだと無いのか、それともVMDepotのJessieがアレで見つからないのか？→CentOSベースのをAzureで立ち上げたが同様に/dev/vmbusは無い。はて、Hyper-VとAzureのは若干違うのか、それとも元にしたFedoraのがアレなのか。皿に検索すると<a href="http://dpdk.org/dev/patchwork/patch/2989/">何かへのパッチの投稿</a>が見つかった、がこれだと「/sys/bus/vmbus」って書いてあるけど、こっちが正解じゃない？…いや<a href="http://www.serverphorums.com/read.php?12,1049452">/dev/vmbusがある</a>のもあるな。。。</p>
+
+<p>README.Debianも追加したほうが良いかな？こんな感じで…</p>
+
+<pre><code>If you want to change screen resolution, please add &quot;video=hyperv_fb:vertical x horizontal&quot; to GRUB_CMDLINE_LINUX in /etc/default/grub and run update-grub
+e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/">xmltoがらみとOrphanという言葉の語感</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, May 30, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+								 , 
+							<a href="/blog/tags/upstream">upstream</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>upstreamの方にパッチの話をしたら「もう<a href="https://fedorahosted.org/xmlto/changeset/76">svn</a>に取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。</p>
+
+<p>あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。
+個人的にはOrphanという言葉はあまりよくなく、彼のメールにもあった「fresh blood」を使うのが良いんじゃないかな、と感じる。Needs Fresh Blood, 略してNFB。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">developers-referenceへパッチ</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, May 28, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://www.debian.org/doc/manuals/developers-reference/">developers-reference</a>がここの所ずっとアップデートされていない。
+せっかくfuzzyを潰したというのに、パッケージのほうが更新されないため、サイトの方は未訳のままに見える。</p>
+
+<p>どうするんだろう？ということでuploaderにメールしたら「I would welcome a patch.」とな。
+ああそうかい、やるよやるよ、ということで<a href="http://bugs.debian.org/developers-reference">BTS</a>に溜まっていたパッチをまとめたものと、epubがらみでのエラーの修正やら、wheezy-&gt;jessieに合わせた変更などをgit format-patchで作って送りつけた。</p>
+
+<p>その際にepubの方のエラーでxmltoを見る機会があったのだけど、これもアップデートが3年ぐらい滞ってるし、パッチも放置されてたのでメンテナに「アップデートしたいんだけど」とメールして、忘れないうちにDeleyed queue/15に放り込み。upstreamの方にも<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738629#16">BTSにあったパッチを送りつけておいた</a>。やれやれ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">debcheckoutへパッチ</a></h3>
 						<small><span class="label label-primary">
 							
