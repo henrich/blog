@@ -64,15 +64,20 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;poppler-dataが新しいバージョンが上がっていたので、これ幸いと&lt;a href=&#34;https://tracker.debian.org/news/863674&#34;&gt;アップロード&lt;/a&gt;。&lt;a href=&#34;https://qa.debian.org/popcon.php?package=poppler-data&#34;&gt;popconいわく&lt;/a&gt;、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。
+&lt;li&gt;&lt;p&gt;poppler-dataが新しいバージョンが上がっていたので、これ幸いと&lt;a href=&#34;https://tracker.debian.org/news/863674&#34;&gt;アップロード&lt;/a&gt;。&lt;a href=&#34;https://qa.debian.org/popcon.php?package=poppler-data&#34;&gt;popconいわく&lt;/a&gt;、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。&lt;/li&gt;
-&lt;li&gt;libtest-time-perlの新しいバージョン&amp;hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、&lt;a href=&#34;https://tracker.debian.org/news/863678&#34;&gt;アップロード&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;fonts-sawarabi-minchoを&lt;a href=&#34;https://tracker.debian.org/news/863673&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;libxmlbirdのFTBFS修正を&lt;a href=&#34;https://tracker.debian.org/news/863695&#34;&gt;アップロード&lt;/a&gt;、1文字だけの違いだけども。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://wiki.debian.org/LocalGroups/Debian-JP&#34;&gt;https://wiki.debian.org/LocalGroups/Debian-JP&lt;/a&gt; の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;libtest-time-perlの新しいバージョン&amp;hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、&lt;a href=&#34;https://tracker.debian.org/news/863678&#34;&gt;アップロード&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&amp;hellip;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;fonts-sawarabi-minchoを&lt;a href=&#34;https://tracker.debian.org/news/863673&#34;&gt;アップロード&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;libxmlbirdのFTBFS修正を&lt;a href=&#34;https://tracker.debian.org/news/863695&#34;&gt;アップロード&lt;/a&gt;、1文字だけの違いだけども。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://wiki.debian.org/LocalGroups/Debian-JP&#34;&gt;https://wiki.debian.org/LocalGroups/Debian-JP&lt;/a&gt; の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
