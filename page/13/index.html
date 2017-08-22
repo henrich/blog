@@ -60,15 +60,18 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">developers-referenceへパッチ</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Aug 13, 2017
+								Thu, May 28, 2015
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -77,24 +80,13 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>libsql-splitstatement-perl がreject</li>
-</ul>
+						<p><a href="https://www.debian.org/doc/manuals/developers-reference/">developers-reference</a>がここの所ずっとアップデートされていない。
+せっかくfuzzyを潰したというのに、パッケージのほうが更新されないため、サイトの方は未訳のままに見える。</p>
 
-<pre><code>please mention at least:
- libsql-splitstatement-perl-1.00020/t/data/sakila-schema.sql
-in your debian/copyright.
-</code></pre>
+<p>どうするんだろう？ということでuploaderにメールしたら「I would welcome a patch.」とな。
+ああそうかい、やるよやるよ、ということで<a href="http://bugs.debian.org/developers-reference">BTS</a>に溜まっていたパッチをまとめたものと、epubがらみでのエラーの修正やら、wheezy-&gt;jessieに合わせた変更などをgit format-patchで作って送りつけた。</p>
 
-<ul>
-<li>libmojo-rabbitmq-client-perl もreject</li>
-</ul>
-
-<pre><code>please also mention at least:
- libmojo-rabbitmq-client-perl-0.0.9/share/amqp0-9-1.stripped.extended.xml
- libmojo-rabbitmq-client-perl-0.0.9/share/fixed_amqp0-8.xml
-in your debian/copyright.
-</code></pre>
+<p>その際にepubの方のエラーでxmltoを見る機会があったのだけど、これもアップデートが3年ぐらい滞ってるし、パッチも放置されてたのでメンテナに「アップデートしたいんだけど」とメールして、忘れないうちにDeleyed queue/15に放り込み。upstreamの方にも<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738629#16">BTSにあったパッチを送りつけておいた</a>。やれやれ。</p>
 
 					
 				</div>
@@ -113,15 +105,18 @@ in your debian/copyright.
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">debcheckoutへパッチ</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Aug 12, 2017
+								Mon, May 18, 2015
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -130,136 +125,16 @@ in your debian/copyright.
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>Debian PolicyをSphinxへのコンバートは目処が着いてきたので、<a href="https://anonscm.debian.org/cgit/dbnpolicy/policy.git/commit/?id=bcb371949a94502c5559afd9183b68a49962fa93">リリース前のchangelogにも記載された</a>。細かい修正は残っているとは言え、だいぶ楽な状態になりました。</li>
-</ul>
+						<p>Debianパッケージのソースを取得したいときには「apt-get source」を使う。
+だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。</p>
 
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
+<p>とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。</p>
 
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Aug 1, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング作業</p>
+<p>debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立って<a href="http://sources.debian.net/src/devscripts/2.15.4/scripts/debcheckout.pl/">debcheckoutの中身</a>を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。</p>
 
-<ul>
-<li><a href="https://tracker.debian.org/news/860012">jcodings</a>、<a href="https://tracker.debian.org/news/860053">もう一つ</a></li>
-<li><a href="https://tracker.debian.org/news/860052">xfonts-ayu</a>。regressionを作ってしまっていたのでそれを修正。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jul 31, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング作業</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/859798">fonts-wqy-zenhei</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング</p>
-
-<ul>
-<li>fonts-mikachan、deley-15 に放り込み。</li>
-<li><a href="https://tracker.debian.org/news/859608">fonts-f500</a></li>
-<li><a href="https://tracker.debian.org/news/859609">fonts-manchufont</a></li>
-</ul>
-
-<hr />
-
-<p>何か作業しようと思っていたのだが、続きをすっかり忘れていたDebian PolicyのSphinx変換提案、どうやって作業していたのかを思い出したので<a href="https://github.com/henrich/policydoc/tree/sed-raplacement/convert/scripts">historyから5行ほどの手順</a>を送りつけておいた。8/1にSprintがあるらしいので、そこで話題にしてくれるといいなぁ。とりあえずIRCチャンネルに接続だけしてログを取っておこう。</p>
+<p>じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して
+<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=739104#15">Bug#739104</a>
+へパッチをポストしておいた。</p>
 
 					
 				</div>
@@ -288,7 +163,7 @@ in your debian/copyright.
     
     <li
     >
-    <a href="/blog/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <a href="/blog/page/12/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -313,7 +188,7 @@ in your debian/copyright.
     
     
     <li
-    class="active"><a href="/blog/page/2/">2</a></li>
+    ><a href="/blog/page/2/">2</a></li>
     
     
     
@@ -405,10 +280,13 @@ in your debian/copyright.
     
     
     
-    
+     
         
         
     
+    
+    <li
+    ><a href="/blog/page/12/">12</a></li>
     
     
     
@@ -420,12 +298,12 @@ in your debian/copyright.
     
     
     <li
-    ><a href="/blog/page/13/">13</a></li>
+    class="active"><a href="/blog/page/13/">13</a></li>
     
     
     <li
-    >
-    <a href="/blog/page/3/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    class="disabled">
+    <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li>

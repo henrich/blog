@@ -33,7 +33,6 @@
 
 &lt;ul&gt;
 &lt;li&gt;Selenium::Remote::Driver &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569&#34;&gt;Bug#839569&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;OpenQAがらみのモジュールをgitにあげる。どこのチームがいいか。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
 
@@ -49,6 +48,54 @@
 &lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;apt-listchangesのpo&lt;/a&gt;をファイルする&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 22 Aug 2017 22:09:13 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;debian-policy 4.1.0がアップロードされた&amp;hellip;のだけども、&lt;a href=&#34;https://www.debian.org/doc/debian-policy/&#34;&gt;Webサイトの方&lt;/a&gt;はCSSなどのファイルが一切アップロードされて無くて見栄えが悪い。&lt;a href=&#34;https://lists.debian.org/debian-policy/2017/08/msg00477.html&#34;&gt;問い合わせ&lt;/a&gt;してみた。
+
+&lt;ul&gt;
+&lt;li&gt;どうやらウェブサイト側の問題のようでSeanが&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872944&#34;&gt;バグを登録&lt;/a&gt;してくれた。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;昨日のpkg-perlチームへの加入がOKされてたのでgit pushしておく。パッケージ自体の修正はまだ。
+
+&lt;ul&gt;
+&lt;li&gt;何故かpristine-tarブランチが切られてないパッケージがあった。どうやって作るかな？と思ったが git checkout debian/&lt;tag&gt;;
+gbp buildpackage &amp;ndash;git-pristine-tar-commit &amp;ndash;git-pbuilder &amp;ndash;git-ignore-branch を繰り返して作成した。古いバージョンだとビルドができなくなっていたのにちょっと驚いたのと、testがskipしてるのを見逃していたなーという点。&lt;/li&gt;
+&lt;li&gt;teamのroot直下じゃなくてpackagesというディレクトリを切っていたのに後で気づいて慌ててsshで入って移動した。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/08/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 21 Aug 2017 04:55:42 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/08/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;「君のPerl moduleパッケージ、pkg-perlチームでメンテしない？」と頂けたので、これ幸いと参加申請しておく。&lt;/li&gt;
+&lt;li&gt;日経Linuxをチラ見したら&lt;a href=&#34;http://www.pdfsam.org/&#34;&gt;pdfsam&lt;/a&gt;なる良さそうなソフトを取り上げてるが、「リポジトリのパッケージは古いから削除してダウンロードして使おう！」みたいなこと書いてあった。&lt;a href=&#34;https://github.com/torakiki/pdfsam/releases&#34;&gt;https://github.com/torakiki/pdfsam/releases&lt;/a&gt; とdebian/changelog比較すると大きな乖離。どうやらpkg-javaチーム傘下なのでアップデートしていいか聞いてみるか。
+
+&lt;ul&gt;
+&lt;li&gt;まぁ、それにしてもDebianで作業しても全部「Ubuntuすげー！」だけになるかと思うとやるせないので、とっととsnapshot releaseをするようにせねばならんよなーとは思う。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -704,117 +751,6 @@ $ cvs2git --options=./cvs2git.options
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;などとやってみたが、必要な情報がtarballの中にはないようだ。&lt;a href=&#34;https://osdn.net/docs-ja/SCM_Migration&#34;&gt;サポートリクエスト&lt;/a&gt;を出して欲しい、ということらしい。あとで問い合わせよう。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 24 Jul 2017 21:45:44 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858508&#34;&gt;fonts-kacst-one&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;アップロードしてから「あ、ttf-パッケージがあった&amp;hellip;落とし忘れ&amp;hellip;」と気付く。あとでもう一度アップロードしよう。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858510&#34;&gt;fonts-takao&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;pristine-tarブランチにコミットし忘れてたのが発覚。&lt;code&gt;apt source fonts-takao&lt;/code&gt;と&lt;a href=&#34;http://snapshot.debian.org&#34;&gt;snapshot.debian.org&lt;/a&gt;からダウンロードして、&lt;code&gt;gbp pristine-tar commit&lt;/code&gt;で追加。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>digging into gpgme on hurd</title>
-            <link>https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/</link>
-            <pubDate>Mon, 24 Jul 2017 00:11:24 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/</guid>
-            <description>&lt;p&gt;gpgme1.0 on Hurdの続き。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Running tests using /usr/bin/python2 (2.7)...
-PASS: initial.py
-PASS: t-wrapper.py
-PASS: t-callbacks.py
-FAIL: t-data.py
-FAIL: t-encrypt.py
-FAIL: t-encrypt-sym.py
-FAIL: t-encrypt-sign.py
-FAIL: t-sign.py
-FAIL: t-signers.py
-FAIL: t-decrypt.py
-FAIL: t-verify.py
-FAIL: t-decrypt-verify.py
-FAIL: t-sig-notation.py
-PASS: t-export.py
-PASS: t-import.py
-PASS: t-trustlist.py
-PASS: t-edit.py
-PASS: t-keylist.py
-PASS: t-keylist-from-data.py
-PASS: t-wait.py
-PASS: t-encrypt-large.py
-FAIL: t-file-name.py
-PASS: t-idiomatic.py
-PASS: t-protocol-assuan.py
-FAIL: t-quick-key-creation.py
-FAIL: t-quick-subkey-creation.py
-PASS: t-quick-key-manipulation.py
-PASS: t-quick-key-signing.py
-PASS: final.py
-Running tests using /usr/bin/python3 (3.5)...          
-PASS: initial.py                                       
-PASS: t-wrapper.py                                     
-PASS: t-callbacks.py                                   
-FAIL: t-data.py                                        
-FAIL: t-encrypt.py                                     
-FAIL: t-encrypt-sym.py                                 
-FAIL: t-encrypt-sign.py                                
-FAIL: t-sign.py                                        
-FAIL: t-signers.py                                     
-FAIL: t-decrypt.py
-FAIL: t-verify.py
-FAIL: t-decrypt-verify.py
-FAIL: t-sig-notation.py
-PASS: t-export.py
-PASS: t-import.py
-PASS: t-trustlist.py
-PASS: t-edit.py
-PASS: t-keylist.py
-PASS: t-keylist-from-data.py
-PASS: t-wait.py
-PASS: t-encrypt-large.py
-FAIL: t-file-name.py
-FAIL: t-idiomatic.py
-PASS: t-protocol-assuan.py
-FAIL: t-quick-key-creation.py
-FAIL: t-quick-subkey-creation.py
-PASS: t-quick-key-manipulation.py
-PASS: t-quick-key-signing.py
-PASS: final.py
-58 tests run, 31 succeeded, 27 failed, 0 skipped.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;めっちゃコケる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;GNUPGHOME=/root/gpgme1.0-1.9.0/lang/python/tests LC_ALL=C GPG_AGENT_INFO= top_srcdir=../../.. srcdir=. LD_LIBRARY_PATH=&amp;quot;../../../src/.libs:&amp;quot; /usr/bin/python2 ./run-tests.py \
-  --interpreters=&amp;quot;/usr/bin/python2 /usr/bin/python3&amp;quot; --srcdir=.  \
-  initial.py t-wrapper.py t-callbacks.py t-data.py t-encrypt.py t-encrypt-sym.py t-encrypt-sign.py t-sign.py t-signers.py t-decrypt.py t-verify.py t-decrypt-verify.py t-sig-notation.py t-export.py t-import.py t-trustlist.py t-edit.py t-keylist.py t-keylist-from-data.py t-wait.py t-encrypt-large.py t-file-name.py t-idiomatic.py t-protocol-assuan.py t-quick-key-creation.py t-quick-subkey-creation.py t-quick-key-manipulation.py t-quick-key-signing.py final.py
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
