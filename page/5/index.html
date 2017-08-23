@@ -60,6 +60,45 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 21, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、<a href="https://github.com/fontforge/fontforge/issues/3119">問い合わせ</a>だけしておく。。。</li>
+<li>VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、<a href="https://lists.debian.org/debian-qa/2017/07/msg00031.html">問い合わせ</a>だけしておく。。。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -329,104 +368,6 @@ and may not include tests.
 <hr />
 
 <p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">READMEなmanのファイル名がおかしい件</a>は<a href="https://lists.debian.org/debian-perl/2017/07/msg00012.html">debian-perlに飛ばして</a>ヘルプを乞うてみる&hellip;「READMEは削除しとるで。<a href="https://sources.debian.net/src/libmojolicious-plugin-authentication-perl/1.29-1/debian/rules/">こんな風に</a>」&hellip;な、なるほど。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 16, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/todo">todo</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のケアリスト。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a>、<a href="https://tracker.debian.org/news/856662">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a>、<a href="https://tracker.debian.org/news/856663">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856571">xfonts-shinonome</a>、<a href="https://tracker.debian.org/news/856666">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856648">xfonts-naga10</a>、<a href="https://tracker.debian.org/news/856665">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856650">tiarra</a></li>
-<li><a href="https://tracker.debian.org/news/856669">libspiro</a></li>
-<li><a href="https://tracker.debian.org/news/856686">xfonts-ayu</a></li>
-<li><a href="https://tracker.debian.org/news/856690">fonts-horai-umefont</a></li>
-<li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
-
-<ul>
-<li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
-</ul></li>
-</ul>
-
-<p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
-
-<p>その他、ruby-interpriterのdropなど。なぜか<a href="https://packages.debian.org/sid/ruby2.1">ruby2.1がarm64のdeb-portsに残ってる</a>状況なのが不思議。</p>
-
-<hr />
-
-<p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
-
-<hr />
-
-<p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
-
-<pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
-$ cd libselenium-remote-driver-perl
-
-(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
-$ git branch -D upstream
-$ git tag -d upstream/1.20
-
-(空のブランチを作る)
-$ git checkout --orphan upstream
-$ git rm -rf *
-
-(upstreamブランチはGithubのmasterから取得するようにする)
-$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
-$ git pull github
-$ git fetch
-$ git branch -u github/master upstream
-</code></pre>
-
-<p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
-
-<hr />
-
-<p>前に一応チェックした<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">screenfetchのLaunchPadへの報告</a>、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。</p>
-
-<pre><code>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
-</code></pre>
-
-<p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
-
-<p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
 
 					
 				</div>
