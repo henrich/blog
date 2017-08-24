@@ -58,6 +58,42 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 24 Aug 2017 07:35:53 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;birdfontパッケージに&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=871963&#34;&gt;バグレポートパッチをもらっていた&lt;/a&gt;のでこちらを適用した。&lt;/p&gt;
+
+&lt;p&gt;んで、パッケージをビルドしたら以下のlintianエラーがでた&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml
+E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;のでパッチ作成、忘れないうちに&lt;a href=&#34;https://github.com/johanmattssonm/birdfont/pull/52&#34;&gt;PullRequest&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;しかし&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;が残っている。&lt;a href=&#34;https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html&#34;&gt;orig-tarball-missing-upstream-signature&lt;/a&gt;はキツすぎるだろう？ということで既にBTSに登録されていて&lt;a href=&#34;https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207&#34;&gt;gitでwarningに落とされた&lt;/a&gt;ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。&lt;/p&gt;
+
+&lt;p&gt;う、overrideしようとしたら&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;と言われてしまった。changes? どうやって置くのだ？？&amp;hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Wed, 23 Aug 2017 20:00:22 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -716,28 +752,6 @@ I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
 &lt;hr /&gt;
 
 &lt;p&gt;mplus-fontsのCVS-&amp;gt;Gitリポジトリ変換を&lt;a href=&#34;https://osdn.net/ticket/browse.php?group_id=1&amp;amp;tid=37404&#34;&gt;依頼&lt;/a&gt;しておく。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 26 Jul 2017 21:33:41 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858925&#34;&gt;fonts-mmceder&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&amp;hellip;とりあえず「1日早められる？」と問い合わせてみる。→無事調整された。&lt;/p&gt;
 </description>
           </item>
         
