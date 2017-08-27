@@ -58,6 +58,68 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 27 Aug 2017 16:49:13 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;jcodingsのアップデートがmaintainer dashboardで出てたのを見つけたので、&lt;a href=&#34;https://tracker.debian.org/news/866103&#34;&gt;アップロード&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fonttoolsのアップデートをしようということで作業を始める。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;upstreamの更新に合わせて対応&lt;/li&gt;
+&lt;li&gt;そろそろbusterを視野に入れてpython3限定でビルド
+
+&lt;ul&gt;
+&lt;li&gt;Build-Dependsは python-* が python3-* になるのはわかっていたが、Dependsも　&lt;code&gt;${python:Depends}&lt;/code&gt; ではなく &lt;code&gt;${python3:Depends}&lt;/code&gt; だった。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;ドキュメントがsphinx前提になっていたのでdh-sphinxdocを導入&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;dh-sphinxdoc周りが今まで作業していなかったので勝手がわからずに苦労。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build-Dependsに &lt;code&gt;python-sphinx&lt;/code&gt; 指定。&lt;code&gt;dh-sphinxdoc&lt;/code&gt;を含んでいる&lt;code&gt;sphinx-common&lt;/code&gt; だけでもいいのかしら？&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dh @ --with sphinxdoc&lt;/code&gt; しないと発動しない。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Depends: ${sphinxdoc:Depends}&lt;/code&gt;加えとくのも忘れずに。&lt;/li&gt;
+&lt;li&gt;ビルド時にsphinx起動していなかったのでoverrideした。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;で、sphinx動かすと以下のエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Traceback (most recent call last):
+  File &amp;quot;/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py&amp;quot;, line 560, in import_object
+/build/fonttools-3.15.1/Doc/source/varLib/models.rst:5: WARNING: autodoc: failed to import module u&#39;fontTools.varLib.models&#39;; the following exception was raised:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これは&lt;a href=&#34;http://www.sphinx-doc.org/ja/stable/ext/autodoc.html&#34;&gt;.. automodule::&lt;/a&gt;というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 26 Aug 2017 08:49:03 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;pkg-perl以下に移動したパッケージを更新してpush。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Thu, 24 Aug 2017 07:35:53 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -686,72 +748,6 @@ diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
 &lt;li&gt;debian/copyrightのconvertの際にcopyright holderの記述が website と異なっていて？？？となって調べて回った。その甲斐あって整理できた＆一部フォントが違うライセンスだということもわかったので良かった。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 28 Jul 2017 09:25:08 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今日のグルーミング作業&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859085&#34;&gt;fonts-ipafont-nonfree&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859086&#34;&gt;fonts-ipafont-nonfree-jisx0208&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859145&#34;&gt;jcodings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;gnome-todo をちょっとだけ。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/tags/appstream-metadata-in-legacy-location.html&#34;&gt;appstream-metadata-in-legacy-location&lt;/a&gt; は grep で検索して &lt;code&gt;gbp pq import&lt;/code&gt; して Makefile.am を少し書き換え、git commit してパッチを作って対応。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 27 Jul 2017 09:25:08 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今日のグルーミング&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/858988&#34;&gt;yudit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859063&#34;&gt;fonts-tomsontalks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859070&#34;&gt;fonts-kacst&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/859077&#34;&gt;nailgun&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;fonts-bpg-georgian を見てみたら、upstreamがBoxに色々ソースを置いているようだ、が読めなくて何が最善なのかが全くわからん&amp;hellip;&lt;/li&gt;
-&lt;li&gt;fonts-manchufont は途中まで&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;fonts-wqy-zenhei は途中まで&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;fonts-mikachan は途中まで&amp;hellip;で、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839677&#34;&gt;アップロード予告&lt;/a&gt;だけしておく。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;yudit は以下をなんとかしたいところではある&amp;hellip;とりあえずtypoは直した。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;I: yudit: spelling-error-in-binary usr/bin/uniprint pres press
-I: yudit: spelling-error-in-binary usr/bin/yudit preceed precede
-I: yudit: spelling-error-in-binary usr/bin/yudit pres press
-I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
-I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
-I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz recommened recommended
-I: yudit: desktop-entry-lacks-keywords-entry usr/share/applications/yudit.desktop
-I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;mplus-fontsのCVS-&amp;gt;Gitリポジトリ変換を&lt;a href=&#34;https://osdn.net/ticket/browse.php?group_id=1&amp;amp;tid=37404&#34;&gt;依頼&lt;/a&gt;しておく。&lt;/p&gt;
 </description>
           </item>
         

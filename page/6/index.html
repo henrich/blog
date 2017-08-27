@@ -60,6 +60,202 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jul 19, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857518">snapper</a></li>
+<li><a href="https://tracker.debian.org/news/857525">jruby-joni</a>。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
+</ul>
+
+<hr />
+
+<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
+
+<hr />
+
+<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jul 18, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<p>どうやら<a href="http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340">3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた</a>ようだ。</p>
+
+<hr />
+
+<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>より。</p>
+
+<ul>
+<li>libmojolicious-plugin-renderfile-perlの<a href="http://bugs.debian.org/839621">#839621</a>を修正。manのtypoは<a href="https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20">PR送った</a>。</li>
+<li>libmojolicious-plugin-assetpack-perlもついでに更新&hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&hellip;</li>
+</ul>
+
+<hr />
+
+<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857081">fonts-kouzan-mouhitsu</a>。サイトを見に行ったら更新されていたので反映。</li>
+</ul>
+
+<hr />
+
+<h2 id="octiconsのビルドにはnpmモジュールが必要">octiconsのビルドにはnpmモジュールが必要</h2>
+
+<p>octiconsのビルドに必要なのを見てみるか&hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。</p>
+
+<pre><code>  &quot;devDependencies&quot;: {
+    &quot;autoprefixer&quot;: &quot;^6.3.6&quot;,
+    &quot;ava&quot;: &quot;^0.16.0&quot;,
+    &quot;grunt&quot;: &quot;^1.0.1&quot;,
+    &quot;grunt-contrib-clean&quot;: &quot;^1.0.0&quot;,
+    &quot;grunt-contrib-copy&quot;: &quot;^1.0.0&quot;,
+    &quot;grunt-cssnano&quot;: &quot;^2.1.0&quot;,
+    &quot;grunt-svgmin&quot;: &quot;^4.0.0&quot;,
+    &quot;grunt-svgstore&quot;: &quot;^1.0.0&quot;
+  },
+</code></pre>
+
+<p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
+
+<pre><code> [error]   num2fraction: dependency node-num2fraction not in debian
+ [error]   browserslist: dependency node-browserslist not in debian
+ [error]   normalize-range: dependency node-normalize-range not in debian
+ [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
+ [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   postcss: dependency node-postcss not in debian
+</code></pre>
+
+<p>browserslistをnpm2debすると</p>
+
+<pre><code> [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
+</code></pre>
+
+<p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で<strong>150個以上のnpmモジュールをdebパッケージにすることが必要</strong>なようだ。マジか&hellip;。</p>
+
+<h3 id="パッケージに落とせてない所">パッケージに落とせてない所</h3>
+
+<p>css-treeはalpha版しかないからかnpm2debがコケる。</p>
+
+<pre><code>$ npm2deb create css-tree
+Traceback (most recent call last):
+  File &quot;/usr/bin/npm2deb&quot;, line 7, in &lt;module&gt;
+    sys.exit(main(sys.argv))
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 138, in main
+    args.func(args)
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 273, in create
+    npm2deb.start()
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 71, in start
+    self.download()
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 404, in download
+    raise ValueError(exception)
+ValueError: Error downloading package css-tree
+npm ERR! notarget No compatible version found: css-tree@'*'
+npm ERR! notarget Valid install targets:
+npm ERR! notarget [&quot;1.0.0-alpha&quot;,&quot;1.0.0-alpha2&quot;,&quot;1.0.0-alpha3&quot;,&quot;1.0.0-alpha4&quot;,&quot;1.0.0-alpha5&quot;,&quot;1.0.0-alpha6&quot;,&quot;1.0.0-alpha7&quot;,&quot;1.0.0-alpha8&quot;,&quot;1.0.0-alpha9&quot;,&quot;1.0.0-alpha10&quot;,&quot;1.0.0-alpha11&quot;,&quot;1.0.0-alpha12&quot;,&quot;1.0.0-alpha13&quot;,&quot;1.0.0-alpha14&quot;,&quot;1.0.0-alpha15&quot;,&quot;1.0.0-alpha16&quot;,&quot;1.0.0-alpha17&quot;,&quot;1.0.0-alpha18&quot;,&quot;1.0.0-alpha19&quot;]
+npm ERR! notarget 
+npm ERR! notarget This is most likely not a problem with npm itself.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! System Linux 4.9.0-2-amd64
+npm ERR! command &quot;/usr/bin/nodejs&quot; &quot;/usr/bin/npm&quot; &quot;pack&quot; &quot;css-tree&quot;
+npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
+npm ERR! node -v v4.8.3
+npm ERR! npm -v 1.4.21
+npm ERR! code ETARGET
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
+npm ERR! not ok code 0
+</code></pre>
+
+<p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
+
+<pre><code> [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
+ [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
+ [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
+ [error]   @concordance/react: dependency node-@concordance/react not in debian                              
+ [error]   @types/node: dependency node-@types/node not in debian
+</code></pre>
+
+<p>npm2debでの変換中、気になるメッセージとしては以下。</p>
+
+<pre><code>Using fakeupstream to download npm dist tarballs, because upstream
+git repo is missing tags. Its better to ask upstream to tag their releases
+instead of using npm dist tarballs as dist tarballs may contain pre built files
+and may not include tests.
+</code></pre>
+
+<p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -268,95 +464,6 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jul 14, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
-
-<ul>
-<li>ちょっとした待ち時間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">バグ報告</a>の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。<code>mv README.pod README</code>したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jul 13, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
-
-<ul>
-<li>screenfetchの<a href="https://tracker.debian.org/news/855944">watchファイルを直した</a>。</li>
-<li>twittering-modeの<a href="https://tracker.debian.org/news/855945">watchファイルを直してたやつをNMUした</a>。</li>
-<li>先日のfonts-konatuの更新で<a href="https://tracker.debian.org/news/855946">watchファイルが漏れていたので対応した</a>。</li>
-</ul>
-
-<p>その他も少し。</p>
-
-<ul>
-<li>osdn.jp→.netへの切り替えを作業&hellip;してる間に他にもアップデートできそうなところを見つけたので<a href="https://tracker.debian.org/news/855956">xfonts-ayuを更新</a>&hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。</li>
-<li><a href="https://tracker.debian.org/news/855949">xfonts-mplusを更新</a>。M+ BITMAP FONTSのパッチをupstreamに送付&hellip;したのだが届かない。添付だと跳ねられるのかしら？</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -509,13 +616,22 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/13/">13</a></li>
+    ><a href="/blog/page/14/">14</a></li>
     
     
     <li
@@ -524,7 +640,7 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
     </li>
     
     <li>
-        <a href="/blog/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

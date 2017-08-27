@@ -60,6 +60,95 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 14, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
+
+<ul>
+<li>ちょっとした待ち時間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">バグ報告</a>の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。<code>mv README.pod README</code>したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jul 13, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
+
+<ul>
+<li>screenfetchの<a href="https://tracker.debian.org/news/855944">watchファイルを直した</a>。</li>
+<li>twittering-modeの<a href="https://tracker.debian.org/news/855945">watchファイルを直してたやつをNMUした</a>。</li>
+<li>先日のfonts-konatuの更新で<a href="https://tracker.debian.org/news/855946">watchファイルが漏れていたので対応した</a>。</li>
+</ul>
+
+<p>その他も少し。</p>
+
+<ul>
+<li>osdn.jp→.netへの切り替えを作業&hellip;してる間に他にもアップデートできそうなところを見つけたので<a href="https://tracker.debian.org/news/855956">xfonts-ayuを更新</a>&hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。</li>
+<li><a href="https://tracker.debian.org/news/855949">xfonts-mplusを更新</a>。M+ BITMAP FONTSのパッチをupstreamに送付&hellip;したのだが届かない。添付だと跳ねられるのかしら？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -194,151 +283,6 @@ Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
 
 <p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
 ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 9, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
-
-<hr />
-
-<h2 id="openqaをビルドできるように-必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
-
-<p>そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？<a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">upstreamのspecファイルを確認</a>すると、testを実行するときだけ指定するとかなのかな。</p>
-
-<pre><code>%if %{with tests}
-cpanm --installdeps --with-feature=test . 
-%endif
-</code></pre>
-
-<p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&rdquo;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
-
-<pre><code>libmojolicious-perl
-libwww-perl
-libtimedate-perl
-perltidy
-libdbix-class-perl
-libscalar-list-utils-perl
-libtest-simple-perl
-liburi-perl
-libcgi-pm-perl
-</code></pre>
-
-<h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
-
-<pre><code>$ dh-make-perl --cpan SQL::SplitStatement
-== dh-make-perl 0.95 ==
-(snip)
-Needs the following debian packages during building: perl (&gt;= 5.8.9), libtest-exception-perl (&gt;= 0.27)
-Needs the following modules for which there are no debian packages available:
- - SQL::Tokenizer
-</code></pre>
-
-<p>あら、また足りない&hellip;</p>
-
-<pre><code>$ dh-make-perl --cpan SQL::Tokenizer
-</code></pre>
-
-<p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
-
-<p>(あと<code>upstream/metadata</code>なるファイルが作成されてたのだけど、これはAppStreamがらみ？)</p>
-
-<p>ここまで出来たのでlibsql-splitstatement-perlもITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752">Bug#867752</a>として登録、NEW queueへとアップロードしておいた</p>
-
-<hr />
-
-<p>気分転換に<a href="https://tracker.debian.org/news/854888">xgridfitを更新</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 8, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>mecab-jumandicパッケージのリグレッションを作ってしまったので、<a href="https://tracker.debian.org/news/854524">直した</a>。</p>
-
-<p>autopkgtestのネタとかとして使えないかなぁ、と思う。</p>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/854586">libmojolicious-plugin-assetpack-perlアップロード</a>。
-Lintianがtypoを報告してきていたので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126">pull request</a>。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。</p>
-
-<hr />
-
-<p>poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。</p>
-
-<pre><code>poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
-</code></pre>
-
-<hr />
-
-<p>libuninameslistのdebian/copyright を 1.0 にして<a href="https://tracker.debian.org/news/854587">アップロード</a>。次はmulti-arch絡みのsuggestion対応するかね&hellip;</p>
-
-<pre><code>libuninameslist-dev could be marked Multi-Arch: same
-libuninameslist1 could be marked Multi-Arch: same
-</code></pre>
 
 					
 				</div>
@@ -504,13 +448,22 @@ libuninameslist1 could be marked Multi-Arch: same
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/13/">13</a></li>
+    ><a href="/blog/page/14/">14</a></li>
     
     
     <li
@@ -519,7 +472,7 @@ libuninameslist1 could be marked Multi-Arch: same
     </li>
     
     <li>
-        <a href="/blog/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
