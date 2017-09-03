@@ -61,7 +61,7 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/09/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;fonttoolsを[unstableに入れた]()&lt;/li&gt;
+&lt;li&gt;fonttoolsを&lt;a href=&#34;https://tracker.debian.org/news/868524&#34;&gt;unstableに入れた&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
