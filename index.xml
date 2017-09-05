@@ -77,7 +77,7 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;[RFS: elpa-migemoのレビュー]()を実施。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-devel/2017-September/000088.html&#34;&gt;RFS: elpa-migemoのレビュー&lt;/a&gt;を実施。&lt;/li&gt;
 &lt;li&gt;libsql-splitstatement-perlを修正したのでアップロード。&lt;/li&gt;
 &lt;li&gt;OpenQAのdebian/copyrightをアップデート。&lt;/li&gt;
 &lt;/ul&gt;
