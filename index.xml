@@ -62,6 +62,8 @@
             <guid>https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;elpa-migemo をアップロード&lt;/li&gt;
+&lt;li&gt;nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;amp;arch=m68k&amp;amp;ver=0.9.1-5&amp;amp;stamp=1504617916&amp;amp;raw=0&#34;&gt;m68kぐらい&lt;/a&gt;）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。&lt;/li&gt;
+&lt;li&gt;os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&amp;hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&amp;hellip;これ動くのかな。）&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
