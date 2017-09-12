@@ -56,6 +56,41 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 12 Sep 2017 22:30:07 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/871738&#34;&gt;fonts-oradano-mincho-gsrrをアップロード&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/871748&#34;&gt;gnome-todoをアップロードした&lt;/a&gt;、のだけど、色々変更が多かったのでメモ&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;build systemがautotoolsから&lt;a href=&#34;http://mesonbuild.com&#34;&gt;meson&lt;/a&gt;に変わった。
+
+&lt;ul&gt;
+&lt;li&gt;Build-Depends: meson (&amp;gt;= 0.41.0) が追加、autoconf周りをdropした。&lt;/li&gt;
+&lt;li&gt;debian/rules で &lt;code&gt;dh $@  --with gnome --buildsystem=meson&lt;/code&gt; のように&lt;code&gt;--buildsystem=meson&lt;/code&gt; の指定が必要。&lt;/li&gt;
+&lt;li&gt;依存関係は &lt;code&gt;meson.build&lt;/code&gt; ファイルに書いてある&amp;hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。&lt;/li&gt;
+&lt;li&gt;何か見落としがあるのかな？と思って dh_install &amp;ndash;list-mising しようかと思ったら、今は &lt;code&gt;dh_missing --list-missing&lt;/code&gt; のように &lt;code&gt;dh_missing&lt;/code&gt; を使え、とのこと。適当なブランチで debian/rules に &lt;code&gt;override_dh_missing&lt;/code&gt; で記述して実行したが漏れはなかった様子。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Mon, 11 Sep 2017 20:57:06 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -369,34 +404,6 @@ gbp buildpackage &amp;ndash;git-pristine-tar-commit &amp;ndash;git-pbuilder &amp
 &lt;ul&gt;
 &lt;li&gt;まぁ、それにしてもDebianで作業しても全部「Ubuntuすげー！」だけになるかと思うとやるせないので、とっととsnapshot releaseをするようにせねばならんよなーとは思う。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 17 Aug 2017 06:26:14 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;poppler-dataが新しいバージョンが上がっていたので、これ幸いと&lt;a href=&#34;https://tracker.debian.org/news/863674&#34;&gt;アップロード&lt;/a&gt;。&lt;a href=&#34;https://qa.debian.org/popcon.php?package=poppler-data&#34;&gt;popconいわく&lt;/a&gt;、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。
-
-&lt;ul&gt;
-&lt;li&gt;別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;libtest-time-perlの新しいバージョン&amp;hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、&lt;a href=&#34;https://tracker.debian.org/news/863678&#34;&gt;アップロード&lt;/a&gt;。
-
-&lt;ul&gt;
-&lt;li&gt;d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&amp;hellip;。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;fonts-sawarabi-minchoを&lt;a href=&#34;https://tracker.debian.org/news/863673&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;libxmlbirdのFTBFS修正を&lt;a href=&#34;https://tracker.debian.org/news/863695&#34;&gt;アップロード&lt;/a&gt;、1文字だけの違いだけども。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://wiki.debian.org/LocalGroups/Debian-JP&#34;&gt;https://wiki.debian.org/LocalGroups/Debian-JP&lt;/a&gt; の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
