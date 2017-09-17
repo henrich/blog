@@ -60,6 +60,68 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jun 6, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>JDのreproducible buildがエラーになってるのは<a href="https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros">DATEとかを展開するMacroが入ってるから</a>、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。</p>
+
+<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&rdquo;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
+
+<p>jruby-joniパッケージは<a href="https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html">Java .jar files contain user login in the <code>Built-By</code> of <code>MANIFEST.MF</code></a>てなことだったので、この辺りを削るパッチを追加することにしました。</p>
+
+<p>reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。</p>
+
+<pre><code>&gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+</code></pre>
+
+<p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
+
+<p>birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。</p>
+
+<pre><code>&gt; def write_config (prefix):
+print (&quot;Writing Config.vala&quot;)
+
+vars = (('VERSION', VERSION),
+('BUILD_TIMESTAMP', time.asctime( time.localtime(time.time()))),
+('PREFIX', prefix),
+)
+</code></pre>
+
+<p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
 						<small><span class="label label-primary">
 							
@@ -219,51 +281,6 @@ policy.sgml:178: (po4a::sgml)
 <p>ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。</p>
 
 <p>あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なので<a href="https://github.com/os-autoinst/os-autoinst/issues/261">issue作っておきました</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, May 31, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>相変わらずdevelopers-referenceにちょっかいを出している。</p>
-
-<ul>
-<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=172892">Bug#172892</a>は既にCVSの時代じゃないだろう、ということでwontfixタグを勝手につけておいた。</li>
-<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=540975">Bug#540975</a>は直っていたので閉じておいた。</li>
-<li><a href="http://bugs.debian.org/544135">Bug#544135</a>と<a href="http://bugs.debian.org/604193">Bug#604193</a>についてはパッチにコメントをした。</li>
-</ul>
 
 					
 				</div>
