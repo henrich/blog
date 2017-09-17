@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infra on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/infra/</link>
+    <description>Recent content in Infra on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>2015-  Hideki Yamane</copyright>
+    <lastBuildDate>Sun, 17 Sep 2017 20:14:49 +0900</lastBuildDate>
+    <atom:link href="/blog/tags/infra/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>メンテナのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/09/17/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/09/17/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html&#34;&gt;gbp-import-orig&lt;/a&gt;のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;--component=COMPONENT
+When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
+ 
+Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でも「実験的機能」なのか。。。継続ウォッチだな。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;openSUSE Asia summit 2017で話をすることにしているんので資料作成。
+するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;この辺から探して下さい
+https://en.opensuse.org/Portal:Artwork
+https://github.com/openSUSE/artwork
+
+ロゴそのもののライセンスは:
+https://en.opensuse.org/openSUSE:Trademark_guidelines
+
+その他は CC-BY-SA 3.0 のものが多いです
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
+足りない部分の資料は今回は来られないAndrewにお願いしてみた。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&amp;hellip;？）&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

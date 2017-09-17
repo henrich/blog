@@ -60,6 +60,53 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/859085">fonts-ipafont-nonfree</a></li>
+<li><a href="https://tracker.debian.org/news/859086">fonts-ipafont-nonfree-jisx0208</a></li>
+<li><a href="https://tracker.debian.org/news/859145">jcodings</a></li>
+<li>gnome-todo をちょっとだけ。
+
+<ul>
+<li><a href="https://lintian.debian.org/tags/appstream-metadata-in-legacy-location.html">appstream-metadata-in-legacy-location</a> は grep で検索して <code>gbp pq import</code> して Makefile.am を少し書き換え、git commit してパッチを作って対応。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -278,112 +325,6 @@ $ cvs2git --options=./cvs2git.options
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/">digging into gpgme on hurd</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jul 24, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>gpgme1.0 on Hurdの続き。</p>
-
-<pre><code>Running tests using /usr/bin/python2 (2.7)...
-PASS: initial.py
-PASS: t-wrapper.py
-PASS: t-callbacks.py
-FAIL: t-data.py
-FAIL: t-encrypt.py
-FAIL: t-encrypt-sym.py
-FAIL: t-encrypt-sign.py
-FAIL: t-sign.py
-FAIL: t-signers.py
-FAIL: t-decrypt.py
-FAIL: t-verify.py
-FAIL: t-decrypt-verify.py
-FAIL: t-sig-notation.py
-PASS: t-export.py
-PASS: t-import.py
-PASS: t-trustlist.py
-PASS: t-edit.py
-PASS: t-keylist.py
-PASS: t-keylist-from-data.py
-PASS: t-wait.py
-PASS: t-encrypt-large.py
-FAIL: t-file-name.py
-PASS: t-idiomatic.py
-PASS: t-protocol-assuan.py
-FAIL: t-quick-key-creation.py
-FAIL: t-quick-subkey-creation.py
-PASS: t-quick-key-manipulation.py
-PASS: t-quick-key-signing.py
-PASS: final.py
-Running tests using /usr/bin/python3 (3.5)...          
-PASS: initial.py                                       
-PASS: t-wrapper.py                                     
-PASS: t-callbacks.py                                   
-FAIL: t-data.py                                        
-FAIL: t-encrypt.py                                     
-FAIL: t-encrypt-sym.py                                 
-FAIL: t-encrypt-sign.py                                
-FAIL: t-sign.py                                        
-FAIL: t-signers.py                                     
-FAIL: t-decrypt.py
-FAIL: t-verify.py
-FAIL: t-decrypt-verify.py
-FAIL: t-sig-notation.py
-PASS: t-export.py
-PASS: t-import.py
-PASS: t-trustlist.py
-PASS: t-edit.py
-PASS: t-keylist.py
-PASS: t-keylist-from-data.py
-PASS: t-wait.py
-PASS: t-encrypt-large.py
-FAIL: t-file-name.py
-FAIL: t-idiomatic.py
-PASS: t-protocol-assuan.py
-FAIL: t-quick-key-creation.py
-FAIL: t-quick-subkey-creation.py
-PASS: t-quick-key-manipulation.py
-PASS: t-quick-key-signing.py
-PASS: final.py
-58 tests run, 31 succeeded, 27 failed, 0 skipped.
-</code></pre>
-
-<p>めっちゃコケる。</p>
-
-<pre><code>GNUPGHOME=/root/gpgme1.0-1.9.0/lang/python/tests LC_ALL=C GPG_AGENT_INFO= top_srcdir=../../.. srcdir=. LD_LIBRARY_PATH=&quot;../../../src/.libs:&quot; /usr/bin/python2 ./run-tests.py \
-  --interpreters=&quot;/usr/bin/python2 /usr/bin/python3&quot; --srcdir=.  \
-  initial.py t-wrapper.py t-callbacks.py t-data.py t-encrypt.py t-encrypt-sym.py t-encrypt-sign.py t-sign.py t-signers.py t-decrypt.py t-verify.py t-decrypt-verify.py t-sig-notation.py t-export.py t-import.py t-trustlist.py t-edit.py t-keylist.py t-keylist-from-data.py t-wait.py t-encrypt-large.py t-file-name.py t-idiomatic.py t-protocol-assuan.py t-quick-key-creation.py t-quick-subkey-creation.py t-quick-key-manipulation.py t-quick-key-signing.py final.py
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -554,13 +495,22 @@ PASS: final.py
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/15/">15</a></li>
+    ><a href="/blog/page/16/">16</a></li>
     
     
     <li
@@ -569,7 +519,7 @@ PASS: final.py
     </li>
     
     <li>
-        <a href="/blog/page/15/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/16/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

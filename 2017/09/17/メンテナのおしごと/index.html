@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="メンテナのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>メンテナのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>メンテナのおしごと</h3>
+				<span class="label label-primary">Sun, Sep 17, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+					 , 
+					<a href="/blog/tags/infra">infra</a>
+				
+					 , 
+					<a href="/blog/tags/event">event</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><a href="https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html">gbp-import-orig</a>のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？</p>
+
+<pre><code>--component=COMPONENT
+When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
+ 
+Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
+</code></pre>
+
+<p>でも「実験的機能」なのか。。。継続ウォッチだな。</p>
+
+<hr />
+
+<p>openSUSE Asia summit 2017で話をすることにしているんので資料作成。
+するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？</p>
+
+<pre><code>この辺から探して下さい
+https://en.opensuse.org/Portal:Artwork
+https://github.com/openSUSE/artwork
+
+ロゴそのもののライセンスは:
+https://en.opensuse.org/openSUSE:Trademark_guidelines
+
+その他は CC-BY-SA 3.0 のものが多いです
+</code></pre>
+
+<p>とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
+足りない部分の資料は今回は来られないAndrewにお願いしてみた。</p>
+
+<hr />
+
+<ul>
+<li><p>ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。</p></li>
+
+<li><p>ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&hellip;？）</p></li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
