@@ -15,11 +15,11 @@
       
         
           <item>
-            <title>メンテナのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/17/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/17/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <guid>https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html&#34;&gt;gbp-import-orig&lt;/a&gt;のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;--component=COMPONENT

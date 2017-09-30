@@ -35,6 +35,7 @@
 &lt;li&gt;Selenium::Remote::Driver &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569&#34;&gt;Bug#839569&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1&#34;&gt;specファイル&lt;/a&gt;参照&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cybozu-go/aptutil&#34;&gt;aptutil周り&lt;/a&gt;をdebian-mirrorに使ってみる？&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
 
 &lt;ul&gt;

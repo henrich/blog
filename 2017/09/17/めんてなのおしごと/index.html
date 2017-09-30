@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -54,15 +54,18 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Sep 17, 2017</span> in 
 				 using tags
 				
 					
 					<a href="/blog/tags/debian">debian</a>
 				
 					 , 
-					<a href="/blog/tags/todo">todo</a>
+					<a href="/blog/tags/infra">infra</a>
+				
+					 , 
+					<a href="/blog/tags/event">event</a>
 				
 			</small>
 		</div>
@@ -70,33 +73,40 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
+			<p><a href="https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html">gbp-import-orig</a>のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？</p>
 
-<h1 id="支援について">支援について</h1>
+<pre><code>--component=COMPONENT
+When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
+ 
+Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
+</code></pre>
 
-<p>henrich @ debian.org 宛に<a href="http://amzn.to/2u7MfE5">Amazonギフト券</a>でのコントリビューションをお待ちしております :-)</p>
+<p>でも「実験的機能」なのか。。。継続ウォッチだな。</p>
 
-<h2 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h2>
+<hr />
+
+<p>openSUSE Asia summit 2017で話をすることにしているんので資料作成。
+するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？</p>
+
+<pre><code>この辺から探して下さい
+https://en.opensuse.org/Portal:Artwork
+https://github.com/openSUSE/artwork
+
+ロゴそのもののライセンスは:
+https://en.opensuse.org/openSUSE:Trademark_guidelines
+
+その他は CC-BY-SA 3.0 のものが多いです
+</code></pre>
+
+<p>とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
+足りない部分の資料は今回は来られないAndrewにお願いしてみた。</p>
+
+<hr />
 
 <ul>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
+<li><p>ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。</p></li>
 
-<ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
-<li><a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">specファイル</a>参照</li>
-</ul></li>
-<li><a href="https://github.com/cybozu-go/aptutil">aptutil周り</a>をdebian-mirrorに使ってみる？</li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
-
-<ul>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>fontforgeパッケージの更新をどうするか</li>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-</ul></li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">apt-listchangesのpo</a>をファイルする</li>
+<li><p>ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&hellip;？）</p></li>
 </ul>
 
 		</div>
