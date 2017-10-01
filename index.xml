@@ -57,6 +57,23 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 01 Oct 2017 14:39:09 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/876227&#34;&gt;libmojolicious-plugin-assetpack-perlの更新をアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.debian.org/mirror/ftpmirror&#34;&gt;ftpsyncスクリプト&lt;/a&gt;が新しくなったよ、というメールをもらっていたので入れ替えた。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sat, 30 Sep 2017 22:18:59 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -100,6 +117,12 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://events.opensuse.org/conference/summitasia17&#34;&gt;openSUSE.Asia Summit 2017&lt;/a&gt;のトークが通ったので返信。&lt;a href=&#34;https://events.opensuse.org/conference/summitasia17/program/proposal/1512&#34;&gt;openSUSE tools on Debian&lt;/a&gt;というタイトルで15分喋る予定です。資料も大体作成完了。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691&#34;&gt;fonts-arphic-uming FTBFS修正&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
@@ -331,41 +354,6 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/866769&#34;&gt;xfonts-kappa20をアップロード&lt;/a&gt;しておいた&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 28 Aug 2017 21:21:32 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;昨日のfonttoolsの続き。conf.pyにモジュール読み込みを記述することで対応できた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;--- a/Doc/source/conf.py                     
-+++ b/Doc/source/conf.py                     
-@@ -20,6 +20,8 @@                            
- # import sys                                
- # sys.path.insert(0, os.path.abspath(&#39;.&#39;))  
-                                             
-+import sys,os                               
-+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + &#39;/../../Lib&#39;)                
-                                             
- # -- General configuration ------------------------------------------------
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&amp;hellip;）。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;override_dh_sphinxdoc:                       
-        sphinx-build $(CURDIR)/Doc/source $(CURDIR)/debian/fonttools/usr/share/doc/fonttools/html/                                                                                     
-        dh_sphinxdoc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;色々変更をぶっ込んだので&lt;a href=&#34;https://tracker.debian.org/news/866488&#34;&gt;experimentalに&lt;/a&gt;。で、アップロードしてからバグを閉じ忘れていたことに気づいた&amp;hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&amp;hellip;のでコマンドメールを別途。&lt;/p&gt;
 </description>
           </item>
         

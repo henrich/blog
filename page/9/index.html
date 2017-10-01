@@ -60,6 +60,55 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jul 19, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857518">snapper</a></li>
+<li><a href="https://tracker.debian.org/news/857525">jruby-joni</a>。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
+</ul>
+
+<hr />
+
+<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
+
+<hr />
+
+<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -415,46 +464,6 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jul 14, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
-
-<ul>
-<li>ちょっとした待ち時間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">バグ報告</a>の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。<code>mv README.pod README</code>したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -634,13 +643,22 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/16/">16</a></li>
+    ><a href="/blog/page/17/">17</a></li>
     
     
     <li
@@ -649,7 +667,7 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
     </li>
     
     <li>
-        <a href="/blog/page/16/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/17/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
