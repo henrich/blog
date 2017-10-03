@@ -60,6 +60,44 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Aug 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/866769">xfonts-kappa20をアップロード</a>しておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -265,57 +303,6 @@ E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata
 </code></pre>
 
 <p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Aug 23, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>MSのドキュメントでDebianがDe&rdquo;v&rdquo;ianと書かれているtypoがあるよ、というのを見て、該当ページで「編集」を押してみたらGitHubのプルリクエスト画面になった。すげぇな。
-
-<ul>
-<li>直してプルリクエスト送ったけど、<a href="https://github.com/MicrosoftDocs/windowsserverdocs/pull/174#issuecomment-324168581">botがContribution License Agreement必要かどうか判断</a>してた。はー。</li>
-</ul></li>
-<li>pkg-perlチームのドキュメントを読む。まずは <a href="https://pkg-perl.alioth.debian.org/git.html">https://pkg-perl.alioth.debian.org/git.html</a>
-
-<ul>
-<li>pkg-perl-tools をインストールするところから始めるようだ</li>
-<li>インストールが終わると dpt コマンドが使える。メンテのためのお役立ちツールの様子。pkg-perlに絞ってるからシンプルにできてるのかな？ echo &ldquo;DPT_PACKAGES=$HOME/src/pkg-perl/packages&rdquo; &gt;&gt; $HOME/.config/dpt.conf して設定を追加。</li>
-<li>&ldquo;Non-pkg-perl methods such as gbp-create-remote-repo will not set up this infrastructure.&rdquo; とあるな。先日gbp-create-remote-repoでpushしたけど消して再度作り直しておくか&hellip;。</li>
-<li>dpt alioth-repo とかして作った。これ、aliothから新しいホスト名（salsaだっけ？）になったら変わるのかな。</li>
-<li>いじって、dpt pushで反映。</li>
-</ul></li>
-</ul>
 
 					
 				</div>
