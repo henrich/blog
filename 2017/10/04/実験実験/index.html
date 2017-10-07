@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="実験実験。">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>実験実験。 &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>実験実験。</h3>
+				<span class="label label-primary">Wed, Oct 4, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
+
+<pre><code>Package: texlive-latex-extra-doc
+Download-Size: 384 MB
+
+Package: texlive-pstricks-doc
+Download-Size: 248 MB
+</code></pre>
+
+<p><code>time apt-get download texlive-latex-extra-doc texlive-pstricks-doc</code> という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが <code>fatal error: runtime: out of memory</code> と<a href="https://github.com/cybozu-go/aptutil/issues/24">メモリ不足で落ちます</a>。VMをスケールアップして再度トライしました。</p>
+
+<p>まずは普通にftp.jp.debian.orgからの取得。</p>
+
+<pre><code>Fetched 412 MB in 36s (11.3 MB/s)
+real    0m36.643s
+
+Fetched 412 MB in 30s (13.4 MB/s)
+real    0m30.864s
+
+Fetched 412 MB in 26s (15.4 MB/s)
+real    0m27.031s
+</code></pre>
+
+<p>次に西日本から取得。</p>
+
+<pre><code>Fetched 412 MB in 19s (20.7 MB/s)
+real    0m20.026s
+
+Fetched 412 MB in 19s (21.1 MB/s)
+real    0m19.688s
+
+Fetched 412 MB in 18s (22.2 MB/s)
+real    0m18.746s
+</code></pre>
+
+<p>東でやってみたら</p>
+
+<pre><code>Fetched 412 MB in 24s (16.9 MB/s)
+real    0m24.203s
+
+Fetched 412 MB in 24s (17.2 MB/s)
+real    0m24.598s
+</code></pre>
+
+<p>という感じでリージョンまたぐよりも逆に遅かった…何故だ。</p>
+
+<hr />
+
+<p>結論</p>
+
+<pre><code>西日本： 21.3MBs
+東日本： 17.0MBs
+ダイレクト： 13.6 MBs
+</code></pre>
+
+<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
