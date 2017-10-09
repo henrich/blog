@@ -8,12 +8,27 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2017-10-09T14:31:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</loc>
+    <lastmod>2017-10-08T14:04:21+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2017-10-08T12:52:13+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
     <lastmod>2017-10-07T11:50:39+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/2017/10/06/maintainer-work-2017-1006/</loc>
+    <loc>https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
     <lastmod>2017-10-06T20:34:59+09:00</lastmod>
   </url>
   
@@ -447,6 +462,12 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/event/</loc>
     <lastmod>2017-09-17T20:14:49+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/tags/fedora/</loc>
+    <lastmod>2017-10-08T14:04:21+09:00</lastmod>
     <priority>0</priority>
   </url>
   
