@@ -279,47 +279,42 @@
 <p>openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&hellip;</p>
 
 <pre><code>Can't locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need
-        to install the Mojolicious::Plugin::AssetPack::Backcompat module)```
-
-なんでupstreamの依存関係には含まれとらんのだろう？
-
-んじゃさくっとdh-make-perl...したらcpanに無い？？？どうやら消されているようだ。仕方がないので[upstreamに質問](https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129)
-→ [backpan](http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/)というところに消したのは置いてあるよ、と教えてもらった。しかし、[本来これは必要ないはず](http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme)、なんだけども...？
-
-兎にも角にも、とりあえずぶち込んでみてtestを実行してみると...またエラーだ。以下が延々と。
-
+        to install the Mojolicious::Plugin::AssetPack::Backcompat module)
 </code></pre>
 
-<p>Uncaught exception from user code:
-        Plugin &ldquo;bootstrap3&rdquo; missing, maybe you need to install it?
-        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &ldquo;bootstrap3&rdquo;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
-        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &ldquo;bootstrap3&rdquo;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
-        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &ldquo;bootstrap3&rdquo;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
+<p>なんでupstreamの依存関係には含まれとらんのだろう？</p>
+
+<p>んじゃさくっとdh-make-perl&hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129">upstreamに質問</a>
+→ <a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/">backpan</a>というところに消したのは置いてあるよ、と教えてもらった。しかし、<a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme">本来これは必要ないはず</a>、なんだけども&hellip;？</p>
+
+<p>兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&hellip;またエラーだ。以下が延々と。</p>
+
+<pre><code>Uncaught exception from user code:
+        Plugin &quot;bootstrap3&quot; missing, maybe you need to install it?
+        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
+        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
+        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &quot;bootstrap3&quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
         OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179
-        Mojolicious::new(&ldquo;OpenQA::WebAPI&rdquo;) called at /usr/share/perl5/Mojo/Server.pm line 17
-        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &ldquo;OpenQA::WebAPI&rdquo;) called at /usr/share/perl5/Test/Mojo.pm line 247
-        Test::Mojo::new(&ldquo;Test::Mojo&rdquo;, &ldquo;OpenQA::WebAPI&rdquo;) called at ./t/05-scheduler-dependencies.t line 212</p>
-
-<pre><code>
+        Mojolicious::new(&quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Mojo/Server.pm line 17
+        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Test/Mojo.pm line 247
+        Test::Mojo::new(&quot;Test::Mojo&quot;, &quot;OpenQA::WebAPI&quot;) called at ./t/05-scheduler-dependencies.t line 212
 </code></pre>
 
-<p>Can&rsquo;t locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
-BEGIN failed&ndash;compilation aborted at ./t/ui/01-list.t line 37 (#1)
-    (F) You said to do (or require, or use) a file that couldn&rsquo;t be found.
+<pre><code>Can't locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
+BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
+    (F) You said to do (or require, or use) a file that couldn't be found.
     Perl looks for the file in all the locations mentioned in @INC, unless
     the file name included the full path to the file.  Perhaps you need
     to set the PERL5LIB or PERL5OPT environment variable to say where the
     extra library is, or maybe the script needs to add the library name
     to @INC.  Or maybe you just misspelled the name of the file.  See
-    &ldquo;require&rdquo; in perlfunc and lib.</p>
-
-<pre><code>
+    &quot;require&quot; in perlfunc and lib.
 </code></pre>
 
-<p>Uncaught exception from user code:
-        Can&rsquo;t locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
+<pre><code>Uncaught exception from user code:
+        Can't locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
          at /usr/share/perl5/Context/Preserve.pm line 42.
-```</p>
+</code></pre>
 
 <p>Mojolicious::Plugin::Bootstrap3 が必要そうだ。t::ui::PhantomTest と dbicdh/_common/deploy/_any/21-seeds.pl  はわからない。。。</p>
 
