@@ -68,8 +68,10 @@
 &lt;li&gt;新しいperlモジュールがtestに必要になってたようなので、ビルドする。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878042&#34;&gt;ITPもする&lt;/a&gt;。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878041&#34;&gt;そのビルドに必要な別のperlモジュールもITPする&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ITPしたのは&lt;a href=&#34;http://pkg-perl.alioth.debian.org/git.html&#34;&gt;$ dtp alioth-repo&lt;/a&gt;という感じでpushしておいた。&lt;/li&gt;
 &lt;li&gt;が、やっぱり止まるのは変わらないので&lt;a href=&#34;https://progress.opensuse.org/issues/25844&#34;&gt;issue登録&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;何が原因だか、今の所サッパリなので Jessie や Strech 環境を作ったりしてテスト。Jessie だと libmojolicious-perl が古すぎてモジュールが含まれないせいでテストコケるのでsidのを持ってきたり。その流れでnewest upstreamのを手元でビルドして差し替えもしてみた。が、結局何も変わらず。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;unidicのサイトが変更されたのに関する&lt;a href=&#34;https://twitter.com/henrich/status/917274260153843712&#34;&gt;ライセンス表記周りの意見&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;忘れてた&lt;a href=&#34;https://github.com/sphinx-doc/sphinx/issues/4131&#34;&gt;sphinxのissue登録&lt;/a&gt;をやっておいた&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
