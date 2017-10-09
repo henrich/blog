@@ -65,7 +65,7 @@
 &lt;li&gt;os-autoinstが止まるのをinvestigation。
 
 &lt;ul&gt;
-&lt;li&gt;新しいperlモジュールがtestに必要になってたようなので、ビルドする。[ITPもする]()。[そのビルドに必要な別のperlモジュールもITPする]()&lt;/li&gt;
+&lt;li&gt;新しいperlモジュールがtestに必要になってたようなので、ビルドする。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878042&#34;&gt;ITPもする&lt;/a&gt;。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878041&#34;&gt;そのビルドに必要な別のperlモジュールもITPする&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ITPしたのは&lt;a href=&#34;http://pkg-perl.alioth.debian.org/git.html&#34;&gt;$ dtp alioth-repo&lt;/a&gt;という感じでpushしておいた。&lt;/li&gt;
 &lt;li&gt;が、やっぱり止まるのは変わらないので&lt;a href=&#34;https://progress.opensuse.org/issues/25844&#34;&gt;issue登録&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
