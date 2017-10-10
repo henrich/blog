@@ -57,6 +57,57 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 10 Oct 2017 06:52:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git&#34;&gt;cutter-testing-frameworkのリポジトリを作っておいた&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;実作業はupstreamの@kenhysさんにお任せで&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;とりあえず、unidicをアップデートしてみるか？
+
+&lt;ul&gt;
+&lt;li&gt;他のunidic辞書もパッケージにしても面白いか？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://oss-gate.github.io/&#34;&gt;OSS Gate&lt;/a&gt;に拙著を寄贈しようと言う話をした。&lt;/li&gt;
+&lt;li&gt;昨日のos-autoinstのハングアップが直ったのでその旨連絡した。&lt;/li&gt;
+&lt;li&gt;os-autoinstで&lt;a href=&#34;https://github.com/os-autoinst/os-autoinst/pull/865&#34;&gt;debhelperが誤ってファイルを消すのを対処&lt;/a&gt;した。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/takuya_ono/status/917653702244044801&#34;&gt;guacamoleパッケージがおかしい、というつぶやき&lt;/a&gt;を見たので、MLにパッチの提案だけしておく&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;rustを使ったソースのパッケージングについて。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;https://github.com/sharkdp/fd&lt;/a&gt; というのを見かけて面白そうなのでパッケージングしてみようとする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/sharkdp/fd; cd fd
+$ git checkout -b debian
+$ dh_make --createorig -s -p fd_4.0.0
+(debianディレクトリをいじる…)
+$ git add debian; git commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、ビルドすると通るけど何もしてない風味。ざっくりrustcを使うのはなにかあるのだろうか？と調べると dh-cargo というのが見つかった。どうやら、rustなパッケージは &lt;code&gt;dh --buildsystem cargo&lt;/code&gt; という形で実施するようだ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   dh_auto_install -O--buildsystem=cargo
+cp: cannot stat &#39;./debian/cargo-checksum.json&#39;: No such file or directory
+dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_registry/fd-4.0.0/.cargo-checksum.json returned exit code 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;debian/cargo-checksum.json が必要、らしいが &lt;a href=&#34;https://wiki.debian.org/Teams/RustPackaging/Policy&#34;&gt;https://wiki.debian.org/Teams/RustPackaging/Policy&lt;/a&gt; を見ても何書いていいかがさっぱりわからん… &lt;a href=&#34;https://codesearch.debian.net/search?q=debian%2Fcargo-checksum.json&#34;&gt;ソースを検索した&lt;/a&gt;けど、もとからあるファイルをコピーしているようにしか見えない（が、無いんだよな…）&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Mon, 09 Oct 2017 14:31:17 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -540,41 +591,6 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 &lt;p&gt;&lt;a href=&#34;http://server.sakura.ad.jp/specification/&#34;&gt;さくらの専用サーバー&lt;/a&gt;でDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係で&lt;a href=&#34;http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/&#34;&gt;hp側&lt;/a&gt;のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも&lt;a href=&#34;http://server.sakura.ad.jp/common/pdf/sd_spec.pdf&#34;&gt;仕様&lt;/a&gt;によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？&lt;/p&gt;
 
 &lt;p&gt;何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&amp;hellip;→s/hp/hpe/だけだったのでサクッと。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 12 Sep 2017 22:30:07 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/871738&#34;&gt;fonts-oradano-mincho-gsrrをアップロード&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/871748&#34;&gt;gnome-todoをアップロードした&lt;/a&gt;、のだけど、色々変更が多かったのでメモ&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;build systemがautotoolsから&lt;a href=&#34;http://mesonbuild.com&#34;&gt;meson&lt;/a&gt;に変わった。
-
-&lt;ul&gt;
-&lt;li&gt;Build-Depends: meson (&amp;gt;= 0.41.0) が追加、autoconf周りをdropした。&lt;/li&gt;
-&lt;li&gt;debian/rules で &lt;code&gt;dh $@  --with gnome --buildsystem=meson&lt;/code&gt; のように&lt;code&gt;--buildsystem=meson&lt;/code&gt; の指定が必要。&lt;/li&gt;
-&lt;li&gt;依存関係は &lt;code&gt;meson.build&lt;/code&gt; ファイルに書いてある&amp;hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。&lt;/li&gt;
-&lt;li&gt;何か見落としがあるのかな？と思って dh_install &amp;ndash;list-mising しようかと思ったら、今は &lt;code&gt;dh_missing --list-missing&lt;/code&gt; のように &lt;code&gt;dh_missing&lt;/code&gt; を使え、とのこと。適当なブランチで debian/rules に &lt;code&gt;override_dh_missing&lt;/code&gt; で記述して実行したが漏れはなかった様子。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         
