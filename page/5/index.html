@@ -60,6 +60,86 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Sep 5, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>elpa-migemo をアップロード</li>
+<li>nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は<a href="https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;arch=m68k&amp;ver=0.9.1-5&amp;stamp=1504617916&amp;raw=0">m68kぐらい</a>）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。</li>
+<li>os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&hellip;これ動くのかな。）</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Sep 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="http://lists.debian.or.jp/pipermail/debian-devel/2017-September/000088.html">RFS: elpa-migemoのレビュー</a>を実施。</li>
+<li>libsql-splitstatement-perlを修正したのでアップロード。</li>
+<li>OpenQAのdebian/copyrightをアップデート。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/09/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -158,133 +238,6 @@
 						<ul>
 <li><a href="https://tracker.debian.org/news/866769">xfonts-kappa20をアップロード</a>しておいた</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Aug 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>昨日のfonttoolsの続き。conf.pyにモジュール読み込みを記述することで対応できた。</p>
-
-<pre><code>--- a/Doc/source/conf.py                     
-+++ b/Doc/source/conf.py                     
-@@ -20,6 +20,8 @@                            
- # import sys                                
- # sys.path.insert(0, os.path.abspath('.'))  
-                                             
-+import sys,os                               
-+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../Lib')                
-                                             
- # -- General configuration ------------------------------------------------
-</code></pre>
-
-<p>あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&hellip;）。</p>
-
-<pre><code>override_dh_sphinxdoc:                       
-        sphinx-build $(CURDIR)/Doc/source $(CURDIR)/debian/fonttools/usr/share/doc/fonttools/html/                                                                                     
-        dh_sphinxdoc
-</code></pre>
-
-<p>色々変更をぶっ込んだので<a href="https://tracker.debian.org/news/866488">experimentalに</a>。で、アップロードしてからバグを閉じ忘れていたことに気づいた&hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&hellip;のでコマンドメールを別途。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Aug 27, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>jcodingsのアップデートがmaintainer dashboardで出てたのを見つけたので、<a href="https://tracker.debian.org/news/866103">アップロード</a>。</li>
-</ul>
-
-<hr />
-
-<p>fonttoolsのアップデートをしようということで作業を始める。</p>
-
-<ul>
-<li>upstreamの更新に合わせて対応</li>
-<li>そろそろbusterを視野に入れてpython3限定でビルド
-
-<ul>
-<li>Build-Dependsは python-* が python3-* になるのはわかっていたが、Dependsも　<code>${python:Depends}</code> ではなく <code>${python3:Depends}</code> だった。</li>
-</ul></li>
-<li>ドキュメントがsphinx前提になっていたのでdh-sphinxdocを導入</li>
-</ul>
-
-<p>dh-sphinxdoc周りが今まで作業していなかったので勝手がわからずに苦労。</p>
-
-<ul>
-<li>Build-Dependsに <code>python-sphinx</code> 指定。<code>dh-sphinxdoc</code>を含んでいる<code>sphinx-common</code> だけでもいいのかしら？</li>
-<li><code>dh @ --with sphinxdoc</code> しないと発動しない。</li>
-<li><code>Depends: ${sphinxdoc:Depends}</code>加えとくのも忘れずに。</li>
-<li>ビルド時にsphinx起動していなかったのでoverrideした。</li>
-</ul>
-
-<p>で、sphinx動かすと以下のエラー。</p>
-
-<pre><code>Traceback (most recent call last):
-  File &quot;/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py&quot;, line 560, in import_object
-/build/fonttools-3.15.1/Doc/source/varLib/models.rst:5: WARNING: autodoc: failed to import module u'fontTools.varLib.models'; the following exception was raised:
-</code></pre>
-
-<p>これは<a href="http://www.sphinx-doc.org/ja/stable/ext/autodoc.html">.. automodule::</a>というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</p>
 
 					
 				</div>
@@ -493,13 +446,22 @@
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/18/">18</a></li>
+    ><a href="/blog/page/19/">19</a></li>
     
     
     <li
@@ -508,7 +470,7 @@
     </li>
     
     <li>
-        <a href="/blog/page/18/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/19/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

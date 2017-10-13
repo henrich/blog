@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Fri, Oct 13, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<pre><code class="language-gbpの使い方をざっと教えて```というリクエストを頂いたのでざっくりメモ。">
+</code></pre>
+
+<p>$ git clone <a href="https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git">https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git</a>
+Cloning into &lsquo;cutter-testing-framework&rsquo;&hellip;
+remote: Counting objects: 3334, done.
+remote: Compressing objects: 100% (<sup>949</sup>&frasl;<sub>949</sub>), done.
+remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
+Receiving objects: 100% (<sup>3334</sup>&frasl;<sub>3334</sub>), 3.69 MiB | 442.00 KiB/s, done.
+Resolving deltas: 100% (<sup>2336</sup>&frasl;<sub>2336</sub>), done.</p>
+
+<p>$ cd cutter-testing-framework/</p>
+
+<p>$ gbp import-orig &ndash;uscan &ndash;pristine-tar
+gbp:error:
+Repository does not have branch &lsquo;upstream&rsquo; for upstream sources. If there is none see
+file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
+on howto create it otherwise use &ndash;upstream-branch to specify it.</p>
+
+<p>$ git checkout upstream
+Branch &lsquo;upstream&rsquo; set up to track remote branch &lsquo;upstream&rsquo; from &lsquo;origin&rsquo;.
+Switched to a new branch &lsquo;upstream&rsquo;
+$ git checkout pristine-tar
+Branch &lsquo;pristine-tar&rsquo; set up to track remote branch &lsquo;pristine-tar&rsquo; from &lsquo;origin&rsquo;.
+Switched to a new branch &lsquo;pristine-tar&rsquo;
+$ git checkout master
+Switched to branch &lsquo;master&rsquo;
+Your branch is up to date with &lsquo;origin/master&rsquo;.</p>
+
+<p>$ gbp import-orig &ndash;uscan &ndash;pristine-tar
+gbp:info: Launching uscan&hellip;
+uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
+uscan:    =&gt; Newer package available from
+      <a href="http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz">http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz</a>
+gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
+What is the upstream version? [1.2.6]
+gbp:info: Importing &lsquo;../cutter-testing-framework_1.2.6.orig.tar.gz&rsquo; to branch &lsquo;upstream&rsquo;&hellip;
+gbp:info: Source package is cutter-testing-framework
+gbp:info: Upstream version is 1.2.6
+gbp:info: Replacing upstream source on &lsquo;master&rsquo;
+gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
+(色々編集してコミット&hellip;)
+$ dch -v 1.2.6-1
+$ dch -r
+$ gbp buildpackage &ndash;git-pbuilder &ndash;git-pristine-tar
+```</p>
+
+<ul>
+<li>importの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
+<li>最初にupstreamブランチとpristine-tarブランチをchekoutしないとエラー（面倒くさいけど）</li>
+<li><code>--git-pbuilder</code> でpbuilder/cowbuilder環境を使う</li>
+<li><code>--git-pristine-tar</code> で pristine-tar ブランチのファイルを使う</li>
+</ul>
+
+<p>ぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は <code>--git-ignore-branch</code> 付けてビルドが必要。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

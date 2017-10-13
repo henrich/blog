@@ -57,6 +57,91 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 13 Oct 2017 21:59:22 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;pre&gt;&lt;code class=&#34;language-gbpの使い方をざっと教えて```というリクエストを頂いたのでざっくりメモ。&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$ git clone &lt;a href=&#34;https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git&#34;&gt;https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git&lt;/a&gt;
+Cloning into &amp;lsquo;cutter-testing-framework&amp;rsquo;&amp;hellip;
+remote: Counting objects: 3334, done.
+remote: Compressing objects: 100% (&lt;sup&gt;949&lt;/sup&gt;&amp;frasl;&lt;sub&gt;949&lt;/sub&gt;), done.
+remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
+Receiving objects: 100% (&lt;sup&gt;3334&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3334&lt;/sub&gt;), 3.69 MiB | 442.00 KiB/s, done.
+Resolving deltas: 100% (&lt;sup&gt;2336&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2336&lt;/sub&gt;), done.&lt;/p&gt;
+
+&lt;p&gt;$ cd cutter-testing-framework/&lt;/p&gt;
+
+&lt;p&gt;$ gbp import-orig &amp;ndash;uscan &amp;ndash;pristine-tar
+gbp:error:
+Repository does not have branch &amp;lsquo;upstream&amp;rsquo; for upstream sources. If there is none see
+file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
+on howto create it otherwise use &amp;ndash;upstream-branch to specify it.&lt;/p&gt;
+
+&lt;p&gt;$ git checkout upstream
+Branch &amp;lsquo;upstream&amp;rsquo; set up to track remote branch &amp;lsquo;upstream&amp;rsquo; from &amp;lsquo;origin&amp;rsquo;.
+Switched to a new branch &amp;lsquo;upstream&amp;rsquo;
+$ git checkout pristine-tar
+Branch &amp;lsquo;pristine-tar&amp;rsquo; set up to track remote branch &amp;lsquo;pristine-tar&amp;rsquo; from &amp;lsquo;origin&amp;rsquo;.
+Switched to a new branch &amp;lsquo;pristine-tar&amp;rsquo;
+$ git checkout master
+Switched to branch &amp;lsquo;master&amp;rsquo;
+Your branch is up to date with &amp;lsquo;origin/master&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;$ gbp import-orig &amp;ndash;uscan &amp;ndash;pristine-tar
+gbp:info: Launching uscan&amp;hellip;
+uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
+uscan:    =&amp;gt; Newer package available from
+      &lt;a href=&#34;http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz&#34;&gt;http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz&lt;/a&gt;
+gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
+What is the upstream version? [1.2.6]
+gbp:info: Importing &amp;lsquo;../cutter-testing-framework_1.2.6.orig.tar.gz&amp;rsquo; to branch &amp;lsquo;upstream&amp;rsquo;&amp;hellip;
+gbp:info: Source package is cutter-testing-framework
+gbp:info: Upstream version is 1.2.6
+gbp:info: Replacing upstream source on &amp;lsquo;master&amp;rsquo;
+gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
+(色々編集してコミット&amp;hellip;)
+$ dch -v 1.2.6-1
+$ dch -r
+$ gbp buildpackage &amp;ndash;git-pbuilder &amp;ndash;git-pristine-tar
+```&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;importの際に &lt;code&gt;--pristine-tar&lt;/code&gt; でpristine-tarブランチにコミットしておくのを忘れない&lt;/li&gt;
+&lt;li&gt;最初にupstreamブランチとpristine-tarブランチをchekoutしないとエラー（面倒くさいけど）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--git-pbuilder&lt;/code&gt; でpbuilder/cowbuilder環境を使う&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--git-pristine-tar&lt;/code&gt; で pristine-tar ブランチのファイルを使う&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は &lt;code&gt;--git-ignore-branch&lt;/code&gt; 付けてビルドが必要。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Maintainer Work 2017 1011</title>
+            <link>https://henrich.github.io/blog/2017/10/11/maintainer-work-2017-1011/</link>
+            <pubDate>Wed, 11 Oct 2017 05:09:21 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/11/maintainer-work-2017-1011/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;DMの方の活動が年単位で無いのでping&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 10 Oct 2017 06:52:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -67,7 +152,7 @@
 &lt;ul&gt;
 &lt;li&gt;実作業はupstreamの@kenhysさんにお任せで&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;とりあえず、unidicをアップデートしてみるか？
+&lt;li&gt;とりあえず、unidicをアップデートしてみるか？と少しだけ作業。
 
 &lt;ul&gt;
 &lt;li&gt;他のunidic辞書もパッケージにしても面白いか？&lt;/li&gt;
@@ -519,77 +604,6 @@ sys 0m0.464s
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691&#34;&gt;fonts-arphic-uming FTBFS修正&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 18 Sep 2017 04:39:27 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;さくら専用サーバーのOSバージョンについては問い合わせておいた。手伝えることがあるとよいのだけども。&lt;/li&gt;
-&lt;li&gt;IDCFクラウドのはそろそろ&lt;a href=&#34;https://twitter.com/idcfrontier/status/899915015989469184&#34;&gt;一ヶ月&lt;/a&gt;なのでなんとかならんか。１０月まで待つか&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cloudgarage.jp/plan/&#34;&gt;Cloudgarade&lt;/a&gt;、規約改定は早かったがDebian対応はまだ。。。
-
-&lt;ul&gt;
-&lt;li&gt;10/5に対応いただいた。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IIJのミラーはできないものかをわかりそうな人に尋ねることに&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html&#34;&gt;gbp-import-orig&lt;/a&gt;のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;--component=COMPONENT
-When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
- 
-Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でも「実験的機能」なのか。。。継続ウォッチだな。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;openSUSE Asia summit 2017で話をすることにしているんので資料作成。
-するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;この辺から探して下さい
-https://en.opensuse.org/Portal:Artwork
-https://github.com/openSUSE/artwork
-
-ロゴそのもののライセンスは:
-https://en.opensuse.org/openSUSE:Trademark_guidelines
-
-その他は CC-BY-SA 3.0 のものが多いです
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
-足りない部分の資料は今回は来られないAndrewにお願いしてみた。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&amp;hellip;？）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
