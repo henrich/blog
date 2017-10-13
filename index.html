@@ -143,52 +143,55 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<pre><code class="language-gbpの使い方をざっと教えて```というリクエストを頂いたのでざっくりメモ。">
-</code></pre>
+						<p><code>gbpの使い方をざっと教えて</code> というリクエストを頂いたのでざっくりメモ。</p>
 
-<p>$ git clone <a href="https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git">https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git</a>
-Cloning into &lsquo;cutter-testing-framework&rsquo;&hellip;
+<hr />
+
+<pre><code>$ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git
+Cloning into 'cutter-testing-framework'...
 remote: Counting objects: 3334, done.
-remote: Compressing objects: 100% (<sup>949</sup>&frasl;<sub>949</sub>), done.
+remote: Compressing objects: 100% (949/949), done.
 remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
-Receiving objects: 100% (<sup>3334</sup>&frasl;<sub>3334</sub>), 3.69 MiB | 442.00 KiB/s, done.
-Resolving deltas: 100% (<sup>2336</sup>&frasl;<sub>2336</sub>), done.</p>
+Receiving objects: 100% (3334/3334), 3.69 MiB | 442.00 KiB/s, done.
+Resolving deltas: 100% (2336/2336), done.
 
-<p>$ cd cutter-testing-framework/</p>
+$ cd cutter-testing-framework/
 
-<p>$ gbp import-orig &ndash;uscan &ndash;pristine-tar
-gbp:error:
-Repository does not have branch &lsquo;upstream&rsquo; for upstream sources. If there is none see
+$ gbp import-orig --uscan --pristine-tar
+gbp:error: 
+Repository does not have branch 'upstream' for upstream sources. If there is none see
 file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
-on howto create it otherwise use &ndash;upstream-branch to specify it.</p>
+on howto create it otherwise use --upstream-branch to specify it.
 
-<p>$ git checkout upstream
-Branch &lsquo;upstream&rsquo; set up to track remote branch &lsquo;upstream&rsquo; from &lsquo;origin&rsquo;.
-Switched to a new branch &lsquo;upstream&rsquo;
-$ git checkout pristine-tar
-Branch &lsquo;pristine-tar&rsquo; set up to track remote branch &lsquo;pristine-tar&rsquo; from &lsquo;origin&rsquo;.
-Switched to a new branch &lsquo;pristine-tar&rsquo;
-$ git checkout master
-Switched to branch &lsquo;master&rsquo;
-Your branch is up to date with &lsquo;origin/master&rsquo;.</p>
+$ git checkout upstream
+Branch 'upstream' set up to track remote branch 'upstream' from 'origin'.
+Switched to a new branch 'upstream'
+$ git checkout pristine-tar 
+Branch 'pristine-tar' set up to track remote branch 'pristine-tar' from 'origin'.
+Switched to a new branch 'pristine-tar'
+$ git checkout master 
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
 
-<p>$ gbp import-orig &ndash;uscan &ndash;pristine-tar
-gbp:info: Launching uscan&hellip;
+$ gbp import-orig --uscan --pristine-tar
+gbp:info: Launching uscan...
 uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
 uscan:    =&gt; Newer package available from
-      <a href="http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz">http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz</a>
+      http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz
 gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
-What is the upstream version? [1.2.6]
-gbp:info: Importing &lsquo;../cutter-testing-framework_1.2.6.orig.tar.gz&rsquo; to branch &lsquo;upstream&rsquo;&hellip;
+What is the upstream version? [1.2.6] 
+gbp:info: Importing '../cutter-testing-framework_1.2.6.orig.tar.gz' to branch 'upstream'...
 gbp:info: Source package is cutter-testing-framework
 gbp:info: Upstream version is 1.2.6
-gbp:info: Replacing upstream source on &lsquo;master&rsquo;
+gbp:info: Replacing upstream source on 'master'
 gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
-(色々編集してコミット&hellip;)
+(色々編集してコミット...)
 $ dch -v 1.2.6-1
 $ dch -r
-$ gbp buildpackage &ndash;git-pbuilder &ndash;git-pristine-tar
-```</p>
+$ gbp buildpackage --git-pbuilder --git-pristine-tar
+</code></pre>
+
+<hr />
 
 <ul>
 <li>importの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
