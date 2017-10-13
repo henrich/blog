@@ -194,13 +194,16 @@ $ gbp buildpackage --git-pbuilder --git-pristine-tar
 <hr />
 
 <ul>
-<li>importの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
-<li>最初にupstreamブランチとpristine-tarブランチをchekoutしないとエラー（面倒くさいけど）</li>
+<li>upstream archiveのimportの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
+<li>最初にupstreamブランチとpristine-tarブランチをchekoutしないとビルドの際にエラー（面倒くさいけど）
+
+<ul>
 <li><code>--git-pbuilder</code> でpbuilder/cowbuilder環境を使う</li>
 <li><code>--git-pristine-tar</code> で pristine-tar ブランチのファイルを使う</li>
+</ul></li>
 </ul>
 
-<p>ぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は <code>--git-ignore-branch</code> 付けてビルドが必要。</p>
+<p>これぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は <code>--git-ignore-branch</code> 付けてビルドが必要。</p>
 
 					
 				</div>

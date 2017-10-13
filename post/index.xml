@@ -112,13 +112,16 @@ $ gbp buildpackage --git-pbuilder --git-pristine-tar
 &lt;hr /&gt;
 
 &lt;ul&gt;
-&lt;li&gt;importの際に &lt;code&gt;--pristine-tar&lt;/code&gt; でpristine-tarブランチにコミットしておくのを忘れない&lt;/li&gt;
-&lt;li&gt;最初にupstreamブランチとpristine-tarブランチをchekoutしないとエラー（面倒くさいけど）&lt;/li&gt;
+&lt;li&gt;upstream archiveのimportの際に &lt;code&gt;--pristine-tar&lt;/code&gt; でpristine-tarブランチにコミットしておくのを忘れない&lt;/li&gt;
+&lt;li&gt;最初にupstreamブランチとpristine-tarブランチをchekoutしないとビルドの際にエラー（面倒くさいけど）
+
+&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;--git-pbuilder&lt;/code&gt; でpbuilder/cowbuilder環境を使う&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;--git-pristine-tar&lt;/code&gt; で pristine-tar ブランチのファイルを使う&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;ぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は &lt;code&gt;--git-ignore-branch&lt;/code&gt; 付けてビルドが必要。&lt;/p&gt;
+&lt;p&gt;これぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は &lt;code&gt;--git-ignore-branch&lt;/code&gt; 付けてビルドが必要。&lt;/p&gt;
 </description>
           </item>
         
