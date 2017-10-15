@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Oct 15, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>パッケージを拾って色々分析居しているサイトが<a href="https://repology.org/maintainer/henrich%40debian.org/problems">担当しているパッケージの問題を列挙してた</a>ので対応する。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/879346">poppler-data</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879341">fonts-ipaexfont</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879347">fonts-ipafont-nonfree</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879348">fonts-ipafont-nonfree-jisx0208</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879353">fonts-ipafont</a>を更新</li>
+</ul>
+
+<hr />
+
+<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">packages overview</a>を参照して問題洗い出し</p>
+
+<ul>
+<li>git pushを忘れていたのを幾つか対応。</li>
+<li>xfonts-* パッケージが今までの<code>Section: x11</code>でなくて<code>Section: fonts</code>をlintianで推奨されるようになったので、ホント？という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609">質問をした</a></li>
+<li><a href="https://tracker.debian.org/news/879352">pleaiades</a>のwatchファイルがhttpだったのを直した</li>
+<li><a href="https://tracker.debian.org/news/879349">jcodings</a>のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）</li>
+<li>[yydebug]()を諸々更新。</li>
+<li><a href="http://martiansoftware.com/nailgun/">nailgunのウェブサイト</a>を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&hellip;。</li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

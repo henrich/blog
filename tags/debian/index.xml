@@ -57,6 +57,62 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 15 Oct 2017 07:39:55 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;パッケージを拾って色々分析居しているサイトが&lt;a href=&#34;https://repology.org/maintainer/henrich%40debian.org/problems&#34;&gt;担当しているパッケージの問題を列挙してた&lt;/a&gt;ので対応する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879346&#34;&gt;poppler-data&lt;/a&gt;を更新&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879341&#34;&gt;fonts-ipaexfont&lt;/a&gt;を更新&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879347&#34;&gt;fonts-ipafont-nonfree&lt;/a&gt;を更新&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879348&#34;&gt;fonts-ipafont-nonfree-jisx0208&lt;/a&gt;を更新&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879353&#34;&gt;fonts-ipafont&lt;/a&gt;を更新&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;packages overview&lt;/a&gt;を参照して問題洗い出し&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;git pushを忘れていたのを幾つか対応。&lt;/li&gt;
+&lt;li&gt;xfonts-* パッケージが今までの&lt;code&gt;Section: x11&lt;/code&gt;でなくて&lt;code&gt;Section: fonts&lt;/code&gt;をlintianで推奨されるようになったので、ホント？という&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609&#34;&gt;質問をした&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879352&#34;&gt;pleaiades&lt;/a&gt;のwatchファイルがhttpだったのを直した&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879349&#34;&gt;jcodings&lt;/a&gt;のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）&lt;/li&gt;
+&lt;li&gt;[yydebug]()を諸々更新。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://martiansoftware.com/nailgun/&#34;&gt;nailgunのウェブサイト&lt;/a&gt;を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&amp;hellip;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 14 Oct 2017 19:53:18 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;今日も今日とてopenQAに&lt;a href=&#34;https://github.com/os-autoinst/openQA/pull/1472&#34;&gt;１行パッチ&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/878494&#34;&gt;ttf-kacstを落として、というバグレポート&lt;/a&gt;がHolgerから。あーすっかり忘れてた&amp;hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。
+
+&lt;ul&gt;
+&lt;li&gt;納得したので、&lt;a href=&#34;https://tracker.debian.org/news/879272&#34;&gt;Uploadした&lt;/a&gt;。関連ありそうな別パッケージについては&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520&#34;&gt;バグレポート&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 13 Oct 2017 21:59:22 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -130,14 +186,13 @@ $ gbp buildpackage --git-pbuilder --git-pristine-tar
       
         
           <item>
-            <title>Maintainer Work 2017 1011</title>
-            <link>https://henrich.github.io/blog/2017/10/11/maintainer-work-2017-1011/</link>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Wed, 11 Oct 2017 05:09:21 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/11/maintainer-work-2017-1011/</guid>
+            <guid>https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;DMの方の活動が年単位で無いのでping&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -573,49 +628,6 @@ sys 0m0.464s
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/09/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://connpass.com/event/64845/&#34;&gt;さくらの夕べ「さくらのVPS ユーザーミートアップ」&lt;/a&gt;のLT枠に参加して&lt;a href=&#34;https://docs.google.com/presentation/d/1_L4a5eXeyYOh6v9VKcvZAg84d6Y8a5go2F8cmO2ATKo/&#34;&gt;debianミラーの宣伝&lt;/a&gt;をしてきました。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 25 Sep 2017 22:41:30 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://events.opensuse.org/conference/summitasia17&#34;&gt;openSUSE.Asia Summit 2017&lt;/a&gt;のトークが通ったので返信。&lt;a href=&#34;https://events.opensuse.org/conference/summitasia17/program/proposal/1512&#34;&gt;openSUSE tools on Debian&lt;/a&gt;というタイトルで15分喋る予定です。資料も大体作成完了。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691&#34;&gt;fonts-arphic-uming FTBFS修正&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 18 Sep 2017 04:39:27 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;さくら専用サーバーのOSバージョンについては問い合わせておいた。手伝えることがあるとよいのだけども。&lt;/li&gt;
-&lt;li&gt;IDCFクラウドのはそろそろ&lt;a href=&#34;https://twitter.com/idcfrontier/status/899915015989469184&#34;&gt;一ヶ月&lt;/a&gt;なのでなんとかならんか。１０月まで待つか&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cloudgarage.jp/plan/&#34;&gt;Cloudgarade&lt;/a&gt;、規約改定は早かったがDebian対応はまだ。。。
-
-&lt;ul&gt;
-&lt;li&gt;10/5に対応いただいた。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IIJのミラーはできないものかをわかりそうな人に尋ねることに&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

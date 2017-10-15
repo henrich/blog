@@ -60,6 +60,82 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Aug 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>-usersに流れてきたメールをチラ見、ざっくり調べて原因見つけたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=873719">パッチ送っとく</a>。stretchにも入れたほうがいいんじゃない？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Aug 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/866769">xfonts-kappa20をアップロード</a>しておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -206,115 +282,6 @@
 					
 						<ul>
 <li>pkg-perl以下に移動したパッケージを更新してpush。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Aug 24, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>birdfontパッケージに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=871963">バグレポートパッチをもらっていた</a>のでこちらを適用した。</p>
-
-<p>んで、パッケージをビルドしたら以下のlintianエラーがでた</p>
-
-<pre><code>W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml
-E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml
-</code></pre>
-
-<p>のでパッチ作成、忘れないうちに<a href="https://github.com/johanmattssonm/birdfont/pull/52">PullRequest</a>。</p>
-
-<p>しかし</p>
-
-<pre><code>E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz
-</code></pre>
-
-<p>が残っている。<a href="https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html">orig-tarball-missing-upstream-signature</a>はキツすぎるだろう？ということで既にBTSに登録されていて<a href="https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207">gitでwarningに落とされた</a>ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。</p>
-
-<p>う、overrideしようとしたら</p>
-
-<pre><code>E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1
-</code></pre>
-
-<p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Aug 23, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>MSのドキュメントでDebianがDe&rdquo;v&rdquo;ianと書かれているtypoがあるよ、というのを見て、該当ページで「編集」を押してみたらGitHubのプルリクエスト画面になった。すげぇな。
-
-<ul>
-<li>直してプルリクエスト送ったけど、<a href="https://github.com/MicrosoftDocs/windowsserverdocs/pull/174#issuecomment-324168581">botがContribution License Agreement必要かどうか判断</a>してた。はー。</li>
-</ul></li>
-<li>pkg-perlチームのドキュメントを読む。まずは <a href="https://pkg-perl.alioth.debian.org/git.html">https://pkg-perl.alioth.debian.org/git.html</a>
-
-<ul>
-<li>pkg-perl-tools をインストールするところから始めるようだ</li>
-<li>インストールが終わると dpt コマンドが使える。メンテのためのお役立ちツールの様子。pkg-perlに絞ってるからシンプルにできてるのかな？ echo &ldquo;DPT_PACKAGES=$HOME/src/pkg-perl/packages&rdquo; &gt;&gt; $HOME/.config/dpt.conf して設定を追加。</li>
-<li>&ldquo;Non-pkg-perl methods such as gbp-create-remote-repo will not set up this infrastructure.&rdquo; とあるな。先日gbp-create-remote-repoでpushしたけど消して再度作り直しておくか&hellip;。</li>
-<li>dpt alioth-repo とかして作った。これ、aliothから新しいホスト名（salsaだっけ？）になったら変わるのかな。</li>
-<li>いじって、dpt pushで反映。</li>
-</ul></li>
 </ul>
 
 					
