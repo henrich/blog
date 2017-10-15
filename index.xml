@@ -80,7 +80,7 @@
 &lt;li&gt;xfonts-* パッケージが今までの&lt;code&gt;Section: x11&lt;/code&gt;でなくて&lt;code&gt;Section: fonts&lt;/code&gt;をlintianで推奨されるようになったので、ホント？という&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609&#34;&gt;質問をした&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879352&#34;&gt;pleaiades&lt;/a&gt;のwatchファイルがhttpだったのを直した&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879349&#34;&gt;jcodings&lt;/a&gt;のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）&lt;/li&gt;
-&lt;li&gt;[yydebug]()を諸々更新。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879439&#34;&gt;yydebug&lt;/a&gt;を諸々更新。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://martiansoftware.com/nailgun/&#34;&gt;nailgunのウェブサイト&lt;/a&gt;を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&amp;hellip;。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
