@@ -60,6 +60,201 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 3, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://twitter.com/eldesh/status/915031977094389760">JPのページの誤りの指摘</a>を頂いたので修正した</li>
+<li><a href="https://idcfcloud.com">IDCFクラウド</a>のDebianテンプレートで問題を見つけたのでチケットを切っておいた。</li>
+</ul>
+
+<hr />
+
+<p>「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？</p>
+
+<ul>
+<li>思いついた対象候補
+
+<ul>
+<li>さくらのVPS</li>
+<li>ConoHa</li>
+<li><a href="https://www.idcf.jp/cloud/?cl=top_cloud">IDCFクラウド</a>(←ここではこれをチョイス)</li>
+</ul></li>
+</ul>
+
+<p>IDCFクラウドは、<a href="https://www.idcf.jp/cloud/order.html?cl=cl_top#try">500円クーポン</a>があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。</p>
+
+<ul>
+<li>Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&hellip;）。</li>
+<li>次に<a href="https://github.com/cybozu-go/aptutil/releases">go-apt-cacher</a>をダウンロードしてちょっと設定して起動します。</li>
+<li>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</li>
+</ul>
+
+<pre><code># apt show openclipart-png
+Package: openclipart-png
+Source: openclipart
+Version: 1:0.18+dfsg-14
+Installed-Size: 148 MB
+</code></pre>
+
+<p>有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。</p>
+
+<pre><code># time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 10s (12.2 MB/s)          
+
+real    0m10.742s
+user    0m2.204s
+sys 0m0.420s
+</code></pre>
+
+<p>まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）</p>
+
+<pre><code># time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 2s (50.3 MB/s)           
+
+real    0m2.758s
+user    0m2.028s
+sys 0m0.336s
+
+# time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 2s (43.0 MB/s)          
+
+real    0m3.423s
+user    0m2.292s
+sys 0m0.396s
+
+# time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 3s (42.2 MB/s)           
+
+real    0m3.237s
+user    0m2.496s
+sys 0m0.464s
+</code></pre>
+
+<p>キャッシュされた状態からだと平均で3.13秒（45.1MB/s）</p>
+
+<p>ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Oct 1, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/876227">libmojolicious-plugin-assetpack-perlの更新をアップロード</a></li>
+<li><a href="https://www.debian.org/mirror/ftpmirror">ftpsyncスクリプト</a>が新しくなったよ、というメールをもらっていたので入れ替えた。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Sep 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>体調を崩して諸々が進まず&hellip;。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/pkg/libmojolicious-plugin-renderfile-perl">libmojolicious-plugin-renderfile-perlの更新をアップロード</a>
+
+<ul>
+<li>lintianでUNRELEASEDだったらWarning入れてくれないかな&hellip;（ドジッた）</li>
+</ul></li>
+<li>sphinx-intlをアップデートした上でバイナリパッケージ名をsphinx-intlにしてアップロード。</li>
+<li>一旦消えた<a href="http://cutter.sourceforge.net">cutter-testing-framework</a>のDebianパッケージを復活させない？と打診だけ。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/09/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -120,167 +315,6 @@
 <ul>
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691">fonts-arphic-uming FTBFS修正</a>。</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 18, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>さくら専用サーバーのOSバージョンについては問い合わせておいた。手伝えることがあるとよいのだけども。</li>
-<li>IDCFクラウドのはそろそろ<a href="https://twitter.com/idcfrontier/status/899915015989469184">一ヶ月</a>なのでなんとかならんか。１０月まで待つか&hellip;。</li>
-<li><a href="https://cloudgarage.jp/plan/">Cloudgarade</a>、規約改定は早かったがDebian対応はまだ。。。
-
-<ul>
-<li>10/5に対応いただいた。</li>
-</ul></li>
-<li>IIJのミラーはできないものかをわかりそうな人に尋ねることに</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Sep 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/infra">infra</a>
-						
-								 , 
-							<a href="/blog/tags/event">event</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html">gbp-import-orig</a>のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？</p>
-
-<pre><code>--component=COMPONENT
-When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
- 
-Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
-</code></pre>
-
-<p>でも「実験的機能」なのか。。。継続ウォッチだな。</p>
-
-<hr />
-
-<p>openSUSE Asia summit 2017で話をすることにしているんので資料作成。
-するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？</p>
-
-<pre><code>この辺から探して下さい
-https://en.opensuse.org/Portal:Artwork
-https://github.com/openSUSE/artwork
-
-ロゴそのもののライセンスは:
-https://en.opensuse.org/openSUSE:Trademark_guidelines
-
-その他は CC-BY-SA 3.0 のものが多いです
-</code></pre>
-
-<p>とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
-足りない部分の資料は今回は来られないAndrewにお願いしてみた。</p>
-
-<hr />
-
-<ul>
-<li><p>ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。</p></li>
-
-<li><p>ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&hellip;？）</p></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Sep 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今回はパッケージメンテナじゃなくてサーバーのメンテナンスの話。</p>
-
-<p><a href="http://server.sakura.ad.jp/specification/">さくらの専用サーバー</a>でDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係で<a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">hp側</a>のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも<a href="http://server.sakura.ad.jp/common/pdf/sd_spec.pdf">仕様</a>によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？</p>
-
-<p>何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&hellip;→s/hp/hpe/だけだったのでサクッと。</p>
 
 					
 				</div>
@@ -495,13 +529,22 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/19/">19</a></li>
+    ><a href="/blog/page/20/">20</a></li>
     
     
     <li
@@ -510,7 +553,7 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
     </li>
     
     <li>
-        <a href="/blog/page/19/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

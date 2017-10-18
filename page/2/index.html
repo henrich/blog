@@ -60,6 +60,183 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Oct 14, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>今日も今日とてopenQAに<a href="https://github.com/os-autoinst/openQA/pull/1472">１行パッチ</a>。</li>
+<li><a href="https://bugs.debian.org/878494">ttf-kacstを落として、というバグレポート</a>がHolgerから。あーすっかり忘れてた&hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。
+
+<ul>
+<li>納得したので、<a href="https://tracker.debian.org/news/879272">Uploadした</a>。関連ありそうな別パッケージについては<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520">バグレポート</a>。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Oct 13, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>gbpの使い方をざっと教えて</code> というリクエストを頂いたのでざっくりメモ。</p>
+
+<hr />
+
+<pre><code>$ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git
+Cloning into 'cutter-testing-framework'...
+remote: Counting objects: 3334, done.
+remote: Compressing objects: 100% (949/949), done.
+remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
+Receiving objects: 100% (3334/3334), 3.69 MiB | 442.00 KiB/s, done.
+Resolving deltas: 100% (2336/2336), done.
+
+$ cd cutter-testing-framework/
+
+$ gbp import-orig --uscan --pristine-tar
+gbp:error: 
+Repository does not have branch 'upstream' for upstream sources. If there is none see
+file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
+on howto create it otherwise use --upstream-branch to specify it.
+
+$ git checkout upstream
+Branch 'upstream' set up to track remote branch 'upstream' from 'origin'.
+Switched to a new branch 'upstream'
+$ git checkout pristine-tar 
+Branch 'pristine-tar' set up to track remote branch 'pristine-tar' from 'origin'.
+Switched to a new branch 'pristine-tar'
+$ git checkout master 
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+$ gbp import-orig --uscan --pristine-tar
+gbp:info: Launching uscan...
+uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
+uscan:    =&gt; Newer package available from
+      http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz
+gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
+What is the upstream version? [1.2.6] 
+gbp:info: Importing '../cutter-testing-framework_1.2.6.orig.tar.gz' to branch 'upstream'...
+gbp:info: Source package is cutter-testing-framework
+gbp:info: Upstream version is 1.2.6
+gbp:info: Replacing upstream source on 'master'
+gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
+(色々編集してコミット...)
+$ dch -v 1.2.6-1
+$ dch -r
+$ gbp buildpackage --git-pbuilder --git-pristine-tar
+</code></pre>
+
+<hr />
+
+<ul>
+<li>upstream archiveのimportの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
+<li>最初にupstreamブランチとpristine-tarブランチをchekoutしないとビルドの際にエラー（面倒くさいけど）
+
+<ul>
+<li><code>--git-pbuilder</code> でpbuilder/cowbuilder環境を使う</li>
+<li><code>--git-pristine-tar</code> で pristine-tar ブランチのファイルを使う</li>
+</ul></li>
+</ul>
+
+<p>これぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は <code>--git-ignore-branch</code> 付けてビルドが必要。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 11, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>DMの方の活動が年単位で無いのでping</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -162,196 +339,6 @@ dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_re
 <li>unidicのサイトが変更されたのに関する<a href="https://twitter.com/henrich/status/917274260153843712">ライセンス表記周りの意見</a>。</li>
 <li>忘れてた<a href="https://github.com/sphinx-doc/sphinx/issues/4131">sphinxのissue登録</a>をやっておいた</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/">Fedora Modularity Memo</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Oct 8, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/fedora">fedora</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/">https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/</a></li>
-<li><a href="http://threebean.org/presentations/factory2-devconf17">The Productization Pipeline and the so-called &ldquo;Factory 2.0&rdquo;</a></li>
-<li></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Oct 8, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>忘れないうちに<a href="https://github.com/os-autoinst/openQA/pull/1465">１行パッチ</a>をopenQAに。</li>
-<li>openSUSE asia summitの発表の練習をしてみる。15分にはなんとか収まりそう。</li>
-<li>Debian JPのサイト、9.2リリースを反映しておいた</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Oct 7, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://www.debian.org/releases/stretch/amd64/release-notes/">リリースノート</a>の更新に気がついたので追従しておいた。</li>
-<li>openSUSEをいじってたらsnapperのアップデートがあったが、<a href="https://github.com/openSUSE/snapper/issues/364">そのバージョンのタグがgit repositoryに打たれてない。。。</a></li>
-<li>openQAやos-autoinstもタグが打たれてないので、<a href="https://progress.opensuse.org/issues/25826">お願いを出す</a>など&hellip;。</li>
-</ul>
-
-<hr />
-
-<p>openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&hellip;</p>
-
-<pre><code>Can't locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need
-        to install the Mojolicious::Plugin::AssetPack::Backcompat module)
-</code></pre>
-
-<p>なんでupstreamの依存関係には含まれとらんのだろう？</p>
-
-<p>んじゃさくっとdh-make-perl&hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129">upstreamに質問</a>
-→ <a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/">backpan</a>というところに消したのは置いてあるよ、と教えてもらった。しかし、<a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme">本来これは必要ないはず</a>、なんだけども&hellip;？</p>
-
-<p>兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&hellip;またエラーだ。以下が延々と。</p>
-
-<pre><code>Uncaught exception from user code:
-        Plugin &quot;bootstrap3&quot; missing, maybe you need to install it?
-        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
-        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
-        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &quot;bootstrap3&quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
-        OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179
-        Mojolicious::new(&quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Mojo/Server.pm line 17
-        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Test/Mojo.pm line 247
-        Test::Mojo::new(&quot;Test::Mojo&quot;, &quot;OpenQA::WebAPI&quot;) called at ./t/05-scheduler-dependencies.t line 212
-</code></pre>
-
-<pre><code>Can't locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
-BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
-    (F) You said to do (or require, or use) a file that couldn't be found.
-    Perl looks for the file in all the locations mentioned in @INC, unless
-    the file name included the full path to the file.  Perhaps you need
-    to set the PERL5LIB or PERL5OPT environment variable to say where the
-    extra library is, or maybe the script needs to add the library name
-    to @INC.  Or maybe you just misspelled the name of the file.  See
-    &quot;require&quot; in perlfunc and lib.
-</code></pre>
-
-<pre><code>Uncaught exception from user code:
-        Can't locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
-         at /usr/share/perl5/Context/Preserve.pm line 42.
-</code></pre>
-
-<p>Mojolicious::Plugin::Bootstrap3 が必要そうだ。t::ui::PhantomTest と dbicdh/_common/deploy/_any/21-seeds.pl  はわからない。。。</p>
-
-<p>&hellip;とここまで来たところで「upstreamもtestを実行していないので、とりあえず無視」ということにした。</p>
-
-<ul>
-<li>ビルド時には存在しないユーザーにchownしてる
-
-<ul>
-<li>ということはpostinstでchownするほうがいいか</li>
-</ul></li>
-<li>assetsディレクトリが存在しないので悩んでいたら、4.3の時点では存在せず、masterにはある&hellip;
-
-<ul>
-<li>コメントアウトしておく。</li>
-</ul></li>
-<li>存在しない systemd service ファイルのインストールが&hellip;
-
-<ul>
-<li>とりあえず消す</li>
-</ul></li>
-</ul>
-
-<p>ということで4.3のビルドは一旦終わった。</p>
-
-<hr />
-
-<p>色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&hellip;うわ、これ Makefile の最初のところで <code>./script/generate-packed-assets</code> というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&hellip;厄介な&hellip;。</p>
 
 					
 				</div>
@@ -560,13 +547,22 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/19/">19</a></li>
+    ><a href="/blog/page/20/">20</a></li>
     
     
     <li
@@ -575,7 +571,7 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
     </li>
     
     <li>
-        <a href="/blog/page/19/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

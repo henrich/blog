@@ -60,6 +60,383 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/">autopkgtest触ってみた（らしい）</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jun 28, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
+
+<p>Testsuite: autopkgtest-pkg-perl</p>
+
+<p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
+
+<p>実施されるテストは
+* smoke
+* use.t
+* syntax.t
+で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
+
+<p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
+
+<pre><code>$ sudo apt-get install sbuild
+$ sudo mkdir -p /srv/chroot/sid
+$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
+</code></pre>
+
+<pre><code>[sid-amd64-sbuild]
+type=directory
+description=Debian sid/amd64 autobuilder
+directory=/srv/chroot/sid
+groups=root,sbuild
+root-groups=root,sbuild
+profile=sbuild
+
+users=henrich
+root-users=henrich
+</code></pre>
+
+<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-run [20:22:46]: version 3.14.3
+adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
+adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+</code></pre>
+
+<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
+
+<pre><code>#union-type=aufs
+#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
+</code></pre>
+
+<p>とやってみたのだけど、</p>
+
+<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+adt-run [20:23:06]: version 3.14.3
+adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+Traceback (most recent call last):
+  File &quot;/usr/bin/adt-virt-schroot&quot;, line 190, in &lt;module&gt;
+    parse_args()
+  File &quot;/usr/bin/adt-virt-schroot&quot;, line 96, in parse_args
+    (key, val) = entry.split(&quot;=&quot;, 2)
+ValueError: too many values to unpack (expected 2)
+adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+</code></pre>
+
+<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
+
+<pre><code>[sid-test]
+type=file
+description=test
+file=/srv/chroot/test/base.tgz
+groups=root,sbuild
+root-groups=root,sbuild
+profile=sbuild
+
+users=henrich
+root-users=henrich
+</code></pre>
+
+<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+adt-run [18:52:38]: version 3.14.3
+adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+adt-run [18:52:41]: testbed dpkg architecture: amd64
+adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
++ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
+gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg' created
+gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg' created
+++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&gt;++++++++++...............+++++
+
+Not enough random bytes available.  Please do some other work to give
+the OS a chance to collect more entropy! (Need 188 more bytes)
+gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
+gpg: key 0FB272FB marked as ultimately trusted
+</code></pre>
+
+<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/">dh-make-perlでPerlモジュールが半自動でDebianパッケージに</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jun 28, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。</p>
+
+<pre><code>$ dh-make-perl 
+== dh-make-perl 0.86 ==
+Trying /home/henrich/src/qa/../qa.tar.gz... not found.
+Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
+Trying /home/henrich/src/qa/../qa.tar.xz... not found.
+Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
+WARNING: Neither META.json nor META.yml was found
+Unable to determine dist name, no Build.PL, no Makefile.PL
+Please use --cpan.
+</code></pre>
+
+<p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
+
+<pre><code>$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
+== dh-make-perl 0.86 ==
+
+CPAN.pm requires configuration, but most of it can be done automatically.
+If you answer 'no' below, you will enter an interactive dialog for each
+configuration option instead.
+
+Would you like to configure as much as possible automatically? [yes]
+
+ &lt;install_help&gt;
+
+Warning: You do not have write permission for Perl library directories.
+
+To install modules, you need to configure a local Perl library directory or
+escalate your privileges.  CPAN can help you by bootstrapping the local::lib
+module or by configuring itself to use 'sudo' (if available).  You may also
+resolve this problem manually if you need to customize your setup.
+
+What approach do you want?  (Choose 'local::lib', 'sudo' or 'manual')
+ [local::lib] 
+
+
+Autoconfiguration complete.
+
+Attempting to bootstrap local::lib...
+(snip)
+PATH=&quot;/home/henrich/perl5/bin${PATH+:}${PATH}&quot;; export PATH;
+PERL5LIB=&quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&quot;; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT=&quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&quot;; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT=&quot;--install_base \&quot;/home/henrich/perl5\&quot;&quot;; export PERL_MB_OPT;
+PERL_MM_OPT=&quot;INSTALL_BASE=/home/henrich/perl5&quot;; export PERL_MM_OPT;
+
+Would you like me to append that to /home/henrich/.bashrc now? [yes] 
+(snip)
+</code></pre>
+
+<p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
+
+<pre><code>henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
+commit a1a9d209742905d33a3ffee587c32b7a5360a521
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Sun Jun 28 00:12:59 2015 +0900
+
+    Initial packaging by dh-make-perl 0.84
+
+commit 29943cd28971248efb43e0e940957bf5086e118e
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Sun Jun 28 00:10:38 2015 +0900
+
+    Import original source of DBIx-Class-OptimisticLocking 0.02
+</code></pre>
+
+<p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
+
+<p>debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。</p>
+
+<p>debian/copyrightもcpanから取ってきて記述されるようです。</p>
+
+<pre><code>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
+Upstream-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
+Upstream-Name: DBIx-Class-OptimisticLocking
+DISCLAIMER: This copyright info was automatically extracted
+ from the perl module. It may not be accurate, so you better
+ check the module sources in order to ensure the module for its
+ inclusion in Debian or for general legal information. Please,
+ if licensing information is incorrectly generated, file a bug
+ on dh-make-perl.
+ NOTE: Don't forget to remove this disclaimer once you are happy
+ with this file.
+</code></pre>
+
+<p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
+
+<p>debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。</p>
+
+<p>debian/upstream/metadataなんてファイルも出来てました。中身は</p>
+
+<pre><code>Archive: CPAN
+Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
+Name: DBIx-Class-OptimisticLocking
+Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
+</code></pre>
+
+<p>ほー。いたれりつくせりですね。</p>
+
+<p>あとはgit-buildpackageでビルドしてしまえばOKです。</p>
+
+<p>ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると</p>
+
+<pre><code>**********
+WARNING: a package named
+              'libsql-abstract-perl'
+         is already available in APT repositories
+Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
+Description: module to generate SQL from Perl data structures
+</code></pre>
+
+<p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
+
+<p>モジュールがcpanにない場合には</p>
+
+<pre><code>$ dh-make-perl --cpan selenium-remote-driver-perl
+== dh-make-perl 0.86 ==
+Reading '/home/henrich/.local/share/.cpan/Metadata'
+  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
+Can't find 'selenium::remote::driver::perl' module or distribution on CPAN
+</code></pre>
+
+<p>のように出てきます。</p>
+
+<p>また、変換の際にモジュールが依存する別のモジュールがない場合には</p>
+
+<pre><code>Needs the following modules for which there are no debian packages available:
+ - Time::Mock
+</code></pre>
+
+<p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
+
+<pre><code>Needs the following modules for which there are no debian packages available:
+ - CSS::Minifier::XS
+ - JavaScript::Minifier::XS
+</code></pre>
+
+<p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
+
+<pre><code>**********
+WARNING: a package named
+              'libcss-minifier-xs-perl'
+         is already available in APT repositories
+Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
+Description: XS based CSS minifier
+</code></pre>
+
+<p>と出てきてしまいました。あらら。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/">testでskippedが多い場合は依存関係が満たされてないかもしれない</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jun 28, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>さて、ドキュメントにはテストについて色々書いてありました。</p>
+
+<pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl &quot;-MExtUtils::Command::MM&quot; &quot;-MTest::Harness&quot; &quot;-e&quot; &quot;undef *Test::Harness::Switches; test_harness(1, 'blib/lib', 'blib/arch')&quot; t/*.t
+t/00-compile.t ................ 
+1..1
+ok 1 - DBIx::Class::OptimisticLocking loaded ok
+ok
+t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
+t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
+t/03-all.t .................... skipped: needs DBD::SQLite for testing
+t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
+t/05-version.t ................ skipped: needs DBD::SQLite for testing
+t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
+t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
+t/08-none.t ................... skipped: needs DBD::SQLite for testing
+t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
+t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
+All tests successful.
+Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
+Result: PASS
+</code></pre>
+
+<p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
+
+<p>結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。</p>
+
+<p>もうひとつは些細な話ですがパラレルビルドの話「dh $@ &ndash;parallel」という形で渡せば</p>
+
+<pre><code>   dh_auto_build -O--parallel
+	make -j4
+</code></pre>
+
+<p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/">git repoとdh-make</a></h3>
 						<small><span class="label label-primary">
 							
@@ -151,169 +528,6 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
 <p>疑問が晴れなかったので<a href="https://lists.debian.org/debian-devel/2015/06/msg00305.html">debian-develに質問</a>したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587">登録しておいた。Bug#789587</a>です。</p>
 
 <p>しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/">gbpとpbuilderのオプション</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jun 19, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>gbp buildpackage --git-pbuilder-options=&quot;-sa&quot;
-</code></pre>
-
-<p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
-
-<pre><code>sudo cowbuilder --build --debbuildopt=&quot;-sa&quot; libxmlbird_1.0.4-2.dsc
-</code></pre>
-
-<p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
-
-<pre><code>$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
-gbp:info: Orig tarball 'libxmlbird_1.0.4.orig.tar.xz' not found at '../tarballs/'
-gbp:info: Exporting 'HEAD' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp'
-gbp:info: Moving '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4'
-Building with cowbuilder for distribution sid
-I: using cowbuilder as pbuilder
-(snip)
-dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
- dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
-dpkg-genchanges: not including original source code in upload
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jun 6, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>JDのreproducible buildがエラーになってるのは<a href="https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros">DATEとかを展開するMacroが入ってるから</a>、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。</p>
-
-<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&rdquo;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
-
-<p>jruby-joniパッケージは<a href="https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html">Java .jar files contain user login in the <code>Built-By</code> of <code>MANIFEST.MF</code></a>てなことだったので、この辺りを削るパッチを追加することにしました。</p>
-
-<p>reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。</p>
-
-<pre><code>&gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/buildflags.mk
-</code></pre>
-
-<p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
-
-<p>birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。</p>
-
-<pre><code>&gt; def write_config (prefix):
-print (&quot;Writing Config.vala&quot;)
-
-vars = (('VERSION', VERSION),
-('BUILD_TIMESTAMP', time.asctime( time.localtime(time.time()))),
-('PREFIX', prefix),
-)
-</code></pre>
-
-<p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 2, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに<a href="https://github.com/twitter/twitter-text-rb">まとめられていた</a>。
-これはtwitter-textパッケージから色々生成するほうがいいよね、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688">Todoをバグとして登録しておく</a>ことにした。</p>
-
-<p>あとはjcodingsをアップデートして放り込みなど。</p>
 
 					
 				</div>
@@ -531,13 +745,24 @@ vars = (('VERSION', VERSION),
     
     
     
+    
+        
+        
+    
+    
+    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/19/">19</a></li>
+    ><a href="/blog/page/20/">20</a></li>
     
     
     <li
@@ -546,7 +771,7 @@ vars = (('VERSION', VERSION),
     </li>
     
     <li>
-        <a href="/blog/page/19/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

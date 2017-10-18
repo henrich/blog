@@ -57,6 +57,156 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 18 Oct 2017 05:10:00 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;ミラースクリプトを&lt;a href=&#34;https://lists.debian.org/debian-mirrors/2017/10/msg00017.html&#34;&gt;案内&lt;/a&gt;に従って入れ替えた&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880023&#34;&gt;libmojolicious-plugin-assetpack-perlを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879865&#34;&gt;fonts-arphic-umingを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879869&#34;&gt;yydebugのポカを修正&lt;/a&gt;&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;libexport-attrs-perlがrejectされたので再アップロード&lt;/li&gt;
+&lt;li&gt;nadokaを西山さんに押し付けるだけの仕事を :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;openQAでコケる所を抜粋&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;remotehost:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;localhost:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+./t/05-scheduler-cancel.t ................. ok
+./t/05-scheduler-capabilities.t ........... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+./t/05-scheduler-dependencies.t ........... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;remotehost:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;localhost:&amp;quot;
+./t/05-scheduler-restart-and-duplicate.t .. ok
+./t/06-users.t ............................ ok
+./t/07-api_jobtokens.t .................... ok
+./t/07-api_keys.t ......................... ok
+./t/09-job_clone.t ........................ ok
+./t/10-tests_overview.t ................... ok
+./t/13-joblocks.t ......................... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
+(snip)
+Uncaught exception from user code:
+        org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+        Net::DBus::Binding::Bus::new(&amp;quot;Net::DBus::Binding::Bus&amp;quot;, &amp;quot;type&amp;quot;, 1) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 191
+        Net::DBus::system(&amp;quot;Net::DBus&amp;quot;) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 153
+        Net::DBus::find(&amp;quot;Net::DBus&amp;quot;, &amp;quot;nomainloop&amp;quot;, 1) called at lib/OpenQA/IPC.pm line 57
+        OpenQA::IPC::new(&amp;quot;OpenQA::IPC&amp;quot;, 1) called at lib/OpenQA/IPC.pm line 65
+        OpenQA::IPC::ipc(&amp;quot;OpenQA::IPC&amp;quot;, 1) called at lib/OpenQA/WebSockets.pm line 50
+        OpenQA::WebSockets::new(&amp;quot;OpenQA::WebSockets&amp;quot;) called at lib/OpenQA/WebSockets.pm line 41
+        OpenQA::WebSockets::run() called at /build/openqa-4.3+git20171018/t/lib/OpenQA/Test/Utils.pm line 85
+        OpenQA::Test::Utils::create_websocket_server(60430) called at ./t/05-scheduler-full.t line 65
+[6780:info] Listening at &amp;quot;http://127.0.0.1:60429/&amp;quot;
+Use of uninitialized value in symlink at ./t/05-scheduler-full.t line 73 (#1)
+    (W uninitialized) An undefined value was used as if it were already
+    defined.  It was interpreted as a &amp;quot;&amp;quot; or a 0, but maybe it was a mistake.
+    To suppress this warning assign a defined value to your variables.
+    
+    To help you figure out what was undefined, perl will try to tell you
+    the name of the variable (if any) that was undefined.  In some cases
+    it cannot do this, so it also tells you what operation you used the
+    undefined value in.  Note, however, that perl optimizes your program
+    and the operation displayed in the warning may not necessarily appear
+    literally in your program.  For example, &amp;quot;that $foo&amp;quot; is usually
+    optimized into &amp;quot;that &amp;quot; . $foo, and the warning will refer to the
+    concatenation (.) operator, even though there is no . in
+    your program.
+    
+Uncaught exception from user code:
+        can&#39;t symlink at ./t/05-scheduler-full.t line 73.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あれ、これはキャッシュを含めたときだったか、どうだったか。。。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 17 Oct 2017 22:00:26 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;働きかけていた&lt;a href=&#34;https://www.faq.idcf.jp/app/answers/detail/a_id/819/c/22&#34;&gt;IDCFクラウドさんでのDebian8設定の不備&lt;/a&gt;が漸く公開された。
+
+&lt;ul&gt;
+&lt;li&gt;ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&amp;hellip;。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;bind9のchangelogが興味深い。
+```
+
+&lt;ul&gt;
+&lt;li&gt;Add support for downloading upstream sources using d/watch&lt;/li&gt;
+&lt;li&gt;Make d/copyright machine readable for Files-Excluded: support&lt;/li&gt;
+&lt;li&gt;Update Files-Exclude: * to remove obsolete software dropped in
+contrib/, but not really used
+```&lt;/li&gt;
+&lt;li&gt;watchはこんな感じ
+&lt;code&gt;
+opts=\
+repack,\
+compression=xz,\
+repacksuffix=+dfsg,\
+uversionmangle=s/((rc|b)\d+)$/~$1/,\
+dirversionmangle=s/((rc|b)\d+)$/~$1/,\
+dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;copyrightはこんな感じ
+&lt;code&gt;
+Files-Excluded: contrib/idn
+        contrib/dnsperf-2.1.0.0-1
+        contrib/nslint-3.0a2
+        contrib/query-loc-0.4.0
+        contrib/queryperf
+        contrib/zkt-1.1.3
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 16 Oct 2017 07:01:55 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;fonts-sawarabi-minchoをアップロード&lt;/li&gt;
+&lt;li&gt;yydebugのVcs-Gitが間違ったままだった&amp;hellip;直した。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 15 Oct 2017 07:39:55 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -503,135 +653,6 @@ real    0m24.598s
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 03 Oct 2017 20:05:29 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/eldesh/status/915031977094389760&#34;&gt;JPのページの誤りの指摘&lt;/a&gt;を頂いたので修正した&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://idcfcloud.com&#34;&gt;IDCFクラウド&lt;/a&gt;のDebianテンプレートで問題を見つけたのでチケットを切っておいた。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;思いついた対象候補
-
-&lt;ul&gt;
-&lt;li&gt;さくらのVPS&lt;/li&gt;
-&lt;li&gt;ConoHa&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.idcf.jp/cloud/?cl=top_cloud&#34;&gt;IDCFクラウド&lt;/a&gt;(←ここではこれをチョイス)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;IDCFクラウドは、&lt;a href=&#34;https://www.idcf.jp/cloud/order.html?cl=cl_top#try&#34;&gt;500円クーポン&lt;/a&gt;があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&amp;hellip;）。&lt;/li&gt;
-&lt;li&gt;次に&lt;a href=&#34;https://github.com/cybozu-go/aptutil/releases&#34;&gt;go-apt-cacher&lt;/a&gt;をダウンロードしてちょっと設定して起動します。&lt;/li&gt;
-&lt;li&gt;最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;# apt show openclipart-png
-Package: openclipart-png
-Source: openclipart
-Version: 1:0.18+dfsg-14
-Installed-Size: 148 MB
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 10s (12.2 MB/s)          
-
-real    0m10.742s
-user    0m2.204s
-sys 0m0.420s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (50.3 MB/s)           
-
-real    0m2.758s
-user    0m2.028s
-sys 0m0.336s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (43.0 MB/s)          
-
-real    0m3.423s
-user    0m2.292s
-sys 0m0.396s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 3s (42.2 MB/s)           
-
-real    0m3.237s
-user    0m2.496s
-sys 0m0.464s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;キャッシュされた状態からだと平均で3.13秒（45.1MB/s）&lt;/p&gt;
-
-&lt;p&gt;ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&amp;hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 01 Oct 2017 14:39:09 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/876227&#34;&gt;libmojolicious-plugin-assetpack-perlの更新をアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.debian.org/mirror/ftpmirror&#34;&gt;ftpsyncスクリプト&lt;/a&gt;が新しくなったよ、というメールをもらっていたので入れ替えた。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 30 Sep 2017 22:18:59 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;体調を崩して諸々が進まず&amp;hellip;。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/pkg/libmojolicious-plugin-renderfile-perl&#34;&gt;libmojolicious-plugin-renderfile-perlの更新をアップロード&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;lintianでUNRELEASEDだったらWarning入れてくれないかな&amp;hellip;（ドジッた）&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;sphinx-intlをアップデートした上でバイナリパッケージ名をsphinx-intlにしてアップロード。&lt;/li&gt;
-&lt;li&gt;一旦消えた&lt;a href=&#34;http://cutter.sourceforge.net&#34;&gt;cutter-testing-framework&lt;/a&gt;のDebianパッケージを復活させない？と打診だけ。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

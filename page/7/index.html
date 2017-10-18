@@ -60,6 +60,171 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Aug 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>昨日のfonttoolsの続き。conf.pyにモジュール読み込みを記述することで対応できた。</p>
+
+<pre><code>--- a/Doc/source/conf.py                     
++++ b/Doc/source/conf.py                     
+@@ -20,6 +20,8 @@                            
+ # import sys                                
+ # sys.path.insert(0, os.path.abspath('.'))  
+                                             
++import sys,os                               
++sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../Lib')                
+                                             
+ # -- General configuration ------------------------------------------------
+</code></pre>
+
+<p>あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&hellip;）。</p>
+
+<pre><code>override_dh_sphinxdoc:                       
+        sphinx-build $(CURDIR)/Doc/source $(CURDIR)/debian/fonttools/usr/share/doc/fonttools/html/                                                                                     
+        dh_sphinxdoc
+</code></pre>
+
+<p>色々変更をぶっ込んだので<a href="https://tracker.debian.org/news/866488">experimentalに</a>。で、アップロードしてからバグを閉じ忘れていたことに気づいた&hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&hellip;のでコマンドメールを別途。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Aug 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>jcodingsのアップデートがmaintainer dashboardで出てたのを見つけたので、<a href="https://tracker.debian.org/news/866103">アップロード</a>。</li>
+</ul>
+
+<hr />
+
+<p>fonttoolsのアップデートをしようということで作業を始める。</p>
+
+<ul>
+<li>upstreamの更新に合わせて対応</li>
+<li>そろそろbusterを視野に入れてpython3限定でビルド
+
+<ul>
+<li>Build-Dependsは python-* が python3-* になるのはわかっていたが、Dependsも　<code>${python:Depends}</code> ではなく <code>${python3:Depends}</code> だった。</li>
+</ul></li>
+<li>ドキュメントがsphinx前提になっていたのでdh-sphinxdocを導入</li>
+</ul>
+
+<p>dh-sphinxdoc周りが今まで作業していなかったので勝手がわからずに苦労。</p>
+
+<ul>
+<li>Build-Dependsに <code>python-sphinx</code> 指定。<code>dh-sphinxdoc</code>を含んでいる<code>sphinx-common</code> だけでもいいのかしら？</li>
+<li><code>dh @ --with sphinxdoc</code> しないと発動しない。</li>
+<li><code>Depends: ${sphinxdoc:Depends}</code>加えとくのも忘れずに。</li>
+<li>ビルド時にsphinx起動していなかったのでoverrideした。</li>
+</ul>
+
+<p>で、sphinx動かすと以下のエラー。</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py&quot;, line 560, in import_object
+/build/fonttools-3.15.1/Doc/source/varLib/models.rst:5: WARNING: autodoc: failed to import module u'fontTools.varLib.models'; the following exception was raised:
+</code></pre>
+
+<p>これは<a href="http://www.sphinx-doc.org/ja/stable/ext/autodoc.html">.. automodule::</a>というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Aug 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>pkg-perl以下に移動したパッケージを更新してpush。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -150,151 +315,6 @@ E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata
 <li>dpt alioth-repo とかして作った。これ、aliothから新しいホスト名（salsaだっけ？）になったら変わるのかな。</li>
 <li>いじって、dpt pushで反映。</li>
 </ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Aug 22, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>debian-policy 4.1.0がアップロードされた&hellip;のだけども、<a href="https://www.debian.org/doc/debian-policy/">Webサイトの方</a>はCSSなどのファイルが一切アップロードされて無くて見栄えが悪い。<a href="https://lists.debian.org/debian-policy/2017/08/msg00477.html">問い合わせ</a>してみた。
-
-<ul>
-<li>どうやらウェブサイト側の問題のようでSeanが<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872944">バグを登録</a>してくれた。</li>
-</ul></li>
-<li>昨日のpkg-perlチームへの加入がOKされてたのでgit pushしておく。パッケージ自体の修正はまだ。
-
-<ul>
-<li>何故かpristine-tarブランチが切られてないパッケージがあった。どうやって作るかな？と思ったが git checkout debian/<tag>;
-gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-ignore-branch を繰り返して作成した。古いバージョンだとビルドができなくなっていたのにちょっと驚いたのと、testがskipしてるのを見逃していたなーという点。</li>
-<li>teamのroot直下じゃなくてpackagesというディレクトリを切っていたのに後で気づいて慌ててsshで入って移動した。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Aug 21, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>「君のPerl moduleパッケージ、pkg-perlチームでメンテしない？」と頂けたので、これ幸いと参加申請しておく。</li>
-<li>日経Linuxをチラ見したら<a href="http://www.pdfsam.org/">pdfsam</a>なる良さそうなソフトを取り上げてるが、「リポジトリのパッケージは古いから削除してダウンロードして使おう！」みたいなこと書いてあった。<a href="https://github.com/torakiki/pdfsam/releases">https://github.com/torakiki/pdfsam/releases</a> とdebian/changelog比較すると大きな乖離。どうやらpkg-javaチーム傘下なのでアップデートしていいか聞いてみるか。
-
-<ul>
-<li>まぁ、それにしてもDebianで作業しても全部「Ubuntuすげー！」だけになるかと思うとやるせないので、とっととsnapshot releaseをするようにせねばならんよなーとは思う。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Aug 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/todo">todo</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>poppler-dataが新しいバージョンが上がっていたので、これ幸いと<a href="https://tracker.debian.org/news/863674">アップロード</a>。<a href="https://qa.debian.org/popcon.php?package=poppler-data">popconいわく</a>、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。
-
-<ul>
-<li>別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。</li>
-</ul></li>
-<li>libtest-time-perlの新しいバージョン&hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、<a href="https://tracker.debian.org/news/863678">アップロード</a>。
-
-<ul>
-<li>d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&hellip;。</li>
-</ul></li>
-<li>fonts-sawarabi-minchoを<a href="https://tracker.debian.org/news/863673">アップロード</a></li>
-<li>libxmlbirdのFTBFS修正を<a href="https://tracker.debian.org/news/863695">アップロード</a>、1文字だけの違いだけども。</li>
-<li><a href="https://wiki.debian.org/LocalGroups/Debian-JP">https://wiki.debian.org/LocalGroups/Debian-JP</a> の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。</li>
 </ul>
 
 					
@@ -515,13 +535,22 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/19/">19</a></li>
+    ><a href="/blog/page/20/">20</a></li>
     
     
     <li
@@ -530,7 +559,7 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
     </li>
     
     <li>
-        <a href="/blog/page/19/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
