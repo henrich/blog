@@ -77,37 +77,34 @@
 
 <hr />
 
-<ul>
-<li>bind9のchangelogが興味深い。
-```
+<p>bind9のchangelogが興味深い。</p>
 
-<ul>
-<li>Add support for downloading upstream sources using d/watch</li>
-<li>Make d/copyright machine readable for Files-Excluded: support</li>
-<li>Update Files-Exclude: * to remove obsolete software dropped in
-contrib/, but not really used
-```</li>
-<li>watchはこんな感じ
-<code>
-opts=\
+<pre><code>  * Add support for downloading upstream sources using d/watch
+    + Make d/copyright machine readable for Files-Excluded: support
+    + Update Files-Exclude: * to remove obsolete software dropped in
+      contrib/, but not really used
+</code></pre>
+
+<p>watchはこんな感じ</p>
+
+<pre><code>opts=\
 repack,\
 compression=xz,\
 repacksuffix=+dfsg,\
 uversionmangle=s/((rc|b)\d+)$/~$1/,\
 dirversionmangle=s/((rc|b)\d+)$/~$1/,\
 dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
-</code></li>
-<li>copyrightはこんな感じ
-<code>
-Files-Excluded: contrib/idn
-        contrib/dnsperf-2.1.0.0-1
-        contrib/nslint-3.0a2
-        contrib/query-loc-0.4.0
-        contrib/queryperf
-        contrib/zkt-1.1.3
-</code></li>
-</ul></li>
-</ul>
+</code></pre>
+
+<p>copyrightはこんな感じ</p>
+
+<pre><code>Files-Excluded: contrib/idn
+                contrib/dnsperf-2.1.0.0-1
+                contrib/nslint-3.0a2
+                contrib/query-loc-0.4.0
+                contrib/queryperf
+                contrib/zkt-1.1.3
+</code></pre>
 
 		</div>
 	</div>
