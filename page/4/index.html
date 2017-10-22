@@ -60,6 +60,159 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Oct 6, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
+</ul>
+
+<hr />
+
+<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
+
+<ul>
+<li>1.4GBが1.0GBになるのは大きいと思う</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
+
+<ul>
+<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
+
+<ul>
+<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
+
+<pre><code>Package: texlive-latex-extra-doc
+Download-Size: 384 MB
+
+Package: texlive-pstricks-doc
+Download-Size: 248 MB
+</code></pre>
+
+<p><code>time apt-get download texlive-latex-extra-doc texlive-pstricks-doc</code> という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが <code>fatal error: runtime: out of memory</code> と<a href="https://github.com/cybozu-go/aptutil/issues/24">メモリ不足で落ちます</a>。VMをスケールアップして再度トライしました。</p>
+
+<p>まずは普通にftp.jp.debian.orgからの取得。</p>
+
+<pre><code>Fetched 412 MB in 36s (11.3 MB/s)
+real    0m36.643s
+
+Fetched 412 MB in 30s (13.4 MB/s)
+real    0m30.864s
+
+Fetched 412 MB in 26s (15.4 MB/s)
+real    0m27.031s
+</code></pre>
+
+<p>次に西日本から取得。</p>
+
+<pre><code>Fetched 412 MB in 19s (20.7 MB/s)
+real    0m20.026s
+
+Fetched 412 MB in 19s (21.1 MB/s)
+real    0m19.688s
+
+Fetched 412 MB in 18s (22.2 MB/s)
+real    0m18.746s
+</code></pre>
+
+<p>東でやってみたら</p>
+
+<pre><code>Fetched 412 MB in 24s (16.9 MB/s)
+real    0m24.203s
+
+Fetched 412 MB in 24s (17.2 MB/s)
+real    0m24.598s
+</code></pre>
+
+<p>という感じでリージョンまたぐよりも逆に遅かった…何故だ。</p>
+
+<hr />
+
+<p>結論</p>
+
+<pre><code>西日本： 21.3MBs
+東日本： 17.0MBs
+ダイレクト： 13.6 MBs
+</code></pre>
+
+<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -236,84 +389,6 @@ sys 0m0.464s
 </ul></li>
 <li>sphinx-intlをアップデートした上でバイナリパッケージ名をsphinx-intlにしてアップロード。</li>
 <li>一旦消えた<a href="http://cutter.sourceforge.net">cutter-testing-framework</a>のDebianパッケージを復活させない？と打診だけ。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Sep 27, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://connpass.com/event/64845/">さくらの夕べ「さくらのVPS ユーザーミートアップ」</a>のLT枠に参加して<a href="https://docs.google.com/presentation/d/1_L4a5eXeyYOh6v9VKcvZAg84d6Y8a5go2F8cmO2ATKo/">debianミラーの宣伝</a>をしてきました。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 25, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://events.opensuse.org/conference/summitasia17">openSUSE.Asia Summit 2017</a>のトークが通ったので返信。<a href="https://events.opensuse.org/conference/summitasia17/program/proposal/1512">openSUSE tools on Debian</a>というタイトルで15分喋る予定です。資料も大体作成完了。</p>
-
-<hr />
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691">fonts-arphic-uming FTBFS修正</a>。</li>
 </ul>
 
 					

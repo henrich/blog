@@ -57,6 +57,59 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 22 Oct 2017 04:49:50 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880679&#34;&gt;tomoyo-toolsを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880680&#34;&gt;fonts-mikachanを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880681&#34;&gt;fonts-yozvox-yozfontを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880476&#34;&gt;libsylphを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880691&#34;&gt;fonts-kouzan-mouhitsuを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880690&#34;&gt;fonts-aoyagi-kouzan-tを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880692&#34;&gt;fonts-aoyagi-sosekiを更新&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;openSUSE Asia Summit 2017に行ってきた。発表資料は&lt;a href=&#34;https://www.slideshare.net/henrich_d/opensuse-tools-on-debian-81015400&#34;&gt;slideshare&lt;/a&gt;と&lt;a href=&#34;https://wiki.debian.org/HidekiYamane/material&#34;&gt;Debian Wiki&lt;/a&gt;に。upstreamとの面識が出来たので良かったよかった。一応cacheなファイルはGPLだという話をされたので、それでチャレンジしてみるかーという所（gbpがmultiple upstream tarballを実験的サポートなところが面倒だけども）。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 21 Oct 2017 08:08:37 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880472&#34;&gt;screenfetchを少しだけ更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880475&#34;&gt;pleiadesを少し修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880476&#34;&gt;libsylphを修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880477&#34;&gt;libspiroを更新&lt;/a&gt;。-dbgパッケージ落とし忘れてたので&lt;a href=&#34;https://wiki.debian.org/AutomaticDebugPackages&#34;&gt;このへん&lt;/a&gt;を参考に更新。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;openSUSE Asia Summit 2017に行ってきた。本番は明日。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Wed, 18 Oct 2017 05:10:00 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -563,163 +616,6 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770&#34;&gt;-docパッケージがtexに依存してるのを確認する問題提起&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769&#34;&gt;逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>実験実験。</title>
-            <link>https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/</link>
-            <pubDate>Wed, 04 Oct 2017 20:29:38 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/</guid>
-            <description>&lt;p&gt;go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Package: texlive-latex-extra-doc
-Download-Size: 384 MB
-
-Package: texlive-pstricks-doc
-Download-Size: 248 MB
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;time apt-get download texlive-latex-extra-doc texlive-pstricks-doc&lt;/code&gt; という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが &lt;code&gt;fatal error: runtime: out of memory&lt;/code&gt; と&lt;a href=&#34;https://github.com/cybozu-go/aptutil/issues/24&#34;&gt;メモリ不足で落ちます&lt;/a&gt;。VMをスケールアップして再度トライしました。&lt;/p&gt;
-
-&lt;p&gt;まずは普通にftp.jp.debian.orgからの取得。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Fetched 412 MB in 36s (11.3 MB/s)
-real    0m36.643s
-
-Fetched 412 MB in 30s (13.4 MB/s)
-real    0m30.864s
-
-Fetched 412 MB in 26s (15.4 MB/s)
-real    0m27.031s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;次に西日本から取得。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Fetched 412 MB in 19s (20.7 MB/s)
-real    0m20.026s
-
-Fetched 412 MB in 19s (21.1 MB/s)
-real    0m19.688s
-
-Fetched 412 MB in 18s (22.2 MB/s)
-real    0m18.746s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;東でやってみたら&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Fetched 412 MB in 24s (16.9 MB/s)
-real    0m24.203s
-
-Fetched 412 MB in 24s (17.2 MB/s)
-real    0m24.598s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;という感じでリージョンまたぐよりも逆に遅かった…何故だ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;結論&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;西日本： 21.3MBs
-東日本： 17.0MBs
-ダイレクト： 13.6 MBs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 03 Oct 2017 20:05:29 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/eldesh/status/915031977094389760&#34;&gt;JPのページの誤りの指摘&lt;/a&gt;を頂いたので修正した&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://idcfcloud.com&#34;&gt;IDCFクラウド&lt;/a&gt;のDebianテンプレートで問題を見つけたのでチケットを切っておいた。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;思いついた対象候補
-
-&lt;ul&gt;
-&lt;li&gt;さくらのVPS&lt;/li&gt;
-&lt;li&gt;ConoHa&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.idcf.jp/cloud/?cl=top_cloud&#34;&gt;IDCFクラウド&lt;/a&gt;(←ここではこれをチョイス)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;IDCFクラウドは、&lt;a href=&#34;https://www.idcf.jp/cloud/order.html?cl=cl_top#try&#34;&gt;500円クーポン&lt;/a&gt;があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&amp;hellip;）。&lt;/li&gt;
-&lt;li&gt;次に&lt;a href=&#34;https://github.com/cybozu-go/aptutil/releases&#34;&gt;go-apt-cacher&lt;/a&gt;をダウンロードしてちょっと設定して起動します。&lt;/li&gt;
-&lt;li&gt;最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;# apt show openclipart-png
-Package: openclipart-png
-Source: openclipart
-Version: 1:0.18+dfsg-14
-Installed-Size: 148 MB
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 10s (12.2 MB/s)          
-
-real    0m10.742s
-user    0m2.204s
-sys 0m0.420s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (50.3 MB/s)           
-
-real    0m2.758s
-user    0m2.028s
-sys 0m0.336s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (43.0 MB/s)          
-
-real    0m3.423s
-user    0m2.292s
-sys 0m0.396s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 3s (42.2 MB/s)           
-
-real    0m3.237s
-user    0m2.496s
-sys 0m0.464s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;キャッシュされた状態からだと平均で3.13秒（45.1MB/s）&lt;/p&gt;
-
-&lt;p&gt;ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&amp;hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。&lt;/p&gt;
 </description>
           </item>
         

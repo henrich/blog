@@ -60,6 +60,126 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 10, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git">cutter-testing-frameworkのリポジトリを作っておいた</a>
+
+<ul>
+<li>実作業はupstreamの@kenhysさんにお任せで</li>
+</ul></li>
+<li>とりあえず、unidicをアップデートしてみるか？と少しだけ作業。
+
+<ul>
+<li>他のunidic辞書もパッケージにしても面白いか？</li>
+</ul></li>
+<li><a href="https://oss-gate.github.io/">OSS Gate</a>に拙著を寄贈しようと言う話をした。</li>
+<li>昨日のos-autoinstのハングアップが直ったのでその旨連絡した。</li>
+<li>os-autoinstで<a href="https://github.com/os-autoinst/os-autoinst/pull/865">debhelperが誤ってファイルを消すのを対処</a>した。</li>
+<li><a href="https://twitter.com/takuya_ono/status/917653702244044801">guacamoleパッケージがおかしい、というつぶやき</a>を見たので、MLにパッチの提案だけしておく</li>
+</ul>
+
+<hr />
+
+<p>rustを使ったソースのパッケージングについて。</p>
+
+<p><a href="https://github.com/sharkdp/fd">https://github.com/sharkdp/fd</a> というのを見かけて面白そうなのでパッケージングしてみようとする。</p>
+
+<pre><code>$ git clone https://github.com/sharkdp/fd; cd fd
+$ git checkout -b debian
+$ dh_make --createorig -s -p fd_4.0.0
+(debianディレクトリをいじる…)
+$ git add debian; git commit
+</code></pre>
+
+<p>で、ビルドすると通るけど何もしてない風味。ざっくりrustcを使うのはなにかあるのだろうか？と調べると dh-cargo というのが見つかった。どうやら、rustなパッケージは <code>dh --buildsystem cargo</code> という形で実施するようだ。</p>
+
+<pre><code>   dh_auto_install -O--buildsystem=cargo
+cp: cannot stat './debian/cargo-checksum.json': No such file or directory
+dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_registry/fd-4.0.0/.cargo-checksum.json returned exit code 1
+</code></pre>
+
+<p>debian/cargo-checksum.json が必要、らしいが <a href="https://wiki.debian.org/Teams/RustPackaging/Policy">https://wiki.debian.org/Teams/RustPackaging/Policy</a> を見ても何書いていいかがさっぱりわからん… <a href="https://codesearch.debian.net/search?q=debian%2Fcargo-checksum.json">ソースを検索した</a>けど、もとからあるファイルをコピーしているようにしか見えない（が、無いんだよな…）</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 9, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>os-autoinstが止まるのをinvestigation。
+
+<ul>
+<li>新しいperlモジュールがtestに必要になってたようなので、ビルドする。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878042">ITPもする</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878041">そのビルドに必要な別のperlモジュールもITPする</a></li>
+<li>ITPしたのは<a href="http://pkg-perl.alioth.debian.org/git.html">$ dtp alioth-repo</a>という感じでpushしておいた。</li>
+<li>が、やっぱり止まるのは変わらないので<a href="https://progress.opensuse.org/issues/25844">issue登録</a>。</li>
+<li>何が原因だか、今の所サッパリなので Jessie や Strech 環境を作ったりしてテスト。Jessie だと libmojolicious-perl が古すぎてモジュールが含まれないせいでテストコケるのでsidのを持ってきたり。その流れでnewest upstreamのを手元でビルドして差し替えもしてみた。が、結局何も変わらず。</li>
+</ul></li>
+<li>unidicのサイトが変更されたのに関する<a href="https://twitter.com/henrich/status/917274260153843712">ライセンス表記周りの意見</a>。</li>
+<li>忘れてた<a href="https://github.com/sphinx-doc/sphinx/issues/4131">sphinxのissue登録</a>をやっておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/">Fedora Modularity Memo</a></h3>
 						<small><span class="label label-primary">
 							
@@ -232,159 +352,6 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 <hr />
 
 <p>色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&hellip;うわ、これ Makefile の最初のところで <code>./script/generate-packed-assets</code> というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&hellip;厄介な&hellip;。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Oct 6, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
-</ul>
-
-<hr />
-
-<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
-
-<ul>
-<li>1.4GBが1.0GBになるのは大きいと思う</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
-
-<ul>
-<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
-
-<ul>
-<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Oct 4, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
-
-<pre><code>Package: texlive-latex-extra-doc
-Download-Size: 384 MB
-
-Package: texlive-pstricks-doc
-Download-Size: 248 MB
-</code></pre>
-
-<p><code>time apt-get download texlive-latex-extra-doc texlive-pstricks-doc</code> という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが <code>fatal error: runtime: out of memory</code> と<a href="https://github.com/cybozu-go/aptutil/issues/24">メモリ不足で落ちます</a>。VMをスケールアップして再度トライしました。</p>
-
-<p>まずは普通にftp.jp.debian.orgからの取得。</p>
-
-<pre><code>Fetched 412 MB in 36s (11.3 MB/s)
-real    0m36.643s
-
-Fetched 412 MB in 30s (13.4 MB/s)
-real    0m30.864s
-
-Fetched 412 MB in 26s (15.4 MB/s)
-real    0m27.031s
-</code></pre>
-
-<p>次に西日本から取得。</p>
-
-<pre><code>Fetched 412 MB in 19s (20.7 MB/s)
-real    0m20.026s
-
-Fetched 412 MB in 19s (21.1 MB/s)
-real    0m19.688s
-
-Fetched 412 MB in 18s (22.2 MB/s)
-real    0m18.746s
-</code></pre>
-
-<p>東でやってみたら</p>
-
-<pre><code>Fetched 412 MB in 24s (16.9 MB/s)
-real    0m24.203s
-
-Fetched 412 MB in 24s (17.2 MB/s)
-real    0m24.598s
-</code></pre>
-
-<p>という感じでリージョンまたぐよりも逆に遅かった…何故だ。</p>
-
-<hr />
-
-<p>結論</p>
-
-<pre><code>西日本： 21.3MBs
-東日本： 17.0MBs
-ダイレクト： 13.6 MBs
-</code></pre>
-
-<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
 
 					
 				</div>
