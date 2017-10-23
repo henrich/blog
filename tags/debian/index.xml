@@ -63,6 +63,7 @@
             <guid>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/&#34;&gt;HPEのリポジトリ&lt;/a&gt;がStretch対応になっていたので、&lt;a href=&#34;http://debian-mirror.sakura.ne.jp&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt;をStretchに上げました。&lt;/li&gt;
+&lt;li&gt;silversearcher-ag のレビューをした&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
