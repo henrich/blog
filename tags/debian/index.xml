@@ -57,6 +57,22 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 23 Oct 2017 21:46:54 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/&#34;&gt;HPEのリポジトリ&lt;/a&gt;がStretch対応になっていたので、&lt;a href=&#34;http://debian-mirror.sakura.ne.jp&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt;をStretchに上げました。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 22 Oct 2017 04:49:50 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -74,7 +90,7 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-&lt;li&gt;openSUSE Asia Summit 2017に行ってきた。発表資料は&lt;a href=&#34;https://www.slideshare.net/henrich_d/opensuse-tools-on-debian-81015400&#34;&gt;slideshare&lt;/a&gt;と&lt;a href=&#34;https://wiki.debian.org/HidekiYamane/material&#34;&gt;Debian Wiki&lt;/a&gt;に。upstreamとの面識が出来たので良かったよかった。一応cacheなファイルはGPLだという話をされたので、それでチャレンジしてみるかーという所（gbpがmultiple upstream tarballを実験的サポートなところが面倒だけども）。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://henrich-on-debian.blogspot.jp/2017/10/opensuseasia-summit-2017-in-tokyo.html&#34;&gt;openSUSE Asia Summit 2017に行ってきた&lt;/a&gt;。発表資料は&lt;a href=&#34;https://www.slideshare.net/henrich_d/opensuse-tools-on-debian-81015400&#34;&gt;slideshare&lt;/a&gt;と&lt;a href=&#34;https://wiki.debian.org/HidekiYamane/material&#34;&gt;Debian Wiki&lt;/a&gt;に。upstreamとの面識が出来たので良かったよかった。一応cacheなファイルはGPLだという話をされたので、それでチャレンジしてみるかーという所（gbpがmultiple upstream tarballを実験的サポートなところが面倒だけども）。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -576,46 +592,6 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 &lt;hr /&gt;
 
 &lt;p&gt;色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&amp;hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&amp;hellip;うわ、これ Makefile の最初のところで &lt;code&gt;./script/generate-packed-assets&lt;/code&gt; というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&amp;hellip;厄介な&amp;hellip;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 06 Oct 2017 20:34:59 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;Updated &lt;a href=&#34;http://www.debian.or.jp/using/mirror.html&#34;&gt;mirror list on JP site&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869&#34;&gt;PDFのバージョンを上げてサイズを落とす作戦&lt;/a&gt;を深掘り。
-
-&lt;ul&gt;
-&lt;li&gt;1.4GBが1.0GBになるのは大きいと思う&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771&#34;&gt;-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;そもそもインストールされなければ気にしなくて済むよね、という話&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862&#34;&gt;texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770&#34;&gt;-docパッケージがtexに依存してるのを確認する問題提起&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769&#34;&gt;逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         
