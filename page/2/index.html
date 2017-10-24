@@ -60,6 +60,107 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 18, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>ミラースクリプトを<a href="https://lists.debian.org/debian-mirrors/2017/10/msg00017.html">案内</a>に従って入れ替えた</li>
+<li><a href="https://tracker.debian.org/news/880023">libmojolicious-plugin-assetpack-perlを更新</a></li>
+<li><a href="https://tracker.debian.org/news/879865">fonts-arphic-umingを更新</a></li>
+<li><a href="https://tracker.debian.org/news/879869">yydebugのポカを修正</a>&hellip;。</li>
+<li>libexport-attrs-perlがrejectされたので再アップロード</li>
+<li>nadokaを西山さんに押し付けるだけの仕事を :)</li>
+</ul>
+
+<hr />
+
+<p>openQAでコケる所を抜粋</p>
+
+<pre><code>[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+./t/05-scheduler-cancel.t ................. ok
+./t/05-scheduler-capabilities.t ........... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+./t/05-scheduler-dependencies.t ........... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
+./t/05-scheduler-restart-and-duplicate.t .. ok
+./t/06-users.t ............................ ok
+./t/07-api_jobtokens.t .................... ok
+./t/07-api_keys.t ......................... ok
+./t/09-job_clone.t ........................ ok
+./t/10-tests_overview.t ................... ok
+./t/13-joblocks.t ......................... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+(snip)
+Uncaught exception from user code:
+        org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+        Net::DBus::Binding::Bus::new(&quot;Net::DBus::Binding::Bus&quot;, &quot;type&quot;, 1) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 191
+        Net::DBus::system(&quot;Net::DBus&quot;) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 153
+        Net::DBus::find(&quot;Net::DBus&quot;, &quot;nomainloop&quot;, 1) called at lib/OpenQA/IPC.pm line 57
+        OpenQA::IPC::new(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/IPC.pm line 65
+        OpenQA::IPC::ipc(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/WebSockets.pm line 50
+        OpenQA::WebSockets::new(&quot;OpenQA::WebSockets&quot;) called at lib/OpenQA/WebSockets.pm line 41
+        OpenQA::WebSockets::run() called at /build/openqa-4.3+git20171018/t/lib/OpenQA/Test/Utils.pm line 85
+        OpenQA::Test::Utils::create_websocket_server(60430) called at ./t/05-scheduler-full.t line 65
+[6780:info] Listening at &quot;http://127.0.0.1:60429/&quot;
+Use of uninitialized value in symlink at ./t/05-scheduler-full.t line 73 (#1)
+    (W uninitialized) An undefined value was used as if it were already
+    defined.  It was interpreted as a &quot;&quot; or a 0, but maybe it was a mistake.
+    To suppress this warning assign a defined value to your variables.
+    
+    To help you figure out what was undefined, perl will try to tell you
+    the name of the variable (if any) that was undefined.  In some cases
+    it cannot do this, so it also tells you what operation you used the
+    undefined value in.  Note, however, that perl optimizes your program
+    and the operation displayed in the warning may not necessarily appear
+    literally in your program.  For example, &quot;that $foo&quot; is usually
+    optimized into &quot;that &quot; . $foo, and the warning will refer to the
+    concatenation (.) operator, even though there is no . in
+    your program.
+    
+Uncaught exception from user code:
+        can't symlink at ./t/05-scheduler-full.t line 73.
+</code></pre>
+
+<p>あれ、これはキャッシュを含めたときだったか、どうだったか。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -254,102 +355,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
 <li>納得したので、<a href="https://tracker.debian.org/news/879272">Uploadした</a>。関連ありそうな別パッケージについては<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520">バグレポート</a>。</li>
 </ul></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Oct 13, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><code>gbpの使い方をざっと教えて</code> というリクエストを頂いたのでざっくりメモ。</p>
-
-<hr />
-
-<pre><code>$ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git
-Cloning into 'cutter-testing-framework'...
-remote: Counting objects: 3334, done.
-remote: Compressing objects: 100% (949/949), done.
-remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
-Receiving objects: 100% (3334/3334), 3.69 MiB | 442.00 KiB/s, done.
-Resolving deltas: 100% (2336/2336), done.
-
-$ cd cutter-testing-framework/
-
-$ gbp import-orig --uscan --pristine-tar
-gbp:error: 
-Repository does not have branch 'upstream' for upstream sources. If there is none see
-file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
-on howto create it otherwise use --upstream-branch to specify it.
-
-$ git checkout upstream
-Branch 'upstream' set up to track remote branch 'upstream' from 'origin'.
-Switched to a new branch 'upstream'
-$ git checkout pristine-tar 
-Branch 'pristine-tar' set up to track remote branch 'pristine-tar' from 'origin'.
-Switched to a new branch 'pristine-tar'
-$ git checkout master 
-Switched to branch 'master'
-Your branch is up to date with 'origin/master'.
-
-$ gbp import-orig --uscan --pristine-tar
-gbp:info: Launching uscan...
-uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
-uscan:    =&gt; Newer package available from
-      http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz
-gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
-What is the upstream version? [1.2.6] 
-gbp:info: Importing '../cutter-testing-framework_1.2.6.orig.tar.gz' to branch 'upstream'...
-gbp:info: Source package is cutter-testing-framework
-gbp:info: Upstream version is 1.2.6
-gbp:info: Replacing upstream source on 'master'
-gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
-(色々編集してコミット...)
-$ dch -v 1.2.6-1
-$ dch -r
-$ gbp buildpackage --git-pbuilder --git-pristine-tar
-</code></pre>
-
-<hr />
-
-<ul>
-<li>upstream archiveのimportの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
-<li>最初にupstreamブランチとpristine-tarブランチをchekoutしないとビルドの際にエラー（面倒くさいけど）
-
-<ul>
-<li><code>--git-pbuilder</code> でpbuilder/cowbuilder環境を使う</li>
-<li><code>--git-pristine-tar</code> で pristine-tar ブランチのファイルを使う</li>
-</ul></li>
-</ul>
-
-<p>これぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は <code>--git-ignore-branch</code> 付けてビルドが必要。</p>
 
 					
 				</div>

@@ -60,6 +60,64 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 8, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>mecab-jumandicパッケージのリグレッションを作ってしまったので、<a href="https://tracker.debian.org/news/854524">直した</a>。</p>
+
+<p>autopkgtestのネタとかとして使えないかなぁ、と思う。</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/854586">libmojolicious-plugin-assetpack-perlアップロード</a>。
+Lintianがtypoを報告してきていたので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126">pull request</a>。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。</p>
+
+<hr />
+
+<p>poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。</p>
+
+<pre><code>poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
+</code></pre>
+
+<hr />
+
+<p>libuninameslistのdebian/copyright を 1.0 にして<a href="https://tracker.debian.org/news/854587">アップロード</a>。次はmulti-arch絡みのsuggestion対応するかね&hellip;</p>
+
+<pre><code>libuninameslist-dev could be marked Multi-Arch: same
+libuninameslist1 could be marked Multi-Arch: same
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -274,128 +332,6 @@ I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4
 <hr />
 
 <p><a href="https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932">美咲フォントのバグレポート</a>、内容を精査。直ってたので閉じておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jun 29, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>screenfetch、<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">Ubuntu側のバグ登録</a>を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。</p>
-
-<hr />
-
-<p>トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。</p>
-
-<ol>
-<li>cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&hellip;</li>
-<li>apt show pgf&hellip;パッケージは確かに存在しない。</li>
-<li><a href="https://tracker.debian.org/pkg/pgf">trackerのページ</a>で確認すると、最後のは<a href="https://tracker.debian.org/news/583320">[2014-11-03] Removed 2.10-1 from unstable</a>&hellip;なになに？「integrated into texlive」？</li>
-<li>ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）</li>
-<li>debsignしてdputして終わり。</li>
-</ol>
-
-<pre><code>diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
---- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
-+++ whizzytex-1.3.2/debian/changelog    2017-06-29 20:11:36.000000000 +0900
-@@ -1,3 +1,11 @@
-+whizzytex (1.3.2-1.4) unstable; urgency=medium
-+
-+  * Non-maintainer upload.
-+  * debian/control
-+    - fix Build-Depends since pgf is intergrated into TeXLive.
-+
-+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Thu, 29 Jun 2017 20:11:36 +0900
-+
- whizzytex (1.3.2-1.3) unstable; urgency=medium
-
-   * Non-maintainer upload.
-diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
---- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
-+++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
-@@ -2,7 +2,7 @@
- Section: tex
- Priority: optional
- Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
--Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
-+Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
- Build-Depends: debhelper (&gt;&gt; 7.0.50~)
- Standards-Version: 3.7.2
-</code></pre>
-
-<hr />
-
-<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861363">poppler-dataへのバグレポート</a>をチェック。レポートにも書いてある通り、<a href="https://bugzilla.redhat.com/show_bug.cgi?id=842351">RHBZを確認</a>。</p>
-
-<ul>
-<li>何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。</li>
-<li>なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。</li>
-<li>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</li>
-</ul>
-
-<pre><code># cidToUnicode, nameToUnicode and unicodeMap data files
-# are under the COPYING.gpl2 license
-# Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
-</code></pre>
-
-<p>とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると</p>
-
-<pre><code>The files in the Resource directory and any subdirectories thereof
-are also part of GPL Ghostscript, with the explicit exception of
-the files in the CMap subdirectory (except &quot;Identity-UTF16-H&quot;,
-which is part of GPL Ghostscript). The CMap files are copyright
-Adobe Systems Incorporated and covered by a separate, Affero GPL
-compatible license.
-</code></pre>
-
-<p>あれ？AGPLな気がするんだけど… debian/copyrightでチェックしよう。</p>
-
-<pre><code>Files: Resource/CMap/Identity-UTF16-H
-Copyright: 2003, Artifex Software
-License-Grant:
- GPL Ghostscript is free software; you can redistribute it and/or modify
- it under the terms the GNU Affero General Public License as published
- by the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-License: AGPL-3+
-</code></pre>
-
-<p>だよねぇ。Fedoraの方は間違いだと思う。</p>
-
-<p>upstream tarball をもう一つ追加して対応、なんだけど git-buildpackage が multiple
-upstream tarball に対応してないのがアレ。</p>
-
-<hr />
-
-<p><a href="https://www.staff.science.uu.nl/~penni101/mirmon/">mirmon</a> のtypoにLintianがうるさく感じたのでパッチをメール。</p>
 
 					
 				</div>

@@ -57,6 +57,26 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 24 Oct 2017 20:22:25 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;silversearcher-ag のレビューを終えたので&lt;a href=&#34;https://tracker.debian.org/news/881173&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881174&#34;&gt;nailgunのアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881184&#34;&gt;psphereのアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;sylpheedのPGP署名運用についてメールした。これが解決したら関連パッケージをアップデートする予定。&lt;/li&gt;
+&lt;li&gt;fontforgeパッケージを眺めて手を出せるところだけ。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Mon, 23 Oct 2017 21:46:54 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -505,94 +525,6 @@ dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_re
 &lt;li&gt;openSUSE asia summitの発表の練習をしてみる。15分にはなんとか収まりそう。&lt;/li&gt;
 &lt;li&gt;Debian JPのサイト、9.2リリースを反映しておいた&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 07 Oct 2017 11:50:39 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.debian.org/releases/stretch/amd64/release-notes/&#34;&gt;リリースノート&lt;/a&gt;の更新に気がついたので追従しておいた。&lt;/li&gt;
-&lt;li&gt;openSUSEをいじってたらsnapperのアップデートがあったが、&lt;a href=&#34;https://github.com/openSUSE/snapper/issues/364&#34;&gt;そのバージョンのタグがgit repositoryに打たれてない。。。&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;openQAやos-autoinstもタグが打たれてないので、&lt;a href=&#34;https://progress.opensuse.org/issues/25826&#34;&gt;お願いを出す&lt;/a&gt;など&amp;hellip;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Can&#39;t locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need
-        to install the Mojolicious::Plugin::AssetPack::Backcompat module)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なんでupstreamの依存関係には含まれとらんのだろう？&lt;/p&gt;
-
-&lt;p&gt;んじゃさくっとdh-make-perl&amp;hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないので&lt;a href=&#34;https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129&#34;&gt;upstreamに質問&lt;/a&gt;
-→ &lt;a href=&#34;http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/&#34;&gt;backpan&lt;/a&gt;というところに消したのは置いてあるよ、と教えてもらった。しかし、&lt;a href=&#34;http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme&#34;&gt;本来これは必要ないはず&lt;/a&gt;、なんだけども&amp;hellip;？&lt;/p&gt;
-
-&lt;p&gt;兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&amp;hellip;またエラーだ。以下が延々と。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Uncaught exception from user code:
-        Plugin &amp;quot;bootstrap3&amp;quot; missing, maybe you need to install it?
-        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &amp;quot;bootstrap3&amp;quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
-        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &amp;quot;bootstrap3&amp;quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
-        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &amp;quot;bootstrap3&amp;quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
-        OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179
-        Mojolicious::new(&amp;quot;OpenQA::WebAPI&amp;quot;) called at /usr/share/perl5/Mojo/Server.pm line 17
-        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &amp;quot;OpenQA::WebAPI&amp;quot;) called at /usr/share/perl5/Test/Mojo.pm line 247
-        Test::Mojo::new(&amp;quot;Test::Mojo&amp;quot;, &amp;quot;OpenQA::WebAPI&amp;quot;) called at ./t/05-scheduler-dependencies.t line 212
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Can&#39;t locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
-BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
-    (F) You said to do (or require, or use) a file that couldn&#39;t be found.
-    Perl looks for the file in all the locations mentioned in @INC, unless
-    the file name included the full path to the file.  Perhaps you need
-    to set the PERL5LIB or PERL5OPT environment variable to say where the
-    extra library is, or maybe the script needs to add the library name
-    to @INC.  Or maybe you just misspelled the name of the file.  See
-    &amp;quot;require&amp;quot; in perlfunc and lib.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Uncaught exception from user code:
-        Can&#39;t locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
-         at /usr/share/perl5/Context/Preserve.pm line 42.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Mojolicious::Plugin::Bootstrap3 が必要そうだ。t::ui::PhantomTest と dbicdh/_common/deploy/_any/21-seeds.pl  はわからない。。。&lt;/p&gt;
-
-&lt;p&gt;&amp;hellip;とここまで来たところで「upstreamもtestを実行していないので、とりあえず無視」ということにした。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ビルド時には存在しないユーザーにchownしてる
-
-&lt;ul&gt;
-&lt;li&gt;ということはpostinstでchownするほうがいいか&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;assetsディレクトリが存在しないので悩んでいたら、4.3の時点では存在せず、masterにはある&amp;hellip;
-
-&lt;ul&gt;
-&lt;li&gt;コメントアウトしておく。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;存在しない systemd service ファイルのインストールが&amp;hellip;
-
-&lt;ul&gt;
-&lt;li&gt;とりあえず消す&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ということで4.3のビルドは一旦終わった。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&amp;hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&amp;hellip;うわ、これ Makefile の最初のところで &lt;code&gt;./script/generate-packed-assets&lt;/code&gt; というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&amp;hellip;厄介な&amp;hellip;。&lt;/p&gt;
 </description>
           </item>
         

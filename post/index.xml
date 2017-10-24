@@ -57,6 +57,26 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 24 Oct 2017 20:22:25 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;silversearcher-ag のレビューを終えたので&lt;a href=&#34;https://tracker.debian.org/news/881173&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881174&#34;&gt;nailgunのアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881184&#34;&gt;psphereのアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;sylpheedのPGP署名運用についてメールした。これが解決したら関連パッケージをアップデートする予定。&lt;/li&gt;
+&lt;li&gt;fontforgeパッケージを眺めて手を出せるところだけ。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Mon, 23 Oct 2017 21:46:54 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -504,24 +524,6 @@ dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_re
 &lt;li&gt;&lt;a href=&#34;https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/&#34;&gt;https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://threebean.org/presentations/factory2-devconf17&#34;&gt;The Productization Pipeline and the so-called &amp;ldquo;Factory 2.0&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 08 Oct 2017 12:52:13 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;忘れないうちに&lt;a href=&#34;https://github.com/os-autoinst/openQA/pull/1465&#34;&gt;１行パッチ&lt;/a&gt;をopenQAに。&lt;/li&gt;
-&lt;li&gt;openSUSE asia summitの発表の練習をしてみる。15分にはなんとか収まりそう。&lt;/li&gt;
-&lt;li&gt;Debian JPのサイト、9.2リリースを反映しておいた&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
