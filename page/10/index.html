@@ -60,10 +60,113 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
 						<small><span class="label label-primary">
 							
-								Tue, Aug 1, 2017
+								Mon, Jun 22, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>proposed-updatesリポジトリにパッケージをアップロードする際、
+changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？</p>
+
+<p>疑問が晴れなかったので<a href="https://lists.debian.org/debian-devel/2015/06/msg00305.html">debian-develに質問</a>したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587">登録しておいた。Bug#789587</a>です。</p>
+
+<p>しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/">gbpとpbuilderのオプション</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 19, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/trouble">trouble</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>gbp buildpackage --git-pbuilder-options=&quot;-sa&quot;
+</code></pre>
+
+<p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
+
+<pre><code>sudo cowbuilder --build --debbuildopt=&quot;-sa&quot; libxmlbird_1.0.4-2.dsc
+</code></pre>
+
+<p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
+
+<pre><code>$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
+gbp:info: Orig tarball 'libxmlbird_1.0.4.orig.tar.xz' not found at '../tarballs/'
+gbp:info: Exporting 'HEAD' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp'
+gbp:info: Moving '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4'
+Building with cowbuilder for distribution sid
+I: using cowbuilder as pbuilder
+(snip)
+dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
+ dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
+dpkg-genchanges: not including original source code in upload
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jun 6, 2015
 							</span>&nbsp;in
 							 using tags
 							
@@ -77,11 +180,254 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング作業</p>
+						<p>JDのreproducible buildがエラーになってるのは<a href="https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros">DATEとかを展開するMacroが入ってるから</a>、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。</p>
+
+<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&rdquo;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
+
+<p>jruby-joniパッケージは<a href="https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html">Java .jar files contain user login in the <code>Built-By</code> of <code>MANIFEST.MF</code></a>てなことだったので、この辺りを削るパッチを追加することにしました。</p>
+
+<p>reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。</p>
+
+<pre><code>&gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+</code></pre>
+
+<p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
+
+<p>birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。</p>
+
+<pre><code>&gt; def write_config (prefix):
+print (&quot;Writing Config.vala&quot;)
+
+vars = (('VERSION', VERSION),
+('BUILD_TIMESTAMP', time.asctime( time.localtime(time.time()))),
+('PREFIX', prefix),
+)
+</code></pre>
+
+<p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 2, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに<a href="https://github.com/twitter/twitter-text-rb">まとめられていた</a>。
+これはtwitter-textパッケージから色々生成するほうがいいよね、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688">Todoをバグとして登録しておく</a>ことにした。</p>
+
+<p>あとはjcodingsをアップデートして放り込みなど。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/">Debian Policyはi18nできないかな</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 1, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
+policy.sgml:178: (po4a::sgml)
+               不明なタグ HTTPSITE
+</code></pre>
+
+<p>で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、</p>
+
+<pre><code>$ po4a-gettextize --help-format
+有効フォーマット一覧:
+(snip)
+  - sgml: DebianDoc DTD と DocBook DTD。
+(snip)
+</code></pre>
+
+<p>とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/">bash-completionとか</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 31, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ほぼ寝込んでいたので、<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321">dcut のbash completion</a>をコピペで作って投げただけです。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/os-autoinst/">os-autoinst</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 31, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+								 , 
+							<a href="/blog/tags/upstream">upstream</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、<a href="http://bugs.debian.org/690244">RFPになっていたのをITPに戻しました</a>。</p>
+
+<p>ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。</p>
+
+<p>あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なので<a href="https://github.com/os-autoinst/os-autoinst/issues/261">issue作っておきました</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 31, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>相変わらずdevelopers-referenceにちょっかいを出している。</p>
 
 <ul>
-<li><a href="https://tracker.debian.org/news/860012">jcodings</a>、<a href="https://tracker.debian.org/news/860053">もう一つ</a></li>
-<li><a href="https://tracker.debian.org/news/860052">xfonts-ayu</a>。regressionを作ってしまっていたのでそれを修正。</li>
+<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=172892">Bug#172892</a>は既にCVSの時代じゃないだろう、ということでwontfixタグを勝手につけておいた。</li>
+<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=540975">Bug#540975</a>は直っていたので閉じておいた。</li>
+<li><a href="http://bugs.debian.org/544135">Bug#544135</a>と<a href="http://bugs.debian.org/604193">Bug#604193</a>についてはパッチにコメントをした。</li>
 </ul>
 
 					
@@ -101,15 +447,18 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/">Hyper-Vサポートまわりとか</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, Jul 31, 2017
+								Sat, May 30, 2015
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -118,11 +467,46 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング作業</p>
+						<p>色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな
+* カーネル内のドライバ
+* カーネルのソースに含まれているtools/hv内のデーモン</p>
 
-<ul>
-<li><a href="https://tracker.debian.org/news/859798">fonts-wqy-zenhei</a></li>
-</ul>
+<p>ドライバについては、Jessieの3.16のに4.0ベースのとかをそのままbackportして大丈夫なのかな。ビルドできれば影響範囲はhvドライバのみに収まるような気もする。とりあえず、今のカーネルのをそのまま使うでも使えるっぽい。</p>
+
+<p>デーモンについては<a href="http://yamanxworld.blogspot.jp/2015/02/hyper-v-and-linuxfreebsd.html">こちらにまとめられている</a>が、RHEL/Fedora系統だとhyperv-daemonsメタパッケージに依存している各パッケージで提供しているようだ（はて、デーモンごとにパッケージが細分化されていて、なぜかライセンスも別パッケージになってる…？）。Ubuntuはバージョンごとに色々違うようだ。さて、どうするかな…と思ったが、hyperv-daemonsパッケージでいいかな、と。あとはsystemdサービスをFedoraからパチってきた。それから調整、っと。。。</p>
+
+<p>dh-systemdは以下の理由から使わない方向で、installファイルでコピーするだけにした
+* そもそものパッケージの構成が複雑でdh使ってないので dh $@ &ndash;with systemd が指定できない
+* パッケージ名とサービス名が違う（サービスが３つもある）</p>
+
+<p>途中までで、とりあえず<a href="bugs.debian.org/cgi-bin/bugreport.cgi?bug=782761">無くならないようにパッチを投げておく</a>。</p>
+
+<p>あとはdescriptionをまともにする</p>
+
+<p>実際にHyper-V上のDebianで動作を確認する…ってどうやるんだ？Azureでいいか。</p>
+
+<p>Azureで仮想マシンを作る…ってそのままだとギャラリーにはDebianイメージ無いので、VMDepotという
+ここで有志が作っているイメージを使わせてもらう。とはいえ、どの程度の信頼性が置けるものかというものはあるけども。
+ログインしたらshellが/bin/shだった。chshして、bash-completion入れて、upgradeしてrebootして再度。。。って妙にrebootに時間がかかるな。繋がらない？</p>
+
+<pre><code>sudo systemctl start Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+Failed to get D-Bus connection: No such file or directory
+</code></pre>
+
+<p>あれ。service見当たらないな…手動で起動した。これはパッケージを直す必要があるなぁ。
+でも、３つのサービスのうち、一つが起動しない。ってserviceファイルに/dev/vmbus/hv_fcopyが必要って書いたけど/dev/vmbusが無いんだな。これはHyper-VだとあってAzureだと無いのか、それともVMDepotのJessieがアレで見つからないのか？→CentOSベースのをAzureで立ち上げたが同様に/dev/vmbusは無い。はて、Hyper-VとAzureのは若干違うのか、それとも元にしたFedoraのがアレなのか。皿に検索すると<a href="http://dpdk.org/dev/patchwork/patch/2989/">何かへのパッチの投稿</a>が見つかった、がこれだと「/sys/bus/vmbus」って書いてあるけど、こっちが正解じゃない？…いや<a href="http://www.serverphorums.com/read.php?12,1049452">/dev/vmbusがある</a>のもあるな。。。</p>
+
+<p>README.Debianも追加したほうが良いかな？こんな感じで…</p>
+
+<pre><code>If you want to change screen resolution, please add &quot;video=hyperv_fb:vertical x horizontal&quot; to GRUB_CMDLINE_LINUX in /etc/default/grub and run update-grub
+e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
+</code></pre>
 
 					
 				</div>
@@ -141,15 +525,21 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/">xmltoがらみとOrphanという言葉の語感</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Jul 30, 2017
+								Sat, May 30, 2015
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
+						
+								 , 
+							<a href="/blog/tags/upstream">upstream</a>
 						
 					</small>
 				</div>
@@ -158,455 +548,10 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング</p>
+						<p>upstreamの方にパッチの話をしたら「もう<a href="https://fedorahosted.org/xmlto/changeset/76">svn</a>に取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。</p>
 
-<ul>
-<li>fonts-mikachan、deley-15 に放り込み。</li>
-<li><a href="https://tracker.debian.org/news/859608">fonts-f500</a></li>
-<li><a href="https://tracker.debian.org/news/859609">fonts-manchufont</a></li>
-</ul>
-
-<hr />
-
-<p>何か作業しようと思っていたのだが、続きをすっかり忘れていたDebian PolicyのSphinx変換提案、どうやって作業していたのかを思い出したので<a href="https://github.com/henrich/policydoc/tree/sed-raplacement/convert/scripts">historyから5行ほどの手順</a>を送りつけておいた。8/1にSprintがあるらしいので、そこで話題にしてくれるといいなぁ。とりあえずIRCチャンネルに接続だけしてログを取っておこう。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 29, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>昨日の gnome-todo の続き。</p>
-
-<h2 id="lintian-warningを確認">lintian warningを確認。</h2>
-
-<pre><code>W: gnome-todo: gir-section-not-libdevel usr/share/gir-1.0/Gtd-1.0.gir gnome
-N: 
-N:    GObject-Introspection XML files (/usr/share/gir-1.0/Foo-23.gir) must be
-N:    made available in a development package in the libdevel section of the
-N:    archive. This is normally the same libfoo-dev package that contains
-N:    other development files.
-N:    
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:    
-N:    Severity: normal, Certainty: certain
-N:    
-N:    Check: gir, Type: binary, source
-</code></pre>
-
-<p><code>/usr/share/gir-1.0/Gtd-1.0.gir</code> が含まれてるのに <code>section: gnome</code> なgnome-todoパッケージはあかんやろ、と。これはlibdevelなlibgnome-todo-devを作って放り込め、ということだな。</p>
-
-<pre><code>W: gnome-todo: typelib-section-not-introspection usr/lib/x86_64-linux-gnu/girepository-1.0/Gtd-1.0.typelib gnome
-N: 
-N:    GObject-Introspection binary typelibs (Foo-23.typelib) should be made
-N:    available in a GObject-Introspection package in the introspection
-N:    section of the archive, normally named gir1.2-foo-23.
-N:    
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:    
-N:    Severity: normal, Certainty: certain
-N:    
-N:    Check: gir, Type: binary, source
-</code></pre>
-
-<p>これも <code>section: introspection</code> なパッケージを作れ、と。どういう名前で作ればいいのかは他のを参考にしよう&hellip;</p>
-
-<pre><code>W: gnome-todo: gir-missing-typelib-dependency usr/share/gir-1.0/Gtd-1.0.gir gir1.2-gtd-1.0
-N: 
-N:    Development packages that contain GObject-Introspection XML files
-N:    (/usr/share/gir-1.0/Foo-23.gir) must depend on the package containing
-N:    the corresponding binary typelib, which is conventionally named
-N:    gir1.2-foo-23. The dependency must be strictly versioned (for example
-N:    gir1.2-foo-23 (= ${binary:Version}) when using debhelper).
-N:    
-N:    Please ignore and override this tag if the typelib is shipped in a
-N:    package whose name does not match the typelib's machine-readable name,
-N:    and the development package correctly depends on that package instead.
-N:    For example, gir1.2-glib-2.0 is named for the GLib-2.0 typelib, but also
-N:    contains the GObject-2.0 and Gio-2.0 typelibs, so it is correct that
-N:    libglib2.0-dev depends on gir1.2-glib-2.0 but not on gir1.2-gobject-2.0
-N:    or gir1.2-gio-2.0.
-N:    
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:    
-N:    Severity: normal, Certainty: possible
-N:    
-N:    Check: gir, Type: binary, source
-</code></pre>
-
-<p>先程の <code>section: introspection</code> なパッケージは<code>gir1.2-gtd-1.0</code>でいいのか。で、それに対する依存関係を記述せよ、と。</p>
-
-<pre><code>W: gnome-todo: typelib-package-name-does-not-match usr/lib/x86_64-linux-gnu/girepository-1.0/Gtd-1.0.typelib gir1.2-gtd-1.0
-N: 
-N:    GObject-Introspection binary typelibs (Foo-23.typelib) should normally
-N:    be made available in a package named gir1.2-foo-23.
-N:    
-N:    Please ignore and override this tag if the typelib is deliberately
-N:    shipped in a package whose name does not match the typelib's
-N:    machine-readable name. For example, gir1.2-glib-2.0 is named for the
-N:    GLib-2.0 typelib, but also contains the GObject-2.0 and Gio-2.0
-N:    typelibs; this is unconventional, but is allowed.
-N:    
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:    
-N:    Severity: normal, Certainty: possible
-N:    
-N:    Check: gir, Type: binary, source
-</code></pre>
-
-<p><code>gir1.2-gtd-1.0</code> にtypelibを含めろ、と。</p>
-
-<h2 id="他のパッケージを参考に">他のパッケージを参考に</h2>
-
-<p>正直lintianの指示は概念だけなので、実際にどう対処するかは既存パッケージを真似るのが手っ取り早い。</p>
-
-<ul>
-<li><code>apt-cache pkgnames gir1.2-</code> して適当なパッケージを探し、</li>
-<li><code>apt source foobar</code> してソースを眺めて記述を確認し、</li>
-<li><code>debian/control.in</code> にパッケージを追加。</li>
-<li><code>debian/*.install</code> を追加してどのファイルをどのパッケージに入れるかを決める</li>
-</ul>
-
-<p>ここまででパッケージがビルドできるようになったが、piupartsで既存パッケージからのアップグレードが失敗するんじゃないかな〜と思って眠い頭で実行したらやっぱり失敗した。</p>
-
-<pre><code>   /tmp/apt-dpkg-install-g8TuRA/0-gir1.2-gtd-1.0_3.24.2-3_amd64.deb
-   /tmp/apt-dpkg-install-g8TuRA/1-gnome-todo-common_3.24.2-3_all.deb
-   /tmp/apt-dpkg-install-g8TuRA/2-libgnome-todo_3.24.2-3_amd64.deb
-</code></pre>
-
-<p>ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。<code>Conflicts:</code> か <code>Breakes:</code> の記述が必要だよな。多分 <code>Breakes:</code> が適当。これが完全にreplaceな場合は <code>Replaces:</code> を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す&hellip;通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。<a href="https://ftp-master.debian.org/new.html">NEW queue</a>で数日待つことになるだろう。</p>
-
-<h2 id="作業結果">作業結果</h2>
-
-<pre><code>diff -Nru gnome-todo-3.24.2/debian/changelog gnome-todo-3.24.2/debian/changelog
---- gnome-todo-3.24.2/debian/changelog  2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/changelog  2017-07-28 22:52:28.000000000 +0900
-@@ -1,3 +1,12 @@
-+gnome-todo (3.24.2-3) experimental; urgency=medium
-+
-+  * debian/patches
-+    - add 0001-deal-with-appstream-metadata-in-legacy-location.patch 
-+  * debian/{control.in,*.install}
-+    - split gnome-todo package to several packages
-+
-+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 28 Jul 2017 22:52:28 +0900
-+
- gnome-todo (3.24.2-2) unstable; urgency=medium
- 
-   * Upload to unstable
-diff -Nru gnome-todo-3.24.2/debian/control gnome-todo-3.24.2/debian/control
---- gnome-todo-3.24.2/debian/control    2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/control    2017-07-28 22:52:28.000000000 +0900
-@@ -6,7 +6,7 @@
- Section: gnome
- Priority: optional
- Maintainer: Debian GNOME Maintainers &lt;pkg-gnome-maintainers@lists.alioth.debian.org&gt;
--Uploaders: Andreas Henriksson &lt;andreas@fatal.se&gt;, Hideki Yamane &lt;henrich@debian.org&gt;, Michael Biebl &lt;biebl@debian.org&gt;
-+Uploaders: Andreas Henriksson &lt;andreas@fatal.se&gt;, Hideki Yamane &lt;henrich@debian.org&gt;
- Build-Depends: debhelper (&gt;= 10),
-                autoconf-archive,
-                gnome-pkg-tools,
-@@ -30,6 +30,8 @@
- Architecture: any
- Depends: ${shlibs:Depends},
-          ${misc:Depends},
-+         gnome-todo-common,
-+         libgnome-todo (= ${binary:Version}),
-          evolution-data-server (&gt;= 3.17.1),
-          gsettings-desktop-schemas
- Description: minimalistic personal task manager designed to fit GNOME desktop
-@@ -37,3 +39,56 @@
-  the GNOME desktop. Designed from ground up to seamlessly integrate with
-  the GNOME desktop environment, To Do enables you to be as productive as
-  you want.
-+
-+Package: gnome-todo-common
-+Architecture: all
-+Depends: ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: common files for GNOME To Do
-+ Library that provides GObject-based interface of GNOME To Do, simplistic
-+ personal task manager designed to perfectly fit the GNOME desktop.
-+ .
-+ This package contains common files.
-+
-+Package: libgnome-todo
-+Section: libs
-+Architecture: any
-+Depends: ${shlibs:Depends},
-+         ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: library data for GNOME To Do
-+ Library that provides GObject-based interface of GNOME To Do, simplistic
-+ personal task manager designed to perfectly fit the GNOME desktop.
-+ .
-+ This package contains the library files.
-+
-+Package: libgnome-todo-dev
-+Section: libdevel
-+Architecture: any
-+Depends: ${shlibs:Depends},
-+         ${misc:Depends},
-+         gir1.2-gtd-1.0 (= ${binary:Version}),
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: development library data for GNOME To Do
-+ Library that provides GObject-based interface of GNOME To Do, simplistic
-+ personal task manager designed to perfectly fit the GNOME desktop.
-+ .
-+ This package contains the library development files.
-+
-+Package: gir1.2-gtd-1.0
-+Section: introspection
-+Architecture: any
-+Depends: ${gir:Depends},
-+         ${shlibs:Depends},
-+         ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: GObject introspection data for GNOME To Do
-+ GNOME To Do is a simplistic personal task manager designed to perfectly fit
-+ the GNOME desktop. Designed from ground up to seamlessly integrate with
-+ the GNOME desktop environment, To Do enables you to be as productive as
-+ you want.
-+ .
-+ This package contains introspection data for GNOME To Do.
-+ .
-+ It can be used by packages using the GIRepository format to generate
-+ dynamic bindings.
-diff -Nru gnome-todo-3.24.2/debian/control.in gnome-todo-3.24.2/debian/control.in
---- gnome-todo-3.24.2/debian/control.in 2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/control.in 2017-07-28 22:52:28.000000000 +0900
-@@ -26,6 +26,8 @@
- Architecture: any
- Depends: ${shlibs:Depends},
-          ${misc:Depends},
-+         gnome-todo-common,
-+         libgnome-todo (= ${binary:Version}),
-          evolution-data-server (&gt;= 3.17.1),
-          gsettings-desktop-schemas
- Description: minimalistic personal task manager designed to fit GNOME desktop
-@@ -33,3 +35,56 @@
-  the GNOME desktop. Designed from ground up to seamlessly integrate with
-  the GNOME desktop environment, To Do enables you to be as productive as
-  you want.
-+
-+Package: gnome-todo-common
-+Architecture: all
-+Depends: ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: common files for GNOME To Do
-+ Library that provides GObject-based interface of GNOME To Do, simplistic
-+ personal task manager designed to perfectly fit the GNOME desktop.
-+ .
-+ This package contains common files.
-+
-+Package: libgnome-todo
-+Section: libs
-+Architecture: any
-+Depends: ${shlibs:Depends},
-+         ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: library data for GNOME To Do
-+ Library that provides GObject-based interface of GNOME To Do, simplistic
-+ personal task manager designed to perfectly fit the GNOME desktop.
-+ .
-+ This package contains the library files.
-+
-+Package: libgnome-todo-dev
-+Section: libdevel
-+Architecture: any
-+Depends: ${shlibs:Depends},
-+         ${misc:Depends},
-+         gir1.2-gtd-1.0 (= ${binary:Version}),
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: development library data for GNOME To Do
-+ Library that provides GObject-based interface of GNOME To Do, simplistic
-+ personal task manager designed to perfectly fit the GNOME desktop.
-+ .
-+ This package contains the library development files.
-+
-+Package: gir1.2-gtd-1.0
-+Section: introspection
-+Architecture: any
-+Depends: ${gir:Depends},
-+         ${shlibs:Depends},
-+         ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: GObject introspection data for GNOME To Do
-+ GNOME To Do is a simplistic personal task manager designed to perfectly fit
-+ the GNOME desktop. Designed from ground up to seamlessly integrate with
-+ the GNOME desktop environment, To Do enables you to be as productive as
-+ you want.
-+ .
-+ This package contains introspection data for GNOME To Do.
-+ .
-+ It can be used by packages using the GIRepository format to generate
-+ dynamic bindings.
-diff -Nru gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install
---- gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1 @@
-+usr/lib/*/girepository-1.0/*.typelib
-diff -Nru gnome-todo-3.24.2/debian/gnome-todo-common.install gnome-todo-3.24.2/debian/gnome-todo-common.install
---- gnome-todo-3.24.2/debian/gnome-todo-common.install  1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/gnome-todo-common.install  2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,6 @@
-+usr/share/icons/
-+usr/share/locale/
-+usr/share/gnome-todo/
-+usr/share/metainfo/
-+usr/share/dbus-1/
-+usr/share/glib-2.0/
-diff -Nru gnome-todo-3.24.2/debian/gnome-todo.install gnome-todo-3.24.2/debian/gnome-todo.install
---- gnome-todo-3.24.2/debian/gnome-todo.install 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/gnome-todo.install 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,2 @@
-+usr/bin/gnome-todo
-+usr/share/applications/
-diff -Nru gnome-todo-3.24.2/debian/libgnome-todo-dev.install gnome-todo-3.24.2/debian/libgnome-todo-dev.install
---- gnome-todo-3.24.2/debian/libgnome-todo-dev.install  1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/libgnome-todo-dev.install  2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,3 @@
-+usr/include/gnome-todo/
-+usr/lib/*/pkgconfig/gnome-todo.pc
-+usr/share/gir-*/Gtd-*.gir
-diff -Nru gnome-todo-3.24.2/debian/libgnome-todo.install gnome-todo-3.24.2/debian/libgnome-todo.install
---- gnome-todo-3.24.2/debian/libgnome-todo.install  1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/libgnome-todo.install  2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1 @@
-+usr/lib/*/gnome-todo/
-diff -Nru gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch
---- gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,25 @@
-+From: Hideki Yamane &lt;henrich@debian.org&gt;
-+Date: Fri, 28 Jul 2017 22:51:23 +0900
-+Subject: deal with appstream-metadata-in-legacy-location
-+
-+not /usr/share/appdata/ but /usr/share/metainfo/
-+
-+Perhaps this patch will be not necessary when build system would move to
-+new one.
-+---
-+ data/Makefile.am | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/data/Makefile.am b/data/Makefile.am
-+index 827ee36..af44715 100644
-+--- a/data/Makefile.am
-++++ b/data/Makefile.am
-+@@ -13,7 +13,7 @@ autostart_DATA = org.gnome.Todo.Autostart.desktop
-+ %.desktop: %.desktop.in
-+   $(AM_V_GEN) $(MSGFMT) --desktop --template $&lt; -d $(top_srcdir)/po -o $@
-+ 
-+-appdatadir = $(datadir)/appdata
-++appdatadir = $(datadir)/metainfo
-+ appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-+ appdata_in_files = $(srcdir)/appdata/org.gnome.Todo.appdata.xml.in
-+ 
-diff -Nru gnome-todo-3.24.2/debian/patches/series gnome-todo-3.24.2/debian/patches/series
---- gnome-todo-3.24.2/debian/patches/series 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/patches/series 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1 @@
-+0001-deal-with-appstream-metadata-in-legacy-location.patch
-diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
---- gnome-todo-3.24.2/debian/rules  2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/rules  2017-07-28 22:52:28.000000000 +0900
-@@ -28,4 +28,4 @@
- override_dh_auto_install:
-    dh_auto_install
-    # get rid of &quot;non-empty-dependency_libs-in-la-file&quot;
--   find $(CURDIR)/debian/gnome-todo -name *.la -delete
-+   find $(CURDIR)/debian/ -name *.la -delete
-</code></pre>
-
-<hr />
-
-<p>今日のグルーミング</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/859497">fonts-bpg-georgian</a>
-
-<ul>
-<li>debian/copyrightのconvertの際にcopyright holderの記述が website と異なっていて？？？となって調べて回った。その甲斐あって整理できた＆一部フォントが違うライセンスだということもわかったので良かった。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jul 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング作業</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/859085">fonts-ipafont-nonfree</a></li>
-<li><a href="https://tracker.debian.org/news/859086">fonts-ipafont-nonfree-jisx0208</a></li>
-<li><a href="https://tracker.debian.org/news/859145">jcodings</a></li>
-<li>gnome-todo をちょっとだけ。
-
-<ul>
-<li><a href="https://lintian.debian.org/tags/appstream-metadata-in-legacy-location.html">appstream-metadata-in-legacy-location</a> は grep で検索して <code>gbp pq import</code> して Makefile.am を少し書き換え、git commit してパッチを作って対応。</li>
-</ul></li>
-</ul>
+<p>あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。
+個人的にはOrphanという言葉はあまりよくなく、彼のメールにもあった「fresh blood」を使うのが良いんじゃないかな、と感じる。Needs Fresh Blood, 略してNFB。</p>
 
 					
 				</div>
@@ -758,99 +703,13 @@ diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
     ><a href="/blog/page/11/">11</a></li>
     
     
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/blog/page/20/">20</a></li>
-    
-    
     <li
     >
     <a href="/blog/page/11/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li>
-        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/11/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

@@ -60,10 +60,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Oct 8, 2017
+								Mon, Sep 11, 2017
 							</span>&nbsp;in
 							 using tags
 							
@@ -78,9 +78,16 @@
 					<br>
 					
 						<ul>
-<li>忘れないうちに<a href="https://github.com/os-autoinst/openQA/pull/1465">１行パッチ</a>をopenQAに。</li>
-<li>openSUSE asia summitの発表の練習をしてみる。15分にはなんとか収まりそう。</li>
-<li>Debian JPのサイト、9.2リリースを反映しておいた</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=875432">python3-sphinx-intlをITP</a>した。
+
+<ul>
+<li>何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業で<code>git checkout --orphan pristine-tar; rm *; git commit --allow-empty</code>みたいなことをして作った。何故だ。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/871063">cutter-testing-frameworkがリポジトリから削除されていた</a>ので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたので<a href="https://github.com/clear-code/cutter/pull/30">pull request</a>。
+
+<ul>
+<li>他にもpo/Makefile.in.inファイルが無くて<code>intltoolize --force || exit 1</code>が必要だったり。</li>
+</ul></li>
 </ul>
 
 					
@@ -100,10 +107,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Oct 7, 2017
+								Tue, Sep 5, 2017
 							</span>&nbsp;in
 							 using tags
 							
@@ -118,141 +125,9 @@
 					<br>
 					
 						<ul>
-<li><a href="https://www.debian.org/releases/stretch/amd64/release-notes/">リリースノート</a>の更新に気がついたので追従しておいた。</li>
-<li>openSUSEをいじってたらsnapperのアップデートがあったが、<a href="https://github.com/openSUSE/snapper/issues/364">そのバージョンのタグがgit repositoryに打たれてない。。。</a></li>
-<li>openQAやos-autoinstもタグが打たれてないので、<a href="https://progress.opensuse.org/issues/25826">お願いを出す</a>など&hellip;。</li>
-</ul>
-
-<hr />
-
-<p>openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&hellip;</p>
-
-<pre><code>Can't locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need
-        to install the Mojolicious::Plugin::AssetPack::Backcompat module)
-</code></pre>
-
-<p>なんでupstreamの依存関係には含まれとらんのだろう？</p>
-
-<p>んじゃさくっとdh-make-perl&hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129">upstreamに質問</a>
-→ <a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/">backpan</a>というところに消したのは置いてあるよ、と教えてもらった。しかし、<a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme">本来これは必要ないはず</a>、なんだけども&hellip;？</p>
-
-<p>兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&hellip;またエラーだ。以下が延々と。</p>
-
-<pre><code>Uncaught exception from user code:
-        Plugin &quot;bootstrap3&quot; missing, maybe you need to install it?
-        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
-        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
-        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &quot;bootstrap3&quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
-        OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179
-        Mojolicious::new(&quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Mojo/Server.pm line 17
-        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Test/Mojo.pm line 247
-        Test::Mojo::new(&quot;Test::Mojo&quot;, &quot;OpenQA::WebAPI&quot;) called at ./t/05-scheduler-dependencies.t line 212
-</code></pre>
-
-<pre><code>Can't locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
-BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
-    (F) You said to do (or require, or use) a file that couldn't be found.
-    Perl looks for the file in all the locations mentioned in @INC, unless
-    the file name included the full path to the file.  Perhaps you need
-    to set the PERL5LIB or PERL5OPT environment variable to say where the
-    extra library is, or maybe the script needs to add the library name
-    to @INC.  Or maybe you just misspelled the name of the file.  See
-    &quot;require&quot; in perlfunc and lib.
-</code></pre>
-
-<pre><code>Uncaught exception from user code:
-        Can't locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
-         at /usr/share/perl5/Context/Preserve.pm line 42.
-</code></pre>
-
-<p>Mojolicious::Plugin::Bootstrap3 が必要そうだ。t::ui::PhantomTest と dbicdh/_common/deploy/_any/21-seeds.pl  はわからない。。。</p>
-
-<p>&hellip;とここまで来たところで「upstreamもtestを実行していないので、とりあえず無視」ということにした。</p>
-
-<ul>
-<li>ビルド時には存在しないユーザーにchownしてる
-
-<ul>
-<li>ということはpostinstでchownするほうがいいか</li>
-</ul></li>
-<li>assetsディレクトリが存在しないので悩んでいたら、4.3の時点では存在せず、masterにはある&hellip;
-
-<ul>
-<li>コメントアウトしておく。</li>
-</ul></li>
-<li>存在しない systemd service ファイルのインストールが&hellip;
-
-<ul>
-<li>とりあえず消す</li>
-</ul></li>
-</ul>
-
-<p>ということで4.3のビルドは一旦終わった。</p>
-
-<hr />
-
-<p>色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&hellip;うわ、これ Makefile の最初のところで <code>./script/generate-packed-assets</code> というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&hellip;厄介な&hellip;。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Oct 6, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
-</ul>
-
-<hr />
-
-<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
-
-<ul>
-<li>1.4GBが1.0GBになるのは大きいと思う</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
-
-<ul>
-<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
-
-<ul>
-<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
+<li>elpa-migemo をアップロード</li>
+<li>nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は<a href="https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;arch=m68k&amp;ver=0.9.1-5&amp;stamp=1504617916&amp;raw=0">m68kぐらい</a>）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。</li>
+<li>os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&hellip;これ動くのかな。）</li>
 </ul>
 
 					
@@ -272,10 +147,10 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Oct 4, 2017
+								Mon, Sep 4, 2017
 							</span>&nbsp;in
 							 using tags
 							
@@ -289,62 +164,11 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
-
-<pre><code>Package: texlive-latex-extra-doc
-Download-Size: 384 MB
-
-Package: texlive-pstricks-doc
-Download-Size: 248 MB
-</code></pre>
-
-<p><code>time apt-get download texlive-latex-extra-doc texlive-pstricks-doc</code> という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが <code>fatal error: runtime: out of memory</code> と<a href="https://github.com/cybozu-go/aptutil/issues/24">メモリ不足で落ちます</a>。VMをスケールアップして再度トライしました。</p>
-
-<p>まずは普通にftp.jp.debian.orgからの取得。</p>
-
-<pre><code>Fetched 412 MB in 36s (11.3 MB/s)
-real    0m36.643s
-
-Fetched 412 MB in 30s (13.4 MB/s)
-real    0m30.864s
-
-Fetched 412 MB in 26s (15.4 MB/s)
-real    0m27.031s
-</code></pre>
-
-<p>次に西日本から取得。</p>
-
-<pre><code>Fetched 412 MB in 19s (20.7 MB/s)
-real    0m20.026s
-
-Fetched 412 MB in 19s (21.1 MB/s)
-real    0m19.688s
-
-Fetched 412 MB in 18s (22.2 MB/s)
-real    0m18.746s
-</code></pre>
-
-<p>東でやってみたら</p>
-
-<pre><code>Fetched 412 MB in 24s (16.9 MB/s)
-real    0m24.203s
-
-Fetched 412 MB in 24s (17.2 MB/s)
-real    0m24.598s
-</code></pre>
-
-<p>という感じでリージョンまたぐよりも逆に遅かった…何故だ。</p>
-
-<hr />
-
-<p>結論</p>
-
-<pre><code>西日本： 21.3MBs
-東日本： 17.0MBs
-ダイレクト： 13.6 MBs
-</code></pre>
-
-<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
+						<ul>
+<li><a href="http://lists.debian.or.jp/pipermail/debian-devel/2017-September/000088.html">RFS: elpa-migemoのレビュー</a>を実施。</li>
+<li>libsql-splitstatement-perlを修正したのでアップロード。</li>
+<li>OpenQAのdebian/copyrightをアップデート。</li>
+</ul>
 
 					
 				</div>
@@ -363,10 +187,10 @@ real    0m24.598s
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/09/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Tue, Oct 3, 2017
+								Sun, Sep 3, 2017
 							</span>&nbsp;in
 							 using tags
 							
@@ -381,80 +205,309 @@ real    0m24.598s
 					<br>
 					
 						<ul>
-<li><a href="https://twitter.com/eldesh/status/915031977094389760">JPのページの誤りの指摘</a>を頂いたので修正した</li>
-<li><a href="https://idcfcloud.com">IDCFクラウド</a>のDebianテンプレートで問題を見つけたのでチケットを切っておいた。</li>
+<li>fonttoolsを<a href="https://tracker.debian.org/news/868524">unstableに入れた</a></li>
+<li>octiconsの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=874131">新しいバージョンについてのメモ</a>を残しておいた。</li>
+<li><a href="http://lists.debian.or.jp/pipermail/debian-devel/2017-September/000086.html">来年のDebConfに向けてスポンサー探している話</a>を流しておいた。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Aug 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>-usersに流れてきたメールをチラ見、ざっくり調べて原因見つけたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=873719">パッチ送っとく</a>。stretchにも入れたほうがいいんじゃない？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Aug 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/866769">xfonts-kappa20をアップロード</a>しておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Aug 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>昨日のfonttoolsの続き。conf.pyにモジュール読み込みを記述することで対応できた。</p>
+
+<pre><code>--- a/Doc/source/conf.py                     
++++ b/Doc/source/conf.py                     
+@@ -20,6 +20,8 @@                            
+ # import sys                                
+ # sys.path.insert(0, os.path.abspath('.'))  
+                                             
++import sys,os                               
++sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../Lib')                
+                                             
+ # -- General configuration ------------------------------------------------
+</code></pre>
+
+<p>あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&hellip;）。</p>
+
+<pre><code>override_dh_sphinxdoc:                       
+        sphinx-build $(CURDIR)/Doc/source $(CURDIR)/debian/fonttools/usr/share/doc/fonttools/html/                                                                                     
+        dh_sphinxdoc
+</code></pre>
+
+<p>色々変更をぶっ込んだので<a href="https://tracker.debian.org/news/866488">experimentalに</a>。で、アップロードしてからバグを閉じ忘れていたことに気づいた&hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&hellip;のでコマンドメールを別途。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Aug 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>jcodingsのアップデートがmaintainer dashboardで出てたのを見つけたので、<a href="https://tracker.debian.org/news/866103">アップロード</a>。</li>
 </ul>
 
 <hr />
 
-<p>「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？</p>
+<p>fonttoolsのアップデートをしようということで作業を始める。</p>
 
 <ul>
-<li>思いついた対象候補
+<li>upstreamの更新に合わせて対応</li>
+<li>そろそろbusterを視野に入れてpython3限定でビルド
 
 <ul>
-<li>さくらのVPS</li>
-<li>ConoHa</li>
-<li><a href="https://www.idcf.jp/cloud/?cl=top_cloud">IDCFクラウド</a>(←ここではこれをチョイス)</li>
+<li>Build-Dependsは python-* が python3-* になるのはわかっていたが、Dependsも　<code>${python:Depends}</code> ではなく <code>${python3:Depends}</code> だった。</li>
 </ul></li>
+<li>ドキュメントがsphinx前提になっていたのでdh-sphinxdocを導入</li>
 </ul>
 
-<p>IDCFクラウドは、<a href="https://www.idcf.jp/cloud/order.html?cl=cl_top#try">500円クーポン</a>があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。</p>
+<p>dh-sphinxdoc周りが今まで作業していなかったので勝手がわからずに苦労。</p>
 
 <ul>
-<li>Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&hellip;）。</li>
-<li>次に<a href="https://github.com/cybozu-go/aptutil/releases">go-apt-cacher</a>をダウンロードしてちょっと設定して起動します。</li>
-<li>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</li>
+<li>Build-Dependsに <code>python-sphinx</code> 指定。<code>dh-sphinxdoc</code>を含んでいる<code>sphinx-common</code> だけでもいいのかしら？</li>
+<li><code>dh @ --with sphinxdoc</code> しないと発動しない。</li>
+<li><code>Depends: ${sphinxdoc:Depends}</code>加えとくのも忘れずに。</li>
+<li>ビルド時にsphinx起動していなかったのでoverrideした。</li>
 </ul>
 
-<pre><code># apt show openclipart-png
-Package: openclipart-png
-Source: openclipart
-Version: 1:0.18+dfsg-14
-Installed-Size: 148 MB
+<p>で、sphinx動かすと以下のエラー。</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py&quot;, line 560, in import_object
+/build/fonttools-3.15.1/Doc/source/varLib/models.rst:5: WARNING: autodoc: failed to import module u'fontTools.varLib.models'; the following exception was raised:
 </code></pre>
 
-<p>有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。</p>
+<p>これは<a href="http://www.sphinx-doc.org/ja/stable/ext/autodoc.html">.. automodule::</a>というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</p>
 
-<pre><code># time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 10s (12.2 MB/s)          
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
 
-real    0m10.742s
-user    0m2.204s
-sys 0m0.420s
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Aug 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>pkg-perl以下に移動したパッケージを更新してpush。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Aug 24, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>birdfontパッケージに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=871963">バグレポートパッチをもらっていた</a>のでこちらを適用した。</p>
+
+<p>んで、パッケージをビルドしたら以下のlintianエラーがでた</p>
+
+<pre><code>W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml
+E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml
 </code></pre>
 
-<p>まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）</p>
+<p>のでパッチ作成、忘れないうちに<a href="https://github.com/johanmattssonm/birdfont/pull/52">PullRequest</a>。</p>
 
-<pre><code># time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (50.3 MB/s)           
+<p>しかし</p>
 
-real    0m2.758s
-user    0m2.028s
-sys 0m0.336s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (43.0 MB/s)          
-
-real    0m3.423s
-user    0m2.292s
-sys 0m0.396s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 3s (42.2 MB/s)           
-
-real    0m3.237s
-user    0m2.496s
-sys 0m0.464s
+<pre><code>E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz
 </code></pre>
 
-<p>キャッシュされた状態からだと平均で3.13秒（45.1MB/s）</p>
+<p>が残っている。<a href="https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html">orig-tarball-missing-upstream-signature</a>はキツすぎるだろう？ということで既にBTSに登録されていて<a href="https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207">gitでwarningに落とされた</a>ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。</p>
 
-<p>ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。</p>
+<p>う、overrideしようとしたら</p>
+
+<pre><code>E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1
+</code></pre>
+
+<p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
 
 					
 				</div>
@@ -597,94 +650,13 @@ sys 0m0.464s
     
     
     
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
      
         
         
     
     
     <li
-    ><a href="/blog/page/20/">20</a></li>
+    ><a href="/blog/page/11/">11</a></li>
     
     
     <li
@@ -693,7 +665,7 @@ sys 0m0.464s
     </li>
     
     <li>
-        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/11/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

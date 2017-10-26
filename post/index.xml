@@ -57,6 +57,46 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 26 Oct 2017 20:06:03 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881529&#34;&gt;libtest-mock-time-perl がリポジトリに入った&lt;/a&gt;。これでようやくos-autoinstの更新に手を付けられる。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.debian.or.jp/using/book.html#sd201711&#34;&gt;JPサイトにSDを追加&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881723&#34;&gt;octiconsパッケージを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881730&#34;&gt;os-autoinstパッケージを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;アホなミスをしていたミラー設定を修正。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 25 Oct 2017 04:29:36 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881250&#34;&gt;ruby-crackパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881244&#34;&gt;vmdk-stream-converterパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881477&#34;&gt;jruby-joniパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881476&#34;&gt;nailgunパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;さくらミラーの設定で&lt;a href=&#34;https://hanzubon.jp/KEYS/&#34;&gt;push元のキー&lt;/a&gt;をDSA鍵のままにしていたのがOpenSSHのアップデートで蹴られていたので差し替えた。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 24 Oct 2017 20:22:25 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -482,49 +522,6 @@ dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_re
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;debian/cargo-checksum.json が必要、らしいが &lt;a href=&#34;https://wiki.debian.org/Teams/RustPackaging/Policy&#34;&gt;https://wiki.debian.org/Teams/RustPackaging/Policy&lt;/a&gt; を見ても何書いていいかがさっぱりわからん… &lt;a href=&#34;https://codesearch.debian.net/search?q=debian%2Fcargo-checksum.json&#34;&gt;ソースを検索した&lt;/a&gt;けど、もとからあるファイルをコピーしているようにしか見えない（が、無いんだよな…）&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 09 Oct 2017 14:31:17 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;os-autoinstが止まるのをinvestigation。
-
-&lt;ul&gt;
-&lt;li&gt;新しいperlモジュールがtestに必要になってたようなので、ビルドする。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878042&#34;&gt;ITPもする&lt;/a&gt;。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878041&#34;&gt;そのビルドに必要な別のperlモジュールもITPする&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ITPしたのは&lt;a href=&#34;http://pkg-perl.alioth.debian.org/git.html&#34;&gt;$ dtp alioth-repo&lt;/a&gt;という感じでpushしておいた。&lt;/li&gt;
-&lt;li&gt;が、やっぱり止まるのは変わらないので&lt;a href=&#34;https://progress.opensuse.org/issues/25844&#34;&gt;issue登録&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;何が原因だか、今の所サッパリなので Jessie や Strech 環境を作ったりしてテスト。Jessie だと libmojolicious-perl が古すぎてモジュールが含まれないせいでテストコケるのでsidのを持ってきたり。その流れでnewest upstreamのを手元でビルドして差し替えもしてみた。が、結局何も変わらず。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;unidicのサイトが変更されたのに関する&lt;a href=&#34;https://twitter.com/henrich/status/917274260153843712&#34;&gt;ライセンス表記周りの意見&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;忘れてた&lt;a href=&#34;https://github.com/sphinx-doc/sphinx/issues/4131&#34;&gt;sphinxのissue登録&lt;/a&gt;をやっておいた&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>Fedora Modularity Memo</title>
-            <link>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</link>
-            <pubDate>Sun, 08 Oct 2017 14:04:21 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/&#34;&gt;https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://threebean.org/presentations/factory2-devconf17&#34;&gt;The Productization Pipeline and the so-called &amp;ldquo;Factory 2.0&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

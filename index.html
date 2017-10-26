@@ -126,6 +126,90 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Oct 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/881529">libtest-mock-time-perl がリポジトリに入った</a>。これでようやくos-autoinstの更新に手を付けられる。</li>
+<li><a href="http://www.debian.or.jp/using/book.html#sd201711">JPサイトにSDを追加</a></li>
+<li><a href="https://tracker.debian.org/news/881723">octiconsパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/881730">os-autoinstパッケージを更新</a></li>
+<li>アホなミスをしていたミラー設定を修正。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 25, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/881250">ruby-crackパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/881244">vmdk-stream-converterパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/881477">jruby-joniパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/881476">nailgunパッケージをアップデート</a></li>
+<li>さくらミラーの設定で<a href="https://hanzubon.jp/KEYS/">push元のキー</a>をDSA鍵のままにしていたのがOpenSSHのアップデートで蹴られていたので差し替えた。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -299,6 +383,219 @@
 	
 
         
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 18, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>ミラースクリプトを<a href="https://lists.debian.org/debian-mirrors/2017/10/msg00017.html">案内</a>に従って入れ替えた</li>
+<li><a href="https://tracker.debian.org/news/880023">libmojolicious-plugin-assetpack-perlを更新</a></li>
+<li><a href="https://tracker.debian.org/news/879865">fonts-arphic-umingを更新</a></li>
+<li><a href="https://tracker.debian.org/news/879869">yydebugのポカを修正</a>&hellip;。</li>
+<li>libexport-attrs-perlがrejectされたので再アップロード</li>
+<li>nadokaを西山さんに押し付けるだけの仕事を :)</li>
+</ul>
+
+<hr />
+
+<p>openQAでコケる所を抜粋</p>
+
+<pre><code>[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+./t/05-scheduler-cancel.t ................. ok
+./t/05-scheduler-capabilities.t ........... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+./t/05-scheduler-dependencies.t ........... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
+./t/05-scheduler-restart-and-duplicate.t .. ok
+./t/06-users.t ............................ ok
+./t/07-api_jobtokens.t .................... ok
+./t/07-api_keys.t ......................... ok
+./t/09-job_clone.t ........................ ok
+./t/10-tests_overview.t ................... ok
+./t/13-joblocks.t ......................... ok
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
+(snip)
+Uncaught exception from user code:
+        org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+        Net::DBus::Binding::Bus::new(&quot;Net::DBus::Binding::Bus&quot;, &quot;type&quot;, 1) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 191
+        Net::DBus::system(&quot;Net::DBus&quot;) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 153
+        Net::DBus::find(&quot;Net::DBus&quot;, &quot;nomainloop&quot;, 1) called at lib/OpenQA/IPC.pm line 57
+        OpenQA::IPC::new(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/IPC.pm line 65
+        OpenQA::IPC::ipc(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/WebSockets.pm line 50
+        OpenQA::WebSockets::new(&quot;OpenQA::WebSockets&quot;) called at lib/OpenQA/WebSockets.pm line 41
+        OpenQA::WebSockets::run() called at /build/openqa-4.3+git20171018/t/lib/OpenQA/Test/Utils.pm line 85
+        OpenQA::Test::Utils::create_websocket_server(60430) called at ./t/05-scheduler-full.t line 65
+[6780:info] Listening at &quot;http://127.0.0.1:60429/&quot;
+Use of uninitialized value in symlink at ./t/05-scheduler-full.t line 73 (#1)
+    (W uninitialized) An undefined value was used as if it were already
+    defined.  It was interpreted as a &quot;&quot; or a 0, but maybe it was a mistake.
+    To suppress this warning assign a defined value to your variables.
+    
+    To help you figure out what was undefined, perl will try to tell you
+    the name of the variable (if any) that was undefined.  In some cases
+    it cannot do this, so it also tells you what operation you used the
+    undefined value in.  Note, however, that perl optimizes your program
+    and the operation displayed in the warning may not necessarily appear
+    literally in your program.  For example, &quot;that $foo&quot; is usually
+    optimized into &quot;that &quot; . $foo, and the warning will refer to the
+    concatenation (.) operator, even though there is no . in
+    your program.
+    
+Uncaught exception from user code:
+        can't symlink at ./t/05-scheduler-full.t line 73.
+</code></pre>
+
+<p>あれ、これはキャッシュを含めたときだったか、どうだったか。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 17, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>働きかけていた<a href="https://www.faq.idcf.jp/app/answers/detail/a_id/819/c/22">IDCFクラウドさんでのDebian8設定の不備</a>が漸く公開された。
+
+<ul>
+<li>ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&hellip;。</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>bind9のchangelogが興味深い。</p>
+
+<pre><code>  * Add support for downloading upstream sources using d/watch
+    + Make d/copyright machine readable for Files-Excluded: support
+    + Update Files-Exclude: * to remove obsolete software dropped in
+      contrib/, but not really used
+</code></pre>
+
+<p>watchはこんな感じ</p>
+
+<pre><code>opts=\
+repack,\
+compression=xz,\
+repacksuffix=+dfsg,\
+uversionmangle=s/((rc|b)\d+)$/~$1/,\
+dirversionmangle=s/((rc|b)\d+)$/~$1/,\
+dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
+</code></pre>
+
+<p>copyrightはこんな感じ</p>
+
+<pre><code>Files-Excluded: contrib/idn
+                contrib/dnsperf-2.1.0.0-1
+                contrib/nslint-3.0a2
+                contrib/query-loc-0.4.0
+                contrib/queryperf
+                contrib/zkt-1.1.3
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 16, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fonts-sawarabi-minchoをアップロード</li>
+<li>yydebugのVcs-Gitが間違ったままだった&hellip;直した。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
 	</div>
     <div class="container">
         <div class="row">
@@ -422,94 +719,13 @@
     
     
     
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
      
         
         
     
     
     <li
-    ><a href="/blog/page/20/">20</a></li>
+    ><a href="/blog/page/11/">11</a></li>
     
     
     <li
@@ -518,7 +734,7 @@
     </li>
     
     <li>
-        <a href="/blog/page/20/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/11/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
