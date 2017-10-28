@@ -47,7 +47,53 @@
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;apt-listchangesのpo&lt;/a&gt;をファイルする&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882&#34;&gt;hyperv-daemonsの修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;sylpheed関連パッケージでGPG鍵確認処理を追加&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 28 Oct 2017 16:42:05 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882072&#34;&gt;ruby-bcatを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881990&#34;&gt;os-autoinstを更新&lt;/a&gt;&amp;hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882067&#34;&gt;mecab-jumandicを更新&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   dh_autoreconf
+libtoolize: putting auxiliary files in &#39;.&#39;.
+libtoolize: copying file &#39;./ltmain.sh&#39;
+libtoolize: Consider adding &#39;AC_CONFIG_MACRO_DIRS([m4])&#39; to configure.ac,
+libtoolize: and rerunning libtoolize and aclocal.
+libtoolize: Consider adding &#39;-I m4&#39; to ACLOCAL_AMFLAGS in Makefile.am.
+configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+configure.ac:21: installing &#39;./compile&#39;
+configure.ac:13: installing &#39;./missing&#39;
+Makefile.am: error: required file &#39;./AUTHORS&#39; not found
+commands/Makefile.am:9: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;)
+commands/Makefile.am: installing &#39;./depcomp&#39;
+common/Makefile.am:1: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;)
+searcher/Makefile.am:8: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;)
+autoreconf: automake failed with exit status: 1
+dh_autoreconf: autoreconf -f -i returned exit code 1
+debian/rules:7: recipe for target &#39;build&#39; failed
+make: *** [build] Error 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;空のファイルをquiltで追加しようとしたらダメだったのでdebian/rulesでtouchで回避。で、&lt;a href=&#34;https://tracker.debian.org/news/882074&#34;&gt;sylfilterを更新&lt;/a&gt;してメーリングリストで要望を上げておいた。&lt;/p&gt;
 </description>
           </item>
         
@@ -471,57 +517,6 @@ $ gbp buildpackage --git-pbuilder --git-pristine-tar
             <description>&lt;ul&gt;
 &lt;li&gt;DMの方の活動が年単位で無いのでping&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 10 Oct 2017 06:52:08 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git&#34;&gt;cutter-testing-frameworkのリポジトリを作っておいた&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;実作業はupstreamの@kenhysさんにお任せで&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;とりあえず、unidicをアップデートしてみるか？と少しだけ作業。
-
-&lt;ul&gt;
-&lt;li&gt;他のunidic辞書もパッケージにしても面白いか？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://oss-gate.github.io/&#34;&gt;OSS Gate&lt;/a&gt;に拙著を寄贈しようと言う話をした。&lt;/li&gt;
-&lt;li&gt;昨日のos-autoinstのハングアップが直ったのでその旨連絡した。&lt;/li&gt;
-&lt;li&gt;os-autoinstで&lt;a href=&#34;https://github.com/os-autoinst/os-autoinst/pull/865&#34;&gt;debhelperが誤ってファイルを消すのを対処&lt;/a&gt;した。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/takuya_ono/status/917653702244044801&#34;&gt;guacamoleパッケージがおかしい、というつぶやき&lt;/a&gt;を見たので、MLにパッチの提案だけしておく&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;rustを使ったソースのパッケージングについて。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;https://github.com/sharkdp/fd&lt;/a&gt; というのを見かけて面白そうなのでパッケージングしてみようとする。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/sharkdp/fd; cd fd
-$ git checkout -b debian
-$ dh_make --createorig -s -p fd_4.0.0
-(debianディレクトリをいじる…)
-$ git add debian; git commit
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;で、ビルドすると通るけど何もしてない風味。ざっくりrustcを使うのはなにかあるのだろうか？と調べると dh-cargo というのが見つかった。どうやら、rustなパッケージは &lt;code&gt;dh --buildsystem cargo&lt;/code&gt; という形で実施するようだ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;   dh_auto_install -O--buildsystem=cargo
-cp: cannot stat &#39;./debian/cargo-checksum.json&#39;: No such file or directory
-dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_registry/fd-4.0.0/.cargo-checksum.json returned exit code 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;debian/cargo-checksum.json が必要、らしいが &lt;a href=&#34;https://wiki.debian.org/Teams/RustPackaging/Policy&#34;&gt;https://wiki.debian.org/Teams/RustPackaging/Policy&lt;/a&gt; を見ても何書いていいかがさっぱりわからん… &lt;a href=&#34;https://codesearch.debian.net/search?q=debian%2Fcargo-checksum.json&#34;&gt;ソースを検索した&lt;/a&gt;けど、もとからあるファイルをコピーしているようにしか見えない（が、無いんだよな…）&lt;/p&gt;
 </description>
           </item>
         

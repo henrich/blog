@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -54,15 +54,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Oct 28, 2017</span> in 
 				 using tags
 				
 					
 					<a href="/blog/tags/debian">debian</a>
-				
-					 , 
-					<a href="/blog/tags/todo">todo</a>
 				
 			</small>
 		</div>
@@ -70,35 +67,38 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h1 id="支援について">支援について</h1>
-
-<p>このBlogにあるようなDebian関連の作業について支援して頂ける方、henrich @ debian.org 宛に<a href="http://amzn.to/2u7MfE5">Amazonギフト券</a>でのコントリビューションをお待ちしております :-)</p>
-
-<h2 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h2>
-
-<ul>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
-
-<ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
-<li><a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">specファイル</a>参照</li>
-</ul></li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
-
-<ul>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>fontforgeパッケージの更新をどうするか</li>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-</ul></li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">apt-listchangesのpo</a>をファイルする</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882">hyperv-daemonsの修正</a></li>
-<li>sylpheed関連パッケージでGPG鍵確認処理を追加</li>
+			<ul>
+<li><a href="https://tracker.debian.org/news/882072">ruby-bcatを更新</a></li>
+<li><a href="https://tracker.debian.org/news/881990">os-autoinstを更新</a>&hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。</li>
+<li><a href="https://tracker.debian.org/news/882067">mecab-jumandicを更新</a></li>
 </ul>
+
+<hr />
+
+<p>sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。</p>
+
+<pre><code>   dh_autoreconf
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
+libtoolize: and rerunning libtoolize and aclocal.
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+configure.ac:21: installing './compile'
+configure.ac:13: installing './missing'
+Makefile.am: error: required file './AUTHORS' not found
+commands/Makefile.am:9: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+commands/Makefile.am: installing './depcomp'
+common/Makefile.am:1: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+searcher/Makefile.am:8: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+autoreconf: automake failed with exit status: 1
+dh_autoreconf: autoreconf -f -i returned exit code 1
+debian/rules:7: recipe for target 'build' failed
+make: *** [build] Error 2
+</code></pre>
+
+<p>空のファイルをquiltで追加しようとしたらダメだったのでdebian/rulesでtouchで回避。で、<a href="https://tracker.debian.org/news/882074">sylfilterを更新</a>してメーリングリストで要望を上げておいた。</p>
 
 		</div>
 	</div>
