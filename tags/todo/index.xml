@@ -39,13 +39,11 @@
 
 &lt;ul&gt;
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;fontforgeパッケージの更新をどうするか&lt;/li&gt;
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;apt-listchangesのpo&lt;/a&gt;をファイルする&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882&#34;&gt;hyperv-daemonsの修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;sylpheed関連パッケージでGPG鍵確認処理を追加&lt;/li&gt;
 &lt;/ul&gt;

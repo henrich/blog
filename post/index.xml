@@ -39,15 +39,63 @@
 
 &lt;ul&gt;
 &lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;fontforgeパッケージの更新をどうするか&lt;/li&gt;
 &lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
 &lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;apt-listchangesのpo&lt;/a&gt;をファイルする&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882&#34;&gt;hyperv-daemonsの修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;sylpheed関連パッケージでGPG鍵確認処理を追加&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 30 Oct 2017 20:02:22 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=664789&#34;&gt;fontforgeのバグ&lt;/a&gt;を古いliveイメージ落としてreproduce検証。Debian9では無くなっていたので、fixedタグつけてcloseしておいた。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254295&#34;&gt;もう一つfontfogeのバグレポート&lt;/a&gt;はfreefont側の問題なんじゃないかねぇ？という感じで再現もしなくなってるのでcloseしておいた。&lt;/li&gt;
+&lt;li&gt;BTSのパッチを&lt;a href=&#34;https://github.com/fontforge/fontforge/pull/3196&#34;&gt;upstreamにPRしといた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 29 Oct 2017 03:03:51 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;apt-fileのchangelogより&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apt-file (3.1.5) unstable; urgency=medium
+
+  * Remove rapt-file and two obsolete .sgml files from the source.
+  * Set R³ to no; apt-file does not need (fake)root during the
+    binary-targets in the package builds.
+  * Skip dh_strip_determinism; it is a no-op at the moment and
+    is planned to be removed eventually.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;R³ ?? と思ったらdebian-develにRFCが出てた。また処理するべきことが増えるのかー&amp;hellip;。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882107&#34;&gt;plumをアップデート&lt;/a&gt;。Multiarch hinterはtracker経由でしか見れないのが不満。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;apt-listchangesのpo&lt;/a&gt;をファイルするのTodoを&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880042&#34;&gt;処理&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -428,96 +476,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
 &lt;ul&gt;
 &lt;li&gt;納得したので、&lt;a href=&#34;https://tracker.debian.org/news/879272&#34;&gt;Uploadした&lt;/a&gt;。関連ありそうな別パッケージについては&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520&#34;&gt;バグレポート&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 13 Oct 2017 21:59:22 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;code&gt;gbpの使い方をざっと教えて&lt;/code&gt; というリクエストを頂いたのでざっくりメモ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git
-Cloning into &#39;cutter-testing-framework&#39;...
-remote: Counting objects: 3334, done.
-remote: Compressing objects: 100% (949/949), done.
-remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
-Receiving objects: 100% (3334/3334), 3.69 MiB | 442.00 KiB/s, done.
-Resolving deltas: 100% (2336/2336), done.
-
-$ cd cutter-testing-framework/
-
-$ gbp import-orig --uscan --pristine-tar
-gbp:error: 
-Repository does not have branch &#39;upstream&#39; for upstream sources. If there is none see
-file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
-on howto create it otherwise use --upstream-branch to specify it.
-
-$ git checkout upstream
-Branch &#39;upstream&#39; set up to track remote branch &#39;upstream&#39; from &#39;origin&#39;.
-Switched to a new branch &#39;upstream&#39;
-$ git checkout pristine-tar 
-Branch &#39;pristine-tar&#39; set up to track remote branch &#39;pristine-tar&#39; from &#39;origin&#39;.
-Switched to a new branch &#39;pristine-tar&#39;
-$ git checkout master 
-Switched to branch &#39;master&#39;
-Your branch is up to date with &#39;origin/master&#39;.
-
-$ gbp import-orig --uscan --pristine-tar
-gbp:info: Launching uscan...
-uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
-uscan:    =&amp;gt; Newer package available from
-      http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz
-gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
-What is the upstream version? [1.2.6] 
-gbp:info: Importing &#39;../cutter-testing-framework_1.2.6.orig.tar.gz&#39; to branch &#39;upstream&#39;...
-gbp:info: Source package is cutter-testing-framework
-gbp:info: Upstream version is 1.2.6
-gbp:info: Replacing upstream source on &#39;master&#39;
-gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
-(色々編集してコミット...)
-$ dch -v 1.2.6-1
-$ dch -r
-$ gbp buildpackage --git-pbuilder --git-pristine-tar
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;upstream archiveのimportの際に &lt;code&gt;--pristine-tar&lt;/code&gt; でpristine-tarブランチにコミットしておくのを忘れない&lt;/li&gt;
-&lt;li&gt;最初にupstreamブランチとpristine-tarブランチをchekoutしないとビルドの際にエラー（面倒くさいけど）
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;--git-pbuilder&lt;/code&gt; でpbuilder/cowbuilder環境を使う&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--git-pristine-tar&lt;/code&gt; で pristine-tar ブランチのファイルを使う&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;これぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は &lt;code&gt;--git-ignore-branch&lt;/code&gt; 付けてビルドが必要。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 11 Oct 2017 05:09:21 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;DMの方の活動が年単位で無いのでping&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

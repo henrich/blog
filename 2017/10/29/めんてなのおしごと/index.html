@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -54,15 +54,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Oct 29, 2017</span> in 
 				 using tags
 				
 					
 					<a href="/blog/tags/debian">debian</a>
-				
-					 , 
-					<a href="/blog/tags/todo">todo</a>
 				
 			</small>
 		</div>
@@ -70,32 +67,24 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
+			<p>apt-fileのchangelogより</p>
 
-<h1 id="支援について">支援について</h1>
+<pre><code>apt-file (3.1.5) unstable; urgency=medium
 
-<p>このBlogにあるようなDebian関連の作業について支援して頂ける方、henrich @ debian.org 宛に<a href="http://amzn.to/2u7MfE5">Amazonギフト券</a>でのコントリビューションをお待ちしております :-)</p>
+  * Remove rapt-file and two obsolete .sgml files from the source.
+  * Set R³ to no; apt-file does not need (fake)root during the
+    binary-targets in the package builds.
+  * Skip dh_strip_determinism; it is a no-op at the moment and
+    is planned to be removed eventually.
+</code></pre>
 
-<h2 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h2>
+<p>R³ ?? と思ったらdebian-develにRFCが出てた。また処理するべきことが増えるのかー&hellip;。</p>
 
-<ul>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
-
-<ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
-<li><a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">specファイル</a>参照</li>
-</ul></li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
+<hr />
 
 <ul>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-</ul></li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882">hyperv-daemonsの修正</a></li>
-<li>sylpheed関連パッケージでGPG鍵確認処理を追加</li>
+<li><a href="https://tracker.debian.org/news/882107">plumをアップデート</a>。Multiarch hinterはtracker経由でしか見れないのが不満。</li>
+<li><a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">apt-listchangesのpo</a>をファイルするのTodoを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880042">処理</a>。</li>
 </ul>
 
 		</div>

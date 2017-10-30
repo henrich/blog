@@ -60,6 +60,156 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Oct 8, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>忘れないうちに<a href="https://github.com/os-autoinst/openQA/pull/1465">１行パッチ</a>をopenQAに。</li>
+<li>openSUSE asia summitの発表の練習をしてみる。15分にはなんとか収まりそう。</li>
+<li>Debian JPのサイト、9.2リリースを反映しておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Oct 7, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://www.debian.org/releases/stretch/amd64/release-notes/">リリースノート</a>の更新に気がついたので追従しておいた。</li>
+<li>openSUSEをいじってたらsnapperのアップデートがあったが、<a href="https://github.com/openSUSE/snapper/issues/364">そのバージョンのタグがgit repositoryに打たれてない。。。</a></li>
+<li>openQAやos-autoinstもタグが打たれてないので、<a href="https://progress.opensuse.org/issues/25826">お願いを出す</a>など&hellip;。</li>
+</ul>
+
+<hr />
+
+<p>openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&hellip;</p>
+
+<pre><code>Can't locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need
+        to install the Mojolicious::Plugin::AssetPack::Backcompat module)
+</code></pre>
+
+<p>なんでupstreamの依存関係には含まれとらんのだろう？</p>
+
+<p>んじゃさくっとdh-make-perl&hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129">upstreamに質問</a>
+→ <a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/">backpan</a>というところに消したのは置いてあるよ、と教えてもらった。しかし、<a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme">本来これは必要ないはず</a>、なんだけども&hellip;？</p>
+
+<p>兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&hellip;またエラーだ。以下が延々と。</p>
+
+<pre><code>Uncaught exception from user code:
+        Plugin &quot;bootstrap3&quot; missing, maybe you need to install it?
+        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
+        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
+        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &quot;bootstrap3&quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
+        OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179
+        Mojolicious::new(&quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Mojo/Server.pm line 17
+        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Test/Mojo.pm line 247
+        Test::Mojo::new(&quot;Test::Mojo&quot;, &quot;OpenQA::WebAPI&quot;) called at ./t/05-scheduler-dependencies.t line 212
+</code></pre>
+
+<pre><code>Can't locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
+BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
+    (F) You said to do (or require, or use) a file that couldn't be found.
+    Perl looks for the file in all the locations mentioned in @INC, unless
+    the file name included the full path to the file.  Perhaps you need
+    to set the PERL5LIB or PERL5OPT environment variable to say where the
+    extra library is, or maybe the script needs to add the library name
+    to @INC.  Or maybe you just misspelled the name of the file.  See
+    &quot;require&quot; in perlfunc and lib.
+</code></pre>
+
+<pre><code>Uncaught exception from user code:
+        Can't locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
+         at /usr/share/perl5/Context/Preserve.pm line 42.
+</code></pre>
+
+<p>Mojolicious::Plugin::Bootstrap3 が必要そうだ。t::ui::PhantomTest と dbicdh/_common/deploy/_any/21-seeds.pl  はわからない。。。</p>
+
+<p>&hellip;とここまで来たところで「upstreamもtestを実行していないので、とりあえず無視」ということにした。</p>
+
+<ul>
+<li>ビルド時には存在しないユーザーにchownしてる
+
+<ul>
+<li>ということはpostinstでchownするほうがいいか</li>
+</ul></li>
+<li>assetsディレクトリが存在しないので悩んでいたら、4.3の時点では存在せず、masterにはある&hellip;
+
+<ul>
+<li>コメントアウトしておく。</li>
+</ul></li>
+<li>存在しない systemd service ファイルのインストールが&hellip;
+
+<ul>
+<li>とりあえず消す</li>
+</ul></li>
+</ul>
+
+<p>ということで4.3のビルドは一旦終わった。</p>
+
+<hr />
+
+<p>色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&hellip;うわ、これ Makefile の最初のところで <code>./script/generate-packed-assets</code> というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&hellip;厄介な&hellip;。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -513,122 +663,6 @@ sys 0m0.464s
 </ul></li>
 <li>IIJのミラーはできないものかをわかりそうな人に尋ねることに</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Sep 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/infra">infra</a>
-						
-								 , 
-							<a href="/blog/tags/event">event</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html">gbp-import-orig</a>のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？</p>
-
-<pre><code>--component=COMPONENT
-When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
- 
-Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
-</code></pre>
-
-<p>でも「実験的機能」なのか。。。継続ウォッチだな。</p>
-
-<hr />
-
-<p>openSUSE Asia summit 2017で話をすることにしているんので資料作成。
-するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？</p>
-
-<pre><code>この辺から探して下さい
-https://en.opensuse.org/Portal:Artwork
-https://github.com/openSUSE/artwork
-
-ロゴそのもののライセンスは:
-https://en.opensuse.org/openSUSE:Trademark_guidelines
-
-その他は CC-BY-SA 3.0 のものが多いです
-</code></pre>
-
-<p>とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
-足りない部分の資料は今回は来られないAndrewにお願いしてみた。</p>
-
-<hr />
-
-<ul>
-<li><p>ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。</p></li>
-
-<li><p>ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&hellip;？）</p></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Sep 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今回はパッケージメンテナじゃなくてサーバーのメンテナンスの話。</p>
-
-<p><a href="http://server.sakura.ad.jp/specification/">さくらの専用サーバー</a>でDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係で<a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">hp側</a>のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも<a href="http://server.sakura.ad.jp/common/pdf/sd_spec.pdf">仕様</a>によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？</p>
-
-<p>何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&hellip;→s/hp/hpe/だけだったのでサクッと。</p>
 
 					
 				</div>
