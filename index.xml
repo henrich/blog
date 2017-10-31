@@ -56,6 +56,22 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 31 Oct 2017 21:05:15 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;fontforgeのバグのtriageで、[古いバグが再現しなくなっているのでcloseした](&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206&#34;&gt;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Mon, 30 Oct 2017 20:02:22 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -455,27 +471,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879349&#34;&gt;jcodings&lt;/a&gt;のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879439&#34;&gt;yydebug&lt;/a&gt;を諸々更新。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://martiansoftware.com/nailgun/&#34;&gt;nailgunのウェブサイト&lt;/a&gt;を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&amp;hellip;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 14 Oct 2017 19:53:18 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;今日も今日とてopenQAに&lt;a href=&#34;https://github.com/os-autoinst/openQA/pull/1472&#34;&gt;１行パッチ&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/878494&#34;&gt;ttf-kacstを落として、というバグレポート&lt;/a&gt;がHolgerから。あーすっかり忘れてた&amp;hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。
-
-&lt;ul&gt;
-&lt;li&gt;納得したので、&lt;a href=&#34;https://tracker.debian.org/news/879272&#34;&gt;Uploadした&lt;/a&gt;。関連ありそうな別パッケージについては&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520&#34;&gt;バグレポート&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
