@@ -61,7 +61,7 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;fontforgeのバグのtriageで、[古いバグが再現しなくなっているのでcloseした](&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206&#34;&gt;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fontforgeのバグのtriageで、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206&#34;&gt;古いバグが再現しなくなっているのでcloseした&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
