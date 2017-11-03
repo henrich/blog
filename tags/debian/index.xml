@@ -56,6 +56,83 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 03 Nov 2017 07:12:30 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;先日の問題は ~/.gbp.conf でのオプション指定が何故かエラーを引き起こすようになっていたのが原因だった（regressionだろうな）。ということで、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880624&#34;&gt;バグ報告しておいた&lt;/a&gt;。バグ報告には &amp;ndash;pristine-tar-commit が動いてないのも付記しておいた。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/883620&#34;&gt;gnome-todo をとりあえずアップロード&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;git-buildpackageをダウングレードしてpristine-tarにも追加。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 01 Nov 2017 20:23:30 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/883148&#34;&gt;libmojolicious-plugin-assetpack-perlパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;libxmlbirdをアップデートしようと思ったらtarballはできてるのにtagがpushされてないので、またお願いしておく&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;gnome-todoをビルドしようとするとgbpがpristine-tar周りでエラーが出る&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gbp buildpackage  --git-pbuilder  --git-ignore-branch --git-pristine-tar-commit  --git-upstream-tag=GNOME_TODO_3_26_2 --git-verbose
+gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--show-cdup&#39;]
+gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--is-bare-repository&#39;]
+gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--git-dir&#39;]
+gbp:debug: /bin/true [] []
+gbp:debug: [&#39;git&#39;, &#39;status&#39;, &#39;--porcelain&#39;]
+gbp:debug: [&#39;git&#39;, &#39;symbolic-ref&#39;, &#39;HEAD&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show-ref&#39;, &#39;refs/heads/debian/sid&#39;]
+gbp:debug: [&#39;git&#39;, &#39;ls-tree&#39;, &#39;HEAD&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/changelog&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;]
+gbp:info: Building with (cowbuilder) for sid
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show-ref&#39;, &#39;refs/heads/pristine-tar&#39;]
+gbp:debug: [&#39;git&#39;, &#39;log&#39;, &#39;--pretty=format:%H&#39;, &#39;--grep=pristine-tar .* gnome-todo_3.26.2\\.orig.tar\\.&#39;, &#39;pristine-tar&#39;, &#39;--&#39;]
+gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--quiet&#39;, &#39;--verify&#39;, &#39;pristine-tar^0&#39;]
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=format:%an%x00%ae%x00%ad%x00%cn%x00%ce%x00%cd%x00%s%x00%f%x00%b%x00&#39;, &#39;-z&#39;, &#39;--date=raw&#39;, &#39;--no-renames&#39;, &#39;--name-status&#39;, &#39;79d0e4f830d3beecf5770908c715616f6f7a3fdf&#39;]
+gbp:debug: Determined compression type &#39;gzip&#39;
+gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;]
+gbp:debug: Looking for orig tarballs &#39;gnome-todo_3.26.2.orig.tar.gz&#39; at &#39;../tarballs/&#39;
+gbp:info: Tarballs &#39;gnome-todo_3.26.2.orig.tar.gz&#39; not found at &#39;../tarballs/&#39;
+gbp:debug: pristine-tar [] [&#39;--help&#39;]
+gbp:debug: pristine-tar [] [&#39;verify&#39;, &#39;/home/henrich/src/pkg-gnome/build-area/gnome-todo_3.26.2.orig.tar.gz&#39;]
+gbp:error: Pristine-tar couldn&#39;t verify &amp;quot;gnome-todo_3.26.2.orig.tar.gz&amp;quot;: fatal: Path &#39;gnome-todo_3.26.2.orig.tar.gz.delta&#39; does not exist in &#39;refs/heads/pristine-tar&#39;
+pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.delta failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash;git-no-pristine-tar オプションをつけるとビルドはできるんだけど&amp;hellip;負けた気がするよね。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 31 Oct 2017 21:05:15 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -420,58 +497,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
                 contrib/queryperf
                 contrib/zkt-1.1.3
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 16 Oct 2017 07:01:55 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;fonts-sawarabi-minchoをアップロード&lt;/li&gt;
-&lt;li&gt;yydebugのVcs-Gitが間違ったままだった&amp;hellip;直した。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 15 Oct 2017 07:39:55 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;パッケージを拾って色々分析居しているサイトが&lt;a href=&#34;https://repology.org/maintainer/henrich%40debian.org/problems&#34;&gt;担当しているパッケージの問題を列挙してた&lt;/a&gt;ので対応する。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879346&#34;&gt;poppler-data&lt;/a&gt;を更新&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879341&#34;&gt;fonts-ipaexfont&lt;/a&gt;を更新&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879347&#34;&gt;fonts-ipafont-nonfree&lt;/a&gt;を更新&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879348&#34;&gt;fonts-ipafont-nonfree-jisx0208&lt;/a&gt;を更新&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879353&#34;&gt;fonts-ipafont&lt;/a&gt;を更新&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://qa.debian.org/developer.php?login=henrich&amp;amp;comaint=yes&#34;&gt;packages overview&lt;/a&gt;を参照して問題洗い出し&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;git pushを忘れていたのを幾つか対応。&lt;/li&gt;
-&lt;li&gt;xfonts-* パッケージが今までの&lt;code&gt;Section: x11&lt;/code&gt;でなくて&lt;code&gt;Section: fonts&lt;/code&gt;をlintianで推奨されるようになったので、ホント？という&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609&#34;&gt;質問をした&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879352&#34;&gt;pleaiades&lt;/a&gt;のwatchファイルがhttpだったのを直した&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879349&#34;&gt;jcodings&lt;/a&gt;のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879439&#34;&gt;yydebug&lt;/a&gt;を諸々更新。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://martiansoftware.com/nailgun/&#34;&gt;nailgunのウェブサイト&lt;/a&gt;を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&amp;hellip;。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Wed, Nov 1, 2017</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li><a href="https://tracker.debian.org/news/883148">libmojolicious-plugin-assetpack-perlパッケージをアップデート</a></li>
+<li>libxmlbirdをアップデートしようと思ったらtarballはできてるのにtagがpushされてないので、またお願いしておく</li>
+</ul>
+
+<hr />
+
+<p>gnome-todoをビルドしようとするとgbpがpristine-tar周りでエラーが出る&hellip;</p>
+
+<pre><code>$ gbp buildpackage  --git-pbuilder  --git-ignore-branch --git-pristine-tar-commit  --git-upstream-tag=GNOME_TODO_3_26_2 --git-verbose
+gbp:debug: ['git', 'rev-parse', '--show-cdup']
+gbp:debug: ['git', 'rev-parse', '--is-bare-repository']
+gbp:debug: ['git', 'rev-parse', '--git-dir']
+gbp:debug: /bin/true [] []
+gbp:debug: ['git', 'status', '--porcelain']
+gbp:debug: ['git', 'symbolic-ref', 'HEAD']
+gbp:debug: ['git', 'show-ref', 'refs/heads/debian/sid']
+gbp:debug: ['git', 'ls-tree', 'HEAD']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/changelog']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:info: Building with (cowbuilder) for sid
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show-ref', 'refs/heads/pristine-tar']
+gbp:debug: ['git', 'log', '--pretty=format:%H', '--grep=pristine-tar .* gnome-todo_3.26.2\\.orig.tar\\.', 'pristine-tar', '--']
+gbp:debug: ['git', 'rev-parse', '--quiet', '--verify', 'pristine-tar^0']
+gbp:debug: ['git', 'show', '--pretty=format:%an%x00%ae%x00%ad%x00%cn%x00%ce%x00%cd%x00%s%x00%f%x00%b%x00', '-z', '--date=raw', '--no-renames', '--name-status', '79d0e4f830d3beecf5770908c715616f6f7a3fdf']
+gbp:debug: Determined compression type 'gzip'
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: Looking for orig tarballs 'gnome-todo_3.26.2.orig.tar.gz' at '../tarballs/'
+gbp:info: Tarballs 'gnome-todo_3.26.2.orig.tar.gz' not found at '../tarballs/'
+gbp:debug: pristine-tar [] ['--help']
+gbp:debug: pristine-tar [] ['verify', '/home/henrich/src/pkg-gnome/build-area/gnome-todo_3.26.2.orig.tar.gz']
+gbp:error: Pristine-tar couldn't verify &quot;gnome-todo_3.26.2.orig.tar.gz&quot;: fatal: Path 'gnome-todo_3.26.2.orig.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.delta failed
+</code></pre>
+
+<p>&ndash;git-no-pristine-tar オプションをつけるとビルドはできるんだけど&hellip;負けた気がするよね。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
