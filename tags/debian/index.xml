@@ -72,7 +72,7 @@
 +               qemu-kvm (&amp;gt;= 2.0.0) [amd64 i386], qemu-system (&amp;gt;= 2.0.0) [!amd64 !i386], qemu-utils,
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;手元のarmhfではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&amp;hellip;まぁ、builddでログ見れた方が説明も早そう、ということで&lt;a href=&#34;https://progress.opensuse.org/issues/27322&#34;&gt;報告しておいた&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;手元の&lt;a href=&#34;https://beagleboard.org/latest-images&#34;&gt;BBB&lt;/a&gt;で作ったarmhf環境ではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&amp;hellip;まぁ、builddでログ見れた方が説明も早そう、ということで&lt;a href=&#34;https://progress.opensuse.org/issues/27322&#34;&gt;報告しておいた&lt;/a&gt;&lt;/p&gt;
 </description>
           </item>
         
