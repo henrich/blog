@@ -63,6 +63,16 @@
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/&#34;&gt;先日のlibxmlbirdのタグ&lt;/a&gt;が打たれてたので&lt;a href=&#34;https://tracker.debian.org/news/883705&#34;&gt;アップデート&lt;/a&gt;。install.pyがちょっと変わってて手間取った。&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;os-autoinstがsbuildで（というかbuild-dependsで？）コケるので、| で指定ではなくアーキテクチャ指定に変えて&lt;a href=&#34;https://tracker.debian.org/news/883786&#34;&gt;通した&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-               qemu-kvm (&amp;gt;= 2.0.0) | qemu-system (&amp;gt;= 2.0.0), qemu-utils,
++               qemu-kvm (&amp;gt;= 2.0.0) [amd64 i386], qemu-system (&amp;gt;= 2.0.0) [!amd64 !i386], qemu-utils,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;手元のarmhfではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&amp;hellip;まぁ、builddでログ見れた方が説明も早そう、ということで&lt;a href=&#34;https://progress.opensuse.org/issues/27322&#34;&gt;報告しておいた&lt;/a&gt;&lt;/p&gt;
 </description>
           </item>
         

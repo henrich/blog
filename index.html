@@ -146,6 +146,16 @@
 <li><a href="https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のlibxmlbirdのタグ</a>が打たれてたので<a href="https://tracker.debian.org/news/883705">アップデート</a>。install.pyがちょっと変わってて手間取った。</li>
 </ul>
 
+<hr />
+
+<p>os-autoinstがsbuildで（というかbuild-dependsで？）コケるので、| で指定ではなくアーキテクチャ指定に変えて<a href="https://tracker.debian.org/news/883786">通した</a>。</p>
+
+<pre><code>-               qemu-kvm (&gt;= 2.0.0) | qemu-system (&gt;= 2.0.0), qemu-utils,
++               qemu-kvm (&gt;= 2.0.0) [amd64 i386], qemu-system (&gt;= 2.0.0) [!amd64 !i386], qemu-utils,
+</code></pre>
+
+<p>手元のarmhfではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&hellip;まぁ、builddでログ見れた方が説明も早そう、ということで<a href="https://progress.opensuse.org/issues/27322">報告しておいた</a></p>
+
 					
 				</div>
 			</div>
