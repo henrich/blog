@@ -73,6 +73,15 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;手元の&lt;a href=&#34;https://beagleboard.org/latest-images&#34;&gt;BBB&lt;/a&gt;で作ったarmhf環境ではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&amp;hellip;まぁ、builddでログ見れた方が説明も早そう、ということで&lt;a href=&#34;https://progress.opensuse.org/issues/27322&#34;&gt;報告しておいた&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://groups.google.com/forum/#!topic/selenium-users/HjIdolMZ4nE&#34;&gt;libibushandler.soのビルド&lt;/a&gt;がやっぱりエラーになる。手順は以下（だろう）と思うのだけど、ibus周りがこのコードがリリースされた2011年から変わってるから？という思いが消せない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ g++ -shared -fPIC -I/usr/include/ibus-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/gtk-3.0 -I/usr/include/pango-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/atk-1.0 -I../../common ibusutils.cpp ibushandler.cpp -o libibushandler.so 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これを確認するにはsqueezeあたりを入れないと&amp;hellip;となるのだけども、debootstrapしたらエラーになるし、そのままchrootしたらsegfaultだからVM用意しないと、となると腰が重い&amp;hellip;&lt;/p&gt;
 </description>
           </item>
         
