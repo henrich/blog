@@ -56,6 +56,23 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/11/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 09 Nov 2017 20:00:49 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/884815&#34;&gt;sphinx-intlがリポジトリに入った&lt;/a&gt;。最終目標としては現在debian-sgmlで作られているpolicy訳をマージすることだが、いつやろう&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;libibushandler.soが&lt;a href=&#34;https://groups.google.com/forum/#!topic/selenium-users/HjIdolMZ4nE&#34;&gt;upstreamにてビルドできない話の続きをする&lt;/a&gt;。以前懸念していたとおり、Squeezeなバージョンだとビルドできるという。BTSにも進捗として&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569&#34;&gt;コメントしておいた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/11/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sat, 04 Nov 2017 09:52:17 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -402,85 +419,6 @@ make: *** [build] Error 2
 &lt;ul&gt;
 &lt;li&gt;openSUSE Asia Summit 2017に行ってきた。本番は明日。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 18 Oct 2017 05:10:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;ミラースクリプトを&lt;a href=&#34;https://lists.debian.org/debian-mirrors/2017/10/msg00017.html&#34;&gt;案内&lt;/a&gt;に従って入れ替えた&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880023&#34;&gt;libmojolicious-plugin-assetpack-perlを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879865&#34;&gt;fonts-arphic-umingを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/879869&#34;&gt;yydebugのポカを修正&lt;/a&gt;&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;libexport-attrs-perlがrejectされたので再アップロード&lt;/li&gt;
-&lt;li&gt;nadokaを西山さんに押し付けるだけの仕事を :)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;openQAでコケる所を抜粋&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;remotehost:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;localhost:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-./t/05-scheduler-cancel.t ................. ok
-./t/05-scheduler-capabilities.t ........... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-./t/05-scheduler-dependencies.t ........... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;remotehost:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;localhost:&amp;quot;
-./t/05-scheduler-restart-and-duplicate.t .. ok
-./t/06-users.t ............................ ok
-./t/07-api_jobtokens.t .................... ok
-./t/07-api_keys.t ......................... ok
-./t/09-job_clone.t ........................ ok
-./t/10-tests_overview.t ................... ok
-./t/13-joblocks.t ......................... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot;
-(snip)
-Uncaught exception from user code:
-        org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
-        Net::DBus::Binding::Bus::new(&amp;quot;Net::DBus::Binding::Bus&amp;quot;, &amp;quot;type&amp;quot;, 1) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 191
-        Net::DBus::system(&amp;quot;Net::DBus&amp;quot;) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 153
-        Net::DBus::find(&amp;quot;Net::DBus&amp;quot;, &amp;quot;nomainloop&amp;quot;, 1) called at lib/OpenQA/IPC.pm line 57
-        OpenQA::IPC::new(&amp;quot;OpenQA::IPC&amp;quot;, 1) called at lib/OpenQA/IPC.pm line 65
-        OpenQA::IPC::ipc(&amp;quot;OpenQA::IPC&amp;quot;, 1) called at lib/OpenQA/WebSockets.pm line 50
-        OpenQA::WebSockets::new(&amp;quot;OpenQA::WebSockets&amp;quot;) called at lib/OpenQA/WebSockets.pm line 41
-        OpenQA::WebSockets::run() called at /build/openqa-4.3+git20171018/t/lib/OpenQA/Test/Utils.pm line 85
-        OpenQA::Test::Utils::create_websocket_server(60430) called at ./t/05-scheduler-full.t line 65
-[6780:info] Listening at &amp;quot;http://127.0.0.1:60429/&amp;quot;
-Use of uninitialized value in symlink at ./t/05-scheduler-full.t line 73 (#1)
-    (W uninitialized) An undefined value was used as if it were already
-    defined.  It was interpreted as a &amp;quot;&amp;quot; or a 0, but maybe it was a mistake.
-    To suppress this warning assign a defined value to your variables.
-    
-    To help you figure out what was undefined, perl will try to tell you
-    the name of the variable (if any) that was undefined.  In some cases
-    it cannot do this, so it also tells you what operation you used the
-    undefined value in.  Note, however, that perl optimizes your program
-    and the operation displayed in the warning may not necessarily appear
-    literally in your program.  For example, &amp;quot;that $foo&amp;quot; is usually
-    optimized into &amp;quot;that &amp;quot; . $foo, and the warning will refer to the
-    concatenation (.) operator, even though there is no . in
-    your program.
-    
-Uncaught exception from user code:
-        can&#39;t symlink at ./t/05-scheduler-full.t line 73.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あれ、これはキャッシュを含めたときだったか、どうだったか。。。&lt;/p&gt;
 </description>
           </item>
         
