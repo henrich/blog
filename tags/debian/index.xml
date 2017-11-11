@@ -56,6 +56,47 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/11/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 11 Nov 2017 12:59:52 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/885527&#34;&gt;birdfontをアップデート&lt;/a&gt;。先日のPRも取り込まれてた。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/885529&#34;&gt;libmojolicious-plugin-assetpack-perlをアップデート&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/11/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 10 Nov 2017 22:51:45 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;先日報告した&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880624&#34;&gt;git-buildpackageの問題&lt;/a&gt;が修正された&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;     * [1b5a344] buildpackage: Add back --git-pristine-tar-commit support.
+     The call got lost when we split out export-orig. (Closes: #880624)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DPL来日に向けて今日もちまちまやり取り。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/11/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Thu, 09 Nov 2017 20:00:49 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -365,59 +406,6 @@ make: *** [build] Error 2
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/&#34;&gt;HPEのリポジトリ&lt;/a&gt;がStretch対応になっていたので、&lt;a href=&#34;http://debian-mirror.sakura.ne.jp&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt;をStretchに上げました。&lt;/li&gt;
 &lt;li&gt;silversearcher-ag のレビューをした&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 22 Oct 2017 04:49:50 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880679&#34;&gt;tomoyo-toolsを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880680&#34;&gt;fonts-mikachanを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880681&#34;&gt;fonts-yozvox-yozfontを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880476&#34;&gt;libsylphを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880691&#34;&gt;fonts-kouzan-mouhitsuを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880690&#34;&gt;fonts-aoyagi-kouzan-tを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880692&#34;&gt;fonts-aoyagi-sosekiを更新&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://henrich-on-debian.blogspot.jp/2017/10/opensuseasia-summit-2017-in-tokyo.html&#34;&gt;openSUSE Asia Summit 2017に行ってきた&lt;/a&gt;。発表資料は&lt;a href=&#34;https://www.slideshare.net/henrich_d/opensuse-tools-on-debian-81015400&#34;&gt;slideshare&lt;/a&gt;と&lt;a href=&#34;https://wiki.debian.org/HidekiYamane/material&#34;&gt;Debian Wiki&lt;/a&gt;に。upstreamとの面識が出来たので良かったよかった。一応cacheなファイルはGPLだという話をされたので、それでチャレンジしてみるかーという所（gbpがmultiple upstream tarballを実験的サポートなところが面倒だけども）。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 21 Oct 2017 08:08:37 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880472&#34;&gt;screenfetchを少しだけ更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880475&#34;&gt;pleiadesを少し修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880476&#34;&gt;libsylphを修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/880477&#34;&gt;libspiroを更新&lt;/a&gt;。-dbgパッケージ落とし忘れてたので&lt;a href=&#34;https://wiki.debian.org/AutomaticDebugPackages&#34;&gt;このへん&lt;/a&gt;を参考に更新。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;openSUSE Asia Summit 2017に行ってきた。本番は明日。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
