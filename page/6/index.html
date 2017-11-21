@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.25.1" />
+	<meta name="generator" content="Hugo 0.26" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,64 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Aug 24, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>birdfontパッケージに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=871963">バグレポートパッチをもらっていた</a>のでこちらを適用した。</p>
+
+<p>んで、パッケージをビルドしたら以下のlintianエラーがでた</p>
+
+<pre><code>W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml
+E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml
+</code></pre>
+
+<p>のでパッチ作成、忘れないうちに<a href="https://github.com/johanmattssonm/birdfont/pull/52">PullRequest</a>。</p>
+
+<p>しかし</p>
+
+<pre><code>E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz
+</code></pre>
+
+<p>が残っている。<a href="https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html">orig-tarball-missing-upstream-signature</a>はキツすぎるだろう？ということで既にBTSに登録されていて<a href="https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207">gitでwarningに落とされた</a>ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。</p>
+
+<p>う、overrideしようとしたら</p>
+
+<pre><code>E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1
+</code></pre>
+
+<p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -464,52 +522,6 @@ in your debian/copyright.
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング</p>
-
-<ul>
-<li>fonts-mikachan、deley-15 に放り込み。</li>
-<li><a href="https://tracker.debian.org/news/859608">fonts-f500</a></li>
-<li><a href="https://tracker.debian.org/news/859609">fonts-manchufont</a></li>
-</ul>
-
-<hr />
-
-<p>何か作業しようと思っていたのだが、続きをすっかり忘れていたDebian PolicyのSphinx変換提案、どうやって作業していたのかを思い出したので<a href="https://github.com/henrich/policydoc/tree/sed-raplacement/convert/scripts">historyから5行ほどの手順</a>を送りつけておいた。8/1にSprintがあるらしいので、そこで話題にしてくれるといいなぁ。とりあえずIRCチャンネルに接続だけしてログを取っておこう。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -687,7 +699,7 @@ in your debian/copyright.
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

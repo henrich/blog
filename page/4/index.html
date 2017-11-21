@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.25.1" />
+	<meta name="generator" content="Hugo 0.26" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,68 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Oct 6, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
+</ul>
+
+<hr />
+
+<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
+
+<ul>
+<li>1.4GBが1.0GBになるのは大きいと思う</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
+
+<ul>
+<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
+
+<ul>
+<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -580,63 +642,6 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Sep 12, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/871738">fonts-oradano-mincho-gsrrをアップロード</a>
-
-<ul>
-<li>フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/871748">gnome-todoをアップロードした</a>、のだけど、色々変更が多かったのでメモ</p>
-
-<ul>
-<li>build systemがautotoolsから<a href="http://mesonbuild.com">meson</a>に変わった。
-
-<ul>
-<li>Build-Depends: meson (&gt;= 0.41.0) が追加、autoconf周りをdropした。</li>
-<li>debian/rules で <code>dh $@  --with gnome --buildsystem=meson</code> のように<code>--buildsystem=meson</code> の指定が必要。</li>
-<li>依存関係は <code>meson.build</code> ファイルに書いてある&hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。</li>
-<li>何か見落としがあるのかな？と思って dh_install &ndash;list-mising しようかと思ったら、今は <code>dh_missing --list-missing</code> のように <code>dh_missing</code> を使え、とのこと。適当なブランチで debian/rules に <code>override_dh_missing</code> で記述して実行したが漏れはなかった様子。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -809,7 +814,7 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
