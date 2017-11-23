@@ -56,6 +56,23 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/11/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 23 Nov 2017 19:51:22 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;先日&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881980&#34;&gt;fonts-junicodeの新しいバージョン入れて、というレポート&lt;/a&gt;をfixedにしたが、そういや報告者にはメール飛ばないよね、というのに気づいたのでDMしておいた&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/888960&#34;&gt;unidic-mecabをアップロード&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/11/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 21 Nov 2017 21:12:47 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -385,26 +402,6 @@ make: *** [build] Error 2
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881477&#34;&gt;jruby-joniパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881476&#34;&gt;nailgunパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;さくらミラーの設定で&lt;a href=&#34;https://hanzubon.jp/KEYS/&#34;&gt;push元のキー&lt;/a&gt;をDSA鍵のままにしていたのがOpenSSHのアップデートで蹴られていたので差し替えた。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 24 Oct 2017 20:22:25 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;silversearcher-ag のレビューを終えたので&lt;a href=&#34;https://tracker.debian.org/news/881173&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881174&#34;&gt;nailgunのアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881184&#34;&gt;psphereのアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;sylpheedのPGP署名運用についてメールした。これが解決したら関連パッケージをアップデートする予定。&lt;/li&gt;
-&lt;li&gt;fontforgeパッケージを眺めて手を出せるところだけ。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
