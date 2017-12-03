@@ -56,6 +56,52 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 03 Dec 2017 20:11:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;先日のDebian勉強会であった人とのキーサインを済ませた。caff便利。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ caff -u 58E1222F9696C885A3CD104C5D328D082AAAB140 &amp;lt;long KEYID&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、既にサインして頂いてたのがメールで来てたのをimportしてkeyserverにsendしておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --import ~/*.asc
+$ gpg --send-keys &amp;quot;58E1 222F 9696 C885 A3CD  104C 5D32 8D08 2AAA B140&amp;quot;
+gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Maintainer Work 2017 1130</title>
+            <link>https://henrich.github.io/blog/2017/11/30/maintainer-work-2017-1130/</link>
+            <pubDate>Thu, 30 Nov 2017 20:18:32 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/11/30/maintainer-work-2017-1130/</guid>
+            <description>&lt;pre&gt;&lt;code&gt;libreoffice (1:5.4.3-3) unstable; urgency=medium
+(snip)
+  * debian/rules:
+    - replace some manual dpkg-parsechangelog calls with
+      $(DEB_VERSION) and $(DEB_DISTRIBUTION) and fix logic for
+      --disable-dependency-tracking
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ほぅ？そんな変数取れるのか？&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2017/11/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 28 Nov 2017 20:00:19 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -370,73 +416,6 @@ pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.del
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882107&#34;&gt;plumをアップデート&lt;/a&gt;。Multiarch hinterはtracker経由でしか見れないのが不満。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html&#34;&gt;apt-listchangesのpo&lt;/a&gt;をファイルするのTodoを&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880042&#34;&gt;処理&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 28 Oct 2017 16:42:05 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882072&#34;&gt;ruby-bcatを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881990&#34;&gt;os-autoinstを更新&lt;/a&gt;&amp;hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882067&#34;&gt;mecab-jumandicを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882073&#34;&gt;sylfilterを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/882080&#34;&gt;developers-referenceを更新&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;   dh_autoreconf
-libtoolize: putting auxiliary files in &#39;.&#39;.
-libtoolize: copying file &#39;./ltmain.sh&#39;
-libtoolize: Consider adding &#39;AC_CONFIG_MACRO_DIRS([m4])&#39; to configure.ac,
-libtoolize: and rerunning libtoolize and aclocal.
-libtoolize: Consider adding &#39;-I m4&#39; to ACLOCAL_AMFLAGS in Makefile.am.
-configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
-configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
-configure.ac:21: installing &#39;./compile&#39;
-configure.ac:13: installing &#39;./missing&#39;
-Makefile.am: error: required file &#39;./AUTHORS&#39; not found
-commands/Makefile.am:9: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;)
-commands/Makefile.am: installing &#39;./depcomp&#39;
-common/Makefile.am:1: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;)
-searcher/Makefile.am:8: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;)
-autoreconf: automake failed with exit status: 1
-dh_autoreconf: autoreconf -f -i returned exit code 1
-debian/rules:7: recipe for target &#39;build&#39; failed
-make: *** [build] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;空のファイルをquiltで追加しようとしたらダメだったのでdebian/rulesでtouchで回避。で、&lt;a href=&#34;https://tracker.debian.org/news/882074&#34;&gt;sylph-searcherを更新&lt;/a&gt;してメーリングリストで要望を上げておいた。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 26 Oct 2017 20:06:03 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881529&#34;&gt;libtest-mock-time-perl がリポジトリに入った&lt;/a&gt;。これでようやくos-autoinstの更新に手を付けられる。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.debian.or.jp/using/book.html#sd201711&#34;&gt;JPサイトにSDを追加&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881723&#34;&gt;octiconsパッケージを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/881730&#34;&gt;os-autoinstパッケージを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;アホなミスをしていたミラー設定を修正。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
