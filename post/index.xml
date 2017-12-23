@@ -68,6 +68,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/&#34;&gt;https://salsa.debian.org/&lt;/a&gt; が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？&lt;/li&gt;
+&lt;li&gt;とりあえず二要素認証をOnに&amp;hellip;と思って有効にしようとしたら、まずはQRコードをGoogle Authenticatorで読み取って有効にしないといけなかった。その上でYubiKeyを追加。何故この手順が必要なのだろう？デバイスが1つだけじゃない、ということが重要？&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
