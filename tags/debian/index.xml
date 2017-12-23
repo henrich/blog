@@ -63,6 +63,27 @@
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/895990&#34;&gt;apt-listchangesのpo訳が取り込まれました&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/&#34;&gt;https://salsa.debian.org/&lt;/a&gt; が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&amp;hellip;と思って&lt;a href=&#34;http://www.thinkwiki.org/wiki/BIOS_Upgrade&#34;&gt;調べる&lt;/a&gt;と&lt;a href=&#34;https://packages.debian.org/stretch/grub-imageboot&#34;&gt;grub-imageboot&lt;/a&gt;というツールがあったのでインストール、&lt;a href=&#34;https://download.lenovo.com/pccbbs/mobiles/j5uj58ww.txt&#34;&gt;該当のBIOSのISOイメージ&lt;/a&gt;をダウンロードして、bootできるようにして再起動&amp;hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt install genisoimage
+$ geteltorito biosimage.iso &amp;gt; biosupdate.img
+$ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで &lt;code&gt;apt install intel-microcode&lt;/code&gt; で直った（&lt;a href=&#34;https://tracker.debian.org/pkg/intel-microcode&#34;&gt;最新のパッケージはbackports提供&lt;/a&gt;なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
