@@ -91,9 +91,9 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2017/12/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;[fonts-ricty-diminishedを更新]()&lt;/li&gt;
-&lt;li&gt;[os-autoinstのしょうもないミスを指摘されたので修正]()。なんで気づかなかったんや。。。&lt;/li&gt;
-&lt;li&gt;[jruby-joniの更新]()
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/895478&#34;&gt;fonts-ricty-diminishedを更新&lt;/a&gt;（GPGキーのテストをしていたらsignキーを間違えてたのでアップロードがものすごく遅くなった&amp;hellip;）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/896167&#34;&gt;os-autoinstのしょうもないミスを指摘されたので修正&lt;/a&gt;。なんで気づかなかったんや。。。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/896165&#34;&gt;jruby-joniの更新&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;ついでに debian/patches 以下をforwardして&lt;a href=&#34;https://github.com/jruby/joni/pull/31&#34;&gt;Pull Request&lt;/a&gt;&lt;/li&gt;
