@@ -55,10 +55,13 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Tue, Nov 28, 2017</span> in 
+				<span class="label label-primary">Sun, Dec 17, 2017</span> in 
 				 using tags
 				
 					
+					<a href="/blog/tags/gpg">gpg</a>
+				
+					 , 
 					<a href="/blog/tags/debian">debian</a>
 				
 			</small>
@@ -67,16 +70,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<ul>
-<li>libxmlbirdをアップデートしようとしてgit mergeしようと思ったらタグがない。で、upstreamにpingしたのが反映されたのでmergeして<a href="https://tracker.debian.org/news/890110">アップロード</a>。ついでにreproducible buildパッチを減らすべく<a href="https://github.com/johanmattssonm/xmlbird/pull/7">Pull Request</a>。人の褌で相撲を取るのは楽だわー</li>
-<li>ruby-serverspecパッケージで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882515">「netstat使ってるからnet-toolsにSuggestsした」</a>というのを見かけて「後ろ向きだなぁ」と思ったのでちょっと調べた。
-
-<ul>
-<li>これ本当にnetstat呼んでるの？という疑問がでてgrepしたけど引っかからず。どうやらruby-specinfra側らしい。</li>
-<li>確かにnetstatを呼んでいた。。。んだけど、どうもおかしい。Debian8からss使うように変えてる？これはいかんでしょ。<code>I guess I am trying to understand which versions of Debian to support. Debian 6, 7, 8 all have ss by default.</code>という<a href="https://github.com/mizzy/specinfra/pull/453#issuecomment-125583639">発端のプルリクエスト</a>がそもそも間違っており、続いての<a href="https://github.com/mizzy/specinfra/pull/568">修正のプルリクエスト</a>も<code>I think jessie default command is ss.</code>と間違ってる&hellip;。</li>
-<li>厄介そうなのは上記が参照しているように、JessieのDockerイメージの方がiproute2使ってるっぽいんだよね、何でだよ&hellip;普通に直すとdockerのjessieでの動作を壊すことになる。それは避けたい。</li>
-</ul></li>
-</ul>
+			<p><a href="https://dev.gnupg.org/T3619">GnuPGのバグを見つけたのでレポートしておきました</a>。あとLFの人が書いてるガイドに<a href="https://github.com/lfit/itpol/issues/27">Issue</a>と<a href="https://github.com/lfit/itpol/pull/26">PR</a>。</p>
 
 		</div>
 	</div>

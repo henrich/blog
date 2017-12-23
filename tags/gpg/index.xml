@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gpg on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/gpg/</link>
+    <description>Recent content in Gpg on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>2015-  Hideki Yamane</copyright>
+    <lastBuildDate>Sun, 17 Dec 2017 17:42:42 +0900</lastBuildDate>
+    <atom:link href="/blog/tags/gpg/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2017/12/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 17 Dec 2017 17:42:42 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/12/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://dev.gnupg.org/T3619&#34;&gt;GnuPGのバグを見つけたのでレポートしておきました&lt;/a&gt;。あとLFの人が書いてるガイドに&lt;a href=&#34;https://github.com/lfit/itpol/issues/27&#34;&gt;Issue&lt;/a&gt;と&lt;a href=&#34;https://github.com/lfit/itpol/pull/26&#34;&gt;PR&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>GPGめも - subkey</title>
+            <link>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</link>
+            <pubDate>Mon, 04 Dec 2017 18:55:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</guid>
+            <description>&lt;p&gt;GPGのsubkeyについて。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、
+
+&lt;ul&gt;
+&lt;li&gt;masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。&lt;/li&gt;
+&lt;li&gt;laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&amp;hellip;という時にはmasterkeyを使うということができる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;なるほどねー。&lt;/p&gt;
+
+&lt;p&gt;ちなみにどうしてもという時というのは以下らしい。
+   - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする
+   - 自分の鍵をrevokeする
+   - subkeyを作る・revokeする
+   - 有効期限の変更
+   - masterkeyのrevoke用の証明書の作成
+   - UIDの設定変更&lt;/p&gt;
+
+&lt;p&gt;あー、今だとlaptopにはGPG鍵入れてないけど、これはありかもしれないね。ということで&lt;a href=&#34;https://wiki.debian.org/Subkeys&#34;&gt;Debian WikiでのSubkey作成手順&lt;/a&gt;に従って作ってみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ umask 077; tar -cf $HOME/gnupg-backup.tar -C $HOME .gnupg (バックアップ)
+$ gpg --list-keys henrich@debian.org (自分のKEYIDを取得)
+
+pub   rsa4096 2009-05-23 [SC] [有効期限: 2019-05-21]    
+      58E1222F9696C885A3CD104C5D328D082AAAB140          
+uid           [  究極  ] Hideki Yamane (Debian-JP) &amp;lt;henrich@debian.or.jp&amp;gt;  
+uid           [  究極  ] Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+uid           [  究極  ] Hideki Yamane (private) &amp;lt;henrich@iijmio-mail.jp&amp;gt;
+sub   rsa4096 2009-05-23 [E] [有効期限: 2019-05-21]
+
+$ gpg --edit-key  58E1222F9696C885A3CD104C5D328D082AAAB140
+gpg (GnuPG) 2.2.3; Copyright (C) 2017 Free Software Foundation, Inc.       
+This is free software: you are free to change and redistribute it.         
+There is NO WARRANTY, to the extent permitted by law.                      
+                                                                   
+秘密鍵が利用できます。                                                     
+                                                                           
+sec  rsa4096/5D328D082AAAB140                                              
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC                    
+     信用: 究極        有効性: 究極                                        
+ssb  rsa4096/95F59E65108820E1                                              
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E                     
+[  究極  ] (1). Hideki Yamane (Debian-JP) &amp;lt;henrich@debian.or.jp&amp;gt;           
+[  究極  ] (2)  Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+[  究極  ] (3)  Hideki Yamane (private) &amp;lt;henrich@iijmio-mail.jp&amp;gt;
+
+gpg&amp;gt; addkey (subkeyの追加)
+ご希望の鍵の種類を選択してください:
+   (3) DSA (署名のみ)
+   (4) RSA (署名のみ)
+   (5) Elgamal (暗号化のみ)
+   (6) RSA (暗号化のみ)
+あなたの選択は? 4  (←Debianパッケージなどで署名が必要なのでこちらを今回は選択)
+RSA 鍵は 1024 から 4096 ビットの長さで可能です。
+鍵長は? (3072) 4096 (←4096にしたけど、masterkeyより大きなのは選べるのかしら？)
+要求された鍵長は4096ビット
+鍵の有効期限を指定してください。
+         0 = 鍵は無期限
+      &amp;lt;n&amp;gt;  = 鍵は n 日間で期限切れ
+      &amp;lt;n&amp;gt;w = 鍵は n 週間で期限切れ
+      &amp;lt;n&amp;gt;m = 鍵は n か月間で期限切れ
+      &amp;lt;n&amp;gt;y = 鍵は n 年間で期限切れ
+鍵の有効期間は? (0)1y (masterkeyよりも短いほうが良いそうなのでとりあえず1年にしておく)
+鍵は2018年12月04日 18時54分30秒 JSTで期限切れとなります
+これで正しいですか? (y/N) y
+本当に作成しますか? (y/N) y
+たくさんのランダム・バイトの生成が必要です。キーボードを打つ、マウスを動か
+す、ディスクにアクセスするなどの他の操作を素数生成の間に行うことで、乱数生
+成器に十分なエントロピーを供給する機会を与えることができます。
+
+sec  rsa4096/5D328D082AAAB140
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC
+     信用: 究極        有効性: 究極
+ssb  rsa4096/95F59E65108820E1
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E
+ssb  rsa4096/723BFA427D8774AD (←今回出来たのはこの鍵)
+     作成: 2017-12-04  有効期限: 2018-12-04  利用法: S
+[  究極  ] (1). Hideki Yamane (Debian-JP) &amp;lt;henrich@debian.or.jp&amp;gt;
+[  究極  ] (2)  Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+[  究極  ] (3)  Hideki Yamane (private) &amp;lt;henrich@iijmio-mail.jp&amp;gt;
+
+gpg&amp;gt; save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、この後の手順は、と&amp;hellip;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;USBメモリに ~/.gnupg をバックアップして&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Here comes the tricky part: you need to remove the private master key.&lt;/code&gt; え？「private masterkeyを削除する」？？？マジか。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;GnuPG 2.1以降なら &lt;code&gt;~/.gnupg/private-keys-v1.d/&amp;lt;KEYGRIP&amp;gt;.key&lt;/code&gt; を削除せよ、と。KEYGRIPはmaster keyの&amp;rdquo;keygrip&amp;rdquo;で、&lt;code&gt;gpg2 --with-keygrip --list-key &amp;lt;YOURMASTERKEYID&amp;gt;&lt;/code&gt; で手に入るぞ、と。ただし、旧バージョンのGnuPGから新しい形式に移行している場合は&lt;code&gt;~/.gnupg/secring.gpg&lt;/code&gt; の方に private master keyがあるかもしれないから、こっちも消せ、と。GnuPG 2.1以前の場合も書いてあるけど、そんな環境使ってる人のことを考えるの面倒なので、原文見てほしい。&lt;/p&gt;
+
+&lt;p&gt;ここまで来たら &lt;code&gt;gpg --edit-key &amp;lt;YOURMASTERKEYID&amp;gt; passwd&lt;/code&gt; でパスフレーズを変更してしまう。これで日常のパスフレーズが漏れても、元々のパスフレーズがわからなければ、たとえprivate master keyにアクセスできても使えないよね&amp;hellip;という、まぁ気休めにはなる？&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;encryptしたUSBメモリにprivate master key置く、って言ってるけど、何を使ってencryptするんだろね？&lt;/li&gt;
+&lt;li&gt;そもそもUSBメモリの耐久性とかどうなのかな、とか。何にバックアップしておくのが正しいのだろう？&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
