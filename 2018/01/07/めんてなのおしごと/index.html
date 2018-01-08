@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Jan 7, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>年末年始で間が空いてしまった&hellip;。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/899819">libxmlbirdをアップデート</a></li>
+</ul>
+
+<hr />
+
+<p>年末年始でようやく新しいミラーサーバー new-debian-mirror.sakura.ne.jp の設定に手を付けました（ありがとうございます＞さくらインターネットさま）。初めてのAnsible&hellip;ですが、今のところはバッチファイルよりちょっとマシ程度の状況。やはり複数サーバー運用して整理するのが必要とかじゃないとモチベーションが湧かないですね&hellip;。まぁ、次にセットアップが必要になった場合は一発流せばいいだけというのは気楽にはなりました。</p>
+
+<p>新しいサーバーにはbcacheを使っています、<a href="https://wiki.archlinux.jp/index.php/Bcache">ありがとうArch Wiki</a>。ディスクを大量に積むのもよいのですが、既に後2年ぐらいは戦えそうな容量を頂けたので、SSDでキャッシュする方向に走るのが良いかな、と。速度はそこまで出ないにしてもアクセスが多くなっても大丈夫よ、と。</p>
+
+<p>CacheデバイスのSSDですが、最初はRAID1を設定してもらっていましたが、思い直して設定変更。JBODが選べないので仕方なくRAID0にしました。生まれて初めて使ったよ、RAID0&hellip;。HDDよりは死にづらいかなーというのと、死んでも構わないよねー（負荷が増えるだけ）というのと、容量が欲しかったんや&hellip;というのの3点からRAID0選択と相成りました。</p>
+
+<pre><code>#!/bin/sh
+
+BACKING_DEVICE=/dev/sda3
+CACHE_DEVICE=/dev/sdb
+
+make-bcache -B $BACKING_DEVICE -C $CACHE_DEVICE
+
+echo `bcache-super-show $CACHE_DEVICE | grep cset.uuid | awk '{print $2}'` \
+ &gt; /sys/block/bcache0/bcache/attach
+
+if [ -f /dev/bcache0 ]; then
+  mkfs.xfs /dev/bcache0
+else
+  echo &quot;There's no Bcache device.&quot;
+fi
+</code></pre>
+
+<p>手作業でやったのを後からまとめ直すと上記のような感じ。短いな&hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。</p>
+
+<p>ufwを実行しようかどうしようか、という辺りとSNMP監視が出来てない風味だよね？というのを確認したら、終わり。そして、切り替え前後でおかしなことが起きたらその対処、と。</p>
+
+<hr />
+
+<p>muninの設定続き。</p>
+
+<pre><code>$ sudo munin-run http_loadtime auto
+http___localhost_.value /etc/munin/plugins/http_loadtime: line 105: -f: command not found
+</code></pre>
+
+<p>$time_binというのが無いようだ。<code>which time</code> してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&hellip;</p>
+
+<pre><code>$ sudo munin-run acpi
+/etc/munin/plugins/acpi: 1: eval: bc: not found
+thermal_zone0.value
+/etc/munin/plugins/acpi: 1: eval: bc: not found
+thermal_zone1.value
+
+$ sudo apt install bc
+
+$ sudo munin-run acpi
+thermal_zone0.value 49.000
+thermal_zone1.value 40.000
+</code></pre>
+
+<p>これはbc。</p>
+
+<p>Suggestsにあるのが多いパターンなのだけど、それを確認して入れろ、というのはしんどくないかなぁ。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
