@@ -125,6 +125,42 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/15/maintainer-work-2018-01-15/">Maintainer Work 2018 01 15</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 15, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>昨日苦しんだ問題を<a href="https://github.com/fukuchi/libqrencode/issues/117">upstreamにissue報告した</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -621,51 +657,6 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
 </code></pre>
 
 <p>ほぅ？そんな変数取れるのか？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Nov 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>libxmlbirdをアップデートしようとしてgit mergeしようと思ったらタグがない。で、upstreamにpingしたのが反映されたのでmergeして<a href="https://tracker.debian.org/news/890110">アップロード</a>。ついでにreproducible buildパッチを減らすべく<a href="https://github.com/johanmattssonm/xmlbird/pull/7">Pull Request</a>。人の褌で相撲を取るのは楽だわー</li>
-<li>ruby-serverspecパッケージで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882515">「netstat使ってるからnet-toolsにSuggestsした」</a>というのを見かけて「後ろ向きだなぁ」と思ったのでちょっと調べた。
-
-<ul>
-<li>これ本当にnetstat呼んでるの？という疑問がでてgrepしたけど引っかからず。どうやらruby-specinfra側らしい。</li>
-<li>確かにnetstatを呼んでいた。。。んだけど、どうもおかしい。Debian8からss使うように変えてる？これはいかんでしょ。<code>I guess I am trying to understand which versions of Debian to support. Debian 6, 7, 8 all have ss by default.</code>という<a href="https://github.com/mizzy/specinfra/pull/453#issuecomment-125583639">発端のプルリクエスト</a>がそもそも間違っており、続いての<a href="https://github.com/mizzy/specinfra/pull/568">修正のプルリクエスト</a>も<code>I think jessie default command is ss.</code>と間違ってる&hellip;。</li>
-<li>厄介そうなのは上記が参照しているように、JessieのDockerイメージの方がiproute2使ってるっぽいんだよね、何でだよ&hellip;普通に直すとdockerのjessieでの動作を壊すことになる。それは避けたい。</li>
-</ul></li>
-</ul>
 
 					
 				</div>
