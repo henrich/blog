@@ -125,7 +125,7 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/15/maintainer-work-2018-01-15/">Maintainer Work 2018 01 15</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
 								Mon, Jan 15, 2018
@@ -143,6 +143,45 @@
 					<br>
 					
 						<p>昨日苦しんだ問題を<a href="https://github.com/fukuchi/libqrencode/issues/117">upstreamにissue報告した</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jan 14, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>qrencodeパッケージがちょっと古くなっているようだ。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887144">upstreamのサイトが移動してるね、ということでBTS</a></li>
+<li>ついでに自分の手元でアップデート出来ないかな？と作業して大方できた。新規追加されたtestスクリプトがconfigureを引数なしでハードコードしていて実行されるのでパッケージのインストールが壊れるという問題があったのに引っかかって小一時間潰してしまった&hellip;。</li>
+</ul>
 
 					
 				</div>
@@ -613,50 +652,6 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
 </code></pre>
 
 <p><a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x5D328D082AAAB140">よしよし</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Nov 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>libreoffice (1:5.4.3-3) unstable; urgency=medium
-(snip)
-  * debian/rules:
-    - replace some manual dpkg-parsechangelog calls with
-      $(DEB_VERSION) and $(DEB_DISTRIBUTION) and fix logic for
-      --disable-dependency-tracking
-</code></pre>
-
-<p>ほぅ？そんな変数取れるのか？</p>
 
 					
 				</div>
