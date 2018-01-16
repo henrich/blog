@@ -62,7 +62,12 @@
             <guid>https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;qrencodeパッケージの&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13&#34;&gt;バグレポートにコメント追加しておいた&lt;/a&gt;。数日様子を見てクローズするのが良いだろうと思う。&lt;/li&gt;
+&lt;li&gt;[fonts-sawarabi-minchoパッケージをアップロード]()&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&amp;hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。&lt;/p&gt;
 </description>
           </item>
         
