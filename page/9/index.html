@@ -60,6 +60,180 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jul 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858988">yudit</a></li>
+<li><a href="https://tracker.debian.org/news/859063">fonts-tomsontalks</a></li>
+<li><a href="https://tracker.debian.org/news/859070">fonts-kacst</a></li>
+<li><a href="https://tracker.debian.org/news/859077">nailgun</a></li>
+<li>fonts-bpg-georgian を見てみたら、upstreamがBoxに色々ソースを置いているようだ、が読めなくて何が最善なのかが全くわからん&hellip;</li>
+<li>fonts-manchufont は途中まで&hellip;。</li>
+<li>fonts-wqy-zenhei は途中まで&hellip;。</li>
+<li>fonts-mikachan は途中まで&hellip;で、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839677">アップロード予告</a>だけしておく。</li>
+</ul>
+
+<p>yudit は以下をなんとかしたいところではある&hellip;とりあえずtypoは直した。</p>
+
+<pre><code>I: yudit: spelling-error-in-binary usr/bin/uniprint pres press
+I: yudit: spelling-error-in-binary usr/bin/yudit preceed precede
+I: yudit: spelling-error-in-binary usr/bin/yudit pres press
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
+I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz recommened recommended
+I: yudit: desktop-entry-lacks-keywords-entry usr/share/applications/yudit.desktop
+I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
+</code></pre>
+
+<hr />
+
+<p>mplus-fontsのCVS-&gt;Gitリポジトリ変換を<a href="https://osdn.net/ticket/browse.php?group_id=1&amp;tid=37404">依頼</a>しておく。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jul 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858925">fonts-mmceder</a></li>
+</ul>
+
+<hr />
+
+<p>DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&hellip;とりあえず「1日早められる？」と問い合わせてみる。→無事調整された。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jul 25, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業。</p>
+
+<ul>
+<li>grcompiler&hellip;を見てみた。
+
+<ul>
+<li>upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&hellip;gitのmasterから取ってきてもコケる&hellip;これは一体？</li>
+<li>upstreamが<a href="https://github.com/silnrsi/grcompiler/tree/master/debian">debianディレクトリ追加してる&hellip;</a>困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&hellip;なんだこりゃ。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/858733">fonts-vlgothic</a></li>
+<li><a href="https://tracker.debian.org/news/858736">fonts-kacst-one</a></li>
+<li><a href="https://tracker.debian.org/news/858737">fonts-motoya-l-cedar</a></li>
+<li><a href="https://tracker.debian.org/news/858740">fonts-motoya-l-maruberi</a>
+
+<ul>
+<li>モトヤLマルベリ3・Lシーダ3が<a href="https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67">Androidのリポジトリから消えていた</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&hellip;。shellアクセスできる範囲には無いっぽいし。<a href="https://osdn.net/cvs/view/mplus-fonts/">ダウンロード</a>でいけるのかな？</p>
+
+<pre><code>$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &gt; ./cvs2git.options
+$ vi cvs2git.options
+$ cvs2git --options=./cvs2git.options
+</code></pre>
+
+<p>などとやってみたが、必要な情報がtarballの中にはないようだ。<a href="https://osdn.net/docs-ja/SCM_Migration">サポートリクエスト</a>を出して欲しい、ということらしい。あとで問い合わせよう。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -535,296 +709,6 @@ E: Unable to correct problems, you have held broken packages.
 <hr />
 
 <p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jul 18, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>どうやら<a href="http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340">3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた</a>ようだ。</p>
-
-<hr />
-
-<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>より。</p>
-
-<ul>
-<li>libmojolicious-plugin-renderfile-perlの<a href="http://bugs.debian.org/839621">#839621</a>を修正。manのtypoは<a href="https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20">PR送った</a>。</li>
-<li>libmojolicious-plugin-assetpack-perlもついでに更新&hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&hellip;</li>
-</ul>
-
-<hr />
-
-<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/857081">fonts-kouzan-mouhitsu</a>。サイトを見に行ったら更新されていたので反映。</li>
-</ul>
-
-<hr />
-
-<h2 id="octiconsのビルドにはnpmモジュールが必要">octiconsのビルドにはnpmモジュールが必要</h2>
-
-<p>octiconsのビルドに必要なのを見てみるか&hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。</p>
-
-<pre><code>  &quot;devDependencies&quot;: {
-    &quot;autoprefixer&quot;: &quot;^6.3.6&quot;,
-    &quot;ava&quot;: &quot;^0.16.0&quot;,
-    &quot;grunt&quot;: &quot;^1.0.1&quot;,
-    &quot;grunt-contrib-clean&quot;: &quot;^1.0.0&quot;,
-    &quot;grunt-contrib-copy&quot;: &quot;^1.0.0&quot;,
-    &quot;grunt-cssnano&quot;: &quot;^2.1.0&quot;,
-    &quot;grunt-svgmin&quot;: &quot;^4.0.0&quot;,
-    &quot;grunt-svgstore&quot;: &quot;^1.0.0&quot;
-  },
-</code></pre>
-
-<p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
-
-<pre><code> [error]   num2fraction: dependency node-num2fraction not in debian
- [error]   browserslist: dependency node-browserslist not in debian
- [error]   normalize-range: dependency node-normalize-range not in debian
- [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
- [error]   caniuse-lite: dependency node-caniuse-lite not in debian
- [error]   postcss: dependency node-postcss not in debian
-</code></pre>
-
-<p>browserslistをnpm2debすると</p>
-
-<pre><code> [error]   caniuse-lite: dependency node-caniuse-lite not in debian
- [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
-</code></pre>
-
-<p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で<strong>150個以上のnpmモジュールをdebパッケージにすることが必要</strong>なようだ。マジか&hellip;。</p>
-
-<h3 id="パッケージに落とせてない所">パッケージに落とせてない所</h3>
-
-<p>css-treeはalpha版しかないからかnpm2debがコケる。</p>
-
-<pre><code>$ npm2deb create css-tree
-Traceback (most recent call last):
-  File &quot;/usr/bin/npm2deb&quot;, line 7, in &lt;module&gt;
-    sys.exit(main(sys.argv))
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 138, in main
-    args.func(args)
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 273, in create
-    npm2deb.start()
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 71, in start
-    self.download()
-  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 404, in download
-    raise ValueError(exception)
-ValueError: Error downloading package css-tree
-npm ERR! notarget No compatible version found: css-tree@'*'
-npm ERR! notarget Valid install targets:
-npm ERR! notarget [&quot;1.0.0-alpha&quot;,&quot;1.0.0-alpha2&quot;,&quot;1.0.0-alpha3&quot;,&quot;1.0.0-alpha4&quot;,&quot;1.0.0-alpha5&quot;,&quot;1.0.0-alpha6&quot;,&quot;1.0.0-alpha7&quot;,&quot;1.0.0-alpha8&quot;,&quot;1.0.0-alpha9&quot;,&quot;1.0.0-alpha10&quot;,&quot;1.0.0-alpha11&quot;,&quot;1.0.0-alpha12&quot;,&quot;1.0.0-alpha13&quot;,&quot;1.0.0-alpha14&quot;,&quot;1.0.0-alpha15&quot;,&quot;1.0.0-alpha16&quot;,&quot;1.0.0-alpha17&quot;,&quot;1.0.0-alpha18&quot;,&quot;1.0.0-alpha19&quot;]
-npm ERR! notarget 
-npm ERR! notarget This is most likely not a problem with npm itself.
-npm ERR! notarget In most cases you or one of your dependencies are requesting
-npm ERR! notarget a package version that doesn't exist.
-
-npm ERR! System Linux 4.9.0-2-amd64
-npm ERR! command &quot;/usr/bin/nodejs&quot; &quot;/usr/bin/npm&quot; &quot;pack&quot; &quot;css-tree&quot;
-npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
-npm ERR! node -v v4.8.3
-npm ERR! npm -v 1.4.21
-npm ERR! code ETARGET
-npm ERR! 
-npm ERR! Additional logging details can be found in:
-npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
-npm ERR! not ok code 0
-</code></pre>
-
-<p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
-
-<pre><code> [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
- [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
- [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
- [error]   @concordance/react: dependency node-@concordance/react not in debian                              
- [error]   @types/node: dependency node-@types/node not in debian
-</code></pre>
-
-<p>npm2debでの変換中、気になるメッセージとしては以下。</p>
-
-<pre><code>Using fakeupstream to download npm dist tarballs, because upstream
-git repo is missing tags. Its better to ask upstream to tag their releases
-instead of using npm dist tarballs as dist tarballs may contain pre built files
-and may not include tests.
-</code></pre>
-
-<p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jul 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>グルーミング作業。</p>
-
-<ul>
-<li>fonts-aoyagi-kouzan-t。<a href="http://opentype.jp/aoyagikouzanfontt.htm">サイト</a>を見に行ったら更新されていたのでこちらも反映して<a href="https://tracker.debian.org/news/856771">アップロード</a>。uscanで自動で確認できるように、ファイル名に日付付けてもらうのをあとでお願いしよう。。</li>
-<li><a href="https://tracker.debian.org/news/856772">fonts-aoyagi-soseki</a>。</li>
-</ul>
-
-<hr />
-
-<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">READMEなmanのファイル名がおかしい件</a>は<a href="https://lists.debian.org/debian-perl/2017/07/msg00012.html">debian-perlに飛ばして</a>ヘルプを乞うてみる&hellip;「READMEは削除しとるで。<a href="https://sources.debian.net/src/libmojolicious-plugin-authentication-perl/1.29-1/debian/rules/">こんな風に</a>」&hellip;な、なるほど。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 16, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/todo">todo</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のケアリスト。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a>、<a href="https://tracker.debian.org/news/856662">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a>、<a href="https://tracker.debian.org/news/856663">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856571">xfonts-shinonome</a>、<a href="https://tracker.debian.org/news/856666">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856648">xfonts-naga10</a>、<a href="https://tracker.debian.org/news/856665">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856650">tiarra</a></li>
-<li><a href="https://tracker.debian.org/news/856669">libspiro</a></li>
-<li><a href="https://tracker.debian.org/news/856686">xfonts-ayu</a></li>
-<li><a href="https://tracker.debian.org/news/856690">fonts-horai-umefont</a></li>
-<li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
-
-<ul>
-<li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
-</ul></li>
-</ul>
-
-<p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
-
-<p>その他、ruby-interpriterのdropなど。なぜか<a href="https://packages.debian.org/sid/ruby2.1">ruby2.1がarm64のdeb-portsに残ってる</a>状況なのが不思議。</p>
-
-<hr />
-
-<p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
-
-<hr />
-
-<p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
-
-<pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
-$ cd libselenium-remote-driver-perl
-
-(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
-$ git branch -D upstream
-$ git tag -d upstream/1.20
-
-(空のブランチを作る)
-$ git checkout --orphan upstream
-$ git rm -rf *
-
-(upstreamブランチはGithubのmasterから取得するようにする)
-$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
-$ git pull github
-$ git fetch
-$ git branch -u github/master upstream
-</code></pre>
-
-<p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
-
-<hr />
-
-<p>前に一応チェックした<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">screenfetchのLaunchPadへの報告</a>、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。</p>
-
-<pre><code>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
-</code></pre>
-
-<p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
-
-<p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
 
 					
 				</div>

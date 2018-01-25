@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="めんてなのおしごと">
+    <meta name="description" content="Maintainer Work 2018 01 23">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>めんてなのおしごと &middot; Forget me not...</title>
+    <title>Maintainer Work 2018 01 23 &middot; Forget me not...</title>
 
    	
     
@@ -54,8 +54,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Tue, Jan 16, 2018</span> in 
+			<h3>Maintainer Work 2018 01 23</h3>
+				<span class="label label-primary">Tue, Jan 23, 2018</span> in 
 				 using tags
 				
 					
@@ -67,14 +67,12 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<ul>
-<li>qrencodeパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13">バグレポートにコメント追加しておいた</a>。数日様子を見てクローズするのが良いだろうと思う。</li>
-<li><a href="https://tracker.debian.org/news/901773">fonts-sawarabi-minchoパッケージをアップロード</a></li>
+			<p>snapperパッケージのメンテ。</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880144">aptが動いたときの自動スナップショットを無効にできないか？調整する設定を追加してはどうか？という提案</a>。「デフォルト有効ならいいように思う」とコメント。</li>
+<li>e2fsprogsがessentialパッケージでなくなるのに伴い、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292">e2fsprogsに依存してるみたいなんだけど、明示的にしてくれる？</a>というバグレポート。ext4サポートがそもそも動いてなかったから明示的にdisableにするかーという結論なんだけど、確認方法がわからないとリリースできない。</li>
 </ul>
-
-<hr />
-
-<p>salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</p>
 
 		</div>
 	</div>
