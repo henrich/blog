@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Jan 27, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li>[snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘]()。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして<a href="https://github.com/openSUSE/snapper/pull/386">Pull Request</a>。</li>
+</ul>
+
+<pre><code>--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000
++++ configure.ac        2018-01-27 16:24:56.910015986 +0000
+@@ -60,11 +60,14 @@
+ 
+ fillupdir=/var/adm/fillup-templates
+ 
++SYSCONFIG=/etc/sysconfig
++
+ AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]),
+        [with_conf=$withval], [with_conf=no])
+ 
+-AS_IF([test &quot;x$with_conf&quot; != xno], [CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;${with_conf}\&quot;'&quot;],
+-       [CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;/etc/sysconfig\&quot;'&quot;])
++AS_IF([test &quot;x$with_conf&quot; != xno], [SYSCONFIG=&quot;${with_conf}&quot;])
++
++CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;${SYSCONFIG}\&quot;'&quot;
+ 
+ AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]),
+                [with_btrfs=$enableval],[with_btrfs=yes])
+@@ -153,6 +156,7 @@
+ AC_SUBST(LIBVERSION_MINOR)
+ AC_SUBST(LIBVERSION_PATCHLEVEL)
+ AC_SUBST(LIBVERSION_INFO)
++AC_SUBST(SYSCONFIG)
+ AC_SUBST(docdir)
+ AC_SUBST(fillupdir)
+
+
+diff --git a/doc/snapper.xml.in b/doc/snapper.xml.in
+index 1507b5d..9073ab3 100644
+--- a/doc/snapper.xml.in
++++ b/doc/snapper.xml.in
+@@ -686,7 +686,7 @@
+     &lt;title&gt;FILES&lt;/title&gt;
+     &lt;variablelist&gt;
+       &lt;varlistentry&gt;
+-       &lt;term&gt;&lt;filename&gt;/etc/sysconfig/snapper&lt;/filename&gt;&lt;/term&gt;
++       &lt;term&gt;&lt;filename&gt;@SYSCONFIG@/snapper&lt;/filename&gt;&lt;/term&gt;
+        &lt;listitem&gt;
+          &lt;para&gt;Global configuration file.&lt;/para&gt;
+        &lt;/listitem&gt;
+</code></pre>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
