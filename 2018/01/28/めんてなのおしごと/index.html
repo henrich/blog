@@ -67,9 +67,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<ul>
+			<ul>
 <li>qrencodeパッケージをsalsaに配置してもらって、<a href="https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a">前に報告した些細な修正</a>をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？</li>
 <li>同じくqrencodeパッケージの報告者の勘違いに起因すると思われる<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984">バグ</a><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266">二つ</a>をクローズしておいた</li>
 </ul>
@@ -101,7 +99,7 @@
 <hr />
 
 <ul>
-<li>tiarraもsalsaに移動したけど、気になるメッセージが出てた</li>
+<li>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</li>
 </ul>
 
 <pre><code>dh_install                                                                                                                         
@@ -110,7 +108,7 @@ perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-201002
 Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
 </code></pre>
 
-<h2 id="該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして-とりあえずまずはexperimentalに放り込んで使ってみることにする">該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</h2>
+<hr />
 
 <ul>
 <li>libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347">パッチしておいた</a></li>

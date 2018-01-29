@@ -99,9 +99,7 @@ $ git push salsa mones
             <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>
-
-&lt;ul&gt;
+            <description>&lt;ul&gt;
 &lt;li&gt;qrencodeパッケージをsalsaに配置してもらって、&lt;a href=&#34;https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a&#34;&gt;前に報告した些細な修正&lt;/a&gt;をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？&lt;/li&gt;
 &lt;li&gt;同じくqrencodeパッケージの報告者の勘違いに起因すると思われる&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984&#34;&gt;バグ&lt;/a&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266&#34;&gt;二つ&lt;/a&gt;をクローズしておいた&lt;/li&gt;
 &lt;/ul&gt;
@@ -133,7 +131,7 @@ $ git push salsa mones
 &lt;hr /&gt;
 
 &lt;ul&gt;
-&lt;li&gt;tiarraもsalsaに移動したけど、気になるメッセージが出てた&lt;/li&gt;
+&lt;li&gt;tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;dh_install                                                                                                                         
@@ -142,7 +140,7 @@ perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-201002
 Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして-とりあえずまずはexperimentalに放り込んで使ってみることにする&#34;&gt;該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。&lt;/h2&gt;
+&lt;hr /&gt;
 
 &lt;ul&gt;
 &lt;li&gt;libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347&#34;&gt;パッチしておいた&lt;/a&gt;&lt;/li&gt;
