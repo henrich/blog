@@ -56,6 +56,22 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 30 Jan 2018 06:41:27 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&amp;hellip;&lt;a href=&#34;https://github.com/facebook/nailgun/pull/118&#34;&gt;新しくPR作ったところ、マージされた&lt;/a&gt;。これでパッケージ側のパッチがまた一つ減らせる。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Mon, 29 Jan 2018 22:50:46 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -453,44 +469,6 @@ thermal_zone1.value 40.000
 &lt;p&gt;これはbc。&lt;/p&gt;
 
 &lt;p&gt;Suggestsにあるのが多いパターンなのだけど、それを確認して入れろ、というのはしんどくないかなぁ。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2017/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 23 Dec 2017 20:17:49 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/895990&#34;&gt;apt-listchangesのpo訳が取り込まれました&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/&#34;&gt;https://salsa.debian.org/&lt;/a&gt; が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？&lt;/li&gt;
-&lt;li&gt;とりあえず二要素認証をOnに&amp;hellip;と思って有効にしようとしたら、まずはQRコードをGoogle Authenticatorで読み取って有効にしないといけなかった。その上でYubiKeyを追加。何故この手順が必要なのだろう？デバイスが1つだけじゃない、ということが重要？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&amp;hellip;と思って&lt;a href=&#34;http://www.thinkwiki.org/wiki/BIOS_Upgrade&#34;&gt;調べる&lt;/a&gt;と&lt;a href=&#34;https://packages.debian.org/stretch/grub-imageboot&#34;&gt;grub-imageboot&lt;/a&gt;というツールがあったのでインストール、&lt;a href=&#34;https://download.lenovo.com/pccbbs/mobiles/j5uj58ww.txt&#34;&gt;該当のBIOSのISOイメージ&lt;/a&gt;をダウンロードして、bootできるようにして再起動&amp;hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt install genisoimage
-$ geteltorito biosimage.iso &amp;gt; biosupdate.img
-$ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで &lt;code&gt;apt install intel-microcode&lt;/code&gt; で直った（&lt;a href=&#34;https://tracker.debian.org/pkg/intel-microcode&#34;&gt;最新のパッケージはbackports提供&lt;/a&gt;なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         
