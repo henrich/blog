@@ -84,7 +84,9 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
 +[ ! `screenfetch | grep &#39;command not found&#39; &amp;gt; /dev/null` ]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;でもやっぱり /usr/share/doc/autopkgtest/README.running-tests.rst.gz を読んでおいたほうが良さそう…&lt;/p&gt;
+&lt;p&gt;でもやっぱり &lt;code&gt;/usr/share/doc/autopkgtest/README.running-tests.rst.gz&lt;/code&gt; を読んでおいたほうが良さそう…&lt;/p&gt;
+
+&lt;p&gt;というところで&lt;a href=&#34;https://tracker.debian.org/news/929044&#34;&gt;screenfetchをアップロード&lt;/a&gt;。&lt;/p&gt;
 
 &lt;hr /&gt;
 
