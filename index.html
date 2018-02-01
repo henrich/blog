@@ -392,7 +392,7 @@ Constants from lexical variables potentially modified elsewhere are deprecated. 
 					<br>
 					
 						<ul>
-<li>[snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘]()。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして<a href="https://github.com/openSUSE/snapper/pull/386">Pull Request</a>。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888535">snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘</a>。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして<a href="https://github.com/openSUSE/snapper/pull/386">Pull Request</a>。</li>
 </ul>
 
 <pre><code>--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000

@@ -222,7 +222,7 @@ Constants from lexical variables potentially modified elsewhere are deprecated. 
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;[snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘]()。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして&lt;a href=&#34;https://github.com/openSUSE/snapper/pull/386&#34;&gt;Pull Request&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888535&#34;&gt;snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘&lt;/a&gt;。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして&lt;a href=&#34;https://github.com/openSUSE/snapper/pull/386&#34;&gt;Pull Request&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000
