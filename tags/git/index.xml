@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/git/</link>
+    <description>Recent content in Git on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>2015-  Hideki Yamane</copyright>
+    <lastBuildDate>Sun, 28 Jan 2018 09:16:36 +0900</lastBuildDate>
+    <atom:link href="/blog/tags/git/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;qrencodeパッケージをsalsaに配置してもらって、&lt;a href=&#34;https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a&#34;&gt;前に報告した些細な修正&lt;/a&gt;をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？&lt;/li&gt;
+&lt;li&gt;同じくqrencodeパッケージの報告者の勘違いに起因すると思われる&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984&#34;&gt;バグ&lt;/a&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266&#34;&gt;二つ&lt;/a&gt;をクローズしておいた&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。&lt;/p&gt;
+
+&lt;p&gt;さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。&lt;code&gt;mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av&lt;/code&gt; などとした。&lt;/li&gt;
+&lt;li&gt;つぎに親が同一ではないブランチ（orphan branch)を作る &lt;code&gt;git checkout --orphan master&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す &lt;code&gt;git rm --cached -r debian&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add upstream https://github.com/fukuchi/libqrencode&lt;/code&gt; でupstreamを引っ張ってくる&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git pull upstream master&lt;/code&gt;したがtag持ってこなかったから&lt;code&gt;git pull upstream&lt;/code&gt;も実行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git checkout debian&lt;/code&gt;して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために &lt;code&gt;git merge v4.0.0  --allow-unrelated-histories&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;上記の変更点がackされたら提案したい&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;svn-workbenchの&lt;a href=&#34;http://pysvn.tigris.org/issues/show_bug.cgi?id=212&#34;&gt;1行パッチをフォワード&lt;/a&gt;。使いづらいな。。。&lt;/li&gt;
+&lt;li&gt;svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;dh_install                                                                                                                         
+perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
+
+Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347&#34;&gt;パッチしておいた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
