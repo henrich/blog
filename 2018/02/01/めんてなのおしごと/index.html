@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Thu, Feb 1, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。</p>
+
+<p>まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら <code>autopkgtest . -- null</code> をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。</p>
+
+<p>また、<a href="https://ci.debian.net/doc/file.TUTORIAL.html">古い情報</a>では debian/control に <code>Testsuite: autopkgtest</code> の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。</p>
+
+<p>単純に <code>debian/tests/control</code> ファイルとそこで定義した <code>debian/tests/smoke</code> ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。</p>
+
+<pre><code>--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
+@@ -0,0 +1,2 @@
++Tests: smoke
++Depends: @, grep
+diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
+--- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
+@@ -0,0 +1,5 @@
++#!/bin/sh
++
++screenfetch
++
++[ ! `screenfetch | grep 'command not found' &gt; /dev/null` ]
+</code></pre>
+
+<p>でもやっぱり /usr/share/doc/autopkgtest/README.running-tests.rst.gz を読んでおいたほうが良さそう…</p>
+
+<hr />
+
+<ul>
+<li>jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+<li>jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+<li>nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。</li>
+<li>libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+</ul>
+
+<p>小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。</p>
+
+<hr />
+
+<ul>
+<li><a href="https://tracker.debian.org/news/929053">snapperをアップロード</a>。</li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

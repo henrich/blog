@@ -56,6 +56,61 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 01 Feb 2018 21:04:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。&lt;/p&gt;
+
+&lt;p&gt;まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら &lt;code&gt;autopkgtest . -- null&lt;/code&gt; をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。&lt;/p&gt;
+
+&lt;p&gt;また、&lt;a href=&#34;https://ci.debian.net/doc/file.TUTORIAL.html&#34;&gt;古い情報&lt;/a&gt;では debian/control に &lt;code&gt;Testsuite: autopkgtest&lt;/code&gt; の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。&lt;/p&gt;
+
+&lt;p&gt;単純に &lt;code&gt;debian/tests/control&lt;/code&gt; ファイルとそこで定義した &lt;code&gt;debian/tests/smoke&lt;/code&gt; ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
+@@ -0,0 +1,2 @@
++Tests: smoke
++Depends: @, grep
+diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
+--- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
+@@ -0,0 +1,5 @@
++#!/bin/sh
++
++screenfetch
++
++[ ! `screenfetch | grep &#39;command not found&#39; &amp;gt; /dev/null` ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でもやっぱり /usr/share/doc/autopkgtest/README.running-tests.rst.gz を読んでおいたほうが良さそう…&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
+&lt;li&gt;jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
+&lt;li&gt;nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。&lt;/li&gt;
+&lt;li&gt;libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/929053&#34;&gt;snapperをアップロード&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Tue, 30 Jan 2018 06:41:27 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -393,80 +448,6 @@ index 1507b5d..9073ab3 100644
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/900087&#34;&gt;birdfontをアップロード&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 07 Jan 2018 13:47:02 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;年末年始で間が空いてしまった&amp;hellip;。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/899819&#34;&gt;libxmlbirdをアップデート&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;年末年始でようやく新しいミラーサーバー new-debian-mirror.sakura.ne.jp の設定に手を付けました（ありがとうございます＞さくらインターネットさま）。初めてのAnsible&amp;hellip;ですが、今のところはバッチファイルよりちょっとマシ程度の状況。やはり複数サーバー運用して整理するのが必要とかじゃないとモチベーションが湧かないですね&amp;hellip;。まぁ、次にセットアップが必要になった場合は一発流せばいいだけというのは気楽にはなりました。&lt;/p&gt;
-
-&lt;p&gt;新しいサーバーにはbcacheを使っています、&lt;a href=&#34;https://wiki.archlinux.jp/index.php/Bcache&#34;&gt;ありがとうArch Wiki&lt;/a&gt;。ディスクを大量に積むのもよいのですが、既に後2年ぐらいは戦えそうな容量を頂けたので、SSDでキャッシュする方向に走るのが良いかな、と。速度はそこまで出ないにしてもアクセスが多くなっても大丈夫よ、と。&lt;/p&gt;
-
-&lt;p&gt;CacheデバイスのSSDですが、最初はRAID1を設定してもらっていましたが、思い直して設定変更。JBODが選べないので仕方なくRAID0にしました。生まれて初めて使ったよ、RAID0&amp;hellip;。HDDよりは死にづらいかなーというのと、死んでも構わないよねー（負荷が増えるだけ）というのと、容量が欲しかったんや&amp;hellip;というのの3点からRAID0選択と相成りました。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#!/bin/sh
-
-BACKING_DEVICE=/dev/sda3
-CACHE_DEVICE=/dev/sdb
-
-make-bcache -B $BACKING_DEVICE -C $CACHE_DEVICE
-
-echo `bcache-super-show $CACHE_DEVICE | grep cset.uuid | awk &#39;{print $2}&#39;` \
- &amp;gt; /sys/block/bcache0/bcache/attach
-
-if [ -f /dev/bcache0 ]; then
-  mkfs.xfs /dev/bcache0
-else
-  echo &amp;quot;There&#39;s no Bcache device.&amp;quot;
-fi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;手作業でやったのを後からまとめ直すと上記のような感じ。短いな&amp;hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。&lt;/p&gt;
-
-&lt;p&gt;ufwを実行しようかどうしようか、という辺りとSNMP監視が出来てない風味だよね？というのを確認したら、終わり。そして、切り替え前後でおかしなことが起きたらその対処、と。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;muninの設定続き。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo munin-run http_loadtime auto
-http___localhost_.value /etc/munin/plugins/http_loadtime: line 105: -f: command not found
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;$time_binというのが無いようだ。&lt;code&gt;which time&lt;/code&gt; してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo munin-run acpi
-/etc/munin/plugins/acpi: 1: eval: bc: not found
-thermal_zone0.value
-/etc/munin/plugins/acpi: 1: eval: bc: not found
-thermal_zone1.value
-
-$ sudo apt install bc
-
-$ sudo munin-run acpi
-thermal_zone0.value 49.000
-thermal_zone1.value 40.000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これはbc。&lt;/p&gt;
-
-&lt;p&gt;Suggestsにあるのが多いパターンなのだけど、それを確認して入れろ、というのはしんどくないかなぁ。&lt;/p&gt;
 </description>
           </item>
         
