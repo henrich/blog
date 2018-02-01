@@ -718,6 +718,12 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/tags/git/</loc>
+    <lastmod>2018-01-28T09:16:36+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/tags/gpg/</loc>
     <lastmod>2017-12-17T17:42:42+09:00</lastmod>
     <priority>0</priority>
