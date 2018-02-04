@@ -60,6 +60,174 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 16, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のケアリスト。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a>、<a href="https://tracker.debian.org/news/856662">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a>、<a href="https://tracker.debian.org/news/856663">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856571">xfonts-shinonome</a>、<a href="https://tracker.debian.org/news/856666">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856648">xfonts-naga10</a>、<a href="https://tracker.debian.org/news/856665">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856650">tiarra</a></li>
+<li><a href="https://tracker.debian.org/news/856669">libspiro</a></li>
+<li><a href="https://tracker.debian.org/news/856686">xfonts-ayu</a></li>
+<li><a href="https://tracker.debian.org/news/856690">fonts-horai-umefont</a></li>
+<li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
+
+<ul>
+<li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
+</ul></li>
+</ul>
+
+<p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
+
+<p>その他、ruby-interpriterのdropなど。なぜか<a href="https://packages.debian.org/sid/ruby2.1">ruby2.1がarm64のdeb-portsに残ってる</a>状況なのが不思議。</p>
+
+<hr />
+
+<p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
+
+<hr />
+
+<p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
+
+<pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
+$ cd libselenium-remote-driver-perl
+
+(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
+$ git branch -D upstream
+$ git tag -d upstream/1.20
+
+(空のブランチを作る)
+$ git checkout --orphan upstream
+$ git rm -rf *
+
+(upstreamブランチはGithubのmasterから取得するようにする)
+$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
+$ git pull github
+$ git fetch
+$ git branch -u github/master upstream
+</code></pre>
+
+<p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
+
+<hr />
+
+<p>前に一応チェックした<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">screenfetchのLaunchPadへの報告</a>、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。</p>
+
+<pre><code>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
+</code></pre>
+
+<p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
+
+<p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 15, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>M+ BITMAP FONTSのパッチを<a href="https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html">upstreamに送付</a>完了。やれやれ。</p>
+
+<hr />
+
+<p><a href="https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/">openSUSE Conference Asia</a>
+の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。</p>
+
+<p>さて<a href="https://events.opensuse.org/">submit</a>&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
+
+<pre><code>You have used 99 words. Abstracts must be between 150 and 500 words.
+</code></pre>
+
+<p>&hellip;150 wordsつらい(´・ω・`)</p>
+
+<hr />
+
+<p>今日はcollab-maintな奴を更新</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/856447">docx2txt</a></li>
+<li><a href="https://tracker.debian.org/news/856445">riece</a></li>
+<li><a href="https://tracker.debian.org/news/856446">g-wrap</a></li>
+</ul>
+
+<hr />
+
+<p>libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&hellip;</p>
+
+<pre><code>E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
+E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
+</code></pre>
+
+<p>これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。</p>
+
+<p>それと最近のバージョンではMock::Timeが必要なようなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428">libmock-time-perlをITP</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -492,118 +660,6 @@ Please see the logfiles in /var/log/letsencrypt for more details.
 </code></pre>
 
 <p>Oh&hellip; 上位ドメインであるsakura.ne.jpに既に発行しまくってるのでもうダメよ、と出て失敗。Let&rsquo;s Encryptは諦めざるを得ない&hellip;</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 1, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/852775">darts をアップデート</a>。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
-<li><a href="https://tracker.debian.org/news/852940">mecab-naist-jdic をアップデート</a>。特にこれということもなく。</li>
-<li><a href="https://tracker.debian.org/news/852917">unidic-mecab をアップデート</a> 。dh10でスッキリと。</li>
-<li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
-<li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>
-<li><a href="https://tracker.debian.org/news/852781">mecab-jumandic をアップデート</a>。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。<code>$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz</code>っと。</li>
-</ul>
-
-<pre><code>git-buildpackage (0.8.17) unstable; urgency=medium
-(snip)
-  * [956982c] New command 'pristine-tar'
-    This allows one to run the pristine-tar import at a later point.  This
-    is useful when using component tarballs and we need to reference the
-    right trees for the commits.
-</code></pre>
-
-<hr />
-
-<ul>
-<li>消えたら可哀想だな、ということで<a href="https://tracker.debian.org/news/852950">plumをAdoptした</a>。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jun 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/proposal">proposal</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation">pkg-configとpkgconfigの入れ替え話</a>もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。</li>
-<li><a href="https://fedoraproject.org/wiki/Releases/26/ChangeSet">https://fedoraproject.org/wiki/Releases/26/ChangeSet</a> のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
-
-<ul>
-<li>現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう</li>
-<li>開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう</li>
-<li>ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）</li>
-<li>リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう</li>
-</ul></li>
-<li><a href="https://fedoraproject.org/wiki/Releases/26/Schedule">https://fedoraproject.org/wiki/Releases/26/Schedule</a> を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
-
-<ul>
-<li>→ <a href="https://wiki.debian.org/upstream-schedule">https://wiki.debian.org/upstream-schedule</a> を作ってみた。</li>
-</ul></li>
-<li><a href="http://debian-mirror.sakura.ne.jp/">debian-mirror.sakura.ne.jp</a> をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？</li>
-</ul>
 
 					
 				</div>

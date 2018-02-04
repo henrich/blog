@@ -56,6 +56,55 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 04 Feb 2018 22:38:35 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを &lt;code&gt;debian/.gitlab-ci.yml&lt;/code&gt; でセットアップしておいた&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;image: debian:sid
+
+before_script:
+  - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp;  apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev
+  - cd ../; apt-get source -d &amp;lt;package name&amp;gt;; cd -
+
+build:
+  script:
+    - dpkg-buildpackage -us -uc -B
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/929833&#34;&gt;sylpheed&lt;/a&gt; 他をアップロード&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 03 Feb 2018 23:14:20 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;sylpheedパッケージのpatchを&lt;a href=&#34;http://sylpheed.sraoss.jp/redmine/issues/291&#34;&gt;forwardしておいた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;screenfetchパッケージの&lt;a href=&#34;https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz&#34;&gt;smokeテストがさっそくfailしとった。。。&lt;/a&gt;。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、&lt;code&gt;/usr/bin/screenfetch: line 1341: [: too many arguments&lt;/code&gt; となっていた、と。&lt;a href=&#34;https://tracker.debian.org/news/929555&#34;&gt;パッチ作ってアップロードしたけど&lt;/a&gt;、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://anonscm.debian.org/git/pkg-sylpheed/&#34;&gt;aliothから&lt;/a&gt;、sylph-searcher, sylfilter, libsylphをsalsaにインポート。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Thu, 01 Feb 2018 21:04:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -409,46 +458,6 @@ index 1507b5d..9073ab3 100644
             <description>&lt;ul&gt;
 &lt;li&gt;qrencodeパッケージがちょっと古くなっているようだ。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887144&#34;&gt;upstreamのサイトが移動してるね、ということでBTS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ついでに自分の手元でアップデート出来ないかな？と作業して大方できた。新規追加されたtestスクリプトがconfigureを引数なしでハードコードしていて実行されるのでパッケージのインストールが壊れるという問題があったのに引っかかって小一時間潰してしまった&amp;hellip;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>subversionからお引っ越し</title>
-            <link>https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/</link>
-            <pubDate>Sat, 13 Jan 2018 21:51:19 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/</guid>
-            <description>&lt;p&gt;www.debian.or.jpのコンテンツはSubversionで管理していて、コミット可能なのはJPのメンバーだけだったのだけど、salsa.debian.orgに引っ越して見通しを良くしてみたくなったので作業した。&lt;/p&gt;
-
-&lt;p&gt;svn2gitを使いコンバート。&lt;/p&gt;
-
-&lt;p&gt;非常にわかりづらい（というか導線がない？）のだけど、GitLabにOrganizationというかTeamというかを登録するページからdebianjp-teamとして登録し、適当なsub projectとしてwebを作り、コンバートしたGit repositoryを突っ込む。&lt;/p&gt;
-
-&lt;p&gt;Ansibleで&lt;a href=&#34;https://cloudgarage.jp/&#34;&gt;CloudGarage&lt;/a&gt;のVPSへデプロイ（ここで現状のサイトコンテンツの更新手順に更新漏れを見つけたり）。CloudGarageさんは&lt;a href=&#34;https://cloudgarage.jp/dap/&#34;&gt;開発者支援プログラム&lt;/a&gt;を使わせてもらっていて助かる。相変わらず書いたplaybook.ymlがちょっと出来のいいバッチファイル程度なのが気になるけど、仕方がない。&lt;/p&gt;
-
-&lt;p&gt;とまぁ、そんなこんなで時間を使った。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 08 Jan 2018 19:55:35 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/900074&#34;&gt;fonts-oradano-mincho-gsrrをアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/900087&#34;&gt;birdfontをアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
