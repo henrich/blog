@@ -68,7 +68,6 @@
 
 before_script:
   - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp;  apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev
-  - cd ../; apt-get source -d &amp;lt;package name&amp;gt;; cd -
 
 build:
   script:
@@ -76,8 +75,52 @@ build:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/929833&#34;&gt;sylpheed&lt;/a&gt; 他をアップロード&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/929833&#34;&gt;sylpheed&lt;/a&gt; 他をアップロード&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;あれ、libsylphでonigurumaが有効になってない？&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;libsylph 1.1.0
+
+OpenSSL       : yes
+iconv         : yes
+IPv6          : yes
+Oniguruma     : no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;checking whether Oniguruma is available... no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なんでだ？？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AC_MSG_CHECKING([whether to use Oniguruma])
+if test &amp;quot;$ac_cv_enable_oniguruma&amp;quot; = yes; then
+        AC_MSG_RESULT(yes)
+        AC_MSG_CHECKING([whether Oniguruma is available])
+        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
+        ONIG_CONFIG=onig-config
+        ONIG_VERSION=`$ONIG_CONFIG --version 2&amp;gt;/dev/null`
+        if test &amp;quot;x$ONIG_VERSION&amp;quot; != &amp;quot;x&amp;quot;; then
+                AC_MSG_RESULT(yes)
+                CFLAGS=&amp;quot;$CFLAGS `$ONIG_CONFIG --cflags`&amp;quot;
+                LIBS=&amp;quot;$LIBS `$ONIG_CONFIG --libs`&amp;quot;
+                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
+        else
+                AC_MSG_RESULT(no)
+                ac_cv_enable_oniguruma=no
+        fi
+else
+        AC_MSG_RESULT(no)
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ぬぬぬ？ libonig-devなソースのdebian/rulesを&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;override_dh_install:
+        $(RM) debian/tmp/usr/bin/onig-config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;貴様かー！！！&amp;hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。&lt;/p&gt;
 </description>
           </item>
         

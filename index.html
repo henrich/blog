@@ -150,7 +150,6 @@
 
 before_script:
   - echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev
-  - cd ../; apt-get source -d &lt;package name&gt;; cd -
 
 build:
   script:
@@ -158,8 +157,52 @@ build:
 </code></pre>
 
 <ul>
-<li><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</li>
+<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
+
+<li><p>あれ、libsylphでonigurumaが有効になってない？</p></li>
 </ul>
+
+<pre><code>libsylph 1.1.0
+
+OpenSSL       : yes
+iconv         : yes
+IPv6          : yes
+Oniguruma     : no
+</code></pre>
+
+<pre><code>checking whether Oniguruma is available... no
+</code></pre>
+
+<p>なんでだ？？</p>
+
+<pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
+if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
+        AC_MSG_RESULT(yes)
+        AC_MSG_CHECKING([whether Oniguruma is available])
+        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
+        ONIG_CONFIG=onig-config
+        ONIG_VERSION=`$ONIG_CONFIG --version 2&gt;/dev/null`
+        if test &quot;x$ONIG_VERSION&quot; != &quot;x&quot;; then
+                AC_MSG_RESULT(yes)
+                CFLAGS=&quot;$CFLAGS `$ONIG_CONFIG --cflags`&quot;
+                LIBS=&quot;$LIBS `$ONIG_CONFIG --libs`&quot;
+                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
+        else
+                AC_MSG_RESULT(no)
+                ac_cv_enable_oniguruma=no
+        fi
+else
+        AC_MSG_RESULT(no)
+fi
+</code></pre>
+
+<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
+
+<pre><code>override_dh_install:
+        $(RM) debian/tmp/usr/bin/onig-config
+</code></pre>
+
+<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
 
 					
 				</div>
