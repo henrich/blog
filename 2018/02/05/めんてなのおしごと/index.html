@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Sun, Feb 4, 2018</span> in 
+				<span class="label label-primary">Mon, Feb 5, 2018</span> in 
 				 using tags
 				
 					
@@ -68,66 +68,45 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</li>
+<li>chasenパッケージの更新。</li>
 </ul>
 
-<pre><code>image: debian:sid
+<pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
 
-before_script:
-  - echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
+  * debian/control
+    - Vcs-* move to salsa.debian.org 
+    - use https for Homepage:
+    - set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
+      dependency (pulled automatically)
+    - set Standards-Version: 4.1.3
+  * debian/rules
+    - drop &quot;--with autoreconf&quot;
+    - specify &quot;--no-parallel&quot; to avoid FTBFS
+  * debian/compat
+    - set 10
+  * debian/watch
+    - update to version 4
 
-build:
-  script:
-    - dpkg-buildpackage -us -uc -B
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
 </code></pre>
 
 <ul>
-<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
-
-<li><p>あれ、libsylphでonigurumaが有効になってない？</p></li>
+<li>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</li>
 </ul>
 
-<pre><code>libsylph 1.1.0
+<pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
 
-OpenSSL       : yes
-iconv         : yes
-IPv6          : yes
-Oniguruma     : no
+  * debian/control
+    - set Build-Depends: debhelper (&gt;= 11)
+  * debian/compat
+    - set 11
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
 </code></pre>
 
-<pre><code>checking whether Oniguruma is available... no
-</code></pre>
-
-<p>なんでだ？？</p>
-
-<pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
-if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
-        AC_MSG_RESULT(yes)
-        AC_MSG_CHECKING([whether Oniguruma is available])
-        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
-        ONIG_CONFIG=onig-config
-        ONIG_VERSION=`$ONIG_CONFIG --version 2&gt;/dev/null`
-        if test &quot;x$ONIG_VERSION&quot; != &quot;x&quot;; then
-                AC_MSG_RESULT(yes)
-                CFLAGS=&quot;$CFLAGS `$ONIG_CONFIG --cflags`&quot;
-                LIBS=&quot;$LIBS `$ONIG_CONFIG --libs`&quot;
-                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
-        else
-                AC_MSG_RESULT(no)
-                ac_cv_enable_oniguruma=no
-        fi
-else
-        AC_MSG_RESULT(no)
-fi
-</code></pre>
-
-<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
-
-<pre><code>override_dh_install:
-        $(RM) debian/tmp/usr/bin/onig-config
-</code></pre>
-
-<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
+<ul>
+<li>昨日のlibsylphの件を忘れないうちにBTSへ。</li>
+</ul>
 
 		</div>
 	</div>
