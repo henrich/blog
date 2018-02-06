@@ -45,8 +45,39 @@
 &lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882&#34;&gt;hyperv-daemonsの修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;sylpheed関連パッケージでGPG鍵確認処理を追加&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 06 Feb 2018 21:00:12 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;1日一つは、ということでdartsパッケージの更新。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;darts (0.32-16) unstable; urgency=medium
+
+  * debian/control
+    - update Vcs-* to use salsa.debian.org
+    - set Build-Depends: debhelper (&amp;gt;= 11)
+    - set Standards-Version: 4.1.3
+  * debian/compat
+    - set 11
+  * debian/watch
+    - update to version 4
+  * debian/copyright
+    - sort order to ignore lintian warning
+
+ -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Tue, 06 Feb 2018 20:23:18 +0900
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
@@ -524,20 +555,6 @@ index 1507b5d..9073ab3 100644
 &lt;hr /&gt;
 
 &lt;p&gt;salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&amp;hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 15 Jan 2018 19:18:27 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;昨日苦しんだ問題を&lt;a href=&#34;https://github.com/fukuchi/libqrencode/issues/117&#34;&gt;upstreamにissue報告した&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         

@@ -45,7 +45,6 @@
 &lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882&#34;&gt;hyperv-daemonsの修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;sylpheed関連パッケージでGPG鍵確認処理を追加&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
