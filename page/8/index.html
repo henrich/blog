@@ -60,6 +60,93 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Sep 11, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=875432">python3-sphinx-intlをITP</a>した。
+
+<ul>
+<li>何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業で<code>git checkout --orphan pristine-tar; rm *; git commit --allow-empty</code>みたいなことをして作った。何故だ。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/871063">cutter-testing-frameworkがリポジトリから削除されていた</a>ので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたので<a href="https://github.com/clear-code/cutter/pull/30">pull request</a>。
+
+<ul>
+<li>他にもpo/Makefile.in.inファイルが無くて<code>intltoolize --force || exit 1</code>が必要だったり。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Sep 5, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>elpa-migemo をアップロード</li>
+<li>nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は<a href="https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;arch=m68k&amp;ver=0.9.1-5&amp;stamp=1504617916&amp;raw=0">m68kぐらい</a>）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。</li>
+<li>os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&hellip;これ動くのかな。）</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -434,106 +521,6 @@ E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Aug 23, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>MSのドキュメントでDebianがDe&rdquo;v&rdquo;ianと書かれているtypoがあるよ、というのを見て、該当ページで「編集」を押してみたらGitHubのプルリクエスト画面になった。すげぇな。
-
-<ul>
-<li>直してプルリクエスト送ったけど、<a href="https://github.com/MicrosoftDocs/windowsserverdocs/pull/174#issuecomment-324168581">botがContribution License Agreement必要かどうか判断</a>してた。はー。</li>
-</ul></li>
-<li>pkg-perlチームのドキュメントを読む。まずは <a href="https://pkg-perl.alioth.debian.org/git.html">https://pkg-perl.alioth.debian.org/git.html</a>
-
-<ul>
-<li>pkg-perl-tools をインストールするところから始めるようだ</li>
-<li>インストールが終わると dpt コマンドが使える。メンテのためのお役立ちツールの様子。pkg-perlに絞ってるからシンプルにできてるのかな？ echo &ldquo;DPT_PACKAGES=$HOME/src/pkg-perl/packages&rdquo; &gt;&gt; $HOME/.config/dpt.conf して設定を追加。</li>
-<li>&ldquo;Non-pkg-perl methods such as gbp-create-remote-repo will not set up this infrastructure.&rdquo; とあるな。先日gbp-create-remote-repoでpushしたけど消して再度作り直しておくか&hellip;。</li>
-<li>dpt alioth-repo とかして作った。これ、aliothから新しいホスト名（salsaだっけ？）になったら変わるのかな。</li>
-<li>いじって、dpt pushで反映。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Aug 22, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>debian-policy 4.1.0がアップロードされた&hellip;のだけども、<a href="https://www.debian.org/doc/debian-policy/">Webサイトの方</a>はCSSなどのファイルが一切アップロードされて無くて見栄えが悪い。<a href="https://lists.debian.org/debian-policy/2017/08/msg00477.html">問い合わせ</a>してみた。
-
-<ul>
-<li>どうやらウェブサイト側の問題のようでSeanが<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872944">バグを登録</a>してくれた。</li>
-</ul></li>
-<li>昨日のpkg-perlチームへの加入がOKされてたのでgit pushしておく。パッケージ自体の修正はまだ。
-
-<ul>
-<li>何故かpristine-tarブランチが切られてないパッケージがあった。どうやって作るかな？と思ったが git checkout debian/<tag>;
-gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-ignore-branch を繰り返して作成した。古いバージョンだとビルドができなくなっていたのにちょっと驚いたのと、testがskipしてるのを見逃していたなーという点。</li>
-<li>teamのroot直下じゃなくてpackagesというディレクトリを切っていたのに後で気づいて慌ててsshで入って移動した。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -695,13 +682,22 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
     
     
     
+    
+        
+        
+    
+    
+    
+    
+    
+    
      
         
         
     
     
     <li
-    ><a href="/blog/page/14/">14</a></li>
+    ><a href="/blog/page/15/">15</a></li>
     
     
     <li
@@ -710,7 +706,7 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
     </li>
     
     <li>
-        <a href="/blog/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/15/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
