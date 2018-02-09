@@ -72,7 +72,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。&lt;/li&gt;
+&lt;li&gt;sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。&lt;a href=&#34;https://sylpheed.sraoss.jp/redmine/issues/296&#34;&gt;忘れないうちにupstreamにも登録&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;sylpheed (3.7.0-2) UNRELEASED; urgency=medium
