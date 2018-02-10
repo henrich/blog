@@ -55,6 +55,27 @@
         
           <item>
             <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 10 Feb 2018 09:11:54 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931316&#34;&gt;xfonts-mplusを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931318&#34;&gt;xfonts-shinonomeを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931319&#34;&gt;xfonts-ayuを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931322&#34;&gt;xfonts-efont-unicodeを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931323&#34;&gt;xfonts-kanameを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931337&#34;&gt;xfonts-naga10を更新&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 09 Feb 2018 23:35:23 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
@@ -565,25 +586,6 @@ index 1507b5d..9073ab3 100644
 &lt;/ul&gt;
 
 &lt;p&gt;ここからはいつもどおりビルド→アップロード。gitのremote repo設定からaliothを消してsalsaを追加しておく。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 23 Jan 2018 21:16:11 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;snapperパッケージのメンテ。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880144&#34;&gt;aptが動いたときの自動スナップショットを無効にできないか？調整する設定を追加してはどうか？という提案&lt;/a&gt;。「デフォルト有効ならいいように思う」とコメント。&lt;/li&gt;
-&lt;li&gt;e2fsprogsがessentialパッケージでなくなるのに伴い、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292&#34;&gt;e2fsprogsに依存してるみたいなんだけど、明示的にしてくれる？&lt;/a&gt;というバグレポート。ext4サポートがそもそも動いてなかったから明示的にdisableにするかーという結論なんだけど、確認方法がわからないとリリースできない。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

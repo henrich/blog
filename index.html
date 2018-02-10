@@ -124,6 +124,49 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 10, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/931316">xfonts-mplusを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931318">xfonts-shinonomeを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931319">xfonts-ayuを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931322">xfonts-efont-unicodeを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931323">xfonts-kanameを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931337">xfonts-naga10を更新</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -605,51 +648,6 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
 						<ul>
 <li>nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&hellip;<a href="https://github.com/facebook/nailgun/pull/118">新しくPR作ったところ、マージされた</a>。これでパッケージ側のパッチがまた一つ減らせる。</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 29, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。</li>
-</ul>
-
-<pre><code>$ git checkout --orphan mones
-$ git rm --cached -r *
-$ rm -r ./*
-$ git pull alioth master
-$ git push salsa mones
-</code></pre>
 
 					
 				</div>
