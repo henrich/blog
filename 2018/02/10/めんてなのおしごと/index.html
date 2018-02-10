@@ -74,7 +74,41 @@
 <li><a href="https://tracker.debian.org/news/931322">xfonts-efont-unicodeを更新</a></li>
 <li><a href="https://tracker.debian.org/news/931323">xfonts-kanameを更新</a></li>
 <li><a href="https://tracker.debian.org/news/931337">xfonts-naga10を更新</a></li>
+<li><a href="https://tracker.debian.org/news/931540">fonts-aoyagi-kouzan-tを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931541">fonts-arphic-bkai00mpを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931645">jcodingsを更新</a>、salsa移行はまだ目処立たず。</li>
+<li><a href="https://tracker.debian.org/news/931659">nailgunを更新</a>、salsa移行はまだ目処立たず。</li>
 </ul>
+
+<hr />
+
+<ul>
+<li><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</li>
+</ul>
+
+<pre><code>make[1]: Entering directory '/builds/fonts-team/xfonts-kappa20'
+bdftopcf k20m.bdf | gzip -c9 -n &gt; pcf/k20m.pcf.gz
+/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
+Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
+</code></pre>
+
+<p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
+
+<hr />
+
+<p>sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。</p>
+
+<pre><code>  * debian/control
+    - add Build-Depends: dh-exec to modify icon files' name
+  * debian/sylpheed.install
+    - install icon files to appropriate locations (Closes: #823018)
+  * debian/sylpheed.dirs
+    - adjust as above
+  * debian/dirs
+    - unused, drop it
+  * debian/sylpheed-debian.xpm
+    - menu system was already deprecated, drop it
+</code></pre>
 
 		</div>
 	</div>

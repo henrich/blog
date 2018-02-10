@@ -66,7 +66,41 @@
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931322&#34;&gt;xfonts-efont-unicodeを更新&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931323&#34;&gt;xfonts-kanameを更新&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931337&#34;&gt;xfonts-naga10を更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931540&#34;&gt;fonts-aoyagi-kouzan-tを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931541&#34;&gt;fonts-arphic-bkai00mpを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931645&#34;&gt;jcodingsを更新&lt;/a&gt;、salsa移行はまだ目処立たず。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931659&#34;&gt;nailgunを更新&lt;/a&gt;、salsa移行はまだ目処立たず。&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931537&#34;&gt;xfonts-kappa20を更新&lt;/a&gt;&amp;hellip;したのだけど、CIが落ちる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;make[1]: Entering directory &#39;/builds/fonts-team/xfonts-kappa20&#39;
+bdftopcf k20m.bdf | gzip -c9 -n &amp;gt; pcf/k20m.pcf.gz
+/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
+Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&amp;hellip;何故だ。対応してCIは通るようになったが謎だ。&lt;a href=&#34;https://tracker.debian.org/news/931538&#34;&gt;上げ直した&lt;/a&gt;。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  * debian/control
+    - add Build-Depends: dh-exec to modify icon files&#39; name
+  * debian/sylpheed.install
+    - install icon files to appropriate locations (Closes: #823018)
+  * debian/sylpheed.dirs
+    - adjust as above
+  * debian/dirs
+    - unused, drop it
+  * debian/sylpheed-debian.xpm
+    - menu system was already deprecated, drop it
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
