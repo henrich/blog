@@ -60,6 +60,65 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jun 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
+Calling ['apt-get', '-qq', 'changelog', 'console-setup-linux=1.165'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'libavutil55=7:3.2.6-1+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'gvfs-backends=1.30.4-1+b1'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-notify=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-visualization=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-skins2=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'mplayer=2:1.3.0-6+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'gstreamer1.0-plugins-bad=1.12.1-1+b1'] to retrive changelog
+changelog を読んでいます... 完了
+</code></pre>
+
+<p>??? 何故こんな出力が？</p>
+
+<pre><code>Package: apt
+Version: 1.4.6
+</code></pre>
+
+<pre><code>Package: apt-listchanges
+Version: 3.12
+</code></pre>
+
+<p>どちらだろうか？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
 						<small><span class="label label-primary">
 							
@@ -724,74 +783,6 @@ Description: XS based CSS minifier
 </code></pre>
 
 <p>と出てきてしまいました。あらら。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/">testでskippedが多い場合は依存関係が満たされてないかもしれない</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>さて、ドキュメントにはテストについて色々書いてありました。</p>
-
-<pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl &quot;-MExtUtils::Command::MM&quot; &quot;-MTest::Harness&quot; &quot;-e&quot; &quot;undef *Test::Harness::Switches; test_harness(1, 'blib/lib', 'blib/arch')&quot; t/*.t
-t/00-compile.t ................ 
-1..1
-ok 1 - DBIx::Class::OptimisticLocking loaded ok
-ok
-t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
-t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
-t/03-all.t .................... skipped: needs DBD::SQLite for testing
-t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
-t/05-version.t ................ skipped: needs DBD::SQLite for testing
-t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
-t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
-t/08-none.t ................... skipped: needs DBD::SQLite for testing
-t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
-t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
-All tests successful.
-Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
-Result: PASS
-</code></pre>
-
-<p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
-
-<p>結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。</p>
-
-<p>もうひとつは些細な話ですがパラレルビルドの話「dh $@ &ndash;parallel」という形で渡せば</p>
-
-<pre><code>   dh_auto_build -O--parallel
-	make -j4
-</code></pre>
-
-<p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
 
 					
 				</div>
