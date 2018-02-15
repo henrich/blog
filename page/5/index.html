@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.26" />
+	<meta name="generator" content="Hugo 0.35" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,44 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 31, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fontforgeのバグのtriageで、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206">古いバグが再現しなくなっているのでcloseした</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -480,107 +518,6 @@ make: *** [build] Error 2
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Oct 18, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>ミラースクリプトを<a href="https://lists.debian.org/debian-mirrors/2017/10/msg00017.html">案内</a>に従って入れ替えた</li>
-<li><a href="https://tracker.debian.org/news/880023">libmojolicious-plugin-assetpack-perlを更新</a></li>
-<li><a href="https://tracker.debian.org/news/879865">fonts-arphic-umingを更新</a></li>
-<li><a href="https://tracker.debian.org/news/879869">yydebugのポカを修正</a>&hellip;。</li>
-<li>libexport-attrs-perlがrejectされたので再アップロード</li>
-<li>nadokaを西山さんに押し付けるだけの仕事を :)</li>
-</ul>
-
-<hr />
-
-<p>openQAでコケる所を抜粋</p>
-
-<pre><code>[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-./t/05-scheduler-cancel.t ................. ok
-./t/05-scheduler-capabilities.t ........... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-./t/05-scheduler-dependencies.t ........... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
-./t/05-scheduler-restart-and-duplicate.t .. ok
-./t/06-users.t ............................ ok
-./t/07-api_jobtokens.t .................... ok
-./t/07-api_keys.t ......................... ok
-./t/09-job_clone.t ........................ ok
-./t/10-tests_overview.t ................... ok
-./t/13-joblocks.t ......................... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-(snip)
-Uncaught exception from user code:
-        org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
-        Net::DBus::Binding::Bus::new(&quot;Net::DBus::Binding::Bus&quot;, &quot;type&quot;, 1) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 191
-        Net::DBus::system(&quot;Net::DBus&quot;) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 153
-        Net::DBus::find(&quot;Net::DBus&quot;, &quot;nomainloop&quot;, 1) called at lib/OpenQA/IPC.pm line 57
-        OpenQA::IPC::new(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/IPC.pm line 65
-        OpenQA::IPC::ipc(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/WebSockets.pm line 50
-        OpenQA::WebSockets::new(&quot;OpenQA::WebSockets&quot;) called at lib/OpenQA/WebSockets.pm line 41
-        OpenQA::WebSockets::run() called at /build/openqa-4.3+git20171018/t/lib/OpenQA/Test/Utils.pm line 85
-        OpenQA::Test::Utils::create_websocket_server(60430) called at ./t/05-scheduler-full.t line 65
-[6780:info] Listening at &quot;http://127.0.0.1:60429/&quot;
-Use of uninitialized value in symlink at ./t/05-scheduler-full.t line 73 (#1)
-    (W uninitialized) An undefined value was used as if it were already
-    defined.  It was interpreted as a &quot;&quot; or a 0, but maybe it was a mistake.
-    To suppress this warning assign a defined value to your variables.
-    
-    To help you figure out what was undefined, perl will try to tell you
-    the name of the variable (if any) that was undefined.  In some cases
-    it cannot do this, so it also tells you what operation you used the
-    undefined value in.  Note, however, that perl optimizes your program
-    and the operation displayed in the warning may not necessarily appear
-    literally in your program.  For example, &quot;that $foo&quot; is usually
-    optimized into &quot;that &quot; . $foo, and the warning will refer to the
-    concatenation (.) operator, even though there is no . in
-    your program.
-    
-Uncaught exception from user code:
-        can't symlink at ./t/05-scheduler-full.t line 73.
-</code></pre>
-
-<p>あれ、これはキャッシュを含めたときだったか、どうだったか。。。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -603,7 +540,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -615,7 +552,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -627,7 +564,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -639,7 +576,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -651,7 +588,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -663,7 +600,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -749,7 +686,7 @@ Uncaught exception from user code:
     
     
     
-     
+    
         
         
     
@@ -783,7 +720,7 @@ Uncaught exception from user code:
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.35 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

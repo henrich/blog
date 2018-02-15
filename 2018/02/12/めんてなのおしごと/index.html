@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Mon, Feb 12, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li><a href="https://tracker.debian.org/news/932275">mirmonパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/932269">sylpheedパッケージを更新</a>、<a href="https://salsa.debian.org/sylpheed-team/sylpheed/merge_requests/1">Merge Requestもやってみる</a></li>
+<li><a href="https://tracker.debian.org/news/932417">loquiパッケージを更新</a></li>
+</ul>
+
+<hr />
+
+<p>shutterのアップデートが放置されてたので、やってもいい？と聞いてみた。</p>
+
+<pre><code>shutter (0.94-1) UNRELEASED; urgency=medium
+
+  * Team upload
+
+  [ gregor herrmann ]
+  * Add libnet-oauth-perl to Recommends.
+    Needed by the Dropbox module. (LP: #1372050)
+
+  [ Hideki Yamane ]
+  * New upstream release (Closes: #887887)
+  * deian/control
+    - s/perlmagick/libimage-magick-perl/ (Closes: #789236)
+    - set Build-Depends: debhelper (&gt;= 11)
+    - set Standards-Version: 4.1.3
+  * debian/watch
+    - update to version 4
+  * debian/compat
+    - set 11
+  * debian/patches
+    - drop 0002-Force-utf8-for-retrieved-window-name-from-Gtk2.patch, merged
+      upstream
+    - drop 0003-Fix-error-on-executing-xdg-email.patch, merged upstream
+    - drop insecure_use_of_system.patch, merged upstream
+    - drop CVE-2016-10081.patch, merged upstream
+    - refresh fix-perl-system-calls
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 12 Feb 2018 09:30:17 +0900
+</code></pre>
+
+<p>で、OK出たので<a href="https://tracker.debian.org/news/932299">アップロード</a></p>
+
+<hr />
+
+<p>チェック作業中にxfonts-*なパッケージを削除する必要があったので作業してたら、気になるメッセージ。</p>
+
+<pre><code>xfonts-75dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
+warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
+warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
+
+
+xfonts-100dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
+warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
+warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
+</code></pre>
+
+<p>うーん、xfontsなパッケージ見てみるほうがいいかもしれない。GitLabの機能を使えば、X strike forceとsub projectを共有できたりするのかしら？</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.35 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

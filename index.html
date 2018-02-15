@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.26" />
+	<meta name="generator" content="Hugo 0.35" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,18 +60,15 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2100/01/01/future-work/">future work</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, Jan 1, 2100
+								Wed, Feb 14, 2018
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/todo">todo</a>
 						
 					</small>
 				</div>
@@ -80,32 +77,102 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						
-
-<h1 id="支援について">支援について</h1>
-
-<p>このBlogにあるようなDebian関連の作業について支援して頂ける方、henrich @ debian.org 宛に<a href="http://amzn.to/2u7MfE5">Amazonギフト券</a>でのコントリビューションをお待ちしております :-)</p>
-
-<h2 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h2>
-
-<ul>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
-
-<ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
-<li><a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">specファイル</a>参照</li>
-</ul></li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
-
-<ul>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-</ul></li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882">hyperv-daemonsの修正</a></li>
+						<ul>
+<li><a href="https://tracker.debian.org/news/932687">rieceパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/932971">tiarraパッケージの修正が不十分で動かなかったのでもう一度修正してexperimentalへ</a></li>
+<li><a href="https://tracker.debian.org/news/932972">tomoyo-toolsパッケージを更新</a></li>
 </ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 12, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/932275">mirmonパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/932269">sylpheedパッケージを更新</a>、<a href="https://salsa.debian.org/sylpheed-team/sylpheed/merge_requests/1">Merge Requestもやってみる</a></li>
+<li><a href="https://tracker.debian.org/news/932417">loquiパッケージを更新</a></li>
+</ul>
+
+<hr />
+
+<p>shutterのアップデートが放置されてたので、やってもいい？と聞いてみた。</p>
+
+<pre><code>shutter (0.94-1) UNRELEASED; urgency=medium
+
+  * Team upload
+
+  [ gregor herrmann ]
+  * Add libnet-oauth-perl to Recommends.
+    Needed by the Dropbox module. (LP: #1372050)
+
+  [ Hideki Yamane ]
+  * New upstream release (Closes: #887887)
+  * deian/control
+    - s/perlmagick/libimage-magick-perl/ (Closes: #789236)
+    - set Build-Depends: debhelper (&gt;= 11)
+    - set Standards-Version: 4.1.3
+  * debian/watch
+    - update to version 4
+  * debian/compat
+    - set 11
+  * debian/patches
+    - drop 0002-Force-utf8-for-retrieved-window-name-from-Gtk2.patch, merged
+      upstream
+    - drop 0003-Fix-error-on-executing-xdg-email.patch, merged upstream
+    - drop insecure_use_of_system.patch, merged upstream
+    - drop CVE-2016-10081.patch, merged upstream
+    - refresh fix-perl-system-calls
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 12 Feb 2018 09:30:17 +0900
+</code></pre>
+
+<p>で、OK出たので<a href="https://tracker.debian.org/news/932299">アップロード</a></p>
+
+<hr />
+
+<p>チェック作業中にxfonts-*なパッケージを削除する必要があったので作業してたら、気になるメッセージ。</p>
+
+<pre><code>xfonts-75dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
+warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
+warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
+
+
+xfonts-100dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
+warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
+warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
+</code></pre>
+
+<p>うーん、xfontsなパッケージ見てみるほうがいいかもしれない。GitLabの機能を使えば、X strike forceとsub projectを共有できたりするのかしら？</p>
 
 					
 				</div>
@@ -630,85 +697,6 @@ fi
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Feb 1, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。</p>
-
-<p>まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら <code>autopkgtest . -- null</code> をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。</p>
-
-<p>また、<a href="https://ci.debian.net/doc/file.TUTORIAL.html">古い情報</a>では debian/control に <code>Testsuite: autopkgtest</code> の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。</p>
-
-<p>単純に <code>debian/tests/control</code> ファイルとそこで定義した <code>debian/tests/smoke</code> ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。</p>
-
-<pre><code>--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
-@@ -0,0 +1,2 @@
-+Tests: smoke
-+Depends: @, grep
-diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
---- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
-@@ -0,0 +1,5 @@
-+#!/bin/sh
-+
-+screenfetch
-+
-+[ ! `screenfetch | grep 'command not found' &gt; /dev/null` ]
-</code></pre>
-
-<p>でもやっぱり <code>/usr/share/doc/autopkgtest/README.running-tests.rst.gz</code> を読んでおいたほうが良さそう…</p>
-
-<p>というところで<a href="https://tracker.debian.org/news/929044">screenfetchをアップロード</a>。</p>
-
-<hr />
-
-<ul>
-<li>jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
-<li>jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
-<li>nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。</li>
-<li>libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
-</ul>
-
-<p>小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。</p>
-
-<hr />
-
-<ul>
-<li><a href="https://tracker.debian.org/news/929053">snapperをアップロード</a>。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -731,7 +719,7 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
     
     
     
-     
+    
         
         
     
@@ -743,7 +731,7 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
     
     
     
-     
+    
         
         
     
@@ -755,7 +743,7 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
     
     
     
-     
+    
         
         
     
@@ -868,7 +856,7 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
     
     
     
-     
+    
         
         
     
@@ -902,7 +890,7 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.35 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

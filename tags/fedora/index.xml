@@ -8,27 +8,19 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <copyright>2015-  Hideki Yamane</copyright>
     <lastBuildDate>Sun, 08 Oct 2017 14:04:21 +0900</lastBuildDate>
-    <atom:link href="/blog/tags/fedora/" rel="self" type="application/rss+xml" />
     
-      
-        
-          <item>
-            <title>Fedora Modularity Memo</title>
-            <link>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</link>
-            <pubDate>Sun, 08 Oct 2017 14:04:21 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/&#34;&gt;https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://threebean.org/presentations/factory2-devconf17&#34;&gt;The Productization Pipeline and the so-called &amp;ldquo;Factory 2.0&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+	<atom:link href="https://henrich.github.io/blog/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fedora Modularity Memo</title>
+      <link>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</link>
+      <pubDate>Sun, 08 Oct 2017 14:04:21 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/</guid>
+      <description> https://communityblog.fedoraproject.org/factory-2-0-mean-modularity/ The Productization Pipeline and the so-called &amp;ldquo;Factory 2.0&amp;rdquo;   </description>
+    </item>
     
   </channel>
 </rss>

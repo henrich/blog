@@ -8,619 +8,1521 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <copyright>2015-  Hideki Yamane</copyright>
-    <lastBuildDate>Fri, 01 Jan 2100 06:58:34 +0900</lastBuildDate>
-    <atom:link href="/blog/tags/debian/" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Feb 2018 21:58:28 +0900</lastBuildDate>
     
-      
-        
-          <item>
-            <title>future work</title>
-            <link>https://henrich.github.io/blog/2100/01/01/future-work/</link>
-            <pubDate>Fri, 01 Jan 2100 06:58:34 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2100/01/01/future-work/</guid>
-            <description>
-
-&lt;h1 id=&#34;支援について&#34;&gt;支援について&lt;/h1&gt;
-
-&lt;p&gt;このBlogにあるようなDebian関連の作業について支援して頂ける方、henrich @ debian.org 宛に&lt;a href=&#34;http://amzn.to/2u7MfE5&#34;&gt;Amazonギフト券&lt;/a&gt;でのコントリビューションをお待ちしております :-)&lt;/p&gt;
-
-&lt;h2 id=&#34;とりあえずのtodoリスト&#34;&gt;とりあえずのTodoリスト&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;openQAをビルドできるように、必要なツールをパッケージにする
-
-&lt;ul&gt;
-&lt;li&gt;Selenium::Remote::Driver &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569&#34;&gt;Bug#839569&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1&#34;&gt;specファイル&lt;/a&gt;参照&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html&#34;&gt;pkg-fonts-devel&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;afdkoをビルドできるように、必要なツールをパッケージにする&lt;/li&gt;
-&lt;li&gt;ttf- パッケージを可能な限りdropする（現在55個）&lt;/li&gt;
-&lt;li&gt;duplicate font fileをなくす&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557&#34;&gt;mecabパッケージのバグ修正&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882&#34;&gt;hyperv-daemonsの修正&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 11 Feb 2018 15:38:54 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/932144&#34;&gt;jruby-joniパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;jruby-joni (2.1.14-1) unstable; urgency=medium
-
-  * New upstream release
-  * debian/patches
-    - drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream
-  * debian/control
-    - set Standards-Version: 4.1.3
-    - update Dependency version
-  * debian/maven.rules
-    - update junit version to 4.x to avoid FTBFS
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;@Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&amp;hellip;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 10 Feb 2018 09:11:54 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931316&#34;&gt;xfonts-mplusを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931318&#34;&gt;xfonts-shinonomeを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931319&#34;&gt;xfonts-ayuを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931322&#34;&gt;xfonts-efont-unicodeを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931323&#34;&gt;xfonts-kanameを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931337&#34;&gt;xfonts-naga10を更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931540&#34;&gt;fonts-aoyagi-kouzan-tを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931541&#34;&gt;fonts-arphic-bkai00mpを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931645&#34;&gt;jcodingsを更新&lt;/a&gt;、salsa移行はまだ目処立たず。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931659&#34;&gt;nailgunを更新&lt;/a&gt;、salsa移行はまだ目処立たず。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931537&#34;&gt;xfonts-kappa20を更新&lt;/a&gt;&amp;hellip;したのだけど、CIが落ちる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;make[1]: Entering directory &#39;/builds/fonts-team/xfonts-kappa20&#39;
-bdftopcf k20m.bdf | gzip -c9 -n &amp;gt; pcf/k20m.pcf.gz
-/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
-Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&amp;hellip;何故だ。対応してCIは通るようになったが謎だ。&lt;a href=&#34;https://tracker.debian.org/news/931538&#34;&gt;上げ直した&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  * debian/control
-    - add Build-Depends: dh-exec to modify icon files&#39; name
-  * debian/sylpheed.install
-    - install icon files to appropriate locations (Closes: #823018)
-  * debian/sylpheed.dirs
-    - adjust as above
-  * debian/dirs
-    - unused, drop it
-  * debian/sylpheed-debian.xpm
-    - menu system was already deprecated, drop it
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 14 Feb 2018 21:58:28 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> rieceパッケージを更新 tiarraパッケージの修正が不十分で動かなかったのでもう一度修正してexperimentalへ tomoyo-toolsパッケージを更新  </description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 09 Feb 2018 23:35:23 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931241&#34;&gt;libsylphを更新&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;libsylph (1.1.0-19) unstable; urgency=medium
-
-  * debian/patches
-    - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Fri, 09 Feb 2018 23:32:14 +0900
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。&lt;a href=&#34;https://sylpheed.sraoss.jp/redmine/issues/296&#34;&gt;忘れないうちにupstreamにも登録&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;sylpheed (3.7.0-2) UNRELEASED; urgency=medium
-
-  * debian/control
-    - drop Build-Depends: libdbus-glib-1-dev
-      It was introduced since enchant with zemberek crashes without it in 3.0,
-      however, enchant package was built with &amp;quot;--disable-zemberek&amp;quot; option,
-      so it isn&#39;t necessary.
-  * debian/patches
-    - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
-      properly (Closes: #889971)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974&#34;&gt;sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 12 Feb 2018 08:34:50 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>mirmonパッケージを更新 sylpheedパッケージを更新、Merge Requestもやってみる loquiパッケージを更新  shutterのアップデートが放置されてたので、やってもいい？と聞いてみた。
+shutter (0.94-1) UNRELEASED; urgency=medium * Team upload [ gregor herrmann ] * Add libnet-oauth-perl to Recommends. Needed by the Dropbox module. (LP: #1372050) [ Hideki Yamane ] * New upstream release (Closes: #887887) * deian/control - s/perlmagick/libimage-magick-perl/ (Closes: #789236) - set Build-Depends: debhelper (&amp;gt;= 11) - set Standards-Version: 4.1.3 * debian/watch - update to version 4 * debian/compat - set 11 * debian/patches - drop 0002-Force-utf8-for-retrieved-window-name-from-Gtk2.</description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 07 Feb 2018 20:53:43 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;コツコツと事務作業&amp;hellip;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mecab (0.996-5) unstable; urgency=medium
-
-  * debian/control
-    - move Vcs-* to salsa.debian.org 
-    - use https for upstream Homepage
-    - set Standards-Version: 4.1.3
-    - set Build-Depends: debhelper (&amp;gt;= 11)
-  * debian/copyright
-    - use https for upstream site
-  * debian/compat
-    - set 11
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Wed, 07 Feb 2018 20:45:32 +0900
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 11 Feb 2018 15:38:54 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>jruby-joniパッケージをアップデート  jruby-joni (2.1.14-1) unstable; urgency=medium * New upstream release * debian/patches - drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream * debian/control - set Standards-Version: 4.1.3 - update Dependency version * debian/maven.rules - update junit version to 4.x to avoid FTBFS  @Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&amp;hellip;。</description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 06 Feb 2018 21:00:12 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;1日一つは、ということでdartsパッケージの更新。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;darts (0.32-16) unstable; urgency=medium
-
-  * debian/control
-    - update Vcs-* to use salsa.debian.org
-    - set Build-Depends: debhelper (&amp;gt;= 11)
-    - set Standards-Version: 4.1.3
-  * debian/compat
-    - set 11
-  * debian/watch
-    - update to version 4
-  * debian/copyright
-    - sort order to ignore lintian warning
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Tue, 06 Feb 2018 20:23:18 +0900
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 10 Feb 2018 09:11:54 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>xfonts-mplusを更新 xfonts-shinonomeを更新 xfonts-ayuを更新 xfonts-efont-unicodeを更新 xfonts-kanameを更新 xfonts-naga10を更新 fonts-aoyagi-kouzan-tを更新 fonts-arphic-bkai00mpを更新 jcodingsを更新、salsa移行はまだ目処立たず。 nailgunを更新、salsa移行はまだ目処立たず。   xfonts-kappa20を更新&amp;hellip;したのだけど、CIが落ちる  make[1]: Entering directory &#39;/builds/fonts-team/xfonts-kappa20&#39; bdftopcf k20m.bdf | gzip -c9 -n &amp;gt; pcf/k20m.pcf.gz /bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed  確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&amp;hellip;何故だ。対応してCIは通るようになったが謎だ。上げ直した。
+sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。
+ * debian/control - add Build-Depends: dh-exec to modify icon files&#39; name * debian/sylpheed.install - install icon files to appropriate locations (Closes: #823018) * debian/sylpheed.dirs - adjust as above * debian/dirs - unused, drop it * debian/sylpheed-debian.</description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 05 Feb 2018 22:27:05 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;chasenパッケージの更新。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;chasen (2.4.5-40) UNRELEASED; urgency=medium
-
-  * debian/control
-    - Vcs-* move to salsa.debian.org 
-    - use https for Homepage:
-    - set Bulid-Depends: debhelper (&amp;gt;= 10), and drop unnecessary dh-autoreconf
-      dependency (pulled automatically)
-    - set Standards-Version: 4.1.3
-  * debian/rules
-    - drop &amp;quot;--with autoreconf&amp;quot;
-    - specify &amp;quot;--no-parallel&amp;quot; to avoid FTBFS
-  * debian/compat
-    - set 10
-  * debian/watch
-    - update to version 4
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Mon, 05 Feb 2018 21:47:29 +0900
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
-
-  * debian/control
-    - set Build-Depends: debhelper (&amp;gt;= 11)
-  * debian/compat
-    - set 11
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Mon, 05 Feb 2018 22:25:20 +0900
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bugs.debian.org/889662&#34;&gt;昨日のlibsylphの件を忘れないうちにBTSへ&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 09 Feb 2018 23:35:23 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> libsylphを更新  libsylph (1.1.0-19) unstable; urgency=medium * debian/patches - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662) -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Fri, 09 Feb 2018 23:32:14 +0900   sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。忘れないうちにupstreamにも登録  sylpheed (3.7.0-2) UNRELEASED; urgency=medium * debian/control - drop Build-Depends: libdbus-glib-1-dev It was introduced since enchant with zemberek crashes without it in 3.0, however, enchant package was built with &amp;quot;--disable-zemberek&amp;quot; option, so it isn&#39;t necessary. * debian/patches - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev properly (Closes: #889971)   sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS  </description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 04 Feb 2018 22:38:35 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを &lt;code&gt;debian/.gitlab-ci.yml&lt;/code&gt; でセットアップしておいた&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;image: debian:sid
-
-before_script:
-  - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp;  apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev  
-
-build:
-  script:
-    - dpkg-buildpackage -us -uc -B
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/929833&#34;&gt;sylpheed&lt;/a&gt; 他をアップロード&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;あれ、libsylphでonigurumaが有効になってない？&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;libsylph 1.1.0
-
-OpenSSL       : yes
-iconv         : yes
-IPv6          : yes
-Oniguruma     : no
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;checking whether Oniguruma is available... no
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なんでだ？？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;AC_MSG_CHECKING([whether to use Oniguruma])
-if test &amp;quot;$ac_cv_enable_oniguruma&amp;quot; = yes; then
-        AC_MSG_RESULT(yes)
-        AC_MSG_CHECKING([whether Oniguruma is available])
-        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
-        ONIG_CONFIG=onig-config
-        ONIG_VERSION=`$ONIG_CONFIG --version 2&amp;gt;/dev/null`
-        if test &amp;quot;x$ONIG_VERSION&amp;quot; != &amp;quot;x&amp;quot;; then
-                AC_MSG_RESULT(yes)
-                CFLAGS=&amp;quot;$CFLAGS `$ONIG_CONFIG --cflags`&amp;quot;
-                LIBS=&amp;quot;$LIBS `$ONIG_CONFIG --libs`&amp;quot;
-                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
-        else
-                AC_MSG_RESULT(no)
-                ac_cv_enable_oniguruma=no
-        fi
-else
-        AC_MSG_RESULT(no)
-fi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ぬぬぬ？ libonig-devなソースのdebian/rulesを&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;override_dh_install:
-        $(RM) debian/tmp/usr/bin/onig-config
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;貴様かー！！！&amp;hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。&lt;/p&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 07 Feb 2018 20:53:43 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>コツコツと事務作業&amp;hellip;。
+mecab (0.996-5) unstable; urgency=medium * debian/control - move Vcs-* to salsa.debian.org - use https for upstream Homepage - set Standards-Version: 4.1.3 - set Build-Depends: debhelper (&amp;gt;= 11) * debian/copyright - use https for upstream site * debian/compat - set 11 -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Wed, 07 Feb 2018 20:45:32 +0900  </description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 03 Feb 2018 23:14:20 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;sylpheedパッケージのpatchを&lt;a href=&#34;http://sylpheed.sraoss.jp/redmine/issues/291&#34;&gt;forwardしておいた&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;screenfetchパッケージの&lt;a href=&#34;https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz&#34;&gt;smokeテストがさっそくfailしとった。。。&lt;/a&gt;。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、&lt;code&gt;/usr/bin/screenfetch: line 1341: [: too many arguments&lt;/code&gt; となっていた、と。&lt;a href=&#34;https://tracker.debian.org/news/929555&#34;&gt;パッチ作ってアップロードしたけど&lt;/a&gt;、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://anonscm.debian.org/git/pkg-sylpheed/&#34;&gt;aliothから&lt;/a&gt;、sylph-searcher, sylfilter, libsylphをsalsaにインポート。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 06 Feb 2018 21:00:12 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 1日一つは、ということでdartsパッケージの更新。  darts (0.32-16) unstable; urgency=medium * debian/control - update Vcs-* to use salsa.debian.org - set Build-Depends: debhelper (&amp;gt;= 11) - set Standards-Version: 4.1.3 * debian/compat - set 11 * debian/watch - update to version 4 * debian/copyright - sort order to ignore lintian warning -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Tue, 06 Feb 2018 20:23:18 +0900  </description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 01 Feb 2018 21:04:08 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。&lt;/p&gt;
-
-&lt;p&gt;まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら &lt;code&gt;autopkgtest . -- null&lt;/code&gt; をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。&lt;/p&gt;
-
-&lt;p&gt;また、&lt;a href=&#34;https://ci.debian.net/doc/file.TUTORIAL.html&#34;&gt;古い情報&lt;/a&gt;では debian/control に &lt;code&gt;Testsuite: autopkgtest&lt;/code&gt; の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。&lt;/p&gt;
-
-&lt;p&gt;単純に &lt;code&gt;debian/tests/control&lt;/code&gt; ファイルとそこで定義した &lt;code&gt;debian/tests/smoke&lt;/code&gt; ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
-@@ -0,0 +1,2 @@
-+Tests: smoke
-+Depends: @, grep
-diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
---- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
-@@ -0,0 +1,5 @@
-+#!/bin/sh
-+
-+screenfetch
-+
-+[ ! `screenfetch | grep &#39;command not found&#39; &amp;gt; /dev/null` ]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でもやっぱり &lt;code&gt;/usr/share/doc/autopkgtest/README.running-tests.rst.gz&lt;/code&gt; を読んでおいたほうが良さそう…&lt;/p&gt;
-
-&lt;p&gt;というところで&lt;a href=&#34;https://tracker.debian.org/news/929044&#34;&gt;screenfetchをアップロード&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
-&lt;li&gt;jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
-&lt;li&gt;nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。&lt;/li&gt;
-&lt;li&gt;libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/929053&#34;&gt;snapperをアップロード&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 05 Feb 2018 22:27:05 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>chasenパッケージの更新。  chasen (2.4.5-40) UNRELEASED; urgency=medium * debian/control - Vcs-* move to salsa.debian.org - use https for Homepage: - set Bulid-Depends: debhelper (&amp;gt;= 10), and drop unnecessary dh-autoreconf dependency (pulled automatically) - set Standards-Version: 4.1.3 * debian/rules - drop &amp;quot;--with autoreconf&amp;quot; - specify &amp;quot;--no-parallel&amp;quot; to avoid FTBFS * debian/compat - set 10 * debian/watch - update to version 4 -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Mon, 05 Feb 2018 21:47:29 +0900   mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた  mecab-ipadic (2.</description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 30 Jan 2018 06:41:27 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&amp;hellip;&lt;a href=&#34;https://github.com/facebook/nailgun/pull/118&#34;&gt;新しくPR作ったところ、マージされた&lt;/a&gt;。これでパッケージ側のパッチがまた一つ減らせる。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 04 Feb 2018 22:38:35 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを debian/.gitlab-ci.yml でセットアップしておいた  image: debian:sid before_script: - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp; apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev build: script: - dpkg-buildpackage -us -uc -B   sylpheed 他をアップロード
+ あれ、libsylphでonigurumaが有効になってない？
+  libsylph 1.1.0 OpenSSL : yes iconv : yes IPv6 : yes Oniguruma : no  checking whether Oniguruma is available.</description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 29 Jan 2018 22:50:46 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git checkout --orphan mones
-$ git rm --cached -r *
-$ rm -r ./*
-$ git pull alioth master
-$ git push salsa mones
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 03 Feb 2018 23:14:20 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> sylpheedパッケージのpatchをforwardしておいた screenfetchパッケージのsmokeテストがさっそくfailしとった。。。。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、/usr/bin/screenfetch: line 1341: [: too many arguments となっていた、と。パッチ作ってアップロードしたけど、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&amp;hellip;。 aliothから、sylph-searcher, sylfilter, libsylphをsalsaにインポート。  </description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;qrencodeパッケージをsalsaに配置してもらって、&lt;a href=&#34;https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a&#34;&gt;前に報告した些細な修正&lt;/a&gt;をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？&lt;/li&gt;
-&lt;li&gt;同じくqrencodeパッケージの報告者の勘違いに起因すると思われる&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984&#34;&gt;バグ&lt;/a&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266&#34;&gt;二つ&lt;/a&gt;をクローズしておいた&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。&lt;/p&gt;
-
-&lt;p&gt;さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。&lt;code&gt;mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av&lt;/code&gt; などとした。&lt;/li&gt;
-&lt;li&gt;つぎに親が同一ではないブランチ（orphan branch)を作る &lt;code&gt;git checkout --orphan master&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す &lt;code&gt;git rm --cached -r debian&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git remote add upstream https://github.com/fukuchi/libqrencode&lt;/code&gt; でupstreamを引っ張ってくる&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git pull upstream master&lt;/code&gt;したがtag持ってこなかったから&lt;code&gt;git pull upstream&lt;/code&gt;も実行&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git checkout debian&lt;/code&gt;して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために &lt;code&gt;git merge v4.0.0  --allow-unrelated-histories&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;上記の変更点がackされたら提案したい&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;svn-workbenchの&lt;a href=&#34;http://pysvn.tigris.org/issues/show_bug.cgi?id=212&#34;&gt;1行パッチをフォワード&lt;/a&gt;。使いづらいな。。。&lt;/li&gt;
-&lt;li&gt;svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;dh_install                                                                                                                         
-perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
-
-Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347&#34;&gt;パッチしておいた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 01 Feb 2018 21:04:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。
+まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら autopkgtest . -- null をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。
+また、古い情報では debian/control に Testsuite: autopkgtest の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。
+単純に debian/tests/control ファイルとそこで定義した debian/tests/smoke ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。
+--- screenfetch-3.8.0/debian/tests/control 1970-01-01 09:00:00.000000000 +0900 +++ screenfetch-3.8.0/debian/tests/control 2018-02-01 17:07:09.000000000 +0900 @@ -0,0 +1,2 @@ +Tests: smoke +Depends: @, grep diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke --- screenfetch-3.8.0/debian/tests/smoke 1970-01-01 09:00:00.000000000 +0900 +++ screenfetch-3.8.0/debian/tests/smoke 2018-02-01 16:37:53.000000000 +0900 @@ -0,0 +1,5 @@ +#!/bin/sh + +screenfetch + +[ ! `screenfetch | grep &#39;command not found&#39; &amp;gt; /dev/null` ]  でもやっぱり /usr/share/doc/autopkgtest/README.</description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 27 Jan 2018 01:26:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888535&#34;&gt;snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘&lt;/a&gt;。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして&lt;a href=&#34;https://github.com/openSUSE/snapper/pull/386&#34;&gt;Pull Request&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000
-+++ configure.ac        2018-01-27 16:24:56.910015986 +0000
-@@ -60,11 +60,14 @@
- 
- fillupdir=/var/adm/fillup-templates
- 
-+SYSCONFIG=/etc/sysconfig
-+
- AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]),
-        [with_conf=$withval], [with_conf=no])
- 
--AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${with_conf}\&amp;quot;&#39;&amp;quot;],
--       [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;/etc/sysconfig\&amp;quot;&#39;&amp;quot;])
-+AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [SYSCONFIG=&amp;quot;${with_conf}&amp;quot;])
-+
-+CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${SYSCONFIG}\&amp;quot;&#39;&amp;quot;
- 
- AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]),
-                [with_btrfs=$enableval],[with_btrfs=yes])
-@@ -153,6 +156,7 @@
- AC_SUBST(LIBVERSION_MINOR)
- AC_SUBST(LIBVERSION_PATCHLEVEL)
- AC_SUBST(LIBVERSION_INFO)
-+AC_SUBST(SYSCONFIG)
- AC_SUBST(docdir)
- AC_SUBST(fillupdir)
-
-
-diff --git a/doc/snapper.xml.in b/doc/snapper.xml.in
-index 1507b5d..9073ab3 100644
---- a/doc/snapper.xml.in
-+++ b/doc/snapper.xml.in
-@@ -686,7 +686,7 @@
-     &amp;lt;title&amp;gt;FILES&amp;lt;/title&amp;gt;
-     &amp;lt;variablelist&amp;gt;
-       &amp;lt;varlistentry&amp;gt;
--       &amp;lt;term&amp;gt;&amp;lt;filename&amp;gt;/etc/sysconfig/snapper&amp;lt;/filename&amp;gt;&amp;lt;/term&amp;gt;
-+       &amp;lt;term&amp;gt;&amp;lt;filename&amp;gt;@SYSCONFIG@/snapper&amp;lt;/filename&amp;gt;&amp;lt;/term&amp;gt;
-        &amp;lt;listitem&amp;gt;
-          &amp;lt;para&amp;gt;Global configuration file.&amp;lt;/para&amp;gt;
-        &amp;lt;/listitem&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 30 Jan 2018 06:41:27 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&amp;hellip;新しくPR作ったところ、マージされた。これでパッケージ側のパッチがまた一つ減らせる。  </description>
+    </item>
     
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 26 Jan 2018 23:34:14 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;先日のsnapperパッケージのメンテ続きで &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292&#34;&gt;&amp;ndash;disable-ext4 オプション明示で処置&lt;/a&gt;。stringsコマンドで中身を見てチェック→参照なし！ということでアップロードした。こいつもsalsa移行組。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 29 Jan 2018 22:50:46 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。  $ git checkout --orphan mones $ git rm --cached -r * $ rm -r ./* $ git pull alioth master $ git push salsa mones  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>qrencodeパッケージをsalsaに配置してもらって、前に報告した些細な修正をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？ 同じくqrencodeパッケージの報告者の勘違いに起因すると思われるバグ二つをクローズしておいた  qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。
+さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。
+ まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av などとした。 つぎに親が同一ではないブランチ（orphan branch)を作る git checkout --orphan master この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す git rm --cached -r debian git remote add upstream https://github.com/fukuchi/libqrencode でupstreamを引っ張ってくる git pull upstream masterしたがtag持ってこなかったからgit pull upstreamも実行 git checkout debianして、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために git merge v4.0.0 --allow-unrelated-histories  上記の変更点がackされたら提案したい
+ svn-workbenchの1行パッチをフォワード。使いづらいな。。。 svn-workbenchのdebian/copyrightをcopyright format 1.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 27 Jan 2018 01:26:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにしてPull Request。  --- configure.ac.orig 2018-01-27 15:56:50.839599352 +0000 +++ configure.ac 2018-01-27 16:24:56.910015986 +0000 @@ -60,11 +60,14 @@ fillupdir=/var/adm/fillup-templates +SYSCONFIG=/etc/sysconfig + AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]), [with_conf=$withval], [with_conf=no]) -AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${with_conf}\&amp;quot;&#39;&amp;quot;], - [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;/etc/sysconfig\&amp;quot;&#39;&amp;quot;]) +AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [SYSCONFIG=&amp;quot;${with_conf}&amp;quot;]) + +CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${SYSCONFIG}\&amp;quot;&#39;&amp;quot; AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]), [with_btrfs=$enableval],[with_btrfs=yes]) @@ -153,6 +156,7 @@ AC_SUBST(LIBVERSION_MINOR) AC_SUBST(LIBVERSION_PATCHLEVEL) AC_SUBST(LIBVERSION_INFO) +AC_SUBST(SYSCONFIG) AC_SUBST(docdir) AC_SUBST(fillupdir) diff --git a/doc/snapper.xml.in b/doc/snapper.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 26 Jan 2018 23:34:14 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 先日のsnapperパッケージのメンテ続きで &amp;ndash;disable-ext4 オプション明示で処置。stringsコマンドで中身を見てチェック→参照なし！ということでアップロードした。こいつもsalsa移行組。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 25 Jan 2018 23:05:20 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>screenfetchをdockerで動かしたら一部の出力でcommand not foundが出てきた、というレポート。でもテストしたVPSで作ったminimalなdebootstrap環境だと再現できねぇな？と思って該当の所を見る&amp;hellip;
+ thermal=&amp;quot;/sys/class/hwmon/hwmon0/temp1_input&amp;quot; if [ -e $thermal ]; then temp=$(bc &amp;lt;&amp;lt;&amp;lt; &amp;quot;scale=1; $(cat $thermal)/1000&amp;quot;) fi  おおぅ、なるほど。/sys/class/hwmon/hwmon0/temp1_inputなんてVMの環境下には生えてないからスルーしてたわけだ。よし、確認のため実マシンでdebootstrap&amp;hellip;しようとしたらdashのバグの影響を踏んでdebootstrap出来ない！&amp;hellip;別マシンで過去のchrootな環境を見つけてそこでテストして漸く確認。ついでにpgrepもcommand not found出てきたのはホスト側でXが動いているからか（報告者のdockerでは動いてなかったのだろう）。
+で、チャチャッと変更して&amp;hellip;問題はこのrepositoryはaliothにまだあることでsalsaへのインポートを試してないこと。どうやるんだっけ&amp;hellip;
+ debian-devel-announceなメールからDebian Wikiへ、そして該当の情報を取得。 スクリプトをコピーする GitLabのTokenを初めて生成してスクリプトに埋め込み ./salsa-import.sh screenfetch という感じで実行&amp;hellip;一瞬で終わって「え？マジ終わり？」という感想。 無事にインポートされてるのを確認  ここからはいつもどおりビルド→アップロード。gitのremote repo設定からaliothを消してsalsaを追加しておく。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 23 Jan 2018 21:16:11 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>snapperパッケージのメンテ。
+ aptが動いたときの自動スナップショットを無効にできないか？調整する設定を追加してはどうか？という提案。「デフォルト有効ならいいように思う」とコメント。 e2fsprogsがessentialパッケージでなくなるのに伴い、e2fsprogsに依存してるみたいなんだけど、明示的にしてくれる？というバグレポート。ext4サポートがそもそも動いてなかったから明示的にdisableにするかーという結論なんだけど、確認方法がわからないとリリースできない。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 17 Jan 2018 19:33:48 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 新しいdebian-mirror.sakura.ne.jpの稼働に伴いmuninの設定を微調整。 新旧ミラーサーバーにて、自ホストをサーバーにして apt でパッケージを取得してみた。旧サーバーが65MB程度のところ、新サーバーだと95MB程度は出るので1.5倍というところか（乱暴だけど）。   LibO on macOSで日本語パック当てるとフォントでかいよ問題をレポートしておいた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 16 Jan 2018 21:22:06 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>qrencodeパッケージのバグレポートにコメント追加しておいた。数日様子を見てクローズするのが良いだろうと思う。 fonts-sawarabi-minchoパッケージをアップロード  salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&amp;hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 15 Jan 2018 19:18:27 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>昨日苦しんだ問題をupstreamにissue報告した。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 14 Jan 2018 22:06:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> qrencodeパッケージがちょっと古くなっているようだ。upstreamのサイトが移動してるね、ということでBTS ついでに自分の手元でアップデート出来ないかな？と作業して大方できた。新規追加されたtestスクリプトがconfigureを引数なしでハードコードしていて実行されるのでパッケージのインストールが壊れるという問題があったのに引っかかって小一時間潰してしまった&amp;hellip;。  </description>
+    </item>
+    
+    <item>
+      <title>subversionからお引っ越し</title>
+      <link>https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/</link>
+      <pubDate>Sat, 13 Jan 2018 21:51:19 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/</guid>
+      <description>www.debian.or.jpのコンテンツはSubversionで管理していて、コミット可能なのはJPのメンバーだけだったのだけど、salsa.debian.orgに引っ越して見通しを良くしてみたくなったので作業した。
+svn2gitを使いコンバート。
+非常にわかりづらい（というか導線がない？）のだけど、GitLabにOrganizationというかTeamというかを登録するページからdebianjp-teamとして登録し、適当なsub projectとしてwebを作り、コンバートしたGit repositoryを突っ込む。
+AnsibleでCloudGarageのVPSへデプロイ（ここで現状のサイトコンテンツの更新手順に更新漏れを見つけたり）。CloudGarageさんは開発者支援プログラムを使わせてもらっていて助かる。相変わらず書いたplaybook.ymlがちょっと出来のいいバッチファイル程度なのが気になるけど、仕方がない。
+とまぁ、そんなこんなで時間を使った。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 08 Jan 2018 19:55:35 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fonts-oradano-mincho-gsrrをアップロード birdfontをアップロード ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 07 Jan 2018 13:47:02 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>年末年始で間が空いてしまった&amp;hellip;。
+ libxmlbirdをアップデート  年末年始でようやく新しいミラーサーバー new-debian-mirror.sakura.ne.jp の設定に手を付けました（ありがとうございます＞さくらインターネットさま）。初めてのAnsible&amp;hellip;ですが、今のところはバッチファイルよりちょっとマシ程度の状況。やはり複数サーバー運用して整理するのが必要とかじゃないとモチベーションが湧かないですね&amp;hellip;。まぁ、次にセットアップが必要になった場合は一発流せばいいだけというのは気楽にはなりました。
+新しいサーバーにはbcacheを使っています、ありがとうArch Wiki。ディスクを大量に積むのもよいのですが、既に後2年ぐらいは戦えそうな容量を頂けたので、SSDでキャッシュする方向に走るのが良いかな、と。速度はそこまで出ないにしてもアクセスが多くなっても大丈夫よ、と。
+CacheデバイスのSSDですが、最初はRAID1を設定してもらっていましたが、思い直して設定変更。JBODが選べないので仕方なくRAID0にしました。生まれて初めて使ったよ、RAID0&amp;hellip;。HDDよりは死にづらいかなーというのと、死んでも構わないよねー（負荷が増えるだけ）というのと、容量が欲しかったんや&amp;hellip;というのの3点からRAID0選択と相成りました。
+#!/bin/sh BACKING_DEVICE=/dev/sda3 CACHE_DEVICE=/dev/sdb make-bcache -B $BACKING_DEVICE -C $CACHE_DEVICE echo `bcache-super-show $CACHE_DEVICE | grep cset.uuid | awk &#39;{print $2}&#39;` \ &amp;gt; /sys/block/bcache0/bcache/attach if [ -f /dev/bcache0 ]; then mkfs.xfs /dev/bcache0 else echo &amp;quot;There&#39;s no Bcache device.&amp;quot; fi  手作業でやったのを後からまとめ直すと上記のような感じ。短いな&amp;hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。
+ufwを実行しようかどうしようか、という辺りとSNMP監視が出来てない風味だよね？というのを確認したら、終わり。そして、切り替え前後でおかしなことが起きたらその対処、と。
+muninの設定続き。
+$ sudo munin-run http_loadtime auto http___localhost_.value /etc/munin/plugins/http_loadtime: line 105: -f: command not found  $time_binというのが無いようだ。which time してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&amp;hellip;
+$ sudo munin-run acpi /etc/munin/plugins/acpi: 1: eval: bc: not found thermal_zone0.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 23 Dec 2017 20:17:49 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> apt-listchangesのpo訳が取り込まれました。   https://salsa.debian.org/ が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？ とりあえず二要素認証をOnに&amp;hellip;と思って有効にしようとしたら、まずはQRコードをGoogle Authenticatorで読み取って有効にしないといけなかった。その上でYubiKeyを追加。何故この手順が必要なのだろう？デバイスが1つだけじゃない、ということが重要？   boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&amp;hellip;と思って調べるとgrub-imagebootというツールがあったのでインストール、該当のBIOSのISOイメージをダウンロードして、bootできるようにして再起動&amp;hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。  $ sudo apt install genisoimage $ geteltorito biosimage.iso &amp;gt; biosupdate.img $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K   BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで apt install intel-microcode で直った（最新のパッケージはbackports提供なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/12/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 17 Dec 2017 17:42:42 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/12/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>GnuPGのバグを見つけたのでレポートしておきました。あとLFの人が書いてるガイドにIssueとPR。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/12/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 11 Dec 2017 21:01:31 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/12/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fonts-ricty-diminishedを更新（GPGキーのテストをしていたらsignキーを間違えてたのでアップロードがものすごく遅くなった&amp;hellip;） os-autoinstのしょうもないミスを指摘されたので修正。なんで気づかなかったんや。。。 jruby-joniの更新  ついでに debian/patches 以下をforwardしてPull Request   </description>
+    </item>
+    
+    <item>
+      <title>GPGめも - subkey</title>
+      <link>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</link>
+      <pubDate>Mon, 04 Dec 2017 18:55:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</guid>
+      <description>GPGのsubkeyについて。
+ たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、  masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。 laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。  そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&amp;hellip;という時にはmasterkeyを使うということができる。  なるほどねー。
+ちなみにどうしてもという時というのは以下らしい。 - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする - 自分の鍵をrevokeする - subkeyを作る・revokeする - 有効期限の変更 - masterkeyのrevoke用の証明書の作成 - UIDの設定変更
+あー、今だとlaptopにはGPG鍵入れてないけど、これはありかもしれないね。ということでDebian WikiでのSubkey作成手順に従って作ってみる。
+$ umask 077; tar -cf $HOME/gnupg-backup.tar -C $HOME .gnupg (バックアップ) $ gpg --list-keys henrich@debian.org (自分のKEYIDを取得) pub rsa4096 2009-05-23 [SC] [有効期限: 2019-05-21] 58E1222F9696C885A3CD104C5D328D082AAAB140 uid [ 究極 ] Hideki Yamane (Debian-JP) &amp;lt;henrich@debian.or.jp&amp;gt; uid [ 究極 ] Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; uid [ 究極 ] Hideki Yamane (private) &amp;lt;henrich@iijmio-mail.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 03 Dec 2017 20:11:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>先日のDebian勉強会であった人とのキーサインを済ませた。caff便利。
+$ caff -u 58E1222F9696C885A3CD104C5D328D082AAAB140 &amp;lt;long KEYID&amp;gt;  で、既にサインして頂いてたのがメールで来てたのをimportしてkeyserverにsendしておく。
+$ gpg --import ~/*.asc $ gpg --send-keys &amp;quot;58E1 222F 9696 C885 A3CD 104C 5D32 8D08 2AAA B140&amp;quot; gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信  よしよし。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 30 Nov 2017 20:18:32 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>libreoffice (1:5.4.3-3) unstable; urgency=medium (snip) * debian/rules: - replace some manual dpkg-parsechangelog calls with $(DEB_VERSION) and $(DEB_DISTRIBUTION) and fix logic for --disable-dependency-tracking  ほぅ？そんな変数取れるのか？</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 28 Nov 2017 20:00:19 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> libxmlbirdをアップデートしようとしてgit mergeしようと思ったらタグがない。で、upstreamにpingしたのが反映されたのでmergeしてアップロード。ついでにreproducible buildパッチを減らすべくPull Request。人の褌で相撲を取るのは楽だわー ruby-serverspecパッケージで「netstat使ってるからnet-toolsにSuggestsした」というのを見かけて「後ろ向きだなぁ」と思ったのでちょっと調べた。  これ本当にnetstat呼んでるの？という疑問がでてgrepしたけど引っかからず。どうやらruby-specinfra側らしい。 確かにnetstatを呼んでいた。。。んだけど、どうもおかしい。Debian8からss使うように変えてる？これはいかんでしょ。I guess I am trying to understand which versions of Debian to support. Debian 6, 7, 8 all have ss by default.という発端のプルリクエストがそもそも間違っており、続いての修正のプルリクエストもI think jessie default command is ss.と間違ってる&amp;hellip;。 厄介そうなのは上記が参照しているように、JessieのDockerイメージの方がiproute2使ってるっぽいんだよね、何でだよ&amp;hellip;普通に直すとdockerのjessieでの動作を壊すことになる。それは避けたい。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 23 Nov 2017 19:51:22 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>先日fonts-junicodeの新しいバージョン入れて、というレポートをfixedにしたが、そういや報告者にはメール飛ばないよね、というのに気づいたのでDMしておいた unidic-mecabをアップロード。  Intel CPUの脆弱性判別ツールをダウンロードしたが、展開したらそのまま撒き散らす＆実行にはroot権限が必要と中々。
+$ sudo ./intel_sa00086.py INTEL-SA-00086 Detection Tool Copyright(C) 2017, Intel Corporation, All rights reserved Application Version: 1.0.0.128 Scan date: 2017-11-23 11:09:42 GMT *** Host Computer Information *** Name: hp Manufacturer: Hewlett-Packard Model: p7-1040jp Processor Name: Intel(R) Core(TM) i5-2310 CPU @ 2.90GHz OS Version: debian buster/sid (4.13.0-1-amd64) *** Intel(R) ME Information *** Engine: Intel(R) Management Engine Version: 7.1.3.1053 SVN: 0 *** Risk Assessment *** Based on the analysis performed by this tool: This system is not vulnerable.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 21 Nov 2017 21:12:47 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> さくらのミラーでIPv6にてftp/rsync接続できてなかったようなので修正した。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 11 Nov 2017 12:59:52 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> birdfontをアップデート。先日のPRも取り込まれてた。 libmojolicious-plugin-assetpack-perlをアップデート。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 10 Nov 2017 22:51:45 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 先日報告したgit-buildpackageの問題が修正された   * [1b5a344] buildpackage: Add back --git-pristine-tar-commit support. The call got lost when we split out export-orig. (Closes: #880624)   DPL来日に向けて今日もちまちまやり取り。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 09 Nov 2017 20:00:49 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> sphinx-intlがリポジトリに入った。最終目標としては現在debian-sgmlで作られているpolicy訳をマージすることだが、いつやろう&amp;hellip;。 libibushandler.soがupstreamにてビルドできない話の続きをする。以前懸念していたとおり、Squeezeなバージョンだとビルドできるという。BTSにも進捗としてコメントしておいた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 04 Nov 2017 09:52:17 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>先日のlibxmlbirdのタグが打たれてたのでアップデート。install.pyがちょっと変わってて手間取った。  os-autoinstがsbuildで（というかbuild-dependsで？）コケるので、| で指定ではなくアーキテクチャ指定に変えて通した。
+- qemu-kvm (&amp;gt;= 2.0.0) | qemu-system (&amp;gt;= 2.0.0), qemu-utils, + qemu-kvm (&amp;gt;= 2.0.0) [amd64 i386], qemu-system (&amp;gt;= 2.0.0) [!amd64 !i386], qemu-utils,  手元のBBBで作ったarmhf環境ではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&amp;hellip;まぁ、builddでログ見れた方が説明も早そう、ということで報告しておいた
+libibushandler.soのビルドがやっぱりエラーになる。手順は以下（だろう）と思うのだけど、ibus周りがこのコードがリリースされた2011年から変わってるから？という思いが消せない。
+$ g++ -shared -fPIC -I/usr/include/ibus-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/gtk-3.0 -I/usr/include/pango-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/atk-1.0 -I../../common ibusutils.cpp ibushandler.cpp -o libibushandler.so 2&amp;gt;&amp;amp;1  これを確認するにはsqueezeあたりを入れないと&amp;hellip;となるのだけども、debootstrapしたらエラーになるし、そのままchrootしたらsegfaultだからVM用意しないと、となると腰が重い&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 03 Nov 2017 07:12:30 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>先日の問題は ~/.gbp.conf でのオプション指定が何故かエラーを引き起こすようになっていたのが原因だった（regressionだろうな）。ということで、バグ報告しておいた。バグ報告には &amp;ndash;pristine-tar-commit が動いてないのも付記しておいた。
+ gnome-todo をとりあえずアップロード  git-buildpackageをダウングレードしてpristine-tarにも追加。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 01 Nov 2017 20:23:30 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>libmojolicious-plugin-assetpack-perlパッケージをアップデート libxmlbirdをアップデートしようと思ったらtarballはできてるのにtagがpushされてないので、またお願いしておく  gnome-todoをビルドしようとするとgbpがpristine-tar周りでエラーが出る&amp;hellip;
+$ gbp buildpackage --git-pbuilder --git-ignore-branch --git-pristine-tar-commit --git-upstream-tag=GNOME_TODO_3_26_2 --git-verbose gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--show-cdup&#39;] gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--is-bare-repository&#39;] gbp:debug: [&#39;git&#39;, &#39;rev-parse&#39;, &#39;--git-dir&#39;] gbp:debug: /bin/true [] [] gbp:debug: [&#39;git&#39;, &#39;status&#39;, &#39;--porcelain&#39;] gbp:debug: [&#39;git&#39;, &#39;symbolic-ref&#39;, &#39;HEAD&#39;] gbp:debug: [&#39;git&#39;, &#39;show-ref&#39;, &#39;refs/heads/debian/sid&#39;] gbp:debug: [&#39;git&#39;, &#39;ls-tree&#39;, &#39;HEAD&#39;] gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;] gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/changelog&#39;] gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;] gbp:info: Building with (cowbuilder) for sid gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;] gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;] gbp:debug: [&#39;git&#39;, &#39;show&#39;, &#39;--pretty=medium&#39;, &#39;HEAD:debian/source/format&#39;] gbp:debug: [&#39;git&#39;, &#39;show-ref&#39;, &#39;refs/heads/pristine-tar&#39;] gbp:debug: [&#39;git&#39;, &#39;log&#39;, &#39;--pretty=format:%H&#39;, &#39;--grep=pristine-tar .</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 31 Oct 2017 21:05:15 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fontforgeのバグのtriageで、古いバグが再現しなくなっているのでcloseした  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 30 Oct 2017 20:02:22 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fontforgeのバグを古いliveイメージ落としてreproduce検証。Debian9では無くなっていたので、fixedタグつけてcloseしておいた。 もう一つfontfogeのバグレポートはfreefont側の問題なんじゃないかねぇ？という感じで再現もしなくなってるのでcloseしておいた。 BTSのパッチをupstreamにPRしといた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 29 Oct 2017 03:03:51 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>apt-fileのchangelogより
+apt-file (3.1.5) unstable; urgency=medium * Remove rapt-file and two obsolete .sgml files from the source. * Set R³ to no; apt-file does not need (fake)root during the binary-targets in the package builds. * Skip dh_strip_determinism; it is a no-op at the moment and is planned to be removed eventually.  R³ ?? と思ったらdebian-develにRFCが出てた。また処理するべきことが増えるのかー&amp;hellip;。
+ plumをアップデート。Multiarch hinterはtracker経由でしか見れないのが不満。 apt-listchangesのpoをファイルするのTodoを処理。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 28 Oct 2017 16:42:05 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>ruby-bcatを更新 os-autoinstを更新&amp;hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。 mecab-jumandicを更新 sylfilterを更新 developers-referenceを更新  sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。
+ dh_autoreconf libtoolize: putting auxiliary files in &#39;.&#39;. libtoolize: copying file &#39;./ltmain.sh&#39; libtoolize: Consider adding &#39;AC_CONFIG_MACRO_DIRS([m4])&#39; to configure.ac, libtoolize: and rerunning libtoolize and aclocal. libtoolize: Consider adding &#39;-I m4&#39; to ACLOCAL_AMFLAGS in Makefile.am. configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated. For more info, see: configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation configure.ac:21: installing &#39;./compile&#39; configure.ac:13: installing &#39;./missing&#39; Makefile.am: error: required file &#39;./AUTHORS&#39; not found commands/Makefile.am:9: warning: &#39;INCLUDES&#39; is the old name for &#39;AM_CPPFLAGS&#39; (or &#39;*_CPPFLAGS&#39;) commands/Makefile.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 26 Oct 2017 20:06:03 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> libtest-mock-time-perl がリポジトリに入った。これでようやくos-autoinstの更新に手を付けられる。 JPサイトにSDを追加 octiconsパッケージを更新 os-autoinstパッケージを更新 アホなミスをしていたミラー設定を修正。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 25 Oct 2017 04:29:36 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> ruby-crackパッケージをアップデート vmdk-stream-converterパッケージをアップデート jruby-joniパッケージをアップデート nailgunパッケージをアップデート さくらミラーの設定でpush元のキーをDSA鍵のままにしていたのがOpenSSHのアップデートで蹴られていたので差し替えた。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 24 Oct 2017 20:22:25 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> silversearcher-ag のレビューを終えたのでアップロード nailgunのアップロード psphereのアップロード sylpheedのPGP署名運用についてメールした。これが解決したら関連パッケージをアップデートする予定。 fontforgeパッケージを眺めて手を出せるところだけ。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 23 Oct 2017 21:46:54 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> HPEのリポジトリがStretch対応になっていたので、debian-mirror.sakura.ne.jpをStretchに上げました。 silversearcher-ag のレビューをした  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 22 Oct 2017 04:49:50 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> tomoyo-toolsを更新 fonts-mikachanを更新 fonts-yozvox-yozfontを更新 libsylphを更新 fonts-kouzan-mouhitsuを更新 fonts-aoyagi-kouzan-tを更新 fonts-aoyagi-sosekiを更新   openSUSE Asia Summit 2017に行ってきた。発表資料はslideshareとDebian Wikiに。upstreamとの面識が出来たので良かったよかった。一応cacheなファイルはGPLだという話をされたので、それでチャレンジしてみるかーという所（gbpがmultiple upstream tarballを実験的サポートなところが面倒だけども）。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 21 Oct 2017 08:08:37 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> screenfetchを少しだけ更新 pleiadesを少し修正 libsylphを修正 libspiroを更新。-dbgパッケージ落とし忘れてたのでこのへんを参考に更新。   openSUSE Asia Summit 2017に行ってきた。本番は明日。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 18 Oct 2017 05:10:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>ミラースクリプトを案内に従って入れ替えた libmojolicious-plugin-assetpack-perlを更新 fonts-arphic-umingを更新 yydebugのポカを修正&amp;hellip;。 libexport-attrs-perlがrejectされたので再アップロード nadokaを西山さんに押し付けるだけの仕事を :)  openQAでコケる所を抜粋
+[ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;remotehost:&amp;quot; [ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;localhost:&amp;quot; [ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot; [ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot; ./t/05-scheduler-cancel.t ................. ok ./t/05-scheduler-capabilities.t ........... ok [ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot; [ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot; [ERROR] Failed dispatching message to websocket server over ipc for worker &amp;quot;host:&amp;quot; .</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 17 Oct 2017 22:00:26 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 働きかけていたIDCFクラウドさんでのDebian8設定の不備が漸く公開された。  ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&amp;hellip;。   bind9のchangelogが興味深い。
+ * Add support for downloading upstream sources using d/watch + Make d/copyright machine readable for Files-Excluded: support + Update Files-Exclude: * to remove obsolete software dropped in contrib/, but not really used  watchはこんな感じ
+opts=\ repack,\ compression=xz,\ repacksuffix=+dfsg,\ uversionmangle=s/((rc|b)\d+)$/~$1/,\ dirversionmangle=s/((rc|b)\d+)$/~$1/,\ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\  copyrightはこんな感じ
+Files-Excluded: contrib/idn contrib/dnsperf-2.1.0.0-1 contrib/nslint-3.0a2 contrib/query-loc-0.4.0 contrib/queryperf contrib/zkt-1.1.3  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 16 Oct 2017 07:01:55 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fonts-sawarabi-minchoをアップロード yydebugのVcs-Gitが間違ったままだった&amp;hellip;直した。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 15 Oct 2017 07:39:55 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>パッケージを拾って色々分析居しているサイトが担当しているパッケージの問題を列挙してたので対応する。
+ poppler-dataを更新 fonts-ipaexfontを更新 fonts-ipafont-nonfreeを更新 fonts-ipafont-nonfree-jisx0208を更新 fonts-ipafontを更新  packages overviewを参照して問題洗い出し
+ git pushを忘れていたのを幾つか対応。 xfonts-* パッケージが今までのSection: x11でなくてSection: fontsをlintianで推奨されるようになったので、ホント？という質問をした pleaiadesのwatchファイルがhttpだったのを直した jcodingsのwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども） yydebugを諸々更新。 nailgunのウェブサイトを見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&amp;hellip;。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 14 Oct 2017 19:53:18 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 今日も今日とてopenQAに１行パッチ。 ttf-kacstを落として、というバグレポートがHolgerから。あーすっかり忘れてた&amp;hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。  納得したので、Uploadした。関連ありそうな別パッケージについてはバグレポート。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 13 Oct 2017 21:59:22 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>gbpの使い方をざっと教えて というリクエストを頂いたのでざっくりメモ。
+$ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git Cloning into &#39;cutter-testing-framework&#39;... remote: Counting objects: 3334, done. remote: Compressing objects: 100% (949/949), done. remote: Total 3334 (delta 2336), reused 3323 (delta 2336) Receiving objects: 100% (3334/3334), 3.69 MiB | 442.00 KiB/s, done. Resolving deltas: 100% (2336/2336), done. $ cd cutter-testing-framework/ $ gbp import-orig --uscan --pristine-tar gbp:error: Repository does not have branch &#39;upstream&#39; for upstream sources. If there is none see file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT on howto create it otherwise use --upstream-branch to specify it.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 11 Oct 2017 05:09:21 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> DMの方の活動が年単位で無いのでping  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 10 Oct 2017 06:52:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>cutter-testing-frameworkのリポジトリを作っておいた  実作業はupstreamの@kenhysさんにお任せで  とりあえず、unidicをアップデートしてみるか？と少しだけ作業。  他のunidic辞書もパッケージにしても面白いか？  OSS Gateに拙著を寄贈しようと言う話をした。 昨日のos-autoinstのハングアップが直ったのでその旨連絡した。 os-autoinstでdebhelperが誤ってファイルを消すのを対処した。 guacamoleパッケージがおかしい、というつぶやきを見たので、MLにパッチの提案だけしておく  rustを使ったソースのパッケージングについて。
+https://github.com/sharkdp/fd というのを見かけて面白そうなのでパッケージングしてみようとする。
+$ git clone https://github.com/sharkdp/fd; cd fd $ git checkout -b debian $ dh_make --createorig -s -p fd_4.0.0 (debianディレクトリをいじる…) $ git add debian; git commit  で、ビルドすると通るけど何もしてない風味。ざっくりrustcを使うのはなにかあるのだろうか？と調べると dh-cargo というのが見つかった。どうやら、rustなパッケージは dh --buildsystem cargo という形で実施するようだ。
+ dh_auto_install -O--buildsystem=cargo cp: cannot stat &#39;./debian/cargo-checksum.json&#39;: No such file or directory dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_registry/fd-4.0.0/.cargo-checksum.json returned exit code 1  debian/cargo-checksum.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 09 Oct 2017 14:31:17 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> os-autoinstが止まるのをinvestigation。  新しいperlモジュールがtestに必要になってたようなので、ビルドする。ITPもする。そのビルドに必要な別のperlモジュールもITPする ITPしたのは$ dtp alioth-repoという感じでpushしておいた。 が、やっぱり止まるのは変わらないのでissue登録。 何が原因だか、今の所サッパリなので Jessie や Strech 環境を作ったりしてテスト。Jessie だと libmojolicious-perl が古すぎてモジュールが含まれないせいでテストコケるのでsidのを持ってきたり。その流れでnewest upstreamのを手元でビルドして差し替えもしてみた。が、結局何も変わらず。  unidicのサイトが変更されたのに関するライセンス表記周りの意見。 忘れてたsphinxのissue登録をやっておいた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 08 Oct 2017 12:52:13 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 忘れないうちに１行パッチをopenQAに。 openSUSE asia summitの発表の練習をしてみる。15分にはなんとか収まりそう。 Debian JPのサイト、9.2リリースを反映しておいた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 07 Oct 2017 11:50:39 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>リリースノートの更新に気がついたので追従しておいた。 openSUSEをいじってたらsnapperのアップデートがあったが、そのバージョンのタグがgit repositoryに打たれてない。。。 openQAやos-autoinstもタグが打たれてないので、お願いを出すなど&amp;hellip;。  openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&amp;hellip;
+Can&#39;t locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need to install the Mojolicious::Plugin::AssetPack::Backcompat module)  なんでupstreamの依存関係には含まれとらんのだろう？
+んじゃさくっとdh-make-perl&amp;hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないのでupstreamに質問 → backpanというところに消したのは置いてあるよ、と教えてもらった。しかし、本来これは必要ないはず、なんだけども&amp;hellip;？
+兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&amp;hellip;またエラーだ。以下が延々と。
+Uncaught exception from user code: Plugin &amp;quot;bootstrap3&amp;quot; missing, maybe you need to install it? Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &amp;quot;bootstrap3&amp;quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46 Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &amp;quot;bootstrap3&amp;quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186 Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &amp;quot;bootstrap3&amp;quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185 OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179 Mojolicious::new(&amp;quot;OpenQA::WebAPI&amp;quot;) called at /usr/share/perl5/Mojo/Server.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 06 Oct 2017 20:34:59 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> Updated mirror list on JP site  texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる
+ PDFのバージョンを上げてサイズを落とす作戦を深掘り。  1.4GBが1.0GBになるのは大きいと思う  -docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦  そもそもインストールされなければ気にしなくて済むよね、という話  texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦  わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから  -docパッケージがtexに依存してるのを確認する問題提起 逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起  </description>
+    </item>
+    
+    <item>
+      <title>実験実験。</title>
+      <link>https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/</link>
+      <pubDate>Wed, 04 Oct 2017 20:29:38 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/</guid>
+      <description>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。
+Package: texlive-latex-extra-doc Download-Size: 384 MB Package: texlive-pstricks-doc Download-Size: 248 MB  time apt-get download texlive-latex-extra-doc texlive-pstricks-doc という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが fatal error: runtime: out of memory とメモリ不足で落ちます。VMをスケールアップして再度トライしました。
+まずは普通にftp.jp.debian.orgからの取得。
+Fetched 412 MB in 36s (11.3 MB/s) real 0m36.643s Fetched 412 MB in 30s (13.4 MB/s) real 0m30.864s Fetched 412 MB in 26s (15.4 MB/s) real 0m27.031s  次に西日本から取得。
+Fetched 412 MB in 19s (20.7 MB/s) real 0m20.026s Fetched 412 MB in 19s (21.1 MB/s) real 0m19.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 03 Oct 2017 20:05:29 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>JPのページの誤りの指摘を頂いたので修正した IDCFクラウドのDebianテンプレートで問題を見つけたのでチケットを切っておいた。  「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？
+ 思いついた対象候補  さくらのVPS ConoHa IDCFクラウド(←ここではこれをチョイス)   IDCFクラウドは、500円クーポンがあったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。
+ Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&amp;hellip;）。 次にgo-apt-cacherをダウンロードしてちょっと設定して起動します。 最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。  # apt show openclipart-png Package: openclipart-png Source: openclipart Version: 1:0.18+dfsg-14 Installed-Size: 148 MB  有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。
+# time apt-get download openclipart-png Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB] Fetched 128 MB in 10s (12.2 MB/s) real 0m10.742s user 0m2.204s sys 0m0.420s  まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）
+# time apt-get download openclipart-png Get:1 http://10.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 01 Oct 2017 14:39:09 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> libmojolicious-plugin-assetpack-perlの更新をアップロード ftpsyncスクリプトが新しくなったよ、というメールをもらっていたので入れ替えた。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 30 Sep 2017 22:18:59 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>体調を崩して諸々が進まず&amp;hellip;。
+ libmojolicious-plugin-renderfile-perlの更新をアップロード  lintianでUNRELEASEDだったらWarning入れてくれないかな&amp;hellip;（ドジッた）  sphinx-intlをアップデートした上でバイナリパッケージ名をsphinx-intlにしてアップロード。 一旦消えたcutter-testing-frameworkのDebianパッケージを復活させない？と打診だけ。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 27 Sep 2017 22:43:43 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>さくらの夕べ「さくらのVPS ユーザーミートアップ」のLT枠に参加してdebianミラーの宣伝をしてきました。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 25 Sep 2017 22:41:30 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>openSUSE.Asia Summit 2017のトークが通ったので返信。openSUSE tools on Debianというタイトルで15分喋る予定です。資料も大体作成完了。
+ fonts-arphic-uming FTBFS修正。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 18 Sep 2017 04:39:27 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> さくら専用サーバーのOSバージョンについては問い合わせておいた。手伝えることがあるとよいのだけども。 IDCFクラウドのはそろそろ一ヶ月なのでなんとかならんか。１０月まで待つか&amp;hellip;。 Cloudgarade、規約改定は早かったがDebian対応はまだ。。。  10/5に対応いただいた。  IIJのミラーはできないものかをわかりそうな人に尋ねることに  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>gbp-import-origのこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？
+--component=COMPONENT When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type. Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 15 Sep 2017 21:24:55 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今回はパッケージメンテナじゃなくてサーバーのメンテナンスの話。
+さくらの専用サーバーでDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係でhp側のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも仕様によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？
+何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&amp;hellip;→s/hp/hpe/だけだったのでサクッと。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 12 Sep 2017 22:30:07 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fonts-oradano-mincho-gsrrをアップロード  フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？   gnome-todoをアップロードした、のだけど、色々変更が多かったのでメモ
+ build systemがautotoolsからmesonに変わった。  Build-Depends: meson (&amp;gt;= 0.41.0) が追加、autoconf周りをdropした。 debian/rules で dh $@ --with gnome --buildsystem=meson のように--buildsystem=meson の指定が必要。 依存関係は meson.build ファイルに書いてある&amp;hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。 何か見落としがあるのかな？と思って dh_install &amp;ndash;list-mising しようかと思ったら、今は dh_missing --list-missing のように dh_missing を使え、とのこと。適当なブランチで debian/rules に override_dh_missing で記述して実行したが漏れはなかった様子。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 11 Sep 2017 20:57:06 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> python3-sphinx-intlをITPした。  何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業でgit checkout --orphan pristine-tar; rm *; git commit --allow-emptyみたいなことをして作った。何故だ。  cutter-testing-frameworkがリポジトリから削除されていたので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたのでpull request。  他にもpo/Makefile.in.inファイルが無くてintltoolize --force || exit 1が必要だったり。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 05 Sep 2017 22:13:45 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> elpa-migemo をアップロード nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗はm68kぐらい）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。 os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&amp;hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&amp;hellip;これ動くのかな。）  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 04 Sep 2017 20:58:22 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> RFS: elpa-migemoのレビューを実施。 libsql-splitstatement-perlを修正したのでアップロード。 OpenQAのdebian/copyrightをアップデート。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/09/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 03 Sep 2017 18:20:18 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/09/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fonttoolsをunstableに入れた octiconsの新しいバージョンについてのメモを残しておいた。 来年のDebConfに向けてスポンサー探している話を流しておいた。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 30 Aug 2017 21:31:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> -usersに流れてきたメールをチラ見、ざっくり調べて原因見つけたのでパッチ送っとく。stretchにも入れたほうがいいんじゃない？  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 29 Aug 2017 19:54:04 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> xfonts-kappa20をアップロードしておいた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 28 Aug 2017 21:21:32 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>昨日のfonttoolsの続き。conf.pyにモジュール読み込みを記述することで対応できた。
+--- a/Doc/source/conf.py +++ b/Doc/source/conf.py @@ -20,6 +20,8 @@ # import sys # sys.path.insert(0, os.path.abspath(&#39;.&#39;)) +import sys,os +sys.path.append(os.path.dirname(os.path.abspath(__file__)) + &#39;/../../Lib&#39;) # -- General configuration ------------------------------------------------  あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&amp;hellip;）。
+override_dh_sphinxdoc: sphinx-build $(CURDIR)/Doc/source $(CURDIR)/debian/fonttools/usr/share/doc/fonttools/html/ dh_sphinxdoc  色々変更をぶっ込んだのでexperimentalに。で、アップロードしてからバグを閉じ忘れていたことに気づいた&amp;hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&amp;hellip;のでコマンドメールを別途。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 27 Aug 2017 16:49:13 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>jcodingsのアップデートがmaintainer dashboardで出てたのを見つけたので、アップロード。  fonttoolsのアップデートをしようということで作業を始める。
+ upstreamの更新に合わせて対応 そろそろbusterを視野に入れてpython3限定でビルド  Build-Dependsは python-* が python3-* になるのはわかっていたが、Dependsも　${python:Depends} ではなく ${python3:Depends} だった。  ドキュメントがsphinx前提になっていたのでdh-sphinxdocを導入  dh-sphinxdoc周りが今まで作業していなかったので勝手がわからずに苦労。
+ Build-Dependsに python-sphinx 指定。dh-sphinxdocを含んでいるsphinx-common だけでもいいのかしら？ dh @ --with sphinxdoc しないと発動しない。 Depends: ${sphinxdoc:Depends}加えとくのも忘れずに。 ビルド時にsphinx起動していなかったのでoverrideした。  で、sphinx動かすと以下のエラー。
+Traceback (most recent call last): File &amp;quot;/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py&amp;quot;, line 560, in import_object /build/fonttools-3.15.1/Doc/source/varLib/models.rst:5: WARNING: autodoc: failed to import module u&#39;fontTools.varLib.models&#39;; the following exception was raised:  これは.. automodule::というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 26 Aug 2017 08:49:03 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> pkg-perl以下に移動したパッケージを更新してpush。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 24 Aug 2017 07:35:53 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>birdfontパッケージにバグレポートパッチをもらっていたのでこちらを適用した。
+んで、パッケージをビルドしたら以下のlintianエラーがでた
+W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml  のでパッチ作成、忘れないうちにPullRequest。
+しかし
+E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz  が残っている。orig-tarball-missing-upstream-signatureはキツすぎるだろう？ということで既にBTSに登録されていてgitでwarningに落とされたようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。
+う、overrideしようとしたら
+E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1  と言われてしまった。changes? どうやって置くのだ？？&amp;hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 23 Aug 2017 20:00:22 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> MSのドキュメントでDebianがDe&amp;rdquo;v&amp;rdquo;ianと書かれているtypoがあるよ、というのを見て、該当ページで「編集」を押してみたらGitHubのプルリクエスト画面になった。すげぇな。  直してプルリクエスト送ったけど、botがContribution License Agreement必要かどうか判断してた。はー。  pkg-perlチームのドキュメントを読む。まずは https://pkg-perl.alioth.debian.org/git.html  pkg-perl-tools をインストールするところから始めるようだ インストールが終わると dpt コマンドが使える。メンテのためのお役立ちツールの様子。pkg-perlに絞ってるからシンプルにできてるのかな？ echo &amp;ldquo;DPT_PACKAGES=$HOME/src/pkg-perl/packages&amp;rdquo; &amp;gt;&amp;gt; $HOME/.config/dpt.conf して設定を追加。 &amp;ldquo;Non-pkg-perl methods such as gbp-create-remote-repo will not set up this infrastructure.&amp;rdquo; とあるな。先日gbp-create-remote-repoでpushしたけど消して再度作り直しておくか&amp;hellip;。 dpt alioth-repo とかして作った。これ、aliothから新しいホスト名（salsaだっけ？）になったら変わるのかな。 いじって、dpt pushで反映。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 22 Aug 2017 22:09:13 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> debian-policy 4.1.0がアップロードされた&amp;hellip;のだけども、Webサイトの方はCSSなどのファイルが一切アップロードされて無くて見栄えが悪い。問い合わせしてみた。  どうやらウェブサイト側の問題のようでSeanがバグを登録してくれた。  昨日のpkg-perlチームへの加入がOKされてたのでgit pushしておく。パッケージ自体の修正はまだ。  何故かpristine-tarブランチが切られてないパッケージがあった。どうやって作るかな？と思ったが git checkout debian/; gbp buildpackage &amp;ndash;git-pristine-tar-commit &amp;ndash;git-pbuilder &amp;ndash;git-ignore-branch を繰り返して作成した。古いバージョンだとビルドができなくなっていたのにちょっと驚いたのと、testがskipしてるのを見逃していたなーという点。 teamのroot直下じゃなくてpackagesというディレクトリを切っていたのに後で気づいて慌ててsshで入って移動した。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 21 Aug 2017 04:55:42 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 「君のPerl moduleパッケージ、pkg-perlチームでメンテしない？」と頂けたので、これ幸いと参加申請しておく。 日経Linuxをチラ見したらpdfsamなる良さそうなソフトを取り上げてるが、「リポジトリのパッケージは古いから削除してダウンロードして使おう！」みたいなこと書いてあった。https://github.com/torakiki/pdfsam/releases とdebian/changelog比較すると大きな乖離。どうやらpkg-javaチーム傘下なのでアップデートしていいか聞いてみるか。  まぁ、それにしてもDebianで作業しても全部「Ubuntuすげー！」だけになるかと思うとやるせないので、とっととsnapshot releaseをするようにせねばならんよなーとは思う。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 17 Aug 2017 06:26:14 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> poppler-dataが新しいバージョンが上がっていたので、これ幸いとアップロード。popconいわく、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。  別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。  libtest-time-perlの新しいバージョン&amp;hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、アップロード。  d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&amp;hellip;。  fonts-sawarabi-minchoをアップロード libxmlbirdのFTBFS修正をアップロード、1文字だけの違いだけども。 https://wiki.debian.org/LocalGroups/Debian-JP の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 16 Aug 2017 06:26:10 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>無事に帰宅して猫と遊んだ。
+ jruby-joni をアップデート libuninameslist をアップデート  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 13 Aug 2017 06:32:58 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> libsql-splitstatement-perl がreject  please mention at least: libsql-splitstatement-perl-1.00020/t/data/sakila-schema.sql in your debian/copyright.   libmojo-rabbitmq-client-perl もreject  please also mention at least: libmojo-rabbitmq-client-perl-0.0.9/share/amqp0-9-1.stripped.extended.xml libmojo-rabbitmq-client-perl-0.0.9/share/fixed_amqp0-8.xml in your debian/copyright.  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 12 Aug 2017 06:51:27 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> Debian PolicyをSphinxへのコンバートは目処が着いてきたので、リリース前のchangelogにも記載された。細かい修正は残っているとは言え、だいぶ楽な状態になりました。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/08/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 01 Aug 2017 20:16:29 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/08/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業
+ jcodings、もう一つ xfonts-ayu。regressionを作ってしまっていたのでそれを修正。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 31 Jul 2017 22:19:31 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業
+ fonts-wqy-zenhei  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 30 Jul 2017 09:57:32 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング
+ fonts-mikachan、deley-15 に放り込み。 fonts-f500 fonts-manchufont  何か作業しようと思っていたのだが、続きをすっかり忘れていたDebian PolicyのSphinx変換提案、どうやって作業していたのかを思い出したのでhistoryから5行ほどの手順を送りつけておいた。8/1にSprintがあるらしいので、そこで話題にしてくれるといいなぁ。とりあえずIRCチャンネルに接続だけしてログを取っておこう。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 29 Jul 2017 00:37:27 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>昨日の gnome-todo の続き。
+lintian warningを確認。 W: gnome-todo: gir-section-not-libdevel usr/share/gir-1.0/Gtd-1.0.gir gnome N: N: GObject-Introspection XML files (/usr/share/gir-1.0/Foo-23.gir) must be N: made available in a development package in the libdevel section of the N: archive. This is normally the same libfoo-dev package that contains N: other development files. N: N: Refer to /usr/share/doc/gobject-introspection/policy.txt for details. N: N: Severity: normal, Certainty: certain N: N: Check: gir, Type: binary, source  /usr/share/gir-1.0/Gtd-1.0.gir が含まれてるのに section: gnome なgnome-todoパッケージはあかんやろ、と。これはlibdevelなlibgnome-todo-devを作って放り込め、ということだな。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 28 Jul 2017 09:25:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業
+ fonts-ipafont-nonfree fonts-ipafont-nonfree-jisx0208 jcodings gnome-todo をちょっとだけ。  appstream-metadata-in-legacy-location は grep で検索して gbp pq import して Makefile.am を少し書き換え、git commit してパッチを作って対応。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 27 Jul 2017 09:25:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング
+ yudit fonts-tomsontalks fonts-kacst nailgun fonts-bpg-georgian を見てみたら、upstreamがBoxに色々ソースを置いているようだ、が読めなくて何が最善なのかが全くわからん&amp;hellip; fonts-manchufont は途中まで&amp;hellip;。 fonts-wqy-zenhei は途中まで&amp;hellip;。 fonts-mikachan は途中まで&amp;hellip;で、アップロード予告だけしておく。  yudit は以下をなんとかしたいところではある&amp;hellip;とりあえずtypoは直した。
+I: yudit: spelling-error-in-binary usr/bin/uniprint pres press I: yudit: spelling-error-in-binary usr/bin/yudit preceed precede I: yudit: spelling-error-in-binary usr/bin/yudit pres press I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz recommened recommended I: yudit: desktop-entry-lacks-keywords-entry usr/share/applications/yudit.desktop I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf  mplus-fontsのCVS-&amp;gt;Gitリポジトリ変換を依頼しておく。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 26 Jul 2017 21:33:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業
+ fonts-mmceder  DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&amp;hellip;とりあえず「1日早められる？」と問い合わせてみる。→無事調整された。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 25 Jul 2017 21:46:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業。
+ grcompiler&amp;hellip;を見てみた。  upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&amp;hellip;gitのmasterから取ってきてもコケる&amp;hellip;これは一体？ upstreamがdebianディレクトリ追加してる&amp;hellip;困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&amp;hellip;なんだこりゃ。  fonts-vlgothic fonts-kacst-one fonts-motoya-l-cedar fonts-motoya-l-maruberi  モトヤLマルベリ3・Lシーダ3がAndroidのリポジトリから消えていた   mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&amp;hellip;。shellアクセスできる範囲には無いっぽいし。ダウンロードでいけるのかな？
+$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs2git.options $ vi cvs2git.options $ cvs2git --options=./cvs2git.options  などとやってみたが、必要な情報がtarballの中にはないようだ。サポートリクエストを出して欲しい、ということらしい。あとで問い合わせよう。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 24 Jul 2017 21:45:44 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業
+ fonts-kacst-one  アップロードしてから「あ、ttf-パッケージがあった&amp;hellip;落とし忘れ&amp;hellip;」と気付く。あとでもう一度アップロードしよう。  fonts-takao  pristine-tarブランチにコミットし忘れてたのが発覚。apt source fonts-takaoとsnapshot.debian.orgからダウンロードして、gbp pristine-tar commitで追加。   </description>
+    </item>
+    
+    <item>
+      <title>digging into gpgme on hurd</title>
+      <link>https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/</link>
+      <pubDate>Mon, 24 Jul 2017 00:11:24 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/</guid>
+      <description>gpgme1.0 on Hurdの続き。
+Running tests using /usr/bin/python2 (2.7)... PASS: initial.py PASS: t-wrapper.py PASS: t-callbacks.py FAIL: t-data.py FAIL: t-encrypt.py FAIL: t-encrypt-sym.py FAIL: t-encrypt-sign.py FAIL: t-sign.py FAIL: t-signers.py FAIL: t-decrypt.py FAIL: t-verify.py FAIL: t-decrypt-verify.py FAIL: t-sig-notation.py PASS: t-export.py PASS: t-import.py PASS: t-trustlist.py PASS: t-edit.py PASS: t-keylist.py PASS: t-keylist-from-data.py PASS: t-wait.py PASS: t-encrypt-large.py FAIL: t-file-name.py PASS: t-idiomatic.py PASS: t-protocol-assuan.py FAIL: t-quick-key-creation.py FAIL: t-quick-subkey-creation.py PASS: t-quick-key-manipulation.py PASS: t-quick-key-signing.py PASS: final.py Running tests using /usr/bin/python3 (3.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 23 Jul 2017 21:37:26 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業
+ fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。   * Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 22 Jul 2017 06:46:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のグルーミング作業。
+ vmdk-stream-converter  LaunchPadでBug登録されてたから何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。  psphere fonts-kanjistrokeorders fonts-komatuna fonts-ipafont svn-workbench。desktopファイルにkeywordが足りないので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。 fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。short-nameでは「public-domain」とハイフン入れるのね。→アップロードした。  珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ@ANY_VERSION@・@ARCHIVE_EXT@ と書けるのでそれを使うと良いよ、という話をした。
+sylpheedのビルドが全部揃ってないのが気になったので調査。
+sylpheed build-depends on missing: - libgpgme-dev:hurd-i386 (&amp;gt;= 1.0.0)  これか。https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid を見るとoverride_dh_auto_configureでコケてビルドが失敗している&amp;hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。qemuイメージの配布で新しいイメージが出てたのでそれをベースにやり直してみよう。
+$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI Converting from raw image file=&amp;quot;debian-hurd-20170613.img&amp;quot; to file=&amp;quot;debian-hurd-converted-20170613.vdi&amp;quot;... Creating dynamic image with size 5243928576 bytes (5001MB)...  で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思ってsudo modprobe vboxdrvしてVBoxを立ち上げなおしてみても同じエラー。&amp;hellip;あ、kernelが変わったせい？ sudo dpkg-reconfigure virtualbox-dkmsしてみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&amp;hellip;という謎の対処療法的な解決の仕方でスッキリしない。
+あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ
+ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 21 Jul 2017 21:26:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、問い合わせだけしておく。。。 VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、問い合わせだけしておく。。。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 20 Jul 2017 05:00:31 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> riece、見落としてたバグを閉じた fonts-misaki fonts-seto fonts-dejima-mincho quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用してアップロード * Fix &amp;quot;FTBFS with perl 5.26: Unescaped left brace in regex&amp;quot;: escape literal left braces in perl regexp in debian/rules; patch from Niko Tyni. (Closes: #826502)  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 19 Jul 2017 19:51:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>パッケージ一覧を眺めてのグルーミング作業。
+ snapper jruby-joni。「missing-classpath」なるwarningを消したい、ということでClass-Path: jcodings.jarの1行パッチをMANIFEST.MFに追加。  d-iがrootパスワードの定期変更を推奨しているというツイートを見たのでパッチ作ってBTSしておいた。
+silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 18 Jul 2017 06:40:16 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>どうやら3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていたようだ。
+maintainer dashboardより。
+ libmojolicious-plugin-renderfile-perlの#839621を修正。manのtypoはPR送った。 libmojolicious-plugin-assetpack-perlもついでに更新&amp;hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&amp;hellip;  パッケージ一覧を眺めてのグルーミング作業。
+ fonts-kouzan-mouhitsu。サイトを見に行ったら更新されていたので反映。  octiconsのビルドにはnpmモジュールが必要 octiconsのビルドに必要なのを見てみるか&amp;hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。
+ &amp;quot;devDependencies&amp;quot;: { &amp;quot;autoprefixer&amp;quot;: &amp;quot;^6.3.6&amp;quot;, &amp;quot;ava&amp;quot;: &amp;quot;^0.16.0&amp;quot;, &amp;quot;grunt&amp;quot;: &amp;quot;^1.0.1&amp;quot;, &amp;quot;grunt-contrib-clean&amp;quot;: &amp;quot;^1.0.0&amp;quot;, &amp;quot;grunt-contrib-copy&amp;quot;: &amp;quot;^1.0.0&amp;quot;, &amp;quot;grunt-cssnano&amp;quot;: &amp;quot;^2.1.0&amp;quot;, &amp;quot;grunt-svgmin&amp;quot;: &amp;quot;^4.0.0&amp;quot;, &amp;quot;grunt-svgstore&amp;quot;: &amp;quot;^1.0.0&amp;quot; },  grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&amp;hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると
+ [error] num2fraction: dependency node-num2fraction not in debian [error] browserslist: dependency node-browserslist not in debian [error] normalize-range: dependency node-normalize-range not in debian [error] postcss-value-parser: dependency node-postcss-value-parser not in debian [error] caniuse-lite: dependency node-caniuse-lite not in debian [error] postcss: dependency node-postcss not in debian  browserslistをnpm2debすると</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 17 Jul 2017 08:45:27 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>グルーミング作業。
+ fonts-aoyagi-kouzan-t。サイトを見に行ったら更新されていたのでこちらも反映してアップロード。uscanで自動で確認できるように、ファイル名に日付付けてもらうのをあとでお願いしよう。。 fonts-aoyagi-soseki。  READMEなmanのファイル名がおかしい件はdebian-perlに飛ばしてヘルプを乞うてみる&amp;hellip;「READMEは削除しとるで。こんな風に」&amp;hellip;な、なるほど。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 16 Jul 2017 09:12:33 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日のケアリスト。
+ xfonts-efont-unicode、その２ xfonts-kaname、その２ xfonts-shinonome、その２ xfonts-naga10、その２ tiarra libspiro xfonts-ayu fonts-horai-umefont xfonts-kappa20もアップロードしたが、xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.と言われてrejectされる&amp;hellip;  恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？   xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&amp;hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&amp;hellip;)。
+その他、ruby-interpriterのdropなど。なぜかruby2.1がarm64のdeb-portsに残ってる状況なのが不思議。
+apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、本体側のpo訳してた＼(^o^)／
+Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、GitHubを見るようにする。以下、試行錯誤の結果。
+$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream  git checkout --orphan &amp;lt;branch&amp;gt;はなかなか思いつかない&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 15 Jul 2017 09:12:35 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>M+ BITMAP FONTSのパッチをupstreamに送付完了。やれやれ。
+openSUSE Conference Asia の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。
+さてsubmit&amp;hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&amp;hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&amp;hellip;
+You have used 99 words. Abstracts must be between 150 and 500 words.  &amp;hellip;150 wordsつらい(´・ω・`)
+今日はcollab-maintな奴を更新
+ docx2txt riece g-wrap  libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&amp;hellip;
+E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so  これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。
+それと最近のバージョンではMock::Timeが必要なようなのでlibmock-time-perlをITP。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 14 Jul 2017 23:11:35 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>maintainer dashboardを覗く。
+ ちょっとした待ち時間でバグ報告の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。mv README.pod READMEしたら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 13 Jul 2017 19:35:47 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>maintainer dashboardを覗く。
+ screenfetchのwatchファイルを直した。 twittering-modeのwatchファイルを直してたやつをNMUした。 先日のfonts-konatuの更新でwatchファイルが漏れていたので対応した。  その他も少し。
+ osdn.jp→.netへの切り替えを作業&amp;hellip;してる間に他にもアップデートできそうなところを見つけたのでxfonts-ayuを更新&amp;hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。 xfonts-mplusを更新。M+ BITMAP FONTSのパッチをupstreamに送付&amp;hellip;したのだが届かない。添付だと跳ねられるのかしら？  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 12 Jul 2017 20:16:20 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>maintainer dashboardを覗く。
+ fonts-tomsontalksのdebian/watchファイルを修正、他 もう一つmadfuloadについてもwatchファイルの修正他 さらにfonts-ocr-aもwatchファイルの修正他   Todoリストから「libuninameslistのmulti-arch対応」実施。&amp;ndash;deleyed 2 で放り込んでおく。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 11 Jul 2017 21:32:30 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>maintainer dashboardを覗いて、fonts-konatuのupstreamのURLが変わっていたのを思い出したので対応。さらにfonts-kilojiもupstreamのURLが変わってたようなのでこちらも対応。
+krb5でsaslバックエンドなLDAPが使えるようになってない、というのを見かけたので判る範囲でBTSしておいた。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 10 Jul 2017 04:41:24 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>昨日に引き続いてopenQAがらみ。パッケージになっていなかったlibmojo-rabbitmq-client-perlをITPしてアップロード。
+ pbuilder-satisfydepends-dummy : Depends: libnet-amqp-perl (&amp;gt;= 0.06) but it is not going to be installed  とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&amp;gt;= 0.06~dfsg)を指定するようにして回避。
+試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&amp;hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。
+E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&amp;gt;256)  libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&amp;hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&amp;hellip;まだまだ先が長い。
+#requires &#39;Mojolicious::Plugin::Bootstrap3&#39;;とあるのでこちらもdh-make-perlで。
+$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3 (snip) Can&#39;t find &#39;Mojolicious::Plugin::Bootstrap3&#39; module or distribution on CPAN  なんですと？
+検索するとhttps://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm にあるのだけども。。。？…おおぅMojolicious::Plugin::Bootstrap3 will be DEPRECATED.とある ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 09 Jul 2017 15:12:24 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>birdfontのtag打ちが抜けてたのでupstreamにping、pushしてもらえたのでuploadした。
+openQAをビルドできるように、必要なツールをパッケージにする そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？upstreamのspecファイルを確認すると、testを実行するときだけ指定するとかなのかな。
+%if %{with tests} cpanm --installdeps --with-feature=test . %endif  ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&amp;rdquo;モジュール名&amp;rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。
+libmojolicious-perl libwww-perl libtimedate-perl perltidy libdbix-class-perl libscalar-list-utils-perl libtest-simple-perl liburi-perl libcgi-pm-perl  SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード $ dh-make-perl --cpan SQL::SplitStatement == dh-make-perl 0.95 == (snip) Needs the following debian packages during building: perl (&amp;gt;= 5.8.9), libtest-exception-perl (&amp;gt;= 0.27) Needs the following modules for which there are no debian packages available: - SQL::Tokenizer  あら、また足りない&amp;hellip;
+$ dh-make-perl --cpan SQL::Tokenizer  とりあえずlibsql-tokenizer-perlをITP、Bug#867750として登録。そしてNEW queueへとアップロードしておいた。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 08 Jul 2017 10:36:32 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>mecab-jumandicパッケージのリグレッションを作ってしまったので、直した。
+autopkgtestのネタとかとして使えないかなぁ、と思う。
+libmojolicious-plugin-assetpack-perlアップロード。 Lintianがtypoを報告してきていたのでpull request。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。
+poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。
+poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.  libuninameslistのdebian/copyright を 1.0 にしてアップロード。次はmulti-arch絡みのsuggestion対応するかね&amp;hellip;
+libuninameslist-dev could be marked Multi-Arch: same libuninameslist1 could be marked Multi-Arch: same  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 02 Jul 2017 08:08:23 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>今日はNew upstream releaseがあったpleiadesから。
+まずは適当にビルド&amp;hellip;ってpatchが通らない。ですよねー。ということでquiltでセコセコとpush -fして .rej ファイルを確認して修正する作業から。パッチを見てると./lib/javassist/javassist.jar ./lib/apache/commons-io.jar ./lib/apache/commons-lang.jar が./lib/javassist/javassist.jar だけになってた。ということはcommons-ioと-langは要らないの？
+・Pleiades に含まれる Commons IO などのライブリが他のプラグインと競合しないようにソースを取り込んでパッケージ変更 (依存は Javassist のみ)  なるほど&amp;hellip;取り込んじゃったのか。ということで依存関係落として作ったdebをインストールしてみて動作に支障は無いことを確認して依存関係をdropしたものをマージ&amp;hellip;したけど、よく考えたら作業環境には他の依存でlibcommons-*が含まれてるんだった&amp;hellip;改めてVM作ってその中で動作確認（&amp;hellip;これこそautopkgtestしたほうが良いよね、私）。
+パッチで無効化していた機能、よくよくみたらビルドオプションで無効にできるじゃん、ということで動作確認してdrop。
+昔debconfでpleiadesを自動で有効化しようとしたが、他のパッケージを触るので無効にした際に消してしまったREADME.Debianを復活させた。今まで相当不親切だったな&amp;hellip;いかんいかん。
+その他lintianに従って諸々&amp;hellip;と作業記録のまとめ。
+debian-mirror.sakura.ne.jp にHTTPS有効にしようとLet&amp;rsquo;s Encryptを入れるべく作業。certbotを使うことにして、Jessieなのでbackports有効になってるのを確認して $ sudo apt-get install python-certbot-apache -t jessie-backports してパッケージをインストール、$ sudo certbot --apache して進める。
+(snip) Generating key (2048 bits): /etc/letsencrypt/keys/0000_key-certbot.pem Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem An unexpected error occurred: There were too many requests of a given type :: Error creating new cert :: too many certificates already issued for: sakura.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 01 Jul 2017 08:28:22 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> darts をアップデート。未だにVcs-* をhttpsにしてなかったとは&amp;hellip; mecab-naist-jdic をアップデート。特にこれということもなく。 unidic-mecab をアップデート 。dh10でスッキリと。 naist-jdic、LPのバグ報告がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&amp;hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/ などとしてchroot作ってテスト。再現せず。だよねー mecab、バグ報告を確認。どうすっかなーというところで今日は見送りかな。 mecab-jumandic をアップデート。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gzっと。  git-buildpackage (0.8.17) unstable; urgency=medium (snip) * [956982c] New command &#39;pristine-tar&#39; This allows one to run the pristine-tar import at a later point. This is useful when using component tarballs and we need to reference the right trees for the commits.   消えたら可哀想だな、ということでplumをAdoptした。  </description>
+    </item>
+    
+    <item>
+      <title>提案めも</title>
+      <link>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</link>
+      <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/</guid>
+      <description> pkg-configとpkgconfigの入れ替え話もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。 https://fedoraproject.org/wiki/Releases/26/ChangeSet のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。  現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう 開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす） リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう  https://fedoraproject.org/wiki/Releases/26/Schedule を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。  → https://wiki.debian.org/upstream-schedule を作ってみた。  debian-mirror.sakura.ne.jp をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&amp;rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 30 Jun 2017 23:26:36 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>snapperのdebcheckを見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&amp;hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。
+I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0  これは減らせるだろうか？
+os-autoinstも同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。
+qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？
+アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&amp;hellip;。
+美咲フォントのバグレポート、内容を精査。直ってたので閉じておいた。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 29 Jun 2017 20:30:03 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>screenfetch、Ubuntu側のバグ登録を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。
+トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。
+ cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&amp;hellip; apt show pgf&amp;hellip;パッケージは確かに存在しない。 trackerのページで確認すると、最後のは[2014-11-03] Removed 2.10-1 from unstable&amp;hellip;なになに？「integrated into texlive」？ ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？） debsignしてdputして終わり。  diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog --- whizzytex-1.3.2/debian/changelog 2014-09-15 11:44:18.000000000 +0900 +++ whizzytex-1.3.2/debian/changelog 2017-06-29 20:11:36.000000000 +0900 @@ -1,3 +1,11 @@ +whizzytex (1.3.2-1.4) unstable; urgency=medium + + * Non-maintainer upload. + * debian/control + - fix Build-Depends since pgf is intergrated into TeXLive. + + -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Thu, 29 Jun 2017 20:11:36 +0900 + whizzytex (1.</description>
+    </item>
+    
+    <item>
+      <title>aptの奇妙な出力</title>
+      <link>https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</link>
+      <pubDate>Wed, 28 Jun 2017 22:00:45 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/</guid>
+      <description>582 MB を 7分 1秒 で取得しました (1,382 kB/s) Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;console-setup-linux=1.165&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;libavutil55=7:3.2.6-1+b3&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;gvfs-backends=1.30.4-1+b1&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-notify=2.2.6-2+b3&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-visualization=2.2.6-2+b3&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc-plugin-skins2=2.2.6-2+b3&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;vlc=2.2.6-2+b3&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;mplayer=2:1.3.0-6+b3&#39;] to retrive changelog Calling [&#39;apt-get&#39;, &#39;-qq&#39;, &#39;changelog&#39;, &#39;gstreamer1.</description>
+    </item>
+    
+    <item>
+      <title>久々にbackports</title>
+      <link>https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</link>
+      <pubDate>Wed, 28 Jun 2017 20:44:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/</guid>
+      <description>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &amp;ndash;bpoでchangelog作成&amp;hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）
+次にbase.cowを作る。
+$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow  あとはビルドするだけ。。。でもlintianがbackports-changes-missingなる警告を出す。ふむふむ。。。
+It is recommended to include all changelog entries since the last version on debian-backports or since stable if it&#39;s the first version. You should do this by passing &amp;quot;-v&amp;quot; to dpkg-buildpackage. Eg: &amp;quot;debuild -v0.7.5-2&amp;quot;, where &amp;quot;0.7.5-2&amp;quot; is the version in stable. If the package wasn&#39;t in stable or backports before you don&#39;t have include the changelog entries (but you are free to do so).</description>
+    </item>
+    
+    <item>
+      <title>epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</title>
+      <link>https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</link>
+      <pubDate>Tue, 27 Jun 2017 21:22:43 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/</guid>
+      <description>$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag gbp:info: Tarballs &#39;xfonts-kappa20_0.396.orig.tar.xz&#39; not found at &#39;../tarballs/&#39; gbp:error: Pristine-tar couldn&#39;t checkout &amp;quot;xfonts-kappa20_0.396.orig.tar.xz&amp;quot;: fatal: Path &#39;xfonts-kappa20_0.396.orig.tar.xz.delta&#39; does not exist in &#39;refs/heads/pristine-tar&#39; pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed  何故かprsistine-tarブランチからtarballがチェックアウトできないとな。
+henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar Switched to branch &#39;pristine-tar&#39; henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls Kappa20-0.396.tar.bz2.delta Kappa20-0.396.tar.bz2.id xfonts-kappa20_1:0.396.orig.tar.xz.delta xfonts-kappa20_1:0.396.orig.tar.xz.id  ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</description>
+    </item>
+    
+    <item>
+      <title>ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</title>
+      <link>https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</link>
+      <pubDate>Mon, 26 Jun 2017 22:01:11 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/</guid>
+      <description>git-buildpackageでビルドしたのだけど、pristine-tarブランチに作られたファイルから生成されるtarballと最初にアップロードしたorig.tarballとハッシュ値が違うということで蹴られることがある。tarballは都度若干違う値になっちゃうから、そもそもgbp import-origした際にキチンとpristine-tar作るようにしてあるはず、なんだけど、ミスをすることが多々&amp;hellip;
+で、どうやってリカバリするかというと、apt source して orig.tarball を差し替える（ダメな場当たり対応。良くやる）というのが思いつくのだけど、ちゃんとpristine-tarブランチのファイルを置き換えた方が良い。
+とはいうものの、このブランチのファイル、どうやって生成しているのかよく分かってない。いっつも単にimport-origしてただけだし。うーん。
+色々試行錯誤した末に、こうしてみた。
+ 適当なところに apt source  でリポジトリにあるorig.tarballを持ってくる 適当なところで debcheckout  してテンポラリ作業用のgitリポジトリを持ってくる テンポラリgitリポジトリで  $ cd /tmp/&amp;lt;package repo&amp;gt; $ git checkout pristine-tar $ git rm &amp;lt;該当バージョンのファイル&amp;gt;; git commit -a $ git checkout master; git tag -d upstream/&amp;lt;version&amp;gt; $ gbp import-orig &amp;lt;orig.tarball&amp;gt;  などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う  $ cd ~/&amp;lt;package repo&amp;gt; $ git checkout pristine-tar $ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar   回りくどいなーとは思うのだけども。</description>
+    </item>
+    
+    <item>
+      <title>ISOファイルのマウントが残っていてemergency modeで起動</title>
+      <link>https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</link>
+      <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
+      <description>デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）
+前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。
+#/dev/loop0 /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 #/dev/loop2 /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 #Entry for /dev/loop1 : #UUID=2015-10-30-20-02-13-00 /media/henrich/J_SSS_X64FRE_JA-JP_DV91 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0  なんなんだこれは。</description>
+    </item>
+    
+    <item>
+      <title>debsnapコケた</title>
+      <link>https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</link>
+      <pubDate>Sat, 28 Nov 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/</guid>
+      <description>gbp import-dscs &amp;ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？
+$ debsnap sylpheed 3.2.0-1 --force -v Getting json http://snapshot.debian.org/mr/package/sylpheed/ Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1 Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6 Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35 It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz a41a8e2fc3c5e4935f30c7bacff8d72508546e35: sylpheed_3.2.0~rc0.orig.tar.gz Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. Size: 4925789 sylpheed_3.2.0.orig.tar.gz Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. Size: 4925789 Yes, those files are exactly same one. [{&amp;quot;name&amp;quot;: &amp;quot;sylpheed_3.2.0~rc0.orig.tar.gz&amp;quot;, &amp;quot;archive_name&amp;quot;: &amp;quot;debian&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/pool/main/s/sylpheed&amp;quot;, &amp;quot;first_seen&amp;quot;: &amp;quot;20120625T162322Z&amp;quot;, &amp;quot;size&amp;quot;: 4925789}, {&amp;quot;name&amp;quot;: &amp;quot;sylpheed_3.</description>
+    </item>
+    
+    <item>
+      <title>libxmlbird のビルド直してた</title>
+      <link>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+      <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+      <description>libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。upstreamに報告済み。あと、git repoでタグ打ちがないのも。</description>
+    </item>
+    
+    <item>
+      <title>libxmlbird のビルド直してた</title>
+      <link>https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</link>
+      <pubDate>Mon, 29 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/</guid>
+      <description>libxmlbirdのビルド、*kfreeBSDなプラットフォームでビルド死んでるのはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。
+sparcでのビルド失敗は
+Traceback (most recent call last): File &amp;quot;/usr/bin/doit&amp;quot;, line 5, in &amp;lt;module&amp;gt; from pkg_resources import load_entry_point ImportError: No module named pkg_resources  …なんでモジュールが無いというのか？
+ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。 さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、python-doitのバージョンが違う。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。
+新しいバージョンになると
+python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py  を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。
+それからbirdfontもpython-doit使ってるのでこれも直した。</description>
+    </item>
+    
+    <item>
+      <title>autopkgtest触ってみた（らしい）</title>
+      <link>https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</link>
+      <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/</guid>
+      <description>Perlパッケージのautopkgtestについてはサイトに記述がある。
+Testsuite: autopkgtest-pkg-perl
+をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）
+実施されるテストは * smoke * use.t * syntax.t で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。
+実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。
+$ sudo apt-get install sbuild $ sudo mkdir -p /srv/chroot/sid $ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian  [sid-amd64-sbuild] type=directory description=Debian sid/amd64 autobuilder directory=/srv/chroot/sid groups=root,sbuild root-groups=root,sbuild profile=sbuild users=henrich root-users=henrich  $ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild adt-run [20:22:46]: version 3.14.3 adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild adt-virt-schroot requires ephemeral schroot sessions. Set a &amp;quot;union-type&amp;quot; or use a tarball schroot adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: [&#39;BrokenPipeError: [Errno 32] Broken pipe\n&#39;]  最初はunion-typeの指定エラーがでたのでこれを追加</description>
+    </item>
+    
+    <item>
+      <title>dh-make-perlでPerlモジュールが半自動でDebianパッケージに</title>
+      <link>https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</link>
+      <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/</guid>
+      <description>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。
+$ dh-make-perl == dh-make-perl 0.86 == Trying /home/henrich/src/qa/../qa.tar.gz... not found. Trying /home/henrich/src/qa/../qa.tar.bz2... not found. Trying /home/henrich/src/qa/../qa.tar.xz... not found. Trying /home/henrich/src/qa/../qa.tar.lzma... not found. WARNING: Neither META.json nor META.yml was found Unable to determine dist name, no Build.PL, no Makefile.PL Please use --cpan.  ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&amp;ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…
+$ dh-make-perl --cpan DBIx-Class-OptimisticLocking == dh-make-perl 0.86 == CPAN.pm requires configuration, but most of it can be done automatically. If you answer &#39;no&#39; below, you will enter an interactive dialog for each configuration option instead.</description>
+    </item>
+    
+    <item>
+      <title>testでskippedが多い場合は依存関係が満たされてないかもしれない</title>
+      <link>https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</link>
+      <pubDate>Sun, 28 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/</guid>
+      <description>さて、ドキュメントにはテストについて色々書いてありました。
+PERL_DL_NONLAZY=1 /usr/bin/perl &amp;quot;-MExtUtils::Command::MM&amp;quot; &amp;quot;-MTest::Harness&amp;quot; &amp;quot;-e&amp;quot; &amp;quot;undef *Test::Harness::Switches; test_harness(1, &#39;blib/lib&#39;, &#39;blib/arch&#39;)&amp;quot; t/*.t t/00-compile.t ................ 1..1 ok 1 - DBIx::Class::OptimisticLocking loaded ok ok t/01-dirty.t .................. skipped: needs DBD::SQLite for testing t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing t/03-all.t .................... skipped: needs DBD::SQLite for testing t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing t/05-version.t ................ skipped: needs DBD::SQLite for testing t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing t/08-none.</description>
+    </item>
+    
+    <item>
+      <title>git repoとdh-make</title>
+      <link>https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/</link>
+      <pubDate>Tue, 23 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/</guid>
+      <description>一度upstream tarballを元にdh-makeでパッケージを作った。 で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。
+git clone https://github.com/os-autoinst/os-autoinst.git cd os-autoinst git checkout 4.1 git tag upstream/4.1 git checkout -b debian cp -arp ../os-autoinst-4.1/debian ./ git add debian git commit  debian/gbp.conf はこんな感じ。
+[DEFAULT] debian-branch=debian gbp buildpackage  これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）
+git config remote.pushdefault alioth   .git/configでoriginじゃないのを追加するコマンドはなんだろう？ dh-makeでgit repositoryに対応するにはどうすれば良いのだろう  </description>
+    </item>
+    
+    <item>
+      <title>proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</title>
+      <link>https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</link>
+      <pubDate>Mon, 22 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/</guid>
+      <description>proposed-updatesリポジトリにパッケージをアップロードする際、 changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？
+疑問が晴れなかったのでdebian-develに質問したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って登録しておいた。Bug#789587です。
+しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</description>
+    </item>
+    
+    <item>
+      <title>gbpとpbuilderのオプション</title>
+      <link>https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</link>
+      <pubDate>Fri, 19 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
+      <description>gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot;  上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。
+sudo cowbuilder --build --debbuildopt=&amp;quot;-sa&amp;quot; libxmlbird_1.0.4-2.dsc  だとうまくいった。おかしいな、基本的に&amp;ndash;git-pbuilder-optionsと&amp;ndash;debbuildoptは等価ではないのか？
+$ gbp buildpackage --git-tag --git-pbuilder-options=-sa gbp:info: Orig tarball &#39;libxmlbird_1.0.4.orig.tar.xz&#39; not found at &#39;../tarballs/&#39; gbp:info: Exporting &#39;HEAD&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; gbp:info: Moving &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4&#39; Building with cowbuilder for distribution sid I: using cowbuilder as pbuilder (snip) dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc dpkg-genchanges -S &amp;gt;../libxmlbird_1.0.4-2_source.changes dpkg-genchanges: not including original source code in upload  </description>
+    </item>
+    
+    <item>
+      <title>reproducible build対応作業</title>
+      <link>https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/</guid>
+      <description>JDのreproducible buildがエラーになってるのはDATEとかを展開するMacroが入ってるから、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。
+fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに&amp;ldquo;timestamps_difference_by_unzip&amp;rdquo;でunreproducibleだったのは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。
+jruby-joniパッケージはJava .jar files contain user login in the Built-By of MANIFEST.MFてなことだったので、この辺りを削るパッチを追加することにしました。
+reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。
+&amp;gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all DPKG_EXPORT_BUILDFLAGS = 1 include /usr/share/dpkg/buildflags.mk  という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。
+birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。
+&amp;gt; def write_config (prefix): print (&amp;quot;Writing Config.vala&amp;quot;) vars = ((&#39;VERSION&#39;, VERSION), (&#39;BUILD_TIMESTAMP&#39;, time.asctime( time.localtime(time.time()))), (&#39;PREFIX&#39;, prefix), )  という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</description>
+    </item>
+    
+    <item>
+      <title>twitter-textパッケージとか</title>
+      <link>https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</link>
+      <pubDate>Tue, 02 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/</guid>
+      <description>ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textにまとめられていた。 これはtwitter-textパッケージから色々生成するほうがいいよね、ということでTodoをバグとして登録しておくことにした。
+あとはjcodingsをアップデートして放り込みなど。</description>
+    </item>
+    
+    <item>
+      <title>Debian Policyはi18nできないかな</title>
+      <link>https://henrich.github.io/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/</guid>
+      <description>$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po policy.sgml:178: (po4a::sgml) 不明なタグ HTTPSITE  で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、
+$ po4a-gettextize --help-format 有効フォーマット一覧: (snip) - sgml: DebianDoc DTD と DocBook DTD。 (snip)  とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。</description>
+    </item>
+    
+    <item>
+      <title>bash-completionとか</title>
+      <link>https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</link>
+      <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/</guid>
+      <description>ほぼ寝込んでいたので、dcut のbash completionをコピペで作って投げただけです。</description>
+    </item>
+    
+    <item>
+      <title>os-autoinst</title>
+      <link>https://henrich.github.io/blog/2015/05/31/os-autoinst/</link>
+      <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/31/os-autoinst/</guid>
+      <description>ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、RFPになっていたのをITPに戻しました。
+ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。
+あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なのでissue作っておきました。</description>
+    </item>
+    
+    <item>
+      <title>まだまだdevelopers-reference</title>
+      <link>https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/</link>
+      <pubDate>Sun, 31 May 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/</guid>
+      <description>相変わらずdevelopers-referenceにちょっかいを出している。
+ Bug#172892は既にCVSの時代じゃないだろう、ということでwontfixタグを勝手につけておいた。 Bug#540975は直っていたので閉じておいた。 Bug#544135とBug#604193についてはパッチにコメントをした。  </description>
+    </item>
+    
+    <item>
+      <title>Hyper-Vサポートまわりとか</title>
+      <link>https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/</link>
+      <pubDate>Sat, 30 May 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/</guid>
+      <description>色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな * カーネル内のドライバ * カーネルのソースに含まれているtools/hv内のデーモン
+ドライバについては、Jessieの3.16のに4.0ベースのとかをそのままbackportして大丈夫なのかな。ビルドできれば影響範囲はhvドライバのみに収まるような気もする。とりあえず、今のカーネルのをそのまま使うでも使えるっぽい。
+デーモンについてはこちらにまとめられているが、RHEL/Fedora系統だとhyperv-daemonsメタパッケージに依存している各パッケージで提供しているようだ（はて、デーモンごとにパッケージが細分化されていて、なぜかライセンスも別パッケージになってる…？）。Ubuntuはバージョンごとに色々違うようだ。さて、どうするかな…と思ったが、hyperv-daemonsパッケージでいいかな、と。あとはsystemdサービスをFedoraからパチってきた。それから調整、っと。。。
+dh-systemdは以下の理由から使わない方向で、installファイルでコピーするだけにした * そもそものパッケージの構成が複雑でdh使ってないので dh $@ &amp;ndash;with systemd が指定できない * パッケージ名とサービス名が違う（サービスが３つもある）
+途中までで、とりあえず無くならないようにパッチを投げておく。
+あとはdescriptionをまともにする
+実際にHyper-V上のDebianで動作を確認する…ってどうやるんだ？Azureでいいか。
+Azureで仮想マシンを作る…ってそのままだとギャラリーにはDebianイメージ無いので、VMDepotという ここで有志が作っているイメージを使わせてもらう。とはいえ、どの程度の信頼性が置けるものかというものはあるけども。 ログインしたらshellが/bin/shだった。chshして、bash-completion入れて、upgradeしてrebootして再度。。。って妙にrebootに時間がかかるな。繋がらない？
+sudo systemctl start Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory Failed to get D-Bus connection: No such file or directory  あれ。service見当たらないな…手動で起動した。これはパッケージを直す必要があるなぁ。 でも、３つのサービスのうち、一つが起動しない。ってserviceファイルに/dev/vmbus/hv_fcopyが必要って書いたけど/dev/vmbusが無いんだな。これはHyper-VだとあってAzureだと無いのか、それともVMDepotのJessieがアレで見つからないのか？→CentOSベースのをAzureで立ち上げたが同様に/dev/vmbusは無い。はて、Hyper-VとAzureのは若干違うのか、それとも元にしたFedoraのがアレなのか。皿に検索すると何かへのパッチの投稿が見つかった、がこれだと「/sys/bus/vmbus」って書いてあるけど、こっちが正解じゃない？…いや/dev/vmbusがあるのもあるな。。。</description>
+    </item>
+    
+    <item>
+      <title>xmltoがらみとOrphanという言葉の語感</title>
+      <link>https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</link>
+      <pubDate>Sat, 30 May 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/</guid>
+      <description>upstreamの方にパッチの話をしたら「もうsvnに取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。
+あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。 個人的にはOrphanという言葉はあまりよくなく、彼のメールにもあった「fresh blood」を使うのが良いんじゃないかな、と感じる。Needs Fresh Blood, 略してNFB。</description>
+    </item>
+    
+    <item>
+      <title>developers-referenceへパッチ</title>
+      <link>https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</link>
+      <pubDate>Thu, 28 May 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</guid>
+      <description>developers-referenceがここの所ずっとアップデートされていない。 せっかくfuzzyを潰したというのに、パッケージのほうが更新されないため、サイトの方は未訳のままに見える。
+どうするんだろう？ということでuploaderにメールしたら「I would welcome a patch.」とな。 ああそうかい、やるよやるよ、ということでBTSに溜まっていたパッチをまとめたものと、epubがらみでのエラーの修正やら、wheezy-&amp;gt;jessieに合わせた変更などをgit format-patchで作って送りつけた。
+その際にepubの方のエラーでxmltoを見る機会があったのだけど、これもアップデートが3年ぐらい滞ってるし、パッチも放置されてたのでメンテナに「アップデートしたいんだけど」とメールして、忘れないうちにDeleyed queue/15に放り込み。upstreamの方にもBTSにあったパッチを送りつけておいた。やれやれ。</description>
+    </item>
+    
+    <item>
+      <title>debcheckoutへパッチ</title>
+      <link>https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</link>
+      <pubDate>Mon, 18 May 2015 01:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/</guid>
+      <description>Debianパッケージのソースを取得したいときには「apt-get source」を使う。 だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。
+とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。
+debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立ってdebcheckoutの中身を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。
+じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して Bug#739104 へパッチをポストしておいた。</description>
+    </item>
     
   </channel>
 </rss>
