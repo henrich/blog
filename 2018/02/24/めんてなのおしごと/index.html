@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Feb 24, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>ここしばらくの作業とか。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/935657">jruby-joniパッケージを更新</a></li>
+<li>sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
+
+<ul>
+<li><a href="https://github.com/sphinx-doc/sphinx-intl/pull/21">reproducible buildパッチをupstreamにforward</a></li>
+</ul></li>
+<li>林さんの依頼でrepositoryをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/input-method-team/fcitx-imlist">fcitx-imlist</a>、アイコン追加。</li>
+<li><a href="https://salsa.debian.org/debian/groonga">groonga</a>、アイコン追加。</li>
+<li><a href="https://salsa.debian.org/debian/groonga-normalizer-mysql">groonga-normalizer-mysql</a></li>
+<li><a href="https://salsa.debian.org/debian/gntp-send">gntp-send</a></li>
+<li><a href="https://salsa.debian.org/debian/growl-for-linux">growl-for-linux</a></li>
+<li><a href="https://salsa.debian.org/debian/hal-flash">hal-flash</a></li>
+</ul></li>
+<li>倉敷さんの依頼でrepositoryをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/debian/goldencheetah">goldencheetah</a></li>
+<li><a href="https://salsa.debian.org/debian/yaskkserv">yaskkserv</a></li>
+</ul></li>
+<li>リポジトリをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/debian/tomoyo-tools">tomoyo-tools</a></li>
+<li><a href="https://salsa.debian.org/debian/riece">riece</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&hellip;とメーリングリストで訪ねてみた所、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665">systemd(udev) のバグ修正</a>のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。</p>
+
+<hr />
+
+<p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
+
+<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.35 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

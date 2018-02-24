@@ -60,6 +60,83 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 24, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ここしばらくの作業とか。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/935657">jruby-joniパッケージを更新</a></li>
+<li>sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
+
+<ul>
+<li><a href="https://github.com/sphinx-doc/sphinx-intl/pull/21">reproducible buildパッチをupstreamにforward</a></li>
+</ul></li>
+<li>林さんの依頼でrepositoryをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/input-method-team/fcitx-imlist">fcitx-imlist</a>、アイコン追加。</li>
+<li><a href="https://salsa.debian.org/debian/groonga">groonga</a>、アイコン追加。</li>
+<li><a href="https://salsa.debian.org/debian/groonga-normalizer-mysql">groonga-normalizer-mysql</a></li>
+<li><a href="https://salsa.debian.org/debian/gntp-send">gntp-send</a></li>
+<li><a href="https://salsa.debian.org/debian/growl-for-linux">growl-for-linux</a></li>
+<li><a href="https://salsa.debian.org/debian/hal-flash">hal-flash</a></li>
+</ul></li>
+<li>倉敷さんの依頼でrepositoryをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/debian/goldencheetah">goldencheetah</a></li>
+<li><a href="https://salsa.debian.org/debian/yaskkserv">yaskkserv</a></li>
+</ul></li>
+<li>リポジトリをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/debian/tomoyo-tools">tomoyo-tools</a></li>
+<li><a href="https://salsa.debian.org/debian/riece">riece</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&hellip;とメーリングリストで訪ねてみた所、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665">systemd(udev) のバグ修正</a>のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。</p>
+
+<hr />
+
+<p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
+
+<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -644,46 +721,6 @@ fi
 </code></pre>
 
 <p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 3, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>sylpheedパッケージのpatchを<a href="http://sylpheed.sraoss.jp/redmine/issues/291">forwardしておいた</a></li>
-<li>screenfetchパッケージの<a href="https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz">smokeテストがさっそくfailしとった。。。</a>。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、<code>/usr/bin/screenfetch: line 1341: [: too many arguments</code> となっていた、と。<a href="https://tracker.debian.org/news/929555">パッチ作ってアップロードしたけど</a>、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&hellip;。</li>
-<li><a href="https://anonscm.debian.org/git/pkg-sylpheed/">aliothから</a>、sylph-searcher, sylfilter, libsylphをsalsaにインポート。</li>
-</ul>
 
 					
 				</div>

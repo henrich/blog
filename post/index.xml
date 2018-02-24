@@ -8,10 +8,22 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 14 Feb 2018 21:58:28 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 Feb 2018 19:46:10 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 24 Feb 2018 19:46:10 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>ここしばらくの作業とか。
+ jruby-joniパッケージを更新 sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。  reproducible buildパッチをupstreamにforward  林さんの依頼でrepositoryをインポート  fcitx-imlist、アイコン追加。 groonga、アイコン追加。 groonga-normalizer-mysql gntp-send growl-for-linux hal-flash  倉敷さんの依頼でrepositoryをインポート  goldencheetah yaskkserv  リポジトリをインポート  tomoyo-tools riece   salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&amp;hellip;とメーリングリストで訪ねてみた所、systemd(udev) のバグ修正のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。
+salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&amp;hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくてdocker向けだけにしてパッチを投げた。
+BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを検証してプッシュしてみたのと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で別の問題（fallbackする先が間違ってしまう）を見つけたり。</description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

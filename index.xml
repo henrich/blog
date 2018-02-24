@@ -8,8 +8,63 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 14 Feb 2018 21:58:28 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 Feb 2018 19:46:10 +0900</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 24 Feb 2018 19:46:10 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;ここしばらくの作業とか。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/935657&#34;&gt;jruby-joniパッケージを更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sphinx-doc/sphinx-intl/pull/21&#34;&gt;reproducible buildパッチをupstreamにforward&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;林さんの依頼でrepositoryをインポート
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/input-method-team/fcitx-imlist&#34;&gt;fcitx-imlist&lt;/a&gt;、アイコン追加。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/groonga&#34;&gt;groonga&lt;/a&gt;、アイコン追加。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/groonga-normalizer-mysql&#34;&gt;groonga-normalizer-mysql&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/gntp-send&#34;&gt;gntp-send&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/growl-for-linux&#34;&gt;growl-for-linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/hal-flash&#34;&gt;hal-flash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;倉敷さんの依頼でrepositoryをインポート
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/goldencheetah&#34;&gt;goldencheetah&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/yaskkserv&#34;&gt;yaskkserv&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;リポジトリをインポート
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/tomoyo-tools&#34;&gt;tomoyo-tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/riece&#34;&gt;riece&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&amp;hellip;とメーリングリストで訪ねてみた所、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665&#34;&gt;systemd(udev) のバグ修正&lt;/a&gt;のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&amp;hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867&#34;&gt;docker向けだけにしてパッチを投げた&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418&#34;&gt;検証してプッシュしてみた&lt;/a&gt;のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009&#34;&gt;別の問題（fallbackする先が間違ってしまう）&lt;/a&gt;を見つけたり。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -589,65 +644,6 @@ Constants from lexical variables potentially modified elsewhere are deprecated. 
 &lt;ul&gt;
 &lt;li&gt;sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 27 Jan 2018 01:26:00 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888535&#34;&gt;snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘&lt;/a&gt;。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして&lt;a href=&#34;https://github.com/openSUSE/snapper/pull/386&#34;&gt;Pull Request&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000
-+++ configure.ac        2018-01-27 16:24:56.910015986 +0000
-@@ -60,11 +60,14 @@
- 
- fillupdir=/var/adm/fillup-templates
- 
-+SYSCONFIG=/etc/sysconfig
-+
- AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]),
-        [with_conf=$withval], [with_conf=no])
- 
--AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${with_conf}\&amp;quot;&#39;&amp;quot;],
--       [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;/etc/sysconfig\&amp;quot;&#39;&amp;quot;])
-+AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [SYSCONFIG=&amp;quot;${with_conf}&amp;quot;])
-+
-+CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${SYSCONFIG}\&amp;quot;&#39;&amp;quot;
- 
- AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]),
-                [with_btrfs=$enableval],[with_btrfs=yes])
-@@ -153,6 +156,7 @@
- AC_SUBST(LIBVERSION_MINOR)
- AC_SUBST(LIBVERSION_PATCHLEVEL)
- AC_SUBST(LIBVERSION_INFO)
-+AC_SUBST(SYSCONFIG)
- AC_SUBST(docdir)
- AC_SUBST(fillupdir)
-
-
-diff --git a/doc/snapper.xml.in b/doc/snapper.xml.in
-index 1507b5d..9073ab3 100644
---- a/doc/snapper.xml.in
-+++ b/doc/snapper.xml.in
-@@ -686,7 +686,7 @@
-     &amp;lt;title&amp;gt;FILES&amp;lt;/title&amp;gt;
-     &amp;lt;variablelist&amp;gt;
-       &amp;lt;varlistentry&amp;gt;
--       &amp;lt;term&amp;gt;&amp;lt;filename&amp;gt;/etc/sysconfig/snapper&amp;lt;/filename&amp;gt;&amp;lt;/term&amp;gt;
-+       &amp;lt;term&amp;gt;&amp;lt;filename&amp;gt;@SYSCONFIG@/snapper&amp;lt;/filename&amp;gt;&amp;lt;/term&amp;gt;
-        &amp;lt;listitem&amp;gt;
-          &amp;lt;para&amp;gt;Global configuration file.&amp;lt;/para&amp;gt;
-        &amp;lt;/listitem&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
