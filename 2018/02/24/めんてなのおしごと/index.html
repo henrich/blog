@@ -108,7 +108,9 @@
 
 <p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
 
-<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり。</p>
+<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync -fするのはどうか、という話に首を突っ込んでみたり</a>。</p>
+
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Kaliをサポートするためにコードをシェアできないのかね？というのにパッチ</a>したり、その上で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Kaliサポートの追加のパッチ</a>投げたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり</a></p>
 
 		</div>
 	</div>

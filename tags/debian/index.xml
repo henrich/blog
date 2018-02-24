@@ -22,7 +22,8 @@
       <description>ここしばらくの作業とか。
  jruby-joniパッケージを更新 sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。  reproducible buildパッチをupstreamにforward  林さんの依頼でrepositoryをインポート  fcitx-imlist、アイコン追加。 groonga、アイコン追加。 groonga-normalizer-mysql gntp-send growl-for-linux hal-flash  倉敷さんの依頼でrepositoryをインポート  goldencheetah yaskkserv  リポジトリをインポート  tomoyo-tools riece   salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&amp;hellip;とメーリングリストで訪ねてみた所、systemd(udev) のバグ修正のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。
 salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&amp;hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくてdocker向けだけにしてパッチを投げた。
-BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを検証してプッシュしてみたのと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で別の問題（fallbackする先が間違ってしまう）を見つけたり。</description>
+BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを検証してプッシュしてみたのと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で別の問題（fallbackする先が間違ってしまう）を見つけたり、sync -fするのはどうか、という話に首を突っ込んでみたり。
+Kaliをサポートするためにコードをシェアできないのかね？というのにパッチしたり、その上でKaliサポートの追加のパッチ投げたり、謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり</description>
     </item>
     
     <item>
