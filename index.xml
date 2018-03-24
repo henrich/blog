@@ -54,11 +54,11 @@
       
         
           <item>
-            <title>Maintainer Work 2018 03 07</title>
-            <link>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</link>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Wed, 07 Mar 2018 20:38:08 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</guid>
+            <guid>https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/938331&#34;&gt;nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した&lt;/a&gt;。&lt;/p&gt;
 
@@ -66,27 +66,25 @@
 &lt;li&gt;どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&amp;hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;debootstrapをNMUでuploadした。deleyed/10なので10日待つ。
-```
-debootstrap (1.0.93+nmu1) unstable; urgency=medium&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Non-maintainer Upload.&lt;/li&gt;
-&lt;li&gt;Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373)
-Now you can create Ubuntu breezy/dapper/edgy chroot.&lt;/li&gt;
-&lt;li&gt;Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian.
-When you fetch Ubuntu packages ubuntu-archive-keyring is necessary.
-(Closes: #736995)&lt;/li&gt;
-&lt;li&gt;Change repository URI for old Ubuntu releases (Closes: #676370, #839073)
-Archived Ubuntu releases are at old-releases.ubuntu.com/ubuntu&lt;/li&gt;
-&lt;li&gt;Set correct keyring and default mirror for old debian releases.
-Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
-(Closes: #891404, #600647, #792729)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;debootstrapをNMUでuploadした。deleyed/10なので10日待つ。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&amp;ndash; Hideki Yamane &lt;a href=&#34;mailto:henrich@debian.org&#34;&gt;henrich@debian.org&lt;/a&gt;  Mon, 05 Mar 2018 22:28:22 +0900
-```&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;debootstrap (1.0.93+nmu1) unstable; urgency=medium
+ 
+  * Non-maintainer Upload.
+  * Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373)
+    Now you can create Ubuntu breezy/dapper/edgy chroot.
+  * Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian.
+    When you fetch Ubuntu packages ubuntu-archive-keyring is necessary.
+    (Closes: #736995)
+  * Change repository URI for old Ubuntu releases (Closes: #676370, #839073)
+    Archived Ubuntu releases are at old-releases.ubuntu.com/ubuntu
+  * Set correct keyring and default mirror for old debian releases.
+    Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
+    (Closes: #891404, #600647, #792729)
+ 
+ -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Mon, 05 Mar 2018 22:28:22 +0900
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;もういっちょdebootstrapのNMUを準備。上のがtestingに落ちたら即アップロード予定。&lt;/li&gt;
@@ -99,11 +97,11 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
       
         
           <item>
-            <title>Maintainer Work 2018 03 04</title>
-            <link>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</link>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sun, 04 Mar 2018 20:52:41 +0900</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</guid>
+            <guid>https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;sylpheedパッケージの更新を放り込んだ&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=346388&#34;&gt;sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた&lt;/a&gt;&lt;/li&gt;

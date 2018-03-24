@@ -26,22 +26,22 @@
     </item>
     
     <item>
-      <title>Maintainer Work 2018 03 07</title>
-      <link>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</link>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
       <pubDate>Wed, 07 Mar 2018 20:38:08 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</guid>
+      <guid>https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した。
- どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&amp;hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ  debootstrapをNMUでuploadした。deleyed/10なので10日待つ。 ``` debootstrap (1.0.93+nmu1) unstable; urgency=medium
- Non-maintainer Upload. Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373) Now you can create Ubuntu breezy/dapper/edgy chroot. Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian. When you fetch Ubuntu packages ubuntu-archive-keyring is necessary. (Closes: #736995) Change repository URI for old Ubuntu releases (Closes: #676370, #839073) Archived Ubuntu releases are at old-releases.</description>
+ どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&amp;hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ  debootstrapをNMUでuploadした。deleyed/10なので10日待つ。
+  debootstrap (1.0.93+nmu1) unstable; urgency=medium * Non-maintainer Upload. * Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373) Now you can create Ubuntu breezy/dapper/edgy chroot. * Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian. When you fetch Ubuntu packages ubuntu-archive-keyring is necessary. (Closes: #736995) * Change repository URI for old Ubuntu releases (Closes: #676370, #839073) Archived Ubuntu releases are at old-releases.</description>
     </item>
     
     <item>
-      <title>Maintainer Work 2018 03 04</title>
-      <link>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</link>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
       <pubDate>Sun, 04 Mar 2018 20:52:41 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</guid>
+      <guid>https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description> sylpheedパッケージの更新を放り込んだ sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた  </description>
     </item>
     
