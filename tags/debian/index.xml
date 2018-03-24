@@ -8,10 +8,52 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 24 Feb 2018 19:46:10 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 Mar 2018 11:29:15 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>debootstrap bug triage</title>
+      <link>https://henrich.github.io/blog/2018/03/24/debootstrap-bug-triage/</link>
+      <pubDate>Sat, 24 Mar 2018 11:29:15 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/03/24/debootstrap-bug-triage/</guid>
+      <description> ここしばらくの作業はdebootstrapのbug triageを中心。
+ manpageの不備にはパッチ提案 エラーメッセージの不備にもパッチ提案 mawk固定でダメじゃんには、意味あるかな〜と思ってパッチ出したけど「意味ないじゃん、このパッチ」とやっぱりツッコミが。 ダウンロードエラーのメッセージが情報量０には提案パッチ出したけど、それ意味なくね？のツッコミが。もうちょっと続ける予定。 昔と同じ挙動にしてよには「パッチ当てるの反対の人〜？」と質問だけ流した。 libvirt-lxcで動かすパッチにはpatchタグがついてなかったので追加。 &amp;ndash;second-stageで指定したコンポーネント情報が欠落は挙動を確認して該当のソースを提示してコメント。 /homeをvfatなパーティションでマウントしてるとエラー出るは再現できないのでunreproducibleタグ variant=fakechrootが動かないも再現できないのでunreproducibleタグ Android+busyboxで動かないは情報量少なすぎなのでmoreinfoタグ sync指定があるがsync -fの方がいいも理由がわからないのでmoreinfoタグ Ubuntuのchroot作ろうとしてるのにdeb.debian.orgがリポジトリ指定されちゃうのを登録 Ubuntuのchroot作ろうとしてエラーになるのは登録したらLinuxカーネルパッケージのメンテナからamd64だと過去のカーネルと非互換性があるから、というのを教えてもらった apt-moveで作ったリポジトリだとエラーになるのは「SHA1は既に過去のものなので、このために対応する必要あるのかな？」というコメント入れて重要度下げた ChrootでもProxy設定引き継いで欲しいはパッと見でわかるようにタイトルを変えた ダウンロード時にどこからダウンロードしたのか表示して欲しいは「なんで？」とコメントしてmoreinfoタグ blankonというdistro対応してはパッチのリンクが全部死んでたのでmoreinfoタグ udebに不要なスクリプトファイルがあるよねを登録
+ TriageではなくNMUを既に準備したのは Bug#864734、Bug#586158、Bug#718632、Bug#754318、Bug#762431、Bug#806780、Bug#833525、Bug#732628、Bug#734324、Bug#775444、Bug#798562、Bug#798564。大半はpatchが登録してあったのでそれを進めてるだけ。ただ、regressionが怖いので小分けにしてNMUし、10日ごとに投入していく予定。先は長い。
+   </description>
+    </item>
+    
+    <item>
+      <title>Maintainer Work 2018 03 07</title>
+      <link>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</link>
+      <pubDate>Wed, 07 Mar 2018 20:38:08 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</guid>
+      <description>nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した。
+ どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&amp;hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ  debootstrapをNMUでuploadした。deleyed/10なので10日待つ。 ``` debootstrap (1.0.93+nmu1) unstable; urgency=medium
+ Non-maintainer Upload. Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373) Now you can create Ubuntu breezy/dapper/edgy chroot. Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian. When you fetch Ubuntu packages ubuntu-archive-keyring is necessary. (Closes: #736995) Change repository URI for old Ubuntu releases (Closes: #676370, #839073) Archived Ubuntu releases are at old-releases.</description>
+    </item>
+    
+    <item>
+      <title>Maintainer Work 2018 03 04</title>
+      <link>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</link>
+      <pubDate>Sun, 04 Mar 2018 20:52:41 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</guid>
+      <description> sylpheedパッケージの更新を放り込んだ sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 03 Mar 2018 14:02:31 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>ここしばらくの作業とか。
+ 林さんの依頼でlibhinawaをインポート birdfontが新しいvalacでコンパイルできない問題をupstreamに報告したら対応してもらえたので、更新してアップロード libmojo-rabbitmq-client-perlパッケージをアップロード libmojolicious-plugin-assetpack-perlパッケージをアップロード debootstrapパッケージと戯れたり。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

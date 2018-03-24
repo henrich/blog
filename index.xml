@@ -8,8 +8,132 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 24 Feb 2018 19:46:10 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 Mar 2018 11:29:15 +0900</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>debootstrap bug triage</title>
+            <link>https://henrich.github.io/blog/2018/03/24/debootstrap-bug-triage/</link>
+            <pubDate>Sat, 24 Mar 2018 11:29:15 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/03/24/debootstrap-bug-triage/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ここしばらくの作業はdebootstrapのbug triageを中心。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=563647&#34;&gt;manpageの不備にはパッチ提案&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=698677&#34;&gt;エラーメッセージの不備にもパッチ提案&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861343&#34;&gt;mawk固定でダメじゃん&lt;/a&gt;には、意味あるかな〜と思ってパッチ出したけど「意味ないじゃん、このパッチ」とやっぱりツッコミが。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866401&#34;&gt;ダウンロードエラーのメッセージが情報量０&lt;/a&gt;には提案パッチ出したけど、それ意味なくね？のツッコミが。もうちょっと続ける予定。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872059&#34;&gt;昔と同じ挙動にしてよ&lt;/a&gt;には「パッチ当てるの反対の人〜？」と質問だけ流した。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890419&#34;&gt;libvirt-lxcで動かすパッチ&lt;/a&gt;にはpatchタグがついてなかったので追加。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877855&#34;&gt;&amp;ndash;second-stageで指定したコンポーネント情報が欠落&lt;/a&gt;は挙動を確認して該当のソースを提示してコメント。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707033&#34;&gt;/homeをvfatなパーティションでマウントしてるとエラー出る&lt;/a&gt;は再現できないのでunreproducibleタグ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=731859&#34;&gt;variant=fakechrootが動かない&lt;/a&gt;も再現できないのでunreproducibleタグ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=684520&#34;&gt;Android+busyboxで動かない&lt;/a&gt;は情報量少なすぎなのでmoreinfoタグ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892&#34;&gt;sync指定があるがsync -fの方がいい&lt;/a&gt;も理由がわからないのでmoreinfoタグ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009&#34;&gt;Ubuntuのchroot作ろうとしてるのにdeb.debian.orgがリポジトリ指定されちゃう&lt;/a&gt;のを登録&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891393&#34;&gt;Ubuntuのchroot作ろうとしてエラーになる&lt;/a&gt;のは登録したらLinuxカーネルパッケージのメンテナからamd64だと過去のカーネルと非互換性があるから、というのを教えてもらった&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=700368&#34;&gt;apt-moveで作ったリポジトリだとエラーになる&lt;/a&gt;のは「SHA1は既に過去のものなので、このために対応する必要あるのかな？」というコメント入れて重要度下げた&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=640992&#34;&gt;ChrootでもProxy設定引き継いで欲しい&lt;/a&gt;はパッと見でわかるようにタイトルを変えた&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=627073&#34;&gt;ダウンロード時にどこからダウンロードしたのか表示して欲しい&lt;/a&gt;は「なんで？」とコメントしてmoreinfoタグ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851&#34;&gt;blankonというdistro対応して&lt;/a&gt;はパッチのリンクが全部死んでたのでmoreinfoタグ&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893713&#34;&gt;udebに不要なスクリプトファイルがあるよね&lt;/a&gt;を登録&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;TriageではなくNMUを既に準備したのは &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=864734&#34;&gt;Bug#864734&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=586158&#34;&gt;Bug#586158&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=718632&#34;&gt;Bug#718632&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=754318&#34;&gt;Bug#754318&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=762431&#34;&gt;Bug#762431&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806780&#34;&gt;Bug#806780&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=833525&#34;&gt;Bug#833525&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=732628&#34;&gt;Bug#732628&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=734324&#34;&gt;Bug#734324&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=775444&#34;&gt;Bug#775444&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562&#34;&gt;Bug#798562&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564&#34;&gt;Bug#798564&lt;/a&gt;。大半はpatchが登録してあったのでそれを進めてるだけ。ただ、regressionが怖いので小分けにしてNMUし、10日ごとに投入していく予定。先は長い。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Maintainer Work 2018 03 07</title>
+            <link>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</link>
+            <pubDate>Wed, 07 Mar 2018 20:38:08 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/03/07/maintainer-work-2018-03-07/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/938331&#34;&gt;nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した&lt;/a&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&amp;hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;debootstrapをNMUでuploadした。deleyed/10なので10日待つ。
+```
+debootstrap (1.0.93+nmu1) unstable; urgency=medium&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Non-maintainer Upload.&lt;/li&gt;
+&lt;li&gt;Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373)
+Now you can create Ubuntu breezy/dapper/edgy chroot.&lt;/li&gt;
+&lt;li&gt;Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian.
+When you fetch Ubuntu packages ubuntu-archive-keyring is necessary.
+(Closes: #736995)&lt;/li&gt;
+&lt;li&gt;Change repository URI for old Ubuntu releases (Closes: #676370, #839073)
+Archived Ubuntu releases are at old-releases.ubuntu.com/ubuntu&lt;/li&gt;
+&lt;li&gt;Set correct keyring and default mirror for old debian releases.
+Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
+(Closes: #891404, #600647, #792729)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&amp;ndash; Hideki Yamane &lt;a href=&#34;mailto:henrich@debian.org&#34;&gt;henrich@debian.org&lt;/a&gt;  Mon, 05 Mar 2018 22:28:22 +0900
+```&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;もういっちょdebootstrapのNMUを準備。上のがtestingに落ちたら即アップロード予定。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Maintainer Work 2018 03 04</title>
+            <link>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</link>
+            <pubDate>Sun, 04 Mar 2018 20:52:41 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/03/04/maintainer-work-2018-03-04/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;sylpheedパッケージの更新を放り込んだ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=346388&#34;&gt;sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 03 Mar 2018 14:02:31 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;ここしばらくの作業とか。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;林さんの依頼で&lt;a href=&#34;https://salsa.debian.org/debian/libhinawa&#34;&gt;libhinawaをインポート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;birdfontが新しいvalacでコンパイルできない問題をupstreamに報告したら対応してもらえたので、&lt;a href=&#34;https://tracker.debian.org/news/937423&#34;&gt;更新してアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/936899&#34;&gt;libmojo-rabbitmq-client-perlパッケージをアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/936895&#34;&gt;libmojolicious-plugin-assetpack-perlパッケージをアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;debootstrapパッケージと戯れたり。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -484,167 +608,6 @@ fi
 &lt;li&gt;sylpheedパッケージのpatchを&lt;a href=&#34;http://sylpheed.sraoss.jp/redmine/issues/291&#34;&gt;forwardしておいた&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;screenfetchパッケージの&lt;a href=&#34;https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz&#34;&gt;smokeテストがさっそくfailしとった。。。&lt;/a&gt;。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、&lt;code&gt;/usr/bin/screenfetch: line 1341: [: too many arguments&lt;/code&gt; となっていた、と。&lt;a href=&#34;https://tracker.debian.org/news/929555&#34;&gt;パッチ作ってアップロードしたけど&lt;/a&gt;、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&amp;hellip;。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://anonscm.debian.org/git/pkg-sylpheed/&#34;&gt;aliothから&lt;/a&gt;、sylph-searcher, sylfilter, libsylphをsalsaにインポート。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 01 Feb 2018 21:04:08 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。&lt;/p&gt;
-
-&lt;p&gt;まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら &lt;code&gt;autopkgtest . -- null&lt;/code&gt; をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。&lt;/p&gt;
-
-&lt;p&gt;また、&lt;a href=&#34;https://ci.debian.net/doc/file.TUTORIAL.html&#34;&gt;古い情報&lt;/a&gt;では debian/control に &lt;code&gt;Testsuite: autopkgtest&lt;/code&gt; の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。&lt;/p&gt;
-
-&lt;p&gt;単純に &lt;code&gt;debian/tests/control&lt;/code&gt; ファイルとそこで定義した &lt;code&gt;debian/tests/smoke&lt;/code&gt; ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
-@@ -0,0 +1,2 @@
-+Tests: smoke
-+Depends: @, grep
-diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
---- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
-@@ -0,0 +1,5 @@
-+#!/bin/sh
-+
-+screenfetch
-+
-+[ ! `screenfetch | grep &#39;command not found&#39; &amp;gt; /dev/null` ]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でもやっぱり &lt;code&gt;/usr/share/doc/autopkgtest/README.running-tests.rst.gz&lt;/code&gt; を読んでおいたほうが良さそう…&lt;/p&gt;
-
-&lt;p&gt;というところで&lt;a href=&#34;https://tracker.debian.org/news/929044&#34;&gt;screenfetchをアップロード&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
-&lt;li&gt;jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
-&lt;li&gt;nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。&lt;/li&gt;
-&lt;li&gt;libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/929053&#34;&gt;snapperをアップロード&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 30 Jan 2018 06:41:27 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&amp;hellip;&lt;a href=&#34;https://github.com/facebook/nailgun/pull/118&#34;&gt;新しくPR作ったところ、マージされた&lt;/a&gt;。これでパッケージ側のパッチがまた一つ減らせる。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 29 Jan 2018 22:50:46 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git checkout --orphan mones
-$ git rm --cached -r *
-$ rm -r ./*
-$ git pull alioth master
-$ git push salsa mones
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;qrencodeパッケージをsalsaに配置してもらって、&lt;a href=&#34;https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a&#34;&gt;前に報告した些細な修正&lt;/a&gt;をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？&lt;/li&gt;
-&lt;li&gt;同じくqrencodeパッケージの報告者の勘違いに起因すると思われる&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984&#34;&gt;バグ&lt;/a&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266&#34;&gt;二つ&lt;/a&gt;をクローズしておいた&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。&lt;/p&gt;
-
-&lt;p&gt;さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。&lt;code&gt;mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av&lt;/code&gt; などとした。&lt;/li&gt;
-&lt;li&gt;つぎに親が同一ではないブランチ（orphan branch)を作る &lt;code&gt;git checkout --orphan master&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す &lt;code&gt;git rm --cached -r debian&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git remote add upstream https://github.com/fukuchi/libqrencode&lt;/code&gt; でupstreamを引っ張ってくる&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git pull upstream master&lt;/code&gt;したがtag持ってこなかったから&lt;code&gt;git pull upstream&lt;/code&gt;も実行&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git checkout debian&lt;/code&gt;して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために &lt;code&gt;git merge v4.0.0  --allow-unrelated-histories&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;上記の変更点がackされたら提案したい&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;svn-workbenchの&lt;a href=&#34;http://pysvn.tigris.org/issues/show_bug.cgi?id=212&#34;&gt;1行パッチをフォワード&lt;/a&gt;。使いづらいな。。。&lt;/li&gt;
-&lt;li&gt;svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;dh_install                                                                                                                         
-perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
-
-Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347&#34;&gt;パッチしておいた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

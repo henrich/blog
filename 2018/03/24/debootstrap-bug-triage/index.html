@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="debootstrap bug triage">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>debootstrap bug triage &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>debootstrap bug triage</h3>
+				<span class="label label-primary">Sat, Mar 24, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li><p>ここしばらくの作業はdebootstrapのbug triageを中心。</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=563647">manpageの不備にはパッチ提案</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=698677">エラーメッセージの不備にもパッチ提案</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861343">mawk固定でダメじゃん</a>には、意味あるかな〜と思ってパッチ出したけど「意味ないじゃん、このパッチ」とやっぱりツッコミが。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866401">ダウンロードエラーのメッセージが情報量０</a>には提案パッチ出したけど、それ意味なくね？のツッコミが。もうちょっと続ける予定。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872059">昔と同じ挙動にしてよ</a>には「パッチ当てるの反対の人〜？」と質問だけ流した。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890419">libvirt-lxcで動かすパッチ</a>にはpatchタグがついてなかったので追加。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877855">&ndash;second-stageで指定したコンポーネント情報が欠落</a>は挙動を確認して該当のソースを提示してコメント。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707033">/homeをvfatなパーティションでマウントしてるとエラー出る</a>は再現できないのでunreproducibleタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=731859">variant=fakechrootが動かない</a>も再現できないのでunreproducibleタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=684520">Android+busyboxで動かない</a>は情報量少なすぎなのでmoreinfoタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync指定があるがsync -fの方がいい</a>も理由がわからないのでmoreinfoタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">Ubuntuのchroot作ろうとしてるのにdeb.debian.orgがリポジトリ指定されちゃう</a>のを登録</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891393">Ubuntuのchroot作ろうとしてエラーになる</a>のは登録したらLinuxカーネルパッケージのメンテナからamd64だと過去のカーネルと非互換性があるから、というのを教えてもらった</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=700368">apt-moveで作ったリポジトリだとエラーになる</a>のは「SHA1は既に過去のものなので、このために対応する必要あるのかな？」というコメント入れて重要度下げた</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=640992">ChrootでもProxy設定引き継いで欲しい</a>はパッと見でわかるようにタイトルを変えた</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=627073">ダウンロード時にどこからダウンロードしたのか表示して欲しい</a>は「なんで？」とコメントしてmoreinfoタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">blankonというdistro対応して</a>はパッチのリンクが全部死んでたのでmoreinfoタグ</li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893713">udebに不要なスクリプトファイルがあるよね</a>を登録</p></li>
+
+<li><p>TriageではなくNMUを既に準備したのは <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=864734">Bug#864734</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=586158">Bug#586158</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=718632">Bug#718632</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=754318">Bug#754318</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=762431">Bug#762431</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806780">Bug#806780</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=833525">Bug#833525</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=732628">Bug#732628</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=734324">Bug#734324</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=775444">Bug#775444</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Bug#798562</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Bug#798564</a>。大半はpatchが登録してあったのでそれを進めてるだけ。ただ、regressionが怖いので小分けにしてNMUし、10日ごとに投入していく予定。先は長い。</p></li>
+</ul></li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
