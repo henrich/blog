@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://henrich.github.io/blog/2018/05/01/gbp-buildpackage---git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/</loc>
+    <lastmod>2018-05-01T23:40:33+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/</loc>
     <lastmod>2018-04-29T22:23:46+09:00</lastmod>
   </url>
@@ -775,7 +780,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
-    <lastmod>2018-04-29T22:23:46+09:00</lastmod>
+    <lastmod>2018-05-01T23:40:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -799,7 +804,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/</loc>
-    <lastmod>2018-04-29T22:23:46+09:00</lastmod>
+    <lastmod>2018-05-01T23:40:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -823,7 +828,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/post/</loc>
-    <lastmod>2018-04-29T22:23:46+09:00</lastmod>
+    <lastmod>2018-05-01T23:40:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
