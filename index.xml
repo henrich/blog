@@ -8,8 +8,81 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 24 Mar 2018 11:29:15 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 29 Apr 2018 22:23:46 +0900</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>遅々として進まず</title>
+            <link>https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/</link>
+            <pubDate>Sun, 29 Apr 2018 22:23:46 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/</guid>
+            <description>&lt;p&gt;Samsung SSDに/homeを移そうとコピーを実施したが、一晩経っても10GBぐらいしか進まず。これはいくらなんでも遅すぎる&amp;hellip;ということでファームウェアを更新することを決める。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.samsung.com/semiconductor/minisite/ssd/download/tools/&#34;&gt;http://www.samsung.com/semiconductor/minisite/ssd/download/tools/&lt;/a&gt; にてファームウェアのisoファイルを取得、マウントしてimgファイルを取り出してさらにそれをマウントしてファイルを取り出し、FreeDOSのブータブルUSBメモリにコピーしてファームウェアのアップデートを行った。以前よりはマシになったが、それでも遅い&amp;hellip;。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&amp;hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。&lt;/p&gt;
+
+&lt;p&gt;次にUbuntu18.04 Server版を入れる&amp;hellip;jaistミラーから落としたら中身がdebian-installerで変わってない？途中のpartitionerのところ（47%までは進んだ）で進まなくなってしまったので中断して、改めてUbuntu.comから落としたら、こちらのイメージは独自インストーラー版に変わっていた。こちらを試したかったのよね、シンプルでいい感じですね&amp;hellip;とインストールは特にエラーも無く終わったのだけど、やっぱりoperating system not foundで変わらず。何故だ&amp;hellip;。&lt;/p&gt;
+
+&lt;p&gt;で、Debian9.4のインストーラーでやったら、普通にインストール終わり→起動したので、これにArchを上書きして完了。パーティションテーブルがおかしかったのだろうけど、d-iがなんとかしてくれた、という感じ。&lt;/p&gt;
+
+&lt;p&gt;めも
+* d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする
+* あと全体通して読み返してみたい所&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。&lt;a href=&#34;https://git.archlinux.org/arch-install-scripts.git/&#34;&gt;https://git.archlinux.org/arch-install-scripts.git/&lt;/a&gt; にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべく&lt;a href=&#34;https://lists.freedesktop.org/archives/poppler/2018-April/012999.html&#34;&gt;popplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメール&lt;/a&gt;には一切反応せず、か。相変わらずだな、popplerの人は&amp;hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip;debian/changelogの記述間違えた。。。&lt;/p&gt;
+
+&lt;p&gt;あと libmojolicious-plugin-assetpack-perl もアップデートしておいた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 02 Apr 2018 12:51:55 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;debootstrapはNMUしてたら「普通にアップロードしてよ」と言われ、確認したらrepositoryの権限も貰っていた&amp;hellip;昔に追加されたのかな？とりあえず、アップロード→regression直しの繰り返しをしている。ツールとしての性格上致し方がないが、package外での利用が考慮漏れしてた。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=844118#10&#34;&gt;ダウンロード済みの.debファイルを使うようにするパッチも投げた&lt;/a&gt;。これで手元ではかかる時間が半分に減ったので、できれば入れたいところ。&lt;/li&gt;
+&lt;li&gt;その前に既存のpatchを一掃する作業が待っているわけですが&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;書き忘れていたが &lt;a href=&#34;https://tracker.debian.org/news/940647/accepted-xfonts-jisx0213-020040511-7-source-all-into-unstable/&#34;&gt;xfonts-jisx0213パッケージを木下さんの了解を得てfonts-team配下に移動して更新&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;tiarraパッケージをexperimentalに放置してたので&lt;a href=&#34;https://tracker.debian.org/news/940648/accepted-tiarra-20100212r39209-7-source-all-into-unstable/&#34;&gt;unstableに上げた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/939922/accepted-jcodings-1028-1-source-all-into-unstable/&#34;&gt;jcodingsパッケージをアップデート&lt;/a&gt;。&lt;a href=&#34;https://tracker.debian.org/news/944791/accepted-jcodings-1029-1-source-all-into-unstable/&#34;&gt;その２&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/940144/accepted-jruby-joni-2116-1-source-all-into-unstable/&#34;&gt;jruby-joniパッケージ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/940343/accepted-fonts-sawarabi-mincho-20180315-1-source-all-into-unstable/&#34;&gt;fonts-sawarabi-minchoパッケージ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/944419/accepted-sphinx-intl-0911-1-source-amd64-into-unstable/&#34;&gt;sphinx-intlパッケージをアップデート&lt;/a&gt;、patchを入れ忘れていたので&lt;a href=&#34;https://tracker.debian.org/news/944433/accepted-sphinx-intl-0911-2-source-amd64-into-unstable/&#34;&gt;再度アップロード&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xfonts-* パッケージを fonts-team で引き受けるべく ITA したのだけど、気力が足りなくて作業していない。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -514,98 +587,6 @@ Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://bugs.debian.org/889662&#34;&gt;昨日のlibsylphの件を忘れないうちにBTSへ&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 04 Feb 2018 22:38:35 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを &lt;code&gt;debian/.gitlab-ci.yml&lt;/code&gt; でセットアップしておいた&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;image: debian:sid
-
-before_script:
-  - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp;  apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev  
-
-build:
-  script:
-    - dpkg-buildpackage -us -uc -B
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/929833&#34;&gt;sylpheed&lt;/a&gt; 他をアップロード&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;あれ、libsylphでonigurumaが有効になってない？&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;libsylph 1.1.0
-
-OpenSSL       : yes
-iconv         : yes
-IPv6          : yes
-Oniguruma     : no
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;checking whether Oniguruma is available... no
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なんでだ？？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;AC_MSG_CHECKING([whether to use Oniguruma])
-if test &amp;quot;$ac_cv_enable_oniguruma&amp;quot; = yes; then
-        AC_MSG_RESULT(yes)
-        AC_MSG_CHECKING([whether Oniguruma is available])
-        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
-        ONIG_CONFIG=onig-config
-        ONIG_VERSION=`$ONIG_CONFIG --version 2&amp;gt;/dev/null`
-        if test &amp;quot;x$ONIG_VERSION&amp;quot; != &amp;quot;x&amp;quot;; then
-                AC_MSG_RESULT(yes)
-                CFLAGS=&amp;quot;$CFLAGS `$ONIG_CONFIG --cflags`&amp;quot;
-                LIBS=&amp;quot;$LIBS `$ONIG_CONFIG --libs`&amp;quot;
-                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
-        else
-                AC_MSG_RESULT(no)
-                ac_cv_enable_oniguruma=no
-        fi
-else
-        AC_MSG_RESULT(no)
-fi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ぬぬぬ？ libonig-devなソースのdebian/rulesを&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;override_dh_install:
-        $(RM) debian/tmp/usr/bin/onig-config
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;貴様かー！！！&amp;hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 03 Feb 2018 23:14:20 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;sylpheedパッケージのpatchを&lt;a href=&#34;http://sylpheed.sraoss.jp/redmine/issues/291&#34;&gt;forwardしておいた&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;screenfetchパッケージの&lt;a href=&#34;https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz&#34;&gt;smokeテストがさっそくfailしとった。。。&lt;/a&gt;。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、&lt;code&gt;/usr/bin/screenfetch: line 1341: [: too many arguments&lt;/code&gt; となっていた、と。&lt;a href=&#34;https://tracker.debian.org/news/929555&#34;&gt;パッチ作ってアップロードしたけど&lt;/a&gt;、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://anonscm.debian.org/git/pkg-sylpheed/&#34;&gt;aliothから&lt;/a&gt;、sylph-searcher, sylfilter, libsylphをsalsaにインポート。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

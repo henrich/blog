@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="遅々として進まず">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>遅々として進まず &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>遅々として進まず</h3>
+				<span class="label label-primary">Sun, Apr 29, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/etc">etc</a>
+				
+					 , 
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>Samsung SSDに/homeを移そうとコピーを実施したが、一晩経っても10GBぐらいしか進まず。これはいくらなんでも遅すぎる&hellip;ということでファームウェアを更新することを決める。</p>
+
+<p><a href="http://www.samsung.com/semiconductor/minisite/ssd/download/tools/">http://www.samsung.com/semiconductor/minisite/ssd/download/tools/</a> にてファームウェアのisoファイルを取得、マウントしてimgファイルを取り出してさらにそれをマウントしてファイルを取り出し、FreeDOSのブータブルUSBメモリにコピーしてファームウェアのアップデートを行った。以前よりはマシになったが、それでも遅い&hellip;。</p>
+
+<hr />
+
+<p>古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。</p>
+
+<p>次にUbuntu18.04 Server版を入れる&hellip;jaistミラーから落としたら中身がdebian-installerで変わってない？途中のpartitionerのところ（47%までは進んだ）で進まなくなってしまったので中断して、改めてUbuntu.comから落としたら、こちらのイメージは独自インストーラー版に変わっていた。こちらを試したかったのよね、シンプルでいい感じですね&hellip;とインストールは特にエラーも無く終わったのだけど、やっぱりoperating system not foundで変わらず。何故だ&hellip;。</p>
+
+<p>で、Debian9.4のインストーラーでやったら、普通にインストール終わり→起動したので、これにArchを上書きして完了。パーティションテーブルがおかしかったのだろうけど、d-iがなんとかしてくれた、という感じ。</p>
+
+<p>めも
+* d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする
+* あと全体通して読み返してみたい所</p>
+
+<hr />
+
+<p>Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。<a href="https://git.archlinux.org/arch-install-scripts.git/">https://git.archlinux.org/arch-install-scripts.git/</a> にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。</p>
+
+<hr />
+
+<p>poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべく<a href="https://lists.freedesktop.org/archives/poppler/2018-April/012999.html">popplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメール</a>には一切反応せず、か。相変わらずだな、popplerの人は&hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。</p>
+
+<p>&hellip;debian/changelogの記述間違えた。。。</p>
+
+<p>あと libmojolicious-plugin-assetpack-perl もアップデートしておいた。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

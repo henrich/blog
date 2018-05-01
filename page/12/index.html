@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.37.1" />
+	<meta name="generator" content="Hugo 0.40.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,101 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jul 20, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>riece、見落としてた<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=857775">バグを閉じた</a></li>
+<li><a href="https://tracker.debian.org/news/857568">fonts-misaki</a></li>
+<li><a href="https://tracker.debian.org/news/857575">fonts-seto</a></li>
+<li><a href="https://tracker.debian.org/news/857641">fonts-dejima-mincho</a></li>
+<li>quiltのchangelogを見て、ふと指摘をもらっていたtiarraを確認したらパッチまでもらっていた。適用して<a href="https://tracker.debian.org/news/857624">アップロード</a>
+<code>* Fix &quot;FTBFS with perl 5.26: Unescaped left brace in regex&quot;:
+   escape literal left braces in perl regexp in debian/rules;
+   patch from Niko Tyni.
+   (Closes: #826502)</code></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jul 19, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857518">snapper</a></li>
+<li><a href="https://tracker.debian.org/news/857525">jruby-joni</a>。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
+</ul>
+
+<hr />
+
+<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
+
+<hr />
+
+<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -592,157 +687,6 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jul 10, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>昨日に引き続いてopenQAがらみ。パッケージになっていなかった<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867829">libmojo-rabbitmq-client-perlをITPしてアップロード</a>。</p>
-
-<pre><code> pbuilder-satisfydepends-dummy : Depends: libnet-amqp-perl (&gt;= 0.06) but it is not going to be installed
-</code></pre>
-
-<p>とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&gt;= 0.06~dfsg)を指定するようにして回避。</p>
-
-<hr />
-
-<p>試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。</p>
-
-<pre><code>E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&gt;256)
-</code></pre>
-
-<p>libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&hellip;まだまだ先が長い。</p>
-
-<hr />
-
-<p><code>#requires 'Mojolicious::Plugin::Bootstrap3';</code>とあるのでこちらもdh-make-perlで。</p>
-
-<pre><code>$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
-(snip)
-Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
-</code></pre>
-
-<p>なんですと？</p>
-
-<p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
-ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 9, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
-
-<hr />
-
-<h2 id="openqaをビルドできるように-必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
-
-<p>そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？<a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">upstreamのspecファイルを確認</a>すると、testを実行するときだけ指定するとかなのかな。</p>
-
-<pre><code>%if %{with tests}
-cpanm --installdeps --with-feature=test . 
-%endif
-</code></pre>
-
-<p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&rdquo;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
-
-<pre><code>libmojolicious-perl
-libwww-perl
-libtimedate-perl
-perltidy
-libdbix-class-perl
-libscalar-list-utils-perl
-libtest-simple-perl
-liburi-perl
-libcgi-pm-perl
-</code></pre>
-
-<h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
-
-<pre><code>$ dh-make-perl --cpan SQL::SplitStatement
-== dh-make-perl 0.95 ==
-(snip)
-Needs the following debian packages during building: perl (&gt;= 5.8.9), libtest-exception-perl (&gt;= 0.27)
-Needs the following modules for which there are no debian packages available:
- - SQL::Tokenizer
-</code></pre>
-
-<p>あら、また足りない&hellip;</p>
-
-<pre><code>$ dh-make-perl --cpan SQL::Tokenizer
-</code></pre>
-
-<p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
-
-<p>(あと<code>upstream/metadata</code>なるファイルが作成されてたのだけど、これはAppStreamがらみ？)</p>
-
-<p>ここまで出来たのでlibsql-splitstatement-perlもITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752">Bug#867752</a>として登録、NEW queueへとアップロードしておいた</p>
-
-<hr />
-
-<p>気分転換に<a href="https://tracker.debian.org/news/854888">xgridfitを更新</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -918,8 +862,17 @@ Needs the following modules for which there are no debian packages available:
         
     
     
+    
+    
+    
+    
+    
+        
+        
+    
+    
     <li
-    ><a href="/blog/page/15/">15</a></li>
+    ><a href="/blog/page/16/">16</a></li>
     
     
     <li
@@ -928,7 +881,7 @@ Needs the following modules for which there are no debian packages available:
     </li>
     
     <li>
-        <a href="/blog/page/15/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/16/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -947,7 +900,7 @@ Needs the following modules for which there are no debian packages available:
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

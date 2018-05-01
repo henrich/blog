@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.37.1" />
+	<meta name="generator" content="Hugo 0.40.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,83 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Nov 21, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>さくらのミラーでIPv6にてftp/rsync接続できてなかったようなので修正した。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Nov 11, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/885527">birdfontをアップデート</a>。先日のPRも取り込まれてた。</li>
+<li><a href="https://tracker.debian.org/news/885529">libmojolicious-plugin-assetpack-perlをアップデート</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -450,117 +527,6 @@ pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.del
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Oct 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/882072">ruby-bcatを更新</a></li>
-<li><a href="https://tracker.debian.org/news/881990">os-autoinstを更新</a>&hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。</li>
-<li><a href="https://tracker.debian.org/news/882067">mecab-jumandicを更新</a></li>
-<li><a href="https://tracker.debian.org/news/882073">sylfilterを更新</a></li>
-<li><a href="https://tracker.debian.org/news/882080">developers-referenceを更新</a></li>
-</ul>
-
-<hr />
-
-<p>sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。</p>
-
-<pre><code>   dh_autoreconf
-libtoolize: putting auxiliary files in '.'.
-libtoolize: copying file './ltmain.sh'
-libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
-libtoolize: and rerunning libtoolize and aclocal.
-libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
-configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
-configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
-configure.ac:21: installing './compile'
-configure.ac:13: installing './missing'
-Makefile.am: error: required file './AUTHORS' not found
-commands/Makefile.am:9: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
-commands/Makefile.am: installing './depcomp'
-common/Makefile.am:1: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
-searcher/Makefile.am:8: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
-autoreconf: automake failed with exit status: 1
-dh_autoreconf: autoreconf -f -i returned exit code 1
-debian/rules:7: recipe for target 'build' failed
-make: *** [build] Error 2
-</code></pre>
-
-<p>空のファイルをquiltで追加しようとしたらダメだったのでdebian/rulesでtouchで回避。で、<a href="https://tracker.debian.org/news/882074">sylph-searcherを更新</a>してメーリングリストで要望を上げておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Oct 26, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/881529">libtest-mock-time-perl がリポジトリに入った</a>。これでようやくos-autoinstの更新に手を付けられる。</li>
-<li><a href="http://www.debian.or.jp/using/book.html#sd201711">JPサイトにSDを追加</a></li>
-<li><a href="https://tracker.debian.org/news/881723">octiconsパッケージを更新</a></li>
-<li><a href="https://tracker.debian.org/news/881730">os-autoinstパッケージを更新</a></li>
-<li>アホなミスをしていたミラー設定を修正。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -734,8 +700,17 @@ make: *** [build] Error 2
         
     
     
+    
+    
+    
+    
+    
+        
+        
+    
+    
     <li
-    ><a href="/blog/page/15/">15</a></li>
+    ><a href="/blog/page/16/">16</a></li>
     
     
     <li
@@ -744,7 +719,7 @@ make: *** [build] Error 2
     </li>
     
     <li>
-        <a href="/blog/page/15/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/16/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -763,7 +738,7 @@ make: *** [build] Error 2
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

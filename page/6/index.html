@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.37.1" />
+	<meta name="generator" content="Hugo 0.40.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,117 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Oct 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/882072">ruby-bcatを更新</a></li>
+<li><a href="https://tracker.debian.org/news/881990">os-autoinstを更新</a>&hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。</li>
+<li><a href="https://tracker.debian.org/news/882067">mecab-jumandicを更新</a></li>
+<li><a href="https://tracker.debian.org/news/882073">sylfilterを更新</a></li>
+<li><a href="https://tracker.debian.org/news/882080">developers-referenceを更新</a></li>
+</ul>
+
+<hr />
+
+<p>sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。</p>
+
+<pre><code>   dh_autoreconf
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
+libtoolize: and rerunning libtoolize and aclocal.
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+configure.ac:21: installing './compile'
+configure.ac:13: installing './missing'
+Makefile.am: error: required file './AUTHORS' not found
+commands/Makefile.am:9: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+commands/Makefile.am: installing './depcomp'
+common/Makefile.am:1: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+searcher/Makefile.am:8: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+autoreconf: automake failed with exit status: 1
+dh_autoreconf: autoreconf -f -i returned exit code 1
+debian/rules:7: recipe for target 'build' failed
+make: *** [build] Error 2
+</code></pre>
+
+<p>空のファイルをquiltで追加しようとしたらダメだったのでdebian/rulesでtouchで回避。で、<a href="https://tracker.debian.org/news/882074">sylph-searcherを更新</a>してメーリングリストで要望を上げておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Oct 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/881529">libtest-mock-time-perl がリポジトリに入った</a>。これでようやくos-autoinstの更新に手を付けられる。</li>
+<li><a href="http://www.debian.or.jp/using/book.html#sd201711">JPサイトにSDを追加</a></li>
+<li><a href="https://tracker.debian.org/news/881723">octiconsパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/881730">os-autoinstパッケージを更新</a></li>
+<li>アホなミスをしていたミラー設定を修正。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -488,106 +599,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Oct 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>パッケージを拾って色々分析居しているサイトが<a href="https://repology.org/maintainer/henrich%40debian.org/problems">担当しているパッケージの問題を列挙してた</a>ので対応する。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/879346">poppler-data</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879341">fonts-ipaexfont</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879347">fonts-ipafont-nonfree</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879348">fonts-ipafont-nonfree-jisx0208</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879353">fonts-ipafont</a>を更新</li>
-</ul>
-
-<hr />
-
-<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">packages overview</a>を参照して問題洗い出し</p>
-
-<ul>
-<li>git pushを忘れていたのを幾つか対応。</li>
-<li>xfonts-* パッケージが今までの<code>Section: x11</code>でなくて<code>Section: fonts</code>をlintianで推奨されるようになったので、ホント？という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609">質問をした</a></li>
-<li><a href="https://tracker.debian.org/news/879352">pleaiades</a>のwatchファイルがhttpだったのを直した</li>
-<li><a href="https://tracker.debian.org/news/879349">jcodings</a>のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）</li>
-<li><a href="https://tracker.debian.org/news/879439">yydebug</a>を諸々更新。</li>
-<li><a href="http://martiansoftware.com/nailgun/">nailgunのウェブサイト</a>を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&hellip;。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Oct 14, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>今日も今日とてopenQAに<a href="https://github.com/os-autoinst/openQA/pull/1472">１行パッチ</a>。</li>
-<li><a href="https://bugs.debian.org/878494">ttf-kacstを落として、というバグレポート</a>がHolgerから。あーすっかり忘れてた&hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。
-
-<ul>
-<li>納得したので、<a href="https://tracker.debian.org/news/879272">Uploadした</a>。関連ありそうな別パッケージについては<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520">バグレポート</a>。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -763,8 +774,17 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
         
     
     
+    
+    
+    
+    
+    
+        
+        
+    
+    
     <li
-    ><a href="/blog/page/15/">15</a></li>
+    ><a href="/blog/page/16/">16</a></li>
     
     
     <li
@@ -773,7 +793,7 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
     </li>
     
     <li>
-        <a href="/blog/page/15/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/16/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -792,7 +812,7 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
