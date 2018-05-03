@@ -87,7 +87,7 @@ $ git push salsa --tags
 <li>multiple tarballは orig.tarball-<name>.tar.[g|x]gという形で保持されているので、<name>の部分だけを指定</li>
 </ul>
 
-<p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため&hellip;。なんてこった。</p>
+<p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。<del>理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため</del>&hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&hellip;）</p>
 
 <pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
 (snip)

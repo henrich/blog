@@ -8,8 +8,55 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 01 May 2018 23:40:33 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 02 May 2018 00:07:27 +0900</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>どうやってバグレポートしてるか、とか...</title>
+            <link>https://henrich.github.io/blog/2018/05/02/%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E3%83%90%E3%82%B0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%82%8B%E3%81%8B%E3%81%A8%E3%81%8B.../</link>
+            <pubDate>Wed, 02 May 2018 00:07:27 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/05/02/%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E3%83%90%E3%82%B0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%82%8B%E3%81%8B%E3%81%A8%E3%81%8B.../</guid>
+            <description>&lt;p&gt;URLは非常に単純で &lt;code&gt;https://bugs.debian.org/&amp;lt;package&amp;gt;&lt;/code&gt; とすればバグレポートを参照できる。今回は&lt;a href=&#34;https://bugs.debian.org/git-buildpackage&#34;&gt;https://bugs.debian.org/git-buildpackage&lt;/a&gt; 。&lt;code&gt;querybts git-buildpackage&lt;/code&gt;でも閲覧はできるのだけど、バグレポートが大量にあると行ったり来たりして参照するのはブラウザのほうがやりやすいので&amp;hellip;。&lt;/p&gt;
+
+&lt;p&gt;ソースの取得は &lt;code&gt;apt source &amp;lt;package&amp;gt;&lt;/code&gt; で可能。なのだけど、パッケージ作業をGitで作業してたりすると、まぁHEADに合わせて変更して &lt;code&gt;git format-patch&lt;/code&gt; したpatchファイルを送りつけた方が取り込んでもらいやすいのは間違いないので、Vcsで取得。どこにリポジトリがあってどのVcs使ってるか&amp;hellip;は特に考えること無くdebcheckoutコマンドを使う。&lt;code&gt;debcheckout git-buildpackage&lt;/code&gt; として取得。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ debcheckout git-buildpackage
+declared git repository at https://git.sigxcpu.org/cgit/git-buildpackage/ 
+git clone https://git.sigxcpu.org/cgit/git-buildpackage/ git-buildpackage ...
+Cloning into &#39;git-buildpackage&#39;... 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;としたのだけど、なんで自前のrepoに保持してるのか。超遅い。通常ならsalsa.debian.org配下なので直ぐなのに、10分経っても全然応答が無い&amp;hellip;仕方がないので、今回は&lt;code&gt;apt source git-buildpackage&lt;/code&gt;で取得。&lt;/p&gt;
+
+&lt;p&gt;さて、optionでgrepしたりして&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ grep git-component -r ./
+./docs/manpages/gbp-buildpackage.xml:      &amp;lt;arg rep=&#39;repeat&#39;&amp;gt;&amp;lt;option&amp;gt;--git-component=&amp;lt;/option&amp;gt;&amp;lt;replaceable&amp;gt;component&amp;lt;/replaceable&amp;gt;&amp;lt;/arg&amp;gt;
+./docs/manpages/gbp-buildpackage.xml:          &amp;lt;term&amp;gt;&amp;lt;option&amp;gt;--git-component=&amp;lt;/option&amp;gt;&amp;lt;replaceable&amp;gt;COMPONENT&amp;lt;/replaceable&amp;gt;
+./tests/component/deb/test_buildpackage.py:                            &#39;--git-component=foo&#39;,
+./tests/component/deb/test_buildpackage.py:                            &#39;--git-component=foo&#39;,
+./tests/component/deb/test_buildpackage.py:                                       &#39;--git-component=foo&#39;])
+./tests/component/deb/test_buildpackage.py:                                       &#39;--git-component=foo&#39;,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&amp;hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。&lt;/p&gt;
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m maintaining poppler-data package that has three upstream tarballs, and
+two are tar.gz and rest one is tar.xz. Today I&amp;rsquo;ve tried to use gbp&amp;rsquo;s experimental
+&amp;ndash; option but failed since its option assumes that tarball is only
+tar.gz file.&lt;/p&gt;
+
+&lt;p&gt;Attached patch works with both tar.gz and .xz for &amp;ndash; option.
+Could you consider to apply it to gbp to make my maintence work easier, please?&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -39,7 +86,7 @@ $ git push salsa --tags
 &lt;li&gt;multiple tarballは orig.tarball-&lt;name&gt;.tar.[g|x]gという形で保持されているので、&lt;name&gt;の部分だけを指定&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&amp;hellip;というところまでは分かったのだけど、現状ではエラーになる。理由は&lt;code&gt;指定される対象のtarballはtar.gzしか想定していない&lt;/code&gt;ため&amp;hellip;。なんてこった。&lt;/p&gt;
+&lt;p&gt;&amp;hellip;というところまでは分かったのだけど、現状ではエラーになる。&lt;del&gt;理由は&lt;code&gt;指定される対象のtarballはtar.gzしか想定していない&lt;/code&gt;ため&lt;/del&gt;&amp;hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&amp;hellip;）&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
 (snip)
@@ -544,38 +591,6 @@ Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed
     - set 11
 
  -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Wed, 07 Feb 2018 20:45:32 +0900
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 06 Feb 2018 21:00:12 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;1日一つは、ということでdartsパッケージの更新。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;darts (0.32-16) unstable; urgency=medium
-
-  * debian/control
-    - update Vcs-* to use salsa.debian.org
-    - set Build-Depends: debhelper (&amp;gt;= 11)
-    - set Standards-Version: 4.1.3
-  * debian/compat
-    - set 11
-  * debian/watch
-    - update to version 4
-  * debian/copyright
-    - sort order to ignore lintian warning
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Tue, 06 Feb 2018 20:23:18 +0900
 &lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
