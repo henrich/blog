@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="どうやってバグレポートしてるか、とか...">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>どうやってバグレポートしてるか、とか... &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>どうやってバグレポートしてるか、とか...</h3>
+				<span class="label label-primary">Wed, May 2, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>URLは非常に単純で <code>https://bugs.debian.org/&lt;package&gt;</code> とすればバグレポートを参照できる。今回は<a href="https://bugs.debian.org/git-buildpackage">https://bugs.debian.org/git-buildpackage</a> 。<code>querybts git-buildpackage</code>でも閲覧はできるのだけど、バグレポートが大量にあると行ったり来たりして参照するのはブラウザのほうがやりやすいので&hellip;。</p>
+
+<p>ソースの取得は <code>apt source &lt;package&gt;</code> で可能。なのだけど、パッケージ作業をGitで作業してたりすると、まぁHEADに合わせて変更して <code>git format-patch</code> したpatchファイルを送りつけた方が取り込んでもらいやすいのは間違いないので、Vcsで取得。どこにリポジトリがあってどのVcs使ってるか&hellip;は特に考えること無くdebcheckoutコマンドを使う。<code>debcheckout git-buildpackage</code> として取得。</p>
+
+<pre><code>$ debcheckout git-buildpackage
+declared git repository at https://git.sigxcpu.org/cgit/git-buildpackage/ 
+git clone https://git.sigxcpu.org/cgit/git-buildpackage/ git-buildpackage ...
+Cloning into 'git-buildpackage'... 
+</code></pre>
+
+<p>&hellip;としたのだけど、なんで自前のrepoに保持してるのか。超遅い。通常ならsalsa.debian.org配下なので直ぐなのに、10分経っても全然応答が無い&hellip;仕方がないので、今回は<code>apt source git-buildpackage</code>で取得。</p>
+
+<p>さて、optionでgrepしたりして&hellip;</p>
+
+<pre><code> $ grep git-component -r ./
+./docs/manpages/gbp-buildpackage.xml:      &lt;arg rep='repeat'&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;component&lt;/replaceable&gt;&lt;/arg&gt;
+./docs/manpages/gbp-buildpackage.xml:          &lt;term&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;COMPONENT&lt;/replaceable&gt;
+./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
+./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
+./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo'])
+./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo',
+</code></pre>
+
+<p>あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

@@ -43,16 +43,6 @@ Cloning into &#39;git-buildpackage&#39;...
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&amp;hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。&lt;/p&gt;
-
-&lt;p&gt;Hi,&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m maintaining poppler-data package that has three upstream tarballs, and
-two are tar.gz and rest one is tar.xz. Today I&amp;rsquo;ve tried to use gbp&amp;rsquo;s experimental
-&amp;ndash; option but failed since its option assumes that tarball is only
-tar.gz file.&lt;/p&gt;
-
-&lt;p&gt;Attached patch works with both tar.gz and .xz for &amp;ndash; option.
-Could you consider to apply it to gbp to make my maintence work easier, please?&lt;/p&gt;
 </description>
           </item>
         
