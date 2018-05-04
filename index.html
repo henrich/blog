@@ -195,7 +195,7 @@ P: Begin mounting /sys...
 <pre><code>Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
 </code></pre>
 
-<p>なるほど、Jessieでは足りない・変更した部分については<a href="http://dev.packages.vyos.net/repositories/">別のリポジトリ</a>を持ってるのね。見て回ったら<a href="http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/とかに特にrevisionも変更されてないパッケージが。何故だろう？">http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/とかに特にrevisionも変更されてないパッケージが。何故だろう？</a></p>
+<p>なるほど、Jessieでは足りない・変更した部分については<a href="http://dev.packages.vyos.net/repositories/">別のリポジトリ</a>を持ってるのね。あれ、見て回ったら<a href="http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/">http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/</a> とかに特にrevisionも変更されてないパッケージが。何故だろう？</p>
 
 <p>ビルドが終わってどこにisoが出来たかさっぱりわからぬ。。。あ、<code>build/vyos-1.2.0-rolling+201805031139-amd64.iso</code> というファイルがあった。これはsymlinkで <code>live-image-amd64.hybrid.iso</code> を指してる。あと、<code>build/cache/packages.binary</code> 以下にはdebパッケージが保存されてるな。さらにmake isoしたらこれが使われるのかな、ということで再度実行してみる。。。どうやらそのようだ。</p>
 

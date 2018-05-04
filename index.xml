@@ -134,7 +134,7 @@ P: Begin mounting /sys...
 &lt;pre&gt;&lt;code&gt;Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;なるほど、Jessieでは足りない・変更した部分については&lt;a href=&#34;http://dev.packages.vyos.net/repositories/&#34;&gt;別のリポジトリ&lt;/a&gt;を持ってるのね。見て回ったら&lt;a href=&#34;http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/とかに特にrevisionも変更されてないパッケージが。何故だろう？&#34;&gt;http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/とかに特にrevisionも変更されてないパッケージが。何故だろう？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;なるほど、Jessieでは足りない・変更した部分については&lt;a href=&#34;http://dev.packages.vyos.net/repositories/&#34;&gt;別のリポジトリ&lt;/a&gt;を持ってるのね。あれ、見て回ったら&lt;a href=&#34;http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/&#34;&gt;http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/&lt;/a&gt; とかに特にrevisionも変更されてないパッケージが。何故だろう？&lt;/p&gt;
 
 &lt;p&gt;ビルドが終わってどこにisoが出来たかさっぱりわからぬ。。。あ、&lt;code&gt;build/vyos-1.2.0-rolling+201805031139-amd64.iso&lt;/code&gt; というファイルがあった。これはsymlinkで &lt;code&gt;live-image-amd64.hybrid.iso&lt;/code&gt; を指してる。あと、&lt;code&gt;build/cache/packages.binary&lt;/code&gt; 以下にはdebパッケージが保存されてるな。さらにmake isoしたらこれが使われるのかな、ということで再度実行してみる。。。どうやらそのようだ。&lt;/p&gt;
 
