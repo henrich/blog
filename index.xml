@@ -8,8 +8,142 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 02 May 2018 00:07:27 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 03 May 2018 11:43:52 +0900</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>VyOSと戯れてみた</title>
+            <link>https://henrich.github.io/blog/2018/05/03/vyos%E3%81%A8%E6%88%AF%E3%82%8C%E3%81%A6%E3%81%BF%E3%81%9F/</link>
+            <pubDate>Thu, 03 May 2018 11:43:52 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/05/03/vyos%E3%81%A8%E6%88%AF%E3%82%8C%E3%81%A6%E3%81%BF%E3%81%9F/</guid>
+            <description>&lt;p&gt;Note: VyOSの使い方とかは一切書いてません。&lt;/p&gt;
+
+&lt;p&gt;Twitterで&lt;a href=&#34;https://github.com/vyos/vyos-build/blob/current/README.md&#34;&gt;VyOSのビルド説明の最新の場所&lt;/a&gt;を教えてもらったので、それに従って作業&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/vyos/vyos-build.git
+$ sudo debootstrap jessie ./jessie-chroot http://debian-mirror.sakura.ne.jp/debian
+$ sudo cp -arp vyos-build jessie-chroot/root/
+$ sudo chroot jessie-chroot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd root/vyos-build
+# ./configure
+/usr/bin/env: python3: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;debootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# apt install python3
+# ./configure 
+Checking if packages required for VyOS image build are installed
+Missing packages: sudo make live-build pbuilder devscripts python3-pystache python3-git
+Missing binaries: 
+Build environment check failed, fix the issues and retry
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;# apt install sudo make live-build pbuilder devscripts python3-pystache python3-git
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Unable to locate package python3-git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あれ。&lt;a href=&#34;https://tracker.debian.org/pkg/python-git&#34;&gt;https://tracker.debian.org/pkg/python-git&lt;/a&gt; によると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;oldstable:  0.3.2~RC1-3
+old-bpo:  2.1.1-2~bpo8+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なので、多分 jessie-backports リポジトリ追加しないとダメなんじゃないだろうか。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# echo &amp;quot;deb http://debian-mirror.sakura.ne.jp/debian jessie-backports main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list
+# apt update
+# apt install python3
+# ./configure 
+Checking if packages required for VyOS image build are installed
+All dependencies are installed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;問題なく通ったので、isoイメージの作成をやってみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make iso
+Checking build configuration
+[2018-05-03 11:39:13] lb clean 
+P: Cleaning chroot
+Starting VyOS ISO image build
+Setting up additional APT entries
+Configuring live-build
+[2018-05-03 11:39:13] lb config noauto --architectures amd64 --bootappend-live boot=live components hostname=vyos username=live nopersistence noautologin nonetworking union=overlay --linux-flavours amd64-vyos --linux-packages linux-image-4.14.26 --bootloader syslinux --binary-images iso-hybrid --debian-installer false --distribution jessie --iso-application VyOS --iso-publisher root@hp --iso-volume VyOS --debootstrap-options --variant=minbase --exclude=isc-dhcp-client,isc-dhcp-common,ifupdown --include=apt-transport-https --mirror-bootstrap http://deb.debian.org/debian --mirror-chroot http://deb.debian.org/debian --mirror-chroot-security http://deb.debian.org/debian-security --mirror-binary http://deb.debian.org/debian --mirror-binary-security http://deb.debian.org/debian-security --archive-areas main contrib non-free --firmware-chroot true --updates true --security true
+P: Updating config tree for a debian/jessie/amd64 system
+P: Symlinking hooks...
+It&#39;s not like I&#39;m building this specially for you or anything!
+[2018-05-03 11:39:13] lb build 
+P: live-build 4.0.3
+P: Building config tree for a debian/jessie/amd64 system
+[2018-05-03 11:39:13] lb bootstrap 
+P: Setting up cleanup function
+[2018-05-03 11:39:13] lb bootstrap_cache restore
+P: Restoring bootstrap stage from cache...
+[2018-05-03 11:39:14] lb bootstrap_cdebootstrap 
+[2018-05-03 11:39:14] lb bootstrap_debootstrap 
+P: Begin bootstrapping system...
+P: If the following stage fails, the most likely cause of the problem is with your mirror configuration or a caching proxy.
+P: Running debootstrap (download-only)... 
+I: Retrieving Release 
+I: Retrieving Release.gpg 
+I: Checking Release signature
+I: Valid Release signature (key id 75DDC3C4A499F1A18CB5F3C8CBF8D6FD518E17E1)
+I: Retrieving Packages 
+I: Validating Packages 
+I: Retrieving Packages 
+I: Validating Packages 
+I: Retrieving Packages 
+I: Validating Packages 
+I: Resolving dependencies of required packages...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;んん？なんか見たことのある出力&amp;hellip;debootstrap使ってるな&amp;hellip;あ、lb云々とあるから &lt;code&gt;live-build&lt;/code&gt; がdebootstrap呼んでるのね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2018-05-03 11:43:13] lb bootstrap_archive-keys 
+Ign http://deb.debian.org jessie InRelease
+Hit http://deb.debian.org jessie Release.gpg
+Hit http://deb.debian.org jessie Release
+Get:1 http://deb.debian.org jessie/main amd64 Packages [6789 kB]
+Hit http://deb.debian.org jessie/contrib amd64 Packages
+Hit http://deb.debian.org jessie/non-free amd64 Packages
+Get:2 http://deb.debian.org jessie/contrib Translation-en [38.3 kB]
+Get:3 http://deb.debian.org jessie/main Translation-en [4583 kB]
+Get:4 http://deb.debian.org jessie/non-free Translation-en [72.1 kB]
+Fetched 11.5 MB in 7s (1596 kB/s)
+Reading package lists...
+[2018-05-03 11:43:21] lb bootstrap_cache save
+P: Saving bootstrap stage to cache...
+[2018-05-03 11:43:22] lb chroot_devpts install
+P: Begin mounting /dev/pts...
+[2018-05-03 11:43:22] lb chroot_proc install
+P: Begin mounting /proc...
+[2018-05-03 11:43:22] lb chroot_selinuxfs install
+[2018-05-03 11:43:22] lb chroot_sysfs install
+P: Begin mounting /sys...
+(snip)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なるほど、Jessieでは足りない・変更した部分については&lt;a href=&#34;http://dev.packages.vyos.net/repositories/&#34;&gt;別のリポジトリ&lt;/a&gt;を持ってるのね。見て回ったら&lt;a href=&#34;http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/とかに特にrevisionも変更されてないパッケージが。何故だろう？&#34;&gt;http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/とかに特にrevisionも変更されてないパッケージが。何故だろう？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ビルドが終わってどこにisoが出来たかさっぱりわからぬ。。。あ、&lt;code&gt;build/vyos-1.2.0-rolling+201805031139-amd64.iso&lt;/code&gt; というファイルがあった。これはsymlinkで &lt;code&gt;live-image-amd64.hybrid.iso&lt;/code&gt; を指してる。あと、&lt;code&gt;build/cache/packages.binary&lt;/code&gt; 以下にはdebパッケージが保存されてるな。さらにmake isoしたらこれが使われるのかな、ということで再度実行してみる。。。どうやらそのようだ。&lt;/p&gt;
+
+&lt;p&gt;今日はここまで。
+で、&lt;a href=&#34;https://github.com/vyos/vyos-build/pull/17&#34;&gt;https://github.com/vyos/vyos-build/pull/17&lt;/a&gt; に今日触ったところで &lt;code&gt;debootstrap使ったほうがいいな&lt;/code&gt;、というプルリクエストを送っときました。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -553,35 +687,6 @@ Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974&#34;&gt;sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 07 Feb 2018 20:53:43 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;コツコツと事務作業&amp;hellip;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mecab (0.996-5) unstable; urgency=medium
-
-  * debian/control
-    - move Vcs-* to salsa.debian.org 
-    - use https for upstream Homepage
-    - set Standards-Version: 4.1.3
-    - set Build-Depends: debhelper (&amp;gt;= 11)
-  * debian/copyright
-    - use https for upstream site
-  * debian/compat
-    - set 11
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Wed, 07 Feb 2018 20:45:32 +0900
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
