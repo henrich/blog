@@ -46,11 +46,48 @@ Source: zabbix
 &lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/desktop/I18n.html&#34;&gt;Glibc collation update and sync with CLDR&lt;/a&gt;を追いかけると、&lt;a href=&#34;https://sourceware.org/bugzilla/show_bug.cgi?id=14095&#34;&gt;glibc2.28では取り込まれそう&lt;/a&gt;でパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。&lt;/li&gt;
 &lt;li&gt;Timeの更新は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881429&#34;&gt;まだかなー&lt;/a&gt;という感じ&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife&#34;&gt;Laptopのバッテリ時間改善&lt;/a&gt;はカーネル側での変更が4.16で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc&#34;&gt;Libcrypt replaced by libxcrypt in glibc&lt;/a&gt;は、Debianだとlibxcryptがあるけどこれはメンテされてない感じ&amp;hellip;。うーん。upstreamでの話としては &lt;a href=&#34;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&#34;&gt;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&lt;/a&gt; で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc&#34;&gt;Libcrypt replaced by libxcrypt in glibc&lt;/a&gt;は、Debianだと&lt;a href=&#34;https://tracker.debian.org/pkg/libxcrypt&#34;&gt;libxcryptがあるけどこれはメンテされてない感じ&lt;/a&gt;&amp;hellip;。うーん。upstreamでの話としては &lt;a href=&#34;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&#34;&gt;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&lt;/a&gt; で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？&lt;/li&gt;
 &lt;li&gt;modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&amp;hellip;。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;そのうち過去のリリースノートも見てみるか。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&amp;hellip;とりあえずlibxcryptのパッケージを触ってみた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gbp import-dscs --debsnap libxcrypt
+$ cd libxcrypt
+$ git checkout upstream
+$ rm -r ./*
+$ git remote add upstream https://github.com/besser82/libxcrypt.git
+$ git pull upstream
+$ git pull upstream --allow-unrelated-histories master
+(ちょこちょことconflict対応)
+$ git commit -av
+$ git checkout master
+$ cp -arp debian ../ ; rm -r ./*; cp -arp ../debian ./
+$ git merge --allow-unrelated-histories v4.0.0 
+(ちょこちょことconflict対応)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとは普通のパッケージング作業。なくさないように&lt;a href=&#34;https://salsa.debian.org/henrich/libxcrypt&#34;&gt;salsaに上げておいた&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;しかし、libxcrypt.soからlibcrypt.soになってるっぽい？いいのかしら&amp;hellip;今だと &lt;code&gt;libc6: /lib/x86_64-linux-gnu/libcrypt.so.1&lt;/code&gt; という感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ apt-file show libxcrypt1
+libxcrypt1: /lib/libxcrypt.so.1
+libxcrypt1: /lib/libxcrypt.so.1.2.4
+(snip)
+
+$ dpkg-deb --contents libxcrypt-dev_4.0.0-1_amd64.deb
+(snip)
+lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libcrypt.so -&amp;gt; libcrypt.so.1.1.0
+lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libowcrypt.a -&amp;gt; libcrypt.a
+lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libowcrypt.so -&amp;gt; libcrypt.so
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Fedoraのsrpmを &lt;code&gt;dnf download --source libxcrypt glibc&lt;/code&gt; とかしてみてみると、どうやらある時点でglibc側での生成を止めてlibxcryptを使うようになってるようだ。&lt;/p&gt;
 </description>
           </item>
         

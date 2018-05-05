@@ -22,7 +22,8 @@
       <description>Fedora28のリリースノートをつらつら眺めたら、libcurlのリンクをlibssh2からlibsshに変えたよ、というのがあった。へぇ、と思ってDebianでlibssh2に依存しているのを探してみた。
 $ grep-dctrl -F Depends libssh2-1 -s Source /var/lib/apt/lists/*_Packages | sort | uniq Source: curl Source: gfal2 Source: guacamole-server Source: libgit2 Source: libpam-sshauth (0.4.1-2) Source: libssh2 Source: libvirt Source: mlterm (3.8.4-1) Source: php-ssh2 (1.1.2+0.13-1) Source: pylibssh2 Source: qemu Source: vlc (3.0.2-1) Source: yuma123 Source: zabbix  curl以外にも幾つかある。で、qemuの様子をみてみたが、今の所何度か提案パッチを書き直しているようで簡単にs/libssh2/libssh/すればいいわけでは無いようである。qemuの場合はパフォーマンスが落ちた、という話も出てる。
 ともあれ、curlについてはupstreamが対応済みなのでFedoraがやったのと同じことは簡単にできそう&amp;hellip;ということでBTSしておいた。
- Glibc collation update and sync with CLDRを追いかけると、glibc2.28では取り込まれそうでパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。 Timeの更新はまだかなーという感じ Laptopのバッテリ時間改善はカーネル側での変更が4.16で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。 Libcrypt replaced by libxcrypt in glibcは、Debianだとlibxcryptがあるけどこれはメンテされてない感じ&amp;hellip;。うーん。upstreamでの話としては https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？ modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&amp;hellip;。  そのうち過去のリリースノートも見てみるか。</description>
+ Glibc collation update and sync with CLDRを追いかけると、glibc2.28では取り込まれそうでパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。 Timeの更新はまだかなーという感じ Laptopのバッテリ時間改善はカーネル側での変更が4.16で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。 Libcrypt replaced by libxcrypt in glibcは、Debianだとlibxcryptがあるけどこれはメンテされてない感じ&amp;hellip;。うーん。upstreamでの話としては https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？ modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&amp;hellip;。  そのうち過去のリリースノートも見てみるか。
+&amp;hellip;とりあえずlibxcryptのパッケージを触ってみた。</description>
     </item>
     
     <item>
