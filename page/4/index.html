@@ -60,6 +60,94 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 17, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>新しい<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>の稼働に伴い<a href="http://debian-mirror.sakura.ne.jp/munin/">munin</a>の設定を微調整。</li>
+<li>新旧ミラーサーバーにて、自ホストをサーバーにして apt でパッケージを取得してみた。旧サーバーが65MB程度のところ、新サーバーだと95MB程度は出るので1.5倍というところか（乱暴だけど）。</li>
+</ul>
+
+<hr />
+
+<ul>
+<li><a href="https://bugs.documentfoundation.org/show_bug.cgi?id=115066">LibO on macOSで日本語パック当てるとフォントでかいよ問題をレポートしておいた</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 16, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>qrencodeパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13">バグレポートにコメント追加しておいた</a>。数日様子を見てクローズするのが良いだろうと思う。</li>
+<li><a href="https://tracker.debian.org/news/901773">fonts-sawarabi-minchoパッケージをアップロード</a></li>
+</ul>
+
+<hr />
+
+<p>salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -440,197 +528,6 @@ $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
 <li>ついでに debian/patches 以下をforwardして<a href="https://github.com/jruby/joni/pull/31">Pull Request</a></li>
 </ul></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/">GPGめも - subkey</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Dec 4, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/gpg">gpg</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>GPGのsubkeyについて。</p>
-
-<ul>
-<li>たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、
-
-<ul>
-<li>masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。</li>
-<li>laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。</li>
-</ul></li>
-<li>そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&hellip;という時にはmasterkeyを使うということができる。</li>
-</ul>
-
-<p>なるほどねー。</p>
-
-<p>ちなみにどうしてもという時というのは以下らしい。
-   - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする
-   - 自分の鍵をrevokeする
-   - subkeyを作る・revokeする
-   - 有効期限の変更
-   - masterkeyのrevoke用の証明書の作成
-   - UIDの設定変更</p>
-
-<p>あー、今だとlaptopにはGPG鍵入れてないけど、これはありかもしれないね。ということで<a href="https://wiki.debian.org/Subkeys">Debian WikiでのSubkey作成手順</a>に従って作ってみる。</p>
-
-<pre><code>$ umask 077; tar -cf $HOME/gnupg-backup.tar -C $HOME .gnupg (バックアップ)
-$ gpg --list-keys henrich@debian.org (自分のKEYIDを取得)
-
-pub   rsa4096 2009-05-23 [SC] [有効期限: 2019-05-21]    
-      58E1222F9696C885A3CD104C5D328D082AAAB140          
-uid           [  究極  ] Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;  
-uid           [  究極  ] Hideki Yamane &lt;henrich@debian.org&gt;
-uid           [  究極  ] Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
-sub   rsa4096 2009-05-23 [E] [有効期限: 2019-05-21]
-
-$ gpg --edit-key  58E1222F9696C885A3CD104C5D328D082AAAB140
-gpg (GnuPG) 2.2.3; Copyright (C) 2017 Free Software Foundation, Inc.       
-This is free software: you are free to change and redistribute it.         
-There is NO WARRANTY, to the extent permitted by law.                      
-                                                                   
-秘密鍵が利用できます。                                                     
-                                                                           
-sec  rsa4096/5D328D082AAAB140                                              
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC                    
-     信用: 究極        有効性: 究極                                        
-ssb  rsa4096/95F59E65108820E1                                              
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E                     
-[  究極  ] (1). Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;           
-[  究極  ] (2)  Hideki Yamane &lt;henrich@debian.org&gt;
-[  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
-
-gpg&gt; addkey (subkeyの追加)
-ご希望の鍵の種類を選択してください:
-   (3) DSA (署名のみ)
-   (4) RSA (署名のみ)
-   (5) Elgamal (暗号化のみ)
-   (6) RSA (暗号化のみ)
-あなたの選択は? 4  (←Debianパッケージなどで署名が必要なのでこちらを今回は選択)
-RSA 鍵は 1024 から 4096 ビットの長さで可能です。
-鍵長は? (3072) 4096 (←4096にしたけど、masterkeyより大きなのは選べるのかしら？)
-要求された鍵長は4096ビット
-鍵の有効期限を指定してください。
-         0 = 鍵は無期限
-      &lt;n&gt;  = 鍵は n 日間で期限切れ
-      &lt;n&gt;w = 鍵は n 週間で期限切れ
-      &lt;n&gt;m = 鍵は n か月間で期限切れ
-      &lt;n&gt;y = 鍵は n 年間で期限切れ
-鍵の有効期間は? (0)1y (masterkeyよりも短いほうが良いそうなのでとりあえず1年にしておく)
-鍵は2018年12月04日 18時54分30秒 JSTで期限切れとなります
-これで正しいですか? (y/N) y
-本当に作成しますか? (y/N) y
-たくさんのランダム・バイトの生成が必要です。キーボードを打つ、マウスを動か
-す、ディスクにアクセスするなどの他の操作を素数生成の間に行うことで、乱数生
-成器に十分なエントロピーを供給する機会を与えることができます。
-
-sec  rsa4096/5D328D082AAAB140
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC
-     信用: 究極        有効性: 究極
-ssb  rsa4096/95F59E65108820E1
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E
-ssb  rsa4096/723BFA427D8774AD (←今回出来たのはこの鍵)
-     作成: 2017-12-04  有効期限: 2018-12-04  利用法: S
-[  究極  ] (1). Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;
-[  究極  ] (2)  Hideki Yamane &lt;henrich@debian.org&gt;
-[  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
-
-gpg&gt; save
-</code></pre>
-
-<p>で、この後の手順は、と&hellip;</p>
-
-<ul>
-<li>USBメモリに ~/.gnupg をバックアップして</li>
-<li><code>Here comes the tricky part: you need to remove the private master key.</code> え？「private masterkeyを削除する」？？？マジか。</li>
-</ul>
-
-<p>GnuPG 2.1以降なら <code>~/.gnupg/private-keys-v1.d/&lt;KEYGRIP&gt;.key</code> を削除せよ、と。KEYGRIPはmaster keyの&rdquo;keygrip&rdquo;で、<code>gpg2 --with-keygrip --list-key &lt;YOURMASTERKEYID&gt;</code> で手に入るぞ、と。ただし、旧バージョンのGnuPGから新しい形式に移行している場合は<code>~/.gnupg/secring.gpg</code> の方に private master keyがあるかもしれないから、こっちも消せ、と。GnuPG 2.1以前の場合も書いてあるけど、そんな環境使ってる人のことを考えるの面倒なので、原文見てほしい。</p>
-
-<p>ここまで来たら <code>gpg --edit-key &lt;YOURMASTERKEYID&gt; passwd</code> でパスフレーズを変更してしまう。これで日常のパスフレーズが漏れても、元々のパスフレーズがわからなければ、たとえprivate master keyにアクセスできても使えないよね&hellip;という、まぁ気休めにはなる？</p>
-
-<hr />
-
-<ul>
-<li>encryptしたUSBメモリにprivate master key置く、って言ってるけど、何を使ってencryptするんだろね？</li>
-<li>そもそもUSBメモリの耐久性とかどうなのかな、とか。何にバックアップしておくのが正しいのだろう？</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Dec 3, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>先日のDebian勉強会であった人とのキーサインを済ませた。caff便利。</p>
-
-<pre><code>$ caff -u 58E1222F9696C885A3CD104C5D328D082AAAB140 &lt;long KEYID&gt;
-</code></pre>
-
-<p>で、既にサインして頂いてたのがメールで来てたのをimportしてkeyserverにsendしておく。</p>
-
-<pre><code>$ gpg --import ~/*.asc
-$ gpg --send-keys &quot;58E1 222F 9696 C885 A3CD  104C 5D32 8D08 2AAA B140&quot;
-gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
-</code></pre>
-
-<p><a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x5D328D082AAAB140">よしよし</a>。</p>
 
 					
 				</div>

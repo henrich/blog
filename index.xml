@@ -8,8 +8,76 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Thu, 03 May 2018 11:43:52 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 05 May 2018 14:40:09 +0900</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Fedora28のリリースを見て。</title>
+            <link>https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/</link>
+            <pubDate>Sat, 05 May 2018 14:40:09 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/&#34;&gt;Fedora28のリリースノート&lt;/a&gt;をつらつら眺めたら、&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/sysadmin/Security.html&#34;&gt;libcurlのリンクをlibssh2からlibsshに変えたよ&lt;/a&gt;、というのがあった。へぇ、と思ってDebianでlibssh2に依存しているのを探してみた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep-dctrl -F Depends libssh2-1 -s Source /var/lib/apt/lists/*_Packages | sort | uniq
+Source: curl
+Source: gfal2
+Source: guacamole-server
+Source: libgit2
+Source: libpam-sshauth (0.4.1-2)
+Source: libssh2
+Source: libvirt
+Source: mlterm (3.8.4-1)
+Source: php-ssh2 (1.1.2+0.13-1)
+Source: pylibssh2
+Source: qemu
+Source: vlc (3.0.2-1)
+Source: yuma123
+Source: zabbix
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;curl以外にも幾つかある。で、qemuの様子をみてみたが、今の所&lt;a href=&#34;https://lists.gnu.org/archive/html/qemu-devel/2018-01/msg04447.html&#34;&gt;何度か提案パッチを書き直している&lt;/a&gt;ようで簡単にs/libssh2/libssh/すればいいわけでは無いようである。qemuの場合はパフォーマンスが落ちた、という話も出てる。&lt;/p&gt;
+
+&lt;p&gt;ともあれ、curlについてはupstreamが対応済みなのでFedoraがやったのと同じことは簡単にできそう&amp;hellip;ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=897950&#34;&gt;BTSしておいた&lt;/a&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/desktop/I18n.html&#34;&gt;Glibc collation update and sync with CLDR&lt;/a&gt;を追いかけると、&lt;a href=&#34;https://sourceware.org/bugzilla/show_bug.cgi?id=14095&#34;&gt;glibc2.28では取り込まれそう&lt;/a&gt;でパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。&lt;/li&gt;
+&lt;li&gt;Timeの更新は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881429&#34;&gt;まだかなー&lt;/a&gt;という感じ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife&#34;&gt;Laptopのバッテリ時間改善&lt;/a&gt;はカーネル側での変更が4.16で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc&#34;&gt;Libcrypt replaced by libxcrypt in glibc&lt;/a&gt;は、Debianだとlibxcryptがあるけどこれはメンテされてない感じ&amp;hellip;。うーん。upstreamでの話としては &lt;a href=&#34;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&#34;&gt;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&lt;/a&gt; で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？&lt;/li&gt;
+&lt;li&gt;modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&amp;hellip;。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そのうち過去のリリースノートも見てみるか。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>VyOSをもうちょっと眺める</title>
+            <link>https://henrich.github.io/blog/2018/05/04/vyos%E3%82%92%E3%82%82%E3%81%86%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E7%9C%BA%E3%82%81%E3%82%8B/</link>
+            <pubDate>Fri, 04 May 2018 12:03:23 +0900</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/05/04/vyos%E3%82%92%E3%82%82%E3%81%86%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E7%9C%BA%E3%82%81%E3%82%8B/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://github.com/vyos&#34;&gt;https://github.com/vyos&lt;/a&gt; を眺めてパッケージの一つ &lt;a href=&#34;https://github.com/vyos/net-snmp&#34;&gt;net-snmp のパッケージリポジトリ&lt;/a&gt;を見たのだけど、変更点はdebian/rulesでconfigure option1行足してるだけ。issueが無いので質問も出来ないのだけど、これはdebian側で吸収してもらう検討をしたほうが良いのでは？&lt;/p&gt;
+
+&lt;p&gt;他のパッケージでもdebian/rulesでvyosの開発環境だったらバージョン番号を変更する、というパッチを書いてるだけだったり&amp;hellip;何のためのパッチなのだ？&lt;/p&gt;
+
+&lt;p&gt;これに類することを確認するには&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/vyos&#34;&gt;https://github.com/vyos&lt;/a&gt; 以下のリポジトリを全て眺めて、debian/changelogを見てみる？&lt;/li&gt;
+&lt;li&gt;とはいえchangelogまともに書いてない場合も多そうだから、export して元のバージョンのパッケージとdiffを作る？&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -588,105 +656,6 @@ warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;@Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&amp;hellip;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 10 Feb 2018 09:11:54 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931316&#34;&gt;xfonts-mplusを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931318&#34;&gt;xfonts-shinonomeを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931319&#34;&gt;xfonts-ayuを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931322&#34;&gt;xfonts-efont-unicodeを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931323&#34;&gt;xfonts-kanameを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931337&#34;&gt;xfonts-naga10を更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931540&#34;&gt;fonts-aoyagi-kouzan-tを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931541&#34;&gt;fonts-arphic-bkai00mpを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931645&#34;&gt;jcodingsを更新&lt;/a&gt;、salsa移行はまだ目処立たず。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931659&#34;&gt;nailgunを更新&lt;/a&gt;、salsa移行はまだ目処立たず。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931537&#34;&gt;xfonts-kappa20を更新&lt;/a&gt;&amp;hellip;したのだけど、CIが落ちる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;make[1]: Entering directory &#39;/builds/fonts-team/xfonts-kappa20&#39;
-bdftopcf k20m.bdf | gzip -c9 -n &amp;gt; pcf/k20m.pcf.gz
-/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
-Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&amp;hellip;何故だ。対応してCIは通るようになったが謎だ。&lt;a href=&#34;https://tracker.debian.org/news/931538&#34;&gt;上げ直した&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  * debian/control
-    - add Build-Depends: dh-exec to modify icon files&#39; name
-  * debian/sylpheed.install
-    - install icon files to appropriate locations (Closes: #823018)
-  * debian/sylpheed.dirs
-    - adjust as above
-  * debian/dirs
-    - unused, drop it
-  * debian/sylpheed-debian.xpm
-    - menu system was already deprecated, drop it
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 09 Feb 2018 23:35:23 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/931241&#34;&gt;libsylphを更新&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;libsylph (1.1.0-19) unstable; urgency=medium
-
-  * debian/patches
-    - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
-
- -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Fri, 09 Feb 2018 23:32:14 +0900
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。&lt;a href=&#34;https://sylpheed.sraoss.jp/redmine/issues/296&#34;&gt;忘れないうちにupstreamにも登録&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;sylpheed (3.7.0-2) UNRELEASED; urgency=medium
-
-  * debian/control
-    - drop Build-Depends: libdbus-glib-1-dev
-      It was introduced since enchant with zemberek crashes without it in 3.0,
-      however, enchant package was built with &amp;quot;--disable-zemberek&amp;quot; option,
-      so it isn&#39;t necessary.
-  * debian/patches
-    - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
-      properly (Closes: #889971)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974&#34;&gt;sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

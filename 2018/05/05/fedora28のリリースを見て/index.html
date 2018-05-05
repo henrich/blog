@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Fedora28のリリースを見て。">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Fedora28のリリースを見て。 &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Fedora28のリリースを見て。</h3>
+				<span class="label label-primary">Sat, May 5, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+					 , 
+					<a href="/blog/tags/fedora">fedora</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><a href="https://docs.fedoraproject.org/f28/release-notes/">Fedora28のリリースノート</a>をつらつら眺めたら、<a href="https://docs.fedoraproject.org/f28/release-notes/sysadmin/Security.html">libcurlのリンクをlibssh2からlibsshに変えたよ</a>、というのがあった。へぇ、と思ってDebianでlibssh2に依存しているのを探してみた。</p>
+
+<pre><code>$ grep-dctrl -F Depends libssh2-1 -s Source /var/lib/apt/lists/*_Packages | sort | uniq
+Source: curl
+Source: gfal2
+Source: guacamole-server
+Source: libgit2
+Source: libpam-sshauth (0.4.1-2)
+Source: libssh2
+Source: libvirt
+Source: mlterm (3.8.4-1)
+Source: php-ssh2 (1.1.2+0.13-1)
+Source: pylibssh2
+Source: qemu
+Source: vlc (3.0.2-1)
+Source: yuma123
+Source: zabbix
+</code></pre>
+
+<p>curl以外にも幾つかある。で、qemuの様子をみてみたが、今の所<a href="https://lists.gnu.org/archive/html/qemu-devel/2018-01/msg04447.html">何度か提案パッチを書き直している</a>ようで簡単にs/libssh2/libssh/すればいいわけでは無いようである。qemuの場合はパフォーマンスが落ちた、という話も出てる。</p>
+
+<p>ともあれ、curlについてはupstreamが対応済みなのでFedoraがやったのと同じことは簡単にできそう&hellip;ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=897950">BTSしておいた</a>。</p>
+
+<ul>
+<li><a href="https://docs.fedoraproject.org/f28/release-notes/desktop/I18n.html">Glibc collation update and sync with CLDR</a>を追いかけると、<a href="https://sourceware.org/bugzilla/show_bug.cgi?id=14095">glibc2.28では取り込まれそう</a>でパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。</li>
+<li>Timeの更新は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881429">まだかなー</a>という感じ</li>
+<li><a href="https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife">Laptopのバッテリ時間改善</a>はカーネル側での変更が4.16で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&hellip;。</li>
+<li><a href="https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc">Libcrypt replaced by libxcrypt in glibc</a>は、Debianだとlibxcryptがあるけどこれはメンテされてない感じ&hellip;。うーん。upstreamでの話としては <a href="https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html">https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html</a> で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？</li>
+<li>modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&hellip;。</li>
+</ul>
+
+<p>そのうち過去のリリースノートも見てみるか。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
