@@ -45,7 +45,7 @@ Source: zabbix
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/desktop/I18n.html&#34;&gt;Glibc collation update and sync with CLDR&lt;/a&gt;を追いかけると、&lt;a href=&#34;https://sourceware.org/bugzilla/show_bug.cgi?id=14095&#34;&gt;glibc2.28では取り込まれそう&lt;/a&gt;でパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。&lt;/li&gt;
 &lt;li&gt;Timeの更新は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881429&#34;&gt;まだかなー&lt;/a&gt;という感じ&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife&#34;&gt;Laptopのバッテリ時間改善&lt;/a&gt;はカーネル側での変更が4.16で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife&#34;&gt;Laptopのバッテリ時間改善&lt;/a&gt;はカーネル側での変更が4.15で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc&#34;&gt;Libcrypt replaced by libxcrypt in glibc&lt;/a&gt;は、Debianだと&lt;a href=&#34;https://tracker.debian.org/pkg/libxcrypt&#34;&gt;libxcryptがあるけどこれはメンテされてない感じ&lt;/a&gt;&amp;hellip;。うーん。upstreamでの話としては &lt;a href=&#34;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&#34;&gt;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&lt;/a&gt; で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？&lt;/li&gt;
 &lt;li&gt;modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&amp;hellip;。&lt;/li&gt;
 &lt;/ul&gt;
@@ -88,6 +88,51 @@ lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libow
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Fedoraのsrpmを &lt;code&gt;dnf download --source libxcrypt glibc&lt;/code&gt; とかしてみてみると、どうやらある時点でglibc側での生成を止めてlibxcryptを使うようになってるようだ。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Kernelのsrpmを落としてきた。&lt;code&gt;BuildConflicts: rhbuildsys(DiskFree) &amp;lt; 500Mb&lt;/code&gt;  は面白いな、同じことやれるといいな。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Sources for kernel-tools
+Source2000: cpupower.service
+Source2001: cpupower.config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;名前から関係ありそうなのはこれかなぁ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# See &#39;cpupower help&#39; and cpupower(1) for more info
+CPUPOWER_START_OPTS=&amp;quot;frequency-set -g performance&amp;quot;
+CPUPOWER_STOP_OPTS=&amp;quot;frequency-set -g ondemand&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=Configure CPU power related settings
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/sysconfig/cpupower
+ExecStart=/usr/bin/cpupower $CPUPOWER_START_OPTS
+ExecStop=/usr/bin/cpupower $CPUPOWER_STOP_OPTS
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Debianだと&lt;code&gt;linux-cpupower&lt;/code&gt;パッケージに入っているcpupowerの調整、か。でも違う気がする&amp;hellip;。&lt;/p&gt;
+
+&lt;p&gt;で、再度ちゃんと文章読んでみたら&lt;code&gt;The initial focus of this change is to enable to following 3 hardware power-saving features by default:&lt;/code&gt;って書いてあるやん。あーこれはconfigで有効にするぜ、ってことか。&lt;code&gt;kernel-x86_64.config&lt;/code&gt;を探す。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CONFIG_SND_HDA_POWER_SAVE_DEFAULT=1
+CONFIG_SND_HDA_POWER_SAVE=y
+
+CONFIG_BT_HCIBTUSB_AUTOSUSPEND=y
+
+CONFIG_SATA_MOBILE_LPM_POLICY=3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;それらしいのはこれかなぁ&amp;hellip;これを全て有効にすればF28相当になる？ただし、SATAはリスクが増すし、Bluetoothも一部機種だとregressionが起きるのでパッチが必要なようだ。&lt;/p&gt;
 </description>
           </item>
         
