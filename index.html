@@ -97,7 +97,7 @@ https://osdn.net/projects/sawarabi-fonts/releases/rss \
 
 <ul>
 <li><a href="https://osdn.net/projects/sawarabi-fonts/releases/rss">https://osdn.net/projects/sawarabi-fonts/releases/rss</a> が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。</li>
-<li>で、uscan は <a href="foobar.html"</a> のような記述から対象のファイルを探している（これに気付くのにしばらくかかった）</li>
+<li>で、uscan は <code>&lt;a href=&quot;foobar.html&quot;&lt;/a&gt;</code> のような記述から対象のファイルを探している（これに気付くのにしばらくかかった）</li>
 <li>RSSを <code>pagemangle</code> オプションで無理やり書き換えて<code>a href</code>を作り出す</li>
 <li>これで最新版のバージョン自体は取得できる&hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう</li>
 <li>リダイレクト先のURLに<code>downloadurlmangle</code>オプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。</li>
