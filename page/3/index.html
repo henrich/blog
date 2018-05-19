@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.40.2" />
+	<meta name="generator" content="Hugo 0.40.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,81 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 5, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>chasenパッケージの更新。</li>
+</ul>
+
+<pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
+
+  * debian/control
+    - Vcs-* move to salsa.debian.org 
+    - use https for Homepage:
+    - set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
+      dependency (pulled automatically)
+    - set Standards-Version: 4.1.3
+  * debian/rules
+    - drop &quot;--with autoreconf&quot;
+    - specify &quot;--no-parallel&quot; to avoid FTBFS
+  * debian/compat
+    - set 10
+  * debian/watch
+    - update to version 4
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
+</code></pre>
+
+<ul>
+<li>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</li>
+</ul>
+
+<pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
+
+  * debian/control
+    - set Build-Depends: debhelper (&gt;= 11)
+  * debian/compat
+    - set 11
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
+</code></pre>
+
+<ul>
+<li><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -617,47 +692,6 @@ index 1507b5d..9073ab3 100644
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 23, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>snapperパッケージのメンテ。</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880144">aptが動いたときの自動スナップショットを無効にできないか？調整する設定を追加してはどうか？という提案</a>。「デフォルト有効ならいいように思う」とコメント。</li>
-<li>e2fsprogsがessentialパッケージでなくなるのに伴い、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292">e2fsprogsに依存してるみたいなんだけど、明示的にしてくれる？</a>というバグレポート。ext4サポートがそもそも動いてなかったから明示的にdisableにするかーという結論なんだけど、確認方法がわからないとリリースできない。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -863,7 +897,7 @@ index 1507b5d..9073ab3 100644
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.3 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

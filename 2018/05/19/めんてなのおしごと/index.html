@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Sat, Feb 3, 2018</span> in 
+				<span class="label label-primary">Sat, May 19, 2018</span> in 
 				 using tags
 				
 					
@@ -67,11 +67,38 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<ul>
-<li>sylpheedパッケージのpatchを<a href="http://sylpheed.sraoss.jp/redmine/issues/291">forwardしておいた</a></li>
-<li>screenfetchパッケージの<a href="https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz">smokeテストがさっそくfailしとった。。。</a>。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、<code>/usr/bin/screenfetch: line 1341: [: too many arguments</code> となっていた、と。<a href="https://tracker.debian.org/news/929555">パッチ作ってアップロードしたけど</a>、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&hellip;。</li>
-<li><a href="https://anonscm.debian.org/git/pkg-sylpheed/">aliothから</a>、sylph-searcher, sylfilter, libsylphをsalsaにインポート。</li>
+			<p>OSDN側の仕様変更に追随。</p>
+
+<ol>
+<li>最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった</li>
+<li>要望を出した</li>
+<li>対応としてRSS経由での取得が実装された</li>
+<li>&hellip;ということで debian/watch ファイルを書き換えて取得できるように</li>
+</ol>
+
+<pre><code>opts=&quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \
+pagemangle=s%&lt;osdn:file url=&quot;([^&lt;]*)&lt;/osdn:file&gt;%&lt;a href=&quot;$1&quot;&gt;$1&lt;/a&gt;%g, \
+downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;f=sawarabi-fonts%g;s/xz\//xz/&quot; \
+https://osdn.net/projects/sawarabi-fonts/releases/rss \
+ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
+</code></pre>
+
+<p>&hellip;自分でも何やってるか、よくわからなくなる。</p>
+
+<ul>
+<li><a href="https://osdn.net/projects/sawarabi-fonts/releases/rss">https://osdn.net/projects/sawarabi-fonts/releases/rss</a> が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。</li>
+<li>で、uscan は <a href="foobar.html"</a> のような記述から対象のファイルを探している（これに気付くのにしばらくかかった）</li>
+<li>RSSを <code>pagemangle</code> オプションで無理やり書き換えて<code>a href</code>を作り出す</li>
+<li>これで最新版のバージョン自体は取得できる&hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう</li>
+<li>リダイレクト先のURLに<code>downloadurlmangle</code>オプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。</li>
 </ul>
+
+<p>ここまでやって、とりあえずfonts-sawarabi-michonパッケージのアップデートをした。</p>
+
+<hr />
+
+<p>debootstrapのregressionな部分を直す提案&hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。
+<code>set -- -O &quot;$dest&quot; &quot;$from&quot; &quot;$@&quot;</code> は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。</p>
 
 		</div>
 	</div>

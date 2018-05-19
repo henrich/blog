@@ -8,10 +8,22 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 05 May 2018 14:40:09 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 19 May 2018 22:38:44 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 19 May 2018 22:38:44 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>OSDN側の仕様変更に追随。
+ 最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった 要望を出した 対応としてRSS経由での取得が実装された &amp;hellip;ということで debian/watch ファイルを書き換えて取得できるように  opts=&amp;quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \ pagemangle=s%&amp;lt;osdn:file url=&amp;quot;([^&amp;lt;]*)&amp;lt;/osdn:file&amp;gt;%&amp;lt;a href=&amp;quot;$1&amp;quot;&amp;gt;$1&amp;lt;/a&amp;gt;%g, \ downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;amp;f=sawarabi-fonts%g;s/xz\//xz/&amp;quot; \ https://osdn.net/projects/sawarabi-fonts/releases/rss \ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate  &amp;hellip;自分でも何やってるか、よくわからなくなる。
+ https://osdn.net/projects/sawarabi-fonts/releases/rss が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。 で、uscan は のような記述から対象のファイルを探している（これに気付くのにしばらくかかった） RSSを pagemangle オプションで無理やり書き換えてa hrefを作り出す これで最新版のバージョン自体は取得できる&amp;hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう リダイレクト先のURLにdownloadurlmangleオプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。  ここまでやって、とりあえずfonts-sawarabi-michonパッケージのアップデートをした。
+debootstrapのregressionな部分を直す提案&amp;hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。 set -- -O &amp;quot;$dest&amp;quot; &amp;quot;$from&amp;quot; &amp;quot;$@&amp;quot; は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。</description>
+    </item>
     
     <item>
       <title>Fedora28のリリースを見て。</title>

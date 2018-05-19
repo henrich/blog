@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2018-05-19T22:38:44+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/</loc>
     <lastmod>2018-05-05T14:40:09+09:00</lastmod>
   </url>
@@ -800,7 +805,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
-    <lastmod>2018-05-05T14:40:09+09:00</lastmod>
+    <lastmod>2018-05-19T22:38:44+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -824,7 +829,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/</loc>
-    <lastmod>2018-05-05T14:40:09+09:00</lastmod>
+    <lastmod>2018-05-19T22:38:44+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -848,7 +853,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/post/</loc>
-    <lastmod>2018-05-05T14:40:09+09:00</lastmod>
+    <lastmod>2018-05-19T22:38:44+09:00</lastmod>
     <priority>0</priority>
   </url>
   
