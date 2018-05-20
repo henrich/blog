@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, May 20, 2018</span> in 
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>birdfontがビルド依存しているlibgit2でtransitionが予定されてるから、experimentalに置いたパッケージで試して、というバグ登録がされたので、ビルドテスト。</p>
+
+<pre><code>sudo cowbuilder --create /var/cache/pbuilder/exp --distribution experimental
+sudo cowbuilder --build --base /var/cache/pbuilder/exp --distribution experimental --extrapackages &quot;libgit2-dev/experimental libmbedtls-dev/experimental&quot; birdfont_2.21.1+git8ae0c56f-2.dsc
+</code></pre>
+
+<p>&hellip;しかし、dpkg-deb &ndash;info で出来上がったパッケージを見てもlibgit2への依存が見当たらない？&hellip;どうやらどこかでlibgit2への依存が無くなっていたようだ、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=899040">依存関係から削除してクローズにした</a>。</p>
+
+<hr />
+
+<p>あとは pkg-nlp-ja なパッケージを tracker.debian.org を使ってメールを送るように書き換え&hellip;なのだけど、それに合わせて諸々の更新をしたためにひたすら作業&hellip;。</p>
+
+<ul>
+<li>chasen</li>
+<li>darts</li>
+<li>mecab</li>
+<li>mecab-jumandic</li>
+<li>mecab-naist-jdic</li>
+<li>naist-jdic</li>
+<li>mecab-ipadic</li>
+<li>unidic-mecab</li>
+</ul>
+
+<p>unidic-mecabはnew upstream releaseがあるものの、超巨大なデータのため、なんどかローカルの空き容量が０になってしまうと言う&hellip;まだインポートが終わらない。</p>
+
+<hr />
+
+<p>先日、Fedora28の省電力化のネタを見つけてBTSしたのだけど、linuxパッケージメンテナとしてはGitLabのMerge Requestの方がありがたいよ、と今日やっていたMini DebConfで発表していたのでsalsaでやることにした。</p>
+
+<p>念の為に元々Fedoraで作業したRed Hatの方に質問メールして「このconfigであってるよね？」と確認したところ、サクッと返信いただき、自信を持って作業を進められた。</p>
+
+<p>あとは足りなかった所（調子が悪い時に、どうやってオフにするのか）をメンテナに指摘されて、右往左往して探し回って<code>debian/changelog</code>に追加して完了。</p>
+
+<pre><code>diff --git a/debian/changelog b/debian/changelog
+index ace383d75..ffc538849 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -43,6 +43,19 @@ linux (4.17~rc5-1~exp1) UNRELEASED; urgency=medium
+   [ Vagrant Cascadian ]
+   * [armhf] Update mtd-modules: Replace pxa3xx_nand with marvell_nand.
+ 
++  [ Hideki Yamane ]
++  * Improve battery life on laptops (Closes: #898629)
++    Thanks to Hans de Goede &lt;hdegoede@redhat.com&gt;
++    - ATA: A new SATA link-powermanagement-policy will be the default on all
++      Intel mobile chipsets. This can be reverted by passing 
++      &quot;ahci.mobile_lpm_policy=0&quot; on the kernel commandline.
++    - sound: Enable Intel HDA codec power-saving by default with a 1 second
++      timeout. This can be overridden by passing &quot;snd_hda_intel.power_save=0&quot;
++      on the kernel commandline (0 is previously default).
++    - BlueTooth: Enable USB autosuspend for Bluetooth USB devices by default.
++      This can be disabled by passing &quot;btusb.enable_autosuspend=n&quot; on the
++      kernel commandline. 
++
+  -- Luca Boccassi &lt;bluca@debian.org&gt;  Wed, 02 May 2018 12:59:01 +0100
+ 
+ linux (4.17~rc3-1~exp1) experimental; urgency=medium
+diff --git a/debian/config/config b/debian/config/config
+index b5183a63f..d9ba69b1f 100644
+--- a/debian/config/config
++++ b/debian/config/config
+@@ -199,6 +199,7 @@ CONFIG_ATA_ACPI=y
+ CONFIG_SATA_ZPODD=y
+ CONFIG_SATA_PMP=y
+ CONFIG_SATA_AHCI=m
++CONFIG_SATA_MOBILE_LPM_POLICY=3
+ # CONFIG_SATA_AHCI_PLATFORM is not set
+ # CONFIG_AHCI_CEVA is not set
+ # CONFIG_AHCI_QORIQ is not set
+@@ -360,6 +361,7 @@ CONFIG_ZRAM=m
+ ## file: drivers/bluetooth/Kconfig
+ ##
+ CONFIG_BT_HCIBTUSB=m
++CONFIG_BT_HCIBTUSB_AUTOSUSPEND=y
+ CONFIG_BT_HCIBTUSB_BCM=y
+ CONFIG_BT_HCIBTUSB_RTL=y
+ CONFIG_BT_HCIBTSDIO=m
+@@ -7329,7 +7331,8 @@ CONFIG_SND_HDA_CODEC_CA0132_DSP=y
+ CONFIG_SND_HDA_CODEC_CMEDIA=y
+ CONFIG_SND_HDA_CODEC_SI3054=y
+ CONFIG_SND_HDA_GENERIC=y
+-CONFIG_SND_HDA_POWER_SAVE_DEFAULT=0
++CONFIG_SND_HDA_POWER_SAVE_DEFAULT=1
++CONFIG_SND_HDA_POWER_SAVE=y
+ 
+ ##
+ ## file: sound/pcmcia/Kconfig
+</code></pre>
+
+<p>無事マージされました。コードが書けなくたって、こんなやり方もあるんだぜ、と。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.3 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

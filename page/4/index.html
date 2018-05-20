@@ -60,6 +60,61 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 25, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888134">screenfetchをdockerで動かしたら一部の出力でcommand not foundが出てきた、というレポート</a>。でもテストしたVPSで作ったminimalなdebootstrap環境だと再現できねぇな？と思って該当の所を見る&hellip;</p>
+
+<pre><code>        thermal=&quot;/sys/class/hwmon/hwmon0/temp1_input&quot;
+        if [ -e $thermal ]; then
+                temp=$(bc &lt;&lt;&lt; &quot;scale=1; $(cat $thermal)/1000&quot;)
+        fi
+</code></pre>
+
+<p>おおぅ、なるほど。/sys/class/hwmon/hwmon0/temp1_inputなんてVMの環境下には生えてないからスルーしてたわけだ。よし、確認のため実マシンでdebootstrap&hellip;しようとしたらdashのバグの影響を踏んでdebootstrap出来ない！&hellip;別マシンで過去のchrootな環境を見つけてそこでテストして漸く確認。ついでにpgrepもcommand not found出てきたのはホスト側でXが動いているからか（報告者のdockerでは動いてなかったのだろう）。</p>
+
+<p>で、チャチャッと変更して&hellip;問題はこのrepositoryはaliothにまだあることでsalsaへのインポートを試してないこと。どうやるんだっけ&hellip;</p>
+
+<ul>
+<li><a href="https://lists.debian.org/debian-devel-announce/2017/12/msg00003.html">debian-devel-announceなメール</a>から<a href="https://wiki.debian.org/Salsa/Doc">Debian Wiki</a>へ、そして<a href="http://www.df7cb.de/blog/2017/Salsa_batch_import.html">該当の情報</a>を取得。</li>
+<li>スクリプトをコピーする</li>
+<li>GitLabのTokenを初めて生成してスクリプトに埋め込み <code>./salsa-import.sh screenfetch</code> という感じで実行&hellip;一瞬で終わって「え？マジ終わり？」という感想。</li>
+<li>無事にインポートされてるのを確認</li>
+</ul>
+
+<p>ここからはいつもどおりビルド→アップロード。gitのremote repo設定からaliothを消してsalsaを追加しておく。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -486,45 +541,6 @@ $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
 <ul>
 <li>BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで <code>apt install intel-microcode</code> で直った（<a href="https://tracker.debian.org/pkg/intel-microcode">最新のパッケージはbackports提供</a>なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Dec 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/gpg">gpg</a>
-						
-								 , 
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://dev.gnupg.org/T3619">GnuPGのバグを見つけたのでレポートしておきました</a>。あとLFの人が書いてるガイドに<a href="https://github.com/lfit/itpol/issues/27">Issue</a>と<a href="https://github.com/lfit/itpol/pull/26">PR</a>。</p>
 
 					
 				</div>

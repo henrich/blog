@@ -8,10 +8,26 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 19 May 2018 22:38:44 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 20 May 2018 12:07:33 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 20 May 2018 12:07:33 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>birdfontがビルド依存しているlibgit2でtransitionが予定されてるから、experimentalに置いたパッケージで試して、というバグ登録がされたので、ビルドテスト。
+sudo cowbuilder --create /var/cache/pbuilder/exp --distribution experimental sudo cowbuilder --build --base /var/cache/pbuilder/exp --distribution experimental --extrapackages &amp;quot;libgit2-dev/experimental libmbedtls-dev/experimental&amp;quot; birdfont_2.21.1+git8ae0c56f-2.dsc  &amp;hellip;しかし、dpkg-deb &amp;ndash;info で出来上がったパッケージを見てもlibgit2への依存が見当たらない？&amp;hellip;どうやらどこかでlibgit2への依存が無くなっていたようだ、ということで依存関係から削除してクローズにした。
+あとは pkg-nlp-ja なパッケージを tracker.debian.org を使ってメールを送るように書き換え&amp;hellip;なのだけど、それに合わせて諸々の更新をしたためにひたすら作業&amp;hellip;。
+ chasen darts mecab mecab-jumandic mecab-naist-jdic naist-jdic mecab-ipadic unidic-mecab  unidic-mecabはnew upstream releaseがあるものの、超巨大なデータのため、なんどかローカルの空き容量が０になってしまうと言う&amp;hellip;まだインポートが終わらない。
+先日、Fedora28の省電力化のネタを見つけてBTSしたのだけど、linuxパッケージメンテナとしてはGitLabのMerge Requestの方がありがたいよ、と今日やっていたMini DebConfで発表していたのでsalsaでやることにした。
+念の為に元々Fedoraで作業したRed Hatの方に質問メールして「このconfigであってるよね？」と確認したところ、サクッと返信いただき、自信を持って作業を進められた。
+あとは足りなかった所（調子が悪い時に、どうやってオフにするのか）をメンテナに指摘されて、右往左往して探し回ってdebian/changelogに追加して完了。
+diff --git a/debian/changelog b/debian/changelog index ace383d75..ffc538849 100644 --- a/debian/changelog +++ b/debian/changelog @@ -43,6 +43,19 @@ linux (4.17~rc5-1~exp1) UNRELEASED; urgency=medium [ Vagrant Cascadian ] * [armhf] Update mtd-modules: Replace pxa3xx_nand with marvell_nand.</description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
