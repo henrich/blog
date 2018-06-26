@@ -42,12 +42,12 @@
             <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
-            <description>&lt;p&gt;そういえば、&lt;a href=&#34;https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/&#34;&gt;1.0.100&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/&#34;&gt;1.0.101&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/&#34;&gt;1.0.102&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/&#34;&gt;1.0.103&lt;/a&gt;, [1.0.104]() という感じでdebootstrap直したりバグ埋め込んだりしてましたね。&lt;/p&gt;
+            <description>&lt;p&gt;そういえば、&lt;a href=&#34;https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/&#34;&gt;1.0.100&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/&#34;&gt;1.0.101&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/&#34;&gt;1.0.102&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/&#34;&gt;1.0.103&lt;/a&gt;, [1.0.104]( ) という感じでdebootstrap直したりバグ埋め込んだりしてましたね。&lt;/p&gt;
 
 &lt;p&gt;この中で得た知見&amp;hellip;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;sytemdのcontainer環境下かどうかは &lt;code&gt;$container&lt;/code&gt; を見ればいい、あるいはsystemdが動作している環境なら &lt;code&gt;/var/run/systemd/container&lt;/code&gt; 見る&lt;/li&gt;
+&lt;li&gt;systemdのcontainer環境下かどうかは &lt;code&gt;$container&lt;/code&gt; を見ればいい、あるいはsystemdが動作している環境なら &lt;code&gt;/var/run/systemd/container&lt;/code&gt; 見る&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;dnsmasq&lt;/code&gt; を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（&lt;a href=&#34;https://int128.hatenablog.com/entry/20130101/1357055467&#34;&gt;参考にさせてもらったサイト&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 </description>

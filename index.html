@@ -131,12 +131,12 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>そういえば、<a href="https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/">1.0.100</a>, <a href="https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/">1.0.101</a>, <a href="https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/">1.0.102</a>, <a href="https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/">1.0.103</a>, [1.0.104]() という感じでdebootstrap直したりバグ埋め込んだりしてましたね。</p>
+						<p>そういえば、<a href="https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/">1.0.100</a>, <a href="https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/">1.0.101</a>, <a href="https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/">1.0.102</a>, <a href="https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/">1.0.103</a>, [1.0.104]( ) という感じでdebootstrap直したりバグ埋め込んだりしてましたね。</p>
 
 <p>この中で得た知見&hellip;</p>
 
 <ul>
-<li>sytemdのcontainer環境下かどうかは <code>$container</code> を見ればいい、あるいはsystemdが動作している環境なら <code>/var/run/systemd/container</code> 見る</li>
+<li>systemdのcontainer環境下かどうかは <code>$container</code> を見ればいい、あるいはsystemdが動作している環境なら <code>/var/run/systemd/container</code> 見る</li>
 <li><code>dnsmasq</code> を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（<a href="https://int128.hatenablog.com/entry/20130101/1357055467">参考にさせてもらったサイト</a>)</li>
 </ul>
 
