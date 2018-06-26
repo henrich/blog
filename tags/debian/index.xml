@@ -8,10 +8,31 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 20 May 2018 12:07:33 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 26 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OSSummit Japanでボランティアスタッフした</title>
+      <link>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</guid>
+      <description>6&amp;frasl;20-22で行われたOpen Source Summit Japanでのボランティアスタッフに参加してきました。会場の様子は公式の写真（その２）で雰囲気をどうぞ。
+ Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。 CIPはDebian LTSに協力が進んでいるけど、もっとコラボレーションの要素を増やしたいね&amp;hellip;。CIPに関わる人にパッケージングのレクチャーとか？ CELFイベントでお会いした方に挨拶できたのは良かった Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない DNFを拡張してライセンスとかも表示したりとかというのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。 LTS kernelはmainline＋8000コミットぐらいあるというところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。  </description>
+    </item>
+    
+    <item>
+      <title>まだdebootstrapいじってる</title>
+      <link>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
+      <description>そういえば、1.0.100, 1.0.101, 1.0.102, 1.0.103, [1.0.104]() という感じでdebootstrap直したりバグ埋め込んだりしてましたね。
+この中で得た知見&amp;hellip;
+ sytemdのcontainer環境下かどうかは $container を見ればいい、あるいはsystemdが動作している環境なら /var/run/systemd/container 見る dnsmasq を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（参考にさせてもらったサイト)  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
@@ -737,8 +758,9 @@ Files-Excluded: contrib/idn contrib/dnsperf-2.1.0.0-1 contrib/nslint-3.0a2 contr
       <pubDate>Fri, 13 Oct 2017 21:59:22 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>gbpの使い方をざっと教えて というリクエストを頂いたのでざっくりメモ。
-$ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git Cloning into &#39;cutter-testing-framework&#39;... remote: Counting objects: 3334, done. remote: Compressing objects: 100% (949/949), done. remote: Total 3334 (delta 2336), reused 3323 (delta 2336) Receiving objects: 100% (3334/3334), 3.69 MiB | 442.00 KiB/s, done. Resolving deltas: 100% (2336/2336), done. $ cd cutter-testing-framework/ $ gbp import-orig --uscan --pristine-tar gbp:error: Repository does not have branch &#39;upstream&#39; for upstream sources. If there is none see file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT on howto create it otherwise use --upstream-branch to specify it.</description>
+      <description>-----------------------------------------------  $ git clone https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git Cloning into &amp;lsquo;cutter-testing-framework&amp;rsquo;&amp;hellip; remote: Counting objects: 3334, done. remote: Compressing objects: 100% (949&amp;frasl;949), done. remote: Total 3334 (delta 2336), reused 3323 (delta 2336) Receiving objects: 100% (3334&amp;frasl;3334), 3.69 MiB | 442.00 KiB/s, done. Resolving deltas: 100% (2336&amp;frasl;2336), done.
+$ cd cutter-testing-framework/
+$ gbp import-orig &amp;ndash;uscan &amp;ndash;pristine-tar gbp:error: Repository does not have branch &amp;lsquo;upstream&amp;rsquo; for upstream sources. If there is none see file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT on howto create it otherwise use &amp;ndash;upstream-branch to specify it.</description>
     </item>
     
     <item>
@@ -810,10 +832,12 @@ Uncaught exception from user code: Plugin &amp;quot;bootstrap3&amp;quot; missing
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/</guid>
       <description>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。
-Package: texlive-latex-extra-doc Download-Size: 384 MB Package: texlive-pstricks-doc Download-Size: 248 MB  time apt-get download texlive-latex-extra-doc texlive-pstricks-doc という感じで取得。そして、さらに別のリージョンから試してみたらどうなるか？をやってみました。遠くのほうがいいかな、と西日本リージョンで仮想マシンを作成。そしてテストをしてみた。。。のですが、go-apt-cacherが fatal error: runtime: out of memory とメモリ不足で落ちます。VMをスケールアップして再度トライしました。
-まずは普通にftp.jp.debian.orgからの取得。
-Fetched 412 MB in 36s (11.3 MB/s) real 0m36.643s Fetched 412 MB in 30s (13.4 MB/s) real 0m30.864s Fetched 412 MB in 26s (15.4 MB/s) real 0m27.031s  次に西日本から取得。
-Fetched 412 MB in 19s (20.7 MB/s) real 0m20.026s Fetched 412 MB in 19s (21.1 MB/s) real 0m19.</description>
+Package: texlive-latex-extra-doc Download-Size: 384 MB Package: texlive-pstricks-doc Download-Size: 248 MB  まずは普通にftp.jp.debian.orgからの取得。  Fetched 412 MB in 36s (11.3 MB/s) real 0m36.643s
+Fetched 412 MB in 30s (13.4 MB/s) real 0m30.864s
+Fetched 412 MB in 26s (15.4 MB/s) real 0m27.031s
+ 次に西日本から取得。  Fetched 412 MB in 19s (20.7 MB/s) real 0m20.026s
+Fetched 412 MB in 19s (21.1 MB/s) real 0m19.688s
+Fetched 412 MB in 18s (22.2 MB/s) real 0m18.</description>
     </item>
     
     <item>
@@ -1109,7 +1133,7 @@ E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signat
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>昨日の gnome-todo の続き。
-lintian warningを確認。 W: gnome-todo: gir-section-not-libdevel usr/share/gir-1.0/Gtd-1.0.gir gnome N: N: GObject-Introspection XML files (/usr/share/gir-1.0/Foo-23.gir) must be N: made available in a development package in the libdevel section of the N: archive. This is normally the same libfoo-dev package that contains N: other development files. N: N: Refer to /usr/share/doc/gobject-introspection/policy.txt for details. N: N: Severity: normal, Certainty: certain N: N: Check: gir, Type: binary, source  /usr/share/gir-1.0/Gtd-1.0.gir が含まれてるのに section: gnome なgnome-todoパッケージはあかんやろ、と。これはlibdevelなlibgnome-todo-devを作って放り込め、ということだな。</description>
+lintian warningを確認。 W: gnome-todo: gir-section-not-libdevel usr/share/gir-1.0/Gtd-1.0.gir gnome N: N: GObject-Introspection XML files (/usr/share/gir-1.0/Foo-23.gir) must be N: made available in a development package in the libdevel section of the N: archive. This is normally the same libfoo-dev package that contains N: other development files. N: N: Refer to /usr/share/doc/gobject-introspection/policy.txt for details. N: N: Severity: normal, Certainty: certain N: N: Check: gir, Type: binary, source   W: gnome-todo: typelib-section-not-introspection usr/lib/x86_64-linux-gnu/girepository-1.</description>
     </item>
     
     <item>
@@ -1263,7 +1287,7 @@ maintainer dashboardより。
 その他、ruby-interpriterのdropなど。なぜかruby2.1がarm64のdeb-portsに残ってる状況なのが不思議。
 apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、本体側のpo訳してた＼(^o^)／
 Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、GitHubを見るようにする。以下、試行錯誤の結果。
-$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream  git checkout --orphan &amp;lt;branch&amp;gt;はなかなか思いつかない&amp;hellip;</description>
+$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream  ------------------------------ 前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.</description>
     </item>
     
     <item>
@@ -1333,8 +1357,7 @@ krb5でsaslバックエンドなLDAPが使えるようになってない、と�
  pbuilder-satisfydepends-dummy : Depends: libnet-amqp-perl (&amp;gt;= 0.06) but it is not going to be installed  とビルドの際にエラーが出たが、これはパッケージバージョンが0.06~dfsg-2だったため。(&amp;gt;= 0.06~dfsg)を指定するようにして回避。
 試しにcowbuilderに必要なローカルパッケージをインストールしたものを作ってビルドしてみるが、sidのlibmojolicious-perlのバージョンが低い&amp;hellip;一時的に依存バージョンを下げたブランチを作ってビルドすることにする。
 E: openqa source: source-is-missing public/javascripts/chosen.jquery.js line length is 292 characters (&amp;gt;256)  libjs-chosenを提供してもダメっぽいので、明示的にoverrideした&amp;hellip;これで何も考えてないビルドは完了。ここからテスト時依存パッケージをひたすら追加していく作業をする予定。その次にspecファイルから必要なビルド作業を追加していく。&amp;hellip;まだまだ先が長い。
-#requires &#39;Mojolicious::Plugin::Bootstrap3&#39;;とあるのでこちらもdh-make-perlで。
-$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3 (snip) Can&#39;t find &#39;Mojolicious::Plugin::Bootstrap3&#39; module or distribution on CPAN  なんですと？
+ $ dh-make-perl &amp;ndash;cpan Mojolicious::Plugin::Bootstrap3 (snip) Can&amp;rsquo;t find &amp;lsquo;Mojolicious::Plugin::Bootstrap3&amp;rsquo; module or distribution on CPAN ``` なんですと？
 検索するとhttps://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm にあるのだけども。。。？…おおぅMojolicious::Plugin::Bootstrap3 will be DEPRECATED.とある ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</description>
     </item>
     

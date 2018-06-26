@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.40.3" />
+	<meta name="generator" content="Hugo 0.42.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,202 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jul 19, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857518">snapper</a></li>
+<li><a href="https://tracker.debian.org/news/857525">jruby-joni</a>。<a href="https://lintian.debian.org/tags/missing-classpath.html">「missing-classpath」</a>なるwarningを消したい、ということで<code>Class-Path: jcodings.jar</code>の1行パッチをMANIFEST.MFに追加。</li>
+</ul>
+
+<hr />
+
+<p>d-iがrootパスワードの定期変更を推奨しているというツイートを見たので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868869">パッチ作ってBTS</a>しておいた。</p>
+
+<hr />
+
+<p>silversearcher-ag-elにRCバグが登録されたので、対応を依頼してたのをレビュー。同じような移行をしたdash-elをみると良いんじゃないかということでコメント→翌日アップロードしておいた</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jul 18, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<p>どうやら<a href="http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340">3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた</a>ようだ。</p>
+
+<hr />
+
+<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>より。</p>
+
+<ul>
+<li>libmojolicious-plugin-renderfile-perlの<a href="http://bugs.debian.org/839621">#839621</a>を修正。manのtypoは<a href="https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20">PR送った</a>。</li>
+<li>libmojolicious-plugin-assetpack-perlもついでに更新&hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&hellip;</li>
+</ul>
+
+<hr />
+
+<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/857081">fonts-kouzan-mouhitsu</a>。サイトを見に行ったら更新されていたので反映。</li>
+</ul>
+
+<hr />
+
+<h2 id="octiconsのビルドにはnpmモジュールが必要">octiconsのビルドにはnpmモジュールが必要</h2>
+
+<p>octiconsのビルドに必要なのを見てみるか&hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。</p>
+
+<pre><code>  &quot;devDependencies&quot;: {
+    &quot;autoprefixer&quot;: &quot;^6.3.6&quot;,
+    &quot;ava&quot;: &quot;^0.16.0&quot;,
+    &quot;grunt&quot;: &quot;^1.0.1&quot;,
+    &quot;grunt-contrib-clean&quot;: &quot;^1.0.0&quot;,
+    &quot;grunt-contrib-copy&quot;: &quot;^1.0.0&quot;,
+    &quot;grunt-cssnano&quot;: &quot;^2.1.0&quot;,
+    &quot;grunt-svgmin&quot;: &quot;^4.0.0&quot;,
+    &quot;grunt-svgstore&quot;: &quot;^1.0.0&quot;
+  },
+</code></pre>
+
+<p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
+
+<pre><code> [error]   num2fraction: dependency node-num2fraction not in debian
+ [error]   browserslist: dependency node-browserslist not in debian
+ [error]   normalize-range: dependency node-normalize-range not in debian
+ [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
+ [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   postcss: dependency node-postcss not in debian
+</code></pre>
+
+<p>browserslistをnpm2debすると</p>
+
+<pre><code> [error]   caniuse-lite: dependency node-caniuse-lite not in debian
+ [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
+</code></pre>
+
+<p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で<strong>150個以上のnpmモジュールをdebパッケージにすることが必要</strong>なようだ。マジか&hellip;。</p>
+
+<h3 id="パッケージに落とせてない所">パッケージに落とせてない所</h3>
+
+<p>css-treeはalpha版しかないからかnpm2debがコケる。</p>
+
+<pre><code>$ npm2deb create css-tree
+Traceback (most recent call last):
+  File &quot;/usr/bin/npm2deb&quot;, line 7, in &lt;module&gt;
+    sys.exit(main(sys.argv))
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 138, in main
+    args.func(args)
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/scripts.py&quot;, line 273, in create
+    npm2deb.start()
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 71, in start
+    self.download()
+  File &quot;/usr/lib/python3/dist-packages/npm2deb/__init__.py&quot;, line 404, in download
+    raise ValueError(exception)
+ValueError: Error downloading package css-tree
+npm ERR! notarget No compatible version found: css-tree@'*'
+npm ERR! notarget Valid install targets:
+npm ERR! notarget [&quot;1.0.0-alpha&quot;,&quot;1.0.0-alpha2&quot;,&quot;1.0.0-alpha3&quot;,&quot;1.0.0-alpha4&quot;,&quot;1.0.0-alpha5&quot;,&quot;1.0.0-alpha6&quot;,&quot;1.0.0-alpha7&quot;,&quot;1.0.0-alpha8&quot;,&quot;1.0.0-alpha9&quot;,&quot;1.0.0-alpha10&quot;,&quot;1.0.0-alpha11&quot;,&quot;1.0.0-alpha12&quot;,&quot;1.0.0-alpha13&quot;,&quot;1.0.0-alpha14&quot;,&quot;1.0.0-alpha15&quot;,&quot;1.0.0-alpha16&quot;,&quot;1.0.0-alpha17&quot;,&quot;1.0.0-alpha18&quot;,&quot;1.0.0-alpha19&quot;]
+npm ERR! notarget 
+npm ERR! notarget This is most likely not a problem with npm itself.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! System Linux 4.9.0-2-amd64
+npm ERR! command &quot;/usr/bin/nodejs&quot; &quot;/usr/bin/npm&quot; &quot;pack&quot; &quot;css-tree&quot;
+npm ERR! cwd /home/henrich/src/collabmaint/npm-for-octicons/css-tree
+npm ERR! node -v v4.8.3
+npm ERR! npm -v 1.4.21
+npm ERR! code ETARGET
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
+npm ERR! not ok code 0
+</code></pre>
+
+<p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
+
+<pre><code> [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
+ [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
+ [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
+ [error]   @concordance/react: dependency node-@concordance/react not in debian                              
+ [error]   @types/node: dependency node-@types/node not in debian
+</code></pre>
+
+<p>npm2debでの変換中、気になるメッセージとしては以下。</p>
+
+<pre><code>Using fakeupstream to download npm dist tarballs, because upstream
+git repo is missing tags. Its better to ask upstream to tag their releases
+instead of using npm dist tarballs as dist tarballs may contain pre built files
+and may not include tests.
+</code></pre>
+
+<p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -173,14 +369,14 @@ $ git fetch
 $ git branch -u github/master upstream
 </code></pre>
 
-<p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
+<pre><code class="language-git">
+------------------------------
+前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489)、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。
 
-<hr />
-
-<p>前に一応チェックした<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">screenfetchのLaunchPadへの報告</a>、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。</p>
-
-<pre><code>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
 </code></pre>
+
+<p>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
+```</p>
 
 <p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
 
@@ -485,162 +681,17 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
 
 <hr />
 
-<p><code>#requires 'Mojolicious::Plugin::Bootstrap3';</code>とあるのでこちらもdh-make-perlで。</p>
-
-<pre><code>$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
-(snip)
-Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
+<pre><code class="language-#requires">
 </code></pre>
 
-<p>なんですと？</p>
+<p>$ dh-make-perl &ndash;cpan Mojolicious::Plugin::Bootstrap3
+(snip)
+Can&rsquo;t find &lsquo;Mojolicious::Plugin::Bootstrap3&rsquo; module or distribution on CPAN
+```
+なんですと？</p>
 
 <p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
 ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 9, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
-
-<hr />
-
-<h2 id="openqaをビルドできるように-必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
-
-<p>そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？<a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">upstreamのspecファイルを確認</a>すると、testを実行するときだけ指定するとかなのかな。</p>
-
-<pre><code>%if %{with tests}
-cpanm --installdeps --with-feature=test . 
-%endif
-</code></pre>
-
-<p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&rdquo;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
-
-<pre><code>libmojolicious-perl
-libwww-perl
-libtimedate-perl
-perltidy
-libdbix-class-perl
-libscalar-list-utils-perl
-libtest-simple-perl
-liburi-perl
-libcgi-pm-perl
-</code></pre>
-
-<h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
-
-<pre><code>$ dh-make-perl --cpan SQL::SplitStatement
-== dh-make-perl 0.95 ==
-(snip)
-Needs the following debian packages during building: perl (&gt;= 5.8.9), libtest-exception-perl (&gt;= 0.27)
-Needs the following modules for which there are no debian packages available:
- - SQL::Tokenizer
-</code></pre>
-
-<p>あら、また足りない&hellip;</p>
-
-<pre><code>$ dh-make-perl --cpan SQL::Tokenizer
-</code></pre>
-
-<p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
-
-<p>(あと<code>upstream/metadata</code>なるファイルが作成されてたのだけど、これはAppStreamがらみ？)</p>
-
-<p>ここまで出来たのでlibsql-splitstatement-perlもITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752">Bug#867752</a>として登録、NEW queueへとアップロードしておいた</p>
-
-<hr />
-
-<p>気分転換に<a href="https://tracker.debian.org/news/854888">xgridfitを更新</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 8, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>mecab-jumandicパッケージのリグレッションを作ってしまったので、<a href="https://tracker.debian.org/news/854524">直した</a>。</p>
-
-<p>autopkgtestのネタとかとして使えないかなぁ、と思う。</p>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/854586">libmojolicious-plugin-assetpack-perlアップロード</a>。
-Lintianがtypoを報告してきていたので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126">pull request</a>。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。</p>
-
-<hr />
-
-<p>poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。</p>
-
-<pre><code>poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
-</code></pre>
-
-<hr />
-
-<p>libuninameslistのdebian/copyright を 1.0 にして<a href="https://tracker.debian.org/news/854587">アップロード</a>。次はmulti-arch絡みのsuggestion対応するかね&hellip;</p>
-
-<pre><code>libuninameslist-dev could be marked Multi-Arch: same
-libuninameslist1 could be marked Multi-Arch: same
-</code></pre>
 
 					
 				</div>
@@ -838,8 +889,17 @@ libuninameslist1 could be marked Multi-Arch: same
         
     
     
+    
+    
+    
+    
+    
+        
+        
+    
+    
     <li
-    ><a href="/blog/page/16/">16</a></li>
+    ><a href="/blog/page/17/">17</a></li>
     
     
     <li
@@ -848,7 +908,7 @@ libuninameslist1 could be marked Multi-Arch: same
     </li>
     
     <li>
-        <a href="/blog/page/16/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/17/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -867,7 +927,7 @@ libuninameslist1 could be marked Multi-Arch: same
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.3 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.42.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

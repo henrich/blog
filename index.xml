@@ -8,8 +8,52 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 20 May 2018 12:07:33 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 26 Jun 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>OSSummit Japanでボランティアスタッフした</title>
+            <link>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</link>
+            <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</guid>
+            <description>&lt;p&gt;&lt;sup&gt;6&lt;/sup&gt;&amp;frasl;&lt;sub&gt;20&lt;/sub&gt;-22で行われた&lt;a href=&#34;https://events.linuxfoundation.org/events/open-source-summit-japan-2018/&#34;&gt;Open Source Summit Japan&lt;/a&gt;でのボランティアスタッフに参加してきました。会場の様子は&lt;a href=&#34;https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page1&#34;&gt;公式の写真&lt;/a&gt;（&lt;a href=&#34;https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page2&#34;&gt;その２&lt;/a&gt;）で雰囲気をどうぞ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。&lt;/li&gt;
+&lt;li&gt;CIPは&lt;a href=&#34;https://schd.ws/hosted_files/ossalsjp18/e4/20180620-CIP-OSSJ-v2.1-web.pdf&#34;&gt;Debian LTSに協力が進んでいる&lt;/a&gt;けど、もっとコラボレーションの要素を増やしたいね&amp;hellip;。CIPに関わる人にパッケージングのレクチャーとか？&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ossalsjp18.sched.com/event/EaY5/oss-license-compliance-for-software-developers-not-for-legal-experts-satoru-ueda-sony&#34;&gt;CELFイベントでお会いした方&lt;/a&gt;に挨拶できたのは良かった&lt;/li&gt;
+&lt;li&gt;Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ossalsjp18.sched.com/event/Eat7/dandified-way-to-package-management-in-yocto-project-zheng-ruoqin-fujitsu&#34;&gt;DNFを拡張してライセンスとかも表示したりとか&lt;/a&gt;というのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://schd.ws/hosted_files/ossalsjp18/6a/LTSI-OSSJ2018-final.pdf&#34;&gt;LTS kernelはmainline＋8000コミットぐらいある&lt;/a&gt;というところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>まだdebootstrapいじってる</title>
+            <link>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</link>
+            <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
+            <description>&lt;p&gt;そういえば、&lt;a href=&#34;https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/&#34;&gt;1.0.100&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/&#34;&gt;1.0.101&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/&#34;&gt;1.0.102&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/&#34;&gt;1.0.103&lt;/a&gt;, [1.0.104]() という感じでdebootstrap直したりバグ埋め込んだりしてましたね。&lt;/p&gt;
+
+&lt;p&gt;この中で得た知見&amp;hellip;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sytemdのcontainer環境下かどうかは &lt;code&gt;$container&lt;/code&gt; を見ればいい、あるいはsystemdが動作している環境なら &lt;code&gt;/var/run/systemd/container&lt;/code&gt; 見る&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dnsmasq&lt;/code&gt; を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（&lt;a href=&#34;https://int128.hatenablog.com/entry/20130101/1357055467&#34;&gt;参考にさせてもらったサイト&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -46,7 +90,7 @@ sudo cowbuilder --build --base /var/cache/pbuilder/exp --distribution experiment
 
 &lt;hr /&gt;
 
-&lt;p&gt;先日、Fedora28の省電力化のネタを見つけてBTSしたのだけど、linuxパッケージメンテナとしてはGitLabのMerge Requestの方がありがたいよ、と今日やっていたMini DebConfで発表していたのでsalsaでやることにした。&lt;/p&gt;
+&lt;p&gt;先日、Fedora28の省電力化のネタを見つけてBTSしたのだけど、&lt;a href=&#34;https://www.decadent.org.uk/ben/talks/mdch2018-help-the-kernel-team.pdf&#34;&gt;linuxパッケージメンテナとしてはGitLabのMerge Requestの方がありがたいよ&lt;/a&gt;、と今日やっていたMini DebConfで発表していたのでsalsaでやることにした。&lt;/p&gt;
 
 &lt;p&gt;念の為に元々Fedoraで作業したRed Hatの方に質問メールして「このconfigであってるよね？」と確認したところ、サクッと返信いただき、自信を持って作業を進められた。&lt;/p&gt;
 
@@ -711,81 +755,6 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/936899&#34;&gt;libmojo-rabbitmq-client-perlパッケージをアップロード&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/936895&#34;&gt;libmojolicious-plugin-assetpack-perlパッケージをアップロード&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;debootstrapパッケージと戯れたり。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 24 Feb 2018 19:46:10 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;ここしばらくの作業とか。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/935657&#34;&gt;jruby-joniパッケージを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sphinx-doc/sphinx-intl/pull/21&#34;&gt;reproducible buildパッチをupstreamにforward&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;林さんの依頼でrepositoryをインポート
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/input-method-team/fcitx-imlist&#34;&gt;fcitx-imlist&lt;/a&gt;、アイコン追加。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/groonga&#34;&gt;groonga&lt;/a&gt;、アイコン追加。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/groonga-normalizer-mysql&#34;&gt;groonga-normalizer-mysql&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/gntp-send&#34;&gt;gntp-send&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/growl-for-linux&#34;&gt;growl-for-linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/hal-flash&#34;&gt;hal-flash&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;倉敷さんの依頼でrepositoryをインポート
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/goldencheetah&#34;&gt;goldencheetah&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/yaskkserv&#34;&gt;yaskkserv&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;リポジトリをインポート
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/tomoyo-tools&#34;&gt;tomoyo-tools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/debian/riece&#34;&gt;riece&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&amp;hellip;とメーリングリストで訪ねてみた所、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665&#34;&gt;systemd(udev) のバグ修正&lt;/a&gt;のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&amp;hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867&#34;&gt;docker向けだけにしてパッチを投げた&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418&#34;&gt;検証してプッシュしてみた&lt;/a&gt;のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009&#34;&gt;別の問題（fallbackする先が間違ってしまう）&lt;/a&gt;を見つけたり、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892&#34;&gt;sync -fするのはどうか、という話に首を突っ込んでみたり&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562&#34;&gt;Kaliをサポートするためにコードをシェアできないのかね？というのにパッチ&lt;/a&gt;したり、その上で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564&#34;&gt;Kaliサポートの追加のパッチ&lt;/a&gt;投げたり、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851&#34;&gt;謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり&lt;/a&gt;、Ubuntuで何も言わずにfailするので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=736995&#34;&gt;Suggests: ubuntu-archive-keyring 追加してみるのはどうか？を改めて押したり&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 14 Feb 2018 21:58:28 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/932687&#34;&gt;rieceパッケージを更新&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/932971&#34;&gt;tiarraパッケージの修正が不十分で動かなかったのでもう一度修正してexperimentalへ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/932972&#34;&gt;tomoyo-toolsパッケージを更新&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

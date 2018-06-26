@@ -118,14 +118,14 @@ $ git fetch
 $ git branch -u github/master upstream
 </code></pre>
 
-<p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
+<pre><code class="language-git">
+------------------------------
+前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489)、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。
 
-<hr />
-
-<p>前に一応チェックした<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">screenfetchのLaunchPadへの報告</a>、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。</p>
-
-<pre><code>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
 </code></pre>
+
+<p>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
+```</p>
 
 <p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
 
@@ -145,7 +145,7 @@ $ git branch -u github/master upstream
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.3 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.42.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

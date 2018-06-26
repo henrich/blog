@@ -69,7 +69,7 @@ $ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170
 その他、ruby-interpriterのdropなど。なぜかruby2.1がarm64のdeb-portsに残ってる状況なのが不思議。
 apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、本体側のpo訳してた＼(^o^)／
 Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、GitHubを見るようにする。以下、試行錯誤の結果。
-$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream  git checkout --orphan &amp;lt;branch&amp;gt;はなかなか思いつかない&amp;hellip;</description>
+$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream  ------------------------------ 前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.</description>
     </item>
     
   </channel>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Floss on Forget me not...</title>
+    <link>https://henrich.github.io/blog/categories/floss/</link>
+    <description>Recent content in Floss on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <lastBuildDate>Tue, 26 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://henrich.github.io/blog/categories/floss/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OSSummit Japanでボランティアスタッフした</title>
+      <link>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</guid>
+      <description>6&amp;frasl;20-22で行われたOpen Source Summit Japanでのボランティアスタッフに参加してきました。会場の様子は公式の写真（その２）で雰囲気をどうぞ。
+ Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。 CIPはDebian LTSに協力が進んでいるけど、もっとコラボレーションの要素を増やしたいね&amp;hellip;。CIPに関わる人にパッケージングのレクチャーとか？ CELFイベントでお会いした方に挨拶できたのは良かった Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない DNFを拡張してライセンスとかも表示したりとかというのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。 LTS kernelはmainline＋8000コミットぐらいあるというところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。  </description>
+    </item>
+    
+    <item>
+      <title>まだdebootstrapいじってる</title>
+      <link>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
+      <description>そういえば、1.0.100, 1.0.101, 1.0.102, 1.0.103, [1.0.104]() という感じでdebootstrap直したりバグ埋め込んだりしてましたね。
+この中で得た知見&amp;hellip;
+ sytemdのcontainer環境下かどうかは $container を見ればいい、あるいはsystemdが動作している環境なら /var/run/systemd/container 見る dnsmasq を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（参考にさせてもらったサイト)  </description>
+    </item>
+    
+  </channel>
+</rss>

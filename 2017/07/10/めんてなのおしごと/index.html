@@ -85,14 +85,14 @@
 
 <hr />
 
-<p><code>#requires 'Mojolicious::Plugin::Bootstrap3';</code>とあるのでこちらもdh-make-perlで。</p>
-
-<pre><code>$ dh-make-perl --cpan Mojolicious::Plugin::Bootstrap3
-(snip)
-Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
+<pre><code class="language-#requires">
 </code></pre>
 
-<p>なんですと？</p>
+<p>$ dh-make-perl &ndash;cpan Mojolicious::Plugin::Bootstrap3
+(snip)
+Can&rsquo;t find &lsquo;Mojolicious::Plugin::Bootstrap3&rsquo; module or distribution on CPAN
+```
+なんですと？</p>
 
 <p>検索すると<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm">https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.1003/lib/Mojolicious/Plugin/Bootstrap3.pm</a> にあるのだけども。。。？…おおぅ<code>Mojolicious::Plugin::Bootstrap3 will be DEPRECATED.</code>と<a href="https://metacpan.org/pod/release/JHTHORSEN/Mojolicious-Plugin-Bootstrap3-3.3601/lib/Mojolicious/Plugin/Bootstrap3.pm">ある</a>
 ということでMojolicious::Plugin::Bootstrap3は無しで良いようだ。</p>
@@ -111,7 +111,7 @@ Can't find 'Mojolicious::Plugin::Bootstrap3' module or distribution on CPAN
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.40.3 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.42.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

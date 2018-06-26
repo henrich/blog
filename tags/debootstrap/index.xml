@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debootstrap on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/debootstrap/</link>
+    <description>Recent content in Debootstrap on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <lastBuildDate>Tue, 26 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://henrich.github.io/blog/tags/debootstrap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>まだdebootstrapいじってる</title>
+      <link>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
+      <description>そういえば、1.0.100, 1.0.101, 1.0.102, 1.0.103, [1.0.104]() という感じでdebootstrap直したりバグ埋め込んだりしてましたね。
+この中で得た知見&amp;hellip;
+ sytemdのcontainer環境下かどうかは $container を見ればいい、あるいはsystemdが動作している環境なら /var/run/systemd/container 見る dnsmasq を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（参考にさせてもらったサイト)  </description>
+    </item>
+    
+  </channel>
+</rss>
