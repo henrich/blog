@@ -29,7 +29,7 @@
       <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
-      <description>そういえば、1.0.100, 1.0.101, 1.0.102, 1.0.103, [1.0.104]( ) という感じでdebootstrap直したりバグ埋め込んだりしてましたね。
+      <description>そういえば、1.0.100, 1.0.101, 1.0.102, 1.0.103, 1.0.104 という感じでdebootstrap直したりバグ埋め込んだりしてましたね。
 この中で得た知見&amp;hellip;
  systemdのcontainer環境下かどうかは $container を見ればいい、あるいはsystemdが動作している環境なら /var/run/systemd/container 見る dnsmasq を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（参考にさせてもらったサイト)  </description>
     </item>
