@@ -49,7 +49,7 @@ FAIL 02-test_ocr.t (exit status: 1)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;最初は &lt;code&gt;Warning. Invalid resolution 0 dpi. Using 70 instead.&lt;/code&gt; というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで `` のようにして埋め込んだのだが、さっぱり出力が変わらない。&lt;/li&gt;
+&lt;li&gt;最初は &lt;code&gt;Warning. Invalid resolution 0 dpi. Using 70 instead.&lt;/code&gt; というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで &lt;code&gt;convert a.png -density 300 -units PixelsPerInch b.png&lt;/code&gt; のようにして埋め込んだのだが、さっぱり出力が変わらない。&lt;/li&gt;
 &lt;li&gt;ぐぐったところ&lt;a href=&#34;https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/&#34;&gt;「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」&lt;/a&gt;という説明のページを見つけてへたりこんだり。&lt;/li&gt;
 &lt;li&gt;どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と &lt;code&gt;Data::Dumper&lt;/code&gt; を使う&lt;/li&gt;
 &lt;/ul&gt;
@@ -60,7 +60,7 @@ print Dumper $ocr;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで t/data/bootmenu-ocr.png を開き、認識してる文字列の座標を確認→ t/data/bootmenu-ocr.ref.json を調整→成功！&lt;/li&gt;
+&lt;li&gt;おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで &lt;code&gt;t/data/bootmenu-ocr.png&lt;/code&gt; を開き、認識してる文字列の座標を確認→ &lt;code&gt;t/data/bootmenu-ocr.ref.json&lt;/code&gt; を調整→成功！&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;make check-doc&lt;/code&gt; でエラー。&lt;/li&gt;
 &lt;/ul&gt;
 
