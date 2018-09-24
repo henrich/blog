@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.42.2" />
+	<meta name="generator" content="Hugo 0.47.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,179 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 30, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&hellip;<a href="https://github.com/facebook/nailgun/pull/118">新しくPR作ったところ、マージされた</a>。これでパッケージ側のパッチがまた一つ減らせる。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 29, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。</li>
+</ul>
+
+<pre><code>$ git checkout --orphan mones
+$ git rm --cached -r *
+$ rm -r ./*
+$ git pull alioth master
+$ git push salsa mones
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jan 28, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/git">git</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>qrencodeパッケージをsalsaに配置してもらって、<a href="https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a">前に報告した些細な修正</a>をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？</li>
+<li>同じくqrencodeパッケージの報告者の勘違いに起因すると思われる<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984">バグ</a><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266">二つ</a>をクローズしておいた</li>
+</ul>
+
+<hr />
+
+<p>qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。</p>
+
+<p>さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。</p>
+
+<ol>
+<li>まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。<code>mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av</code> などとした。</li>
+<li>つぎに親が同一ではないブランチ（orphan branch)を作る <code>git checkout --orphan master</code></li>
+<li>この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す <code>git rm --cached -r debian</code></li>
+<li><code>git remote add upstream https://github.com/fukuchi/libqrencode</code> でupstreamを引っ張ってくる</li>
+<li><code>git pull upstream master</code>したがtag持ってこなかったから<code>git pull upstream</code>も実行</li>
+<li><code>git checkout debian</code>して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために <code>git merge v4.0.0  --allow-unrelated-histories</code></li>
+</ol>
+
+<p>上記の変更点がackされたら提案したい</p>
+
+<hr />
+
+<ul>
+<li>svn-workbenchの<a href="http://pysvn.tigris.org/issues/show_bug.cgi?id=212">1行パッチをフォワード</a>。使いづらいな。。。</li>
+<li>svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。</li>
+</ul>
+
+<hr />
+
+<ul>
+<li>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</li>
+</ul>
+
+<pre><code>dh_install                                                                                                                         
+perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
+
+Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
+</code></pre>
+
+<hr />
+
+<ul>
+<li>libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347">パッチしておいた</a></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -394,129 +567,6 @@ index 1507b5d..9073ab3 100644
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jan 14, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージがちょっと古くなっているようだ。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887144">upstreamのサイトが移動してるね、ということでBTS</a></li>
-<li>ついでに自分の手元でアップデート出来ないかな？と作業して大方できた。新規追加されたtestスクリプトがconfigureを引数なしでハードコードしていて実行されるのでパッケージのインストールが壊れるという問題があったのに引っかかって小一時間潰してしまった&hellip;。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/">subversionからお引っ越し</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 13, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>www.debian.or.jpのコンテンツはSubversionで管理していて、コミット可能なのはJPのメンバーだけだったのだけど、salsa.debian.orgに引っ越して見通しを良くしてみたくなったので作業した。</p>
-
-<p>svn2gitを使いコンバート。</p>
-
-<p>非常にわかりづらい（というか導線がない？）のだけど、GitLabにOrganizationというかTeamというかを登録するページからdebianjp-teamとして登録し、適当なsub projectとしてwebを作り、コンバートしたGit repositoryを突っ込む。</p>
-
-<p>Ansibleで<a href="https://cloudgarage.jp/">CloudGarage</a>のVPSへデプロイ（ここで現状のサイトコンテンツの更新手順に更新漏れを見つけたり）。CloudGarageさんは<a href="https://cloudgarage.jp/dap/">開発者支援プログラム</a>を使わせてもらっていて助かる。相変わらず書いたplaybook.ymlがちょっと出来のいいバッチファイル程度なのが気になるけど、仕方がない。</p>
-
-<p>とまぁ、そんなこんなで時間を使った。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 8, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/900074">fonts-oradano-mincho-gsrrをアップロード</a></li>
-<li><a href="https://tracker.debian.org/news/900087">birdfontをアップロード</a></li>
-<li>ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -526,13 +576,12 @@ index 1507b5d..9073ab3 100644
 
 <ul class="pagination">
     
-    <li>
-        <a href="/blog/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/blog/page/3/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/blog/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -544,8 +593,7 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li
-    ><a href="/blog/">1</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/">1</a></li>
     
     
     
@@ -556,8 +604,7 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li
-    ><a href="/blog/page/2/">2</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/2/">2</a></li>
     
     
     
@@ -568,8 +615,7 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li
-    ><a href="/blog/page/3/">3</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/3/">3</a></li>
     
     
     
@@ -580,8 +626,7 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li
-    class="active"><a href="/blog/page/4/">4</a></li>
+    <li class="page-item active"><a class="page-link" href="/blog/page/4/">4</a></li>
     
     
     
@@ -592,8 +637,7 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li
-    ><a href="/blog/page/5/">5</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/5/">5</a></li>
     
     
     
@@ -604,7 +648,7 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -705,17 +749,15 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li
-    ><a href="/blog/page/17/">17</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/17/">17</a></li>
     
     
-    <li
-    >
-    <a href="/blog/page/5/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    <li class="page-item">
+    <a href="/blog/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/blog/page/17/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -734,7 +776,7 @@ index 1507b5d..9073ab3 100644
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.42.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.47.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

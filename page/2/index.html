@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.42.2" />
+	<meta name="generator" content="Hugo 0.47.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,194 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/05/02/%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E3%83%90%E3%82%B0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%82%8B%E3%81%8B%E3%81%A8%E3%81%8B.../">どうやってバグレポートしてるか、とか...</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 2, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>URLは非常に単純で <code>https://bugs.debian.org/&lt;package&gt;</code> とすればバグレポートを参照できる。今回は<a href="https://bugs.debian.org/git-buildpackage">https://bugs.debian.org/git-buildpackage</a> 。<code>querybts git-buildpackage</code>でも閲覧はできるのだけど、バグレポートが大量にあると行ったり来たりして参照するのはブラウザのほうがやりやすいので&hellip;。</p>
+
+<p>ソースの取得は <code>apt source &lt;package&gt;</code> で可能。なのだけど、パッケージ作業をGitで作業してたりすると、まぁHEADに合わせて変更して <code>git format-patch</code> したpatchファイルを送りつけた方が取り込んでもらいやすいのは間違いないので、Vcsで取得。どこにリポジトリがあってどのVcs使ってるか&hellip;は特に考えること無くdebcheckoutコマンドを使う。<code>debcheckout git-buildpackage</code> として取得。</p>
+
+<pre><code>$ debcheckout git-buildpackage
+declared git repository at https://git.sigxcpu.org/cgit/git-buildpackage/ 
+git clone https://git.sigxcpu.org/cgit/git-buildpackage/ git-buildpackage ...
+Cloning into 'git-buildpackage'... 
+</code></pre>
+
+<p>&hellip;としたのだけど、なんで自前のrepoに保持してるのか。超遅い。通常ならsalsa.debian.org配下なので直ぐなのに、10分経っても全然応答が無い&hellip;仕方がないので、今回は<code>apt source git-buildpackage</code>で取得。</p>
+
+<p>さて、optionでgrepしたりして&hellip;</p>
+
+<pre><code> $ grep git-component -r ./
+./docs/manpages/gbp-buildpackage.xml:      &lt;arg rep='repeat'&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;component&lt;/replaceable&gt;&lt;/arg&gt;
+./docs/manpages/gbp-buildpackage.xml:          &lt;term&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;COMPONENT&lt;/replaceable&gt;
+./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
+./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
+./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo'])
+./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo',
+</code></pre>
+
+<p>あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/05/01/gbp-buildpackage---git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/">gbp buildpackage --git-componentオプションの罠</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, May 1, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>poppler-dataパッケージは、一般的なパッケージと違ってupstream tarballが複数ある構成（multiple upstream tarball）なので、git-buildpackageが使えなかったのだけど、git-buildpackage側での実験的なサポートが追加されていたので思い立って作業。</p>
+
+<p>まずはGitリポジトリにリリース済みのパッケージをインポートして、salsaにインポート。</p>
+
+<pre><code>$ gbp import-dscs --debsnap poppler-data
+$ git remote add salsa git@salsa.debian.org:debian/poppler-data.git
+$ git push salsa --all
+$ git push salsa --tags
+</code></pre>
+
+<p>で、manページを参照して実験的な &ndash;git-component オプションの使い方を確認。</p>
+
+<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=ai0 --git-component=from-ghostscript
+</code></pre>
+
+<ul>
+<li>対象となるtarballはpoppler-data_0.4.9.orig-from-ghostscript.tar.xzとpoppler-data_0.4.9.orig-ai0.tar.gzとしてpristine-tarブランチにコミットされている</li>
+<li>multiple tarballは orig.tarball-<name>.tar.[g|x]gという形で保持されているので、<name>の部分だけを指定</li>
+</ul>
+
+<p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。<del>理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため</del>&hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&hellip;）</p>
+
+<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
+(snip)
+gbp:error: Error creating poppler-data_0.4.9.orig-from-ghostscript.tar.gz: Pristine-tar couldn't checkout &quot;poppler-data_0.4.9.orig-from-ghostscript.tar.gz&quot;: fatal: Path 'poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta failed
+</code></pre>
+
+<p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/">遅々として進まず</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Apr 29, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/etc">etc</a>
+						
+								 , 
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Samsung SSDに/homeを移そうとコピーを実施したが、一晩経っても10GBぐらいしか進まず。これはいくらなんでも遅すぎる&hellip;ということでファームウェアを更新することを決める。</p>
+
+<p><a href="http://www.samsung.com/semiconductor/minisite/ssd/download/tools/">http://www.samsung.com/semiconductor/minisite/ssd/download/tools/</a> にてファームウェアのisoファイルを取得、マウントしてimgファイルを取り出してさらにそれをマウントしてファイルを取り出し、FreeDOSのブータブルUSBメモリにコピーしてファームウェアのアップデートを行った。以前よりはマシになったが、それでも遅い&hellip;。</p>
+
+<hr />
+
+<p>古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。</p>
+
+<p>次にUbuntu18.04 Server版を入れる&hellip;jaistミラーから落としたら中身がdebian-installerで変わってない？途中のpartitionerのところ（47%までは進んだ）で進まなくなってしまったので中断して、改めてUbuntu.comから落としたら、こちらのイメージは独自インストーラー版に変わっていた。こちらを試したかったのよね、シンプルでいい感じですね&hellip;とインストールは特にエラーも無く終わったのだけど、やっぱりoperating system not foundで変わらず。何故だ&hellip;。</p>
+
+<p>で、Debian9.4のインストーラーでやったら、普通にインストール終わり→起動したので、これにArchを上書きして完了。パーティションテーブルがおかしかったのだろうけど、d-iがなんとかしてくれた、という感じ。</p>
+
+<p>めも
+* d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする
+* あと全体通して読み返してみたい所</p>
+
+<hr />
+
+<p>Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。<a href="https://git.archlinux.org/arch-install-scripts.git/">https://git.archlinux.org/arch-install-scripts.git/</a> にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。</p>
+
+<hr />
+
+<p>poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべく<a href="https://lists.freedesktop.org/archives/poppler/2018-April/012999.html">popplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメール</a>には一切反応せず、か。相変わらずだな、popplerの人は&hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。</p>
+
+<p>&hellip;debian/changelogの記述間違えた。。。</p>
+
+<p>あと libmojolicious-plugin-assetpack-perl もアップデートしておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -439,226 +627,6 @@
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Feb 12, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/932275">mirmonパッケージを更新</a></li>
-<li><a href="https://tracker.debian.org/news/932269">sylpheedパッケージを更新</a>、<a href="https://salsa.debian.org/sylpheed-team/sylpheed/merge_requests/1">Merge Requestもやってみる</a></li>
-<li><a href="https://tracker.debian.org/news/932417">loquiパッケージを更新</a></li>
-</ul>
-
-<hr />
-
-<p>shutterのアップデートが放置されてたので、やってもいい？と聞いてみた。</p>
-
-<pre><code>shutter (0.94-1) UNRELEASED; urgency=medium
-
-  * Team upload
-
-  [ gregor herrmann ]
-  * Add libnet-oauth-perl to Recommends.
-    Needed by the Dropbox module. (LP: #1372050)
-
-  [ Hideki Yamane ]
-  * New upstream release (Closes: #887887)
-  * deian/control
-    - s/perlmagick/libimage-magick-perl/ (Closes: #789236)
-    - set Build-Depends: debhelper (&gt;= 11)
-    - set Standards-Version: 4.1.3
-  * debian/watch
-    - update to version 4
-  * debian/compat
-    - set 11
-  * debian/patches
-    - drop 0002-Force-utf8-for-retrieved-window-name-from-Gtk2.patch, merged
-      upstream
-    - drop 0003-Fix-error-on-executing-xdg-email.patch, merged upstream
-    - drop insecure_use_of_system.patch, merged upstream
-    - drop CVE-2016-10081.patch, merged upstream
-    - refresh fix-perl-system-calls
-
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 12 Feb 2018 09:30:17 +0900
-</code></pre>
-
-<p>で、OK出たので<a href="https://tracker.debian.org/news/932299">アップロード</a></p>
-
-<hr />
-
-<p>チェック作業中にxfonts-*なパッケージを削除する必要があったので作業してたら、気になるメッセージ。</p>
-
-<pre><code>xfonts-75dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
-warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
-warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
-
-
-xfonts-100dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
-warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
-warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
-</code></pre>
-
-<p>うーん、xfontsなパッケージ見てみるほうがいいかもしれない。GitLabの機能を使えば、X strike forceとsub projectを共有できたりするのかしら？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Feb 11, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/932144">jruby-joniパッケージをアップデート</a></li>
-</ul>
-
-<pre><code>jruby-joni (2.1.14-1) unstable; urgency=medium
-
-  * New upstream release
-  * debian/patches
-    - drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream
-  * debian/control
-    - set Standards-Version: 4.1.3
-    - update Dependency version
-  * debian/maven.rules
-    - update junit version to 4.x to avoid FTBFS
-</code></pre>
-
-<p>@Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&hellip;。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 10, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/931316">xfonts-mplusを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931318">xfonts-shinonomeを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931319">xfonts-ayuを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931322">xfonts-efont-unicodeを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931323">xfonts-kanameを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931337">xfonts-naga10を更新</a></li>
-<li><a href="https://tracker.debian.org/news/931540">fonts-aoyagi-kouzan-tを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931541">fonts-arphic-bkai00mpを更新</a></li>
-<li><a href="https://tracker.debian.org/news/931645">jcodingsを更新</a>、salsa移行はまだ目処立たず。</li>
-<li><a href="https://tracker.debian.org/news/931659">nailgunを更新</a>、salsa移行はまだ目処立たず。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</li>
-</ul>
-
-<pre><code>make[1]: Entering directory '/builds/fonts-team/xfonts-kappa20'
-bdftopcf k20m.bdf | gzip -c9 -n &gt; pcf/k20m.pcf.gz
-/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
-Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
-</code></pre>
-
-<p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
-
-<hr />
-
-<p>sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。</p>
-
-<pre><code>  * debian/control
-    - add Build-Depends: dh-exec to modify icon files' name
-  * debian/sylpheed.install
-    - install icon files to appropriate locations (Closes: #823018)
-  * debian/sylpheed.dirs
-    - adjust as above
-  * debian/dirs
-    - unused, drop it
-  * debian/sylpheed-debian.xpm
-    - menu system was already deprecated, drop it
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -668,13 +636,12 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
 
 <ul class="pagination">
     
-    <li>
-        <a href="/blog/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/blog/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/blog/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -686,8 +653,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
         
     
     
-    <li
-    ><a href="/blog/">1</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/">1</a></li>
     
     
     
@@ -698,8 +664,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
         
     
     
-    <li
-    class="active"><a href="/blog/page/2/">2</a></li>
+    <li class="page-item active"><a class="page-link" href="/blog/page/2/">2</a></li>
     
     
     
@@ -710,8 +675,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
         
     
     
-    <li
-    ><a href="/blog/page/3/">3</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/3/">3</a></li>
     
     
     
@@ -722,16 +686,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -841,17 +796,24 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
         
     
     
-    <li
-    ><a href="/blog/page/17/">17</a></li>
     
     
-    <li
-    >
-    <a href="/blog/page/3/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/17/">17</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/blog/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/blog/page/17/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -870,7 +832,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.42.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.47.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

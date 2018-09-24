@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.42.2" />
+	<meta name="generator" content="Hugo 0.47.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,175 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 17, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>働きかけていた<a href="https://www.faq.idcf.jp/app/answers/detail/a_id/819/c/22">IDCFクラウドさんでのDebian8設定の不備</a>が漸く公開された。
+
+<ul>
+<li>ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&hellip;。</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>bind9のchangelogが興味深い。</p>
+
+<pre><code>  * Add support for downloading upstream sources using d/watch
+    + Make d/copyright machine readable for Files-Excluded: support
+    + Update Files-Exclude: * to remove obsolete software dropped in
+      contrib/, but not really used
+</code></pre>
+
+<p>watchはこんな感じ</p>
+
+<pre><code>opts=\
+repack,\
+compression=xz,\
+repacksuffix=+dfsg,\
+uversionmangle=s/((rc|b)\d+)$/~$1/,\
+dirversionmangle=s/((rc|b)\d+)$/~$1/,\
+dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
+</code></pre>
+
+<p>copyrightはこんな感じ</p>
+
+<pre><code>Files-Excluded: contrib/idn
+                contrib/dnsperf-2.1.0.0-1
+                contrib/nslint-3.0a2
+                contrib/query-loc-0.4.0
+                contrib/queryperf
+                contrib/zkt-1.1.3
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 16, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fonts-sawarabi-minchoをアップロード</li>
+<li>yydebugのVcs-Gitが間違ったままだった&hellip;直した。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Oct 15, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>パッケージを拾って色々分析居しているサイトが<a href="https://repology.org/maintainer/henrich%40debian.org/problems">担当しているパッケージの問題を列挙してた</a>ので対応する。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/879346">poppler-data</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879341">fonts-ipaexfont</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879347">fonts-ipafont-nonfree</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879348">fonts-ipafont-nonfree-jisx0208</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879353">fonts-ipafont</a>を更新</li>
+</ul>
+
+<hr />
+
+<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">packages overview</a>を参照して問題洗い出し</p>
+
+<ul>
+<li>git pushを忘れていたのを幾つか対応。</li>
+<li>xfonts-* パッケージが今までの<code>Section: x11</code>でなくて<code>Section: fonts</code>をlintianで推奨されるようになったので、ホント？という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609">質問をした</a></li>
+<li><a href="https://tracker.debian.org/news/879352">pleaiades</a>のwatchファイルがhttpだったのを直した</li>
+<li><a href="https://tracker.debian.org/news/879349">jcodings</a>のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）</li>
+<li><a href="https://tracker.debian.org/news/879439">yydebug</a>を諸々更新。</li>
+<li><a href="http://martiansoftware.com/nailgun/">nailgunのウェブサイト</a>を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&hellip;。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -433,277 +602,6 @@ dh_auto_install: cp ./debian/cargo-checksum.json /build/fd-4.0.0/debian/cargo_re
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Oct 7, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://www.debian.org/releases/stretch/amd64/release-notes/">リリースノート</a>の更新に気がついたので追従しておいた。</li>
-<li>openSUSEをいじってたらsnapperのアップデートがあったが、<a href="https://github.com/openSUSE/snapper/issues/364">そのバージョンのタグがgit repositoryに打たれてない。。。</a></li>
-<li>openQAやos-autoinstもタグが打たれてないので、<a href="https://progress.opensuse.org/issues/25826">お願いを出す</a>など&hellip;。</li>
-</ul>
-
-<hr />
-
-<p>openQAを漸くビルドし始めたのだけど、早速モジュールが足りないというエラーが&hellip;</p>
-
-<pre><code>Can't locate Mojolicious/Plugin/AssetPack/Backcompat.pm in @INC (you may need
-        to install the Mojolicious::Plugin::AssetPack::Backcompat module)
-</code></pre>
-
-<p>なんでupstreamの依存関係には含まれとらんのだろう？</p>
-
-<p>んじゃさくっとdh-make-perl&hellip;したらcpanに無い？？？どうやら消されているようだ。仕方がないので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/issues/129">upstreamに質問</a>
-→ <a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/">backpan</a>というところに消したのは置いてあるよ、と教えてもらった。しかし、<a href="http://backpan.cpantesters.org/authors/id/J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-Backcompat-1.24.readme">本来これは必要ないはず</a>、なんだけども&hellip;？</p>
-
-<p>兎にも角にも、とりあえずぶち込んでみてtestを実行してみると&hellip;またエラーだ。以下が延々と。</p>
-
-<pre><code>Uncaught exception from user code:
-        Plugin &quot;bootstrap3&quot; missing, maybe you need to install it?
-        Mojolicious::Plugins::load_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;) called at /usr/share/perl5/Mojolicious/Plugins.pm line 46
-        Mojolicious::Plugins::register_plugin(Mojolicious::Plugins=HASH(0x562086593f80), &quot;bootstrap3&quot;, OpenQA::WebAPI=HASH(0x562086540380), HASH(0x5620867fe6d8)) called at /usr/share/perl5/Mojolicious.pm line 186
-        Mojolicious::plugin(OpenQA::WebAPI=HASH(0x562086540380), &quot;bootstrap3&quot;, HASH(0x5620867fe6d8)) called at lib/OpenQA/WebAPI.pm line 185
-        OpenQA::WebAPI::startup(OpenQA::WebAPI=HASH(0x562086540380)) called at /usr/share/perl5/Mojolicious.pm line 179
-        Mojolicious::new(&quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Mojo/Server.pm line 17
-        Mojo::Server::build_app(Mojo::Server=HASH(0x56208650f6d0), &quot;OpenQA::WebAPI&quot;) called at /usr/share/perl5/Test/Mojo.pm line 247
-        Test::Mojo::new(&quot;Test::Mojo&quot;, &quot;OpenQA::WebAPI&quot;) called at ./t/05-scheduler-dependencies.t line 212
-</code></pre>
-
-<pre><code>Can't locate t/ui/PhantomTest.pm in @INC (you may need to install the t::ui::PhantomTest module) (@INC contains: /build/openqa-4.3/t/ui lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./t/ui/01-list.t line 37.
-BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
-    (F) You said to do (or require, or use) a file that couldn't be found.
-    Perl looks for the file in all the locations mentioned in @INC, unless
-    the file name included the full path to the file.  Perhaps you need
-    to set the PERL5LIB or PERL5OPT environment variable to say where the
-    extra library is, or maybe the script needs to add the library name
-    to @INC.  Or maybe you just misspelled the name of the file.  See
-    &quot;require&quot; in perlfunc and lib.
-</code></pre>
-
-<pre><code>Uncaught exception from user code:
-        Can't locate dbicdh/_common/deploy/_any/21-seeds.pl in @INC (@INC contains: /build/openqa-4.3/t lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.0 /usr/local/share/perl/5.26.0 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at (eval 1326) line 4.
-         at /usr/share/perl5/Context/Preserve.pm line 42.
-</code></pre>
-
-<p>Mojolicious::Plugin::Bootstrap3 が必要そうだ。t::ui::PhantomTest と dbicdh/_common/deploy/_any/21-seeds.pl  はわからない。。。</p>
-
-<p>&hellip;とここまで来たところで「upstreamもtestを実行していないので、とりあえず無視」ということにした。</p>
-
-<ul>
-<li>ビルド時には存在しないユーザーにchownしてる
-
-<ul>
-<li>ということはpostinstでchownするほうがいいか</li>
-</ul></li>
-<li>assetsディレクトリが存在しないので悩んでいたら、4.3の時点では存在せず、masterにはある&hellip;
-
-<ul>
-<li>コメントアウトしておく。</li>
-</ul></li>
-<li>存在しない systemd service ファイルのインストールが&hellip;
-
-<ul>
-<li>とりあえず消す</li>
-</ul></li>
-</ul>
-
-<p>ということで4.3のビルドは一旦終わった。</p>
-
-<hr />
-
-<p>色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&hellip;うわ、これ Makefile の最初のところで <code>./script/generate-packed-assets</code> というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&hellip;厄介な&hellip;。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Oct 6, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
-</ul>
-
-<hr />
-
-<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
-
-<ul>
-<li>1.4GBが1.0GBになるのは大きいと思う</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
-
-<ul>
-<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
-
-<ul>
-<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Oct 4, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
-
-<pre><code>Package: texlive-latex-extra-doc
-Download-Size: 384 MB
-
-Package: texlive-pstricks-doc
-Download-Size: 248 MB
-</code></pre>
-
-<pre><code class="language-time">
-
-まずは普通にftp.jp.debian.orgからの取得。
-
-</code></pre>
-
-<p>Fetched 412 MB in 36s (11.3 MB/s)
-real    0m36.643s</p>
-
-<p>Fetched 412 MB in 30s (13.4 MB/s)
-real    0m30.864s</p>
-
-<p>Fetched 412 MB in 26s (15.4 MB/s)
-real    0m27.031s</p>
-
-<pre><code>
-次に西日本から取得。
-
-</code></pre>
-
-<p>Fetched 412 MB in 19s (20.7 MB/s)
-real    0m20.026s</p>
-
-<p>Fetched 412 MB in 19s (21.1 MB/s)
-real    0m19.688s</p>
-
-<p>Fetched 412 MB in 18s (22.2 MB/s)
-real    0m18.746s</p>
-
-<pre><code>
-
-東でやってみたら
-
-</code></pre>
-
-<p>Fetched 412 MB in 24s (16.9 MB/s)
-real    0m24.203s</p>
-
-<p>Fetched 412 MB in 24s (17.2 MB/s)
-real    0m24.598s</p>
-
-<pre><code>
-という感じでリージョンまたぐよりも逆に遅かった…何故だ。
-
---------
-結論
-
-</code></pre>
-
-<p>西日本： 21.3MBs
-東日本： 17.0MBs
-ダイレクト： 13.6 MBs
-```</p>
-
-<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -713,13 +611,12 @@ real    0m24.598s</p>
 
 <ul class="pagination">
     
-    <li>
-        <a href="/blog/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/blog/page/7/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/blog/page/7/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -731,8 +628,7 @@ real    0m24.598s</p>
         
     
     
-    <li
-    ><a href="/blog/">1</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/">1</a></li>
     
     
     
@@ -743,8 +639,7 @@ real    0m24.598s</p>
         
     
     
-    <li
-    ><a href="/blog/page/2/">2</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/2/">2</a></li>
     
     
     
@@ -755,8 +650,7 @@ real    0m24.598s</p>
         
     
     
-    <li
-    ><a href="/blog/page/3/">3</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/3/">3</a></li>
     
     
     
@@ -767,16 +661,7 @@ real    0m24.598s</p>
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -796,8 +681,16 @@ real    0m24.598s</p>
         
     
     
-    <li
-    ><a href="/blog/page/7/">7</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/7/">7</a></li>
     
     
     
@@ -808,8 +701,7 @@ real    0m24.598s</p>
         
     
     
-    <li
-    class="active"><a href="/blog/page/8/">8</a></li>
+    <li class="page-item active"><a class="page-link" href="/blog/page/8/">8</a></li>
     
     
     
@@ -820,8 +712,7 @@ real    0m24.598s</p>
         
     
     
-    <li
-    ><a href="/blog/page/9/">9</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/9/">9</a></li>
     
     
     
@@ -832,7 +723,7 @@ real    0m24.598s</p>
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -897,17 +788,15 @@ real    0m24.598s</p>
         
     
     
-    <li
-    ><a href="/blog/page/17/">17</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/17/">17</a></li>
     
     
-    <li
-    >
-    <a href="/blog/page/9/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    <li class="page-item">
+    <a href="/blog/page/9/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/blog/page/17/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -926,7 +815,7 @@ real    0m24.598s</p>
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.42.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.47.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

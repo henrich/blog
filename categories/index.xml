@@ -13,9 +13,18 @@
     
     
     <item>
+      <title>Debian</title>
+      <link>https://henrich.github.io/blog/categories/debian/</link>
+      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/categories/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Floss</title>
       <link>https://henrich.github.io/blog/categories/floss/</link>
-      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/categories/floss/</guid>
       <description></description>
