@@ -71,18 +71,17 @@
 
 <p>？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて <code>sudo update-initramfs -c -k 4.9.0-3-amd64</code> のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。</p>
 
-<p><code>
+<p><code>bash
 $ LC_ALL=C ls -al /usr/sbin/update-initramfs*
 lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&gt; /bin/true
 -rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib</code></p>
 
 <p>あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と <code>sudo update-initramfs/distrib -c -k 4.9.0-3-amd64</code> のようにすると無事にイメージが作られたので、<code>update-grub</code> を実行して変更を反映、再起動すると無事起動できた。更に調べたところ</p>
 
-<p><code>
+<p><code>bash
 $ dpkg -L initramfs-tools
 (snip)
-diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
-</code></p>
+diverted by pkgsel to: /usr/sbin/update-initramfs.distrib</code></p>
 
 <p>ということで <code>pkgsel</code> なるパッケージがこれを実施したことが判明。じゃぁ、と <code>apt show pkgsel</code> しても出てこない…あ、これはudebだね、ということで<a href="https://packages.debian.org/sid/pkgsel">サイト</a>を確認…あたり。<code>apt source pkgsel</code> して <code>debian/changelog</code> をみたら <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073">Bug#912073</a> を踏んでいたと判明。んもー。寝る前の貴重な時間が…</p>
 

@@ -23,18 +23,17 @@
 
 &lt;p&gt;？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて &lt;code&gt;sudo update-initramfs -c -k 4.9.0-3-amd64&lt;/code&gt; のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
+&lt;p&gt;&lt;code&gt;bash
 $ LC_ALL=C ls -al /usr/sbin/update-initramfs*
 lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&amp;gt; /bin/true
 -rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と &lt;code&gt;sudo update-initramfs/distrib -c -k 4.9.0-3-amd64&lt;/code&gt; のようにすると無事にイメージが作られたので、&lt;code&gt;update-grub&lt;/code&gt; を実行して変更を反映、再起動すると無事起動できた。更に調べたところ&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
+&lt;p&gt;&lt;code&gt;bash
 $ dpkg -L initramfs-tools
 (snip)
-diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
-&lt;/code&gt;&lt;/p&gt;
+diverted by pkgsel to: /usr/sbin/update-initramfs.distrib&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;ということで &lt;code&gt;pkgsel&lt;/code&gt; なるパッケージがこれを実施したことが判明。じゃぁ、と &lt;code&gt;apt show pkgsel&lt;/code&gt; しても出てこない…あ、これはudebだね、ということで&lt;a href=&#34;https://packages.debian.org/sid/pkgsel&#34;&gt;サイト&lt;/a&gt;を確認…あたり。&lt;code&gt;apt source pkgsel&lt;/code&gt; して &lt;code&gt;debian/changelog&lt;/code&gt; をみたら &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073&#34;&gt;Bug#912073&lt;/a&gt; を踏んでいたと判明。んもー。寝る前の貴重な時間が…&lt;/p&gt;
 </description>
