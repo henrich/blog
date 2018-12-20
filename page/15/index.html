@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.47.1" />
+	<meta name="generator" content="Hugo 0.48" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,296 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 8, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>mecab-jumandicパッケージのリグレッションを作ってしまったので、<a href="https://tracker.debian.org/news/854524">直した</a>。</p>
+
+<p>autopkgtestのネタとかとして使えないかなぁ、と思う。</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/854586">libmojolicious-plugin-assetpack-perlアップロード</a>。
+Lintianがtypoを報告してきていたので<a href="https://github.com/jhthorsen/mojolicious-plugin-assetpack/pull/126">pull request</a>。しかし、PRするだけでテストビルドが走るとか、こういうのが欲しいよねぇ。</p>
+
+<hr />
+
+<p>poppler-dataアップロードは何度やってもリポジトリ側からエラーが出るのでftpmasterに問い合わせ。</p>
+
+<pre><code>poppler-data_0.4.7-1.dsc: Does not match file already existing in the pool.
+</code></pre>
+
+<hr />
+
+<p>libuninameslistのdebian/copyright を 1.0 にして<a href="https://tracker.debian.org/news/854587">アップロード</a>。次はmulti-arch絡みのsuggestion対応するかね&hellip;</p>
+
+<pre><code>libuninameslist-dev could be marked Multi-Arch: same
+libuninameslist1 could be marked Multi-Arch: same
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 2, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日はNew upstream releaseがあったpleiadesから。</p>
+
+<p>まずは適当にビルド&hellip;ってpatchが通らない。ですよねー。ということでquiltでセコセコとpush -fして .rej ファイルを確認して修正する作業から。パッチを見てると<code>./lib/javassist/javassist.jar ./lib/apache/commons-io.jar ./lib/apache/commons-lang.jar</code> が<code>./lib/javassist/javassist.jar</code> だけになってた。ということはcommons-ioと-langは要らないの？</p>
+
+<pre><code>・Pleiades に含まれる Commons IO などのライブリが他のプラグインと競合しないようにソースを取り込んでパッケージ変更
+　(依存は Javassist のみ)
+</code></pre>
+
+<p>なるほど&hellip;取り込んじゃったのか。ということで依存関係落として作ったdebをインストールしてみて動作に支障は無いことを確認して依存関係をdropしたものをマージ&hellip;したけど、よく考えたら作業環境には他の依存でlibcommons-*が含まれてるんだった&hellip;改めてVM作ってその中で動作確認（&hellip;これこそautopkgtestしたほうが良いよね、私）。</p>
+
+<p>パッチで無効化していた機能、よくよくみたらビルドオプションで無効にできるじゃん、ということで動作確認してdrop。</p>
+
+<p>昔debconfでpleiadesを自動で有効化しようとしたが、他のパッケージを触るので無効にした際に消してしまったREADME.Debianを復活させた。今まで相当不親切だったな&hellip;いかんいかん。</p>
+
+<p>その他lintianに従って諸々&hellip;と<a href="https://tracker.debian.org/news/853079">作業記録のまとめ</a>。</p>
+
+<hr />
+
+<p>debian-mirror.sakura.ne.jp にHTTPS有効にしようとLet&rsquo;s Encryptを入れるべく作業。<a href="https://certbot.eff.org/#debianjessie-apache">certbotを使うことにして</a>、Jessieなのでbackports有効になってるのを確認して <code>$ sudo apt-get install python-certbot-apache -t jessie-backports</code> してパッケージをインストール、<code>$ sudo certbot --apache</code> して進める。</p>
+
+<pre><code>(snip)
+Generating key (2048 bits): /etc/letsencrypt/keys/0000_key-certbot.pem
+Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem
+An unexpected error occurred:
+There were too many requests of a given type :: Error creating new cert :: too many certificates already issued for: sakura.ne.jp
+Please see the logfiles in /var/log/letsencrypt for more details.
+</code></pre>
+
+<p>Oh&hellip; 上位ドメインであるsakura.ne.jpに既に発行しまくってるのでもうダメよ、と出て失敗。Let&rsquo;s Encryptは諦めざるを得ない&hellip;</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 1, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/852775">darts をアップデート</a>。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
+<li><a href="https://tracker.debian.org/news/852940">mecab-naist-jdic をアップデート</a>。特にこれということもなく。</li>
+<li><a href="https://tracker.debian.org/news/852917">unidic-mecab をアップデート</a> 。dh10でスッキリと。</li>
+<li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
+<li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>
+<li><a href="https://tracker.debian.org/news/852781">mecab-jumandic をアップデート</a>。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。<code>$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz</code>っと。</li>
+</ul>
+
+<pre><code>git-buildpackage (0.8.17) unstable; urgency=medium
+(snip)
+  * [956982c] New command 'pristine-tar'
+    This allows one to run the pristine-tar import at a later point.  This
+    is useful when using component tarballs and we need to reference the
+    right trees for the commits.
+</code></pre>
+
+<hr />
+
+<ul>
+<li>消えたら可哀想だな、ということで<a href="https://tracker.debian.org/news/852950">plumをAdoptした</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/proposal">proposal</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation">pkg-configとpkgconfigの入れ替え話</a>もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。</li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/ChangeSet">https://fedoraproject.org/wiki/Releases/26/ChangeSet</a> のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
+
+<ul>
+<li>現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう</li>
+<li>開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう</li>
+<li>ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）</li>
+<li>リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう</li>
+</ul></li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/Schedule">https://fedoraproject.org/wiki/Releases/26/Schedule</a> を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
+
+<ul>
+<li>→ <a href="https://wiki.debian.org/upstream-schedule">https://wiki.debian.org/upstream-schedule</a> を作ってみた。</li>
+</ul></li>
+<li><a href="http://debian-mirror.sakura.ne.jp/">debian-mirror.sakura.ne.jp</a> をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/debcheck.php?dist=unstable&amp;package=snapper">snapperのdebcheck</a>を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。</p>
+
+<pre><code>I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service
+I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0
+</code></pre>
+
+<p>これは減らせるだろうか？</p>
+
+<hr />
+
+<p><a href="https://buildd.debian.org/status/package.php?p=os-autoinst">os-autoinst</a>も同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。</p>
+
+<p>qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？</p>
+
+<p>アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&hellip;。</p>
+
+<hr />
+
+<p><a href="https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932">美咲フォントのバグレポート</a>、内容を精査。直ってたので閉じておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -402,337 +692,6 @@ $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/">ISOファイルのマウントが残っていてemergency modeで起動</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 13, 2016
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）</p>
-
-<p>前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。</p>
-
-<pre><code>#/dev/loop0     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-#/dev/loop2     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51        udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-#Entry for /dev/loop1 :
-#UUID=2015-10-30-20-02-13-00    /media/henrich/J_SSS_X64FRE_JA-JP_DV91  udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-</code></pre>
-
-<p>なんなんだこれは。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/">debsnapコケた</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Nov 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>gbp import-dscs &ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？</p>
-
-<pre><code>$ debsnap sylpheed 3.2.0-1 --force -v
-Getting json http://snapshot.debian.org/mr/package/sylpheed/
-Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1
-Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6
-Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c
-Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35
-
-It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz
-
-a41a8e2fc3c5e4935f30c7bacff8d72508546e35:
-sylpheed_3.2.0~rc0.orig.tar.gz
-Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. 
-Size: 4925789
-sylpheed_3.2.0.orig.tar.gz
-Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. 
-Size: 4925789
-
-Yes, those files are exactly same one.
-
-[{&quot;name&quot;: &quot;sylpheed_3.2.0~rc0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120625T162322Z&quot;, &quot;size&quot;: 4925789}, {&quot;name&quot;: &quot;sylpheed_3.2.0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120629T161126Z&quot;, &quot;size&quot;: 4925789}],
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Nov 15, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/upstream">upstream</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。<a href="https://birdfont.org/bugtracker/view.php?id=101">upstreamに報告済み</a>。あと、git repoでタグ打ちがないのも。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 29, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
-
-<p>sparcでのビルド失敗は</p>
-
-<pre><code>Traceback (most recent call last):
-  File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-ImportError: No module named pkg_resources
-</code></pre>
-
-<p>…なんでモジュールが無いというのか？</p>
-
-<p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
-さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
-
-<p>新しいバージョンになると</p>
-
-<pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-</code></pre>
-
-<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
-
-<p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/">autopkgtest触ってみた（らしい）</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
-
-<p>Testsuite: autopkgtest-pkg-perl</p>
-
-<p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
-
-<p>実施されるテストは
-* smoke
-* use.t
-* syntax.t
-で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
-
-<p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
-
-<pre><code>$ sudo apt-get install sbuild
-$ sudo mkdir -p /srv/chroot/sid
-$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
-</code></pre>
-
-<pre><code>[sid-amd64-sbuild]
-type=directory
-description=Debian sid/amd64 autobuilder
-directory=/srv/chroot/sid
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:22:46]: version 3.14.3
-adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
-adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
-
-<pre><code>#union-type=aufs
-#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
-</code></pre>
-
-<p>とやってみたのだけど、</p>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:23:06]: version 3.14.3
-adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-Traceback (most recent call last):
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 190, in &lt;module&gt;
-    parse_args()
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 96, in parse_args
-    (key, val) = entry.split(&quot;=&quot;, 2)
-ValueError: too many values to unpack (expected 2)
-adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
-
-<pre><code>[sid-test]
-type=file
-description=test
-file=/srv/chroot/test/base.tgz
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:38]: version 3.14.3
-adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:41]: testbed dpkg architecture: amd64
-adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
-+ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
-gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg' created
-gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg' created
-++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&gt;++++++++++...............+++++
-
-Not enough random bytes available.  Please do some other work to give
-the OS a chance to collect more entropy! (Need 188 more bytes)
-gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
-gpg: key 0FB272FB marked as ultimately trusted
-</code></pre>
-
-<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -944,7 +903,7 @@ gpg: key 0FB272FB marked as ultimately trusted
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.47.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.48 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

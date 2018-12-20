@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.47.1" />
+	<meta name="generator" content="Hugo 0.48" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,322 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 7, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>コツコツと事務作業&hellip;。</p>
+
+<pre><code>mecab (0.996-5) unstable; urgency=medium
+
+  * debian/control
+    - move Vcs-* to salsa.debian.org 
+    - use https for upstream Homepage
+    - set Standards-Version: 4.1.3
+    - set Build-Depends: debhelper (&gt;= 11)
+  * debian/copyright
+    - use https for upstream site
+  * debian/compat
+    - set 11
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Wed, 07 Feb 2018 20:45:32 +0900
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Feb 6, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>1日一つは、ということでdartsパッケージの更新。</li>
+</ul>
+
+<pre><code>darts (0.32-16) unstable; urgency=medium
+
+  * debian/control
+    - update Vcs-* to use salsa.debian.org
+    - set Build-Depends: debhelper (&gt;= 11)
+    - set Standards-Version: 4.1.3
+  * debian/compat
+    - set 11
+  * debian/watch
+    - update to version 4
+  * debian/copyright
+    - sort order to ignore lintian warning
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Tue, 06 Feb 2018 20:23:18 +0900
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 5, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>chasenパッケージの更新。</li>
+</ul>
+
+<pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
+
+  * debian/control
+    - Vcs-* move to salsa.debian.org 
+    - use https for Homepage:
+    - set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
+      dependency (pulled automatically)
+    - set Standards-Version: 4.1.3
+  * debian/rules
+    - drop &quot;--with autoreconf&quot;
+    - specify &quot;--no-parallel&quot; to avoid FTBFS
+  * debian/compat
+    - set 10
+  * debian/watch
+    - update to version 4
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
+</code></pre>
+
+<ul>
+<li>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</li>
+</ul>
+
+<pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
+
+  * debian/control
+    - set Build-Depends: debhelper (&gt;= 11)
+  * debian/compat
+    - set 11
+
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
+</code></pre>
+
+<ul>
+<li><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Feb 4, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</li>
+</ul>
+
+<pre><code>image: debian:sid
+
+before_script:
+  - echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
+
+build:
+  script:
+    - dpkg-buildpackage -us -uc -B
+</code></pre>
+
+<ul>
+<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
+
+<li><p>あれ、libsylphでonigurumaが有効になってない？</p></li>
+</ul>
+
+<pre><code>libsylph 1.1.0
+
+OpenSSL       : yes
+iconv         : yes
+IPv6          : yes
+Oniguruma     : no
+</code></pre>
+
+<pre><code>checking whether Oniguruma is available... no
+</code></pre>
+
+<p>なんでだ？？</p>
+
+<pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
+if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
+        AC_MSG_RESULT(yes)
+        AC_MSG_CHECKING([whether Oniguruma is available])
+        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
+        ONIG_CONFIG=onig-config
+        ONIG_VERSION=`$ONIG_CONFIG --version 2&gt;/dev/null`
+        if test &quot;x$ONIG_VERSION&quot; != &quot;x&quot;; then
+                AC_MSG_RESULT(yes)
+                CFLAGS=&quot;$CFLAGS `$ONIG_CONFIG --cflags`&quot;
+                LIBS=&quot;$LIBS `$ONIG_CONFIG --libs`&quot;
+                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
+        else
+                AC_MSG_RESULT(no)
+                ac_cv_enable_oniguruma=no
+        fi
+else
+        AC_MSG_RESULT(no)
+fi
+</code></pre>
+
+<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
+
+<pre><code>override_dh_install:
+        $(RM) debian/tmp/usr/bin/onig-config
+</code></pre>
+
+<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 3, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>sylpheedパッケージのpatchを<a href="http://sylpheed.sraoss.jp/redmine/issues/291">forwardしておいた</a></li>
+<li>screenfetchパッケージの<a href="https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz">smokeテストがさっそくfailしとった。。。</a>。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、<code>/usr/bin/screenfetch: line 1341: [: too many arguments</code> となっていた、と。<a href="https://tracker.debian.org/news/929555">パッチ作ってアップロードしたけど</a>、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&hellip;。</li>
+<li><a href="https://anonscm.debian.org/git/pkg-sylpheed/">aliothから</a>、sylph-searcher, sylfilter, libsylphをsalsaにインポート。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -388,228 +704,6 @@ index 1507b5d..9073ab3 100644
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 26, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>先日のsnapperパッケージのメンテ続きで <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292">&ndash;disable-ext4 オプション明示で処置</a>。stringsコマンドで中身を見てチェック→参照なし！ということでアップロードした。こいつもsalsa移行組。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jan 25, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888134">screenfetchをdockerで動かしたら一部の出力でcommand not foundが出てきた、というレポート</a>。でもテストしたVPSで作ったminimalなdebootstrap環境だと再現できねぇな？と思って該当の所を見る&hellip;</p>
-
-<pre><code>        thermal=&quot;/sys/class/hwmon/hwmon0/temp1_input&quot;
-        if [ -e $thermal ]; then
-                temp=$(bc &lt;&lt;&lt; &quot;scale=1; $(cat $thermal)/1000&quot;)
-        fi
-</code></pre>
-
-<p>おおぅ、なるほど。/sys/class/hwmon/hwmon0/temp1_inputなんてVMの環境下には生えてないからスルーしてたわけだ。よし、確認のため実マシンでdebootstrap&hellip;しようとしたらdashのバグの影響を踏んでdebootstrap出来ない！&hellip;別マシンで過去のchrootな環境を見つけてそこでテストして漸く確認。ついでにpgrepもcommand not found出てきたのはホスト側でXが動いているからか（報告者のdockerでは動いてなかったのだろう）。</p>
-
-<p>で、チャチャッと変更して&hellip;問題はこのrepositoryはaliothにまだあることでsalsaへのインポートを試してないこと。どうやるんだっけ&hellip;</p>
-
-<ul>
-<li><a href="https://lists.debian.org/debian-devel-announce/2017/12/msg00003.html">debian-devel-announceなメール</a>から<a href="https://wiki.debian.org/Salsa/Doc">Debian Wiki</a>へ、そして<a href="http://www.df7cb.de/blog/2017/Salsa_batch_import.html">該当の情報</a>を取得。</li>
-<li>スクリプトをコピーする</li>
-<li>GitLabのTokenを初めて生成してスクリプトに埋め込み <code>./salsa-import.sh screenfetch</code> という感じで実行&hellip;一瞬で終わって「え？マジ終わり？」という感想。</li>
-<li>無事にインポートされてるのを確認</li>
-</ul>
-
-<p>ここからはいつもどおりビルド→アップロード。gitのremote repo設定からaliothを消してsalsaを追加しておく。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 23, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>snapperパッケージのメンテ。</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880144">aptが動いたときの自動スナップショットを無効にできないか？調整する設定を追加してはどうか？という提案</a>。「デフォルト有効ならいいように思う」とコメント。</li>
-<li>e2fsprogsがessentialパッケージでなくなるのに伴い、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292">e2fsprogsに依存してるみたいなんだけど、明示的にしてくれる？</a>というバグレポート。ext4サポートがそもそも動いてなかったから明示的にdisableにするかーという結論なんだけど、確認方法がわからないとリリースできない。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jan 17, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>新しい<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>の稼働に伴い<a href="http://debian-mirror.sakura.ne.jp/munin/">munin</a>の設定を微調整。</li>
-<li>新旧ミラーサーバーにて、自ホストをサーバーにして apt でパッケージを取得してみた。旧サーバーが65MB程度のところ、新サーバーだと95MB程度は出るので1.5倍というところか（乱暴だけど）。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li><a href="https://bugs.documentfoundation.org/show_bug.cgi?id=115066">LibO on macOSで日本語パック当てるとフォントでかいよ問題をレポートしておいた</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 16, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13">バグレポートにコメント追加しておいた</a>。数日様子を見てクローズするのが良いだろうと思う。</li>
-<li><a href="https://tracker.debian.org/news/901773">fonts-sawarabi-minchoパッケージをアップロード</a></li>
-</ul>
-
-<hr />
-
-<p>salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -819,7 +913,7 @@ index 1507b5d..9073ab3 100644
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.47.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.48 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

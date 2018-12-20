@@ -8,10 +8,63 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 25 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Dec 2018 13:16:51 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>initfamrs-toolsのバグを踏んでいた</title>
+      <link>https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/</link>
+      <pubDate>Thu, 20 Dec 2018 13:16:51 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/</guid>
+      <description>先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。
+？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて sudo update-initramfs -c -k 4.9.0-3-amd64 のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。
+ $ LC_ALL=C ls -al /usr/sbin/update-initramfs* lrwxrwxrwx 1 root root 9 Oct 24 11:14 /usr/sbin/update-initramfs -&amp;gt; /bin/true -rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib 
+あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と sudo update-initramfs/distrib -c -k 4.9.0-3-amd64 のようにすると無事にイメージが作られたので、update-grub を実行して変更を反映、再起動すると無事起動できた。更に調べたところ
+ $ dpkg -L initramfs-tools (snip) diverted by pkgsel to: /usr/sbin/update-initramfs.distrib 
+ということで pkgsel なるパッケージがこれを実施したことが判明。じゃぁ、と apt show pkgsel しても出てこない…あ、これはudebだね、ということでサイトを確認…あたり。apt source pkgsel して debian/changelog をみたら Bug#912073 を踏んでいたと判明。んもー。寝る前の貴重な時間が…</description>
+    </item>
+    
+    <item>
+      <title>Retrospective 2018 11 26</title>
+      <link>https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/</link>
+      <pubDate>Mon, 26 Nov 2018 12:09:56 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/</guid>
+      <description>すっかりかまけてしまったので、思い出しつつ何やったかとか…。
+ debian-mirror.sakura.ne.jp のIPv6逆引きの設定変更を依頼されたので、さくらさんに依頼→受理された eclipseパッケージの削除依頼が登録されたため、依存するパッケージであるPleiadesも削除依頼が登録された。正直複雑な心境。  Eclipseを再パッケージしなおせばいいのだろうが、どうやるのかさっぱりだよな…  psphereパッケージを削除。これは問題なし。 fonts-sawarabi-minchoパッケージを更新、単にフォントファイルが指定位置にあるかを確認するだけというsmokeテストを追加。これ、フォントファイルとして認識できる（壊れてない）というのも追加したほうが本当は良さそう fonts-ibm-plexが追加された、というのを見て中身をチラ見したらdebian/upstream/metadataファイルが追加されてた。これは真似ると良さそう  その流れで他のパッケージのdebian/upstream/metadataファイル見てみたら、saneのがalioth指定したままだった…のでmerge request  snapperパッケージの更新。Wikiを参考にして、debian/upstream/metadataファイルを追加してみた。  ついでにbackportsパッケージも生成。 水野さんにmetadataの作り方をpingしておく  libuninameslistパッケージの更新。  しかし、python bindingが有効になっていない…configure.acではpythonの所在を確認している。 これもmetadata作るか？  メールを投げてみる→「unstableを快適にするのじゃなくて、freezeを改善する方に力入れようぜ！」というような反応。  Todo の書き出しとか…。
+ Natural Language Processing (Japanese) &amp;lt;team+pkg-nlp-ja@tracker.debian.org&amp;gt; 配下になっているパッケージ、少なすぎ？と思ったら &amp;quot;Natural Language Processing (Japanese)&amp;quot; &amp;lt;team+pkgnlpja@tracker.debian.org&amp;gt; もあった。どっちの表記が正しいのだ？本来であればidentiferの部分で-が含まれていてもきちんと処理されるのが理想なはずだが。  trackerページを作り直してみた。  mecab-ipadicとか、辞書パッケージの統一した扱いを何とか…  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> [jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。 os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。  </description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>依頼を受けたので
+$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql  として林さんのDM uploadを設定しておいた。</description>
+    </item>
+    
+    <item>
+      <title>HP Elitebook 830 G5で苦しむ</title>
+      <link>https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/</guid>
+      <description>debian-installerが何をやっても画面がブランクになってしまってDebianがインストールできないという。</description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
