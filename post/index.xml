@@ -21,7 +21,7 @@
       <guid>https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/</guid>
       <description>先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。
 ？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて sudo update-initramfs -c -k 4.9.0-3-amd64 のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。
- $ LC_ALL=C ls -al /usr/sbin/update-initramfs* lrwxrwxrwx 1 root root 9 Oct 24 11:14 /usr/sbin/update-initramfs -&amp;gt; /bin/true -rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib 
+ $ LC_ALL=C ls -al /usr/sbin/update-initramfs* lrwxrwxrwx 1 root root 9 Oct 24 11:14 /usr/sbin/update-initramfs -&amp;gt; /bin/true -rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
 あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と sudo update-initramfs/distrib -c -k 4.9.0-3-amd64 のようにすると無事にイメージが作られたので、update-grub を実行して変更を反映、再起動すると無事起動できた。更に調べたところ
  $ dpkg -L initramfs-tools (snip) diverted by pkgsel to: /usr/sbin/update-initramfs.distrib 
 ということで pkgsel なるパッケージがこれを実施したことが判明。じゃぁ、と apt show pkgsel しても出てこない…あ、これはudebだね、ということでサイトを確認…あたり。apt source pkgsel して debian/changelog をみたら Bug#912073 を踏んでいたと判明。んもー。寝る前の貴重な時間が…</description>

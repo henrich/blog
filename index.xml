@@ -26,8 +26,7 @@
 &lt;p&gt;&lt;code&gt;
 $ LC_ALL=C ls -al /usr/sbin/update-initramfs*
 lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&amp;gt; /bin/true
--rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
-&lt;/code&gt;&lt;/p&gt;
+-rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と &lt;code&gt;sudo update-initramfs/distrib -c -k 4.9.0-3-amd64&lt;/code&gt; のようにすると無事にイメージが作られたので、&lt;code&gt;update-grub&lt;/code&gt; を実行して変更を反映、再起動すると無事起動できた。更に調べたところ&lt;/p&gt;
 
