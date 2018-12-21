@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Dec 15, 2018</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
+
+<p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
+
+<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
+  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
+</code></pre>
+
+<pre><code>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。
+</code></pre>
+
+<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
+index c6ac3e7..1581e98 100644
+--- a/aruba.gemspec
++++ b/aruba.gemspec
+@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
+ EOS
+   end
+ 
+-  s.files            = `git ls-files`.split(&quot;\n&quot;)
+-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
++  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
++  s.test_files       = Dir['spec/*,features/*']
++  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
+   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
+   s.require_path     = &quot;lib&quot;
+ end
+</code></pre>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

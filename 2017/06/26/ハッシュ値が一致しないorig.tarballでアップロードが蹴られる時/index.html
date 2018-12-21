@@ -78,20 +78,22 @@
 <ul>
 <li>適当なところに apt source <package> でリポジトリにあるorig.tarballを持ってくる</li>
 <li>適当なところで debcheckout <package> してテンポラリ作業用のgitリポジトリを持ってくる</li>
-<li>テンポラリgitリポジトリで
-<code>
-$ cd /tmp/&lt;package repo&gt;
+
+<li><p>テンポラリgitリポジトリで</p>
+
+<pre><code>$ cd /tmp/&lt;package repo&gt;
 $ git checkout pristine-tar
 $ git rm &lt;該当バージョンのファイル&gt;; git commit -a
 $ git checkout master; git tag -d upstream/&lt;version&gt;
 $ gbp import-orig &lt;orig.tarball&gt;
-</code>
-などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う
-<code>
-$ cd ~/&lt;package repo&gt;
+</code></pre>
+
+<p>などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う</p>
+
+<pre><code>$ cd ~/&lt;package repo&gt;
 $ git checkout pristine-tar
 $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
-</code></li>
+</code></pre></li>
 </ul>
 
 <p>回りくどいなーとは思うのだけども。</p>
@@ -110,7 +112,7 @@ $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

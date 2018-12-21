@@ -68,24 +68,21 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</li>
-</ul>
+<li><p>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</p>
 
 <pre><code>image: debian:sid
 
 before_script:
-  - echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
+- echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
 
 build:
-  script:
-    - dpkg-buildpackage -us -uc -B
-</code></pre>
+script:
+- dpkg-buildpackage -us -uc -B
+</code></pre></li>
 
-<ul>
 <li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
 
-<li><p>あれ、libsylphでonigurumaが有効になってない？</p></li>
-</ul>
+<li><p>あれ、libsylphでonigurumaが有効になってない？</p>
 
 <pre><code>libsylph 1.1.0
 
@@ -96,7 +93,8 @@ Oniguruma     : no
 </code></pre>
 
 <pre><code>checking whether Oniguruma is available... no
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>なんでだ？？</p>
 
@@ -143,7 +141,7 @@ fi
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

@@ -78,8 +78,8 @@
 <li>apt show pgf&hellip;パッケージは確かに存在しない。</li>
 <li><a href="https://tracker.debian.org/pkg/pgf">trackerのページ</a>で確認すると、最後のは<a href="https://tracker.debian.org/news/583320">[2014-11-03] Removed 2.10-1 from unstable</a>&hellip;なになに？「integrated into texlive」？</li>
 <li>ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）</li>
-<li>debsignしてdputして終わり。</li>
-</ol>
+
+<li><p>debsignしてdputして終わり。</p>
 
 <pre><code>diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
 --- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
@@ -93,21 +93,22 @@
 +
 + -- Hideki Yamane &lt;henrich@debian.org&gt;  Thu, 29 Jun 2017 20:11:36 +0900
 +
- whizzytex (1.3.2-1.3) unstable; urgency=medium
+whizzytex (1.3.2-1.3) unstable; urgency=medium
 
-   * Non-maintainer upload.
+* Non-maintainer upload.
 diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
 --- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
 +++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
 @@ -2,7 +2,7 @@
- Section: tex
- Priority: optional
- Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
+Section: tex
+Priority: optional
+Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
 -Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
 +Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
- Build-Depends: debhelper (&gt;&gt; 7.0.50~)
- Standards-Version: 3.7.2
-</code></pre>
+Build-Depends: debhelper (&gt;&gt; 7.0.50~)
+Standards-Version: 3.7.2
+</code></pre></li>
+</ol>
 
 <hr />
 
@@ -116,13 +117,14 @@ diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
 <ul>
 <li>何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。</li>
 <li>なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。</li>
-<li>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</li>
-</ul>
+
+<li><p>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</p>
 
 <pre><code># cidToUnicode, nameToUnicode and unicodeMap data files
 # are under the COPYING.gpl2 license
 # Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると</p>
 
@@ -169,7 +171,7 @@ upstream tarball に対応してないのがアレ。</p>
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

@@ -35,6 +35,26 @@ $ dpkg -L initramfs-tools (snip) diverted by pkgsel to: /usr/sbin/update-initram
     </item>
     
     <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> ruby-rspec-instafailパッケージをアップデートした ruby-childprocessパッケージをアップデートした twitterで不具合話を拾ったので、fonts-unfonts-coreパッケージをアップデートした  fontforgeコマンドの指定で Open(&amp;quot;UnDinaruLight.ttf&amp;quot;) のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>ruby-arubaパッケージをアップデートした。
+autopkgtestが debian/control での Testsuite: autopkgtest-pkg-ruby 行を起点として実施される（実際は debian/ruby-tests.rake ファイルが実行されるのかな？）のだけど、この際に gemspec ファイルの中身が実行される。ところがここで git コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。
+s.files = `git ls-files`.split(&amp;quot;\n&amp;quot;) s.test_files = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;) s.executables = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }  しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。  diff --git a/aruba.gemspec b/aruba.gemspec index c6ac3e7..1581e98 100644 --- a/aruba.gemspec +++ b/aruba.gemspec @@ -40,9 +40,9 @@ With aruba &amp;gt;= 1.0 there will be breaking changes. Make sure to read https://gith EOS end - s.</description>
+    </item>
+    
+    <item>
       <title>Retrospective 2018 11 26</title>
       <link>https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/</link>
       <pubDate>Mon, 26 Nov 2018 12:09:56 +0900</pubDate>
@@ -155,7 +175,8 @@ diff --git a/debian/changelog b/debian/changelog index ace383d75..ffc538849 1006
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>OSDN側の仕様変更に追随。
- 最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった 要望を出した 対応としてRSS経由での取得が実装された &amp;hellip;ということで debian/watch ファイルを書き換えて取得できるように  opts=&amp;quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \ pagemangle=s%&amp;lt;osdn:file url=&amp;quot;([^&amp;lt;]*)&amp;lt;/osdn:file&amp;gt;%&amp;lt;a href=&amp;quot;$1&amp;quot;&amp;gt;$1&amp;lt;/a&amp;gt;%g, \ downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;amp;f=sawarabi-fonts%g;s/xz\//xz/&amp;quot; \ https://osdn.net/projects/sawarabi-fonts/releases/rss \ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate  &amp;hellip;自分でも何やってるか、よくわからなくなる。
+ 最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった 要望を出した 対応としてRSS経由での取得が実装された &amp;hellip;ということで debian/watch ファイルを書き換えて取得できるように
+opts=&amp;quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \ pagemangle=s%&amp;lt;osdn:file url=&amp;quot;([^&amp;lt;]*)&amp;lt;/osdn:file&amp;gt;%&amp;lt;a href=&amp;quot;$1&amp;quot;&amp;gt;$1&amp;lt;/a&amp;gt;%g, \ downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;amp;f=sawarabi-fonts%g;s/xz\//xz/&amp;quot; \ https://osdn.net/projects/sawarabi-fonts/releases/rss \ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate   &amp;hellip;自分でも何やってるか、よくわからなくなる。
  https://osdn.net/projects/sawarabi-fonts/releases/rss が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。 で、uscan は &amp;lt;a href=&amp;quot;foobar.html&amp;quot;&amp;lt;/a&amp;gt; のような記述から対象のファイルを探している（これに気付くのにしばらくかかった） RSSを pagemangle オプションで無理やり書き換えてa hrefを作り出す これで最新版のバージョン自体は取得できる&amp;hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう リダイレクト先のURLにdownloadurlmangleオプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。  ここまでやって、とりあえずfonts-sawarabi-michonパッケージのアップデートをした。
 debootstrapのregressionな部分を直す提案&amp;hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。 set -- -O &amp;quot;$dest&amp;quot; &amp;quot;$from&amp;quot; &amp;quot;$@&amp;quot; は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。</description>
     </item>
@@ -212,10 +233,10 @@ $ debcheckout git-buildpackage declared git repository at https://git.sigxcpu.or
     
     <item>
       <title>gbp buildpackage --git-componentオプションの罠</title>
-      <link>https://henrich.github.io/blog/2018/05/01/gbp-buildpackage---git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/</link>
+      <link>https://henrich.github.io/blog/2018/05/01/gbp-buildpackage-git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/</link>
       <pubDate>Tue, 01 May 2018 23:40:33 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2018/05/01/gbp-buildpackage---git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/</guid>
+      <guid>https://henrich.github.io/blog/2018/05/01/gbp-buildpackage-git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/</guid>
       <description>poppler-dataパッケージは、一般的なパッケージと違ってupstream tarballが複数ある構成（multiple upstream tarball）なので、git-buildpackageが使えなかったのだけど、git-buildpackage側での実験的なサポートが追加されていたので思い立って作業。
 まずはGitリポジトリにリリース済みのパッケージをインポートして、salsaにインポート。
 $ gbp import-dscs --debsnap poppler-data $ git remote add salsa git@salsa.debian.org:debian/poppler-data.git $ git push salsa --all $ git push salsa --tags  で、manページを参照して実験的な &amp;ndash;git-component オプションの使い方を確認。
@@ -247,7 +268,7 @@ poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-
       <pubDate>Mon, 02 Apr 2018 12:51:55 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> debootstrapはNMUしてたら「普通にアップロードしてよ」と言われ、確認したらrepositoryの権限も貰っていた&amp;hellip;昔に追加されたのかな？とりあえず、アップロード→regression直しの繰り返しをしている。ツールとしての性格上致し方がないが、package外での利用が考慮漏れしてた。  ダウンロード済みの.debファイルを使うようにするパッチも投げた。これで手元ではかかる時間が半分に減ったので、できれば入れたいところ。 その前に既存のpatchを一掃する作業が待っているわけですが&amp;hellip;。 書き忘れていたが xfonts-jisx0213パッケージを木下さんの了解を得てfonts-team配下に移動して更新。 tiarraパッケージをexperimentalに放置してたのでunstableに上げた jcodingsパッケージをアップデート。その２ jruby-joniパッケージ fonts-sawarabi-minchoパッケージ sphinx-intlパッケージをアップデート、patchを入れ忘れていたので再度アップロード    xfonts-* パッケージを fonts-team で引き受けるべく ITA したのだけど、気力が足りなくて作業していない。  </description>
+      <description> debootstrapはNMUしてたら「普通にアップロードしてよ」と言われ、確認したらrepositoryの権限も貰っていた&amp;hellip;昔に追加されたのかな？とりあえず、アップロード→regression直しの繰り返しをしている。ツールとしての性格上致し方がないが、package外での利用が考慮漏れしてた。  ダウンロード済みの.debファイルを使うようにするパッチも投げた。これで手元ではかかる時間が半分に減ったので、できれば入れたいところ。 その前に既存のpatchを一掃する作業が待っているわけですが&amp;hellip;。  書き忘れていたが xfonts-jisx0213パッケージを木下さんの了解を得てfonts-team配下に移動して更新。 tiarraパッケージをexperimentalに放置してたのでunstableに上げた jcodingsパッケージをアップデート。その２ jruby-joniパッケージ fonts-sawarabi-minchoパッケージ sphinx-intlパッケージをアップデート、patchを入れ忘れていたので再度アップロード   xfonts-* パッケージを fonts-team で引き受けるべく ITA したのだけど、気力が足りなくて作業していない。  </description>
     </item>
     
     <item>
@@ -270,7 +291,7 @@ poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-
       <guid>https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した。
  どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&amp;hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ  debootstrapをNMUでuploadした。deleyed/10なので10日待つ。
-  debootstrap (1.0.93+nmu1) unstable; urgency=medium * Non-maintainer Upload. * Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373) Now you can create Ubuntu breezy/dapper/edgy chroot. * Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian. When you fetch Ubuntu packages ubuntu-archive-keyring is necessary. (Closes: #736995) * Change repository URI for old Ubuntu releases (Closes: #676370, #839073) Archived Ubuntu releases are at old-releases.</description>
+debootstrap (1.0.93+nmu1) unstable; urgency=medium * Non-maintainer Upload. * Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373) Now you can create Ubuntu breezy/dapper/edgy chroot. * Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian. When you fetch Ubuntu packages ubuntu-archive-keyring is necessary. (Closes: #736995) * Change repository URI for old Ubuntu releases (Closes: #676370, #839073) Archived Ubuntu releases are at old-releases.</description>
     </item>
     
     <item>
@@ -330,7 +351,8 @@ shutter (0.94-1) UNRELEASED; urgency=medium * Team upload [ gregor herrmann ] * 
       <pubDate>Sun, 11 Feb 2018 15:38:54 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>jruby-joniパッケージをアップデート  jruby-joni (2.1.14-1) unstable; urgency=medium * New upstream release * debian/patches - drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream * debian/control - set Standards-Version: 4.1.3 - update Dependency version * debian/maven.rules - update junit version to 4.x to avoid FTBFS  @Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&amp;hellip;。</description>
+      <description>jruby-joniパッケージをアップデート
+jruby-joni (2.1.14-1) unstable; urgency=medium * New upstream release * debian/patches - drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream * debian/control - set Standards-Version: 4.1.3 - update Dependency version * debian/maven.rules - update junit version to 4.x to avoid FTBFS   @Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&amp;hellip;。</description>
     </item>
     
     <item>
@@ -339,7 +361,8 @@ shutter (0.94-1) UNRELEASED; urgency=medium * Team upload [ gregor herrmann ] * 
       <pubDate>Sat, 10 Feb 2018 09:11:54 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>xfonts-mplusを更新 xfonts-shinonomeを更新 xfonts-ayuを更新 xfonts-efont-unicodeを更新 xfonts-kanameを更新 xfonts-naga10を更新 fonts-aoyagi-kouzan-tを更新 fonts-arphic-bkai00mpを更新 jcodingsを更新、salsa移行はまだ目処立たず。 nailgunを更新、salsa移行はまだ目処立たず。   xfonts-kappa20を更新&amp;hellip;したのだけど、CIが落ちる  make[1]: Entering directory &#39;/builds/fonts-team/xfonts-kappa20&#39; bdftopcf k20m.bdf | gzip -c9 -n &amp;gt; pcf/k20m.pcf.gz /bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed  確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&amp;hellip;何故だ。対応してCIは通るようになったが謎だ。上げ直した。
+      <description>xfonts-mplusを更新 xfonts-shinonomeを更新 xfonts-ayuを更新 xfonts-efont-unicodeを更新 xfonts-kanameを更新 xfonts-naga10を更新 fonts-aoyagi-kouzan-tを更新 fonts-arphic-bkai00mpを更新 jcodingsを更新、salsa移行はまだ目処立たず。 nailgunを更新、salsa移行はまだ目処立たず。   xfonts-kappa20を更新&amp;hellip;したのだけど、CIが落ちる
+make[1]: Entering directory &#39;/builds/fonts-team/xfonts-kappa20&#39; bdftopcf k20m.bdf | gzip -c9 -n &amp;gt; pcf/k20m.pcf.gz /bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent Makefile:36: recipe for target &#39;pcf/k20m.pcf.gz&#39; failed   確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&amp;hellip;何故だ。対応してCIは通るようになったが謎だ。上げ直した。
 sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。
  * debian/control - add Build-Depends: dh-exec to modify icon files&#39; name * debian/sylpheed.install - install icon files to appropriate locations (Closes: #823018) * debian/sylpheed.dirs - adjust as above * debian/dirs - unused, drop it * debian/sylpheed-debian.</description>
     </item>
@@ -350,7 +373,9 @@ sylpheedパッケージをもう少し変更。dh-execの利用の際、install�
       <pubDate>Fri, 09 Feb 2018 23:35:23 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> libsylphを更新  libsylph (1.1.0-19) unstable; urgency=medium * debian/patches - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662) -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Fri, 09 Feb 2018 23:32:14 +0900   sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。忘れないうちにupstreamにも登録  sylpheed (3.7.0-2) UNRELEASED; urgency=medium * debian/control - drop Build-Depends: libdbus-glib-1-dev It was introduced since enchant with zemberek crashes without it in 3.0, however, enchant package was built with &amp;quot;--disable-zemberek&amp;quot; option, so it isn&#39;t necessary. * debian/patches - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev properly (Closes: #889971)   sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS  </description>
+      <description>libsylphを更新
+libsylph (1.1.0-19) unstable; urgency=medium * debian/patches - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662) -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Fri, 09 Feb 2018 23:32:14 +0900  sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。忘れないうちにupstreamにも登録
+sylpheed (3.7.0-2) UNRELEASED; urgency=medium * debian/control - drop Build-Depends: libdbus-glib-1-dev It was introduced since enchant with zemberek crashes without it in 3.0, however, enchant package was built with &amp;quot;--disable-zemberek&amp;quot; option, so it isn&#39;t necessary. * debian/patches - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev properly (Closes: #889971)  sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</description>
     </item>
     
     <item>
@@ -369,7 +394,8 @@ mecab (0.996-5) unstable; urgency=medium * debian/control - move Vcs-* to salsa.
       <pubDate>Tue, 06 Feb 2018 21:00:12 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> 1日一つは、ということでdartsパッケージの更新。  darts (0.32-16) unstable; urgency=medium * debian/control - update Vcs-* to use salsa.debian.org - set Build-Depends: debhelper (&amp;gt;= 11) - set Standards-Version: 4.1.3 * debian/compat - set 11 * debian/watch - update to version 4 * debian/copyright - sort order to ignore lintian warning -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Tue, 06 Feb 2018 20:23:18 +0900  </description>
+      <description> 1日一つは、ということでdartsパッケージの更新。
+darts (0.32-16) unstable; urgency=medium * debian/control - update Vcs-* to use salsa.debian.org - set Build-Depends: debhelper (&amp;gt;= 11) - set Standards-Version: 4.1.3 * debian/compat - set 11 * debian/watch - update to version 4 * debian/copyright - sort order to ignore lintian warning -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Tue, 06 Feb 2018 20:23:18 +0900   </description>
     </item>
     
     <item>
@@ -378,7 +404,8 @@ mecab (0.996-5) unstable; urgency=medium * debian/control - move Vcs-* to salsa.
       <pubDate>Mon, 05 Feb 2018 22:27:05 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>chasenパッケージの更新。  chasen (2.4.5-40) UNRELEASED; urgency=medium * debian/control - Vcs-* move to salsa.debian.org - use https for Homepage: - set Bulid-Depends: debhelper (&amp;gt;= 10), and drop unnecessary dh-autoreconf dependency (pulled automatically) - set Standards-Version: 4.1.3 * debian/rules - drop &amp;quot;--with autoreconf&amp;quot; - specify &amp;quot;--no-parallel&amp;quot; to avoid FTBFS * debian/compat - set 10 * debian/watch - update to version 4 -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Mon, 05 Feb 2018 21:47:29 +0900   mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた  mecab-ipadic (2.</description>
+      <description>chasenパッケージの更新。
+chasen (2.4.5-40) UNRELEASED; urgency=medium * debian/control - Vcs-* move to salsa.debian.org - use https for Homepage: - set Bulid-Depends: debhelper (&amp;gt;= 10), and drop unnecessary dh-autoreconf dependency (pulled automatically) - set Standards-Version: 4.1.3 * debian/rules - drop &amp;quot;--with autoreconf&amp;quot; - specify &amp;quot;--no-parallel&amp;quot; to avoid FTBFS * debian/compat - set 10 * debian/watch - update to version 4 -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Mon, 05 Feb 2018 21:47:29 +0900  mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</description>
     </item>
     
     <item>
@@ -387,9 +414,10 @@ mecab (0.996-5) unstable; urgency=medium * debian/control - move Vcs-* to salsa.
       <pubDate>Sun, 04 Feb 2018 22:38:35 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを debian/.gitlab-ci.yml でセットアップしておいた  image: debian:sid before_script: - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp; apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev build: script: - dpkg-buildpackage -us -uc -B   sylpheed 他をアップロード
+      <description>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを debian/.gitlab-ci.yml でセットアップしておいた
+image: debian:sid before_script: - echo &amp;quot;deb-src http://deb.debian.org/debian sid main&amp;quot; &amp;gt;&amp;gt; /etc/apt/sources.list &amp;amp;&amp;amp; apt update -qq &amp;amp;&amp;amp; apt build-dep -y -qq &amp;lt;package name&amp;gt; &amp;amp;&amp;amp; apt install -y -qq dpkg-dev build: script: - dpkg-buildpackage -us -uc -B  sylpheed 他をアップロード
  あれ、libsylphでonigurumaが有効になってない？
-  libsylph 1.1.0 OpenSSL : yes iconv : yes IPv6 : yes Oniguruma : no  checking whether Oniguruma is available.</description>
+libsylph 1.1.0 OpenSSL : yes iconv : yes IPv6 : yes Oniguruma : no  checking whether Oniguruma is available... no   なんでだ？？</description>
     </item>
     
     <item>
@@ -429,7 +457,8 @@ mecab (0.996-5) unstable; urgency=medium * debian/control - move Vcs-* to salsa.
       <pubDate>Mon, 29 Jan 2018 22:50:46 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。  $ git checkout --orphan mones $ git rm --cached -r * $ rm -r ./* $ git pull alioth master $ git push salsa mones  </description>
+      <description> Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。
+$ git checkout --orphan mones $ git rm --cached -r * $ rm -r ./* $ git pull alioth master $ git push salsa mones   </description>
     </item>
     
     <item>
@@ -450,7 +479,8 @@ mecab (0.996-5) unstable; urgency=medium * debian/control - move Vcs-* to salsa.
       <pubDate>Sat, 27 Jan 2018 01:26:00 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにしてPull Request。  --- configure.ac.orig 2018-01-27 15:56:50.839599352 +0000 +++ configure.ac 2018-01-27 16:24:56.910015986 +0000 @@ -60,11 +60,14 @@ fillupdir=/var/adm/fillup-templates +SYSCONFIG=/etc/sysconfig + AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]), [with_conf=$withval], [with_conf=no]) -AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${with_conf}\&amp;quot;&#39;&amp;quot;], - [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;/etc/sysconfig\&amp;quot;&#39;&amp;quot;]) +AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [SYSCONFIG=&amp;quot;${with_conf}&amp;quot;]) + +CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${SYSCONFIG}\&amp;quot;&#39;&amp;quot; AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]), [with_btrfs=$enableval],[with_btrfs=yes]) @@ -153,6 +156,7 @@ AC_SUBST(LIBVERSION_MINOR) AC_SUBST(LIBVERSION_PATCHLEVEL) AC_SUBST(LIBVERSION_INFO) +AC_SUBST(SYSCONFIG) AC_SUBST(docdir) AC_SUBST(fillupdir) diff --git a/doc/snapper.xml.in b/doc/snapper.</description>
+      <description>snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにしてPull Request。
+--- configure.ac.orig 2018-01-27 15:56:50.839599352 +0000 +++ configure.ac 2018-01-27 16:24:56.910015986 +0000 @@ -60,11 +60,14 @@ fillupdir=/var/adm/fillup-templates +SYSCONFIG=/etc/sysconfig + AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]), [with_conf=$withval], [with_conf=no]) -AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${with_conf}\&amp;quot;&#39;&amp;quot;], - [CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;/etc/sysconfig\&amp;quot;&#39;&amp;quot;]) +AS_IF([test &amp;quot;x$with_conf&amp;quot; != xno], [SYSCONFIG=&amp;quot;${with_conf}&amp;quot;]) + +CPPFLAGS=&amp;quot;${CPPFLAGS} -DCONFDIR=&#39;\&amp;quot;${SYSCONFIG}\&amp;quot;&#39;&amp;quot; AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]), [with_btrfs=$enableval],[with_btrfs=yes]) @@ -153,6 +156,7 @@ AC_SUBST(LIBVERSION_MINOR) AC_SUBST(LIBVERSION_PATCHLEVEL) AC_SUBST(LIBVERSION_INFO) +AC_SUBST(SYSCONFIG) AC_SUBST(docdir) AC_SUBST(fillupdir) diff --git a/doc/snapper.xml.in b/doc/snapper.xml.in index 1507b5d.</description>
     </item>
     
     <item>
@@ -565,7 +595,9 @@ $ sudo munin-run acpi /etc/munin/plugins/acpi: 1: eval: bc: not found thermal_zo
       <pubDate>Sat, 23 Dec 2017 20:17:49 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> apt-listchangesのpo訳が取り込まれました。   https://salsa.debian.org/ が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？ とりあえず二要素認証をOnに&amp;hellip;と思って有効にしようとしたら、まずはQRコードをGoogle Authenticatorで読み取って有効にしないといけなかった。その上でYubiKeyを追加。何故この手順が必要なのだろう？デバイスが1つだけじゃない、ということが重要？   boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&amp;hellip;と思って調べるとgrub-imagebootというツールがあったのでインストール、該当のBIOSのISOイメージをダウンロードして、bootできるようにして再起動&amp;hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。  $ sudo apt install genisoimage $ geteltorito biosimage.iso &amp;gt; biosupdate.img $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K   BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで apt install intel-microcode で直った（最新のパッケージはbackports提供なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。  </description>
+      <description> apt-listchangesのpo訳が取り込まれました。   https://salsa.debian.org/ が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？ とりあえず二要素認証をOnに&amp;hellip;と思って有効にしようとしたら、まずはQRコードをGoogle Authenticatorで読み取って有効にしないといけなかった。その上でYubiKeyを追加。何故この手順が必要なのだろう？デバイスが1つだけじゃない、ということが重要？   boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&amp;hellip;と思って調べるとgrub-imagebootというツールがあったのでインストール、該当のBIOSのISOイメージをダウンロードして、bootできるようにして再起動&amp;hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。
+$ sudo apt install genisoimage $ geteltorito biosimage.iso &amp;gt; biosupdate.img $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K  BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで apt install intel-microcode で直った（最新のパッケージはbackports提供なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。
+  </description>
     </item>
     
     <item>
@@ -588,10 +620,10 @@ $ sudo munin-run acpi /etc/munin/plugins/acpi: 1: eval: bc: not found thermal_zo
     
     <item>
       <title>GPGめも - subkey</title>
-      <link>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</link>
+      <link>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/</link>
       <pubDate>Mon, 04 Dec 2017 18:55:41 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</guid>
+      <guid>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/</guid>
       <description>GPGのsubkeyについて。
  たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、  masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。 laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。  そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&amp;hellip;という時にはmasterkeyを使うということができる。  なるほどねー。
 ちなみにどうしてもという時というのは以下らしい。 - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする - 自分の鍵をrevokeする - subkeyを作る・revokeする - 有効期限の変更 - masterkeyのrevoke用の証明書の作成 - UIDの設定変更
@@ -662,7 +694,9 @@ $ sudo ./intel_sa00086.py INTEL-SA-00086 Detection Tool Copyright(C) 2017, Intel
       <pubDate>Fri, 10 Nov 2017 22:51:45 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/11/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> 先日報告したgit-buildpackageの問題が修正された   * [1b5a344] buildpackage: Add back --git-pristine-tar-commit support. The call got lost when we split out export-orig. (Closes: #880624)   DPL来日に向けて今日もちまちまやり取り。  </description>
+      <description> 先日報告したgit-buildpackageの問題が修正された
+ * [1b5a344] buildpackage: Add back --git-pristine-tar-commit support. The call got lost when we split out export-orig. (Closes: #880624)  DPL来日に向けて今日もちまちまやり取り。
+  </description>
     </item>
     
     <item>
@@ -955,7 +989,8 @@ Fetched 412 MB in 18s (22.2 MB/s) real 0m18.</description>
       <guid>https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>JPのページの誤りの指摘を頂いたので修正した IDCFクラウドのDebianテンプレートで問題を見つけたのでチケットを切っておいた。  「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？
  思いついた対象候補  さくらのVPS ConoHa IDCFクラウド(←ここではこれをチョイス)   IDCFクラウドは、500円クーポンがあったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。
- Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&amp;hellip;）。 次にgo-apt-cacherをダウンロードしてちょっと設定して起動します。 最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。  # apt show openclipart-png Package: openclipart-png Source: openclipart Version: 1:0.18+dfsg-14 Installed-Size: 148 MB  有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。
+ Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&amp;hellip;）。 次にgo-apt-cacherをダウンロードしてちょっと設定して起動します。 最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。
+# apt show openclipart-png Package: openclipart-png Source: openclipart Version: 1:0.18+dfsg-14 Installed-Size: 148 MB   有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。
 # time apt-get download openclipart-png Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB] Fetched 128 MB in 10s (12.2 MB/s) real 0m10.742s user 0m2.204s sys 0m0.420s  まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）
 # time apt-get download openclipart-png Get:1 http://10.</description>
     </item>
@@ -1191,7 +1226,9 @@ E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signat
       <pubDate>Sun, 13 Aug 2017 06:32:58 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/08/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> libsql-splitstatement-perl がreject  please mention at least: libsql-splitstatement-perl-1.00020/t/data/sakila-schema.sql in your debian/copyright.   libmojo-rabbitmq-client-perl もreject  please also mention at least: libmojo-rabbitmq-client-perl-0.0.9/share/amqp0-9-1.stripped.extended.xml libmojo-rabbitmq-client-perl-0.0.9/share/fixed_amqp0-8.xml in your debian/copyright.  </description>
+      <description> libsql-splitstatement-perl がreject
+please mention at least: libsql-splitstatement-perl-1.00020/t/data/sakila-schema.sql in your debian/copyright.  libmojo-rabbitmq-client-perl もreject
+please also mention at least: libmojo-rabbitmq-client-perl-0.0.9/share/amqp0-9-1.stripped.extended.xml libmojo-rabbitmq-client-perl-0.0.9/share/fixed_amqp0-8.xml in your debian/copyright.   </description>
     </item>
     
     <item>
@@ -1312,7 +1349,8 @@ Running tests using /usr/bin/python2 (2.7)... PASS: initial.py PASS: t-wrapper.p
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今日のグルーミング作業
- fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。   * Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
+ fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。
+* Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
     </item>
     
     <item>
@@ -1517,7 +1555,8 @@ debian-mirror.sakura.ne.jp にHTTPS有効にしようとLet&amp;rsquo;s Encrypt�
       <pubDate>Sat, 01 Jul 2017 08:28:22 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> darts をアップデート。未だにVcs-* をhttpsにしてなかったとは&amp;hellip; mecab-naist-jdic をアップデート。特にこれということもなく。 unidic-mecab をアップデート 。dh10でスッキリと。 naist-jdic、LPのバグ報告がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&amp;hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/ などとしてchroot作ってテスト。再現せず。だよねー mecab、バグ報告を確認。どうすっかなーというところで今日は見送りかな。 mecab-jumandic をアップデート。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gzっと。  git-buildpackage (0.8.17) unstable; urgency=medium (snip) * [956982c] New command &#39;pristine-tar&#39; This allows one to run the pristine-tar import at a later point. This is useful when using component tarballs and we need to reference the right trees for the commits.   消えたら可哀想だな、ということでplumをAdoptした。  </description>
+      <description> darts をアップデート。未だにVcs-* をhttpsにしてなかったとは&amp;hellip; mecab-naist-jdic をアップデート。特にこれということもなく。 unidic-mecab をアップデート 。dh10でスッキリと。 naist-jdic、LPのバグ報告がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&amp;hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/ などとしてchroot作ってテスト。再現せず。だよねー mecab、バグ報告を確認。どうすっかなーというところで今日は見送りかな。 mecab-jumandic をアップデート。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gzっと。
+git-buildpackage (0.8.17) unstable; urgency=medium (snip) * [956982c] New command &#39;pristine-tar&#39; This allows one to run the pristine-tar import at a later point. This is useful when using component tarballs and we need to reference the right trees for the commits.    消えたら可哀想だな、ということでplumをAdoptした。  </description>
     </item>
     
     <item>
@@ -1551,7 +1590,8 @@ qemu依存はあったので、こちらはqemuと合わせる形にしてみた
       <guid>https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>screenfetch、Ubuntu側のバグ登録を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。
 トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。
- cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&amp;hellip; apt show pgf&amp;hellip;パッケージは確かに存在しない。 trackerのページで確認すると、最後のは[2014-11-03] Removed 2.10-1 from unstable&amp;hellip;なになに？「integrated into texlive」？ ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？） debsignしてdputして終わり。  diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog --- whizzytex-1.3.2/debian/changelog 2014-09-15 11:44:18.000000000 +0900 +++ whizzytex-1.3.2/debian/changelog 2017-06-29 20:11:36.000000000 +0900 @@ -1,3 +1,11 @@ +whizzytex (1.3.2-1.4) unstable; urgency=medium + + * Non-maintainer upload. + * debian/control + - fix Build-Depends since pgf is intergrated into TeXLive. + + -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Thu, 29 Jun 2017 20:11:36 +0900 + whizzytex (1.</description>
+ cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&amp;hellip; apt show pgf&amp;hellip;パッケージは確かに存在しない。 trackerのページで確認すると、最後のは[2014-11-03] Removed 2.10-1 from unstable&amp;hellip;なになに？「integrated into texlive」？ ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？） debsignしてdputして終わり。
+diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog --- whizzytex-1.3.2/debian/changelog 2014-09-15 11:44:18.000000000 +0900 +++ whizzytex-1.3.2/debian/changelog 2017-06-29 20:11:36.000000000 +0900 @@ -1,3 +1,11 @@ +whizzytex (1.3.2-1.4) unstable; urgency=medium + + * Non-maintainer upload. + * debian/control + - fix Build-Depends since pgf is intergrated into TeXLive. + + -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt; Thu, 29 Jun 2017 20:11:36 +0900 + whizzytex (1.</description>
     </item>
     
     <item>
@@ -1595,7 +1635,9 @@ henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar Swi
 で、どうやってリカバリするかというと、apt source して orig.tarball を差し替える（ダメな場当たり対応。良くやる）というのが思いつくのだけど、ちゃんとpristine-tarブランチのファイルを置き換えた方が良い。
 とはいうものの、このブランチのファイル、どうやって生成しているのかよく分かってない。いっつも単にimport-origしてただけだし。うーん。
 色々試行錯誤した末に、こうしてみた。
- 適当なところに apt source  でリポジトリにあるorig.tarballを持ってくる 適当なところで debcheckout  してテンポラリ作業用のgitリポジトリを持ってくる テンポラリgitリポジトリで  $ cd /tmp/&amp;lt;package repo&amp;gt; $ git checkout pristine-tar $ git rm &amp;lt;該当バージョンのファイル&amp;gt;; git commit -a $ git checkout master; git tag -d upstream/&amp;lt;version&amp;gt; $ gbp import-orig &amp;lt;orig.tarball&amp;gt;  などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う  $ cd ~/&amp;lt;package repo&amp;gt; $ git checkout pristine-tar $ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar   回りくどいなーとは思うのだけども。</description>
+ 適当なところに apt source  でリポジトリにあるorig.tarballを持ってくる 適当なところで debcheckout  してテンポラリ作業用のgitリポジトリを持ってくる テンポラリgitリポジトリで
+$ cd /tmp/&amp;lt;package repo&amp;gt; $ git checkout pristine-tar $ git rm &amp;lt;該当バージョンのファイル&amp;gt;; git commit -a $ git checkout master; git tag -d upstream/&amp;lt;version&amp;gt; $ gbp import-orig &amp;lt;orig.tarball&amp;gt;  などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う
+$ cd ~/&amp;lt;package repo&amp;gt; $ git checkout pristine-tar $ git pull file:::/tmp/&amp;lt;package repo&amp;gt; pristine-tar   回りくどいなーとは思うのだけども。</description>
     </item>
     
     <item>

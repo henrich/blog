@@ -24,10 +24,10 @@
     
     <item>
       <title>GPGめも - subkey</title>
-      <link>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</link>
+      <link>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/</link>
       <pubDate>Mon, 04 Dec 2017 18:55:41 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/</guid>
+      <guid>https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/</guid>
       <description>GPGのsubkeyについて。
  たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、  masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。 laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。  そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&amp;hellip;という時にはmasterkeyを使うということができる。  なるほどねー。
 ちなみにどうしてもという時というのは以下らしい。 - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする - 自分の鍵をrevokeする - subkeyを作る・revokeする - 有効期限の変更 - masterkeyのrevoke用の証明書の作成 - UIDの設定変更

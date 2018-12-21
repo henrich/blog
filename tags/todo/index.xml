@@ -40,7 +40,8 @@ $ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今日のグルーミング作業
- fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。   * Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
+ fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。
+* Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
     </item>
     
     <item>

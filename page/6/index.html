@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.49.2" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,90 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/">subversionからお引っ越し</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 13, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>www.debian.or.jpのコンテンツはSubversionで管理していて、コミット可能なのはJPのメンバーだけだったのだけど、salsa.debian.orgに引っ越して見通しを良くしてみたくなったので作業した。</p>
+
+<p>svn2gitを使いコンバート。</p>
+
+<p>非常にわかりづらい（というか導線がない？）のだけど、GitLabにOrganizationというかTeamというかを登録するページからdebianjp-teamとして登録し、適当なsub projectとしてwebを作り、コンバートしたGit repositoryを突っ込む。</p>
+
+<p>Ansibleで<a href="https://cloudgarage.jp/">CloudGarage</a>のVPSへデプロイ（ここで現状のサイトコンテンツの更新手順に更新漏れを見つけたり）。CloudGarageさんは<a href="https://cloudgarage.jp/dap/">開発者支援プログラム</a>を使わせてもらっていて助かる。相変わらず書いたplaybook.ymlがちょっと出来のいいバッチファイル程度なのが気になるけど、仕方がない。</p>
+
+<p>とまぁ、そんなこんなで時間を使った。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 8, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/900074">fonts-oradano-mincho-gsrrをアップロード</a></li>
+<li><a href="https://tracker.debian.org/news/900087">birdfontをアップロード</a></li>
+<li>ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -187,16 +271,14 @@ thermal_zone1.value 40.000
 <hr />
 
 <ul>
-<li>boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&hellip;と思って<a href="http://www.thinkwiki.org/wiki/BIOS_Upgrade">調べる</a>と<a href="https://packages.debian.org/stretch/grub-imageboot">grub-imageboot</a>というツールがあったのでインストール、<a href="https://download.lenovo.com/pccbbs/mobiles/j5uj58ww.txt">該当のBIOSのISOイメージ</a>をダウンロードして、bootできるようにして再起動&hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。</li>
-</ul>
+<li><p>boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&hellip;と思って<a href="http://www.thinkwiki.org/wiki/BIOS_Upgrade">調べる</a>と<a href="https://packages.debian.org/stretch/grub-imageboot">grub-imageboot</a>というツールがあったのでインストール、<a href="https://download.lenovo.com/pccbbs/mobiles/j5uj58ww.txt">該当のBIOSのISOイメージ</a>をダウンロードして、bootできるようにして再起動&hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。</p>
 
 <pre><code>$ sudo apt install genisoimage
 $ geteltorito biosimage.iso &gt; biosupdate.img
 $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
-</code></pre>
+</code></pre></li>
 
-<ul>
-<li>BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで <code>apt install intel-microcode</code> で直った（<a href="https://tracker.debian.org/pkg/intel-microcode">最新のパッケージはbackports提供</a>なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。</li>
+<li><p>BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで <code>apt install intel-microcode</code> で直った（<a href="https://tracker.debian.org/pkg/intel-microcode">最新のパッケージはbackports提供</a>なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。</p></li>
 </ul>
 
 					
@@ -299,7 +381,7 @@ $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82---subkey/">GPGめも - subkey</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/">GPGめも - subkey</a></h3>
 						<small><span class="label label-primary">
 							
 								Mon, Dec 4, 2017
@@ -574,115 +656,6 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Nov 23, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>先日<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881980">fonts-junicodeの新しいバージョン入れて、というレポート</a>をfixedにしたが、そういや報告者にはメール飛ばないよね、というのに気づいたのでDMしておいた</li>
-<li><a href="https://tracker.debian.org/news/888960">unidic-mecabをアップロード</a>。</li>
-</ul>
-
-<hr />
-
-<p>Intel CPUの脆弱性判別ツールをダウンロードしたが、展開したらそのまま撒き散らす＆実行にはroot権限が必要と中々。</p>
-
-<pre><code>$ sudo ./intel_sa00086.py 
-INTEL-SA-00086 Detection Tool
-Copyright(C) 2017, Intel Corporation, All rights reserved
-
-Application Version: 1.0.0.128
-Scan date: 2017-11-23 11:09:42 GMT
-
-*** Host Computer Information ***
-Name: hp
-Manufacturer: Hewlett-Packard
-Model: p7-1040jp
-Processor Name: Intel(R) Core(TM) i5-2310 CPU @ 2.90GHz
-OS Version: debian buster/sid  (4.13.0-1-amd64)
-
-*** Intel(R) ME Information ***
-Engine: Intel(R) Management Engine
-Version: 7.1.3.1053
-SVN: 0
-
-*** Risk Assessment ***
-Based on the analysis performed by this tool: This system is not vulnerable.
-
-For more information refer to the SA-00086 Detection Tool Guide or the Intel security advisory Intel-SA-00086 at the following link:
-https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00086&amp;languageid=en-fr
-</code></pre>
-
-<p>こういうの、パッケージで配るかgitのrepositoryにしてあるほうが良いかもなぁ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Nov 21, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>さくらのミラーでIPv6にてftp/rsync接続できてなかったようなので修正した。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -905,7 +878,7 @@ https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00086&amp;langu
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

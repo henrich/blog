@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.49.2" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -143,6 +143,121 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 </ul></li>
 <li><a href="https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/">birdfontパッケージをアップデート</a>した</li>
 </ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 16, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/">ruby-rspec-instafailパッケージをアップデート</a>した</li>
+<li><a href="https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/">ruby-childprocessパッケージをアップデート</a>した</li>
+<li>twitterで不具合話を拾ったので、<a href="https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/">fonts-unfonts-coreパッケージをアップデート</a>した
+
+<ul>
+<li>fontforgeコマンドの指定で <code>Open(&quot;UnDinaruLight.ttf&quot;)</code> のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 15, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
+
+<p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
+
+<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
+  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
+</code></pre>
+
+<pre><code>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。
+</code></pre>
+
+<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
+index c6ac3e7..1581e98 100644
+--- a/aruba.gemspec
++++ b/aruba.gemspec
+@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
+ EOS
+   end
+ 
+-  s.files            = `git ls-files`.split(&quot;\n&quot;)
+-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
++  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
++  s.test_files       = Dir['spec/*,features/*']
++  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
+   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
+   s.require_path     = &quot;lib&quot;
+ end
+</code></pre>
 
 					
 				</div>
@@ -563,96 +678,6 @@ VM
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Sep 23, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>vmdk-stream-converter</code> が、aliothを指したままだったので<a href="https://tracker.debian.org/news/989198/accepted-vmdk-stream-converter-02-4-source-all-into-unstable/">とりあえず更新</a>。python2依存なんだよね、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=883804">patchはある</a>のでupstreamが対応してくれないものか。</li>
-<li><code>sphere</code> はupstreamが開発停止＆VMWare自体がライブラリを出していてそちらは既にDebianにあるのでそちらを推す格好で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">削除依頼</a>。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Sep 22, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							
-								 , 
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>jcodings</code>が何故か細かくバージョンアップが繰り返されたので追従。1.0.34が&ndash;deleyedでまだ入ってなかったので、それが入ってからになるように調整。</li>
-<li><code>jruby-joni</code>も同様。patchのrefreshが面倒くさい。最新のjcodings依存になっているようなので、ビルドはまだ。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -867,7 +892,7 @@ VM
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

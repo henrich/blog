@@ -68,20 +68,20 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li><a href="https://tracker.debian.org/news/932144">jruby-joniパッケージをアップデート</a></li>
-</ul>
+<li><p><a href="https://tracker.debian.org/news/932144">jruby-joniパッケージをアップデート</a></p>
 
 <pre><code>jruby-joni (2.1.14-1) unstable; urgency=medium
 
-  * New upstream release
-  * debian/patches
-    - drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream
-  * debian/control
-    - set Standards-Version: 4.1.3
-    - update Dependency version
-  * debian/maven.rules
-    - update junit version to 4.x to avoid FTBFS
-</code></pre>
+* New upstream release
+* debian/patches
+- drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream
+* debian/control
+- set Standards-Version: 4.1.3
+- update Dependency version
+* debian/maven.rules
+- update junit version to 4.x to avoid FTBFS
+</code></pre></li>
+</ul>
 
 <p>@Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&hellip;。</p>
 
@@ -99,7 +99,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

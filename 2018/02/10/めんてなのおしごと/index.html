@@ -83,14 +83,14 @@
 <hr />
 
 <ul>
-<li><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</li>
-</ul>
+<li><p><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</p>
 
 <pre><code>make[1]: Entering directory '/builds/fonts-team/xfonts-kappa20'
 bdftopcf k20m.bdf | gzip -c9 -n &gt; pcf/k20m.pcf.gz
 /bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
 Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
 
@@ -124,7 +124,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

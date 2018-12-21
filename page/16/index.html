@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.49.2" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,6 +60,109 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jun 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
+
+<p>次にbase.cowを作る。</p>
+
+<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
+</code></pre>
+
+<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
+
+<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
+</code></pre>
+
+<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
+
+<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
+</code></pre>
+
+<p>以上でアップロード。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/">epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
+gbp:info: Tarballs 'xfonts-kappa20_0.396.orig.tar.xz' not found at '../tarballs/'
+gbp:error: Pristine-tar couldn't checkout &quot;xfonts-kappa20_0.396.orig.tar.xz&quot;: fatal: Path 'xfonts-kappa20_0.396.orig.tar.xz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
+</code></pre>
+
+<p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
+
+<pre><code>henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
+Switched to branch 'pristine-tar'
+henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
+Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
+</code></pre>
+
+<p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/">ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</a></h3>
 						<small><span class="label label-primary">
 							
@@ -88,20 +191,22 @@
 <ul>
 <li>適当なところに apt source <package> でリポジトリにあるorig.tarballを持ってくる</li>
 <li>適当なところで debcheckout <package> してテンポラリ作業用のgitリポジトリを持ってくる</li>
-<li>テンポラリgitリポジトリで
-<code>
-$ cd /tmp/&lt;package repo&gt;
+
+<li><p>テンポラリgitリポジトリで</p>
+
+<pre><code>$ cd /tmp/&lt;package repo&gt;
 $ git checkout pristine-tar
 $ git rm &lt;該当バージョンのファイル&gt;; git commit -a
 $ git checkout master; git tag -d upstream/&lt;version&gt;
 $ gbp import-orig &lt;orig.tarball&gt;
-</code>
-などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う
-<code>
-$ cd ~/&lt;package repo&gt;
+</code></pre>
+
+<p>などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う</p>
+
+<pre><code>$ cd ~/&lt;package repo&gt;
 $ git checkout pristine-tar
 $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
-</code></li>
+</code></pre></li>
 </ul>
 
 <p>回りくどいなーとは思うのだけども。</p>
@@ -702,115 +807,6 @@ Result: PASS
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/">git repoとdh-make</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 23, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>一度upstream tarballを元にdh-makeでパッケージを作った。
-で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。</p>
-
-<pre><code>git clone https://github.com/os-autoinst/os-autoinst.git
-cd os-autoinst
-git checkout 4.1
-git tag upstream/4.1
-git checkout -b debian
-cp -arp ../os-autoinst-4.1/debian ./
-git add debian
-git commit
-</code></pre>
-
-<p>debian/gbp.conf はこんな感じ。</p>
-
-<pre><code>[DEFAULT]
-debian-branch=debian
-
-gbp buildpackage
-</code></pre>
-
-<p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
-
-<pre><code>git config remote.pushdefault alioth 
-</code></pre>
-
-<ul>
-<li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
-<li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 22, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>proposed-updatesリポジトリにパッケージをアップロードする際、
-changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？</p>
-
-<p>疑問が晴れなかったので<a href="https://lists.debian.org/debian-devel/2015/06/msg00305.html">debian-develに質問</a>したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587">登録しておいた。Bug#789587</a>です。</p>
-
-<p>しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -1031,7 +1027,7 @@ changelogのdistribution名を何にするのが良いのか？とふと思っ�
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.49.2" />
+	<meta name="generator" content="Hugo 0.51" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,6 +60,135 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Feb 11, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/932144">jruby-joniパッケージをアップデート</a></p>
+
+<pre><code>jruby-joni (2.1.14-1) unstable; urgency=medium
+
+* New upstream release
+* debian/patches
+- drop 0002-remove-build-time-for-reproducible-build.patch: merged upstream
+* debian/control
+- set Standards-Version: 4.1.3
+- update Dependency version
+* debian/maven.rules
+- update junit version to 4.x to avoid FTBFS
+</code></pre></li>
+</ul>
+
+<p>@Testとしてjunit4以降を指定しているようなのに何故かpom.xmlでは3.xという指定になってる？ということで混乱したのだが、実はdebian/maven.rulesで上書きをしていると言う罠。Java関連パッケージはよくわからんなぁ&hellip;。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 10, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/931316">xfonts-mplusを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931318">xfonts-shinonomeを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931319">xfonts-ayuを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931322">xfonts-efont-unicodeを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931323">xfonts-kanameを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931337">xfonts-naga10を更新</a></li>
+<li><a href="https://tracker.debian.org/news/931540">fonts-aoyagi-kouzan-tを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931541">fonts-arphic-bkai00mpを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931645">jcodingsを更新</a>、salsa移行はまだ目処立たず。</li>
+<li><a href="https://tracker.debian.org/news/931659">nailgunを更新</a>、salsa移行はまだ目処立たず。</li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</p>
+
+<pre><code>make[1]: Entering directory '/builds/fonts-team/xfonts-kappa20'
+bdftopcf k20m.bdf | gzip -c9 -n &gt; pcf/k20m.pcf.gz
+/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
+Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
+</code></pre></li>
+</ul>
+
+<p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
+
+<hr />
+
+<p>sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。</p>
+
+<pre><code>  * debian/control
+    - add Build-Depends: dh-exec to modify icon files' name
+  * debian/sylpheed.install
+    - install icon files to appropriate locations (Closes: #823018)
+  * debian/sylpheed.dirs
+    - adjust as above
+  * debian/dirs
+    - unused, drop it
+  * debian/sylpheed-debian.xpm
+    - menu system was already deprecated, drop it
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -78,35 +207,31 @@
 					<br>
 					
 						<ul>
-<li><a href="https://tracker.debian.org/news/931241">libsylphを更新</a></li>
-</ul>
+<li><p><a href="https://tracker.debian.org/news/931241">libsylphを更新</a></p>
 
 <pre><code>libsylph (1.1.0-19) unstable; urgency=medium
 
-  * debian/patches
-    - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
+* debian/patches
+- add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
 
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 09 Feb 2018 23:32:14 +0900
-</code></pre>
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 09 Feb 2018 23:32:14 +0900
+</code></pre></li>
 
-<ul>
-<li>sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。<a href="https://sylpheed.sraoss.jp/redmine/issues/296">忘れないうちにupstreamにも登録</a></li>
-</ul>
+<li><p>sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。<a href="https://sylpheed.sraoss.jp/redmine/issues/296">忘れないうちにupstreamにも登録</a></p>
 
 <pre><code>sylpheed (3.7.0-2) UNRELEASED; urgency=medium
 
-  * debian/control
-    - drop Build-Depends: libdbus-glib-1-dev
-      It was introduced since enchant with zemberek crashes without it in 3.0,
-      however, enchant package was built with &quot;--disable-zemberek&quot; option,
-      so it isn't necessary.
-  * debian/patches
-    - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
-      properly (Closes: #889971)
-</code></pre>
+* debian/control
+- drop Build-Depends: libdbus-glib-1-dev
+  It was introduced since enchant with zemberek crashes without it in 3.0,
+  however, enchant package was built with &quot;--disable-zemberek&quot; option,
+  so it isn't necessary.
+* debian/patches
+- add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
+  properly (Closes: #889971)
+</code></pre></li>
 
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></li>
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></p></li>
 </ul>
 
 					
@@ -195,24 +320,24 @@
 					<br>
 					
 						<ul>
-<li>1日一つは、ということでdartsパッケージの更新。</li>
-</ul>
+<li><p>1日一つは、ということでdartsパッケージの更新。</p>
 
 <pre><code>darts (0.32-16) unstable; urgency=medium
 
-  * debian/control
-    - update Vcs-* to use salsa.debian.org
-    - set Build-Depends: debhelper (&gt;= 11)
-    - set Standards-Version: 4.1.3
-  * debian/compat
-    - set 11
-  * debian/watch
-    - update to version 4
-  * debian/copyright
-    - sort order to ignore lintian warning
+* debian/control
+- update Vcs-* to use salsa.debian.org
+- set Build-Depends: debhelper (&gt;= 11)
+- set Standards-Version: 4.1.3
+* debian/compat
+- set 11
+* debian/watch
+- update to version 4
+* debian/copyright
+- sort order to ignore lintian warning
 
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Tue, 06 Feb 2018 20:23:18 +0900
-</code></pre>
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Tue, 06 Feb 2018 20:23:18 +0900
+</code></pre></li>
+</ul>
 
 					
 				</div>
@@ -249,44 +374,40 @@
 					<br>
 					
 						<ul>
-<li>chasenパッケージの更新。</li>
-</ul>
+<li><p>chasenパッケージの更新。</p>
 
 <pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
 
-  * debian/control
-    - Vcs-* move to salsa.debian.org 
-    - use https for Homepage:
-    - set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
-      dependency (pulled automatically)
-    - set Standards-Version: 4.1.3
-  * debian/rules
-    - drop &quot;--with autoreconf&quot;
-    - specify &quot;--no-parallel&quot; to avoid FTBFS
-  * debian/compat
-    - set 10
-  * debian/watch
-    - update to version 4
+* debian/control
+- Vcs-* move to salsa.debian.org 
+- use https for Homepage:
+- set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
+  dependency (pulled automatically)
+- set Standards-Version: 4.1.3
+* debian/rules
+- drop &quot;--with autoreconf&quot;
+- specify &quot;--no-parallel&quot; to avoid FTBFS
+* debian/compat
+- set 10
+* debian/watch
+- update to version 4
 
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
-</code></pre>
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
+</code></pre></li>
 
-<ul>
-<li>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</li>
-</ul>
+<li><p>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</p>
 
 <pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
 
-  * debian/control
-    - set Build-Depends: debhelper (&gt;= 11)
-  * debian/compat
-    - set 11
+* debian/control
+- set Build-Depends: debhelper (&gt;= 11)
+* debian/compat
+- set 11
 
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
-</code></pre>
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
+</code></pre></li>
 
-<ul>
-<li><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</li>
+<li><p><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</p></li>
 </ul>
 
 					
@@ -324,24 +445,21 @@
 					<br>
 					
 						<ul>
-<li>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</li>
-</ul>
+<li><p>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</p>
 
 <pre><code>image: debian:sid
 
 before_script:
-  - echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
+- echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
 
 build:
-  script:
-    - dpkg-buildpackage -us -uc -B
-</code></pre>
+script:
+- dpkg-buildpackage -us -uc -B
+</code></pre></li>
 
-<ul>
 <li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
 
-<li><p>あれ、libsylphでonigurumaが有効になってない？</p></li>
-</ul>
+<li><p>あれ、libsylphでonigurumaが有効になってない？</p>
 
 <pre><code>libsylph 1.1.0
 
@@ -352,7 +470,8 @@ Oniguruma     : no
 </code></pre>
 
 <pre><code>checking whether Oniguruma is available... no
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>なんでだ？？</p>
 
@@ -540,141 +659,6 @@ diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/sm
 					
 						<ul>
 <li>nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&hellip;<a href="https://github.com/facebook/nailgun/pull/118">新しくPR作ったところ、マージされた</a>。これでパッケージ側のパッチがまた一つ減らせる。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 29, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。</li>
-</ul>
-
-<pre><code>$ git checkout --orphan mones
-$ git rm --cached -r *
-$ rm -r ./*
-$ git pull alioth master
-$ git push salsa mones
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jan 28, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/git">git</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージをsalsaに配置してもらって、<a href="https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a">前に報告した些細な修正</a>をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？</li>
-<li>同じくqrencodeパッケージの報告者の勘違いに起因すると思われる<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984">バグ</a><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266">二つ</a>をクローズしておいた</li>
-</ul>
-
-<hr />
-
-<p>qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。</p>
-
-<p>さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。</p>
-
-<ol>
-<li>まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。<code>mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av</code> などとした。</li>
-<li>つぎに親が同一ではないブランチ（orphan branch)を作る <code>git checkout --orphan master</code></li>
-<li>この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す <code>git rm --cached -r debian</code></li>
-<li><code>git remote add upstream https://github.com/fukuchi/libqrencode</code> でupstreamを引っ張ってくる</li>
-<li><code>git pull upstream master</code>したがtag持ってこなかったから<code>git pull upstream</code>も実行</li>
-<li><code>git checkout debian</code>して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために <code>git merge v4.0.0  --allow-unrelated-histories</code></li>
-</ol>
-
-<p>上記の変更点がackされたら提案したい</p>
-
-<hr />
-
-<ul>
-<li>svn-workbenchの<a href="http://pysvn.tigris.org/issues/show_bug.cgi?id=212">1行パッチをフォワード</a>。使いづらいな。。。</li>
-<li>svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</li>
-</ul>
-
-<pre><code>dh_install                                                                                                                         
-perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
-
-Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
-</code></pre>
-
-<hr />
-
-<ul>
-<li>libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347">パッチしておいた</a></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。</li>
 </ul>
 
 					
@@ -907,7 +891,7 @@ Constants from lexical variables potentially modified elsewhere are deprecated. 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

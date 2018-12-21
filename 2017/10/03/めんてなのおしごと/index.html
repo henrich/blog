@@ -91,15 +91,16 @@
 <ul>
 <li>Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&hellip;）。</li>
 <li>次に<a href="https://github.com/cybozu-go/aptutil/releases">go-apt-cacher</a>をダウンロードしてちょっと設定して起動します。</li>
-<li>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</li>
-</ul>
+
+<li><p>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</p>
 
 <pre><code># apt show openclipart-png
 Package: openclipart-png
 Source: openclipart
 Version: 1:0.18+dfsg-14
 Installed-Size: 148 MB
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。</p>
 
@@ -157,7 +158,7 @@ sys 0m0.464s
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

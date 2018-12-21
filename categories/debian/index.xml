@@ -24,6 +24,26 @@
     
     <item>
       <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> ruby-rspec-instafailパッケージをアップデートした ruby-childprocessパッケージをアップデートした twitterで不具合話を拾ったので、fonts-unfonts-coreパッケージをアップデートした  fontforgeコマンドの指定で Open(&amp;quot;UnDinaruLight.ttf&amp;quot;) のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>ruby-arubaパッケージをアップデートした。
+autopkgtestが debian/control での Testsuite: autopkgtest-pkg-ruby 行を起点として実施される（実際は debian/ruby-tests.rake ファイルが実行されるのかな？）のだけど、この際に gemspec ファイルの中身が実行される。ところがここで git コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。
+s.files = `git ls-files`.split(&amp;quot;\n&amp;quot;) s.test_files = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;) s.executables = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }  しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。  diff --git a/aruba.gemspec b/aruba.gemspec index c6ac3e7..1581e98 100644 --- a/aruba.gemspec +++ b/aruba.gemspec @@ -40,9 +40,9 @@ With aruba &amp;gt;= 1.0 there will be breaking changes. Make sure to read https://gith EOS end - s.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
       <link>https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
       <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>

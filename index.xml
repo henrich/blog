@@ -68,6 +68,71 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
       
         
           <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/&#34;&gt;ruby-rspec-instafailパッケージをアップデート&lt;/a&gt;した&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/&#34;&gt;ruby-childprocessパッケージをアップデート&lt;/a&gt;した&lt;/li&gt;
+&lt;li&gt;twitterで不具合話を拾ったので、&lt;a href=&#34;https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/&#34;&gt;fonts-unfonts-coreパッケージをアップデート&lt;/a&gt;した
+
+&lt;ul&gt;
+&lt;li&gt;fontforgeコマンドの指定で &lt;code&gt;Open(&amp;quot;UnDinaruLight.ttf&amp;quot;)&lt;/code&gt; のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/&#34;&gt;ruby-arubaパッケージをアップデート&lt;/a&gt;した。&lt;/p&gt;
+
+&lt;p&gt;autopkgtestが &lt;code&gt;debian/control&lt;/code&gt; での &lt;code&gt;Testsuite: autopkgtest-pkg-ruby&lt;/code&gt; 行を起点として実施される（実際は &lt;code&gt;debian/ruby-tests.rake&lt;/code&gt; ファイルが実行されるのかな？）のだけど、この際に &lt;code&gt;gemspec&lt;/code&gt; ファイルの中身が実行される。ところがここで &lt;code&gt;git&lt;/code&gt; コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Ruby&#34;&gt;  s.files            = `git ls-files`.split(&amp;quot;\n&amp;quot;)
+  s.test_files       = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;)
+  s.executables      = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Ruby&#34;&gt;diff --git a/aruba.gemspec b/aruba.gemspec
+index c6ac3e7..1581e98 100644
+--- a/aruba.gemspec
++++ b/aruba.gemspec
+@@ -40,9 +40,9 @@ With aruba &amp;gt;= 1.0 there will be breaking changes. Make sure to read https://gith
+ EOS
+   end
+ 
+-  s.files            = `git ls-files`.split(&amp;quot;\n&amp;quot;)
+-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;)
+-  s.executables      = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }
++  s.files            = Dir[&#39;**/*&#39;].reject { |f| f =~ %r{^debian/} }
++  s.test_files       = Dir[&#39;spec/*,features/*&#39;]
++  s.executables      = Dir[&#39;bin/*&#39;].map{ |f| File.basename(f) }
+   s.rdoc_options     = [&amp;quot;--charset=UTF-8&amp;quot;]
+   s.require_path     = &amp;quot;lib&amp;quot;
+ end
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>Retrospective 2018 11 26</title>
             <link>https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/</link>
             <pubDate>Mon, 26 Nov 2018 12:09:56 +0900</pubDate>
@@ -486,178 +551,6 @@ index b5183a63f..d9ba69b1f 100644
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;無事マージされました。コードが書けなくたって、こんなやり方もあるんだぜ、と。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 19 May 2018 22:38:44 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;OSDN側の仕様変更に追随。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった&lt;/li&gt;
-&lt;li&gt;要望を出した&lt;/li&gt;
-&lt;li&gt;対応としてRSS経由での取得が実装された&lt;/li&gt;
-&lt;li&gt;&amp;hellip;ということで debian/watch ファイルを書き換えて取得できるように&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code&gt;opts=&amp;quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \
-pagemangle=s%&amp;lt;osdn:file url=&amp;quot;([^&amp;lt;]*)&amp;lt;/osdn:file&amp;gt;%&amp;lt;a href=&amp;quot;$1&amp;quot;&amp;gt;$1&amp;lt;/a&amp;gt;%g, \
-downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;amp;f=sawarabi-fonts%g;s/xz\//xz/&amp;quot; \
-https://osdn.net/projects/sawarabi-fonts/releases/rss \
- https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;hellip;自分でも何やってるか、よくわからなくなる。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://osdn.net/projects/sawarabi-fonts/releases/rss&#34;&gt;https://osdn.net/projects/sawarabi-fonts/releases/rss&lt;/a&gt; が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。&lt;/li&gt;
-&lt;li&gt;で、uscan は &lt;code&gt;&amp;lt;a href=&amp;quot;foobar.html&amp;quot;&amp;lt;/a&amp;gt;&lt;/code&gt; のような記述から対象のファイルを探している（これに気付くのにしばらくかかった）&lt;/li&gt;
-&lt;li&gt;RSSを &lt;code&gt;pagemangle&lt;/code&gt; オプションで無理やり書き換えて&lt;code&gt;a href&lt;/code&gt;を作り出す&lt;/li&gt;
-&lt;li&gt;これで最新版のバージョン自体は取得できる&amp;hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう&lt;/li&gt;
-&lt;li&gt;リダイレクト先のURLに&lt;code&gt;downloadurlmangle&lt;/code&gt;オプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ここまでやって、とりあえずfonts-sawarabi-michonパッケージのアップデートをした。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;debootstrapのregressionな部分を直す提案&amp;hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。
-&lt;code&gt;set -- -O &amp;quot;$dest&amp;quot; &amp;quot;$from&amp;quot; &amp;quot;$@&amp;quot;&lt;/code&gt; は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>Fedora28のリリースを見て。</title>
-            <link>https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/</link>
-            <pubDate>Sat, 05 May 2018 14:40:09 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/&#34;&gt;Fedora28のリリースノート&lt;/a&gt;をつらつら眺めたら、&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/sysadmin/Security.html&#34;&gt;libcurlのリンクをlibssh2からlibsshに変えたよ&lt;/a&gt;、というのがあった。へぇ、と思ってDebianでlibssh2に依存しているのを探してみた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ grep-dctrl -F Depends libssh2-1 -s Source /var/lib/apt/lists/*_Packages | sort | uniq
-Source: curl
-Source: gfal2
-Source: guacamole-server
-Source: libgit2
-Source: libpam-sshauth (0.4.1-2)
-Source: libssh2
-Source: libvirt
-Source: mlterm (3.8.4-1)
-Source: php-ssh2 (1.1.2+0.13-1)
-Source: pylibssh2
-Source: qemu
-Source: vlc (3.0.2-1)
-Source: yuma123
-Source: zabbix
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;curl以外にも幾つかある。で、qemuの様子をみてみたが、今の所&lt;a href=&#34;https://lists.gnu.org/archive/html/qemu-devel/2018-01/msg04447.html&#34;&gt;何度か提案パッチを書き直している&lt;/a&gt;ようで簡単にs/libssh2/libssh/すればいいわけでは無いようである。qemuの場合はパフォーマンスが落ちた、という話も出てる。&lt;/p&gt;
-
-&lt;p&gt;ともあれ、curlについてはupstreamが対応済みなのでFedoraがやったのと同じことは簡単にできそう&amp;hellip;ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=897950&#34;&gt;BTSしておいた&lt;/a&gt;。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/desktop/I18n.html&#34;&gt;Glibc collation update and sync with CLDR&lt;/a&gt;を追いかけると、&lt;a href=&#34;https://sourceware.org/bugzilla/show_bug.cgi?id=14095&#34;&gt;glibc2.28では取り込まれそう&lt;/a&gt;でパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。&lt;/li&gt;
-&lt;li&gt;Timeの更新は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881429&#34;&gt;まだかなー&lt;/a&gt;という感じ&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife&#34;&gt;Laptopのバッテリ時間改善&lt;/a&gt;はカーネル側での変更が4.15で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&amp;hellip;。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc&#34;&gt;Libcrypt replaced by libxcrypt in glibc&lt;/a&gt;は、Debianだと&lt;a href=&#34;https://tracker.debian.org/pkg/libxcrypt&#34;&gt;libxcryptがあるけどこれはメンテされてない感じ&lt;/a&gt;&amp;hellip;。うーん。upstreamでの話としては &lt;a href=&#34;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&#34;&gt;https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html&lt;/a&gt; で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？&lt;/li&gt;
-&lt;li&gt;modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&amp;hellip;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;そのうち過去のリリースノートも見てみるか。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&amp;hellip;とりあえずlibxcryptのパッケージを触ってみた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gbp import-dscs --debsnap libxcrypt
-$ cd libxcrypt
-$ git checkout upstream
-$ rm -r ./*
-$ git remote add upstream https://github.com/besser82/libxcrypt.git
-$ git pull upstream
-$ git pull upstream --allow-unrelated-histories master
-(ちょこちょことconflict対応)
-$ git commit -av
-$ git checkout master
-$ cp -arp debian ../ ; rm -r ./*; cp -arp ../debian ./
-$ git merge --allow-unrelated-histories v4.0.0 
-(ちょこちょことconflict対応)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あとは普通のパッケージング作業。なくさないように&lt;a href=&#34;https://salsa.debian.org/henrich/libxcrypt&#34;&gt;salsaに上げておいた&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;しかし、libxcrypt.soからlibcrypt.soになってるっぽい？いいのかしら&amp;hellip;今だと &lt;code&gt;libc6: /lib/x86_64-linux-gnu/libcrypt.so.1&lt;/code&gt; という感じ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ apt-file show libxcrypt1
-libxcrypt1: /lib/libxcrypt.so.1
-libxcrypt1: /lib/libxcrypt.so.1.2.4
-(snip)
-
-$ dpkg-deb --contents libxcrypt-dev_4.0.0-1_amd64.deb
-(snip)
-lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libcrypt.so -&amp;gt; libcrypt.so.1.1.0
-lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libowcrypt.a -&amp;gt; libcrypt.a
-lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libowcrypt.so -&amp;gt; libcrypt.so
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Fedoraのsrpmを &lt;code&gt;dnf download --source libxcrypt glibc&lt;/code&gt; とかしてみてみると、どうやらある時点でglibc側での生成を止めてlibxcryptを使うようになってるようだ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Kernelのsrpmを落としてきた。&lt;code&gt;BuildConflicts: rhbuildsys(DiskFree) &amp;lt; 500Mb&lt;/code&gt;  は面白いな、同じことやれるといいな。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Sources for kernel-tools
-Source2000: cpupower.service
-Source2001: cpupower.config
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;名前から関係ありそうなのはこれかなぁ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# See &#39;cpupower help&#39; and cpupower(1) for more info
-CPUPOWER_START_OPTS=&amp;quot;frequency-set -g performance&amp;quot;
-CPUPOWER_STOP_OPTS=&amp;quot;frequency-set -g ondemand&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;[Unit]
-Description=Configure CPU power related settings
-After=syslog.target
-
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-EnvironmentFile=/etc/sysconfig/cpupower
-ExecStart=/usr/bin/cpupower $CPUPOWER_START_OPTS
-ExecStop=/usr/bin/cpupower $CPUPOWER_STOP_OPTS
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Debianだと&lt;code&gt;linux-cpupower&lt;/code&gt;パッケージに入っているcpupowerの調整、か。でも違う気がする&amp;hellip;。&lt;/p&gt;
-
-&lt;p&gt;で、再度ちゃんと文章読んでみたら&lt;code&gt;The initial focus of this change is to enable to following 3 hardware power-saving features by default:&lt;/code&gt;って書いてあるやん。あーこれはconfigで有効にするぜ、ってことか。&lt;code&gt;kernel-x86_64.config&lt;/code&gt;を探す。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CONFIG_SND_HDA_POWER_SAVE_DEFAULT=1
-CONFIG_SND_HDA_POWER_SAVE=y
-
-CONFIG_BT_HCIBTUSB_AUTOSUSPEND=y
-
-CONFIG_SATA_MOBILE_LPM_POLICY=3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;それらしいのはこれかなぁ&amp;hellip;これを全て有効にすればF28相当になる？ただし、SATAはリスクが増すし、Bluetoothも一部機種だとregressionが起きるのでパッチが必要なようだ。&lt;/p&gt;
 </description>
           </item>
         
