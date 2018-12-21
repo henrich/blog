@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.48" />
+	<meta name="generator" content="Hugo 0.49.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,49 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Oct 14, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>今日も今日とてopenQAに<a href="https://github.com/os-autoinst/openQA/pull/1472">１行パッチ</a>。</li>
+<li><a href="https://bugs.debian.org/878494">ttf-kacstを落として、というバグレポート</a>がHolgerから。あーすっかり忘れてた&hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。
+
+<ul>
+<li>納得したので、<a href="https://tracker.debian.org/news/879272">Uploadした</a>。関連ありそうな別パッケージについては<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520">バグレポート</a>。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -661,116 +704,6 @@ real    0m24.598s</p>
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 3, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://twitter.com/eldesh/status/915031977094389760">JPのページの誤りの指摘</a>を頂いたので修正した</li>
-<li><a href="https://idcfcloud.com">IDCFクラウド</a>のDebianテンプレートで問題を見つけたのでチケットを切っておいた。</li>
-</ul>
-
-<hr />
-
-<p>「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？</p>
-
-<ul>
-<li>思いついた対象候補
-
-<ul>
-<li>さくらのVPS</li>
-<li>ConoHa</li>
-<li><a href="https://www.idcf.jp/cloud/?cl=top_cloud">IDCFクラウド</a>(←ここではこれをチョイス)</li>
-</ul></li>
-</ul>
-
-<p>IDCFクラウドは、<a href="https://www.idcf.jp/cloud/order.html?cl=cl_top#try">500円クーポン</a>があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。</p>
-
-<ul>
-<li>Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&hellip;）。</li>
-<li>次に<a href="https://github.com/cybozu-go/aptutil/releases">go-apt-cacher</a>をダウンロードしてちょっと設定して起動します。</li>
-<li>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</li>
-</ul>
-
-<pre><code># apt show openclipart-png
-Package: openclipart-png
-Source: openclipart
-Version: 1:0.18+dfsg-14
-Installed-Size: 148 MB
-</code></pre>
-
-<p>有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。</p>
-
-<pre><code># time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 10s (12.2 MB/s)          
-
-real    0m10.742s
-user    0m2.204s
-sys 0m0.420s
-</code></pre>
-
-<p>まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）</p>
-
-<pre><code># time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (50.3 MB/s)           
-
-real    0m2.758s
-user    0m2.028s
-sys 0m0.336s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (43.0 MB/s)          
-
-real    0m3.423s
-user    0m2.292s
-sys 0m0.396s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 3s (42.2 MB/s)           
-
-real    0m3.237s
-user    0m2.496s
-sys 0m0.464s
-</code></pre>
-
-<p>キャッシュされた状態からだと平均で3.13秒（45.1MB/s）</p>
-
-<p>ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -957,7 +890,16 @@ sys 0m0.464s
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/17/">17</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/18/">18</a></li>
     
     
     <li class="page-item">
@@ -965,7 +907,7 @@ sys 0m0.464s
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/18/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -984,7 +926,7 @@ sys 0m0.464s
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.48 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

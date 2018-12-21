@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.25.1" />
+	<meta name="generator" content="Hugo 0.49.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,15 +60,18 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">debcheckoutへパッチ</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, Jun 29, 2015
+								Mon, May 18, 2015
 							</span>&nbsp;in
 							 using tags
 							
 								
 							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -77,471 +80,16 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
+						<p>Debianパッケージのソースを取得したいときには「apt-get source」を使う。
+だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。</p>
 
-<p>sparcでのビルド失敗は</p>
+<p>とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。</p>
 
-<pre><code>Traceback (most recent call last):
-  File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-ImportError: No module named pkg_resources
-</code></pre>
+<p>debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立って<a href="http://sources.debian.net/src/devscripts/2.15.4/scripts/debcheckout.pl/">debcheckoutの中身</a>を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。</p>
 
-<p>…なんでモジュールが無いというのか？</p>
-
-<p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
-さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
-
-<p>新しいバージョンになると</p>
-
-<pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-</code></pre>
-
-<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
-
-<p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/">autopkgtest触ってみた（らしい）</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
-
-<p>Testsuite: autopkgtest-pkg-perl</p>
-
-<p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
-
-<p>実施されるテストは
-* smoke
-* use.t
-* syntax.t
-で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
-
-<p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
-
-<pre><code>$ sudo apt-get install sbuild
-$ sudo mkdir -p /srv/chroot/sid
-$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
-</code></pre>
-
-<pre><code>[sid-amd64-sbuild]
-type=directory
-description=Debian sid/amd64 autobuilder
-directory=/srv/chroot/sid
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:22:46]: version 3.14.3
-adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
-adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
-
-<pre><code>#union-type=aufs
-#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
-</code></pre>
-
-<p>とやってみたのだけど、</p>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:23:06]: version 3.14.3
-adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-Traceback (most recent call last):
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 190, in &lt;module&gt;
-    parse_args()
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 96, in parse_args
-    (key, val) = entry.split(&quot;=&quot;, 2)
-ValueError: too many values to unpack (expected 2)
-adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
-
-<pre><code>[sid-test]
-type=file
-description=test
-file=/srv/chroot/test/base.tgz
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:38]: version 3.14.3
-adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:41]: testbed dpkg architecture: amd64
-adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
-+ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
-gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg' created
-gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg' created
-++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&gt;++++++++++...............+++++
-
-Not enough random bytes available.  Please do some other work to give
-the OS a chance to collect more entropy! (Need 188 more bytes)
-gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
-gpg: key 0FB272FB marked as ultimately trusted
-</code></pre>
-
-<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/">dh-make-perlでPerlモジュールが半自動でDebianパッケージに</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。</p>
-
-<pre><code>$ dh-make-perl 
-== dh-make-perl 0.86 ==
-Trying /home/henrich/src/qa/../qa.tar.gz... not found.
-Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
-Trying /home/henrich/src/qa/../qa.tar.xz... not found.
-Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
-WARNING: Neither META.json nor META.yml was found
-Unable to determine dist name, no Build.PL, no Makefile.PL
-Please use --cpan.
-</code></pre>
-
-<p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
-
-<pre><code>$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
-== dh-make-perl 0.86 ==
-
-CPAN.pm requires configuration, but most of it can be done automatically.
-If you answer 'no' below, you will enter an interactive dialog for each
-configuration option instead.
-
-Would you like to configure as much as possible automatically? [yes]
-
- &lt;install_help&gt;
-
-Warning: You do not have write permission for Perl library directories.
-
-To install modules, you need to configure a local Perl library directory or
-escalate your privileges.  CPAN can help you by bootstrapping the local::lib
-module or by configuring itself to use 'sudo' (if available).  You may also
-resolve this problem manually if you need to customize your setup.
-
-What approach do you want?  (Choose 'local::lib', 'sudo' or 'manual')
- [local::lib] 
-
-
-Autoconfiguration complete.
-
-Attempting to bootstrap local::lib...
-(snip)
-PATH=&quot;/home/henrich/perl5/bin${PATH+:}${PATH}&quot;; export PATH;
-PERL5LIB=&quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&quot;; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT=&quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&quot;; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT=&quot;--install_base \&quot;/home/henrich/perl5\&quot;&quot;; export PERL_MB_OPT;
-PERL_MM_OPT=&quot;INSTALL_BASE=/home/henrich/perl5&quot;; export PERL_MM_OPT;
-
-Would you like me to append that to /home/henrich/.bashrc now? [yes] 
-(snip)
-</code></pre>
-
-<p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
-
-<pre><code>henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
-commit a1a9d209742905d33a3ffee587c32b7a5360a521
-Author: Hideki Yamane &lt;henrich@debian.org&gt;
-Date:   Sun Jun 28 00:12:59 2015 +0900
-
-    Initial packaging by dh-make-perl 0.84
-
-commit 29943cd28971248efb43e0e940957bf5086e118e
-Author: Hideki Yamane &lt;henrich@debian.org&gt;
-Date:   Sun Jun 28 00:10:38 2015 +0900
-
-    Import original source of DBIx-Class-OptimisticLocking 0.02
-</code></pre>
-
-<p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
-
-<p>debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。</p>
-
-<p>debian/copyrightもcpanから取ってきて記述されるようです。</p>
-
-<pre><code>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
-Upstream-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Upstream-Name: DBIx-Class-OptimisticLocking
-DISCLAIMER: This copyright info was automatically extracted
- from the perl module. It may not be accurate, so you better
- check the module sources in order to ensure the module for its
- inclusion in Debian or for general legal information. Please,
- if licensing information is incorrectly generated, file a bug
- on dh-make-perl.
- NOTE: Don't forget to remove this disclaimer once you are happy
- with this file.
-</code></pre>
-
-<p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
-
-<p>debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。</p>
-
-<p>debian/upstream/metadataなんてファイルも出来てました。中身は</p>
-
-<pre><code>Archive: CPAN
-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p>ほー。いたれりつくせりですね。</p>
-
-<p>あとはgit-buildpackageでビルドしてしまえばOKです。</p>
-
-<p>ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると</p>
-
-<pre><code>**********
-WARNING: a package named
-              'libsql-abstract-perl'
-         is already available in APT repositories
-Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
-Description: module to generate SQL from Perl data structures
-</code></pre>
-
-<p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
-
-<p>モジュールがcpanにない場合には</p>
-
-<pre><code>$ dh-make-perl --cpan selenium-remote-driver-perl
-== dh-make-perl 0.86 ==
-Reading '/home/henrich/.local/share/.cpan/Metadata'
-  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
-Can't find 'selenium::remote::driver::perl' module or distribution on CPAN
-</code></pre>
-
-<p>のように出てきます。</p>
-
-<p>また、変換の際にモジュールが依存する別のモジュールがない場合には</p>
-
-<pre><code>Needs the following modules for which there are no debian packages available:
- - Time::Mock
-</code></pre>
-
-<p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
-
-<pre><code>Needs the following modules for which there are no debian packages available:
- - CSS::Minifier::XS
- - JavaScript::Minifier::XS
-</code></pre>
-
-<p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
-
-<pre><code>**********
-WARNING: a package named
-              'libcss-minifier-xs-perl'
-         is already available in APT repositories
-Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
-Description: XS based CSS minifier
-</code></pre>
-
-<p>と出てきてしまいました。あらら。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/">testでskippedが多い場合は依存関係が満たされてないかもしれない</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>さて、ドキュメントにはテストについて色々書いてありました。</p>
-
-<pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl &quot;-MExtUtils::Command::MM&quot; &quot;-MTest::Harness&quot; &quot;-e&quot; &quot;undef *Test::Harness::Switches; test_harness(1, 'blib/lib', 'blib/arch')&quot; t/*.t
-t/00-compile.t ................ 
-1..1
-ok 1 - DBIx::Class::OptimisticLocking loaded ok
-ok
-t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
-t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
-t/03-all.t .................... skipped: needs DBD::SQLite for testing
-t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
-t/05-version.t ................ skipped: needs DBD::SQLite for testing
-t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
-t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
-t/08-none.t ................... skipped: needs DBD::SQLite for testing
-t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
-t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
-All tests successful.
-Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
-Result: PASS
-</code></pre>
-
-<p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
-
-<p>結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。</p>
-
-<p>もうひとつは些細な話ですがパラレルビルドの話「dh $@ &ndash;parallel」という形で渡せば</p>
-
-<pre><code>   dh_auto_build -O--parallel
-	make -j4
-</code></pre>
-
-<p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/">git repoとdh-make</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 23, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>一度upstream tarballを元にdh-makeでパッケージを作った。
-で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。</p>
-
-<pre><code>git clone https://github.com/os-autoinst/os-autoinst.git
-cd os-autoinst
-git checkout 4.1
-git tag upstream/4.1
-git checkout -b debian
-cp -arp ../os-autoinst-4.1/debian ./
-git add debian
-git commit
-</code></pre>
-
-<p>debian/gbp.conf はこんな感じ。</p>
-
-<pre><code>[DEFAULT]
-debian-branch=debian
-
-gbp buildpackage
-</code></pre>
-
-<p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
-
-<pre><code>git config remote.pushdefault alioth 
-</code></pre>
-
-<ul>
-<li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
-<li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
-</ul>
+<p>じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して
+<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=739104#15">Bug#739104</a>
+へパッチをポストしておいた。</p>
 
 					
 				</div>
@@ -564,50 +112,24 @@ gbp buildpackage
 
 <ul class="pagination">
     
-    <li>
-        <a href="/blog/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/blog/page/17/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/blog/page/17/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
     
     
     
-     
+    
         
         
     
     
-    <li
-    ><a href="/blog/">1</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/blog/page/2/">2</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/blog/page/3/">3</a></li>
+    <li class="page-item"><a class="page-link" href="/blog/">1</a></li>
     
     
     
@@ -618,7 +140,7 @@ gbp buildpackage
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/2/">2</a></li>
     
     
     
@@ -628,6 +150,19 @@ gbp buildpackage
         
         
     
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -732,37 +267,10 @@ gbp buildpackage
     
     
     
-     
+    
         
         
     
-    
-    <li
-    ><a href="/blog/page/17/">17</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    class="active"><a href="/blog/page/18/">18</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/blog/page/19/">19</a></li>
     
     
     
@@ -773,28 +281,26 @@ gbp buildpackage
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="/blog/page/17/">17</a></li>
     
     
     
     
     
-     
+    
         
         
     
     
-    <li
-    ><a href="/blog/page/21/">21</a></li>
+    <li class="page-item active"><a class="page-link" href="/blog/page/18/">18</a></li>
     
     
-    <li
-    >
-    <a href="/blog/page/19/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    <li class="page-item disabled">
+    <a href="" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/blog/page/21/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/blog/page/18/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -813,7 +319,7 @@ gbp buildpackage
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.25.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

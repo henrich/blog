@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.48" />
+	<meta name="generator" content="Hugo 0.49.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,61 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Apr 2, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>debootstrapはNMUしてたら「普通にアップロードしてよ」と言われ、確認したらrepositoryの権限も貰っていた&hellip;昔に追加されたのかな？とりあえず、アップロード→regression直しの繰り返しをしている。ツールとしての性格上致し方がないが、package外での利用が考慮漏れしてた。
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=844118#10">ダウンロード済みの.debファイルを使うようにするパッチも投げた</a>。これで手元ではかかる時間が半分に減ったので、できれば入れたいところ。</li>
+<li>その前に既存のpatchを一掃する作業が待っているわけですが&hellip;。</li>
+<li>書き忘れていたが <a href="https://tracker.debian.org/news/940647/accepted-xfonts-jisx0213-020040511-7-source-all-into-unstable/">xfonts-jisx0213パッケージを木下さんの了解を得てfonts-team配下に移動して更新</a>。</li>
+<li>tiarraパッケージをexperimentalに放置してたので<a href="https://tracker.debian.org/news/940648/accepted-tiarra-20100212r39209-7-source-all-into-unstable/">unstableに上げた</a></li>
+<li><a href="https://tracker.debian.org/news/939922/accepted-jcodings-1028-1-source-all-into-unstable/">jcodingsパッケージをアップデート</a>。<a href="https://tracker.debian.org/news/944791/accepted-jcodings-1029-1-source-all-into-unstable/">その２</a></li>
+<li><a href="https://tracker.debian.org/news/940144/accepted-jruby-joni-2116-1-source-all-into-unstable/">jruby-joniパッケージ</a></li>
+<li><a href="https://tracker.debian.org/news/940343/accepted-fonts-sawarabi-mincho-20180315-1-source-all-into-unstable/">fonts-sawarabi-minchoパッケージ</a></li>
+<li><a href="https://tracker.debian.org/news/944419/accepted-sphinx-intl-0911-1-source-amd64-into-unstable/">sphinx-intlパッケージをアップデート</a>、patchを入れ忘れていたので<a href="https://tracker.debian.org/news/944433/accepted-sphinx-intl-0911-2-source-amd64-into-unstable/">再度アップロード</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>xfonts-* パッケージを fonts-team で引き受けるべく ITA したのだけど、気力が足りなくて作業していない。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -604,72 +659,6 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Feb 9, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/931241">libsylphを更新</a></li>
-</ul>
-
-<pre><code>libsylph (1.1.0-19) unstable; urgency=medium
-
-  * debian/patches
-    - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
-
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 09 Feb 2018 23:32:14 +0900
-</code></pre>
-
-<ul>
-<li>sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。<a href="https://sylpheed.sraoss.jp/redmine/issues/296">忘れないうちにupstreamにも登録</a></li>
-</ul>
-
-<pre><code>sylpheed (3.7.0-2) UNRELEASED; urgency=medium
-
-  * debian/control
-    - drop Build-Depends: libdbus-glib-1-dev
-      It was introduced since enchant with zemberek crashes without it in 3.0,
-      however, enchant package was built with &quot;--disable-zemberek&quot; option,
-      so it isn't necessary.
-  * debian/patches
-    - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
-      properly (Closes: #889971)
-</code></pre>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -850,7 +839,16 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/17/">17</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/18/">18</a></li>
     
     
     <li class="page-item">
@@ -858,7 +856,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/18/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -877,7 +875,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.48 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.49.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
