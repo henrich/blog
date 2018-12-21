@@ -104,8 +104,7 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
   s.executables      = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、&lt;a href=&#34;https://bugs.debian.org/910953&#34;&gt;Bug#910953&lt;/a&gt;をクローズ。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-Ruby&#34;&gt;diff --git a/aruba.gemspec b/aruba.gemspec
 index c6ac3e7..1581e98 100644
@@ -114,7 +113,7 @@ index c6ac3e7..1581e98 100644
 @@ -40,9 +40,9 @@ With aruba &amp;gt;= 1.0 there will be breaking changes. Make sure to read https://gith
  EOS
    end
- 
+
 -  s.files            = `git ls-files`.split(&amp;quot;\n&amp;quot;)
 -  s.test_files       = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;)
 -  s.executables      = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }

@@ -79,8 +79,7 @@
   s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
 </code></pre>
 
-<pre><code>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、[Bug#910953](https://bugs.debian.org/910953)をクローズ。
-</code></pre>
+<p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
 
 <pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
 index c6ac3e7..1581e98 100644
@@ -89,7 +88,7 @@ index c6ac3e7..1581e98 100644
 @@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
  EOS
    end
- 
+
 -  s.files            = `git ls-files`.split(&quot;\n&quot;)
 -  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
 -  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
