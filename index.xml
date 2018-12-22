@@ -14,6 +14,28 @@
       
         
           <item>
+            <title>DDのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;アップロードがrejectされてたので&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dcut dm --uid 0x9394F354891D7E07 --allow fonts-mmcedar
+Uploading commands file to ftp.upload.debian.org (incoming: /pub/UploadQueue/)
+Picking DM Youhei SASAKI &amp;lt;uwabami@gfd-dennou.org&amp;gt; with fingerprint 66A4EA704FE240558D6AC2E69394F354891D7E07
+Uploading henrich-1545485367.dak-commands to ftp-master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;として佐々木さんのDM uploadを設定しておいた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
@@ -452,29 +474,6 @@ VM
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;jcodings&lt;/code&gt;が何故か細かくバージョンアップが繰り返されたので追従。1.0.34が&amp;ndash;deleyedでまだ入ってなかったので、それが入ってからになるように調整。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;jruby-joni&lt;/code&gt;も同様。patchのrefreshが面倒くさい。最新のjcodings依存になっているようなので、ビルドはまだ。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>OSSummit Japanでボランティアスタッフした</title>
-            <link>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</link>
-            <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</guid>
-            <description>&lt;p&gt;&lt;sup&gt;6&lt;/sup&gt;&amp;frasl;&lt;sub&gt;20&lt;/sub&gt;-22で行われた&lt;a href=&#34;https://events.linuxfoundation.org/events/open-source-summit-japan-2018/&#34;&gt;Open Source Summit Japan&lt;/a&gt;でのボランティアスタッフに参加してきました。会場の様子は&lt;a href=&#34;https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page1&#34;&gt;公式の写真&lt;/a&gt;（&lt;a href=&#34;https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page2&#34;&gt;その２&lt;/a&gt;）で雰囲気をどうぞ。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。&lt;/li&gt;
-&lt;li&gt;CIPは&lt;a href=&#34;https://schd.ws/hosted_files/ossalsjp18/e4/20180620-CIP-OSSJ-v2.1-web.pdf&#34;&gt;Debian LTSに協力が進んでいる&lt;/a&gt;けど、もっとコラボレーションの要素を増やしたいね&amp;hellip;。CIPに関わる人にパッケージングのレクチャーとか？&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ossalsjp18.sched.com/event/EaY5/oss-license-compliance-for-software-developers-not-for-legal-experts-satoru-ueda-sony&#34;&gt;CELFイベントでお会いした方&lt;/a&gt;に挨拶できたのは良かった&lt;/li&gt;
-&lt;li&gt;Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ossalsjp18.sched.com/event/Eat7/dandified-way-to-package-management-in-yocto-project-zheng-ruoqin-fujitsu&#34;&gt;DNFを拡張してライセンスとかも表示したりとか&lt;/a&gt;というのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://schd.ws/hosted_files/ossalsjp18/6a/LTSI-OSSJ2018-final.pdf&#34;&gt;LTS kernelはmainline＋8000コミットぐらいある&lt;/a&gt;というところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
