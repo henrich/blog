@@ -8,8 +8,58 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Thu, 20 Dec 2018 13:16:51 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 21 Dec 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 21 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tdiary-contrib&lt;/code&gt; の &lt;code&gt;tdiary-mode&lt;/code&gt; が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら&lt;a href=&#34;https://twitter.com/uwabami/&#34;&gt;佐々木さん&lt;/a&gt;がパッチ書いてくれて更新してくれた。言ってみるもんだね。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bundler&lt;/code&gt;の &lt;code&gt;git ls-files -z&lt;/code&gt; が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 21 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;作業途中で夏から放置してた&lt;a href=&#34;https://tracker.debian.org/news/1013364/accepted-ubuntu-keyring-20160513-2-source-into-unstable/&#34;&gt;ubuntu-keyringパッケージをアップロード&lt;/a&gt;。debconfを使って&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826558&#34;&gt;デフォルトではtrusted GPG keyringとしては扱わないように変更&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;さらにnew upstream release対応を手元で作成。Ubuntuでのrulesを見るとGPGファイルのチェックをしてたので、それを参考にしてautopkgtestを追加。いろいろGPGのオプションを指定する必要があった。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--trusted-key &amp;quot;$trusted_keyid&amp;quot;&lt;/code&gt; のようにして署名鍵を信頼しないとエラーになる。通常なら自分のtrustdbに追加されてる感じだけど、テスト環境にはそんなのはないし、fetchするのもネット環境必須になってしまうので。もう一つの解としてはローカルに落としておく、だけど、それは大仰かな。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--no-auto-check-trustdb&lt;/code&gt; を付けないとtrustdbのチェックにやたら時間がかかるので&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;先日、&lt;a href=&#34;https://salsa.debian.org/ocaml-team/camlimages/commit/152b6a35c9ff24fd0ad96a2b3d1e5aab3e404055&#34;&gt;camlimagesパッケージの変更をmerge request&lt;/a&gt;したのだけど、最小なテスト作っても意図通りにならなかったな、ということだけ覚えていたのでメモしておく。何をどうやったのか、は思い出したら書こう…&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1013368/accepted-fonts-kanjistrokeorders-4002dfsg-1-source-into-unstable/&#34;&gt;fonts-kanjistrokeordersパッケージをアップデート&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;久々に&lt;a href=&#34;https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html&#34;&gt;installation guide訳を更新&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -426,130 +476,6 @@ VM
 &lt;li&gt;&lt;a href=&#34;https://ossalsjp18.sched.com/event/Eat7/dandified-way-to-package-management-in-yocto-project-zheng-ruoqin-fujitsu&#34;&gt;DNFを拡張してライセンスとかも表示したりとか&lt;/a&gt;というのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://schd.ws/hosted_files/ossalsjp18/6a/LTSI-OSSJ2018-final.pdf&#34;&gt;LTS kernelはmainline＋8000コミットぐらいある&lt;/a&gt;というところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>まだdebootstrapいじってる</title>
-            <link>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</link>
-            <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
-            <description>&lt;p&gt;そういえば、&lt;a href=&#34;https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/&#34;&gt;1.0.100&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/&#34;&gt;1.0.101&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/&#34;&gt;1.0.102&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/&#34;&gt;1.0.103&lt;/a&gt;, &lt;a href=&#34;https://tracker.debian.org/news/968234/accepted-debootstrap-10104-source-into-unstable/&#34;&gt;1.0.104&lt;/a&gt; という感じでdebootstrap直したりバグ埋め込んだりしてましたね。&lt;/p&gt;
-
-&lt;p&gt;この中で得た知見&amp;hellip;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;systemdのcontainer環境下かどうかは &lt;code&gt;$container&lt;/code&gt; を見ればいい、あるいはsystemdが動作している環境なら &lt;code&gt;/var/run/systemd/container&lt;/code&gt; 見る&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;dnsmasq&lt;/code&gt; を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（&lt;a href=&#34;https://int128.hatenablog.com/entry/20130101/1357055467&#34;&gt;参考にさせてもらったサイト&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 20 May 2018 12:07:33 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;birdfontがビルド依存しているlibgit2でtransitionが予定されてるから、experimentalに置いたパッケージで試して、というバグ登録がされたので、ビルドテスト。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo cowbuilder --create /var/cache/pbuilder/exp --distribution experimental
-sudo cowbuilder --build --base /var/cache/pbuilder/exp --distribution experimental --extrapackages &amp;quot;libgit2-dev/experimental libmbedtls-dev/experimental&amp;quot; birdfont_2.21.1+git8ae0c56f-2.dsc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;hellip;しかし、dpkg-deb &amp;ndash;info で出来上がったパッケージを見てもlibgit2への依存が見当たらない？&amp;hellip;どうやらどこかでlibgit2への依存が無くなっていたようだ、ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=899040&#34;&gt;依存関係から削除してクローズにした&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;あとは pkg-nlp-ja なパッケージを tracker.debian.org を使ってメールを送るように書き換え&amp;hellip;なのだけど、それに合わせて諸々の更新をしたためにひたすら作業&amp;hellip;。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;chasen&lt;/li&gt;
-&lt;li&gt;darts&lt;/li&gt;
-&lt;li&gt;mecab&lt;/li&gt;
-&lt;li&gt;mecab-jumandic&lt;/li&gt;
-&lt;li&gt;mecab-naist-jdic&lt;/li&gt;
-&lt;li&gt;naist-jdic&lt;/li&gt;
-&lt;li&gt;mecab-ipadic&lt;/li&gt;
-&lt;li&gt;unidic-mecab&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;unidic-mecabはnew upstream releaseがあるものの、超巨大なデータのため、なんどかローカルの空き容量が０になってしまうと言う&amp;hellip;まだインポートが終わらない。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;先日、Fedora28の省電力化のネタを見つけてBTSしたのだけど、&lt;a href=&#34;https://www.decadent.org.uk/ben/talks/mdch2018-help-the-kernel-team.pdf&#34;&gt;linuxパッケージメンテナとしてはGitLabのMerge Requestの方がありがたいよ&lt;/a&gt;、と今日やっていたMini DebConfで発表していたのでsalsaでやることにした。&lt;/p&gt;
-
-&lt;p&gt;念の為に元々Fedoraで作業したRed Hatの方に質問メールして「このconfigであってるよね？」と確認したところ、サクッと返信いただき、自信を持って作業を進められた。&lt;/p&gt;
-
-&lt;p&gt;あとは足りなかった所（調子が悪い時に、どうやってオフにするのか）をメンテナに指摘されて、右往左往して探し回って&lt;code&gt;debian/changelog&lt;/code&gt;に追加して完了。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;diff --git a/debian/changelog b/debian/changelog
-index ace383d75..ffc538849 100644
---- a/debian/changelog
-+++ b/debian/changelog
-@@ -43,6 +43,19 @@ linux (4.17~rc5-1~exp1) UNRELEASED; urgency=medium
-   [ Vagrant Cascadian ]
-   * [armhf] Update mtd-modules: Replace pxa3xx_nand with marvell_nand.
- 
-+  [ Hideki Yamane ]
-+  * Improve battery life on laptops (Closes: #898629)
-+    Thanks to Hans de Goede &amp;lt;hdegoede@redhat.com&amp;gt;
-+    - ATA: A new SATA link-powermanagement-policy will be the default on all
-+      Intel mobile chipsets. This can be reverted by passing 
-+      &amp;quot;ahci.mobile_lpm_policy=0&amp;quot; on the kernel commandline.
-+    - sound: Enable Intel HDA codec power-saving by default with a 1 second
-+      timeout. This can be overridden by passing &amp;quot;snd_hda_intel.power_save=0&amp;quot;
-+      on the kernel commandline (0 is previously default).
-+    - BlueTooth: Enable USB autosuspend for Bluetooth USB devices by default.
-+      This can be disabled by passing &amp;quot;btusb.enable_autosuspend=n&amp;quot; on the
-+      kernel commandline. 
-+
-  -- Luca Boccassi &amp;lt;bluca@debian.org&amp;gt;  Wed, 02 May 2018 12:59:01 +0100
- 
- linux (4.17~rc3-1~exp1) experimental; urgency=medium
-diff --git a/debian/config/config b/debian/config/config
-index b5183a63f..d9ba69b1f 100644
---- a/debian/config/config
-+++ b/debian/config/config
-@@ -199,6 +199,7 @@ CONFIG_ATA_ACPI=y
- CONFIG_SATA_ZPODD=y
- CONFIG_SATA_PMP=y
- CONFIG_SATA_AHCI=m
-+CONFIG_SATA_MOBILE_LPM_POLICY=3
- # CONFIG_SATA_AHCI_PLATFORM is not set
- # CONFIG_AHCI_CEVA is not set
- # CONFIG_AHCI_QORIQ is not set
-@@ -360,6 +361,7 @@ CONFIG_ZRAM=m
- ## file: drivers/bluetooth/Kconfig
- ##
- CONFIG_BT_HCIBTUSB=m
-+CONFIG_BT_HCIBTUSB_AUTOSUSPEND=y
- CONFIG_BT_HCIBTUSB_BCM=y
- CONFIG_BT_HCIBTUSB_RTL=y
- CONFIG_BT_HCIBTSDIO=m
-@@ -7329,7 +7331,8 @@ CONFIG_SND_HDA_CODEC_CA0132_DSP=y
- CONFIG_SND_HDA_CODEC_CMEDIA=y
- CONFIG_SND_HDA_CODEC_SI3054=y
- CONFIG_SND_HDA_GENERIC=y
--CONFIG_SND_HDA_POWER_SAVE_DEFAULT=0
-+CONFIG_SND_HDA_POWER_SAVE_DEFAULT=1
-+CONFIG_SND_HDA_POWER_SAVE=y
- 
- ##
- ## file: sound/pcmcia/Kconfig
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;無事マージされました。コードが書けなくたって、こんなやり方もあるんだぜ、と。&lt;/p&gt;
 </description>
           </item>
         

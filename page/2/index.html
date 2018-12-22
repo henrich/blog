@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.51" />
+	<meta name="generator" content="Hugo 0.52" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,203 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Sep 25, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>birdfont</code>パッケージ、<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-i386&amp;ver=2.23.0-1&amp;stamp=1537307881&amp;raw=0">kfreebsd-i386</a>と<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-amd64&amp;ver=2.23.0-1&amp;stamp=1537300422&amp;raw=0">kfreebsd-amd64</a>で同じエラー…。</li>
+</ul>
+
+<pre><code class="language-make">rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf
+rm: cannot remove 'debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf': No such file or directory
+make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1
+</code></pre>
+
+<p>なぜエラーになるのか？ <code>debian/rules</code> をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした</p>
+
+<ul>
+<li><code>vmdk-stream-converter</code> の tag push を忘れていた…</li>
+<li><code>libsql-splitstatement-perl</code> を更新</li>
+<li><code>libdbix-class-optimisticlocking-perl</code> を更新</li>
+<li><code>libdbix-class-schema-config-perl</code> は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。</li>
+</ul>
+
+<pre><code class="language-shell">$ cat debian/upstream/metadata
+---
+Archive: CPAN
+Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
+Name: DBIx-Class-OptimisticLocking
+Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
+</code></pre>
+
+<p><code>debian/upstream/metadata</code> はこういうのを書くのかぁ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Sep 24, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>os-autoinstパッケージを放置していたので、アップデート作業を実施。</p>
+
+<ul>
+<li>upstreamをpullしてdebian/sidブランチにmerge</li>
+<li>ビルド…するも、testでエラーが出る。しかもランダム。どうも test が serial に実施される前提で書かれていて、ある test での input file が別の test でも使われてたりする＆その test 実施後に削除されたりするので、順序によっては input file が存在しない、ということでエラーになったりするようだ。仕方がないので <code>--no-parallel</code> オプションを dh_auto_test につけて <code>make -j1</code> で実行されるようにする</li>
+<li>それでも 02-test_ocr.t だけがコケ続けたりする（上記の際にはごくごく稀にだが成功したりする…）。<code>t/02-test_ocr.t.log</code> を見てみる…。</li>
+</ul>
+
+<pre><code class="language-debug">FAIL: 02-test_ocr.t
+===================
+
+Use of uninitialized value in index at ../needle.pm line 44.
+Use of uninitialized value $bmwqemu::vars{&quot;PRJDIR&quot;} in addition (+) at ../needle.pm line 45.
+[2018-09-24T07:08:55.0584 UTC] [debug] MATCH(bootmenu-ocr.ref:1.00)
+Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+Estimating resolution as 132
+Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+Estimating resolution as 138
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+Estimating resolution as 132
+#   Failed test 'multiple OCR regions'
+#   at ./02-test_ocr.t line 42.
+1..2
+# Looks like you failed 1 test of 2.
+FAIL 02-test_ocr.t (exit status: 1)
+</code></pre>
+
+<ul>
+<li>最初は <code>Warning. Invalid resolution 0 dpi. Using 70 instead.</code> というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで <code>convert a.png -density 300 -units PixelsPerInch b.png</code> のようにして埋め込んだのだが、さっぱり出力が変わらない。</li>
+<li>ぐぐったところ<a href="https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/">「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」</a>という説明のページを見つけてへたりこんだり。</li>
+<li>どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と <code>Data::Dumper</code> を使う</li>
+</ul>
+
+<pre><code class="language-perl">use Data::Dumper;
+...
+print Dumper $ocr;
+</code></pre>
+
+<ul>
+<li>おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで <code>t/data/bootmenu-ocr.png</code> を開き、認識してる文字列の座標を確認→ <code>t/data/bootmenu-ocr.ref.json</code> を調整→成功！</li>
+<li><code>make check-doc</code> でエラー。</li>
+</ul>
+
+<pre><code class="language-shell"># [ -z &quot;$(podspell testapi.pm | spell)&quot; ]
+# echo $?
+1
+# podspell testapi.pm | spell
+deselected
+VM
+kvm
+VM
+</code></pre>
+
+<ul>
+<li>これ、<code>spell</code> の問題じゃないの？とは思うけど、<code>sed</code> で削って対応。</li>
+<li>ビルドは問題なくできるようになったので、piuparts…と変なエラーが出たが、os-autoinstのパッケージには含まれてない問題なので無視（フォント絡みなので後で追わないといけない気もする…）。</li>
+</ul>
+
+<pre><code class="language-debug">5m12.7s ERROR: FAIL: Package purging left files on system:
+  /usr/local/share/fonts/        not owned
+  /usr/local/share/fonts/.uuid   not owned
+  /usr/share/fonts/      owned by: fonts-dejavu-core
+  /usr/share/fonts/.uuid         not owned
+  /usr/share/fonts/truetype/     owned by: fonts-dejavu-core
+  /usr/share/fonts/truetype/.uuid        not owned
+  /usr/share/fonts/truetype/dejavu/      owned by: fonts-dejavu-core
+  /usr/share/fonts/truetype/dejavu/.uuid         not owned
+</code></pre>
+
+<p>ということで <a href="https://bugs.debian.org/893645">Bug#893645</a>と<a href="https://bugs.debian.org/880791">Bug#880791</a>をcloseにしておいた。</p>
+
+<pre><code class="language-changelog"> os-autoinst (4.5.1527308405.8b586d5-1) unstable; urgency=medium
+ .
+   * New upstream release
+   * debian/patches
+     - refresh patch
+     - add 0003-adjust-to-avoid-ocr-test-failure.patch (Closes: #893645)
+     - add 0004-avoid-make-check-doc-failure.patch
+     - add 0005-set-perl-path.patch to avoid lintian error
+   * debian/control
+     - add Build-Depends: libsocket-msghdr-perl, spell for test
+     - move Vcs-* to salsa.debian.org
+   * debian/rules
+     - set --no-parallel for dh_auto_test to avoid random test failure
+       (Closes: #880791)
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -635,224 +832,6 @@ CONFIG_SATA_MOBILE_LPM_POLICY=3
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/03/vyos%E3%81%A8%E6%88%AF%E3%82%8C%E3%81%A6%E3%81%BF%E3%81%9F/">VyOSと戯れてみた</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, May 3, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/vyos">vyos</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Note: VyOSの使い方とかは一切書いてません。</p>
-
-<p>Twitterで<a href="https://github.com/vyos/vyos-build/blob/current/README.md">VyOSのビルド説明の最新の場所</a>を教えてもらったので、それに従って作業</p>
-
-<pre><code>$ git clone https://github.com/vyos/vyos-build.git
-$ sudo debootstrap jessie ./jessie-chroot http://debian-mirror.sakura.ne.jp/debian
-$ sudo cp -arp vyos-build jessie-chroot/root/
-$ sudo chroot jessie-chroot
-</code></pre>
-
-<pre><code># cd root/vyos-build
-# ./configure
-/usr/bin/env: python3: No such file or directory
-</code></pre>
-
-<p>debootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。</p>
-
-<pre><code># apt install python3
-# ./configure 
-Checking if packages required for VyOS image build are installed
-Missing packages: sudo make live-build pbuilder devscripts python3-pystache python3-git
-Missing binaries: 
-Build environment check failed, fix the issues and retry
-</code></pre>
-
-<pre><code># apt install sudo make live-build pbuilder devscripts python3-pystache python3-git
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-E: Unable to locate package python3-git
-</code></pre>
-
-<p>あれ。<a href="https://tracker.debian.org/pkg/python-git">https://tracker.debian.org/pkg/python-git</a> によると</p>
-
-<pre><code>oldstable:  0.3.2~RC1-3
-old-bpo:  2.1.1-2~bpo8+1
-</code></pre>
-
-<p>なので、多分 jessie-backports リポジトリ追加しないとダメなんじゃないだろうか。</p>
-
-<pre><code># echo &quot;deb http://debian-mirror.sakura.ne.jp/debian jessie-backports main&quot; &gt;&gt; /etc/apt/sources.list
-# apt update
-# apt install python3
-# ./configure 
-Checking if packages required for VyOS image build are installed
-All dependencies are installed
-</code></pre>
-
-<p>問題なく通ったので、isoイメージの作成をやってみる。</p>
-
-<pre><code># make iso
-Checking build configuration
-[2018-05-03 11:39:13] lb clean 
-P: Cleaning chroot
-Starting VyOS ISO image build
-Setting up additional APT entries
-Configuring live-build
-[2018-05-03 11:39:13] lb config noauto --architectures amd64 --bootappend-live boot=live components hostname=vyos username=live nopersistence noautologin nonetworking union=overlay --linux-flavours amd64-vyos --linux-packages linux-image-4.14.26 --bootloader syslinux --binary-images iso-hybrid --debian-installer false --distribution jessie --iso-application VyOS --iso-publisher root@hp --iso-volume VyOS --debootstrap-options --variant=minbase --exclude=isc-dhcp-client,isc-dhcp-common,ifupdown --include=apt-transport-https --mirror-bootstrap http://deb.debian.org/debian --mirror-chroot http://deb.debian.org/debian --mirror-chroot-security http://deb.debian.org/debian-security --mirror-binary http://deb.debian.org/debian --mirror-binary-security http://deb.debian.org/debian-security --archive-areas main contrib non-free --firmware-chroot true --updates true --security true
-P: Updating config tree for a debian/jessie/amd64 system
-P: Symlinking hooks...
-It's not like I'm building this specially for you or anything!
-[2018-05-03 11:39:13] lb build 
-P: live-build 4.0.3
-P: Building config tree for a debian/jessie/amd64 system
-[2018-05-03 11:39:13] lb bootstrap 
-P: Setting up cleanup function
-[2018-05-03 11:39:13] lb bootstrap_cache restore
-P: Restoring bootstrap stage from cache...
-[2018-05-03 11:39:14] lb bootstrap_cdebootstrap 
-[2018-05-03 11:39:14] lb bootstrap_debootstrap 
-P: Begin bootstrapping system...
-P: If the following stage fails, the most likely cause of the problem is with your mirror configuration or a caching proxy.
-P: Running debootstrap (download-only)... 
-I: Retrieving Release 
-I: Retrieving Release.gpg 
-I: Checking Release signature
-I: Valid Release signature (key id 75DDC3C4A499F1A18CB5F3C8CBF8D6FD518E17E1)
-I: Retrieving Packages 
-I: Validating Packages 
-I: Retrieving Packages 
-I: Validating Packages 
-I: Retrieving Packages 
-I: Validating Packages 
-I: Resolving dependencies of required packages...
-</code></pre>
-
-<p>んん？なんか見たことのある出力&hellip;debootstrap使ってるな&hellip;あ、lb云々とあるから <code>live-build</code> がdebootstrap呼んでるのね。</p>
-
-<pre><code>[2018-05-03 11:43:13] lb bootstrap_archive-keys 
-Ign http://deb.debian.org jessie InRelease
-Hit http://deb.debian.org jessie Release.gpg
-Hit http://deb.debian.org jessie Release
-Get:1 http://deb.debian.org jessie/main amd64 Packages [6789 kB]
-Hit http://deb.debian.org jessie/contrib amd64 Packages
-Hit http://deb.debian.org jessie/non-free amd64 Packages
-Get:2 http://deb.debian.org jessie/contrib Translation-en [38.3 kB]
-Get:3 http://deb.debian.org jessie/main Translation-en [4583 kB]
-Get:4 http://deb.debian.org jessie/non-free Translation-en [72.1 kB]
-Fetched 11.5 MB in 7s (1596 kB/s)
-Reading package lists...
-[2018-05-03 11:43:21] lb bootstrap_cache save
-P: Saving bootstrap stage to cache...
-[2018-05-03 11:43:22] lb chroot_devpts install
-P: Begin mounting /dev/pts...
-[2018-05-03 11:43:22] lb chroot_proc install
-P: Begin mounting /proc...
-[2018-05-03 11:43:22] lb chroot_selinuxfs install
-[2018-05-03 11:43:22] lb chroot_sysfs install
-P: Begin mounting /sys...
-(snip)
-</code></pre>
-
-<pre><code>Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
-</code></pre>
-
-<p>なるほど、Jessieでは足りない・変更した部分については<a href="http://dev.packages.vyos.net/repositories/">別のリポジトリ</a>を持ってるのね。あれ、見て回ったら<a href="http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/">http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/</a> とかに特にrevisionも変更されてないパッケージが。何故だろう？</p>
-
-<p>ビルドが終わってどこにisoが出来たかさっぱりわからぬ。。。あ、<code>build/vyos-1.2.0-rolling+201805031139-amd64.iso</code> というファイルがあった。これはsymlinkで <code>live-image-amd64.hybrid.iso</code> を指してる。あと、<code>build/cache/packages.binary</code> 以下にはdebパッケージが保存されてるな。さらにmake isoしたらこれが使われるのかな、ということで再度実行してみる。。。どうやらそのようだ。</p>
-
-<p>今日はここまで。
-で、<a href="https://github.com/vyos/vyos-build/pull/17">https://github.com/vyos/vyos-build/pull/17</a> に今日触ったところで <code>debootstrap使ったほうがいいな</code>、というプルリクエストを送っときました。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/02/%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E3%83%90%E3%82%B0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%82%8B%E3%81%8B%E3%81%A8%E3%81%8B.../">どうやってバグレポートしてるか、とか...</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, May 2, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>URLは非常に単純で <code>https://bugs.debian.org/&lt;package&gt;</code> とすればバグレポートを参照できる。今回は<a href="https://bugs.debian.org/git-buildpackage">https://bugs.debian.org/git-buildpackage</a> 。<code>querybts git-buildpackage</code>でも閲覧はできるのだけど、バグレポートが大量にあると行ったり来たりして参照するのはブラウザのほうがやりやすいので&hellip;。</p>
-
-<p>ソースの取得は <code>apt source &lt;package&gt;</code> で可能。なのだけど、パッケージ作業をGitで作業してたりすると、まぁHEADに合わせて変更して <code>git format-patch</code> したpatchファイルを送りつけた方が取り込んでもらいやすいのは間違いないので、Vcsで取得。どこにリポジトリがあってどのVcs使ってるか&hellip;は特に考えること無くdebcheckoutコマンドを使う。<code>debcheckout git-buildpackage</code> として取得。</p>
-
-<pre><code>$ debcheckout git-buildpackage
-declared git repository at https://git.sigxcpu.org/cgit/git-buildpackage/ 
-git clone https://git.sigxcpu.org/cgit/git-buildpackage/ git-buildpackage ...
-Cloning into 'git-buildpackage'... 
-</code></pre>
-
-<p>&hellip;としたのだけど、なんで自前のrepoに保持してるのか。超遅い。通常ならsalsa.debian.org配下なので直ぐなのに、10分経っても全然応答が無い&hellip;仕方がないので、今回は<code>apt source git-buildpackage</code>で取得。</p>
-
-<p>さて、optionでgrepしたりして&hellip;</p>
-
-<pre><code> $ grep git-component -r ./
-./docs/manpages/gbp-buildpackage.xml:      &lt;arg rep='repeat'&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;component&lt;/replaceable&gt;&lt;/arg&gt;
-./docs/manpages/gbp-buildpackage.xml:          &lt;term&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;COMPONENT&lt;/replaceable&gt;
-./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
-./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
-./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo'])
-./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo',
-</code></pre>
-
-<p>あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -1067,7 +1046,7 @@ Cloning into 'git-buildpackage'...
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.51 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.52 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

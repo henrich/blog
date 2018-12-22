@@ -55,7 +55,10 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Mon, Jan 29, 2018</span> in 
+				<span class="label label-primary">Fri, Dec 21, 2018</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
 				 using tags
 				
 					
@@ -68,14 +71,8 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li><p>Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。</p>
-
-<pre><code>$ git checkout --orphan mones
-$ git rm --cached -r *
-$ rm -r ./*
-$ git pull alioth master
-$ git push salsa mones
-</code></pre></li>
+<li><code>tdiary-contrib</code> の <code>tdiary-mode</code> が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら<a href="https://twitter.com/uwabami/">佐々木さん</a>がパッチ書いてくれて更新してくれた。言ってみるもんだね。</li>
+<li><code>bundler</code>の <code>git ls-files -z</code> が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。</li>
 </ul>
 
 		</div>
