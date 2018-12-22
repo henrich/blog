@@ -8,34 +8,17 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Fri, 21 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Dec 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
     
       
         
           <item>
             <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 21 Dec 2018 00:00:00 +0000</pubDate>
+            <link>https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;tdiary-contrib&lt;/code&gt; の &lt;code&gt;tdiary-mode&lt;/code&gt; が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら&lt;a href=&#34;https://twitter.com/uwabami/&#34;&gt;佐々木さん&lt;/a&gt;がパッチ書いてくれて更新してくれた。言ってみるもんだね。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;bundler&lt;/code&gt;の &lt;code&gt;git ls-files -z&lt;/code&gt; が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 21 Dec 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <guid>https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;作業途中で夏から放置してた&lt;a href=&#34;https://tracker.debian.org/news/1013364/accepted-ubuntu-keyring-20160513-2-source-into-unstable/&#34;&gt;ubuntu-keyringパッケージをアップロード&lt;/a&gt;。debconfを使って&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826558&#34;&gt;デフォルトではtrusted GPG keyringとしては扱わないように変更&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;さらにnew upstream release対応を手元で作成。Ubuntuでのrulesを見るとGPGファイルのチェックをしてたので、それを参考にしてautopkgtestを追加。いろいろGPGのオプションを指定する必要があった。&lt;/p&gt;
@@ -56,6 +39,23 @@
 &lt;hr /&gt;
 
 &lt;p&gt;久々に&lt;a href=&#34;https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html&#34;&gt;installation guide訳を更新&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 21 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tdiary-contrib&lt;/code&gt; の &lt;code&gt;tdiary-mode&lt;/code&gt; が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら&lt;a href=&#34;https://twitter.com/uwabami/&#34;&gt;佐々木さん&lt;/a&gt;がパッチ書いてくれて更新してくれた。言ってみるもんだね。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bundler&lt;/code&gt;の &lt;code&gt;git ls-files -z&lt;/code&gt; が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
