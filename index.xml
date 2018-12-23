@@ -8,8 +8,22 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 22 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Dec 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1013790/accepted-debootstrap-10112-source-into-unstable/&#34;&gt;debootstrapをアップデート&lt;/a&gt;。Mr.FAIのハックによってスピードが格段に速くなった。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -457,23 +471,6 @@ VM
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;vmdk-stream-converter&lt;/code&gt; が、aliothを指したままだったので&lt;a href=&#34;https://tracker.debian.org/news/989198/accepted-vmdk-stream-converter-02-4-source-all-into-unstable/&#34;&gt;とりあえず更新&lt;/a&gt;。python2依存なんだよね、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=883804&#34;&gt;patchはある&lt;/a&gt;のでupstreamが対応してくれないものか。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sphere&lt;/code&gt; はupstreamが開発停止＆VMWare自体がライブラリを出していてそちらは既にDebianにあるのでそちらを推す格好で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426&#34;&gt;削除依頼&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 22 Sep 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;jcodings&lt;/code&gt;が何故か細かくバージョンアップが繰り返されたので追従。1.0.34が&amp;ndash;deleyedでまだ入ってなかったので、それが入ってからになるように調整。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;jruby-joni&lt;/code&gt;も同様。patchのrefreshが面倒くさい。最新のjcodings依存になっているようなので、ビルドはまだ。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

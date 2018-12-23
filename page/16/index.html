@@ -60,6 +60,61 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/proposal">proposal</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation">pkg-configとpkgconfigの入れ替え話</a>もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。</li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/ChangeSet">https://fedoraproject.org/wiki/Releases/26/ChangeSet</a> のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
+
+<ul>
+<li>現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう</li>
+<li>開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう</li>
+<li>ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）</li>
+<li>リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう</li>
+</ul></li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/Schedule">https://fedoraproject.org/wiki/Releases/26/Schedule</a> を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
+
+<ul>
+<li>→ <a href="https://wiki.debian.org/upstream-schedule">https://wiki.debian.org/upstream-schedule</a> を作ってみた。</li>
+</ul></li>
+<li><a href="http://debian-mirror.sakura.ne.jp/">debian-mirror.sakura.ne.jp</a> をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -598,64 +653,6 @@ Yes, those files are exactly same one.
 					<br>
 					
 						<p>libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。<a href="https://birdfont.org/bugtracker/view.php?id=101">upstreamに報告済み</a>。あと、git repoでタグ打ちがないのも。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 29, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
-
-<p>sparcでのビルド失敗は</p>
-
-<pre><code>Traceback (most recent call last):
-  File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-ImportError: No module named pkg_resources
-</code></pre>
-
-<p>…なんでモジュールが無いというのか？</p>
-
-<p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
-さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
-
-<p>新しいバージョンになると</p>
-
-<pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-</code></pre>
-
-<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
-
-<p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
 
 					
 				</div>

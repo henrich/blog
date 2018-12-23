@@ -60,6 +60,50 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 3, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ここしばらくの作業とか。</p>
+
+<ul>
+<li>林さんの依頼で<a href="https://salsa.debian.org/debian/libhinawa">libhinawaをインポート</a></li>
+<li>birdfontが新しいvalacでコンパイルできない問題をupstreamに報告したら対応してもらえたので、<a href="https://tracker.debian.org/news/937423">更新してアップロード</a></li>
+<li><a href="https://tracker.debian.org/news/936899">libmojo-rabbitmq-client-perlパッケージをアップロード</a></li>
+<li><a href="https://tracker.debian.org/news/936895">libmojolicious-plugin-assetpack-perlパッケージをアップロード</a></li>
+<li>debootstrapパッケージと戯れたり。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -619,100 +663,6 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
 
 <li><p><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</p></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Feb 4, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</p>
-
-<pre><code>image: debian:sid
-
-before_script:
-- echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
-
-build:
-script:
-- dpkg-buildpackage -us -uc -B
-</code></pre></li>
-
-<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
-
-<li><p>あれ、libsylphでonigurumaが有効になってない？</p>
-
-<pre><code>libsylph 1.1.0
-
-OpenSSL       : yes
-iconv         : yes
-IPv6          : yes
-Oniguruma     : no
-</code></pre>
-
-<pre><code>checking whether Oniguruma is available... no
-</code></pre></li>
-</ul>
-
-<p>なんでだ？？</p>
-
-<pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
-if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
-        AC_MSG_RESULT(yes)
-        AC_MSG_CHECKING([whether Oniguruma is available])
-        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
-        ONIG_CONFIG=onig-config
-        ONIG_VERSION=`$ONIG_CONFIG --version 2&gt;/dev/null`
-        if test &quot;x$ONIG_VERSION&quot; != &quot;x&quot;; then
-                AC_MSG_RESULT(yes)
-                CFLAGS=&quot;$CFLAGS `$ONIG_CONFIG --cflags`&quot;
-                LIBS=&quot;$LIBS `$ONIG_CONFIG --libs`&quot;
-                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
-        else
-                AC_MSG_RESULT(no)
-                ac_cv_enable_oniguruma=no
-        fi
-else
-        AC_MSG_RESULT(no)
-fi
-</code></pre>
-
-<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
-
-<pre><code>override_dh_install:
-        $(RM) debian/tmp/usr/bin/onig-config
-</code></pre>
-
-<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
 
 					
 				</div>
