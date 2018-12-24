@@ -8,8 +8,35 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 23 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Dec 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 24 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;debian-installerのコンポーネントの一つ、&lt;a href=&#34;https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/&#34;&gt;partman-lvmでのバグ修正&lt;/a&gt;が含まれたパッケージがようやくアップロードされた。&lt;/p&gt;
+
+&lt;p&gt;もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることにして手元の放置してたBBBを設定…。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://select.marutsu.co.jp/list/detail.php?id=235&#34;&gt;参考ページ&lt;/a&gt;を元に初期化し直し&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://beagleboard.org/latest-images&#34;&gt;stretchベースのイメージ&lt;/a&gt;をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。&lt;/li&gt;
+&lt;li&gt;２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で &lt;code&gt;dpkg --get-selections &amp;gt; distro.txt&lt;/code&gt; のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
+
+&lt;ul&gt;
+&lt;li&gt;ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;あとはarm64アーキテクチャである&lt;a href=&#34;https://db.debian.org/machines.cgi?host=amdahl&#34;&gt;debian.orgのporterboxマシン&lt;/a&gt;にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -455,23 +482,6 @@ VM
      - set --no-parallel for dh_auto_test to avoid random test failure
        (Closes: #880791)
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/09/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 23 Sep 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/09/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;vmdk-stream-converter&lt;/code&gt; が、aliothを指したままだったので&lt;a href=&#34;https://tracker.debian.org/news/989198/accepted-vmdk-stream-converter-02-4-source-all-into-unstable/&#34;&gt;とりあえず更新&lt;/a&gt;。python2依存なんだよね、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=883804&#34;&gt;patchはある&lt;/a&gt;のでupstreamが対応してくれないものか。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sphere&lt;/code&gt; はupstreamが開発停止＆VMWare自体がライブラリを出していてそちらは既にDebianにあるのでそちらを推す格好で&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426&#34;&gt;削除依頼&lt;/a&gt;。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

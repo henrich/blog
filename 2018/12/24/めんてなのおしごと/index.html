@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Mon, Dec 24, 2018</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>debian-installerのコンポーネントの一つ、<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/">partman-lvmでのバグ修正</a>が含まれたパッケージがようやくアップロードされた。</p>
+
+<p>もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることにして手元の放置してたBBBを設定…。</p>
+
+<ul>
+<li><a href="http://select.marutsu.co.jp/list/detail.php?id=235">参考ページ</a>を元に初期化し直し</li>
+<li><a href="http://beagleboard.org/latest-images">stretchベースのイメージ</a>をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。</li>
+<li>２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で <code>dpkg --get-selections &gt; distro.txt</code> のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
+
+<ul>
+<li>ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…</li>
+</ul></li>
+<li>あとはarm64アーキテクチャである<a href="https://db.debian.org/machines.cgi?host=amdahl">debian.orgのporterboxマシン</a>にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…</li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.52 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

@@ -60,6 +60,63 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Nov 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のlibxmlbirdのタグ</a>が打たれてたので<a href="https://tracker.debian.org/news/883705">アップデート</a>。install.pyがちょっと変わってて手間取った。</li>
+</ul>
+
+<hr />
+
+<p>os-autoinstがsbuildで（というかbuild-dependsで？）コケるので、| で指定ではなくアーキテクチャ指定に変えて<a href="https://tracker.debian.org/news/883786">通した</a>。</p>
+
+<pre><code>-               qemu-kvm (&gt;= 2.0.0) | qemu-system (&gt;= 2.0.0), qemu-utils,
++               qemu-kvm (&gt;= 2.0.0) [amd64 i386], qemu-system (&gt;= 2.0.0) [!amd64 !i386], qemu-utils,
+</code></pre>
+
+<p>手元の<a href="https://beagleboard.org/latest-images">BBB</a>で作ったarmhf環境ではtest failureが出るから、これなんで？というのを聞かないといけないっぽいけど&hellip;まぁ、builddでログ見れた方が説明も早そう、ということで<a href="https://progress.opensuse.org/issues/27322">報告しておいた</a></p>
+
+<hr />
+
+<p><a href="https://groups.google.com/forum/#!topic/selenium-users/HjIdolMZ4nE">libibushandler.soのビルド</a>がやっぱりエラーになる。手順は以下（だろう）と思うのだけど、ibus周りがこのコードがリリースされた2011年から変わってるから？という思いが消せない。</p>
+
+<pre><code>$ g++ -shared -fPIC -I/usr/include/ibus-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/gtk-3.0 -I/usr/include/pango-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/atk-1.0 -I../../common ibusutils.cpp ibushandler.cpp -o libibushandler.so 2&gt;&amp;1
+</code></pre>
+
+<p>これを確認するにはsqueezeあたりを入れないと&hellip;となるのだけども、debootstrapしたらエラーになるし、そのままchrootしたらsegfaultだからVM用意しないと、となると腰が重い&hellip;</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -489,45 +546,6 @@ make: *** [build] Error 2
 <li><a href="https://tracker.debian.org/news/881184">psphereのアップロード</a></li>
 <li>sylpheedのPGP署名運用についてメールした。これが解決したら関連パッケージをアップデートする予定。</li>
 <li>fontforgeパッケージを眺めて手を出せるところだけ。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Oct 23, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">HPEのリポジトリ</a>がStretch対応になっていたので、<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>をStretchに上げました。</li>
-<li>silversearcher-ag のレビューをした</li>
 </ul>
 
 					
