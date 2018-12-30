@@ -25,7 +25,7 @@
     <item>
       <title>Debian</title>
       <link>https://henrich.github.io/blog/tags/debian/</link>
-      <pubDate>Mon, 24 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/debian/</guid>
       <description></description>
@@ -95,11 +95,29 @@
     </item>
     
     <item>
+      <title>Patch</title>
+      <link>https://henrich.github.io/blog/tags/patch/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/patch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Proposal</title>
       <link>https://henrich.github.io/blog/tags/proposal/</link>
       <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/proposal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rcbug</title>
+      <link>https://henrich.github.io/blog/tags/rcbug/</link>
+      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/rcbug/</guid>
       <description></description>
     </item>
     

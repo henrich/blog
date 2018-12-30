@@ -8,8 +8,54 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 24 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Dec 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;ruby-slimパッケージ、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=895500#16&#34;&gt;New upstream version導入でFTBFS修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ruby-sinatra-contribパッケージ、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911869#12&#34;&gt;New upstream version導入でFTBFS修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ruby-loofahパッケージ、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912398#14&#34;&gt;New upstream version導入でCVE修正&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;１文字でFTBFSが直せるやつだったので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893821&#34;&gt;やっといた&lt;/a&gt;&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;たまたまbug reportを見かけてmerge request作ったほうが話が早い奴だと思ったので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917388#10&#34;&gt;やっといた&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -327,161 +373,6 @@ index c6ac3e7..1581e98 100644
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;として林さんのDM uploadを設定しておいた。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>HP Elitebook 830 G5で苦しむ</title>
-            <link>https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/</link>
-            <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/</guid>
-            <description>&lt;p&gt;debian-installerが何をやっても画面がブランクになってしまってDebianがインストールできないという。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;birdfont&lt;/code&gt;パッケージ、&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;amp;arch=kfreebsd-i386&amp;amp;ver=2.23.0-1&amp;amp;stamp=1537307881&amp;amp;raw=0&#34;&gt;kfreebsd-i386&lt;/a&gt;と&lt;a href=&#34;https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;amp;arch=kfreebsd-amd64&amp;amp;ver=2.23.0-1&amp;amp;stamp=1537300422&amp;amp;raw=0&#34;&gt;kfreebsd-amd64&lt;/a&gt;で同じエラー…。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf
-rm: cannot remove &#39;debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf&#39;: No such file or directory
-make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なぜエラーになるのか？ &lt;code&gt;debian/rules&lt;/code&gt; をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;vmdk-stream-converter&lt;/code&gt; の tag push を忘れていた…&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;libsql-splitstatement-perl&lt;/code&gt; を更新&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;libdbix-class-optimisticlocking-perl&lt;/code&gt; を更新&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;libdbix-class-schema-config-perl&lt;/code&gt; は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;$ cat debian/upstream/metadata
----
-Archive: CPAN
-Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;debian/upstream/metadata&lt;/code&gt; はこういうのを書くのかぁ。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;os-autoinstパッケージを放置していたので、アップデート作業を実施。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;upstreamをpullしてdebian/sidブランチにmerge&lt;/li&gt;
-&lt;li&gt;ビルド…するも、testでエラーが出る。しかもランダム。どうも test が serial に実施される前提で書かれていて、ある test での input file が別の test でも使われてたりする＆その test 実施後に削除されたりするので、順序によっては input file が存在しない、ということでエラーになったりするようだ。仕方がないので &lt;code&gt;--no-parallel&lt;/code&gt; オプションを dh_auto_test につけて &lt;code&gt;make -j1&lt;/code&gt; で実行されるようにする&lt;/li&gt;
-&lt;li&gt;それでも 02-test_ocr.t だけがコケ続けたりする（上記の際にはごくごく稀にだが成功したりする…）。&lt;code&gt;t/02-test_ocr.t.log&lt;/code&gt; を見てみる…。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-debug&#34;&gt;FAIL: 02-test_ocr.t
-===================
-
-Use of uninitialized value in index at ../needle.pm line 44.
-Use of uninitialized value $bmwqemu::vars{&amp;quot;PRJDIR&amp;quot;} in addition (+) at ../needle.pm line 45.
-[2018-09-24T07:08:55.0584 UTC] [debug] MATCH(bootmenu-ocr.ref:1.00)
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 138
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-#   Failed test &#39;multiple OCR regions&#39;
-#   at ./02-test_ocr.t line 42.
-1..2
-# Looks like you failed 1 test of 2.
-FAIL 02-test_ocr.t (exit status: 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;最初は &lt;code&gt;Warning. Invalid resolution 0 dpi. Using 70 instead.&lt;/code&gt; というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで &lt;code&gt;convert a.png -density 300 -units PixelsPerInch b.png&lt;/code&gt; のようにして埋め込んだのだが、さっぱり出力が変わらない。&lt;/li&gt;
-&lt;li&gt;ぐぐったところ&lt;a href=&#34;https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/&#34;&gt;「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」&lt;/a&gt;という説明のページを見つけてへたりこんだり。&lt;/li&gt;
-&lt;li&gt;どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と &lt;code&gt;Data::Dumper&lt;/code&gt; を使う&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-perl&#34;&gt;use Data::Dumper;
-...
-print Dumper $ocr;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで &lt;code&gt;t/data/bootmenu-ocr.png&lt;/code&gt; を開き、認識してる文字列の座標を確認→ &lt;code&gt;t/data/bootmenu-ocr.ref.json&lt;/code&gt; を調整→成功！&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;make check-doc&lt;/code&gt; でエラー。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# [ -z &amp;quot;$(podspell testapi.pm | spell)&amp;quot; ]
-# echo $?
-1
-# podspell testapi.pm | spell
-deselected
-VM
-kvm
-VM
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;これ、&lt;code&gt;spell&lt;/code&gt; の問題じゃないの？とは思うけど、&lt;code&gt;sed&lt;/code&gt; で削って対応。&lt;/li&gt;
-&lt;li&gt;ビルドは問題なくできるようになったので、piuparts…と変なエラーが出たが、os-autoinstのパッケージには含まれてない問題なので無視（フォント絡みなので後で追わないといけない気もする…）。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-debug&#34;&gt;5m12.7s ERROR: FAIL: Package purging left files on system:
-  /usr/local/share/fonts/        not owned
-  /usr/local/share/fonts/.uuid   not owned
-  /usr/share/fonts/      owned by: fonts-dejavu-core
-  /usr/share/fonts/.uuid         not owned
-  /usr/share/fonts/truetype/     owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/.uuid        not owned
-  /usr/share/fonts/truetype/dejavu/      owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/dejavu/.uuid         not owned
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ということで &lt;a href=&#34;https://bugs.debian.org/893645&#34;&gt;Bug#893645&lt;/a&gt;と&lt;a href=&#34;https://bugs.debian.org/880791&#34;&gt;Bug#880791&lt;/a&gt;をcloseにしておいた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-changelog&#34;&gt; os-autoinst (4.5.1527308405.8b586d5-1) unstable; urgency=medium
- .
-   * New upstream release
-   * debian/patches
-     - refresh patch
-     - add 0003-adjust-to-avoid-ocr-test-failure.patch (Closes: #893645)
-     - add 0004-avoid-make-check-doc-failure.patch
-     - add 0005-set-perl-path.patch to avoid lintian error
-   * debian/control
-     - add Build-Depends: libsocket-msghdr-perl, spell for test
-     - move Vcs-* to salsa.debian.org
-   * debian/rules
-     - set --no-parallel for dh_auto_test to avoid random test failure
-       (Closes: #880791)
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
