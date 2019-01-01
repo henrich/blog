@@ -8,10 +8,19 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 29 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/patch/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 先日のMerge Requestに「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たのでx86指定に変更した→マージされました。 昨日のruby-loofahパッケージの更新で脆弱性修正したのだが、Debian9 &amp;ldquo;stretch&amp;rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、作業してセキュリティチームに連絡だけしといた。 なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり意図的なものだということだけを伝えるreplyをした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

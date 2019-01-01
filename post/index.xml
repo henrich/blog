@@ -8,10 +8,19 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 30 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 先日のMerge Requestに「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たのでx86指定に変更した→マージされました。 昨日のruby-loofahパッケージの更新で脆弱性修正したのだが、Debian9 &amp;ldquo;stretch&amp;rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、作業してセキュリティチームに連絡だけしといた。 なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり意図的なものだということだけを伝えるreplyをした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
@@ -19,7 +28,8 @@
       <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> ruby-slimパッケージ、New upstream version導入でFTBFS修正 ruby-sinatra-contribパッケージ、New upstream version導入でFTBFS修正 ruby-loofahパッケージ、New upstream version導入でCVE修正  </description>
+      <description>Debian10 &amp;ldquo;buster&amp;rdquo;リリースの障害となるRelease Criticalバグ一覧から簡単に直せそうなのを探して作業。
+ ruby-slimパッケージ、New upstream version導入でFTBFS修正 ruby-sinatra-contribパッケージ、New upstream version導入でFTBFS修正 ruby-loofahパッケージ、New upstream version導入でCVE修正  </description>
     </item>
     
     <item>
@@ -47,8 +57,8 @@
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>debian-installerのコンポーネントの一つ、partman-lvmでのバグ修正が含まれたパッケージがようやくアップロードされた。
-もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることにして手元の放置してたBBBを設定…。
- 参考ページを元に初期化し直し stretchベースのイメージをSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。 ２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で dpkg --get-selections &amp;gt; distro.txt のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…  ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…  あとはarm64アーキテクチャであるdebian.orgのporterboxマシンにsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…  </description>
+もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることに。
+ 手元の放置してたBBBを設定、参考ページを元に初期化し直し stretchベースのイメージをSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。 ２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で dpkg --get-selections &amp;gt; distro.txt のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…  ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…  あとはarm64アーキテクチャであるdebian.orgのporterboxマシンにsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…  </description>
     </item>
     
     <item>

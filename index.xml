@@ -8,8 +8,26 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 30 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/&#34;&gt;先日のMerge Request&lt;/a&gt;に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2&#34;&gt;x86指定に変更した&lt;/a&gt;→マージされました。&lt;/li&gt;
+&lt;li&gt;昨日の&lt;a href=&#34;https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/&#34;&gt;ruby-loofahパッケージの更新で脆弱性修正&lt;/a&gt;したのだが、Debian9 &amp;ldquo;stretch&amp;rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、&lt;a href=&#34;https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch&#34;&gt;作業して&lt;/a&gt;セキュリティチームに連絡だけしといた。&lt;/li&gt;
+&lt;li&gt;なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8&#34;&gt;意図的なものだということだけを伝えるreply&lt;/a&gt;をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -19,7 +37,9 @@
             <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
+            <description>&lt;p&gt;&lt;a href=&#34;https://udd.debian.org/bugs/?release=buster_and_sid&amp;amp;merged=ign&amp;amp;rtbuster-will-remove=ign&amp;amp;rtbuster-can-defer=ign&amp;amp;autoremovals=ign&amp;amp;deferred=ign&amp;amp;fnewer=ign&amp;amp;fnewerval=30&amp;amp;rc=1&amp;amp;cpopcon=1&amp;amp;chints=1&amp;amp;ctags=1&amp;amp;cclaimed=1&amp;amp;cdeferred=1&amp;amp;caffected=1&amp;amp;crttags=1&amp;amp;sortby=last_modified&amp;amp;sorto=asc&amp;amp;#results&#34;&gt;Debian10 &amp;ldquo;buster&amp;rdquo;リリースの障害となるRelease Criticalバグ一覧&lt;/a&gt;から簡単に直せそうなのを探して作業。&lt;/p&gt;
+
+&lt;ul&gt;
 &lt;li&gt;ruby-slimパッケージ、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=895500#16&#34;&gt;New upstream version導入でFTBFS修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ruby-sinatra-contribパッケージ、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911869#12&#34;&gt;New upstream version導入でFTBFS修正&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;ruby-loofahパッケージ、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912398#14&#34;&gt;New upstream version導入でCVE修正&lt;/a&gt;&lt;/li&gt;
@@ -67,10 +87,10 @@
             <guid>https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;debian-installerのコンポーネントの一つ、&lt;a href=&#34;https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/&#34;&gt;partman-lvmでのバグ修正&lt;/a&gt;が含まれたパッケージがようやくアップロードされた。&lt;/p&gt;
 
-&lt;p&gt;もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることにして手元の放置してたBBBを設定…。&lt;/p&gt;
+&lt;p&gt;もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることに。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://select.marutsu.co.jp/list/detail.php?id=235&#34;&gt;参考ページ&lt;/a&gt;を元に初期化し直し&lt;/li&gt;
+&lt;li&gt;手元の放置してたBBBを設定、&lt;a href=&#34;http://select.marutsu.co.jp/list/detail.php?id=235&#34;&gt;参考ページ&lt;/a&gt;を元に初期化し直し&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://beagleboard.org/latest-images&#34;&gt;stretchベースのイメージ&lt;/a&gt;をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。&lt;/li&gt;
 &lt;li&gt;２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で &lt;code&gt;dpkg --get-selections &amp;gt; distro.txt&lt;/code&gt; のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
 
@@ -354,25 +374,6 @@ index c6ac3e7..1581e98 100644
 &lt;li&gt;[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。&lt;/li&gt;
 &lt;li&gt;os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>DDのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;依頼を受けたので&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;として林さんのDM uploadを設定しておいた。&lt;/p&gt;
 </description>
           </item>
         
