@@ -84,6 +84,13 @@
 
 <p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
 
+<p>そしてアップロード後もエラーを踏む。</p>
+
+<pre><code>Source-only uploads to NEW are not allowed.
+</code></pre>
+
+<p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
+
 		</div>
 	</div>
 	<div class="row">

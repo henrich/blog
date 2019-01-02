@@ -21,7 +21,9 @@
       <guid>https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptではtempdir=`mktemp -d`のようにしてtempdirを指定したのだけど、makeでは$$tempdirが空になるので、$(CURDIR)/debian/tmp 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？
 autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえずsudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-execとしてchroot環境に入りapt install /buildd/a.deb /buildd/b.debなどとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後でpiupartsでパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（sudo cowbuilder --createしなおして対処）。
- パッケージを分割した インストールするkeyringをUbuntuのパッケージを参考にして変更した debconfで質問される /etc/apt/trusted.gpg.d にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した autopkgtestをまともなものにした build時にもautopkgtest相当が動作するようにした  今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるからNEW queue待ちに。どれだけかかるのかな。。</description>
+ パッケージを分割した インストールするkeyringをUbuntuのパッケージを参考にして変更した debconfで質問される /etc/apt/trusted.gpg.d にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した autopkgtestをまともなものにした build時にもautopkgtest相当が動作するようにした  今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるからNEW queue待ちに。どれだけかかるのかな。。
+そしてアップロード後もエラーを踏む。
+Source-only uploads to NEW are not allowed.  なんと、そうだったのか。最近はarch=allパッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思ってgit-buildpackageのオプションで--git-pbuilder-options=&amp;quot;--source-only-changes&amp;quot;などとしていたのが仇に。</description>
     </item>
     
     <item>

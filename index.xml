@@ -32,6 +32,13 @@
 &lt;/ul&gt;
 
 &lt;p&gt;今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから&lt;a href=&#34;https://ftp-master.debian.org/new.html&#34;&gt;NEW queue&lt;/a&gt;待ちに。どれだけかかるのかな。。&lt;/p&gt;
+
+&lt;p&gt;そしてアップロード後もエラーを踏む。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Source-only uploads to NEW are not allowed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なんと、そうだったのか。最近は&lt;code&gt;arch=all&lt;/code&gt;パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って&lt;code&gt;git-buildpackage&lt;/code&gt;のオプションで&lt;code&gt;--git-pbuilder-options=&amp;quot;--source-only-changes&amp;quot;&lt;/code&gt;などとしていたのが仇に。&lt;/p&gt;
 </description>
           </item>
         
