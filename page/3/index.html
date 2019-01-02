@@ -60,6 +60,180 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Sep 24, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>os-autoinstパッケージを放置していたので、アップデート作業を実施。</p>
+
+<ul>
+<li>upstreamをpullしてdebian/sidブランチにmerge</li>
+<li>ビルド…するも、testでエラーが出る。しかもランダム。どうも test が serial に実施される前提で書かれていて、ある test での input file が別の test でも使われてたりする＆その test 実施後に削除されたりするので、順序によっては input file が存在しない、ということでエラーになったりするようだ。仕方がないので <code>--no-parallel</code> オプションを dh_auto_test につけて <code>make -j1</code> で実行されるようにする</li>
+<li>それでも 02-test_ocr.t だけがコケ続けたりする（上記の際にはごくごく稀にだが成功したりする…）。<code>t/02-test_ocr.t.log</code> を見てみる…。</li>
+</ul>
+
+<pre><code class="language-debug">FAIL: 02-test_ocr.t
+===================
+
+Use of uninitialized value in index at ../needle.pm line 44.
+Use of uninitialized value $bmwqemu::vars{&quot;PRJDIR&quot;} in addition (+) at ../needle.pm line 45.
+[2018-09-24T07:08:55.0584 UTC] [debug] MATCH(bootmenu-ocr.ref:1.00)
+Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+Estimating resolution as 132
+Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+Estimating resolution as 138
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+Estimating resolution as 132
+#   Failed test 'multiple OCR regions'
+#   at ./02-test_ocr.t line 42.
+1..2
+# Looks like you failed 1 test of 2.
+FAIL 02-test_ocr.t (exit status: 1)
+</code></pre>
+
+<ul>
+<li>最初は <code>Warning. Invalid resolution 0 dpi. Using 70 instead.</code> というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで <code>convert a.png -density 300 -units PixelsPerInch b.png</code> のようにして埋め込んだのだが、さっぱり出力が変わらない。</li>
+<li>ぐぐったところ<a href="https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/">「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」</a>という説明のページを見つけてへたりこんだり。</li>
+<li>どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と <code>Data::Dumper</code> を使う</li>
+</ul>
+
+<pre><code class="language-perl">use Data::Dumper;
+...
+print Dumper $ocr;
+</code></pre>
+
+<ul>
+<li>おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで <code>t/data/bootmenu-ocr.png</code> を開き、認識してる文字列の座標を確認→ <code>t/data/bootmenu-ocr.ref.json</code> を調整→成功！</li>
+<li><code>make check-doc</code> でエラー。</li>
+</ul>
+
+<pre><code class="language-shell"># [ -z &quot;$(podspell testapi.pm | spell)&quot; ]
+# echo $?
+1
+# podspell testapi.pm | spell
+deselected
+VM
+kvm
+VM
+</code></pre>
+
+<ul>
+<li>これ、<code>spell</code> の問題じゃないの？とは思うけど、<code>sed</code> で削って対応。</li>
+<li>ビルドは問題なくできるようになったので、piuparts…と変なエラーが出たが、os-autoinstのパッケージには含まれてない問題なので無視（フォント絡みなので後で追わないといけない気もする…）。</li>
+</ul>
+
+<pre><code class="language-debug">5m12.7s ERROR: FAIL: Package purging left files on system:
+  /usr/local/share/fonts/        not owned
+  /usr/local/share/fonts/.uuid   not owned
+  /usr/share/fonts/      owned by: fonts-dejavu-core
+  /usr/share/fonts/.uuid         not owned
+  /usr/share/fonts/truetype/     owned by: fonts-dejavu-core
+  /usr/share/fonts/truetype/.uuid        not owned
+  /usr/share/fonts/truetype/dejavu/      owned by: fonts-dejavu-core
+  /usr/share/fonts/truetype/dejavu/.uuid         not owned
+</code></pre>
+
+<p>ということで <a href="https://bugs.debian.org/893645">Bug#893645</a>と<a href="https://bugs.debian.org/880791">Bug#880791</a>をcloseにしておいた。</p>
+
+<pre><code class="language-changelog"> os-autoinst (4.5.1527308405.8b586d5-1) unstable; urgency=medium
+ .
+   * New upstream release
+   * debian/patches
+     - refresh patch
+     - add 0003-adjust-to-avoid-ocr-test-failure.patch (Closes: #893645)
+     - add 0004-avoid-make-check-doc-failure.patch
+     - add 0005-set-perl-path.patch to avoid lintian error
+   * debian/control
+     - add Build-Depends: libsocket-msghdr-perl, spell for test
+     - move Vcs-* to salsa.debian.org
+   * debian/rules
+     - set --no-parallel for dh_auto_test to avoid random test failure
+       (Closes: #880791)
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/09/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Sep 23, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>vmdk-stream-converter</code> が、aliothを指したままだったので<a href="https://tracker.debian.org/news/989198/accepted-vmdk-stream-converter-02-4-source-all-into-unstable/">とりあえず更新</a>。python2依存なんだよね、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=883804">patchはある</a>のでupstreamが対応してくれないものか。</li>
+<li><code>sphere</code> はupstreamが開発停止＆VMWare自体がライブラリを出していてそちらは既にDebianにあるのでそちらを推す格好で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">削除依頼</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -736,129 +910,6 @@ P: Begin mounting /sys...
 
 <p>今日はここまで。
 で、<a href="https://github.com/vyos/vyos-build/pull/17">https://github.com/vyos/vyos-build/pull/17</a> に今日触ったところで <code>debootstrap使ったほうがいいな</code>、というプルリクエストを送っときました。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/02/%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E3%83%90%E3%82%B0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%82%8B%E3%81%8B%E3%81%A8%E3%81%8B.../">どうやってバグレポートしてるか、とか...</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, May 2, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>URLは非常に単純で <code>https://bugs.debian.org/&lt;package&gt;</code> とすればバグレポートを参照できる。今回は<a href="https://bugs.debian.org/git-buildpackage">https://bugs.debian.org/git-buildpackage</a> 。<code>querybts git-buildpackage</code>でも閲覧はできるのだけど、バグレポートが大量にあると行ったり来たりして参照するのはブラウザのほうがやりやすいので&hellip;。</p>
-
-<p>ソースの取得は <code>apt source &lt;package&gt;</code> で可能。なのだけど、パッケージ作業をGitで作業してたりすると、まぁHEADに合わせて変更して <code>git format-patch</code> したpatchファイルを送りつけた方が取り込んでもらいやすいのは間違いないので、Vcsで取得。どこにリポジトリがあってどのVcs使ってるか&hellip;は特に考えること無くdebcheckoutコマンドを使う。<code>debcheckout git-buildpackage</code> として取得。</p>
-
-<pre><code>$ debcheckout git-buildpackage
-declared git repository at https://git.sigxcpu.org/cgit/git-buildpackage/ 
-git clone https://git.sigxcpu.org/cgit/git-buildpackage/ git-buildpackage ...
-Cloning into 'git-buildpackage'... 
-</code></pre>
-
-<p>&hellip;としたのだけど、なんで自前のrepoに保持してるのか。超遅い。通常ならsalsa.debian.org配下なので直ぐなのに、10分経っても全然応答が無い&hellip;仕方がないので、今回は<code>apt source git-buildpackage</code>で取得。</p>
-
-<p>さて、optionでgrepしたりして&hellip;</p>
-
-<pre><code> $ grep git-component -r ./
-./docs/manpages/gbp-buildpackage.xml:      &lt;arg rep='repeat'&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;component&lt;/replaceable&gt;&lt;/arg&gt;
-./docs/manpages/gbp-buildpackage.xml:          &lt;term&gt;&lt;option&gt;--git-component=&lt;/option&gt;&lt;replaceable&gt;COMPONENT&lt;/replaceable&gt;
-./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
-./tests/component/deb/test_buildpackage.py:                            '--git-component=foo',
-./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo'])
-./tests/component/deb/test_buildpackage.py:                                       '--git-component=foo',
-</code></pre>
-
-<p>あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/01/gbp-buildpackage-git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/">gbp buildpackage --git-componentオプションの罠</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, May 1, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>poppler-dataパッケージは、一般的なパッケージと違ってupstream tarballが複数ある構成（multiple upstream tarball）なので、git-buildpackageが使えなかったのだけど、git-buildpackage側での実験的なサポートが追加されていたので思い立って作業。</p>
-
-<p>まずはGitリポジトリにリリース済みのパッケージをインポートして、salsaにインポート。</p>
-
-<pre><code>$ gbp import-dscs --debsnap poppler-data
-$ git remote add salsa git@salsa.debian.org:debian/poppler-data.git
-$ git push salsa --all
-$ git push salsa --tags
-</code></pre>
-
-<p>で、manページを参照して実験的な &ndash;git-component オプションの使い方を確認。</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=ai0 --git-component=from-ghostscript
-</code></pre>
-
-<ul>
-<li>対象となるtarballはpoppler-data_0.4.9.orig-from-ghostscript.tar.xzとpoppler-data_0.4.9.orig-ai0.tar.gzとしてpristine-tarブランチにコミットされている</li>
-<li>multiple tarballは orig.tarball-<name>.tar.[g|x]gという形で保持されているので、<name>の部分だけを指定</li>
-</ul>
-
-<p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。<del>理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため</del>&hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&hellip;）</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
-(snip)
-gbp:error: Error creating poppler-data_0.4.9.orig-from-ghostscript.tar.gz: Pristine-tar couldn't checkout &quot;poppler-data_0.4.9.orig-from-ghostscript.tar.gz&quot;: fatal: Path 'poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
-pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta failed
-</code></pre>
-
-<p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
 
 					
 				</div>

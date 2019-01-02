@@ -60,6 +60,101 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 2, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
+
+<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
+
+<ul>
+<li>パッケージを分割した</li>
+<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
+<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
+<li>autopkgtestをまともなものにした</li>
+<li>build時にもautopkgtest相当が動作するようにした</li>
+</ul>
+
+<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 1, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。<code>.install</code>ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、<code>[0-9]*</code>で数字だけ指定されるかと思ったら、そうでなかった。。。</p>
+
+<pre><code>keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
+</code></pre>
+
+<p>というようにした。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -87,6 +182,11 @@
 <li><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のMerge Request</a>に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2">x86指定に変更した</a>→マージされました。</li>
 <li>昨日の<a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ruby-loofahパッケージの更新で脆弱性修正</a>したのだが、Debian9 &ldquo;stretch&rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、<a href="https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch">作業して</a>セキュリティチームに連絡だけしといた。</li>
 <li>なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8">意図的なものだということだけを伝えるreply</a>をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。</li>
+<li><a href="https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/">ubuntu-keyringパッケージを最新に更新</a>。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
+
+<ul>
+<li>次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…</li>
+</ul></li>
 </ul>
 
 					
@@ -419,102 +519,6 @@ Uploading henrich-1545485367.dak-commands to ftp-master
 <hr />
 
 <p>久々に<a href="https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html">installation guide訳を更新</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Dec 21, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>tdiary-contrib</code> の <code>tdiary-mode</code> が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら<a href="https://twitter.com/uwabami/">佐々木さん</a>がパッチ書いてくれて更新してくれた。言ってみるもんだね。</li>
-<li><code>bundler</code>の <code>git ls-files -z</code> が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/">initfamrs-toolsのバグを踏んでいた</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Dec 20, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。</p>
-
-<p>？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて <code>sudo update-initramfs -c -k 4.9.0-3-amd64</code> のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。</p>
-
-<pre><code class="language-bash">$ LC_ALL=C ls -al /usr/sbin/update-initramfs*
-lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&gt; /bin/true
--rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
-</code></pre>
-
-<p>あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と <code>sudo update-initramfs/distrib -c -k 4.9.0-3-amd64</code> のようにすると無事にイメージが作られたので、<code>update-grub</code> を実行して変更を反映、再起動すると無事起動できた。更に調べたところ</p>
-
-<pre><code class="language-bash">$ dpkg -L initramfs-tools
-(snip)
-diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
-</code></pre>
-
-<p>ということで <code>pkgsel</code> なるパッケージがこれを実施したことが判明。
-じゃぁ、と <code>apt show pkgsel</code> しても出てこない…あ、これはudebだね、ということで<a href="https://packages.debian.org/sid/pkgsel">サイト</a>を確認…あたり。
-<code>apt source pkgsel</code> して <code>debian/changelog</code> をみたら <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073">Bug#912073</a> を踏んでいたと判明。んもー。寝る前の貴重な時間が…</p>
 
 					
 				</div>

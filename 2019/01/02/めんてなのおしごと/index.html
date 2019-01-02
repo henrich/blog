@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Mon, Dec 31, 2018</span> in 
+				<span class="label label-primary">Wed, Jan 2, 2019</span> in 
 				
 					
 					<a href="/blog/categories/debian">debian</a>
@@ -64,25 +64,25 @@
 					
 					<a href="/blog/tags/debian">debian</a>
 				
-					 , 
-					<a href="/blog/tags/patch">patch</a>
-				
 			</small>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<ul>
-<li><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のMerge Request</a>に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2">x86指定に変更した</a>→マージされました。</li>
-<li>昨日の<a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ruby-loofahパッケージの更新で脆弱性修正</a>したのだが、Debian9 &ldquo;stretch&rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、<a href="https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch">作業して</a>セキュリティチームに連絡だけしといた。</li>
-<li>なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8">意図的なものだということだけを伝えるreply</a>をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。</li>
-<li><a href="https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/">ubuntu-keyringパッケージを最新に更新</a>。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
+			<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
+
+<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
 
 <ul>
-<li>次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…</li>
-</ul></li>
+<li>パッケージを分割した</li>
+<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
+<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
+<li>autopkgtestをまともなものにした</li>
+<li>build時にもautopkgtest相当が動作するようにした</li>
 </ul>
+
+<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
 
 		</div>
 	</div>

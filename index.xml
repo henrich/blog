@@ -8,8 +8,53 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 31 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは&lt;code&gt;tempdir=`mktemp -d`&lt;/code&gt;のようにしてtempdirを指定したのだけど、makeでは&lt;code&gt;$$tempdir&lt;/code&gt;が空になるので、&lt;code&gt;$(CURDIR)/debian/tmp&lt;/code&gt; 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？&lt;/p&gt;
+
+&lt;p&gt;autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず&lt;code&gt;sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec&lt;/code&gt;としてchroot環境に入り&lt;code&gt;apt install /buildd/a.deb /buildd/b.deb&lt;/code&gt;などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で&lt;code&gt;piuparts&lt;/code&gt;でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（&lt;code&gt;sudo cowbuilder --create&lt;/code&gt;しなおして対処）。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;パッケージを分割した&lt;/li&gt;
+&lt;li&gt;インストールするkeyringをUbuntuのパッケージを参考にして変更した&lt;/li&gt;
+&lt;li&gt;debconfで質問される &lt;code&gt;/etc/apt/trusted.gpg.d&lt;/code&gt; にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した&lt;/li&gt;
+&lt;li&gt;autopkgtestをまともなものにした&lt;/li&gt;
+&lt;li&gt;build時にもautopkgtest相当が動作するようにした&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから&lt;a href=&#34;https://ftp-master.debian.org/new.html&#34;&gt;NEW queue&lt;/a&gt;待ちに。どれだけかかるのかな。。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。&lt;code&gt;.install&lt;/code&gt;ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、&lt;code&gt;[0-9]*&lt;/code&gt;で数字だけ指定されるかと思ったら、そうでなかった。。。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;というようにした。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -23,6 +68,11 @@
 &lt;li&gt;&lt;a href=&#34;https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/&#34;&gt;先日のMerge Request&lt;/a&gt;に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2&#34;&gt;x86指定に変更した&lt;/a&gt;→マージされました。&lt;/li&gt;
 &lt;li&gt;昨日の&lt;a href=&#34;https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/&#34;&gt;ruby-loofahパッケージの更新で脆弱性修正&lt;/a&gt;したのだが、Debian9 &amp;ldquo;stretch&amp;rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、&lt;a href=&#34;https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch&#34;&gt;作業して&lt;/a&gt;セキュリティチームに連絡だけしといた。&lt;/li&gt;
 &lt;li&gt;なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8&#34;&gt;意図的なものだということだけを伝えるreply&lt;/a&gt;をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/&#34;&gt;ubuntu-keyringパッケージを最新に更新&lt;/a&gt;。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
+
+&lt;ul&gt;
+&lt;li&gt;次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -303,77 +353,6 @@ index c6ac3e7..1581e98 100644
    s.require_path     = &amp;quot;lib&amp;quot;
  end
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>Retrospective 2018 11 26</title>
-            <link>https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/</link>
-            <pubDate>Mon, 26 Nov 2018 12:09:56 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/</guid>
-            <description>&lt;p&gt;すっかりかまけてしまったので、思い出しつつ何やったかとか…。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt; のIPv6逆引きの設定変更を依頼されたので、さくらさんに依頼→受理された&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914448&#34;&gt;eclipseパッケージの削除依頼が登録された&lt;/a&gt;ため、依存するパッケージである&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914566&#34;&gt;Pleiadesも削除依頼が登録された&lt;/a&gt;。正直複雑な心境。
-
-&lt;ul&gt;
-&lt;li&gt;Eclipseを再パッケージしなおせばいいのだろうが、どうやるのかさっぱりだよな…&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426&#34;&gt;psphereパッケージを削除&lt;/a&gt;。これは問題なし。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1004788/accepted-fonts-sawarabi-mincho-20181115-1-source-into-unstable/&#34;&gt;fonts-sawarabi-minchoパッケージを更新&lt;/a&gt;、単にフォントファイルが指定位置にあるかを確認するだけというsmokeテストを追加。これ、フォントファイルとして認識できる（壊れてない）というのも追加したほうが本当は良さそう&lt;/li&gt;
-&lt;li&gt;fonts-ibm-plexが追加された、というのを見て中身をチラ見したら&lt;code&gt;debian/upstream/metadata&lt;/code&gt;ファイルが追加されてた。これは真似ると良さそう
-
-&lt;ul&gt;
-&lt;li&gt;その流れで他のパッケージの&lt;code&gt;debian/upstream/metadata&lt;/code&gt;ファイル見てみたら、saneのがalioth指定したままだった…ので&lt;a href=&#34;https://salsa.debian.org/debian/sane-backends/merge_requests/2&#34;&gt;merge request&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1005906/accepted-snapper-081-1-source-into-unstable/&#34;&gt;snapperパッケージの更新&lt;/a&gt;。&lt;a href=&#34;https://wiki.debian.org/UpstreamMetadata&#34;&gt;Wiki&lt;/a&gt;を参考にして、&lt;code&gt;debian/upstream/metadata&lt;/code&gt;ファイルを追加してみた。
-
-&lt;ul&gt;
-&lt;li&gt;ついでにbackportsパッケージも生成。&lt;/li&gt;
-&lt;li&gt;水野さんにmetadataの作り方をpingしておく&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1005996/accepted-libuninameslist-20180701-1-source-into-unstable/&#34;&gt;libuninameslistパッケージの更新&lt;/a&gt;。
-
-&lt;ul&gt;
-&lt;li&gt;しかし、&lt;code&gt;python binding&lt;/code&gt;が有効になっていない…configure.acではpythonの所在を確認している。&lt;/li&gt;
-&lt;li&gt;これも&lt;code&gt;metadata&lt;/code&gt;作るか？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://lists.debian.org/debian-devel/2018/11/msg00640.html&#34;&gt;メールを投げてみる&lt;/a&gt;→「unstableを快適にするのじゃなくて、freezeを改善する方に力入れようぜ！」というような反応。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Todo の書き出しとか…。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Natural Language Processing (Japanese) &amp;lt;team+pkg-nlp-ja@tracker.debian.org&amp;gt;&lt;/code&gt; 配下になっているパッケージ、少なすぎ？と思ったら &lt;code&gt;&amp;quot;Natural Language Processing (Japanese)&amp;quot; &amp;lt;team+pkgnlpja@tracker.debian.org&amp;gt;&lt;/code&gt; もあった。どっちの表記が正しいのだ？本来であればidentiferの部分で&lt;code&gt;-&lt;/code&gt;が含まれていてもきちんと処理されるのが理想なはずだが。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/teams/pkg-nlp-ja/&#34;&gt;trackerページ&lt;/a&gt;を作り直してみた。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;mecab-ipadicとか、辞書パッケージの統一した扱いを何とか…&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。&lt;/li&gt;
-&lt;li&gt;os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         
