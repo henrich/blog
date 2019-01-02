@@ -39,6 +39,19 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;なんと、そうだったのか。最近は&lt;code&gt;arch=all&lt;/code&gt;パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って&lt;code&gt;git-buildpackage&lt;/code&gt;のオプションで&lt;code&gt;--git-pbuilder-options=&amp;quot;--source-only-changes&amp;quot;&lt;/code&gt;などとしていたのが仇に。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;淡々と&lt;a href=&#34;https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/&#34;&gt;jcodingsパッケージをアップデート&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;grcompilerに&lt;a href=&#34;https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/&#34;&gt;投稿されてたパッチをマージ&lt;/a&gt;。自分の作った地雷を踏むという失態を。
+
+&lt;ul&gt;
+&lt;li&gt;upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。&lt;/li&gt;
+&lt;li&gt;で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を&lt;code&gt;git format-patch&lt;/code&gt;して一旦逃してから全削除→&lt;code&gt;git clone&lt;/code&gt;して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
