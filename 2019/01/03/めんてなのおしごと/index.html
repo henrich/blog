@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Thu, Jan 3, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688">ruby-netrcパッケージのバグ</a>のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。<code>assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path</code>が以下のような結果になる。</p>
+
+<pre><code class="language-ruby">  1) Failure:
+TestNetrc#test_missing_environment [/&lt;&lt;PKGBUILDDIR&gt;&gt;/test/test_netrc.rb:203]:
+--- expected
++++ actual
+@@ -1,2 +1 @@
+-# encoding: ASCII-8BIT
+-&quot;/&lt;&lt;PKGBUILDDIR&gt;&gt;/.netrc&quot;
++&quot;/build/.netrc&quot;
+</code></pre>
+
+<p><code>&lt;&lt;PKGBUILDDIR&gt;&gt;</code>なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は<code>cowbuilder</code>でやってしまっていたので、<code>sbuild</code>環境を用意するのにも時間が&hellip;あれ？<code>sbuild</code>でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？</p>
+
+<p>バグレポートを再度よく読み、テスト部分を再確認。</p>
+
+<pre><code class="language-ruby">  def test_missing_environment
+    nil_home = nil
+    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
+  ensure
+    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+  end
+</code></pre>
+
+<p><code>default_path</code>でgrep…。</p>
+
+<pre><code class="language-ruby">  def self.default_path
+    File.join(ENV['NETRC'] || home_path, netrc_filename)
+  end
+</code></pre>
+
+<p>あー、これだ。<code>NETRC</code>が存在しない場合に<code>home_path</code>、つまりは上記のエラーになる環境では<code>/build</code>が指定されてるのにもかかわらず、ビルドをしている<code>Dir.pwd</code>は別、ということだろうな。さて、どういうふうにして回避するかね…</p>
+
+<pre><code class="language-ruby">    p nil_home
+    p ENV[&quot;HOME&quot;]
+    p Netrc.home_path
+</code></pre>
+
+<p>とすると</p>
+
+<pre><code class="language-ruby">&quot;/home/henrich&quot;
+nil
+&quot;/build/ruby-netrc-0.11.0&quot;
+</code></pre>
+
+<p>が返る。あれ？予想と違う。<code>home_path</code>は<code>/build/ruby-netrc-0.11.0</code>なのか。<code>ENV[&quot;HOME&quot;]</code>が<code>nil</code>であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう</p>
+
+<pre><code class="language-ruby">--- a/test/test_netrc.rb
++++ b/test/test_netrc.rb
+@@ -200,7 +200,7 @@
+   def test_missing_environment
+     nil_home = nil
+     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+-    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
++    assert_equal File.join(Netrc.home_path, '.netrc'), Netrc.default_path
+   ensure
+     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+   end
+</code></pre>
+
+<p>でアップロードした。</p>
+
+<hr />
+
+<p>ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26">質問した</a>。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.53 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

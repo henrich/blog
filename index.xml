@@ -8,8 +8,87 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 02 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 03 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688&#34;&gt;ruby-netrcパッケージのバグ&lt;/a&gt;のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。&lt;code&gt;assert_equal File.join(Dir.pwd, &#39;.netrc&#39;), Netrc.default_path&lt;/code&gt;が以下のような結果になる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  1) Failure:
+TestNetrc#test_missing_environment [/&amp;lt;&amp;lt;PKGBUILDDIR&amp;gt;&amp;gt;/test/test_netrc.rb:203]:
+--- expected
++++ actual
+@@ -1,2 +1 @@
+-# encoding: ASCII-8BIT
+-&amp;quot;/&amp;lt;&amp;lt;PKGBUILDDIR&amp;gt;&amp;gt;/.netrc&amp;quot;
++&amp;quot;/build/.netrc&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;&amp;lt;PKGBUILDDIR&amp;gt;&amp;gt;&lt;/code&gt;なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は&lt;code&gt;cowbuilder&lt;/code&gt;でやってしまっていたので、&lt;code&gt;sbuild&lt;/code&gt;環境を用意するのにも時間が&amp;hellip;あれ？&lt;code&gt;sbuild&lt;/code&gt;でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？&lt;/p&gt;
+
+&lt;p&gt;バグレポートを再度よく読み、テスト部分を再確認。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  def test_missing_environment
+    nil_home = nil
+    ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
+    assert_equal File.join(Dir.pwd, &#39;.netrc&#39;), Netrc.default_path
+  ensure
+    ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;default_path&lt;/code&gt;でgrep…。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  def self.default_path
+    File.join(ENV[&#39;NETRC&#39;] || home_path, netrc_filename)
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あー、これだ。&lt;code&gt;NETRC&lt;/code&gt;が存在しない場合に&lt;code&gt;home_path&lt;/code&gt;、つまりは上記のエラーになる環境では&lt;code&gt;/build&lt;/code&gt;が指定されてるのにもかかわらず、ビルドをしている&lt;code&gt;Dir.pwd&lt;/code&gt;は別、ということだろうな。さて、どういうふうにして回避するかね…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;    p nil_home
+    p ENV[&amp;quot;HOME&amp;quot;]
+    p Netrc.home_path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とすると&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;&amp;quot;/home/henrich&amp;quot;
+nil
+&amp;quot;/build/ruby-netrc-0.11.0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;が返る。あれ？予想と違う。&lt;code&gt;home_path&lt;/code&gt;は&lt;code&gt;/build/ruby-netrc-0.11.0&lt;/code&gt;なのか。&lt;code&gt;ENV[&amp;quot;HOME&amp;quot;]&lt;/code&gt;が&lt;code&gt;nil&lt;/code&gt;であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;--- a/test/test_netrc.rb
++++ b/test/test_netrc.rb
+@@ -200,7 +200,7 @@
+   def test_missing_environment
+     nil_home = nil
+     ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
+-    assert_equal File.join(Dir.pwd, &#39;.netrc&#39;), Netrc.default_path
++    assert_equal File.join(Netrc.home_path, &#39;.netrc&#39;), Netrc.default_path
+   ensure
+     ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
+   end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でアップロードした。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26&#34;&gt;質問した&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -331,48 +410,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 &lt;li&gt;fontforgeコマンドの指定で &lt;code&gt;Open(&amp;quot;UnDinaruLight.ttf&amp;quot;)&lt;/code&gt; のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/&#34;&gt;ruby-arubaパッケージをアップデート&lt;/a&gt;した。&lt;/p&gt;
-
-&lt;p&gt;autopkgtestが &lt;code&gt;debian/control&lt;/code&gt; での &lt;code&gt;Testsuite: autopkgtest-pkg-ruby&lt;/code&gt; 行を起点として実施される（実際は &lt;code&gt;debian/ruby-tests.rake&lt;/code&gt; ファイルが実行されるのかな？）のだけど、この際に &lt;code&gt;gemspec&lt;/code&gt; ファイルの中身が実行される。ところがここで &lt;code&gt;git&lt;/code&gt; コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Ruby&#34;&gt;  s.files            = `git ls-files`.split(&amp;quot;\n&amp;quot;)
-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;)
-  s.executables      = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、&lt;a href=&#34;https://bugs.debian.org/910953&#34;&gt;Bug#910953&lt;/a&gt;をクローズ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Ruby&#34;&gt;diff --git a/aruba.gemspec b/aruba.gemspec
-index c6ac3e7..1581e98 100644
---- a/aruba.gemspec
-+++ b/aruba.gemspec
-@@ -40,9 +40,9 @@ With aruba &amp;gt;= 1.0 there will be breaking changes. Make sure to read https://gith
- EOS
-   end
-
--  s.files            = `git ls-files`.split(&amp;quot;\n&amp;quot;)
--  s.test_files       = `git ls-files -- {spec,features}/*`.split(&amp;quot;\n&amp;quot;)
--  s.executables      = `git ls-files -- bin/*`.split(&amp;quot;\n&amp;quot;).map{ |f| File.basename(f) }
-+  s.files            = Dir[&#39;**/*&#39;].reject { |f| f =~ %r{^debian/} }
-+  s.test_files       = Dir[&#39;spec/*,features/*&#39;]
-+  s.executables      = Dir[&#39;bin/*&#39;].map{ |f| File.basename(f) }
-   s.rdoc_options     = [&amp;quot;--charset=UTF-8&amp;quot;]
-   s.require_path     = &amp;quot;lib&amp;quot;
- end
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
