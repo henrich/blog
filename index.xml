@@ -69,7 +69,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;あと、リポジトリのミラーは&lt;code&gt;debootstrap 1.0.85&lt;/code&gt;から&lt;code&gt;deb.debian.org&lt;/code&gt;を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している&lt;code&gt;debian-mirror.sakura.ne.jp&lt;/code&gt;を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？&lt;/p&gt;
+&lt;p&gt;あと、リポジトリのミラーは&lt;code&gt;debootstrap 1.0.85&lt;/code&gt;から&lt;a href=&#34;https://deb.debian.org&#34;&gt;deb.debian.org&lt;/a&gt;を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している&lt;a href=&#34;http://debian-mirror.sakura.ne.jp&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt;を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？&lt;/p&gt;
 
 &lt;p&gt;最後に、記述時の最新である&lt;code&gt;debootstrap 1.0.112&lt;/code&gt;はMr.FAIこと&lt;code&gt;Thomas Lange&lt;/code&gt;さんのハックによってパッケージ依存関係の最適化（これも&lt;code&gt;apt&lt;/code&gt;が使われてはいない）が図られているので、随分と時間が短縮されている。&lt;/p&gt;
 
