@@ -33,7 +33,7 @@
             <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/</guid>
-            <description>&lt;p&gt;&lt;code&gt;debootstrap&lt;/code&gt;は最低限のDebian環境の作成に使われるツール。&lt;code&gt;pbuilder&lt;/code&gt;や&lt;code&gt;cowbuilder&lt;/code&gt;（とその環境を使う&lt;code&gt;piuparts&lt;/code&gt;）などのツールの裏側でも動くし、&lt;code&gt;docker&lt;/code&gt;イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初はaptも使えないのでwgetで取得するんだぜ？）。うーむ。&lt;/p&gt;
+            <description>&lt;p&gt;&lt;code&gt;debootstrap&lt;/code&gt;は最低限のDebian環境の作成に使われるツール。&lt;code&gt;pbuilder&lt;/code&gt;や&lt;code&gt;cowbuilder&lt;/code&gt;（とその環境を使う&lt;code&gt;piuparts&lt;/code&gt;）などのツールの裏側でも動くし、&lt;code&gt;docker&lt;/code&gt;イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は&lt;code&gt;apt&lt;/code&gt;も使えないので&lt;code&gt;wget&lt;/code&gt;で取得するんだぜ？）。うーむ。&lt;/p&gt;
 
 &lt;p&gt;で、どうやって時間を短縮するか？というと、以下のような選択肢がある。&lt;/p&gt;
 

@@ -76,7 +76,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初はaptも使えないのでwgetで取得するんだぜ？）。うーむ。</p>
+			<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は<code>apt</code>も使えないので<code>wget</code>で取得するんだぜ？）。うーむ。</p>
 
 <p>で、どうやって時間を短縮するか？というと、以下のような選択肢がある。</p>
 
