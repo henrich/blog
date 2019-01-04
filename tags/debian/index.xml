@@ -14,6 +14,15 @@
     
     
     <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</description>
+    </item>
+    
+    <item>
       <title>めんてなのおしごと</title>
       <link>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
       <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
@@ -128,15 +137,6 @@ keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg usr/share/keyrings/  という�
       <guid>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>アップロードがrejectされてたので
 $ dcut dm --uid 0x9394F354891D7E07 --allow fonts-mmcedar Uploading commands file to ftp.upload.debian.org (incoming: /pub/UploadQueue/) Picking DM Youhei SASAKI &amp;lt;uwabami@gfd-dennou.org&amp;gt; with fingerprint 66A4EA704FE240558D6AC2E69394F354891D7E07 Uploading henrich-1545485367.dak-commands to ftp-master  として佐々木さんのDM uploadを設定しておいた。</description>
-    </item>
-    
-    <item>
-      <title>DDのおしごと</title>
-      <link>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-      <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</description>
     </item>
     
     <item>
