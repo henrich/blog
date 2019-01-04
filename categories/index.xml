@@ -30,5 +30,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Tips</title>
+      <link>https://henrich.github.io/blog/categories/tips/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/categories/tips/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

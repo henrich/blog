@@ -60,6 +60,51 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 2, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。</li>
+<li>os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -640,74 +685,6 @@ index b5183a63f..d9ba69b1f 100644
 </code></pre>
 
 <p>無事マージされました。コードが書けなくたって、こんなやり方もあるんだぜ、と。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, May 19, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>OSDN側の仕様変更に追随。</p>
-
-<ol>
-<li>最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった</li>
-<li>要望を出した</li>
-<li>対応としてRSS経由での取得が実装された</li>
-
-<li><p>&hellip;ということで debian/watch ファイルを書き換えて取得できるように</p>
-
-<pre><code>opts=&quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \
-pagemangle=s%&lt;osdn:file url=&quot;([^&lt;]*)&lt;/osdn:file&gt;%&lt;a href=&quot;$1&quot;&gt;$1&lt;/a&gt;%g, \
-downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;f=sawarabi-fonts%g;s/xz\//xz/&quot; \
-https://osdn.net/projects/sawarabi-fonts/releases/rss \
-https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
-</code></pre></li>
-</ol>
-
-<p>&hellip;自分でも何やってるか、よくわからなくなる。</p>
-
-<ul>
-<li><a href="https://osdn.net/projects/sawarabi-fonts/releases/rss">https://osdn.net/projects/sawarabi-fonts/releases/rss</a> が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。</li>
-<li>で、uscan は <code>&lt;a href=&quot;foobar.html&quot;&lt;/a&gt;</code> のような記述から対象のファイルを探している（これに気付くのにしばらくかかった）</li>
-<li>RSSを <code>pagemangle</code> オプションで無理やり書き換えて<code>a href</code>を作り出す</li>
-<li>これで最新版のバージョン自体は取得できる&hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう</li>
-<li>リダイレクト先のURLに<code>downloadurlmangle</code>オプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。</li>
-</ul>
-
-<p>ここまでやって、とりあえずfonts-sawarabi-michonパッケージのアップデートをした。</p>
-
-<hr />
-
-<p>debootstrapのregressionな部分を直す提案&hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。
-<code>set -- -O &quot;$dest&quot; &quot;$from&quot; &quot;$@&quot;</code> は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。</p>
 
 					
 				</div>

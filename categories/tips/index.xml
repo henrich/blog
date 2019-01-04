@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Debootstrap on Forget me not...</title>
-    <link>https://henrich.github.io/blog/tags/debootstrap/</link>
-    <description>Recent content in Debootstrap on Forget me not...</description>
+    <title>Tips on Forget me not...</title>
+    <link>https://henrich.github.io/blog/categories/tips/</link>
+    <description>Recent content in Tips on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <lastBuildDate>Fri, 04 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://henrich.github.io/blog/tags/debootstrap/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://henrich.github.io/blog/categories/tips/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -24,17 +24,6 @@
  ローカルミラーをセットアップしてそれを参照する ローカルプロキシをセットアップしてそれを参照する ローカルキャッシュをセットアップしてそれを参照する   1のミラーはまるっとDebianリポジトリをコピーするやり方。  クライアントが何十台、スペックによっては何百台とかあっても対応できる どのパッケージでもLAN内にあるので取得が早い でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。 あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも  2のプロキシはsquidなどのサーバーを立てるやり方。  取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む ミラーと同様に複数のマシンからも参照可能 debootstrap 1.0.96からsquid-deb-proxy-clientをインストールしておくと、squid-deb-proxyで立ち上げたプロキシサーバーを自動的に参照するようになる。apt-cacherなどだと一々プロキシがどこにあるのかを指定しないといけないので、squid-deb-proxyマジおすすめ  3のキャッシュは--cache-dirオプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`  debootstrap 1.0.97`から実装済み。一台だけでやるならこれで十分。 --cache-dir=/home/henrich/tmp/cachedirというように、このオプションでは絶対パスで参照するのが必要。~/tmp/cachedirの様な指定はできない。   あと、リポジトリのミラーはdebootstrap 1.0.85からdeb.debian.orgを参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用しているdebian-mirror.sakura.ne.jpを使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？
 最後に、記述時の最新であるdebootstrap 1.0.112はMr.FAIことThomas Langeさんのハックによってパッケージ依存関係の最適化（これもaptが使われてはいない）が図られているので、随分と時間が短縮されている。
 結論：debootstrap 1.0.112以降を使おう。debootstrapはshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</description>
-    </item>
-    
-    <item>
-      <title>まだdebootstrapいじってる</title>
-      <link>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</link>
-      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/</guid>
-      <description>そういえば、1.0.100, 1.0.101, 1.0.102, 1.0.103, 1.0.104 という感じでdebootstrap直したりバグ埋め込んだりしてましたね。
-この中で得た知見&amp;hellip;
- systemdのcontainer環境下かどうかは $container を見ればいい、あるいはsystemdが動作している環境なら /var/run/systemd/container 見る dnsmasq を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（参考にさせてもらったサイト)  </description>
     </item>
     
   </channel>

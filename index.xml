@@ -28,6 +28,59 @@
       
         
           <item>
+            <title>debootstrapを速くするには</title>
+            <link>https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/</link>
+            <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/</guid>
+            <description>&lt;p&gt;&lt;code&gt;debootstrap&lt;/code&gt;は最低限のDebian環境の作成に使われるツール。&lt;code&gt;pbuilder&lt;/code&gt;や&lt;code&gt;cowbuilder&lt;/code&gt;（とその環境を使う&lt;code&gt;piuparts&lt;/code&gt;）などのツールの裏側でも動くし、&lt;code&gt;docker&lt;/code&gt;イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初はaptも使えないのでwgetで取得するんだぜ？）。うーむ。&lt;/p&gt;
+
+&lt;p&gt;で、どうやって時間を短縮するか？というと、以下のような選択肢がある。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ローカルミラーをセットアップしてそれを参照する&lt;/li&gt;
+&lt;li&gt;ローカルプロキシをセットアップしてそれを参照する&lt;/li&gt;
+&lt;li&gt;ローカルキャッシュをセットアップしてそれを参照する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1のミラーはまるっとDebianリポジトリをコピーするやり方。
+
+&lt;ul&gt;
+&lt;li&gt;クライアントが何十台、スペックによっては何百台とかあっても対応できる&lt;/li&gt;
+&lt;li&gt;どのパッケージでもLAN内にあるので取得が早い&lt;/li&gt;
+&lt;li&gt;でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる&lt;/li&gt;
+&lt;li&gt;ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。&lt;/li&gt;
+&lt;li&gt;あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2のプロキシは&lt;code&gt;squid&lt;/code&gt;などのサーバーを立てるやり方。
+
+&lt;ul&gt;
+&lt;li&gt;取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む&lt;/li&gt;
+&lt;li&gt;ミラーと同様に複数のマシンからも参照可能&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;debootstrap 1.0.96&lt;/code&gt;から&lt;code&gt;squid-deb-proxy-client&lt;/code&gt;をインストールしておくと、&lt;code&gt;squid-deb-proxy&lt;/code&gt;で立ち上げたプロキシサーバーを自動的に参照するようになる。&lt;code&gt;apt-cacher&lt;/code&gt;などだと一々プロキシがどこにあるのかを指定しないといけないので、&lt;code&gt;squid-deb-proxy&lt;/code&gt;マジおすすめ&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;3のキャッシュは&lt;code&gt;--cache-dir&lt;/code&gt;オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
+
+&lt;ul&gt;
+&lt;li&gt;debootstrap 1.0.97`から実装済み。一台だけでやるならこれで十分。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--cache-dir=/home/henrich/tmp/cachedir&lt;/code&gt;というように、このオプションでは絶対パスで参照するのが必要。&lt;code&gt;~/tmp/cachedir&lt;/code&gt;の様な指定はできない。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あと、リポジトリのミラーは&lt;code&gt;debootstrap 1.0.85&lt;/code&gt;から&lt;code&gt;deb.debian.org&lt;/code&gt;を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している&lt;code&gt;debian-mirror.sakura.ne.jp&lt;/code&gt;を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？&lt;/p&gt;
+
+&lt;p&gt;最後に、記述時の最新である&lt;code&gt;debootstrap 1.0.112&lt;/code&gt;はMr.FAIこと&lt;code&gt;Thomas Lange&lt;/code&gt;さんのハックによってパッケージ依存関係の最適化（これも&lt;code&gt;apt&lt;/code&gt;が使われてはいない）が図られているので、随分と時間が短縮されている。&lt;/p&gt;
+
+&lt;p&gt;結論：debootstrap 1.0.112以降を使おう。&lt;code&gt;debootstrap&lt;/code&gt;はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
@@ -532,38 +585,6 @@ Uploading henrich-1545485367.dak-commands to ftp-master
 &lt;li&gt;&lt;code&gt;tdiary-contrib&lt;/code&gt; の &lt;code&gt;tdiary-mode&lt;/code&gt; が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら&lt;a href=&#34;https://twitter.com/uwabami/&#34;&gt;佐々木さん&lt;/a&gt;がパッチ書いてくれて更新してくれた。言ってみるもんだね。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;bundler&lt;/code&gt;の &lt;code&gt;git ls-files -z&lt;/code&gt; が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>initfamrs-toolsのバグを踏んでいた</title>
-            <link>https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/</link>
-            <pubDate>Thu, 20 Dec 2018 13:16:51 +0900</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/</guid>
-            <description>&lt;p&gt;先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。&lt;/p&gt;
-
-&lt;p&gt;？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて &lt;code&gt;sudo update-initramfs -c -k 4.9.0-3-amd64&lt;/code&gt; のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ LC_ALL=C ls -al /usr/sbin/update-initramfs*
-lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&amp;gt; /bin/true
--rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と &lt;code&gt;sudo update-initramfs/distrib -c -k 4.9.0-3-amd64&lt;/code&gt; のようにすると無事にイメージが作られたので、&lt;code&gt;update-grub&lt;/code&gt; を実行して変更を反映、再起動すると無事起動できた。更に調べたところ&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ dpkg -L initramfs-tools
-(snip)
-diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ということで &lt;code&gt;pkgsel&lt;/code&gt; なるパッケージがこれを実施したことが判明。
-じゃぁ、と &lt;code&gt;apt show pkgsel&lt;/code&gt; しても出てこない…あ、これはudebだね、ということで&lt;a href=&#34;https://packages.debian.org/sid/pkgsel&#34;&gt;サイト&lt;/a&gt;を確認…あたり。
-&lt;code&gt;apt source pkgsel&lt;/code&gt; して &lt;code&gt;debian/changelog&lt;/code&gt; をみたら &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073&#34;&gt;Bug#912073&lt;/a&gt; を踏んでいたと判明。んもー。寝る前の貴重な時間が…&lt;/p&gt;
 </description>
           </item>
         

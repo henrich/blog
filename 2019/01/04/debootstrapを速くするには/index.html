@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="debootstrapを速くするには">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>debootstrapを速くするには &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>debootstrapを速くするには</h3>
+				<span class="label label-primary">Fri, Jan 4, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				
+					 , 
+					<a href="/blog/categories/tips">tips</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+					 , 
+					<a href="/blog/tags/debootstrap">debootstrap</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初はaptも使えないのでwgetで取得するんだぜ？）。うーむ。</p>
+
+<p>で、どうやって時間を短縮するか？というと、以下のような選択肢がある。</p>
+
+<ol>
+<li>ローカルミラーをセットアップしてそれを参照する</li>
+<li>ローカルプロキシをセットアップしてそれを参照する</li>
+<li>ローカルキャッシュをセットアップしてそれを参照する</li>
+</ol>
+
+<ul>
+<li>1のミラーはまるっとDebianリポジトリをコピーするやり方。
+
+<ul>
+<li>クライアントが何十台、スペックによっては何百台とかあっても対応できる</li>
+<li>どのパッケージでもLAN内にあるので取得が早い</li>
+<li>でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる</li>
+<li>ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。</li>
+<li>あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも</li>
+</ul></li>
+<li>2のプロキシは<code>squid</code>などのサーバーを立てるやり方。
+
+<ul>
+<li>取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む</li>
+<li>ミラーと同様に複数のマシンからも参照可能</li>
+<li><code>debootstrap 1.0.96</code>から<code>squid-deb-proxy-client</code>をインストールしておくと、<code>squid-deb-proxy</code>で立ち上げたプロキシサーバーを自動的に参照するようになる。<code>apt-cacher</code>などだと一々プロキシがどこにあるのかを指定しないといけないので、<code>squid-deb-proxy</code>マジおすすめ</li>
+</ul></li>
+<li>3のキャッシュは<code>--cache-dir</code>オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
+
+<ul>
+<li>debootstrap 1.0.97`から実装済み。一台だけでやるならこれで十分。</li>
+<li><code>--cache-dir=/home/henrich/tmp/cachedir</code>というように、このオプションでは絶対パスで参照するのが必要。<code>~/tmp/cachedir</code>の様な指定はできない。</li>
+</ul></li>
+</ul>
+
+<p>あと、リポジトリのミラーは<code>debootstrap 1.0.85</code>から<code>deb.debian.org</code>を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している<code>debian-mirror.sakura.ne.jp</code>を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？</p>
+
+<p>最後に、記述時の最新である<code>debootstrap 1.0.112</code>はMr.FAIこと<code>Thomas Lange</code>さんのハックによってパッケージ依存関係の最適化（これも<code>apt</code>が使われてはいない）が図られているので、随分と時間が短縮されている。</p>
+
+<p>結論：debootstrap 1.0.112以降を使おう。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.53 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
