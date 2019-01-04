@@ -111,6 +111,7 @@
 
 <ul>
 <li>やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…</li>
+<li><a href="https://wiki.debian.org/Java/Packaging/Gradle">Debian Wikiのページ</a>にあった。<code>gradle-debian-helper</code>パッケージをBuild-Dependsに加えて、<code>debian/rules</code>で<code>dh $@ -with buildsystem=gradle</code>&hellip;って間違ってるやん<code>--buildsystem=gradle</code>だよね…。</li>
 </ul></li>
 </ul>
 
@@ -161,7 +162,7 @@ A problem occurred configuring root project 'powermock'.
       &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
 </code></pre>
 
-<p>適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
+<p>エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
 
 <pre><code class="language-bash"> pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
                                  Depends: gradle-release which is a virtual package and is not provided by any available package
@@ -171,7 +172,7 @@ A problem occurred configuring root project 'powermock'.
 </code></pre>
 
 <ul>
-<li><code>gradle-propdeps-plugin</code>はパッケージがあったので完了</li>
+<li><code>gradle-propdeps-plugin</code>はパッケージがあったので追加。</li>
 <li><code>gradle-animalsniffer-plugin</code>は<a href="https://github.com/xvik/gradle-animalsniffer-plugin">https://github.com/xvik/gradle-animalsniffer-plugin</a>かららしい。
 
 <ul>

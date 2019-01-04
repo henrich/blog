@@ -50,6 +50,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.debian.org/Java/Packaging/Gradle&#34;&gt;Debian Wikiのページ&lt;/a&gt;にあった。&lt;code&gt;gradle-debian-helper&lt;/code&gt;パッケージをBuild-Dependsに加えて、&lt;code&gt;debian/rules&lt;/code&gt;で&lt;code&gt;dh $@ -with buildsystem=gradle&lt;/code&gt;&amp;hellip;って間違ってるやん&lt;code&gt;--buildsystem=gradle&lt;/code&gt;だよね…。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -100,7 +101,7 @@ A problem occurred configuring root project &#39;powermock&#39;.
       &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;適当にパッケージ名を付けて&lt;code&gt;Build-Depends&lt;/code&gt;に指定。&lt;/p&gt;
+&lt;p&gt;エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて&lt;code&gt;Build-Depends&lt;/code&gt;に指定。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt; pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
                                  Depends: gradle-release which is a virtual package and is not provided by any available package
@@ -110,7 +111,7 @@ A problem occurred configuring root project &#39;powermock&#39;.
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;gradle-propdeps-plugin&lt;/code&gt;はパッケージがあったので完了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gradle-propdeps-plugin&lt;/code&gt;はパッケージがあったので追加。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gradle-animalsniffer-plugin&lt;/code&gt;は&lt;a href=&#34;https://github.com/xvik/gradle-animalsniffer-plugin&#34;&gt;https://github.com/xvik/gradle-animalsniffer-plugin&lt;/a&gt;かららしい。
 
 &lt;ul&gt;
