@@ -27,7 +27,7 @@
 &lt;ul&gt;
 &lt;li&gt;どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ&lt;/li&gt;
 &lt;li&gt;fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。&lt;/li&gt;
-&lt;li&gt;というのを踏まえて「どーする？」という[質問を投げた]()&lt;/li&gt;
+&lt;li&gt;というのを踏まえて「どーする？」という質問を投げた→「わかってる、4.14がリリースされたらそれを入れる」という回答。んーしばらくは放置か…。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;uglifyjsのFTBFS、experimentalでは直ってるよ、という話
 
@@ -41,12 +41,126 @@
 &lt;li&gt;ruby-uglifierも新しいバージョンならサポートしている&lt;/li&gt;
 &lt;li&gt;というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
 &lt;li&gt;powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
 
 &lt;ul&gt;
 &lt;li&gt;やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;* What went wrong:
+A problem occurred configuring root project &#39;powermock&#39;.
+&amp;gt; Could not resolve all files for configuration &#39;:classpath&#39;.
+   &amp;gt; Could not resolve org.springframework.build.gradle:propdeps-plugin:0.0.7.
+     Required by:
+         project :
+      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
+      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
+      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
+      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
+   &amp;gt; Could not resolve com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4.
+     Required by:  
+         project : 
+      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.
+      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
+      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.      
+      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
+   &amp;gt; Could not resolve net.researchgate:gradle-release:2.4.0.
+     Required by:
+         project :   
+      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
+      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.    
+      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode. 
+      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
+   &amp;gt; Could not resolve com.github.jengelman.gradle.plugins:shadow:1.2.4.  
+     Required by:
+         project : 
+      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.     
+      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode. 
+      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.        
+      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.  
+   &amp;gt; Could not resolve org.shipkit:shipkit:2.0.31.
+     Required by:      
+         project :
+      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
+      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
+      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
+      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
+   &amp;gt; Could not resolve ru.vyarus:gradle-animalsniffer-plugin:1.4.1.
+     Required by:
+         project :
+      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
+      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
+      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
+      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;適当にパッケージ名を付けて&lt;code&gt;Build-Depends&lt;/code&gt;に指定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt; pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
+                                 Depends: gradle-release which is a virtual package and is not provided by any available package
+                                 Depends: gradle-shadow which is a virtual package and is not provided by any available package
+                                 Depends: gradle-shipkit which is a virtual package and is not provided by any available package
+                                 Depends: gradle-animalsniffer-plugin which is a virtual package and is not provided by any available package
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gradle-propdeps-plugin&lt;/code&gt;はパッケージがあったので完了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gradle-animalsniffer-plugin&lt;/code&gt;は&lt;a href=&#34;https://github.com/xvik/gradle-animalsniffer-plugin&#34;&gt;https://github.com/xvik/gradle-animalsniffer-plugin&lt;/a&gt;かららしい。
+
+&lt;ul&gt;
+&lt;li&gt;で、これは&lt;code&gt;animalsniffer&lt;/code&gt;に依存している。&lt;code&gt;libanimal-sniffer-java&lt;/code&gt;パッケージがあるのでこれだな。&lt;/li&gt;
+&lt;li&gt;注意点が書いてある&lt;code&gt;「Use version 1.17 (toolVersion=1.17) if you need to run on java 9, but note that 1.17 can&#39;t be used on java 8 (and that&#39;s why it is not set by default)」&lt;/code&gt;→Java11でbusterはリリースされるので1.17が必要&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libanimal-sniffer-java&lt;/code&gt; は1.16なので、まずコイツのアップデートが必要…。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$ apt-rdepends -r libanimal-sniffer-java&lt;/code&gt;の結果は何もなかったので、ぶっ込んでも大丈夫じゃないかな。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gradle-shipkit&lt;/code&gt;は&lt;a href=&#34;https://github.com/mockito/shipkit&#34;&gt;https://github.com/mockito/shipkit&lt;/a&gt;だな&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gradle-shadow&lt;/code&gt;は&lt;a href=&#34;https://github.com/johnrengelman/shadow&#34;&gt;https://github.com/johnrengelman/shadow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gradle-release&lt;/code&gt;は&lt;a href=&#34;https://github.com/researchgate/gradle-release&#34;&gt;https://github.com/researchgate/gradle-release&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gradle-bintray-plugin&lt;/code&gt;は&lt;a href=&#34;https://github.com/bintray/gradle-bintray-plugin&#34;&gt;https://github.com/bintray/gradle-bintray-plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;os-autoinstを&lt;code&gt;dh12&lt;/code&gt;に上げたらビルドがコケるように。あれ？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name &#39;*.pm&#39; -print
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshXtermIPMI.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/vnc_base.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/localXvnc.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshX3270.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshVirtsh.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/virtio_terminal.pm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;おいおい。何故か&lt;code&gt;/usr/libexec&lt;/code&gt;以下にインストールするようになっとるやん。&lt;code&gt;man debhelper&lt;/code&gt;で答えを探す…見つけた。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;The build systems meson and autoconf no longer explicitly set the --libexecdir variable and thus relies on the build system default - which should be /usr/libexec (per FHS 3.0, adopted in Debian Policy 4.1.5).&lt;/code&gt;ということで。どうやって直すかね。。。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;YubikeyでSSH接続しようとしたら謎のエラーがでて焦る。結局、手元の&lt;code&gt;~/.gnupg/private-keys-v1.d&lt;/code&gt;のファイルが腐ってるというオチだったのだけど、絞り込むのも時間かかった…&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Yubikey側の異常を疑って、testing環境で接続→問題なし（これでYubikeyが壊れた疑惑はなくなった）&lt;/li&gt;
+&lt;li&gt;異常がでたdesktopのunstable環境の問題を疑って、別のunstable環境なマシンで接続→問題なし（設定が全くしていなかったのでちょっと戸惑った、これでunstableだと壊れてるというパッケージ側の問題は無い）&lt;/li&gt;
+&lt;li&gt;ユーザー環境の差異を疑って、テストユーザーを作って接続→問題なし（これでいつものユーザーのhome directoryの設定が問題だろうと絞り込めた）&lt;/li&gt;
+&lt;li&gt;とりあえず&lt;code&gt;mv .gnupg bak.gnupg&lt;/code&gt;などとして接続→問題なし（これで&lt;code&gt;.gnupg&lt;/code&gt;以下のファイルのうちどれかがおかしい）&lt;/li&gt;
+&lt;li&gt;ひたすら旧ディレクトリから１つずつディレクトリやファイルをコピーする→絞り込めた&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;やれやれ。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;今日は成果が得られなかった一日。&lt;/p&gt;
 </description>
           </item>
         
