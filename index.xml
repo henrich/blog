@@ -8,8 +8,49 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Thu, 03 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;Ultimate Debian Databaseの&lt;a href=&#34;https://udd.debian.org/bugs/?release=buster_and_sid&amp;amp;merged=ign&amp;amp;done=only&amp;amp;rc=1&amp;amp;flastmod=ign&amp;amp;flastmodval=5&amp;amp;sortby=last_modified&amp;amp;sorto=asc&amp;amp;ctags=1&amp;amp;cdeferred=1&amp;amp;caffected=1&amp;amp;cautormtime=1&amp;amp;cmissingbuilds=1&amp;amp;&#34;&gt;Bug search Cleaner view&lt;/a&gt;から。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。
+
+&lt;ul&gt;
+&lt;li&gt;どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ&lt;/li&gt;
+&lt;li&gt;fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。&lt;/li&gt;
+&lt;li&gt;というのを踏まえて「どーする？」という[質問を投げた]()&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;uglifyjsのFTBFS、experimentalでは直ってるよ、という話
+
+&lt;ul&gt;
+&lt;li&gt;semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ&lt;/li&gt;
+&lt;li&gt;では、ということでお手軽に&lt;code&gt;apr-rdependes&lt;/code&gt;で依存パッケージの確認&lt;/li&gt;
+&lt;li&gt;emscriptenは内部に古い古いuglifyjs持ってるみたい…&lt;/li&gt;
+&lt;li&gt;lavaはソース落としてみたけど、バージョン指定の情報は特に無し。&lt;/li&gt;
+&lt;li&gt;node-grunt-contrib-uglifyは新しいバージョンならサポートしてる&lt;/li&gt;
+&lt;li&gt;node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる&lt;/li&gt;
+&lt;li&gt;ruby-uglifierも新しいバージョンならサポートしている&lt;/li&gt;
+&lt;li&gt;というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
+
+&lt;ul&gt;
+&lt;li&gt;やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -84,7 +125,35 @@ nil
 
 &lt;hr /&gt;
 
-&lt;p&gt;ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26&#34;&gt;質問した&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26&#34;&gt;質問した&lt;/a&gt;。→どうやらsegfaultするという問題があるらしい。うーむ。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;os-autoinstを直せるかな、と思ってビルドするも&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;The following packages have unmet dependencies:
+ libopencv-imgcodecs3.2 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package
+
+ libvtk6.3 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;げぇ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Package: libgdal20
+Version: 2.4.0+dfsg-1
+Priority: optional
+Section: libs
+Source: gdal
+Maintainer: Debian GIS Project &amp;lt;pkg-grass-devel@lists.alioth.debian.org&amp;gt;
+Installed-Size: 20.2 MB
+Provides: gdal-abi-2-4-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こいつか…。&lt;a href=&#34;https://release.debian.org/transitions/html/gdal-2-4-0.html&#34;&gt;Transition tracker&lt;/a&gt;を見る限り、ここ１時間でビルドされたりしてるので、今日はたまたまあたってしまった、という感じか。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/&#34;&gt;fonts-monapoパッケージをアップデート&lt;/a&gt;。upstreamが配布しなくなってた。&lt;/p&gt;
 </description>
           </item>
         
@@ -387,28 +456,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 &lt;li&gt;さらに&lt;a href=&#34;https://salsa.debian.org/debian/silversearcher-ag-el&#34;&gt;silversearcher-ag-el&lt;/a&gt;も追加&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/&#34;&gt;birdfontパッケージをアップデート&lt;/a&gt;した&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/&#34;&gt;ruby-rspec-instafailパッケージをアップデート&lt;/a&gt;した&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/&#34;&gt;ruby-childprocessパッケージをアップデート&lt;/a&gt;した&lt;/li&gt;
-&lt;li&gt;twitterで不具合話を拾ったので、&lt;a href=&#34;https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/&#34;&gt;fonts-unfonts-coreパッケージをアップデート&lt;/a&gt;した
-
-&lt;ul&gt;
-&lt;li&gt;fontforgeコマンドの指定で &lt;code&gt;Open(&amp;quot;UnDinaruLight.ttf&amp;quot;)&lt;/code&gt; のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

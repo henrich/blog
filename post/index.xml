@@ -8,10 +8,20 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Thu, 03 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>Ultimate Debian DatabaseのBug search Cleaner viewから。
+ xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。  どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。 というのを踏まえて「どーする？」という[質問を投げた]()  uglifyjsのFTBFS、experimentalでは直ってるよ、という話  semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ では、ということでお手軽にapr-rdependesで依存パッケージの確認 emscriptenは内部に古い古いuglifyjs持ってるみたい… lavaはソース落としてみたけど、バージョン指定の情報は特に無し。 node-grunt-contrib-uglifyは新しいバージョンならサポートしてる node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる ruby-uglifierも新しいバージョンならサポートしている というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。  powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話  やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…   </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
