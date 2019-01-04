@@ -60,6 +60,55 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jul 24, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858508">fonts-kacst-one</a>
+
+<ul>
+<li>アップロードしてから「あ、ttf-パッケージがあった&hellip;落とし忘れ&hellip;」と気付く。あとでもう一度アップロードしよう。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/858510">fonts-takao</a>
+
+<ul>
+<li>pristine-tarブランチにコミットし忘れてたのが発覚。<code>apt source fonts-takao</code>と<a href="http://snapshot.debian.org">snapshot.debian.org</a>からダウンロードして、<code>gbp pristine-tar commit</code>で追加。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/">digging into gpgme on hurd</a></h3>
 						<small><span class="label label-primary">
 							
@@ -776,76 +825,6 @@ $ git branch -u github/master upstream
 <p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
 
 <p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>M+ BITMAP FONTSのパッチを<a href="https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html">upstreamに送付</a>完了。やれやれ。</p>
-
-<hr />
-
-<p><a href="https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/">openSUSE Conference Asia</a>
-の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。</p>
-
-<p>さて<a href="https://events.opensuse.org/">submit</a>&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
-
-<pre><code>You have used 99 words. Abstracts must be between 150 and 500 words.
-</code></pre>
-
-<p>&hellip;150 wordsつらい(´・ω・`)</p>
-
-<hr />
-
-<p>今日はcollab-maintな奴を更新</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/856447">docx2txt</a></li>
-<li><a href="https://tracker.debian.org/news/856445">riece</a></li>
-<li><a href="https://tracker.debian.org/news/856446">g-wrap</a></li>
-</ul>
-
-<hr />
-
-<p>libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&hellip;</p>
-
-<pre><code>E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
-E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
-</code></pre>
-
-<p>これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。</p>
-
-<p>それと最近のバージョンではMock::Timeが必要なようなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428">libmock-time-perlをITP</a>。</p>
 
 					
 				</div>

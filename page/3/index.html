@@ -60,6 +60,53 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 1, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>依頼を受けたので</p>
+
+<pre><code>$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql
+</code></pre>
+
+<p>として林さんのDM uploadを設定しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/">HP Elitebook 830 G5で苦しむ</a></h3>
 						<small><span class="label label-primary">
 							
@@ -661,158 +708,6 @@ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSIO
 
 <p>debootstrapのregressionな部分を直す提案&hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。
 <code>set -- -O &quot;$dest&quot; &quot;$from&quot; &quot;$@&quot;</code> は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/">Fedora28のリリースを見て。</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, May 5, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/fedora">fedora</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://docs.fedoraproject.org/f28/release-notes/">Fedora28のリリースノート</a>をつらつら眺めたら、<a href="https://docs.fedoraproject.org/f28/release-notes/sysadmin/Security.html">libcurlのリンクをlibssh2からlibsshに変えたよ</a>、というのがあった。へぇ、と思ってDebianでlibssh2に依存しているのを探してみた。</p>
-
-<pre><code>$ grep-dctrl -F Depends libssh2-1 -s Source /var/lib/apt/lists/*_Packages | sort | uniq
-Source: curl
-Source: gfal2
-Source: guacamole-server
-Source: libgit2
-Source: libpam-sshauth (0.4.1-2)
-Source: libssh2
-Source: libvirt
-Source: mlterm (3.8.4-1)
-Source: php-ssh2 (1.1.2+0.13-1)
-Source: pylibssh2
-Source: qemu
-Source: vlc (3.0.2-1)
-Source: yuma123
-Source: zabbix
-</code></pre>
-
-<p>curl以外にも幾つかある。で、qemuの様子をみてみたが、今の所<a href="https://lists.gnu.org/archive/html/qemu-devel/2018-01/msg04447.html">何度か提案パッチを書き直している</a>ようで簡単にs/libssh2/libssh/すればいいわけでは無いようである。qemuの場合はパフォーマンスが落ちた、という話も出てる。</p>
-
-<p>ともあれ、curlについてはupstreamが対応済みなのでFedoraがやったのと同じことは簡単にできそう&hellip;ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=897950">BTSしておいた</a>。</p>
-
-<ul>
-<li><a href="https://docs.fedoraproject.org/f28/release-notes/desktop/I18n.html">Glibc collation update and sync with CLDR</a>を追いかけると、<a href="https://sourceware.org/bugzilla/show_bug.cgi?id=14095">glibc2.28では取り込まれそう</a>でパッチをDebian側で保持するのも面倒そうだから待ち状態がいいかな。</li>
-<li>Timeの更新は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=881429">まだかなー</a>という感じ</li>
-<li><a href="https://fedoraproject.org/wiki/Changes/ImprovedLaptopBatteryLife">Laptopのバッテリ時間改善</a>はカーネル側での変更が4.15で入っていて、どうにかしてポリシーをworkstationでは有効にしている、という感じだろうか？だとするとどうやって対応すればいいのやら。あとでworkstationをセットアップして見るしかないか&hellip;。</li>
-<li><a href="https://docs.fedoraproject.org/f28/release-notes/developers/Development_C.html#libcrypt-replaced-by-libxcrypt-in-glibc">Libcrypt replaced by libxcrypt in glibc</a>は、Debianだと<a href="https://tracker.debian.org/pkg/libxcrypt">libxcryptがあるけどこれはメンテされてない感じ</a>&hellip;。うーん。upstreamでの話としては <a href="https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html">https://sourceware.org/ml/libc-alpha/2017-08/msg01257.html</a> で見れるようだ。glibcメンテナにlibxcryptもメンテしてもらうのが良い？</li>
-<li>modularityは流石にDebian側でどうする、というのも難しい問題だからパスで&hellip;。</li>
-</ul>
-
-<p>そのうち過去のリリースノートも見てみるか。</p>
-
-<hr />
-
-<p>&hellip;とりあえずlibxcryptのパッケージを触ってみた。</p>
-
-<pre><code>$ gbp import-dscs --debsnap libxcrypt
-$ cd libxcrypt
-$ git checkout upstream
-$ rm -r ./*
-$ git remote add upstream https://github.com/besser82/libxcrypt.git
-$ git pull upstream
-$ git pull upstream --allow-unrelated-histories master
-(ちょこちょことconflict対応)
-$ git commit -av
-$ git checkout master
-$ cp -arp debian ../ ; rm -r ./*; cp -arp ../debian ./
-$ git merge --allow-unrelated-histories v4.0.0 
-(ちょこちょことconflict対応)
-</code></pre>
-
-<p>あとは普通のパッケージング作業。なくさないように<a href="https://salsa.debian.org/henrich/libxcrypt">salsaに上げておいた</a></p>
-
-<p>しかし、libxcrypt.soからlibcrypt.soになってるっぽい？いいのかしら&hellip;今だと <code>libc6: /lib/x86_64-linux-gnu/libcrypt.so.1</code> という感じ。</p>
-
-<pre><code>$ apt-file show libxcrypt1
-libxcrypt1: /lib/libxcrypt.so.1
-libxcrypt1: /lib/libxcrypt.so.1.2.4
-(snip)
-
-$ dpkg-deb --contents libxcrypt-dev_4.0.0-1_amd64.deb
-(snip)
-lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libcrypt.so -&gt; libcrypt.so.1.1.0
-lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libowcrypt.a -&gt; libcrypt.a
-lrwxrwxrwx root/root         0 2018-05-05 19:20 ./usr/lib/x86_64-linux-gnu/libowcrypt.so -&gt; libcrypt.so
-</code></pre>
-
-<p>Fedoraのsrpmを <code>dnf download --source libxcrypt glibc</code> とかしてみてみると、どうやらある時点でglibc側での生成を止めてlibxcryptを使うようになってるようだ。</p>
-
-<hr />
-
-<p>Kernelのsrpmを落としてきた。<code>BuildConflicts: rhbuildsys(DiskFree) &lt; 500Mb</code>  は面白いな、同じことやれるといいな。</p>
-
-<pre><code># Sources for kernel-tools
-Source2000: cpupower.service
-Source2001: cpupower.config
-</code></pre>
-
-<p>名前から関係ありそうなのはこれかなぁ。</p>
-
-<pre><code># See 'cpupower help' and cpupower(1) for more info
-CPUPOWER_START_OPTS=&quot;frequency-set -g performance&quot;
-CPUPOWER_STOP_OPTS=&quot;frequency-set -g ondemand&quot;
-</code></pre>
-
-<pre><code>[Unit]
-Description=Configure CPU power related settings
-After=syslog.target
-
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-EnvironmentFile=/etc/sysconfig/cpupower
-ExecStart=/usr/bin/cpupower $CPUPOWER_START_OPTS
-ExecStop=/usr/bin/cpupower $CPUPOWER_STOP_OPTS
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-
-<p>Debianだと<code>linux-cpupower</code>パッケージに入っているcpupowerの調整、か。でも違う気がする&hellip;。</p>
-
-<p>で、再度ちゃんと文章読んでみたら<code>The initial focus of this change is to enable to following 3 hardware power-saving features by default:</code>って書いてあるやん。あーこれはconfigで有効にするぜ、ってことか。<code>kernel-x86_64.config</code>を探す。</p>
-
-<pre><code>CONFIG_SND_HDA_POWER_SAVE_DEFAULT=1
-CONFIG_SND_HDA_POWER_SAVE=y
-
-CONFIG_BT_HCIBTUSB_AUTOSUSPEND=y
-
-CONFIG_SATA_MOBILE_LPM_POLICY=3
-</code></pre>
-
-<p>それらしいのはこれかなぁ&hellip;これを全て有効にすればF28相当になる？ただし、SATAはリスクが増すし、Bluetoothも一部機種だとregressionが起きるのでパッチが必要なようだ。</p>
 
 					
 				</div>

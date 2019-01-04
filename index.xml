@@ -475,6 +475,20 @@ Uploading henrich-1545485367.dak-commands to ftp-master
       
         
           <item>
+            <title>DDのおしごと</title>
+            <link>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
@@ -549,28 +563,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 &lt;p&gt;ということで &lt;code&gt;pkgsel&lt;/code&gt; なるパッケージがこれを実施したことが判明。
 じゃぁ、と &lt;code&gt;apt show pkgsel&lt;/code&gt; しても出てこない…あ、これはudebだね、ということで&lt;a href=&#34;https://packages.debian.org/sid/pkgsel&#34;&gt;サイト&lt;/a&gt;を確認…あたり。
 &lt;code&gt;apt source pkgsel&lt;/code&gt; して &lt;code&gt;debian/changelog&lt;/code&gt; をみたら &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073&#34;&gt;Bug#912073&lt;/a&gt; を踏んでいたと判明。んもー。寝る前の貴重な時間が…&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/12/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;水野さんの&lt;a href=&#34;https://tracker.debian.org/news/1012874/accepted-silversearcher-ag-220-1-source-amd64-into-unstable/&#34;&gt;silversearcher-agパッケージをアップロード&lt;/a&gt;した。
-
-&lt;ul&gt;
-&lt;li&gt;あわせて&lt;a href=&#34;https://salsa.debian.org/debian/silversearcher-ag&#34;&gt;salsa.debian.orgにリポジトリを追加&lt;/a&gt;し、権限を付与した&lt;/li&gt;
-&lt;li&gt;さらに&lt;a href=&#34;https://salsa.debian.org/debian/silversearcher-ag-el&#34;&gt;silversearcher-ag-el&lt;/a&gt;も追加&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/&#34;&gt;birdfontパッケージをアップデート&lt;/a&gt;した&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

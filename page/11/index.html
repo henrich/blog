@@ -60,6 +60,53 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 9, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>os-autoinstが止まるのをinvestigation。
+
+<ul>
+<li>新しいperlモジュールがtestに必要になってたようなので、ビルドする。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878042">ITPもする</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878041">そのビルドに必要な別のperlモジュールもITPする</a></li>
+<li>ITPしたのは<a href="http://pkg-perl.alioth.debian.org/git.html">$ dtp alioth-repo</a>という感じでpushしておいた。</li>
+<li>が、やっぱり止まるのは変わらないので<a href="https://progress.opensuse.org/issues/25844">issue登録</a>。</li>
+<li>何が原因だか、今の所サッパリなので Jessie や Strech 環境を作ったりしてテスト。Jessie だと libmojolicious-perl が古すぎてモジュールが含まれないせいでテストコケるのでsidのを持ってきたり。その流れでnewest upstreamのを手元でビルドして差し替えもしてみた。が、結局何も変わらず。</li>
+</ul></li>
+<li>unidicのサイトが変更されたのに関する<a href="https://twitter.com/henrich/status/917274260153843712">ライセンス表記周りの意見</a>。</li>
+<li>忘れてた<a href="https://github.com/sphinx-doc/sphinx/issues/4131">sphinxのissue登録</a>をやっておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/08/fedora-modularity-memo/">Fedora Modularity Memo</a></h3>
 						<small><span class="label label-primary">
 							
@@ -625,48 +672,6 @@ sys 0m0.464s
 					<br>
 					
 						<p><a href="https://connpass.com/event/64845/">さくらの夕べ「さくらのVPS ユーザーミートアップ」</a>のLT枠に参加して<a href="https://docs.google.com/presentation/d/1_L4a5eXeyYOh6v9VKcvZAg84d6Y8a5go2F8cmO2ATKo/">debianミラーの宣伝</a>をしてきました。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 25, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://events.opensuse.org/conference/summitasia17">openSUSE.Asia Summit 2017</a>のトークが通ったので返信。<a href="https://events.opensuse.org/conference/summitasia17/program/proposal/1512">openSUSE tools on Debian</a>というタイトルで15分喋る予定です。資料も大体作成完了。</p>
-
-<hr />
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691">fonts-arphic-uming FTBFS修正</a>。</li>
-</ul>
 
 					
 				</div>

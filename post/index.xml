@@ -131,6 +131,15 @@ $ dcut dm --uid 0x9394F354891D7E07 --allow fonts-mmcedar Uploading commands file
     </item>
     
     <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</description>
+    </item>
+    
+    <item>
       <title>めんてなのおしごと</title>
       <link>https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
       <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
