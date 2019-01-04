@@ -52,6 +52,7 @@
 &lt;li&gt;でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる&lt;/li&gt;
 &lt;li&gt;ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。&lt;/li&gt;
 &lt;li&gt;あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも&lt;/li&gt;
+&lt;li&gt;構築するなら&lt;code&gt;ftpsync&lt;/code&gt;使おうね。他のツールはダメダメ。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;2のプロキシは&lt;code&gt;squid&lt;/code&gt;などのサーバーを立てるやり方。
 
@@ -63,7 +64,7 @@
 &lt;li&gt;3のキャッシュは&lt;code&gt;--cache-dir&lt;/code&gt;オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
 
 &lt;ul&gt;
-&lt;li&gt;debootstrap 1.0.97`から実装済み。一台だけでやるならこれで十分。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;debootstrap 1.0.97&lt;/code&gt;から実装済み。一台だけでやるならこれで十分。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;--cache-dir=/home/henrich/tmp/cachedir&lt;/code&gt;というように、このオプションでは絶対パスで参照するのが必要。&lt;code&gt;~/tmp/cachedir&lt;/code&gt;の様な指定はできない。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -72,7 +73,7 @@
 
 &lt;p&gt;最後に、記述時の最新である&lt;code&gt;debootstrap 1.0.112&lt;/code&gt;はMr.FAIこと&lt;code&gt;Thomas Lange&lt;/code&gt;さんのハックによってパッケージ依存関係の最適化（これも&lt;code&gt;apt&lt;/code&gt;が使われてはいない）が図られているので、随分と時間が短縮されている。&lt;/p&gt;
 
-&lt;p&gt;結論：debootstrap 1.0.112以降を使おう。&lt;code&gt;debootstrap&lt;/code&gt;はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;結論：debootstrap 1.0.112以降を使おう&lt;/strong&gt;。&lt;code&gt;debootstrap&lt;/code&gt;はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。&lt;/p&gt;
 </description>
           </item>
         

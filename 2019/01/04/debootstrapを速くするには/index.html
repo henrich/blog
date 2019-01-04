@@ -95,6 +95,7 @@
 <li>でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる</li>
 <li>ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。</li>
 <li>あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも</li>
+<li>構築するなら<code>ftpsync</code>使おうね。他のツールはダメダメ。</li>
 </ul></li>
 <li>2のプロキシは<code>squid</code>などのサーバーを立てるやり方。
 
@@ -106,7 +107,7 @@
 <li>3のキャッシュは<code>--cache-dir</code>オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
 
 <ul>
-<li>debootstrap 1.0.97`から実装済み。一台だけでやるならこれで十分。</li>
+<li><code>debootstrap 1.0.97</code>から実装済み。一台だけでやるならこれで十分。</li>
 <li><code>--cache-dir=/home/henrich/tmp/cachedir</code>というように、このオプションでは絶対パスで参照するのが必要。<code>~/tmp/cachedir</code>の様な指定はできない。</li>
 </ul></li>
 </ul>
@@ -115,7 +116,7 @@
 
 <p>最後に、記述時の最新である<code>debootstrap 1.0.112</code>はMr.FAIこと<code>Thomas Lange</code>さんのハックによってパッケージ依存関係の最適化（これも<code>apt</code>が使われてはいない）が図られているので、随分と時間が短縮されている。</p>
 
-<p>結論：debootstrap 1.0.112以降を使おう。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
+<p><strong>結論：debootstrap 1.0.112以降を使おう</strong>。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
 
 		</div>
 	</div>
