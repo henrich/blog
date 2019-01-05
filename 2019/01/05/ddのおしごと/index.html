@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="DDのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>DDのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>DDのおしごと</h3>
+				<span class="label label-primary">Sat, Jan 5, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>倉敷さんの<code>goldencheetah</code>パッケージの状況をヒアリング。</p>
+
+<ul>
+<li><code>libusb0.1</code>に依存しているが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470">libusb0.1はもう古いからDebianから消したいよね</a>という動きがある。</li>
+<li>でも<code>goldencheetah</code>側としては<a href="https://groups.google.com/forum/#!msg/golden-cheetah-developers/EQxEEIQbRXc/ZSeSOBF8AwAJ">「マルチプラットフォーム対応してるので、壊したくないよね」</a>なので<code>libusb1.0</code>に動くのは消極的</li>
+<li><a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat</a>という「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。
+
+<ul>
+<li>ただし、<code>goldencheetah</code>では「使うようにしよう」というPRが来ているものの実装はされてない感じ</li>
+<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。</li>
+<li>個人的にはhalf-deadならいいじゃん、と思うけど…</li>
+<li>ちなみに<code>libusb-compat</code>はDebianではパッケージになっていない</li>
+</ul></li>
+<li>ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ
+
+<ul>
+<li>最新の<code>dh12</code>に更新、不要になったファイルやオプションを消す</li>
+<li>insecureなgitプロトコルやhttpをhttpsに置き換え</li>
+<li><code>debian/watch</code>はv4形式にして簡易に書ける</li>
+</ul></li>
+<li>cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。</li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.53 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

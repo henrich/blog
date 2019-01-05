@@ -8,10 +8,32 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Fri, 04 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>倉敷さんのgoldencheetahパッケージの状況をヒアリング。
+ libusb0.1に依存しているが、libusb0.1はもう古いからDebianから消したいよねという動きがある。 でもgoldencheetah側としては「マルチプラットフォーム対応してるので、壊したくないよね」なのでlibusb1.0に動くのは消極的 libusb-compatという「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。  ただし、goldencheetahでは「使うようにしよう」というPRが来ているものの実装はされてない感じ Debian側もdeadからhalf-deadになるだけじゃね？というコメントもある。 個人的にはhalf-deadならいいじゃん、と思うけど… ちなみにlibusb-compatはDebianではパッケージになっていない  ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ  最新のdh12に更新、不要になったファイルやオプションを消す insecureなgitプロトコルやhttpをhttpsに置き換え debian/watchはv4形式にして簡易に書ける  cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>“debhelper-compat (= 12)” is now releasedを読む。Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster). Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.との記述。Rules-Requires-Root: noのようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。
+試しにdpkg-devをBuild-Dependsにしてみたら
+E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev [build-depends: dpkg-dev]  あら。。。dpkg-dev 1.19.0からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これはnoをデフォルトにしてRules-Requires-Root: yesを明示的に宣言させるほうが良くないかね？と思ったので質問してみた→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。
+ 上記の変更その他を加えてos-autoinstパッケージをアップロード。RCバグはseverityを下げておいた。 debootstrapパッケージ、夏に作業して放置してたMergeRequestを変更を追加してMergeした。git rebaseなんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。  </description>
+    </item>
     
     <item>
       <title>DDのおしごと</title>
