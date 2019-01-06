@@ -8,10 +8,23 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 05 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 06 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>snapperパッケージのbug triage  報告から３年、moreinfoタグ付けて「もっと詳しくー」と書いたのに何も有用な話が無いバグを閉じた 「snapshotでディスクフルになるー」は、0.8.0からどうやら新しいオプションが増えて有用そうなので「これで解決しない？」と聞いてみる その過程でmanで書いてあることとconfigで書いてあることが違うのを見つけたのでpull requestして、パッケージの方に当ててアップロード  debootstrapの変更をpush ruby-なパッケージのtest failed、佐々木さんのblogにあった「test/ 以下で実行されることを前提として, 相対パスで必要なライブラリを読み込んでいたりする gem とか?」ということやね。  ということで、ruby-netrcパッケージについてrequire_relative に書き換えて実施してみる。あとで結果確認しよう…   昨日のos-autoinst、対象アーキテクチャを絞ったつもりで忘れてた…アップロード…ぬぉぉ i386アーキテクチャでFAIL: 01-test_needle.tとテストに失敗するぞ…、手元のsbuildでも同じだ…以前は問題なく通ってたのにどうなってんだ？
+not ok 14 - found area is the original one too # Failed test &#39;found area is the original one too&#39; # at ./01-test_needle.t line 73. # got: &#39;944&#39; # expected: &#39;108&#39;  うーん。
+とはいえ、upstreamでは直ってるかもしれないよな、と１年間タグが打たれてないupstream HEADをmergeしてビルドする…とテストがコケまくる。一つは依存関係のパッケージが無かったのでいれたのだけど、もう一つのMojo::IOLoop::ReadWriteProcessはパッケージ自体がDebianのリポジトリにない…仕方がないからdh-make-perlで手元で作ってITP(intend to package)して、アップロードした。
+で、libmojo-ioloop-readwriteprocess-perlパッケージをテスト環境のchrootに突っ込んでビルドの様子見るか…としたら、やっぱりFAIL: 03-testapi.tとエラーが出る。
+^* matches null string many times in regex; marked by &amp;lt;-- HERE in m/^* &amp;lt;-- HERE \.</description>
+    </item>
     
     <item>
       <title>DDのおしごと</title>

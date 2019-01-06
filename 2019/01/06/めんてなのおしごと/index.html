@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Jan 6, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li><code>snapperパッケージ</code>のbug triage
+
+<ul>
+<li>報告から３年、<code>moreinfo</code>タグ付けて「もっと詳しくー」と書いたのに何も有用な話が無い<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=791365#20">バグを閉じた</a></li>
+<li>「snapshotでディスクフルになるー」は、0.8.0からどうやら新しいオプションが増えて有用そうなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876675#37">「これで解決しない？」と聞いてみる</a></li>
+<li>その過程でmanで書いてあることとconfigで書いてあることが違うのを見つけたので<a href="https://github.com/openSUSE/snapper/pull/469">pull request</a>して、パッケージの方に当てて<a href="https://tracker.debian.org/news/1017985/accepted-snapper-081-2-source-into-unstable/">アップロード</a></li>
+</ul></li>
+<li><code>debootstrap</code>の変更をpush</li>
+<li>ruby-なパッケージのtest failed、<a href="https://uwabami.junkhub.org/log/20121210.html">佐々木さんのblog</a>にあった<code>「test/ 以下で実行されることを前提として, 相対パスで必要なライブラリを読み込んでいたりする gem とか?」</code>ということやね。
+
+<ul>
+<li>ということで、<code>ruby-netrc</code>パッケージについて<code>require_relative</code> に書き換えて実施してみる。あとで<a href="https://ci.debian.net/packages/r/ruby-netrc/unstable/amd64/">結果</a>確認しよう…</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>昨日のos-autoinst、対象アーキテクチャを絞ったつもりで忘れてた…<a href="https://tracker.debian.org/news/1017986/accepted-os-autoinst-4515273084058b586d5-4-source-into-unstable/">アップロード</a>…ぬぉぉ <code>i386</code>アーキテクチャで<code>FAIL: 01-test_needle.t</code>とテストに失敗するぞ…、手元の<code>sbuild</code>でも同じだ…以前は問題なく通ってたのにどうなってんだ？</p>
+
+<pre><code class="language-perl">not ok 14 - found area is the original one too
+#   Failed test 'found area is the original one too'
+#   at ./01-test_needle.t line 73.
+#  got: '944'
+#     expected: '108'
+</code></pre>
+
+<p>うーん。</p>
+
+<p>とはいえ、upstreamでは直ってるかもしれないよな、と１年間タグが打たれてないupstream HEADをmergeしてビルドする…とテストがコケまくる。一つは依存関係のパッケージが無かったのでいれたのだけど、もう一つの<code>Mojo::IOLoop::ReadWriteProcess</code>はパッケージ自体がDebianのリポジトリにない…仕方がないから<code>dh-make-perl</code>で手元で作って<code>ITP(intend to package)</code>して、アップロードした。</p>
+
+<p>で、<code>libmojo-ioloop-readwriteprocess-perl</code>パッケージをテスト環境のchrootに突っ込んでビルドの様子見るか…としたら、やっぱり<code>FAIL: 03-testapi.t</code>とエラーが出る。</p>
+
+<pre><code class="language-perl">^* matches null string many times in regex; marked by &lt;-- HERE in m/^* &lt;-- HERE \.t|^data\/tests\/*|^fake\/tests\/*/ at /usr/lib/x86_64-linux-gnu/perl5/5.28/Devel/Cover.pm line 379.
+Can't locate Test/Exception.pm in @INC (you may need to install the Test::Exception module) (@INC contains: .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./03-testapi.t line 14.
+BEGIN failed--compilation aborted at ./03-testapi.t line 14.
+FAIL 03-testapi.t (exit status: 2)
+</code></pre>
+
+<p>あー <code>Test/Exception.pm</code>が見つけられないのか。<code>libtest-exception-perl</code>パッケージを入れる…お、テストは全部通った！と思いきや</p>
+
+<pre><code class="language-bash">make  check-local
+make[4]: Entering directory '/build/os-autoinst-4.5.1527308405.8b586d5.20190104'
+./tools/tidy --check 
+--- ./t/16-send_with_fd.t       2019-01-04 11:55:46.000000000 +0000   
++++ ./t/16-send_with_fd.t.tdy   2019-01-06 13:43:40.463129038 +0000   
+@@ -33,7 +33,7 @@    
+     shutdown($ask, 2);      
+   
+     my @cmsg = $msg-&gt;cmsghdr();       
+-    my $fd   = unpack('i', $cmsg[2]); 
++    my $fd = unpack('i', $cmsg[2]);   
+   
+     POSIX::write($fd, $msg-&gt;buf(), 4) 
+       || die &quot;Failed to write echo to pipe: $!&quot;;   
+RUN tools/tidy script before checkin
+make[4]: *** [Makefile:1457: check-local] Error 1
+</code></pre>
+
+<p>なんじゃこりゃー。<code>tools/tidy</code>スクリプトによるチェックが<code>check-local</code>ターゲットで走って、修正が加わってないのがエラーになるという…なんでupstream側で対処してないんだよ。もういい、今日はここまで。openSUSEのtrackerに<a href="https://progress.opensuse.org/issues/45740">報告しておく</a>。ついでに<a href="https://progress.opensuse.org/issues/45743">tag打って</a>、も。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.53 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
