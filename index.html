@@ -60,6 +60,55 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 7, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>眠れなくなってしまったので<a href="https://tracker.debian.org/news/1018082/accepted-snapper-081-3-source-into-unstable/">snapperパッケージのミス修正とR3いれてアップロード</a></li>
+<li>もう月曜日だ！ということで<a href="https://tracker.debian.org/news/1018088/accepted-debootstrap-10113-source-into-unstable/">debootstrapのアップロードを上げる</a></li>
+<li>某所の喧々諤々のメールのやり取りに辟易して「おまらディスカッション好きなの結構だがな、とっととコード書けやコラ」というメールを送ってしまう。ふー。</li>
+<li>os-autoinstのperltidyの問題、<a href="https://progress.opensuse.org/issues/45740">バージョン間の非互換性によるものだった</a>
+
+<ul>
+<li>で、amd64でのビルドは通ったのでi386でやったらまたも同じエラー…仕方がないので<a href="https://progress.opensuse.org/issues/45782">チケットを上げた</a></li>
+</ul></li>
+<li>先日のsecurity update、「前のパッチにノイズがー」と言われて「？？？」となったが、よく見たら<code>git-buildpackage</code>によるpatchへの変更が入ってた…取り除いて<code>security-master</code>へアップロード。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -805,57 +854,6 @@ Provides: gdal-abi-2-4-0
 </code></pre>
 
 <p>というようにした。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Dec 31, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/patch">patch</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のMerge Request</a>に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2">x86指定に変更した</a>→マージされました。</li>
-<li>昨日の<a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ruby-loofahパッケージの更新で脆弱性修正</a>したのだが、Debian9 &ldquo;stretch&rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、<a href="https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch">作業して</a>セキュリティチームに連絡だけしといた。</li>
-<li>なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8">意図的なものだということだけを伝えるreply</a>をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。</li>
-<li><a href="https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/">ubuntu-keyringパッケージを最新に更新</a>。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
-
-<ul>
-<li>次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…</li>
-</ul></li>
-</ul>
 
 					
 				</div>

@@ -8,8 +8,32 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 06 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;眠れなくなってしまったので&lt;a href=&#34;https://tracker.debian.org/news/1018082/accepted-snapper-081-3-source-into-unstable/&#34;&gt;snapperパッケージのミス修正とR3いれてアップロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;もう月曜日だ！ということで&lt;a href=&#34;https://tracker.debian.org/news/1018088/accepted-debootstrap-10113-source-into-unstable/&#34;&gt;debootstrapのアップロードを上げる&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;某所の喧々諤々のメールのやり取りに辟易して「おまらディスカッション好きなの結構だがな、とっととコード書けやコラ」というメールを送ってしまう。ふー。&lt;/li&gt;
+&lt;li&gt;os-autoinstのperltidyの問題、&lt;a href=&#34;https://progress.opensuse.org/issues/45740&#34;&gt;バージョン間の非互換性によるものだった&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;で、amd64でのビルドは通ったのでi386でやったらまたも同じエラー…仕方がないので&lt;a href=&#34;https://progress.opensuse.org/issues/45782&#34;&gt;チケットを上げた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;先日のsecurity update、「前のパッチにノイズがー」と言われて「？？？」となったが、よく見たら&lt;code&gt;git-buildpackage&lt;/code&gt;によるpatchへの変更が入ってた…取り除いて&lt;code&gt;security-master&lt;/code&gt;へアップロード。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -636,20 +660,6 @@ Provides: gdal-abi-2-4-0
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;あとはarm64アーキテクチャである&lt;a href=&#34;https://db.debian.org/machines.cgi?host=amdahl&#34;&gt;debian.orgのporterboxマシン&lt;/a&gt;にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1013790/accepted-debootstrap-10112-source-into-unstable/&#34;&gt;debootstrapをアップデート&lt;/a&gt;。Mr.FAIのハックによってスピードが格段に速くなった。一応、前のバージョンと比較して取得パッケージの差異が無いのは確認済みだが、なんかregressionがあるのも嫌なので &lt;a href=&#34;https://planet.debian.org/&#34;&gt;Planet Debian&lt;/a&gt; にも載ってる&lt;a href=&#34;https://henrich-on-debian.blogspot.com/2018/12/debootstrap-speed-up.html&#34;&gt;blogで告知&lt;/a&gt;もしておいた。&lt;/p&gt;
 </description>
           </item>
         
