@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Categories">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>Categories &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
@@ -28,7 +28,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/categories/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -50,60 +50,44 @@
 </div>
 
 
-	<div class="row">
-		<div class="text-center">
-			<h3>
-				
-					Posts
-				</h3>
-	    </div>
-    </div>
+
+<div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<ul>
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Wed, Jan 9, 2019</span> in 
 				
-								
-		        		<div class="row">
-	<div class="col-md-offset-2 col-md-6 col-md-offset-2 col-md-6">
-		<h4><a href="https://henrich.github.io/blog/categories/debian/">Debian</a></h4>
-	</div>
-	<div class="col-md-4 col-md-4">
-		<h4>Wed, Jan 16, 2019</h4>
-	</div>
-</div>
-
-		        	
-			    
-								
-		        		<div class="row">
-	<div class="col-md-offset-2 col-md-6 col-md-offset-2 col-md-6">
-		<h4><a href="https://henrich.github.io/blog/categories/floss/">Floss</a></h4>
-	</div>
-	<div class="col-md-4 col-md-4">
-		<h4>Tue, Oct 2, 2018</h4>
-	</div>
-</div>
-
-		        	
-			    
-								
-		        		<div class="row">
-	<div class="col-md-offset-2 col-md-6 col-md-offset-2 col-md-6">
-		<h4><a href="https://henrich.github.io/blog/categories/tips/">Tips</a></h4>
-	</div>
-	<div class="col-md-4 col-md-4">
-		<h4>Fri, Jan 4, 2019</h4>
-	</div>
-</div>
-
-		        	
-			    
-		    </ul>
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
 		</div>
-    </div>
-	<div class="row">
-		<hr>
 	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li>debootstrapにバグレポートが。
+
+<ul>
+<li>busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加</li>
+<li>もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。<code>Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC</code>のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。</li>
+</ul></li>
+<li><a href="https://www.debian.org/security/2019/dsa-4364">DSA-4364-1</a>が出た。お疲れ様でした。</li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
 
     <div class="container">
         <div class="row col-md-12">
@@ -125,9 +109,6 @@
                     
                     
                     
-                    
-                        <a href="https://henrich.github.io/blog/categories/index.xml" target="_blank">
-                        <i class="fa fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

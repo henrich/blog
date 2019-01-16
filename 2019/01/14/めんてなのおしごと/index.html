@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Mon, Jan 14, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li><p><a href="https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/">whizzytexパッケージをアップロード</a>。作業自体は以前にあらかたしていた。</p>
+
+<ul>
+<li>問題だったのは<code>autopkgtest</code>。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので<code>emacs --script test.el test.tex</code>のようにして<code>test.el</code>の中で以下のようにするなどした。</li>
+</ul>
+
+<pre><code class="language-elisp">(find-file (nth 0 command-line-args-left))
+(whizzytex-mode 1)
+</code></pre>
+
+<ul>
+<li>その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの<code>testfile</code>ファイルにtypoがあって<code>test.tex</code>とすべきところを<code>test.txt</code>になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…</li>
+<li><a href="https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/">ruby-arubaパッケージをアップロード</a></li>
+<li><code>ruby-bcat</code>への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。</li>
+<li>ん？ということは<code>ruby-bcat</code>をRMしてもいいんじゃないか。ざっくり<code>apt-rdepends</code>した結果では依存はないし、<a href="https://codesearch.debian.net/search?q=ruby-bcat&amp;perpkg=1">codesearch.debian.netの検索結果</a>もそれらしいものはない。<code>grep-dctrl</code>でも同様なので、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">RM依頼を登録</a></li>
+</ul>
+
+<pre><code class="language-bash">$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
+Package: ruby-aruba
+</code></pre></li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474">libmojo-ioloop-readwriteprocess-perlパッケージ</a>が入ってくれたので、手元の<code>os-autoinst</code>をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。</p></li>
+
+<li><p><code>ubuntu-keyring</code>パッケージの<code>debconf template</code>査読が返ってきてたので、mergeしないと…。</p></li>
+
+<li><p>だいぶ前に<a href="https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044">jdがクラッシュするよ、とlaunchpadの方でレポートがあった</a>（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、<a href="https://github.com/yama-natuki/JD/issues/15">パッケージにしたいなー</a>というのは伝えておいた。</p></li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.53 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

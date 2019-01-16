@@ -8,10 +8,59 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> 昨日のjdパッケージの削除依頼が実行されてた。早いなー。ruby-bcatパッケージの削除もその日のうちだったし。 systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら該当のバグ登録を教えてもらった。subscribeして様子見しよう。 ubuntu-keyringパッケージのdebcont templateのレビューを反映した。なるほどなー  既に翻訳版を送ってくれた方々に「こっちでお願い」を送った  ubuntu-keyring、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度NEW queueへ grcompiler、4.2.7以降のがテストこけちゃうのでtest failureをreportした curlが最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねてバグ登録した fonts-sawarabi-minchoを更新 nadokaが古いままでwatchもエラーになっていたので、重い腰を上げて更新しておいた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> JDパッケージの削除を登録した  </description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>武藤さんがDDを引退されたので、その引き継ぎとしてmltermパッケージの今後のsponsor uploadを引き受けることになった。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> whizzytexパッケージをアップロード。作業自体は以前にあらかたしていた。
+ 問題だったのはautopkgtest。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないのでemacs --script test.el test.texのようにしてtest.elの中で以下のようにするなどした。  (find-file (nth 0 command-line-args-left)) (whizzytex-mode 1)   その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとのtestfileファイルにtypoがあってtest.texとすべきところをtest.txtになってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ… ruby-arubaパッケージをアップロード ruby-bcatへの依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。 ん？ということはruby-bcatをRMしてもいいんじゃないか。ざっくりapt-rdependsした結果では依存はないし、codesearch.debian.netの検索結果もそれらしいものはない。grep-dctrlでも同様なので、RM依頼を登録  $ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources Package: ruby-aruba  libmojo-ioloop-readwriteprocess-perlパッケージが入ってくれたので、手元のos-autoinstをmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。
+ ubuntu-keyringパッケージのdebconf template査読が返ってきてたので、mergeしないと…。
+ だいぶ前にjdがクラッシュするよ、とlaunchpadの方でレポートがあった（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、パッケージにしたいなーというのは伝えておいた。
+  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> debootstrapにバグレポートが。  busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加 もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。Valid-Until: Tue, 15 Jan 2019 20:29:52 UTCのようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。  DSA-4364-1が出た。お疲れ様でした。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
