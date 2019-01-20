@@ -8,8 +8,43 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 16 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/105&#34;&gt;別途MergeRequestを作った&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/henrich/linux/commit/ed1d855c885f6834a7e0f6a5e152802a2a61d304&#34;&gt;Bug#918589向けパッチ&lt;/a&gt;を作成、テストビルドは無事通った&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/henrich/linux/commit/5b7a1313dbaf2eedb69d6e53d1fa20bbcf81c083&#34;&gt;Bug#918114向けパッチ&lt;/a&gt;を作った。&lt;/li&gt;
+&lt;li&gt;ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;whizzytex&lt;/code&gt;のパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -39,6 +74,10 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;  $ grep emodifier -r ./
   ./src/org/joni/Parser.java:        static final byte[]Grapheme_Cluster_Break_E_Modifier = &amp;quot;graphemeclusterbreak=emodifier&amp;quot;.getBytes();
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;気になったのでgem2debのテンプレートから&lt;a href=&#34;https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2&#34;&gt;ruby-interpreterを削除するMR&lt;/a&gt;を送っておいた&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
@@ -623,71 +662,6 @@ Provides: gdal-abi-2-4-0
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/&#34;&gt;fonts-monapoパッケージをアップデート&lt;/a&gt;。upstreamが配布しなくなってた。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは&lt;code&gt;tempdir=`mktemp -d`&lt;/code&gt;のようにしてtempdirを指定したのだけど、makeでは&lt;code&gt;$$tempdir&lt;/code&gt;が空になるので、&lt;code&gt;$(CURDIR)/debian/tmp&lt;/code&gt; 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？&lt;/p&gt;
-
-&lt;p&gt;autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず&lt;code&gt;sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec&lt;/code&gt;としてchroot環境に入り&lt;code&gt;apt install /buildd/a.deb /buildd/b.deb&lt;/code&gt;などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で&lt;code&gt;piuparts&lt;/code&gt;でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（&lt;code&gt;sudo cowbuilder --create&lt;/code&gt;しなおして対処）。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;パッケージを分割した&lt;/li&gt;
-&lt;li&gt;インストールするkeyringをUbuntuのパッケージを参考にして変更した&lt;/li&gt;
-&lt;li&gt;debconfで質問される &lt;code&gt;/etc/apt/trusted.gpg.d&lt;/code&gt; にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した&lt;/li&gt;
-&lt;li&gt;autopkgtestをまともなものにした&lt;/li&gt;
-&lt;li&gt;build時にもautopkgtest相当が動作するようにした&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから&lt;a href=&#34;https://ftp-master.debian.org/new.html&#34;&gt;NEW queue&lt;/a&gt;待ちに。どれだけかかるのかな。。&lt;/p&gt;
-
-&lt;p&gt;そしてアップロード後もエラーを踏む。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Source-only uploads to NEW are not allowed.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なんと、そうだったのか。最近は&lt;code&gt;arch=all&lt;/code&gt;パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って&lt;code&gt;git-buildpackage&lt;/code&gt;のオプションで&lt;code&gt;--git-pbuilder-options=&amp;quot;--source-only-changes&amp;quot;&lt;/code&gt;などとしていたのが仇に。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;淡々と&lt;a href=&#34;https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/&#34;&gt;jcodingsパッケージをアップデート&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;grcompilerに&lt;a href=&#34;https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/&#34;&gt;投稿されてたパッチをマージ&lt;/a&gt;。自分の作った地雷を踏むという失態を。
-
-&lt;ul&gt;
-&lt;li&gt;upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。&lt;/li&gt;
-&lt;li&gt;で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を&lt;code&gt;git format-patch&lt;/code&gt;して一旦逃してから全削除→&lt;code&gt;git clone&lt;/code&gt;して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。&lt;code&gt;.install&lt;/code&gt;ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、&lt;code&gt;[0-9]*&lt;/code&gt;で数字だけ指定されるかと思ったら、そうでなかった。。。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;というようにした。&lt;/p&gt;
 </description>
           </item>
         

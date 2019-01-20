@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>めんてなのおしごと</h3>
-				<span class="label label-primary">Wed, Jan 16, 2019</span> in 
+				<span class="label label-primary">Sat, Jan 19, 2019</span> in 
 				
 					
 					<a href="/blog/categories/debian">debian</a>
@@ -71,28 +71,10 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li>昨日の<code>jd</code>パッケージの削除依頼が実行されてた。早いなー。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">ruby-bcatパッケージの削除</a>もその日のうちだったし。</li>
-<li>systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918914">該当のバグ登録</a>を教えてもらった。subscribeして様子見しよう。</li>
-<li><code>ubuntu-keyring</code>パッケージのdebcont templateのレビューを反映した。なるほどなー
-
-<ul>
-<li>既に翻訳版を送ってくれた方々に「こっちでお願い」を送った</li>
-</ul></li>
-<li><code>ubuntu-keyring</code>、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度<code>NEW queue</code>へ</li>
-<li><code>grcompiler</code>、4.2.7以降のがテストこけちゃうので<a href="https://github.com/silnrsi/grcompiler/issues/15">test failureをreport</a>した</li>
-<li><code>curl</code>が最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919445">バグ登録した</a></li>
-<li><a href="https://tracker.debian.org/news/1021421/accepted-fonts-sawarabi-mincho-20190115-1-source-into-unstable/">fonts-sawarabi-minchoを更新</a></li>
-<li><code>nadoka</code>が古いままでwatchもエラーになっていたので、重い腰を上げて<a href="https://tracker.debian.org/news/1021441/accepted-nadoka-092-1-source-into-unstable/">更新しておいた</a>。前のメンテナの安井さんにも連絡済み。</li>
-<li><code>whizzytex</code>のパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
-<li><code>jruby-joni</code>パッケージがFTBFSになってる？なぜだ… <code>org.jcodings.exception.CharacterPropertyException: invalid character property name &lt;graphemeclusterbreak=emodifier&gt;</code>と出てくるのでその辺りから検索したけど、よくわからんよね…<a href="https://github.com/jruby/joni/issues/40">issue登録</a>だけしておいた</li>
-</ul>
-
-<pre><code class="language-bash">  $ grep emodifier -r ./
-  ./src/org/joni/Parser.java:        static final byte[]Grapheme_Cluster_Break_E_Modifier = &quot;graphemeclusterbreak=emodifier&quot;.getBytes();
-</code></pre>
-
-<ul>
-<li>気になったのでgem2debのテンプレートから<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterを削除するMR</a>を送っておいた</li>
+<li>experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">別途MergeRequestを作った</a></li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/ed1d855c885f6834a7e0f6a5e152802a2a61d304">Bug#918589向けパッチ</a>を作成、テストビルドは無事通った</li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/5b7a1313dbaf2eedb69d6e53d1fa20bbcf81c083">Bug#918114向けパッチ</a>を作った。</li>
+<li>ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った</li>
 </ul>
 
 		</div>

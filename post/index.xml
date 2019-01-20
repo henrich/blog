@@ -8,10 +8,28 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 16 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので別途MergeRequestを作った Bug#918589向けパッチを作成、テストビルドは無事通った Bug#918114向けパッチを作った。 ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> whizzytexのパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
@@ -19,7 +37,7 @@
       <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> 昨日のjdパッケージの削除依頼が実行されてた。早いなー。ruby-bcatパッケージの削除もその日のうちだったし。 systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら該当のバグ登録を教えてもらった。subscribeして様子見しよう。 ubuntu-keyringパッケージのdebcont templateのレビューを反映した。なるほどなー  既に翻訳版を送ってくれた方々に「こっちでお願い」を送った  ubuntu-keyring、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度NEW queueへ grcompiler、4.2.7以降のがテストこけちゃうのでtest failureをreportした curlが最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねてバグ登録した fonts-sawarabi-minchoを更新 nadokaが古いままでwatchもエラーになっていたので、重い腰を上げて更新しておいた。前のメンテナの安井さんにも連絡済み。 whizzytexのパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。 jruby-joniパッケージがFTBFSになってる？なぜだ… org.jcodings.exception.CharacterPropertyException: invalid character property name &amp;lt;graphemeclusterbreak=emodifier&amp;gt;と出てくるのでその辺りから検索したけど、よくわからんよね…issue登録だけしておいた  $ grep emodifier -r ./ ./src/org/joni/Parser.java: static final byte[]Grapheme_Cluster_Break_E_Modifier = &amp;quot;graphemeclusterbreak=emodifier&amp;quot;.getBytes();  </description>
+      <description> 昨日のjdパッケージの削除依頼が実行されてた。早いなー。ruby-bcatパッケージの削除もその日のうちだったし。 systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら該当のバグ登録を教えてもらった。subscribeして様子見しよう。 ubuntu-keyringパッケージのdebcont templateのレビューを反映した。なるほどなー  既に翻訳版を送ってくれた方々に「こっちでお願い」を送った  ubuntu-keyring、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度NEW queueへ grcompiler、4.2.7以降のがテストこけちゃうのでtest failureをreportした curlが最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねてバグ登録した fonts-sawarabi-minchoを更新 nadokaが古いままでwatchもエラーになっていたので、重い腰を上げて更新しておいた。前のメンテナの安井さんにも連絡済み。 whizzytexのパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。 jruby-joniパッケージがFTBFSになってる？なぜだ… org.jcodings.exception.CharacterPropertyException: invalid character property name &amp;lt;graphemeclusterbreak=emodifier&amp;gt;と出てくるのでその辺りから検索したけど、よくわからんよね…issue登録だけしておいた  $ grep emodifier -r ./ ./src/org/joni/Parser.java: static final byte[]Grapheme_Cluster_Break_E_Modifier = &amp;quot;graphemeclusterbreak=emodifier&amp;quot;.getBytes();   気になったのでgem2debのテンプレートからruby-interpreterを削除するMRを送っておいた  </description>
     </item>
     
     <item>

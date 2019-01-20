@@ -60,6 +60,98 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 5, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://nthykier.wordpress.com/2019/01/04/debhelper-compat-12-is-now-released/">“debhelper-compat (= 12)” is now released</a>を読む。<code>Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster).  Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.</code>との記述。<code>Rules-Requires-Root: no</code>のようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。</p>
+
+<p>試しに<code>dpkg-dev</code>をBuild-Dependsにしてみたら</p>
+
+<pre><code class="language-bash">E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev [build-depends: dpkg-dev]
+</code></pre>
+
+<p>あら。。。<code>dpkg-dev 1.19.0</code>からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは<code>no</code>をデフォルトにして<code>Rules-Requires-Root: yes</code>を明示的に宣言させるほうが良くないかね？と思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81">質問してみた</a>→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。</p>
+
+<hr />
+
+<ul>
+<li>上記の変更その他を加えて<a href="https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/">os-autoinstパッケージをアップロード</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463">RCバグ</a>は<code>severity</code>を下げておいた。</li>
+<li><code>debootstrap</code>パッケージ、夏に作業して放置してたMergeRequestを変更を追加して<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9">Mergeした</a>。<code>git rebase</code>なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jan 4, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/">debootstrapを速くするには</a></h3>
 						<small><span class="label label-primary">
 							
@@ -699,100 +791,6 @@ Provides: gdal-abi-2-4-0
 					<br>
 					
 						<p>１文字でFTBFSが直せるやつだったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893821">やっといた</a></p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Dec 27, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/patch">patch</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>たまたまbug reportを見かけてmerge request作ったほうが話が早い奴だと思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917388#10">やっといた</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Dec 24, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>debian-installerのコンポーネントの一つ、<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/">partman-lvmでのバグ修正</a>が含まれたパッケージがようやくアップロードされた。</p>
-
-<p>もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることに。</p>
-
-<ul>
-<li>手元の放置してたBBBを設定、<a href="http://select.marutsu.co.jp/list/detail.php?id=235">参考ページ</a>を元に初期化し直し</li>
-<li><a href="http://beagleboard.org/latest-images">stretchベースのイメージ</a>をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。</li>
-<li>２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で <code>dpkg --get-selections &gt; distro.txt</code> のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
-
-<ul>
-<li>ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…</li>
-</ul></li>
-<li>あとはarm64アーキテクチャである<a href="https://db.debian.org/machines.cgi?host=amdahl">debian.orgのporterboxマシン</a>にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…</li>
-</ul>
 
 					
 				</div>
