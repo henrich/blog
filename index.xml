@@ -8,8 +8,65 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 19 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;JDimのITPを投げた。&lt;a href=&#34;https://bugs.debian.org/920684&#34;&gt;Bug#920684&lt;/a&gt;が割り当てられました。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cdimage.debian.or.jp&#34;&gt;cdimage.debian.or.jp&lt;/a&gt;を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html&#34;&gt;PublickeyのSSPL記事&lt;/a&gt;について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org&#34;&gt;Maintainer Dashboard&lt;/a&gt;でsnapperのアップデートを見つけたので、&lt;a href=&#34;https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/&#34;&gt;放り込んだ&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://internet.watch.impress.co.jp/docs/news/1166054.html&#34;&gt;Internetwatchの記事&lt;/a&gt;の見出しが「「Debian GNU/Linux」に関する脆弱性が171件、第4四半期「JVN iPedia」への登録状況」と、Debianだけ危険みたいな感じだったので苦情を入れた。こんな感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IPAの該当レポートについては、確かにDebianについての脆弱性数がトップであることは事実として記述されておりましたが、レポートの構成としてはサポートが終了するJava8、それからXSS脆弱性とバッファオーバーランについてが多くを占めています（それぞれ章立てされていました）。ここに全く触れていないことはどの様な意図があったのでしょうか。
+
+「3. 脆弱性対策情報の製品別登録状況」の項にてDebianの脆弱性数が述べられていますが、DebianやUbuntuそしてRed Hat Enterprise Linuxの様なLinuxディストリビューションはWindows Serverなどとは違ってOSのみだけではなくLibreOfficeなどのオフィススイート、Firefoxなどのブラウザ、Tomcatなどのミドルウェア、Apacheなどのサーバーなどを全て含んで提供されています。Debianでの配布ソフトウェアパッケージ数はおおよそ5〜6万です。その背景を把握せずに、単純に「脆弱性が多い」とだけ見出しに書かれるのは、大変遺憾であると同時に、記事の薄さを指摘せざるを得ません。
+
+今後の改善に期待したいと思います。失礼します。
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/107&#34;&gt;Bug#912597向けにMergeRequest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832458&#34;&gt;Bug#832458&lt;/a&gt;での&lt;code&gt;CONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=m&lt;/code&gt;はすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -345,323 +402,6 @@ make[4]: *** [Makefile:1457: check-local] Error 1
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>debootstrapを速くするには</title>
-            <link>https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/</link>
-            <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/</guid>
-            <description>&lt;p&gt;&lt;code&gt;debootstrap&lt;/code&gt;は最低限のDebian環境の作成に使われるツール。&lt;code&gt;pbuilder&lt;/code&gt;や&lt;code&gt;cowbuilder&lt;/code&gt;（とその環境を使う&lt;code&gt;piuparts&lt;/code&gt;）などのツールの裏側でも動くし、&lt;code&gt;docker&lt;/code&gt;イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は&lt;code&gt;apt&lt;/code&gt;も使えないので&lt;code&gt;wget&lt;/code&gt;で取得するんだぜ？）。うーむ。&lt;/p&gt;
-
-&lt;p&gt;で、どうやって時間を短縮するか？というと、以下のような選択肢がある。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;ローカルミラーをセットアップしてそれを参照する&lt;/li&gt;
-&lt;li&gt;ローカルプロキシをセットアップしてそれを参照する&lt;/li&gt;
-&lt;li&gt;ローカルキャッシュをセットアップしてそれを参照する&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-&lt;li&gt;1のミラーはまるっとDebianリポジトリをコピーするやり方。
-
-&lt;ul&gt;
-&lt;li&gt;クライアントが何十台、スペックによっては何百台とかあっても対応できる&lt;/li&gt;
-&lt;li&gt;どのパッケージでもLAN内にあるので取得が早い&lt;/li&gt;
-&lt;li&gt;でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる&lt;/li&gt;
-&lt;li&gt;ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。&lt;/li&gt;
-&lt;li&gt;あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも&lt;/li&gt;
-&lt;li&gt;構築するなら&lt;code&gt;ftpsync&lt;/code&gt;使おうね。他のツールはダメダメ。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;2のプロキシは&lt;code&gt;squid&lt;/code&gt;などのサーバーを立てるやり方。
-
-&lt;ul&gt;
-&lt;li&gt;取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む&lt;/li&gt;
-&lt;li&gt;ミラーと同様に複数のマシンからも参照可能&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;debootstrap 1.0.96&lt;/code&gt;から&lt;code&gt;squid-deb-proxy-client&lt;/code&gt;をインストールしておくと、&lt;code&gt;squid-deb-proxy&lt;/code&gt;で立ち上げたプロキシサーバーを自動的に参照するようになる。&lt;code&gt;apt-cacher&lt;/code&gt;などだと一々プロキシがどこにあるのかを指定しないといけないので、&lt;code&gt;squid-deb-proxy&lt;/code&gt;マジおすすめ&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;3のキャッシュは&lt;code&gt;--cache-dir&lt;/code&gt;オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;debootstrap 1.0.97&lt;/code&gt;から実装済み。一台だけでやるならこれで十分。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--cache-dir=/home/henrich/tmp/cachedir&lt;/code&gt;というように、このオプションでは絶対パスで参照するのが必要。&lt;code&gt;~/tmp/cachedir&lt;/code&gt;の様な指定はできない。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;あと、リポジトリのミラーは&lt;code&gt;debootstrap 1.0.85&lt;/code&gt;から&lt;a href=&#34;https://deb.debian.org&#34;&gt;deb.debian.org&lt;/a&gt;を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している&lt;a href=&#34;http://debian-mirror.sakura.ne.jp&#34;&gt;debian-mirror.sakura.ne.jp&lt;/a&gt;を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？&lt;/p&gt;
-
-&lt;p&gt;最後に、記述時の最新である&lt;code&gt;debootstrap 1.0.112&lt;/code&gt;はMr.FAIこと&lt;code&gt;Thomas Lange&lt;/code&gt;さんのハックによってパッケージ依存関係の最適化（これも&lt;code&gt;apt&lt;/code&gt;が使われてはいない）が図られているので、随分と時間が短縮されている。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;結論：debootstrap 1.0.112以降を使おう&lt;/strong&gt;。&lt;code&gt;debootstrap&lt;/code&gt;はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;Ultimate Debian Databaseの&lt;a href=&#34;https://udd.debian.org/bugs/?release=buster_and_sid&amp;amp;merged=ign&amp;amp;done=only&amp;amp;rc=1&amp;amp;flastmod=ign&amp;amp;flastmodval=5&amp;amp;sortby=last_modified&amp;amp;sorto=asc&amp;amp;ctags=1&amp;amp;cdeferred=1&amp;amp;caffected=1&amp;amp;cautormtime=1&amp;amp;cmissingbuilds=1&amp;amp;&#34;&gt;Bug search Cleaner view&lt;/a&gt;から。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。
-
-&lt;ul&gt;
-&lt;li&gt;どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ&lt;/li&gt;
-&lt;li&gt;fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。&lt;/li&gt;
-&lt;li&gt;というのを踏まえて「どーする？」という質問を投げた→「わかってる、4.14がリリースされたらそれを入れる」という回答。んーしばらくは放置か…。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;uglifyjsのFTBFS、experimentalでは直ってるよ、という話
-
-&lt;ul&gt;
-&lt;li&gt;semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ&lt;/li&gt;
-&lt;li&gt;では、ということでお手軽に&lt;code&gt;apr-rdependes&lt;/code&gt;で依存パッケージの確認&lt;/li&gt;
-&lt;li&gt;emscriptenは内部に古い古いuglifyjs持ってるみたい…&lt;/li&gt;
-&lt;li&gt;lavaはソース落としてみたけど、バージョン指定の情報は特に無し。&lt;/li&gt;
-&lt;li&gt;node-grunt-contrib-uglifyは新しいバージョンならサポートしてる&lt;/li&gt;
-&lt;li&gt;node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる&lt;/li&gt;
-&lt;li&gt;ruby-uglifierも新しいバージョンならサポートしている&lt;/li&gt;
-&lt;li&gt;というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
-
-&lt;ul&gt;
-&lt;li&gt;やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://wiki.debian.org/Java/Packaging/Gradle&#34;&gt;Debian Wikiのページ&lt;/a&gt;にあった。&lt;code&gt;gradle-debian-helper&lt;/code&gt;パッケージをBuild-Dependsに加えて、&lt;code&gt;debian/rules&lt;/code&gt;で&lt;code&gt;dh $@ -with buildsystem=gradle&lt;/code&gt;&amp;hellip;って間違ってるやん&lt;code&gt;--buildsystem=gradle&lt;/code&gt;だよね…。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;* What went wrong:
-A problem occurred configuring root project &#39;powermock&#39;.
-&amp;gt; Could not resolve all files for configuration &#39;:classpath&#39;.
-   &amp;gt; Could not resolve org.springframework.build.gradle:propdeps-plugin:0.0.7.
-     Required by:
-         project :
-      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-      &amp;gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-   &amp;gt; Could not resolve com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4.
-     Required by:  
-         project : 
-      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.
-      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.      
-      &amp;gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-   &amp;gt; Could not resolve net.researchgate:gradle-release:2.4.0.
-     Required by:
-         project :   
-      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.    
-      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode. 
-      &amp;gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-   &amp;gt; Could not resolve com.github.jengelman.gradle.plugins:shadow:1.2.4.  
-     Required by:
-         project : 
-      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.     
-      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode. 
-      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.        
-      &amp;gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.  
-   &amp;gt; Could not resolve org.shipkit:shipkit:2.0.31.
-     Required by:      
-         project :
-      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &amp;gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-   &amp;gt; Could not resolve ru.vyarus:gradle-animalsniffer-plugin:1.4.1.
-     Required by:
-         project :
-      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &amp;gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて&lt;code&gt;Build-Depends&lt;/code&gt;に指定。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt; pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
-                                 Depends: gradle-release which is a virtual package and is not provided by any available package
-                                 Depends: gradle-shadow which is a virtual package and is not provided by any available package
-                                 Depends: gradle-shipkit which is a virtual package and is not provided by any available package
-                                 Depends: gradle-animalsniffer-plugin which is a virtual package and is not provided by any available package
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;gradle-propdeps-plugin&lt;/code&gt;はパッケージがあったので追加。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gradle-animalsniffer-plugin&lt;/code&gt;は&lt;a href=&#34;https://github.com/xvik/gradle-animalsniffer-plugin&#34;&gt;https://github.com/xvik/gradle-animalsniffer-plugin&lt;/a&gt;かららしい。
-
-&lt;ul&gt;
-&lt;li&gt;で、これは&lt;code&gt;animalsniffer&lt;/code&gt;に依存している。&lt;code&gt;libanimal-sniffer-java&lt;/code&gt;パッケージがあるのでこれだな。&lt;/li&gt;
-&lt;li&gt;注意点が書いてある&lt;code&gt;「Use version 1.17 (toolVersion=1.17) if you need to run on java 9, but note that 1.17 can&#39;t be used on java 8 (and that&#39;s why it is not set by default)」&lt;/code&gt;→Java11でbusterはリリースされるので1.17が必要&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;libanimal-sniffer-java&lt;/code&gt; は1.16なので、まずコイツのアップデートが必要…。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;$ apt-rdepends -r libanimal-sniffer-java&lt;/code&gt;の結果は何もなかったので、ぶっ込んでも大丈夫じゃないかな。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gradle-shipkit&lt;/code&gt;は&lt;a href=&#34;https://github.com/mockito/shipkit&#34;&gt;https://github.com/mockito/shipkit&lt;/a&gt;だな&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gradle-shadow&lt;/code&gt;は&lt;a href=&#34;https://github.com/johnrengelman/shadow&#34;&gt;https://github.com/johnrengelman/shadow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gradle-release&lt;/code&gt;は&lt;a href=&#34;https://github.com/researchgate/gradle-release&#34;&gt;https://github.com/researchgate/gradle-release&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gradle-bintray-plugin&lt;/code&gt;は&lt;a href=&#34;https://github.com/bintray/gradle-bintray-plugin&#34;&gt;https://github.com/bintray/gradle-bintray-plugin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;os-autoinstを&lt;code&gt;dh12&lt;/code&gt;に上げたらビルドがコケるように。あれ？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name &#39;*.pm&#39; -print
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshXtermIPMI.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/vnc_base.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/localXvnc.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshX3270.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshVirtsh.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/virtio_terminal.pm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;おいおい。何故か&lt;code&gt;/usr/libexec&lt;/code&gt;以下にインストールするようになっとるやん。&lt;code&gt;man debhelper&lt;/code&gt;で答えを探す…見つけた。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;The build systems meson and autoconf no longer explicitly set the --libexecdir variable and thus relies on the build system default - which should be /usr/libexec (per FHS 3.0, adopted in Debian Policy 4.1.5).&lt;/code&gt;ということで。どうやって直すかね。。。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;YubikeyでSSH接続しようとしたら謎のエラーがでて焦る。結局、手元の&lt;code&gt;~/.gnupg/private-keys-v1.d&lt;/code&gt;のファイルが腐ってるというオチだったのだけど、絞り込むのも時間かかった…&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Yubikey側の異常を疑って、testing環境で接続→問題なし（これでYubikeyが壊れた疑惑はなくなった）&lt;/li&gt;
-&lt;li&gt;異常がでたdesktopのunstable環境の問題を疑って、別のunstable環境なマシンで接続→問題なし（設定が全くしていなかったのでちょっと戸惑った、これでunstableだと壊れてるというパッケージ側の問題は無い）&lt;/li&gt;
-&lt;li&gt;ユーザー環境の差異を疑って、テストユーザーを作って接続→問題なし（これでいつものユーザーのhome directoryの設定が問題だろうと絞り込めた）&lt;/li&gt;
-&lt;li&gt;とりあえず&lt;code&gt;mv .gnupg bak.gnupg&lt;/code&gt;などとして接続→問題なし（これで&lt;code&gt;.gnupg&lt;/code&gt;以下のファイルのうちどれかがおかしい）&lt;/li&gt;
-&lt;li&gt;ひたすら旧ディレクトリから１つずつディレクトリやファイルをコピーする→絞り込めた&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;やれやれ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;今日は成果が得られなかった一日。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 03 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688&#34;&gt;ruby-netrcパッケージのバグ&lt;/a&gt;のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。&lt;code&gt;assert_equal File.join(Dir.pwd, &#39;.netrc&#39;), Netrc.default_path&lt;/code&gt;が以下のような結果になる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  1) Failure:
-TestNetrc#test_missing_environment [/&amp;lt;&amp;lt;PKGBUILDDIR&amp;gt;&amp;gt;/test/test_netrc.rb:203]:
---- expected
-+++ actual
-@@ -1,2 +1 @@
--# encoding: ASCII-8BIT
--&amp;quot;/&amp;lt;&amp;lt;PKGBUILDDIR&amp;gt;&amp;gt;/.netrc&amp;quot;
-+&amp;quot;/build/.netrc&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;&amp;lt;&amp;lt;PKGBUILDDIR&amp;gt;&amp;gt;&lt;/code&gt;なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は&lt;code&gt;cowbuilder&lt;/code&gt;でやってしまっていたので、&lt;code&gt;sbuild&lt;/code&gt;環境を用意するのにも時間が&amp;hellip;あれ？&lt;code&gt;sbuild&lt;/code&gt;でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？&lt;/p&gt;
-
-&lt;p&gt;バグレポートを再度よく読み、テスト部分を再確認。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  def test_missing_environment
-    nil_home = nil
-    ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
-    assert_equal File.join(Dir.pwd, &#39;.netrc&#39;), Netrc.default_path
-  ensure
-    ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
-  end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;default_path&lt;/code&gt;でgrep…。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  def self.default_path
-    File.join(ENV[&#39;NETRC&#39;] || home_path, netrc_filename)
-  end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あー、これだ。&lt;code&gt;NETRC&lt;/code&gt;が存在しない場合に&lt;code&gt;home_path&lt;/code&gt;、つまりは上記のエラーになる環境では&lt;code&gt;/build&lt;/code&gt;が指定されてるのにもかかわらず、ビルドをしている&lt;code&gt;Dir.pwd&lt;/code&gt;は別、ということだろうな。さて、どういうふうにして回避するかね…&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;    p nil_home
-    p ENV[&amp;quot;HOME&amp;quot;]
-    p Netrc.home_path
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とすると&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;&amp;quot;/home/henrich&amp;quot;
-nil
-&amp;quot;/build/ruby-netrc-0.11.0&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;が返る。あれ？予想と違う。&lt;code&gt;home_path&lt;/code&gt;は&lt;code&gt;/build/ruby-netrc-0.11.0&lt;/code&gt;なのか。&lt;code&gt;ENV[&amp;quot;HOME&amp;quot;]&lt;/code&gt;が&lt;code&gt;nil&lt;/code&gt;であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;--- a/test/test_netrc.rb
-+++ b/test/test_netrc.rb
-@@ -200,7 +200,7 @@
-   def test_missing_environment
-     nil_home = nil
-     ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
--    assert_equal File.join(Dir.pwd, &#39;.netrc&#39;), Netrc.default_path
-+    assert_equal File.join(Netrc.home_path, &#39;.netrc&#39;), Netrc.default_path
-   ensure
-     ENV[&amp;quot;HOME&amp;quot;], nil_home = nil_home, ENV[&amp;quot;HOME&amp;quot;]
-   end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;でアップロードした。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26&#34;&gt;質問した&lt;/a&gt;。→どうやらsegfaultするという問題があるらしい。うーむ。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;os-autoinstを直せるかな、と思ってビルドするも&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;The following packages have unmet dependencies:
- libopencv-imgcodecs3.2 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package
-
- libvtk6.3 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;げぇ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Package: libgdal20
-Version: 2.4.0+dfsg-1
-Priority: optional
-Section: libs
-Source: gdal
-Maintainer: Debian GIS Project &amp;lt;pkg-grass-devel@lists.alioth.debian.org&amp;gt;
-Installed-Size: 20.2 MB
-Provides: gdal-abi-2-4-0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;こいつか…。&lt;a href=&#34;https://release.debian.org/transitions/html/gdal-2-4-0.html&#34;&gt;Transition tracker&lt;/a&gt;を見る限り、ここ１時間でビルドされたりしてるので、今日はたまたまあたってしまった、という感じか。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/&#34;&gt;fonts-monapoパッケージをアップデート&lt;/a&gt;。upstreamが配布しなくなってた。&lt;/p&gt;
 </description>
           </item>
         

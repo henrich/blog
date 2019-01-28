@@ -60,6 +60,167 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Dec 20, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>水野さんの<a href="https://tracker.debian.org/news/1012874/accepted-silversearcher-ag-220-1-source-amd64-into-unstable/">silversearcher-agパッケージをアップロード</a>した。
+
+<ul>
+<li>あわせて<a href="https://salsa.debian.org/debian/silversearcher-ag">salsa.debian.orgにリポジトリを追加</a>し、権限を付与した</li>
+<li>さらに<a href="https://salsa.debian.org/debian/silversearcher-ag-el">silversearcher-ag-el</a>も追加</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/">birdfontパッケージをアップデート</a>した</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 16, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/">ruby-rspec-instafailパッケージをアップデート</a>した</li>
+<li><a href="https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/">ruby-childprocessパッケージをアップデート</a>した</li>
+<li>twitterで不具合話を拾ったので、<a href="https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/">fonts-unfonts-coreパッケージをアップデート</a>した
+
+<ul>
+<li>fontforgeコマンドの指定で <code>Open(&quot;UnDinaruLight.ttf&quot;)</code> のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 15, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
+
+<p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
+
+<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
+  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
+</code></pre>
+
+<p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
+
+<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
+index c6ac3e7..1581e98 100644
+--- a/aruba.gemspec
++++ b/aruba.gemspec
+@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
+ EOS
+   end
+
+-  s.files            = `git ls-files`.split(&quot;\n&quot;)
+-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
++  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
++  s.test_files       = Dir['spec/*,features/*']
++  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
+   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
+   s.require_path     = &quot;lib&quot;
+ end
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/">Retrospective 2018 11 26</a></h3>
 						<small><span class="label label-primary">
 							
@@ -507,148 +668,6 @@ VM
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Sep 22, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							
-								 , 
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>jcodings</code>が何故か細かくバージョンアップが繰り返されたので追従。1.0.34が&ndash;deleyedでまだ入ってなかったので、それが入ってからになるように調整。</li>
-<li><code>jruby-joni</code>も同様。patchのrefreshが面倒くさい。最新のjcodings依存になっているようなので、ビルドはまだ。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/">OSSummit Japanでボランティアスタッフした</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><sup>6</sup>&frasl;<sub>20</sub>-22で行われた<a href="https://events.linuxfoundation.org/events/open-source-summit-japan-2018/">Open Source Summit Japan</a>でのボランティアスタッフに参加してきました。会場の様子は<a href="https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page1">公式の写真</a>（<a href="https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page2">その２</a>）で雰囲気をどうぞ。</p>
-
-<ul>
-<li>Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。</li>
-<li>CIPは<a href="https://schd.ws/hosted_files/ossalsjp18/e4/20180620-CIP-OSSJ-v2.1-web.pdf">Debian LTSに協力が進んでいる</a>けど、もっとコラボレーションの要素を増やしたいね&hellip;。CIPに関わる人にパッケージングのレクチャーとか？</li>
-<li><a href="https://ossalsjp18.sched.com/event/EaY5/oss-license-compliance-for-software-developers-not-for-legal-experts-satoru-ueda-sony">CELFイベントでお会いした方</a>に挨拶できたのは良かった</li>
-<li>Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない</li>
-<li><a href="https://ossalsjp18.sched.com/event/Eat7/dandified-way-to-package-management-in-yocto-project-zheng-ruoqin-fujitsu">DNFを拡張してライセンスとかも表示したりとか</a>というのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。</li>
-<li><a href="https://schd.ws/hosted_files/ossalsjp18/6a/LTSI-OSSJ2018-final.pdf">LTS kernelはmainline＋8000コミットぐらいある</a>というところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/">まだdebootstrapいじってる</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/debootstrap">debootstrap</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>そういえば、<a href="https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/">1.0.100</a>, <a href="https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/">1.0.101</a>, <a href="https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/">1.0.102</a>, <a href="https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/">1.0.103</a>, <a href="https://tracker.debian.org/news/968234/accepted-debootstrap-10104-source-into-unstable/">1.0.104</a> という感じでdebootstrap直したりバグ埋め込んだりしてましたね。</p>
-
-<p>この中で得た知見&hellip;</p>
-
-<ul>
-<li>systemdのcontainer環境下かどうかは <code>$container</code> を見ればいい、あるいはsystemdが動作している環境なら <code>/var/run/systemd/container</code> 見る</li>
-<li><code>dnsmasq</code> を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（<a href="https://int128.hatenablog.com/entry/20130101/1357055467">参考にさせてもらったサイト</a>)</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -858,7 +877,16 @@ VM
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/20/">20</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/21/">21</a></li>
     
     
     <li class="page-item">
@@ -866,7 +894,7 @@ VM
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/20/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/21/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

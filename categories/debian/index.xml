@@ -8,10 +8,38 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 19 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/categories/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> JDimのITPを投げた。Bug#920684が割り当てられました。 cdimage.debian.or.jpを先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。 PublickeyのSSPL記事について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。 Maintainer Dashboardでsnapperのアップデートを見つけたので、放り込んだ。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>Internetwatchの記事の見出しが「「Debian GNU/Linux」に関する脆弱性が171件、第4四半期「JVN iPedia」への登録状況」と、Debianだけ危険みたいな感じだったので苦情を入れた。こんな感じ。
+IPAの該当レポートについては、確かにDebianについての脆弱性数がトップであることは事実として記述されておりましたが、レポートの構成としてはサポートが終了するJava8、それからXSS脆弱性とバッファオーバーランについてが多くを占めています（それぞれ章立てされていました）。ここに全く触れていないことはどの様な意図があったのでしょうか。 「3. 脆弱性対策情報の製品別登録状況」の項にてDebianの脆弱性数が述べられていますが、DebianやUbuntuそしてRed Hat Enterprise Linuxの様なLinuxディストリビューションはWindows Serverなどとは違ってOSのみだけではなくLibreOfficeなどのオフィススイート、Firefoxなどのブラウザ、Tomcatなどのミドルウェア、Apacheなどのサーバーなどを全て含んで提供されています。Debianでの配布ソフトウェアパッケージ数はおおよそ5〜6万です。その背景を把握せずに、単純に「脆弱性が多い」とだけ見出しに書かれるのは、大変遺憾であると同時に、記事の薄さを指摘せざるを得ません。 今後の改善に期待したいと思います。失礼します。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> Bug#912597向けにMergeRequest Bug#832458でのCONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=mはすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

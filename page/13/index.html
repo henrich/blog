@@ -60,6 +60,255 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
+
+<pre><code>Package: texlive-latex-extra-doc
+Download-Size: 384 MB
+
+Package: texlive-pstricks-doc
+Download-Size: 248 MB
+</code></pre>
+
+<pre><code class="language-time">
+
+まずは普通にftp.jp.debian.orgからの取得。
+
+</code></pre>
+
+<p>Fetched 412 MB in 36s (11.3 MB/s)
+real    0m36.643s</p>
+
+<p>Fetched 412 MB in 30s (13.4 MB/s)
+real    0m30.864s</p>
+
+<p>Fetched 412 MB in 26s (15.4 MB/s)
+real    0m27.031s</p>
+
+<pre><code>
+次に西日本から取得。
+
+</code></pre>
+
+<p>Fetched 412 MB in 19s (20.7 MB/s)
+real    0m20.026s</p>
+
+<p>Fetched 412 MB in 19s (21.1 MB/s)
+real    0m19.688s</p>
+
+<p>Fetched 412 MB in 18s (22.2 MB/s)
+real    0m18.746s</p>
+
+<pre><code>
+
+東でやってみたら
+
+</code></pre>
+
+<p>Fetched 412 MB in 24s (16.9 MB/s)
+real    0m24.203s</p>
+
+<p>Fetched 412 MB in 24s (17.2 MB/s)
+real    0m24.598s</p>
+
+<pre><code>
+という感じでリージョンまたぐよりも逆に遅かった…何故だ。
+
+--------
+結論
+
+</code></pre>
+
+<p>西日本： 21.3MBs
+東日本： 17.0MBs
+ダイレクト： 13.6 MBs
+```</p>
+
+<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 3, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://twitter.com/eldesh/status/915031977094389760">JPのページの誤りの指摘</a>を頂いたので修正した</li>
+<li><a href="https://idcfcloud.com">IDCFクラウド</a>のDebianテンプレートで問題を見つけたのでチケットを切っておいた。</li>
+</ul>
+
+<hr />
+
+<p>「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？</p>
+
+<ul>
+<li>思いついた対象候補
+
+<ul>
+<li>さくらのVPS</li>
+<li>ConoHa</li>
+<li><a href="https://www.idcf.jp/cloud/?cl=top_cloud">IDCFクラウド</a>(←ここではこれをチョイス)</li>
+</ul></li>
+</ul>
+
+<p>IDCFクラウドは、<a href="https://www.idcf.jp/cloud/order.html?cl=cl_top#try">500円クーポン</a>があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。</p>
+
+<ul>
+<li>Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&hellip;）。</li>
+<li>次に<a href="https://github.com/cybozu-go/aptutil/releases">go-apt-cacher</a>をダウンロードしてちょっと設定して起動します。</li>
+
+<li><p>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</p>
+
+<pre><code># apt show openclipart-png
+Package: openclipart-png
+Source: openclipart
+Version: 1:0.18+dfsg-14
+Installed-Size: 148 MB
+</code></pre></li>
+</ul>
+
+<p>有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。</p>
+
+<pre><code># time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 10s (12.2 MB/s)          
+
+real    0m10.742s
+user    0m2.204s
+sys 0m0.420s
+</code></pre>
+
+<p>まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）</p>
+
+<pre><code># time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 2s (50.3 MB/s)           
+
+real    0m2.758s
+user    0m2.028s
+sys 0m0.336s
+
+# time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 2s (43.0 MB/s)          
+
+real    0m3.423s
+user    0m2.292s
+sys 0m0.396s
+
+# time apt-get download openclipart-png
+Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
+Fetched 128 MB in 3s (42.2 MB/s)           
+
+real    0m3.237s
+user    0m2.496s
+sys 0m0.464s
+</code></pre>
+
+<p>キャッシュされた状態からだと平均で3.13秒（45.1MB/s）</p>
+
+<p>ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Oct 1, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/876227">libmojolicious-plugin-assetpack-perlの更新をアップロード</a></li>
+<li><a href="https://www.debian.org/mirror/ftpmirror">ftpsyncスクリプト</a>が新しくなったよ、というメールをもらっていたので入れ替えた。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -397,133 +646,6 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 11, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=875432">python3-sphinx-intlをITP</a>した。
-
-<ul>
-<li>何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業で<code>git checkout --orphan pristine-tar; rm *; git commit --allow-empty</code>みたいなことをして作った。何故だ。</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/871063">cutter-testing-frameworkがリポジトリから削除されていた</a>ので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたので<a href="https://github.com/clear-code/cutter/pull/30">pull request</a>。
-
-<ul>
-<li>他にもpo/Makefile.in.inファイルが無くて<code>intltoolize --force || exit 1</code>が必要だったり。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Sep 5, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>elpa-migemo をアップロード</li>
-<li>nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は<a href="https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;arch=m68k&amp;ver=0.9.1-5&amp;stamp=1504617916&amp;raw=0">m68kぐらい</a>）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。</li>
-<li>os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&hellip;これ動くのかな。）</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 4, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="http://lists.debian.or.jp/pipermail/debian-devel/2017-September/000088.html">RFS: elpa-migemoのレビュー</a>を実施。</li>
-<li>libsql-splitstatement-perlを修正したのでアップロード。</li>
-<li>OpenQAのdebian/copyrightをアップデート。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -737,7 +859,16 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/20/">20</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/21/">21</a></li>
     
     
     <li class="page-item">
@@ -745,7 +876,7 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/20/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/21/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
