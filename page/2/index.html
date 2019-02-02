@@ -60,6 +60,119 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 14, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/">whizzytexパッケージをアップロード</a>。作業自体は以前にあらかたしていた。</p>
+
+<ul>
+<li>問題だったのは<code>autopkgtest</code>。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので<code>emacs --script test.el test.tex</code>のようにして<code>test.el</code>の中で以下のようにするなどした。</li>
+</ul>
+
+<pre><code class="language-elisp">(find-file (nth 0 command-line-args-left))
+(whizzytex-mode 1)
+</code></pre>
+
+<ul>
+<li>その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの<code>testfile</code>ファイルにtypoがあって<code>test.tex</code>とすべきところを<code>test.txt</code>になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…</li>
+<li><a href="https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/">ruby-arubaパッケージをアップロード</a></li>
+<li><code>ruby-bcat</code>への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。</li>
+<li>ん？ということは<code>ruby-bcat</code>をRMしてもいいんじゃないか。ざっくり<code>apt-rdepends</code>した結果では依存はないし、<a href="https://codesearch.debian.net/search?q=ruby-bcat&amp;perpkg=1">codesearch.debian.netの検索結果</a>もそれらしいものはない。<code>grep-dctrl</code>でも同様なので、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">RM依頼を登録</a></li>
+</ul>
+
+<pre><code class="language-bash">$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
+Package: ruby-aruba
+</code></pre></li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474">libmojo-ioloop-readwriteprocess-perlパッケージ</a>が入ってくれたので、手元の<code>os-autoinst</code>をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。</p></li>
+
+<li><p><code>ubuntu-keyring</code>パッケージの<code>debconf template</code>査読が返ってきてたので、mergeしないと…。</p></li>
+
+<li><p>だいぶ前に<a href="https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044">jdがクラッシュするよ、とlaunchpadの方でレポートがあった</a>（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、<a href="https://github.com/yama-natuki/JD/issues/15">パッケージにしたいなー</a>というのは伝えておいた。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>debootstrapにバグレポートが。
+
+<ul>
+<li>busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加</li>
+<li>もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。<code>Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC</code>のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。</li>
+</ul></li>
+<li><a href="https://www.debian.org/security/2019/dsa-4364">DSA-4364-1</a>が出た。お疲れ様でした。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -739,121 +852,6 @@ Provides: gdal-abi-2-4-0
 <hr />
 
 <p><a href="https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/">fonts-monapoパッケージをアップデート</a>。upstreamが配布しなくなってた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jan 2, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
-
-<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
-
-<ul>
-<li>パッケージを分割した</li>
-<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
-<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
-<li>autopkgtestをまともなものにした</li>
-<li>build時にもautopkgtest相当が動作するようにした</li>
-</ul>
-
-<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
-
-<p>そしてアップロード後もエラーを踏む。</p>
-
-<pre><code>Source-only uploads to NEW are not allowed.
-</code></pre>
-
-<p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
-
-<hr />
-
-<ul>
-<li>淡々と<a href="https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/">jcodingsパッケージをアップデート</a>。</li>
-<li>grcompilerに<a href="https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/">投稿されてたパッチをマージ</a>。自分の作った地雷を踏むという失態を。
-
-<ul>
-<li>upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。</li>
-<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
-<br /></li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 1, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。<code>.install</code>ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、<code>[0-9]*</code>で数字だけ指定されるかと思ったら、そうでなかった。。。</p>
-
-<pre><code>keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
-</code></pre>
-
-<p>というようにした。</p>
 
 					
 				</div>

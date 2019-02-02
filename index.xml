@@ -8,8 +8,41 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/105&#34;&gt;Bug#917388&lt;/a&gt;がマージされた&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;JDimをビルドしたのでアップロードした。NEW queue待ち。
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -23,7 +56,11 @@
 &lt;li&gt;JDimのITPを投げた。&lt;a href=&#34;https://bugs.debian.org/920684&#34;&gt;Bug#920684&lt;/a&gt;が割り当てられました。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://cdimage.debian.or.jp&#34;&gt;cdimage.debian.or.jp&lt;/a&gt;を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html&#34;&gt;PublickeyのSSPL記事&lt;/a&gt;について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org&#34;&gt;Maintainer Dashboard&lt;/a&gt;でsnapperのアップデートを見つけたので、&lt;a href=&#34;https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/&#34;&gt;放り込んだ&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org&#34;&gt;Maintainer Dashboard&lt;/a&gt;でsnapperのアップデートを見つけたので、&lt;a href=&#34;https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/&#34;&gt;放り込んだ&lt;/a&gt;。
+
+&lt;ul&gt;
+&lt;li&gt;backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&amp;hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -360,48 +397,6 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://nthykier.wordpress.com/2019/01/04/debhelper-compat-12-is-now-released/&#34;&gt;“debhelper-compat (= 12)” is now released&lt;/a&gt;を読む。&lt;code&gt;Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster).  Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.&lt;/code&gt;との記述。&lt;code&gt;Rules-Requires-Root: no&lt;/code&gt;のようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。&lt;/p&gt;
-
-&lt;p&gt;試しに&lt;code&gt;dpkg-dev&lt;/code&gt;をBuild-Dependsにしてみたら&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev [build-depends: dpkg-dev]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あら。。。&lt;code&gt;dpkg-dev 1.19.0&lt;/code&gt;からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは&lt;code&gt;no&lt;/code&gt;をデフォルトにして&lt;code&gt;Rules-Requires-Root: yes&lt;/code&gt;を明示的に宣言させるほうが良くないかね？と思ったので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81&#34;&gt;質問してみた&lt;/a&gt;→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;上記の変更その他を加えて&lt;a href=&#34;https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/&#34;&gt;os-autoinstパッケージをアップロード&lt;/a&gt;。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463&#34;&gt;RCバグ&lt;/a&gt;は&lt;code&gt;severity&lt;/code&gt;を下げておいた。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;debootstrap&lt;/code&gt;パッケージ、夏に作業して放置してたMergeRequestを変更を追加して&lt;a href=&#34;https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9&#34;&gt;Mergeした&lt;/a&gt;。&lt;code&gt;git rebase&lt;/code&gt;なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>DDのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。&lt;/p&gt;
 </description>
           </item>
         
