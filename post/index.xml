@@ -8,10 +8,19 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 02 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 02 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> Bug#918589がマージされた。 ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずはissue登録しておく。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
@@ -2186,15 +2195,6 @@ sudo systemctl start Failed to get D-Bus connection: No such file or directory F
 とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。
 debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立ってdebcheckoutの中身を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。
 じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して Bug#739104 へパッチをポストしておいた。</description>
-    </item>
-    
-    <item>
-      <title>Post title</title>
-      <link>https://henrich.github.io/blog/2015/01/01/post-title/</link>
-      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/2015/01/01/post-title/</guid>
-      <description>Content of the file goes here</description>
     </item>
     
   </channel>
