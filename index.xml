@@ -8,8 +8,90 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 02 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 Feb 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>DDのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;fonts-misakiがサイト移転＆アップデートしてたので&lt;a href=&#34;https://tracker.debian.org/news/1028702/accepted-fonts-misaki-20190203a-1-source-into-unstable/&#34;&gt;対応&lt;/a&gt;を。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 07 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;linuxパッケージのconfigをいじる作業の続き。&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/113&#34;&gt;Bug#920809&lt;/a&gt;と&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/114&#34;&gt;Bug#918114&lt;/a&gt;がマージされた&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;gem2debのテンプレートで&lt;a href=&#34;https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2&#34;&gt;ruby-interpreterが入ってたのを削除するパッチがマージされた&lt;/a&gt;。リリースはまだ。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1028017/accepted-ubuntu-keyring-201809181-4-source-into-unstable/&#34;&gt;ubuntu-keyringパッケージのdebconf poの更新&lt;/a&gt;を取り込んだ。これ、次回からMerge Requestの方が良いような…&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/&#34;&gt;ruby-arubaのアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/enkessler/childprocess/issues/146&#34;&gt;ruby-childprocessのissue&lt;/a&gt;に返信があったので、さらにコメント追記。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -206,180 +288,6 @@
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919337&#34;&gt;JDパッケージの削除を登録した&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>DDのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://twitter.com/kmuto/status/1083503599374675968&#34;&gt;武藤さんがDDを引退された&lt;/a&gt;ので、その引き継ぎとして&lt;a href=&#34;https://tracker.debian.org/pkg/mlterm&#34;&gt;mltermパッケージ&lt;/a&gt;の今後のsponsor uploadを引き受けることになった。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/&#34;&gt;whizzytexパッケージをアップロード&lt;/a&gt;。作業自体は以前にあらかたしていた。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;問題だったのは&lt;code&gt;autopkgtest&lt;/code&gt;。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので&lt;code&gt;emacs --script test.el test.tex&lt;/code&gt;のようにして&lt;code&gt;test.el&lt;/code&gt;の中で以下のようにするなどした。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-elisp&#34;&gt;(find-file (nth 0 command-line-args-left))
-(whizzytex-mode 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの&lt;code&gt;testfile&lt;/code&gt;ファイルにtypoがあって&lt;code&gt;test.tex&lt;/code&gt;とすべきところを&lt;code&gt;test.txt&lt;/code&gt;になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/&#34;&gt;ruby-arubaパッケージをアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ruby-bcat&lt;/code&gt;への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。&lt;/li&gt;
-&lt;li&gt;ん？ということは&lt;code&gt;ruby-bcat&lt;/code&gt;をRMしてもいいんじゃないか。ざっくり&lt;code&gt;apt-rdepends&lt;/code&gt;した結果では依存はないし、&lt;a href=&#34;https://codesearch.debian.net/search?q=ruby-bcat&amp;amp;perpkg=1&#34;&gt;codesearch.debian.netの検索結果&lt;/a&gt;もそれらしいものはない。&lt;code&gt;grep-dctrl&lt;/code&gt;でも同様なので、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248&#34;&gt;RM依頼を登録&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
-Package: ruby-aruba
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474&#34;&gt;libmojo-ioloop-readwriteprocess-perlパッケージ&lt;/a&gt;が入ってくれたので、手元の&lt;code&gt;os-autoinst&lt;/code&gt;をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;ubuntu-keyring&lt;/code&gt;パッケージの&lt;code&gt;debconf template&lt;/code&gt;査読が返ってきてたので、mergeしないと…。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;だいぶ前に&lt;a href=&#34;https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044&#34;&gt;jdがクラッシュするよ、とlaunchpadの方でレポートがあった&lt;/a&gt;（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、&lt;a href=&#34;https://github.com/yama-natuki/JD/issues/15&#34;&gt;パッケージにしたいなー&lt;/a&gt;というのは伝えておいた。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;debootstrapにバグレポートが。
-
-&lt;ul&gt;
-&lt;li&gt;busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加&lt;/li&gt;
-&lt;li&gt;もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。&lt;code&gt;Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC&lt;/code&gt;のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.debian.org/security/2019/dsa-4364&#34;&gt;DSA-4364-1&lt;/a&gt;が出た。お疲れ様でした。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;眠れなくなってしまったので&lt;a href=&#34;https://tracker.debian.org/news/1018082/accepted-snapper-081-3-source-into-unstable/&#34;&gt;snapperパッケージのミス修正とR3いれてアップロード&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;もう月曜日だ！ということで&lt;a href=&#34;https://tracker.debian.org/news/1018088/accepted-debootstrap-10113-source-into-unstable/&#34;&gt;debootstrapのアップロードを上げる&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;某所の喧々諤々のメールのやり取りに辟易して「おまらディスカッション好きなの結構だがな、とっととコード書けやコラ」というメールを送ってしまう。ふー。&lt;/li&gt;
-&lt;li&gt;os-autoinstのperltidyの問題、&lt;a href=&#34;https://progress.opensuse.org/issues/45740&#34;&gt;バージョン間の非互換性によるものだった&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;で、amd64でのビルドは通ったのでi386でやったらまたも同じエラー…仕方がないので&lt;a href=&#34;https://progress.opensuse.org/issues/45782&#34;&gt;チケットを上げた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;先日のsecurity update、「前のパッチにノイズがー」と言われて「？？？」となったが、よく見たら&lt;code&gt;git-buildpackage&lt;/code&gt;によるpatchへの変更が入ってた…取り除いて&lt;code&gt;security-master&lt;/code&gt;へアップロード。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 06 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;snapperパッケージ&lt;/code&gt;のbug triage
-
-&lt;ul&gt;
-&lt;li&gt;報告から３年、&lt;code&gt;moreinfo&lt;/code&gt;タグ付けて「もっと詳しくー」と書いたのに何も有用な話が無い&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=791365#20&#34;&gt;バグを閉じた&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;「snapshotでディスクフルになるー」は、0.8.0からどうやら新しいオプションが増えて有用そうなので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876675#37&#34;&gt;「これで解決しない？」と聞いてみる&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;その過程でmanで書いてあることとconfigで書いてあることが違うのを見つけたので&lt;a href=&#34;https://github.com/openSUSE/snapper/pull/469&#34;&gt;pull request&lt;/a&gt;して、パッケージの方に当てて&lt;a href=&#34;https://tracker.debian.org/news/1017985/accepted-snapper-081-2-source-into-unstable/&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;debootstrap&lt;/code&gt;の変更をpush&lt;/li&gt;
-&lt;li&gt;ruby-なパッケージのtest failed、&lt;a href=&#34;https://uwabami.junkhub.org/log/20121210.html&#34;&gt;佐々木さんのblog&lt;/a&gt;にあった&lt;code&gt;「test/ 以下で実行されることを前提として, 相対パスで必要なライブラリを読み込んでいたりする gem とか?」&lt;/code&gt;ということやね。
-
-&lt;ul&gt;
-&lt;li&gt;ということで、&lt;code&gt;ruby-netrc&lt;/code&gt;パッケージについて&lt;code&gt;require_relative&lt;/code&gt; に書き換えて実施してみる。あとで&lt;a href=&#34;https://ci.debian.net/packages/r/ruby-netrc/unstable/amd64/&#34;&gt;結果&lt;/a&gt;確認しよう…&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;昨日のos-autoinst、対象アーキテクチャを絞ったつもりで忘れてた…&lt;a href=&#34;https://tracker.debian.org/news/1017986/accepted-os-autoinst-4515273084058b586d5-4-source-into-unstable/&#34;&gt;アップロード&lt;/a&gt;…ぬぉぉ &lt;code&gt;i386&lt;/code&gt;アーキテクチャで&lt;code&gt;FAIL: 01-test_needle.t&lt;/code&gt;とテストに失敗するぞ…、手元の&lt;code&gt;sbuild&lt;/code&gt;でも同じだ…以前は問題なく通ってたのにどうなってんだ？&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-perl&#34;&gt;not ok 14 - found area is the original one too
-#   Failed test &#39;found area is the original one too&#39;
-#   at ./01-test_needle.t line 73.
-#  got: &#39;944&#39;
-#     expected: &#39;108&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;うーん。&lt;/p&gt;
-
-&lt;p&gt;とはいえ、upstreamでは直ってるかもしれないよな、と１年間タグが打たれてないupstream HEADをmergeしてビルドする…とテストがコケまくる。一つは依存関係のパッケージが無かったのでいれたのだけど、もう一つの&lt;code&gt;Mojo::IOLoop::ReadWriteProcess&lt;/code&gt;はパッケージ自体がDebianのリポジトリにない…仕方がないから&lt;code&gt;dh-make-perl&lt;/code&gt;で手元で作って&lt;code&gt;ITP(intend to package)&lt;/code&gt;して、アップロードした。&lt;/p&gt;
-
-&lt;p&gt;で、&lt;code&gt;libmojo-ioloop-readwriteprocess-perl&lt;/code&gt;パッケージをテスト環境のchrootに突っ込んでビルドの様子見るか…としたら、やっぱり&lt;code&gt;FAIL: 03-testapi.t&lt;/code&gt;とエラーが出る。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-perl&#34;&gt;^* matches null string many times in regex; marked by &amp;lt;-- HERE in m/^* &amp;lt;-- HERE \.t|^data\/tests\/*|^fake\/tests\/*/ at /usr/lib/x86_64-linux-gnu/perl5/5.28/Devel/Cover.pm line 379.
-Can&#39;t locate Test/Exception.pm in @INC (you may need to install the Test::Exception module) (@INC contains: .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./03-testapi.t line 14.
-BEGIN failed--compilation aborted at ./03-testapi.t line 14.
-FAIL 03-testapi.t (exit status: 2)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あー &lt;code&gt;Test/Exception.pm&lt;/code&gt;が見つけられないのか。&lt;code&gt;libtest-exception-perl&lt;/code&gt;パッケージを入れる…お、テストは全部通った！と思いきや&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;make  check-local
-make[4]: Entering directory &#39;/build/os-autoinst-4.5.1527308405.8b586d5.20190104&#39;
-./tools/tidy --check 
---- ./t/16-send_with_fd.t       2019-01-04 11:55:46.000000000 +0000   
-+++ ./t/16-send_with_fd.t.tdy   2019-01-06 13:43:40.463129038 +0000   
-@@ -33,7 +33,7 @@    
-     shutdown($ask, 2);      
-   
-     my @cmsg = $msg-&amp;gt;cmsghdr();       
--    my $fd   = unpack(&#39;i&#39;, $cmsg[2]); 
-+    my $fd = unpack(&#39;i&#39;, $cmsg[2]);   
-   
-     POSIX::write($fd, $msg-&amp;gt;buf(), 4) 
-       || die &amp;quot;Failed to write echo to pipe: $!&amp;quot;;   
-RUN tools/tidy script before checkin
-make[4]: *** [Makefile:1457: check-local] Error 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;なんじゃこりゃー。&lt;code&gt;tools/tidy&lt;/code&gt;スクリプトによるチェックが&lt;code&gt;check-local&lt;/code&gt;ターゲットで走って、修正が加わってないのがエラーになるという…なんでupstream側で対処してないんだよ。もういい、今日はここまで。openSUSEのtrackerに&lt;a href=&#34;https://progress.opensuse.org/issues/45740&#34;&gt;報告しておく&lt;/a&gt;。ついでに&lt;a href=&#34;https://progress.opensuse.org/issues/45743&#34;&gt;tag打って&lt;/a&gt;、も。&lt;/p&gt;
 </description>
           </item>
         
