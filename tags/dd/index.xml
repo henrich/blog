@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dd on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/dd/</link>
+    <description>Recent content in Dd on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <lastBuildDate>Sat, 09 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://henrich.github.io/blog/tags/dd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>groonga 9.0.0 を deleyed 3 でアップロードした。</description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。  </description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>武藤さんがDDを引退されたので、その引き継ぎとしてmltermパッケージの今後のsponsor uploadを引き受けることになった。</description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>倉敷さんのgoldencheetahパッケージの状況をヒアリング。
+ libusb0.1に依存しているが、libusb0.1はもう古いからDebianから消したいよねという動きがある。 でもgoldencheetah側としては「マルチプラットフォーム対応してるので、壊したくないよね」なのでlibusb1.0に動くのは消極的 libusb-compatという「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。  ただし、goldencheetahでは「使うようにしよう」というPRが来ているものの実装はされてない感じ Debian側もdeadからhalf-deadになるだけじゃね？というコメントもある。 個人的にはhalf-deadならいいじゃん、と思うけど… ちなみにlibusb-compatはDebianではパッケージになっていない  ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ  最新のdh12に更新、不要になったファイルやオプションを消す insecureなgitプロトコルやhttpをhttpsに置き換え debian/watchはv4形式にして簡易に書ける  cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。  </description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</description>
+    </item>
+    
+    <item>
+      <title>DDのおしごと</title>
+      <link>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>アップロードがrejectされてたので
+$ dcut dm --uid 0x9394F354891D7E07 --allow fonts-mmcedar Uploading commands file to ftp.upload.debian.org (incoming: /pub/UploadQueue/) Picking DM Youhei SASAKI &amp;lt;uwabami@gfd-dennou.org&amp;gt; with fingerprint 66A4EA704FE240558D6AC2E69394F354891D7E07 Uploading henrich-1545485367.dak-commands to ftp-master  として佐々木さんのDM uploadを設定しておいた。</description>
+    </item>
+    
+  </channel>
+</rss>

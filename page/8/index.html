@@ -60,6 +60,145 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 10, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/931316">xfonts-mplusを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931318">xfonts-shinonomeを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931319">xfonts-ayuを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931322">xfonts-efont-unicodeを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931323">xfonts-kanameを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931337">xfonts-naga10を更新</a></li>
+<li><a href="https://tracker.debian.org/news/931540">fonts-aoyagi-kouzan-tを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931541">fonts-arphic-bkai00mpを更新</a></li>
+<li><a href="https://tracker.debian.org/news/931645">jcodingsを更新</a>、salsa移行はまだ目処立たず。</li>
+<li><a href="https://tracker.debian.org/news/931659">nailgunを更新</a>、salsa移行はまだ目処立たず。</li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</p>
+
+<pre><code>make[1]: Entering directory '/builds/fonts-team/xfonts-kappa20'
+bdftopcf k20m.bdf | gzip -c9 -n &gt; pcf/k20m.pcf.gz
+/bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
+Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
+</code></pre></li>
+</ul>
+
+<p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
+
+<hr />
+
+<p>sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。</p>
+
+<pre><code>  * debian/control
+    - add Build-Depends: dh-exec to modify icon files' name
+  * debian/sylpheed.install
+    - install icon files to appropriate locations (Closes: #823018)
+  * debian/sylpheed.dirs
+    - adjust as above
+  * debian/dirs
+    - unused, drop it
+  * debian/sylpheed-debian.xpm
+    - menu system was already deprecated, drop it
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Feb 9, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/931241">libsylphを更新</a></p>
+
+<pre><code>libsylph (1.1.0-19) unstable; urgency=medium
+
+* debian/patches
+- add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
+
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 09 Feb 2018 23:32:14 +0900
+</code></pre></li>
+
+<li><p>sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。<a href="https://sylpheed.sraoss.jp/redmine/issues/296">忘れないうちにupstreamにも登録</a></p>
+
+<pre><code>sylpheed (3.7.0-2) UNRELEASED; urgency=medium
+
+* debian/control
+- drop Build-Depends: libdbus-glib-1-dev
+  It was introduced since enchant with zemberek crashes without it in 3.0,
+  however, enchant package was built with &quot;--disable-zemberek&quot; option,
+  so it isn't necessary.
+* debian/patches
+- add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
+  properly (Closes: #889971)
+</code></pre></li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -527,177 +666,6 @@ $ git push salsa mones
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jan 28, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/git">git</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージをsalsaに配置してもらって、<a href="https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a">前に報告した些細な修正</a>をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？</li>
-<li>同じくqrencodeパッケージの報告者の勘違いに起因すると思われる<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984">バグ</a><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266">二つ</a>をクローズしておいた</li>
-</ul>
-
-<hr />
-
-<p>qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。</p>
-
-<p>さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。</p>
-
-<ol>
-<li>まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。<code>mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av</code> などとした。</li>
-<li>つぎに親が同一ではないブランチ（orphan branch)を作る <code>git checkout --orphan master</code></li>
-<li>この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す <code>git rm --cached -r debian</code></li>
-<li><code>git remote add upstream https://github.com/fukuchi/libqrencode</code> でupstreamを引っ張ってくる</li>
-<li><code>git pull upstream master</code>したがtag持ってこなかったから<code>git pull upstream</code>も実行</li>
-<li><code>git checkout debian</code>して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために <code>git merge v4.0.0  --allow-unrelated-histories</code></li>
-</ol>
-
-<p>上記の変更点がackされたら提案したい</p>
-
-<hr />
-
-<ul>
-<li>svn-workbenchの<a href="http://pysvn.tigris.org/issues/show_bug.cgi?id=212">1行パッチをフォワード</a>。使いづらいな。。。</li>
-<li>svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li><p>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</p>
-
-<pre><code>dh_install                                                                                                                         
-perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
-
-Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
-</code></pre></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347">パッチしておいた</a></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 27, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888535">snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘</a>。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして<a href="https://github.com/openSUSE/snapper/pull/386">Pull Request</a>。</p>
-
-<pre><code>--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000
-+++ configure.ac        2018-01-27 16:24:56.910015986 +0000
-@@ -60,11 +60,14 @@
- 
-fillupdir=/var/adm/fillup-templates
- 
-+SYSCONFIG=/etc/sysconfig
-+
-AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]),
-    [with_conf=$withval], [with_conf=no])
- 
--AS_IF([test &quot;x$with_conf&quot; != xno], [CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;${with_conf}\&quot;'&quot;],
--       [CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;/etc/sysconfig\&quot;'&quot;])
-+AS_IF([test &quot;x$with_conf&quot; != xno], [SYSCONFIG=&quot;${with_conf}&quot;])
-+
-+CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;${SYSCONFIG}\&quot;'&quot;
- 
-AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]),
-            [with_btrfs=$enableval],[with_btrfs=yes])
-@@ -153,6 +156,7 @@
-AC_SUBST(LIBVERSION_MINOR)
-AC_SUBST(LIBVERSION_PATCHLEVEL)
-AC_SUBST(LIBVERSION_INFO)
-+AC_SUBST(SYSCONFIG)
-AC_SUBST(docdir)
-AC_SUBST(fillupdir)
-
-
-diff --git a/doc/snapper.xml.in b/doc/snapper.xml.in
-index 1507b5d..9073ab3 100644
---- a/doc/snapper.xml.in
-+++ b/doc/snapper.xml.in
-@@ -686,7 +686,7 @@
- &lt;title&gt;FILES&lt;/title&gt;
- &lt;variablelist&gt;
-   &lt;varlistentry&gt;
--       &lt;term&gt;&lt;filename&gt;/etc/sysconfig/snapper&lt;/filename&gt;&lt;/term&gt;
-+       &lt;term&gt;&lt;filename&gt;@SYSCONFIG@/snapper&lt;/filename&gt;&lt;/term&gt;
-    &lt;listitem&gt;
-      &lt;para&gt;Global configuration file.&lt;/para&gt;
-    &lt;/listitem&gt;
-</code></pre></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -920,7 +888,16 @@ index 1507b5d..9073ab3 100644
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/21/">21</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/22/">22</a></li>
     
     
     <li class="page-item">
@@ -928,7 +905,7 @@ index 1507b5d..9073ab3 100644
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/21/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

@@ -23,9 +23,18 @@
     </item>
     
     <item>
+      <title>Dd</title>
+      <link>https://henrich.github.io/blog/tags/dd/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/dd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Debian</title>
       <link>https://henrich.github.io/blog/tags/debian/</link>
-      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/debian/</guid>
       <description></description>
