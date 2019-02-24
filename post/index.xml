@@ -19,6 +19,21 @@
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやらsquid-deb-proxy-clientがおかしい。
+squid-deb-proxy-clientの中身を見てコマンドを実行。
+23443 ? Ss 1:44 \_ tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell 23450 pts/2 Ss 0:00 \_ /bin/bash 22690 pts/2 S+ 0:00 | \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian 22691 pts/2 Z+ 0:00 | \_ [avahi-browse] &amp;lt;defunct&amp;gt;  というようになったので、試しに引数なしで
+23450 pts/2 Ss 0:00 \_ /bin/bash 24148 pts/2 S+ 0:00 | \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover 24149 pts/2 Z+ 0:00 | \_ [avahi-browse] &amp;lt;defunct&amp;gt;  おお、defunct…。
+この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…
+birdfontの依存関係を微調整するバグレポートが来てたので対応した。
+W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>debian-mirror.sakura.ne.jpでのmuninでの監視で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。
 You don&#39;t have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.  ということなので、いろいろ調べて http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI を見てから
 $ sudo apt-get install libapache2-mod-fcgid $ sudo a2enmod rewrite $ sudo a2enmod fcgid  としてから/etc/apache2/conf-enabled/munin.confを以下のように書き換え。

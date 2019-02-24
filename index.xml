@@ -19,6 +19,48 @@
             <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやら&lt;code&gt;squid-deb-proxy-client&lt;/code&gt;がおかしい。&lt;/p&gt;
+
+&lt;p&gt;squid-deb-proxy-clientの中身を見てコマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;23443 ?        Ss     1:44  \_ tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell
+23450 pts/2    Ss     0:00      \_ /bin/bash
+22690 pts/2    S+     0:00      |   \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian
+22691 pts/2    Z+     0:00      |       \_ [avahi-browse] &amp;lt;defunct&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;というようになったので、試しに引数なしで&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;23450 pts/2    Ss     0:00      \_ /bin/bash
+24148 pts/2    S+     0:00      |   \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover
+24149 pts/2    Z+     0:00      |       \_ [avahi-browse] &amp;lt;defunct&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;おお、defunct…。&lt;/p&gt;
+
+&lt;p&gt;この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949&#34;&gt;birdfontの依存関係を微調整するバグレポート&lt;/a&gt;が来てたので対応した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lintian&#34;&gt;W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とあったが、これはどっちに揃えるのが良いのだろうね？&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/munin/&#34;&gt;debian-mirror.sakura.ne.jpでのmuninでの監視&lt;/a&gt;で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;You don&#39;t have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
@@ -26,7 +68,7 @@
 
 &lt;p&gt;ということなので、いろいろ調べて &lt;a href=&#34;http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI&#34;&gt;http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI&lt;/a&gt; を見てから&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt; $ sudo apt-get install libapache2-mod-fcgid
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; $ sudo apt-get install libapache2-mod-fcgid
  $ sudo a2enmod rewrite
  $ sudo a2enmod fcgid
 &lt;/code&gt;&lt;/pre&gt;
@@ -265,27 +307,6 @@
 &lt;li&gt;backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&amp;hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://internet.watch.impress.co.jp/docs/news/1166054.html&#34;&gt;Internetwatchの記事&lt;/a&gt;の見出しが「「Debian GNU/Linux」に関する脆弱性が171件、第4四半期「JVN iPedia」への登録状況」と、Debianだけ危険みたいな感じだったので苦情を入れた。こんな感じ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;IPAの該当レポートについては、確かにDebianについての脆弱性数がトップであることは事実として記述されておりましたが、レポートの構成としてはサポートが終了するJava8、それからXSS脆弱性とバッファオーバーランについてが多くを占めています（それぞれ章立てされていました）。ここに全く触れていないことはどの様な意図があったのでしょうか。
-
-「3. 脆弱性対策情報の製品別登録状況」の項にてDebianの脆弱性数が述べられていますが、DebianやUbuntuそしてRed Hat Enterprise Linuxの様なLinuxディストリビューションはWindows Serverなどとは違ってOSのみだけではなくLibreOfficeなどのオフィススイート、Firefoxなどのブラウザ、Tomcatなどのミドルウェア、Apacheなどのサーバーなどを全て含んで提供されています。Debianでの配布ソフトウェアパッケージ数はおおよそ5〜6万です。その背景を把握せずに、単純に「脆弱性が多い」とだけ見出しに書かれるのは、大変遺憾であると同時に、記事の薄さを指摘せざるを得ません。
-
-今後の改善に期待したいと思います。失礼します。
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         

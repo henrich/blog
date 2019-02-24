@@ -73,6 +73,73 @@
 								
 							<a href="/blog/tags/debian">debian</a>
 						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやら<code>squid-deb-proxy-client</code>がおかしい。</p>
+
+<p>squid-deb-proxy-clientの中身を見てコマンドを実行。</p>
+
+<pre><code class="language-bash">23443 ?        Ss     1:44  \_ tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell
+23450 pts/2    Ss     0:00      \_ /bin/bash
+22690 pts/2    S+     0:00      |   \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian
+22691 pts/2    Z+     0:00      |       \_ [avahi-browse] &lt;defunct&gt;
+</code></pre>
+
+<p>というようになったので、試しに引数なしで</p>
+
+<pre><code class="language-bash">23450 pts/2    Ss     0:00      \_ /bin/bash
+24148 pts/2    S+     0:00      |   \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover
+24149 pts/2    Z+     0:00      |       \_ [avahi-browse] &lt;defunct&gt;
+</code></pre>
+
+<p>おお、defunct…。</p>
+
+<p>この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…</p>
+
+<hr />
+
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949">birdfontの依存関係を微調整するバグレポート</a>が来てたので対応した。</p>
+
+<pre><code class="language-lintian">W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
+</code></pre>
+
+<p>とあったが、これはどっちに揃えるのが良いのだろうね？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 23, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
 								 , 
 							<a href="/blog/tags/munin">munin</a>
 						
@@ -90,7 +157,7 @@
 
 <p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
 
-<pre><code class="language-bash"> $ sudo apt-get install libapache2-mod-fcgid
+<pre><code class="language-shell"> $ sudo apt-get install libapache2-mod-fcgid
  $ sudo a2enmod rewrite
  $ sudo a2enmod fcgid
 </code></pre>
@@ -443,48 +510,6 @@
 						<ul>
 <li>gem2debのテンプレートで<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterが入ってたのを削除するパッチがマージされた</a>。リリースはまだ。</li>
 <li><a href="https://tracker.debian.org/news/1028017/accepted-ubuntu-keyring-201809181-4-source-into-unstable/">ubuntu-keyringパッケージのdebconf poの更新</a>を取り込んだ。これ、次回からMerge Requestの方が良いような…</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Feb 5, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/">ruby-arubaのアップデート</a></li>
-<li><a href="https://github.com/enkessler/childprocess/issues/146">ruby-childprocessのissue</a>に返信があったので、さらにコメント追記。</li>
 </ul>
 
 					
