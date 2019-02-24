@@ -8,8 +8,47 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 17 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/munin/&#34;&gt;debian-mirror.sakura.ne.jpでのmuninでの監視&lt;/a&gt;で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;You don&#39;t have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ということなので、いろいろ調べて &lt;a href=&#34;http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI&#34;&gt;http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI&lt;/a&gt; を見てから&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install libapache2-mod-fcgid
+$ sudo a2enmod rewrite
+$ sudo a2enmod fcgid
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;としてから&lt;code&gt;/etc/apache2/conf-enabled/munin.conf&lt;/code&gt;を以下のように書き換え。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
++++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
+@@ -11,7 +11,7 @@
+ 
+ ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
+ &amp;lt;Location /munin-cgi/munin-cgi-graph&amp;gt;
+-        Require local
++        Require all granted
+         &amp;lt;IfModule mod_fcgid.c&amp;gt;
+             SetHandler fcgid-script
+         &amp;lt;/IfModule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -247,23 +286,6 @@
 
 今後の改善に期待したいと思います。失礼します。
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/107&#34;&gt;Bug#912597向けにMergeRequest&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832458&#34;&gt;Bug#832458&lt;/a&gt;での&lt;code&gt;CONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=m&lt;/code&gt;はすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

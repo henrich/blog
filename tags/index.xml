@@ -34,7 +34,7 @@
     <item>
       <title>Debian</title>
       <link>https://henrich.github.io/blog/tags/debian/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/debian/</guid>
       <description></description>
@@ -100,6 +100,15 @@
       <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/infra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Munin</title>
+      <link>https://henrich.github.io/blog/tags/munin/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/munin/</guid>
       <description></description>
     </item>
     

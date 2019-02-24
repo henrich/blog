@@ -60,6 +60,138 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 3, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688">ruby-netrcパッケージのバグ</a>のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。<code>assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path</code>が以下のような結果になる。</p>
+
+<pre><code class="language-ruby">  1) Failure:
+TestNetrc#test_missing_environment [/&lt;&lt;PKGBUILDDIR&gt;&gt;/test/test_netrc.rb:203]:
+--- expected
++++ actual
+@@ -1,2 +1 @@
+-# encoding: ASCII-8BIT
+-&quot;/&lt;&lt;PKGBUILDDIR&gt;&gt;/.netrc&quot;
++&quot;/build/.netrc&quot;
+</code></pre>
+
+<p><code>&lt;&lt;PKGBUILDDIR&gt;&gt;</code>なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は<code>cowbuilder</code>でやってしまっていたので、<code>sbuild</code>環境を用意するのにも時間が&hellip;あれ？<code>sbuild</code>でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？</p>
+
+<p>バグレポートを再度よく読み、テスト部分を再確認。</p>
+
+<pre><code class="language-ruby">  def test_missing_environment
+    nil_home = nil
+    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
+  ensure
+    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+  end
+</code></pre>
+
+<p><code>default_path</code>でgrep…。</p>
+
+<pre><code class="language-ruby">  def self.default_path
+    File.join(ENV['NETRC'] || home_path, netrc_filename)
+  end
+</code></pre>
+
+<p>あー、これだ。<code>NETRC</code>が存在しない場合に<code>home_path</code>、つまりは上記のエラーになる環境では<code>/build</code>が指定されてるのにもかかわらず、ビルドをしている<code>Dir.pwd</code>は別、ということだろうな。さて、どういうふうにして回避するかね…</p>
+
+<pre><code class="language-ruby">    p nil_home
+    p ENV[&quot;HOME&quot;]
+    p Netrc.home_path
+</code></pre>
+
+<p>とすると</p>
+
+<pre><code class="language-ruby">&quot;/home/henrich&quot;
+nil
+&quot;/build/ruby-netrc-0.11.0&quot;
+</code></pre>
+
+<p>が返る。あれ？予想と違う。<code>home_path</code>は<code>/build/ruby-netrc-0.11.0</code>なのか。<code>ENV[&quot;HOME&quot;]</code>が<code>nil</code>であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう</p>
+
+<pre><code class="language-ruby">--- a/test/test_netrc.rb
++++ b/test/test_netrc.rb
+@@ -200,7 +200,7 @@
+   def test_missing_environment
+     nil_home = nil
+     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+-    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
++    assert_equal File.join(Netrc.home_path, '.netrc'), Netrc.default_path
+   ensure
+     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
+   end
+</code></pre>
+
+<p>でアップロードした。</p>
+
+<hr />
+
+<p>ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26">質問した</a>。→どうやらsegfaultするという問題があるらしい。うーむ。</p>
+
+<hr />
+
+<p>os-autoinstを直せるかな、と思ってビルドするも</p>
+
+<pre><code class="language-bash">The following packages have unmet dependencies:
+ libopencv-imgcodecs3.2 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package
+
+ libvtk6.3 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package 
+</code></pre>
+
+<p>げぇ。</p>
+
+<pre><code class="language-bash">Package: libgdal20
+Version: 2.4.0+dfsg-1
+Priority: optional
+Section: libs
+Source: gdal
+Maintainer: Debian GIS Project &lt;pkg-grass-devel@lists.alioth.debian.org&gt;
+Installed-Size: 20.2 MB
+Provides: gdal-abi-2-4-0
+</code></pre>
+
+<p>こいつか…。<a href="https://release.debian.org/transitions/html/gdal-2-4-0.html">Transition tracker</a>を見る限り、ここ１時間でビルドされたりしてるので、今日はたまたまあたってしまった、という感じか。</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/">fonts-monapoパッケージをアップデート</a>。upstreamが配布しなくなってた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -484,64 +616,6 @@ Uploading henrich-1545485367.dak-commands to ftp-master
 </code></pre>
 
 <p>として佐々木さんのDM uploadを設定しておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Dec 22, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>作業途中で夏から放置してた<a href="https://tracker.debian.org/news/1013364/accepted-ubuntu-keyring-20160513-2-source-into-unstable/">ubuntu-keyringパッケージをアップロード</a>。debconfを使って<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826558">デフォルトではtrusted GPG keyringとしては扱わないように変更</a>。</p>
-
-<p>さらにnew upstream release対応を手元で作成。Ubuntuでのrulesを見るとGPGファイルのチェックをしてたので、それを参考にしてautopkgtestを追加。いろいろGPGのオプションを指定する必要があった。</p>
-
-<ul>
-<li><code>--trusted-key &quot;$trusted_keyid&quot;</code> のようにして署名鍵を信頼しないとエラーになる。通常なら自分のtrustdbに追加されてる感じだけど、テスト環境にはそんなのはないし、fetchするのもネット環境必須になってしまうので。もう一つの解としてはローカルに落としておく、だけど、それは大仰かな。</li>
-<li><code>--no-auto-check-trustdb</code> を付けないとtrustdbのチェックにやたら時間がかかるので</li>
-</ul>
-
-<hr />
-
-<p>先日、<a href="https://salsa.debian.org/ocaml-team/camlimages/commit/152b6a35c9ff24fd0ad96a2b3d1e5aab3e404055">camlimagesパッケージの変更をmerge request</a>したのだけど、最小なテスト作っても意図通りにならなかったな、ということだけ覚えていたのでメモしておく。何をどうやったのか、は思い出したら書こう…</p>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/1013368/accepted-fonts-kanjistrokeorders-4002dfsg-1-source-into-unstable/">fonts-kanjistrokeordersパッケージをアップデート</a></p>
-
-<hr />
-
-<p>久々に<a href="https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html">installation guide訳を更新</a>。</p>
 
 					
 				</div>

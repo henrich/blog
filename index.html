@@ -60,6 +60,73 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Feb 24, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/munin">munin</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="http://debian-mirror.sakura.ne.jp/munin/">debian-mirror.sakura.ne.jpでのmuninでの監視</a>で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。</p>
+
+<pre><code class="language-error">You don't have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
+</code></pre>
+
+<p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
+
+<pre><code class="language-bash">$ sudo apt-get install libapache2-mod-fcgid
+$ sudo a2enmod rewrite
+$ sudo a2enmod fcgid
+</code></pre>
+
+<p>としてから<code>/etc/apache2/conf-enabled/munin.conf</code>を以下のように書き換え。</p>
+
+<pre><code class="language-diff">--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
++++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
+@@ -11,7 +11,7 @@
+ 
+ ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
+ &lt;Location /munin-cgi/munin-cgi-graph&gt;
+-        Require local
++        Require all granted
+         &lt;IfModule mod_fcgid.c&gt;
+             SetHandler fcgid-script
+         &lt;/IfModule&gt;
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/02/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -418,49 +485,6 @@
 						<ul>
 <li><a href="https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/">ruby-arubaのアップデート</a></li>
 <li><a href="https://github.com/enkessler/childprocess/issues/146">ruby-childprocessのissue</a>に返信があったので、さらにコメント追記。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 2, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/106">Bug#918589</a>がマージされた。</li>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597</a>がマージされた。</li>
-<li>ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずは<a href="https://github.com/enkessler/childprocess/issues/146">issue登録</a>しておく。</li>
 </ul>
 
 					

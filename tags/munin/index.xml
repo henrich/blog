@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Munin on Forget me not...</title>
+    <link>https://henrich.github.io/blog/tags/munin/</link>
+    <description>Recent content in Munin on Forget me not...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
+    <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://henrich.github.io/blog/tags/munin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>debian-mirror.sakura.ne.jpでのmuninでの監視で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。
+You don&#39;t have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.  ということなので、いろいろ調べて http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI を見てから
+$ sudo apt-get install libapache2-mod-fcgid $ sudo a2enmod rewrite $ sudo a2enmod fcgid  としてから/etc/apache2/conf-enabled/munin.confを以下のように書き換え。
+--- /tmp/munin.conf 2019-02-23 23:06:32.694400917 +0900 +++ /etc/apache2/conf-enabled/munin.conf 2019-02-23 23:06:41.302614319 +0900 @@ -11,7 +11,7 @@ ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph &amp;lt;Location /munin-cgi/munin-cgi-graph&amp;gt; - Require local + Require all granted &amp;lt;IfModule mod_fcgid.c&amp;gt; SetHandler fcgid-script &amp;lt;/IfModule&amp;gt;  </description>
+    </item>
+    
+  </channel>
+</rss>
