@@ -86,15 +86,6 @@
 &lt;p&gt;おお、defunct…。&lt;/p&gt;
 
 &lt;p&gt;この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949&#34;&gt;birdfontの依存関係を微調整するバグレポート&lt;/a&gt;が来てたので対応した。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-lintian&#34;&gt;W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とあったが、これはどっちに揃えるのが良いのだろうね？&lt;/p&gt;
 </description>
           </item>
         
