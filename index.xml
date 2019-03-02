@@ -8,8 +8,41 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので&lt;a href=&#34;https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/&#34;&gt;対応&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949&#34;&gt;birdfontの依存関係を微調整するバグレポート&lt;/a&gt;が来てたので対応した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-lintian&#34;&gt;W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とあったが、これはどっちに揃えるのが良いのだろうね？&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -140,6 +173,20 @@
       
         
           <item>
+            <title>DDのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1032572/accepted-libhinawa-111-1-source-into-unstable/&#34;&gt;libhinawaをアップロード&lt;/a&gt;した。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>めんてなのおしごと</title>
             <link>https://henrich.github.io/blog/2019/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
             <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
@@ -250,62 +297,6 @@
 &lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/106&#34;&gt;Bug#918589&lt;/a&gt;がマージされた。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/107&#34;&gt;Bug#912597&lt;/a&gt;がマージされた。&lt;/li&gt;
 &lt;li&gt;ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずは&lt;a href=&#34;https://github.com/enkessler/childprocess/issues/146&#34;&gt;issue登録&lt;/a&gt;しておく。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/105&#34;&gt;Bug#917388&lt;/a&gt;がマージされた&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;JDimをビルドしたのでアップロードした。NEW queue待ち。
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;JDimのITPを投げた。&lt;a href=&#34;https://bugs.debian.org/920684&#34;&gt;Bug#920684&lt;/a&gt;が割り当てられました。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cdimage.debian.or.jp&#34;&gt;cdimage.debian.or.jp&lt;/a&gt;を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html&#34;&gt;PublickeyのSSPL記事&lt;/a&gt;について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org&#34;&gt;Maintainer Dashboard&lt;/a&gt;でsnapperのアップデートを見つけたので、&lt;a href=&#34;https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/&#34;&gt;放り込んだ&lt;/a&gt;。
-
-&lt;ul&gt;
-&lt;li&gt;backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&amp;hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
