@@ -22,6 +22,16 @@
             <description>&lt;ul&gt;
 &lt;li&gt;partman-lvmの&lt;a href=&#34;https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2/diffs&#34;&gt;regression修正&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#62&#34;&gt;release managerからは「もう遅い」と言われてしまった&lt;/a&gt;が、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#83&#34;&gt;アップロードされた&lt;/a&gt;。恐らくBug Squashing Partyのおかげ。&lt;/li&gt;
 &lt;li&gt;リリースノートの翻訳を始めたが、&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/2&#34;&gt;細かい所（entityで「svn」の文字が残ってるのが気になった）のでMerge Requestした&lt;/a&gt;ら速攻でMergeされた。&lt;/li&gt;
+&lt;li&gt;live-buildがbuster対応してない件、未だにアップロードされないので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924293&#34;&gt;バグ登録しておいた&lt;/a&gt;。patchはマージ済みなのに。
+
+&lt;ul&gt;
+&lt;li&gt;その日のうちにアップロードが来ました。よしよし&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;色々泣きそうになりながらubuntu-keyringパッケージに対して自分で仕込んだバグへの対応。&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922177&#34;&gt;バグレポートの指摘&lt;/a&gt;がありがたい。。。なんとかクローズ。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/pkg/shellcheck&#34;&gt;shellcheck&lt;/a&gt;を自動でkickするようにしたほうが良い気がしてきた…&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

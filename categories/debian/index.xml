@@ -19,7 +19,7 @@
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/03/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> partman-lvmのregression修正、release managerからは「もう遅い」と言われてしまったが、アップロードされた。恐らくBug Squashing Partyのおかげ。 リリースノートの翻訳を始めたが、細かい所（entityで「svn」の文字が残ってるのが気になった）のでMerge Requestしたら速攻でMergeされた。  </description>
+      <description> partman-lvmのregression修正、release managerからは「もう遅い」と言われてしまったが、アップロードされた。恐らくBug Squashing Partyのおかげ。 リリースノートの翻訳を始めたが、細かい所（entityで「svn」の文字が残ってるのが気になった）のでMerge Requestしたら速攻でMergeされた。 live-buildがbuster対応してない件、未だにアップロードされないのでバグ登録しておいた。patchはマージ済みなのに。  その日のうちにアップロードが来ました。よしよし  色々泣きそうになりながらubuntu-keyringパッケージに対して自分で仕込んだバグへの対応。バグレポートの指摘がありがたい。。。なんとかクローズ。  shellcheckを自動でkickするようにしたほうが良い気がしてきた…   </description>
     </item>
     
     <item>
