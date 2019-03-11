@@ -60,6 +60,329 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 14, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/">whizzytexパッケージをアップロード</a>。作業自体は以前にあらかたしていた。</p>
+
+<ul>
+<li>問題だったのは<code>autopkgtest</code>。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので<code>emacs --script test.el test.tex</code>のようにして<code>test.el</code>の中で以下のようにするなどした。</li>
+</ul>
+
+<pre><code class="language-elisp">(find-file (nth 0 command-line-args-left))
+(whizzytex-mode 1)
+</code></pre>
+
+<ul>
+<li>その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの<code>testfile</code>ファイルにtypoがあって<code>test.tex</code>とすべきところを<code>test.txt</code>になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…</li>
+<li><a href="https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/">ruby-arubaパッケージをアップロード</a></li>
+<li><code>ruby-bcat</code>への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。</li>
+<li>ん？ということは<code>ruby-bcat</code>をRMしてもいいんじゃないか。ざっくり<code>apt-rdepends</code>した結果では依存はないし、<a href="https://codesearch.debian.net/search?q=ruby-bcat&amp;perpkg=1">codesearch.debian.netの検索結果</a>もそれらしいものはない。<code>grep-dctrl</code>でも同様なので、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">RM依頼を登録</a></li>
+</ul>
+
+<pre><code class="language-bash">$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
+Package: ruby-aruba
+</code></pre></li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474">libmojo-ioloop-readwriteprocess-perlパッケージ</a>が入ってくれたので、手元の<code>os-autoinst</code>をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。</p></li>
+
+<li><p><code>ubuntu-keyring</code>パッケージの<code>debconf template</code>査読が返ってきてたので、mergeしないと…。</p></li>
+
+<li><p>だいぶ前に<a href="https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044">jdがクラッシュするよ、とlaunchpadの方でレポートがあった</a>（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、<a href="https://github.com/yama-natuki/JD/issues/15">パッケージにしたいなー</a>というのは伝えておいた。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>debootstrapにバグレポートが。
+
+<ul>
+<li>busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加</li>
+<li>もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。<code>Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC</code>のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。</li>
+</ul></li>
+<li><a href="https://www.debian.org/security/2019/dsa-4364">DSA-4364-1</a>が出た。お疲れ様でした。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 7, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>眠れなくなってしまったので<a href="https://tracker.debian.org/news/1018082/accepted-snapper-081-3-source-into-unstable/">snapperパッケージのミス修正とR3いれてアップロード</a></li>
+<li>もう月曜日だ！ということで<a href="https://tracker.debian.org/news/1018088/accepted-debootstrap-10113-source-into-unstable/">debootstrapのアップロードを上げる</a></li>
+<li>某所の喧々諤々のメールのやり取りに辟易して「おまらディスカッション好きなの結構だがな、とっととコード書けやコラ」というメールを送ってしまう。ふー。</li>
+<li>os-autoinstのperltidyの問題、<a href="https://progress.opensuse.org/issues/45740">バージョン間の非互換性によるものだった</a>
+
+<ul>
+<li>で、amd64でのビルドは通ったのでi386でやったらまたも同じエラー…仕方がないので<a href="https://progress.opensuse.org/issues/45782">チケットを上げた</a></li>
+</ul></li>
+<li>先日のsecurity update、「前のパッチにノイズがー」と言われて「？？？」となったが、よく見たら<code>git-buildpackage</code>によるpatchへの変更が入ってた…取り除いて<code>security-master</code>へアップロード。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jan 6, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>snapperパッケージ</code>のbug triage
+
+<ul>
+<li>報告から３年、<code>moreinfo</code>タグ付けて「もっと詳しくー」と書いたのに何も有用な話が無い<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=791365#20">バグを閉じた</a></li>
+<li>「snapshotでディスクフルになるー」は、0.8.0からどうやら新しいオプションが増えて有用そうなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876675#37">「これで解決しない？」と聞いてみる</a></li>
+<li>その過程でmanで書いてあることとconfigで書いてあることが違うのを見つけたので<a href="https://github.com/openSUSE/snapper/pull/469">pull request</a>して、パッケージの方に当てて<a href="https://tracker.debian.org/news/1017985/accepted-snapper-081-2-source-into-unstable/">アップロード</a></li>
+</ul></li>
+<li><code>debootstrap</code>の変更をpush</li>
+<li>ruby-なパッケージのtest failed、<a href="https://uwabami.junkhub.org/log/20121210.html">佐々木さんのblog</a>にあった<code>「test/ 以下で実行されることを前提として, 相対パスで必要なライブラリを読み込んでいたりする gem とか?」</code>ということやね。
+
+<ul>
+<li>ということで、<code>ruby-netrc</code>パッケージについて<code>require_relative</code> に書き換えて実施してみる。あとで<a href="https://ci.debian.net/packages/r/ruby-netrc/unstable/amd64/">結果</a>確認しよう…</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>昨日のos-autoinst、対象アーキテクチャを絞ったつもりで忘れてた…<a href="https://tracker.debian.org/news/1017986/accepted-os-autoinst-4515273084058b586d5-4-source-into-unstable/">アップロード</a>…ぬぉぉ <code>i386</code>アーキテクチャで<code>FAIL: 01-test_needle.t</code>とテストに失敗するぞ…、手元の<code>sbuild</code>でも同じだ…以前は問題なく通ってたのにどうなってんだ？</p>
+
+<pre><code class="language-perl">not ok 14 - found area is the original one too
+#   Failed test 'found area is the original one too'
+#   at ./01-test_needle.t line 73.
+#  got: '944'
+#     expected: '108'
+</code></pre>
+
+<p>うーん。</p>
+
+<p>とはいえ、upstreamでは直ってるかもしれないよな、と１年間タグが打たれてないupstream HEADをmergeしてビルドする…とテストがコケまくる。一つは依存関係のパッケージが無かったのでいれたのだけど、もう一つの<code>Mojo::IOLoop::ReadWriteProcess</code>はパッケージ自体がDebianのリポジトリにない…仕方がないから<code>dh-make-perl</code>で手元で作って<code>ITP(intend to package)</code>して、アップロードした。</p>
+
+<p>で、<code>libmojo-ioloop-readwriteprocess-perl</code>パッケージをテスト環境のchrootに突っ込んでビルドの様子見るか…としたら、やっぱり<code>FAIL: 03-testapi.t</code>とエラーが出る。</p>
+
+<pre><code class="language-perl">^* matches null string many times in regex; marked by &lt;-- HERE in m/^* &lt;-- HERE \.t|^data\/tests\/*|^fake\/tests\/*/ at /usr/lib/x86_64-linux-gnu/perl5/5.28/Devel/Cover.pm line 379.
+Can't locate Test/Exception.pm in @INC (you may need to install the Test::Exception module) (@INC contains: .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./03-testapi.t line 14.
+BEGIN failed--compilation aborted at ./03-testapi.t line 14.
+FAIL 03-testapi.t (exit status: 2)
+</code></pre>
+
+<p>あー <code>Test/Exception.pm</code>が見つけられないのか。<code>libtest-exception-perl</code>パッケージを入れる…お、テストは全部通った！と思いきや</p>
+
+<pre><code class="language-bash">make  check-local
+make[4]: Entering directory '/build/os-autoinst-4.5.1527308405.8b586d5.20190104'
+./tools/tidy --check 
+--- ./t/16-send_with_fd.t       2019-01-04 11:55:46.000000000 +0000   
++++ ./t/16-send_with_fd.t.tdy   2019-01-06 13:43:40.463129038 +0000   
+@@ -33,7 +33,7 @@    
+     shutdown($ask, 2);      
+   
+     my @cmsg = $msg-&gt;cmsghdr();       
+-    my $fd   = unpack('i', $cmsg[2]); 
++    my $fd = unpack('i', $cmsg[2]);   
+   
+     POSIX::write($fd, $msg-&gt;buf(), 4) 
+       || die &quot;Failed to write echo to pipe: $!&quot;;   
+RUN tools/tidy script before checkin
+make[4]: *** [Makefile:1457: check-local] Error 1
+</code></pre>
+
+<p>なんじゃこりゃー。<code>tools/tidy</code>スクリプトによるチェックが<code>check-local</code>ターゲットで走って、修正が加わってないのがエラーになるという…なんでupstream側で対処してないんだよ。もういい、今日はここまで。openSUSEのtrackerに<a href="https://progress.opensuse.org/issues/45740">報告しておく</a>。ついでに<a href="https://progress.opensuse.org/issues/45743">tag打って</a>、も。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 5, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>倉敷さんの<code>goldencheetah</code>パッケージの状況をヒアリング。</p>
+
+<ul>
+<li><code>libusb0.1</code>に依存しているが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470">libusb0.1はもう古いからDebianから消したいよね</a>という動きがある。</li>
+<li>でも<code>goldencheetah</code>側としては<a href="https://groups.google.com/forum/#!msg/golden-cheetah-developers/EQxEEIQbRXc/ZSeSOBF8AwAJ">「マルチプラットフォーム対応してるので、壊したくないよね」</a>なので<code>libusb1.0</code>に動くのは消極的</li>
+<li><a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat</a>という「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。
+
+<ul>
+<li>ただし、<code>goldencheetah</code>では「使うようにしよう」というPRが来ているものの実装はされてない感じ</li>
+<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。</li>
+<li>個人的にはhalf-deadならいいじゃん、と思うけど…</li>
+<li>ちなみに<code>libusb-compat</code>はDebianではパッケージになっていない</li>
+</ul></li>
+<li>ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ
+
+<ul>
+<li>最新の<code>dh12</code>に更新、不要になったファイルやオプションを消す</li>
+<li>insecureなgitプロトコルやhttpをhttpsに置き換え</li>
+<li><code>debian/watch</code>はv4形式にして簡易に書ける</li>
+</ul></li>
+<li>cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -548,265 +871,6 @@ Provides: gdal-abi-2-4-0
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jan 2, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
-
-<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
-
-<ul>
-<li>パッケージを分割した</li>
-<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
-<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
-<li>autopkgtestをまともなものにした</li>
-<li>build時にもautopkgtest相当が動作するようにした</li>
-</ul>
-
-<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
-
-<p>そしてアップロード後もエラーを踏む。</p>
-
-<pre><code>Source-only uploads to NEW are not allowed.
-</code></pre>
-
-<p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
-
-<hr />
-
-<ul>
-<li>淡々と<a href="https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/">jcodingsパッケージをアップデート</a>。</li>
-<li>grcompilerに<a href="https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/">投稿されてたパッチをマージ</a>。自分の作った地雷を踏むという失態を。
-
-<ul>
-<li>upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。</li>
-<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
-<br /></li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 1, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。<code>.install</code>ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、<code>[0-9]*</code>で数字だけ指定されるかと思ったら、そうでなかった。。。</p>
-
-<pre><code>keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
-</code></pre>
-
-<p>というようにした。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Dec 31, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/patch">patch</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のMerge Request</a>に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2">x86指定に変更した</a>→マージされました。</li>
-<li>昨日の<a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ruby-loofahパッケージの更新で脆弱性修正</a>したのだが、Debian9 &ldquo;stretch&rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、<a href="https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch">作業して</a>セキュリティチームに連絡だけしといた。</li>
-<li>なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8">意図的なものだということだけを伝えるreply</a>をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。</li>
-<li><a href="https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/">ubuntu-keyringパッケージを最新に更新</a>。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
-
-<ul>
-<li>次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Dec 30, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/rcbug">RCbug</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;rtbuster-will-remove=ign&amp;rtbuster-can-defer=ign&amp;autoremovals=ign&amp;deferred=ign&amp;fnewer=ign&amp;fnewerval=30&amp;rc=1&amp;cpopcon=1&amp;chints=1&amp;ctags=1&amp;cclaimed=1&amp;cdeferred=1&amp;caffected=1&amp;crttags=1&amp;sortby=last_modified&amp;sorto=asc&amp;#results">Debian10 &ldquo;buster&rdquo;リリースの障害となるRelease Criticalバグ一覧</a>から簡単に直せそうなのを探して作業。</p>
-
-<ul>
-<li>ruby-slimパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=895500#16">New upstream version導入でFTBFS修正</a></li>
-<li>ruby-sinatra-contribパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911869#12">New upstream version導入でFTBFS修正</a></li>
-<li>ruby-loofahパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912398#14">New upstream version導入でCVE修正</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Dec 29, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/patch">patch</a>
-						
-								 , 
-							<a href="/blog/tags/rcbug">RCbug</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>１文字でFTBFSが直せるやつだったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893821">やっといた</a></p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -1034,7 +1098,16 @@ Provides: gdal-abi-2-4-0
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/22/">22</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/23/">23</a></li>
     
     
     <li class="page-item">
@@ -1042,7 +1115,7 @@ Provides: gdal-abi-2-4-0
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/23/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

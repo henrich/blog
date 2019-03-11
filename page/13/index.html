@@ -60,6 +60,253 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=664789">fontforgeのバグ</a>を古いliveイメージ落としてreproduce検証。Debian9では無くなっていたので、fixedタグつけてcloseしておいた。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254295">もう一つfontfogeのバグレポート</a>はfreefont側の問題なんじゃないかねぇ？という感じで再現もしなくなってるのでcloseしておいた。</li>
+<li>BTSのパッチを<a href="https://github.com/fontforge/fontforge/pull/3196">upstreamにPRしといた</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Oct 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>apt-fileのchangelogより</p>
+
+<pre><code>apt-file (3.1.5) unstable; urgency=medium
+
+  * Remove rapt-file and two obsolete .sgml files from the source.
+  * Set R³ to no; apt-file does not need (fake)root during the
+    binary-targets in the package builds.
+  * Skip dh_strip_determinism; it is a no-op at the moment and
+    is planned to be removed eventually.
+</code></pre>
+
+<p>R³ ?? と思ったらdebian-develにRFCが出てた。また処理するべきことが増えるのかー&hellip;。</p>
+
+<hr />
+
+<ul>
+<li><a href="https://tracker.debian.org/news/882107">plumをアップデート</a>。Multiarch hinterはtracker経由でしか見れないのが不満。</li>
+<li><a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">apt-listchangesのpo</a>をファイルするのTodoを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880042">処理</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Oct 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/882072">ruby-bcatを更新</a></li>
+<li><a href="https://tracker.debian.org/news/881990">os-autoinstを更新</a>&hellip;なのだが、Build-Dependsでsbuildが文句を言うっぽい。どうするべきか。</li>
+<li><a href="https://tracker.debian.org/news/882067">mecab-jumandicを更新</a></li>
+<li><a href="https://tracker.debian.org/news/882073">sylfilterを更新</a></li>
+<li><a href="https://tracker.debian.org/news/882080">developers-referenceを更新</a></li>
+</ul>
+
+<hr />
+
+<p>sylph-searcherをdh10にあげようとしたら、dh-autoreconfでエラーになる。</p>
+
+<pre><code>   dh_autoreconf
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
+libtoolize: and rerunning libtoolize and aclocal.
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+configure.ac:13: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:13: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+configure.ac:21: installing './compile'
+configure.ac:13: installing './missing'
+Makefile.am: error: required file './AUTHORS' not found
+commands/Makefile.am:9: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+commands/Makefile.am: installing './depcomp'
+common/Makefile.am:1: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+searcher/Makefile.am:8: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+autoreconf: automake failed with exit status: 1
+dh_autoreconf: autoreconf -f -i returned exit code 1
+debian/rules:7: recipe for target 'build' failed
+make: *** [build] Error 2
+</code></pre>
+
+<p>空のファイルをquiltで追加しようとしたらダメだったのでdebian/rulesでtouchで回避。で、<a href="https://tracker.debian.org/news/882074">sylph-searcherを更新</a>してメーリングリストで要望を上げておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Oct 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/881529">libtest-mock-time-perl がリポジトリに入った</a>。これでようやくos-autoinstの更新に手を付けられる。</li>
+<li><a href="http://www.debian.or.jp/using/book.html#sd201711">JPサイトにSDを追加</a></li>
+<li><a href="https://tracker.debian.org/news/881723">octiconsパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/881730">os-autoinstパッケージを更新</a></li>
+<li>アホなミスをしていたミラー設定を修正。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 25, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/881250">ruby-crackパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/881244">vmdk-stream-converterパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/881477">jruby-joniパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/881476">nailgunパッケージをアップデート</a></li>
+<li>さくらミラーの設定で<a href="https://hanzubon.jp/KEYS/">push元のキー</a>をDSA鍵のままにしていたのがOpenSSHのアップデートで蹴られていたので差し替えた。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -334,315 +581,6 @@ Uncaught exception from user code:
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>働きかけていた<a href="https://www.faq.idcf.jp/app/answers/detail/a_id/819/c/22">IDCFクラウドさんでのDebian8設定の不備</a>が漸く公開された。
-
-<ul>
-<li>ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&hellip;。</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p>bind9のchangelogが興味深い。</p>
-
-<pre><code>  * Add support for downloading upstream sources using d/watch
-    + Make d/copyright machine readable for Files-Excluded: support
-    + Update Files-Exclude: * to remove obsolete software dropped in
-      contrib/, but not really used
-</code></pre>
-
-<p>watchはこんな感じ</p>
-
-<pre><code>opts=\
-repack,\
-compression=xz,\
-repacksuffix=+dfsg,\
-uversionmangle=s/((rc|b)\d+)$/~$1/,\
-dirversionmangle=s/((rc|b)\d+)$/~$1/,\
-dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
-</code></pre>
-
-<p>copyrightはこんな感じ</p>
-
-<pre><code>Files-Excluded: contrib/idn
-                contrib/dnsperf-2.1.0.0-1
-                contrib/nslint-3.0a2
-                contrib/query-loc-0.4.0
-                contrib/queryperf
-                contrib/zkt-1.1.3
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Oct 16, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>fonts-sawarabi-minchoをアップロード</li>
-<li>yydebugのVcs-Gitが間違ったままだった&hellip;直した。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Oct 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>パッケージを拾って色々分析居しているサイトが<a href="https://repology.org/maintainer/henrich%40debian.org/problems">担当しているパッケージの問題を列挙してた</a>ので対応する。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/879346">poppler-data</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879341">fonts-ipaexfont</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879347">fonts-ipafont-nonfree</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879348">fonts-ipafont-nonfree-jisx0208</a>を更新</li>
-<li><a href="https://tracker.debian.org/news/879353">fonts-ipafont</a>を更新</li>
-</ul>
-
-<hr />
-
-<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">packages overview</a>を参照して問題洗い出し</p>
-
-<ul>
-<li>git pushを忘れていたのを幾つか対応。</li>
-<li>xfonts-* パッケージが今までの<code>Section: x11</code>でなくて<code>Section: fonts</code>をlintianで推奨されるようになったので、ホント？という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609">質問をした</a></li>
-<li><a href="https://tracker.debian.org/news/879352">pleaiades</a>のwatchファイルがhttpだったのを直した</li>
-<li><a href="https://tracker.debian.org/news/879349">jcodings</a>のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）</li>
-<li><a href="https://tracker.debian.org/news/879439">yydebug</a>を諸々更新。</li>
-<li><a href="http://martiansoftware.com/nailgun/">nailgunのウェブサイト</a>を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&hellip;。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Oct 14, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>今日も今日とてopenQAに<a href="https://github.com/os-autoinst/openQA/pull/1472">１行パッチ</a>。</li>
-<li><a href="https://bugs.debian.org/878494">ttf-kacstを落として、というバグレポート</a>がHolgerから。あーすっかり忘れてた&hellip;。依存関係として落とさないといけないのかどうかの確証が得られず、質問をしてみた。
-
-<ul>
-<li>納得したので、<a href="https://tracker.debian.org/news/879272">Uploadした</a>。関連ありそうな別パッケージについては<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878520">バグレポート</a>。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Oct 13, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code class="language-gbpの使い方をざっと教えて```">
------------------------------------------------
-
-</code></pre>
-
-<p>$ git clone <a href="https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git">https://anonscm.debian.org/git/collab-maint/cutter-testing-framework.git</a>
-Cloning into &lsquo;cutter-testing-framework&rsquo;&hellip;
-remote: Counting objects: 3334, done.
-remote: Compressing objects: 100% (<sup>949</sup>&frasl;<sub>949</sub>), done.
-remote: Total 3334 (delta 2336), reused 3323 (delta 2336)
-Receiving objects: 100% (<sup>3334</sup>&frasl;<sub>3334</sub>), 3.69 MiB | 442.00 KiB/s, done.
-Resolving deltas: 100% (<sup>2336</sup>&frasl;<sub>2336</sub>), done.</p>
-
-<p>$ cd cutter-testing-framework/</p>
-
-<p>$ gbp import-orig &ndash;uscan &ndash;pristine-tar
-gbp:error:
-Repository does not have branch &lsquo;upstream&rsquo; for upstream sources. If there is none see
-file:///usr/share/doc/git-buildpackage/manual-html/gbp.import.html#GBP.IMPORT.CONVERT
-on howto create it otherwise use &ndash;upstream-branch to specify it.</p>
-
-<p>$ git checkout upstream
-Branch &lsquo;upstream&rsquo; set up to track remote branch &lsquo;upstream&rsquo; from &lsquo;origin&rsquo;.
-Switched to a new branch &lsquo;upstream&rsquo;
-$ git checkout pristine-tar
-Branch &lsquo;pristine-tar&rsquo; set up to track remote branch &lsquo;pristine-tar&rsquo; from &lsquo;origin&rsquo;.
-Switched to a new branch &lsquo;pristine-tar&rsquo;
-$ git checkout master
-Switched to branch &lsquo;master&rsquo;
-Your branch is up to date with &lsquo;origin/master&rsquo;.</p>
-
-<p>$ gbp import-orig &ndash;uscan &ndash;pristine-tar
-gbp:info: Launching uscan&hellip;
-uscan: Newest version of cutter-testing-framework on remote site is 1.2.6, local version is 1.2.4
-uscan:    =&gt; Newer package available from
-      <a href="http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz">http://cutter.sourceforge.net/archives/debian/cutter-testing-framework-1.2.6.tar.gz</a>
-gbp:info: using ../cutter-testing-framework_1.2.6.orig.tar.gz
-What is the upstream version? [1.2.6]
-gbp:info: Importing &lsquo;../cutter-testing-framework_1.2.6.orig.tar.gz&rsquo; to branch &lsquo;upstream&rsquo;&hellip;
-gbp:info: Source package is cutter-testing-framework
-gbp:info: Upstream version is 1.2.6
-gbp:info: Replacing upstream source on &lsquo;master&rsquo;
-gbp:info: Successfully imported version 1.2.6 of ../cutter-testing-framework_1.2.6.orig.tar.gz
-(色々編集してコミット&hellip;)
-$ dch -v 1.2.6-1
-$ dch -r
-$ gbp buildpackage &ndash;git-pbuilder &ndash;git-pristine-tar
-```</p>
-
-<hr />
-
-<ul>
-<li>upstream archiveのimportの際に <code>--pristine-tar</code> でpristine-tarブランチにコミットしておくのを忘れない</li>
-<li>最初にupstreamブランチとpristine-tarブランチをchekoutしないとビルドの際にエラー（面倒くさいけど）
-
-<ul>
-<li><code>--git-pbuilder</code> でpbuilder/cowbuilder環境を使う</li>
-<li><code>--git-pristine-tar</code> で pristine-tar ブランチのファイルを使う</li>
-</ul></li>
-</ul>
-
-<p>これぐらいかな。今回はmasterブランチが＝debian作業のブランチだけど、debianブランチを分けて作ってる場合は <code>--git-ignore-branch</code> 付けてビルドが必要。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -874,7 +812,16 @@ $ gbp buildpackage &ndash;git-pbuilder &ndash;git-pristine-tar
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/22/">22</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/23/">23</a></li>
     
     
     <li class="page-item">
@@ -882,7 +829,7 @@ $ gbp buildpackage &ndash;git-pbuilder &ndash;git-pristine-tar
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/23/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

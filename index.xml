@@ -8,8 +8,118 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;partman-lvmの&lt;a href=&#34;https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2/diffs&#34;&gt;regression修正&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#62&#34;&gt;release managerからは「もう遅い」と言われてしまった&lt;/a&gt;が、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#83&#34;&gt;アップロードされた&lt;/a&gt;。恐らくBug Squashing Partyのおかげ。&lt;/li&gt;
+&lt;li&gt;リリースノートの翻訳を始めたが、&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/2&#34;&gt;細かい所（entityで「svn」の文字が残ってるのが気になった）のでMerge Requestした&lt;/a&gt;ら速攻でMergeされた。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;昨日のdebootstrap話で平松さんがarchitecture指定がDebianだと独特なのがあって混乱する（例: amd64）と仰っていたので、&lt;a href=&#34;https://salsa.debian.org/installer-team/debootstrap/merge_requests/28&#34;&gt;パッチ作成&lt;/a&gt;した。&lt;/li&gt;
+&lt;li&gt;birdfontのtestingへのmigrationを待って&lt;a href=&#34;https://tracker.debian.org/news/1034605/accepted-birdfont-2260-1-source-into-unstable/&#34;&gt;更新を押し込んだ&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;libuninameslistはライブラリ更新だし、ということで作業はしたけどアップロードは見送り。&lt;/li&gt;
+&lt;li&gt;jcodingsの更新を&lt;a href=&#34;https://tracker.debian.org/news/1034671/accepted-jcodings-1043-1-source-into-unstable/&#34;&gt;アップロード&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;よく考えたらjruby-joniでのjcodings指定が上記の更新したバージョン依存であった…ミラーに来るのを待って明日更新しよう…。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;tomoyo-toolsがリリースされてたのでこちらも&lt;a href=&#34;https://tracker.debian.org/news/1034677/accepted-tomoyo-tools-260-20190305-1-source-into-unstable/&#34;&gt;アップロード&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;OpenChainの下調べで日本のワーキンググループのメーリングリストに参加しようとするもエラーが出るので、list ownerに問い合わせを送った…のだがエラーになって帰ってくるよ？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;&amp;lt;openchain-japan-wg-owner@mail.linuxfoundation.org&amp;gt; (expanded from
+    &amp;lt;openchain-japan-wg-owner@lists.linuxfoundation.org&amp;gt;): Command died with
+    status 1: &amp;quot;/usr/lib/mailman/mail/mailman owner openchain-japan-wg&amp;quot;. Command
+    output: mailowner script, list not found: openchain-japan-wg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;そのうちページにも一切アクセスできなくなった…なんだこれは、ということでLFのアカウントを取って（というか取り直して？）、&lt;a href=&#34;https://jira.linuxfoundation.org/servicedesk/customer/portal/4/SUPPORT-3?sda_source=notification-email&#34;&gt;Jiraに報告&lt;/a&gt;した。&lt;/p&gt;
+
+&lt;p&gt;メーリングリストの案内についてはページを指すようにPull Request送った。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;laptop（HP Elitebook G5 830）のBIOSアップデートを実施。UFEI画面から有線LAN経由でアップデートできるのは良い（Dockの方からは行けないのが残念）。一度処理途中で止まってしまい、電源強制切断からの更新のrevertと再アップデートしたのも中々ヒヤヒヤした。あとはDockとかのファームウェアのアップデートもしたいところだが、こちらはWindowsが無いとダメっぽいんだよな…。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://elinux.org/Japan_Technical_Jamboree_68&#34;&gt;Japan Linux Jamboree&lt;/a&gt;で&lt;a href=&#34;https://docs.google.com/presentation/d/14a3U852hYej_DqbHaZMwyrcec8u6Bh3cdKglauc52Hg/edit?usp=sharing&#34;&gt;debootstrapの話&lt;/a&gt;をしてきました。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 07 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=921757&#34;&gt;os-autoinstのtestでのrace condition bugの修正を先日NMUしてもらった&lt;/a&gt;のだけど、何故かbugが自動で閉じられてなかったので処理。
+
+&lt;ul&gt;
+&lt;li&gt;後で気づいたが、これi386でのビルドがまたコケてるね…それでか。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;jruby-joniのバグがupstreamでようやく修正されたので&lt;a href=&#34;https://tracker.debian.org/news/1034317/accepted-jruby-joni-2126-1-source-into-unstable/&#34;&gt;upload&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;そういえば&lt;a href=&#34;https://gihyo.jp/magazine/SD/archive/2019/201904&#34;&gt;Software Design2019年4月号&lt;/a&gt;の画像を見かけたので&lt;a href=&#34;https://www.debian.or.jp/using/book.html#sd201904&#34;&gt;JPサイトに追加&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;JDimのtestがらみのissueに&lt;a href=&#34;https://github.com/JDimproved/JDim/issues/45#issuecomment-470464988&#34;&gt;コメント&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;Debian JPの&lt;a href=&#34;https://www.debian.or.jp/using/mirror.html&#34;&gt;ミラーサーバ一覧&lt;/a&gt;、Ring Serverプロジェクトの部分を更新しておいた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -204,90 +314,6 @@
             <guid>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;fonts-misakiがサイト移転＆アップデートしてたので&lt;a href=&#34;https://tracker.debian.org/news/1028702/accepted-fonts-misaki-20190203a-1-source-into-unstable/&#34;&gt;対応&lt;/a&gt;を。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 07 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;linuxパッケージのconfigをいじる作業の続き。&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/113&#34;&gt;Bug#920809&lt;/a&gt;と&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/114&#34;&gt;Bug#918114&lt;/a&gt;がマージされた&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;gem2debのテンプレートで&lt;a href=&#34;https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2&#34;&gt;ruby-interpreterが入ってたのを削除するパッチがマージされた&lt;/a&gt;。リリースはまだ。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1028017/accepted-ubuntu-keyring-201809181-4-source-into-unstable/&#34;&gt;ubuntu-keyringパッケージのdebconf poの更新&lt;/a&gt;を取り込んだ。これ、次回からMerge Requestの方が良いような…&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/&#34;&gt;ruby-arubaのアップデート&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/enkessler/childprocess/issues/146&#34;&gt;ruby-childprocessのissue&lt;/a&gt;に返信があったので、さらにコメント追記。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 02 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/106&#34;&gt;Bug#918589&lt;/a&gt;がマージされた。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/107&#34;&gt;Bug#912597&lt;/a&gt;がマージされた。&lt;/li&gt;
-&lt;li&gt;ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずは&lt;a href=&#34;https://github.com/enkessler/childprocess/issues/146&#34;&gt;issue登録&lt;/a&gt;しておく。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>

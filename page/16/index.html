@@ -60,6 +60,230 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Sep 15, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今回はパッケージメンテナじゃなくてサーバーのメンテナンスの話。</p>
+
+<p><a href="http://server.sakura.ad.jp/specification/">さくらの専用サーバー</a>でDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係で<a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">hp側</a>のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも<a href="http://server.sakura.ad.jp/common/pdf/sd_spec.pdf">仕様</a>によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？</p>
+
+<p>何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&hellip;→s/hp/hpe/だけだったのでサクッと。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Sep 12, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/871738">fonts-oradano-mincho-gsrrをアップロード</a>
+
+<ul>
+<li>フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/871748">gnome-todoをアップロードした</a>、のだけど、色々変更が多かったのでメモ</p>
+
+<ul>
+<li>build systemがautotoolsから<a href="http://mesonbuild.com">meson</a>に変わった。
+
+<ul>
+<li>Build-Depends: meson (&gt;= 0.41.0) が追加、autoconf周りをdropした。</li>
+<li>debian/rules で <code>dh $@  --with gnome --buildsystem=meson</code> のように<code>--buildsystem=meson</code> の指定が必要。</li>
+<li>依存関係は <code>meson.build</code> ファイルに書いてある&hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。</li>
+<li>何か見落としがあるのかな？と思って dh_install &ndash;list-mising しようかと思ったら、今は <code>dh_missing --list-missing</code> のように <code>dh_missing</code> を使え、とのこと。適当なブランチで debian/rules に <code>override_dh_missing</code> で記述して実行したが漏れはなかった様子。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Sep 11, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=875432">python3-sphinx-intlをITP</a>した。
+
+<ul>
+<li>何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業で<code>git checkout --orphan pristine-tar; rm *; git commit --allow-empty</code>みたいなことをして作った。何故だ。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/871063">cutter-testing-frameworkがリポジトリから削除されていた</a>ので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたので<a href="https://github.com/clear-code/cutter/pull/30">pull request</a>。
+
+<ul>
+<li>他にもpo/Makefile.in.inファイルが無くて<code>intltoolize --force || exit 1</code>が必要だったり。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Sep 5, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>elpa-migemo をアップロード</li>
+<li>nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は<a href="https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;arch=m68k&amp;ver=0.9.1-5&amp;stamp=1504617916&amp;raw=0">m68kぐらい</a>）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。</li>
+<li>os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&hellip;これ動くのかな。）</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Sep 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="http://lists.debian.or.jp/pipermail/debian-devel/2017-September/000088.html">RFS: elpa-migemoのレビュー</a>を実施。</li>
+<li>libsql-splitstatement-perlを修正したのでアップロード。</li>
+<li>OpenQAのdebian/copyrightをアップデート。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/09/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -285,245 +509,6 @@
 </code></pre>
 
 <p>これは<a href="http://www.sphinx-doc.org/ja/stable/ext/autodoc.html">.. automodule::</a>というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Aug 26, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>pkg-perl以下に移動したパッケージを更新してpush。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Aug 24, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>birdfontパッケージに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=871963">バグレポートパッチをもらっていた</a>のでこちらを適用した。</p>
-
-<p>んで、パッケージをビルドしたら以下のlintianエラーがでた</p>
-
-<pre><code>W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml
-E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml
-</code></pre>
-
-<p>のでパッチ作成、忘れないうちに<a href="https://github.com/johanmattssonm/birdfont/pull/52">PullRequest</a>。</p>
-
-<p>しかし</p>
-
-<pre><code>E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz
-</code></pre>
-
-<p>が残っている。<a href="https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html">orig-tarball-missing-upstream-signature</a>はキツすぎるだろう？ということで既にBTSに登録されていて<a href="https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207">gitでwarningに落とされた</a>ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。</p>
-
-<p>う、overrideしようとしたら</p>
-
-<pre><code>E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1
-</code></pre>
-
-<p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Aug 23, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>MSのドキュメントでDebianがDe&rdquo;v&rdquo;ianと書かれているtypoがあるよ、というのを見て、該当ページで「編集」を押してみたらGitHubのプルリクエスト画面になった。すげぇな。
-
-<ul>
-<li>直してプルリクエスト送ったけど、<a href="https://github.com/MicrosoftDocs/windowsserverdocs/pull/174#issuecomment-324168581">botがContribution License Agreement必要かどうか判断</a>してた。はー。</li>
-</ul></li>
-<li>pkg-perlチームのドキュメントを読む。まずは <a href="https://pkg-perl.alioth.debian.org/git.html">https://pkg-perl.alioth.debian.org/git.html</a>
-
-<ul>
-<li>pkg-perl-tools をインストールするところから始めるようだ</li>
-<li>インストールが終わると dpt コマンドが使える。メンテのためのお役立ちツールの様子。pkg-perlに絞ってるからシンプルにできてるのかな？ echo &ldquo;DPT_PACKAGES=$HOME/src/pkg-perl/packages&rdquo; &gt;&gt; $HOME/.config/dpt.conf して設定を追加。</li>
-<li>&ldquo;Non-pkg-perl methods such as gbp-create-remote-repo will not set up this infrastructure.&rdquo; とあるな。先日gbp-create-remote-repoでpushしたけど消して再度作り直しておくか&hellip;。</li>
-<li>dpt alioth-repo とかして作った。これ、aliothから新しいホスト名（salsaだっけ？）になったら変わるのかな。</li>
-<li>いじって、dpt pushで反映。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Aug 22, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>debian-policy 4.1.0がアップロードされた&hellip;のだけども、<a href="https://www.debian.org/doc/debian-policy/">Webサイトの方</a>はCSSなどのファイルが一切アップロードされて無くて見栄えが悪い。<a href="https://lists.debian.org/debian-policy/2017/08/msg00477.html">問い合わせ</a>してみた。
-
-<ul>
-<li>どうやらウェブサイト側の問題のようでSeanが<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872944">バグを登録</a>してくれた。</li>
-</ul></li>
-<li>昨日のpkg-perlチームへの加入がOKされてたのでgit pushしておく。パッケージ自体の修正はまだ。
-
-<ul>
-<li>何故かpristine-tarブランチが切られてないパッケージがあった。どうやって作るかな？と思ったが git checkout debian/<tag>;
-gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-ignore-branch を繰り返して作成した。古いバージョンだとビルドができなくなっていたのにちょっと驚いたのと、testがskipしてるのを見逃していたなーという点。</li>
-<li>teamのroot直下じゃなくてpackagesというディレクトリを切っていたのに後で気づいて慌ててsshで入って移動した。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Aug 21, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>「君のPerl moduleパッケージ、pkg-perlチームでメンテしない？」と頂けたので、これ幸いと参加申請しておく。</li>
-<li>日経Linuxをチラ見したら<a href="http://www.pdfsam.org/">pdfsam</a>なる良さそうなソフトを取り上げてるが、「リポジトリのパッケージは古いから削除してダウンロードして使おう！」みたいなこと書いてあった。<a href="https://github.com/torakiki/pdfsam/releases">https://github.com/torakiki/pdfsam/releases</a> とdebian/changelog比較すると大きな乖離。どうやらpkg-javaチーム傘下なのでアップデートしていいか聞いてみるか。
-
-<ul>
-<li>まぁ、それにしてもDebianで作業しても全部「Ubuntuすげー！」だけになるかと思うとやるせないので、とっととsnapshot releaseをするようにせねばならんよなーとは思う。</li>
-</ul></li>
-</ul>
 
 					
 				</div>
@@ -768,7 +753,16 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/22/">22</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/23/">23</a></li>
     
     
     <li class="page-item">
@@ -776,7 +770,7 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/23/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
