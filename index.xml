@@ -8,8 +8,43 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;cowbuilderを動かしてて、そういえばコイツ…というかpbuilderはbaseイメージ作成の際にdebootstrapを呼ぶな、という考えに至り、&lt;code&gt;--cache-dir&lt;/code&gt;オプションが使えるのではないか？と思いつく。で、&lt;a href=&#34;https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/6&#34;&gt;MergeRequestした&lt;/a&gt;。
+
+&lt;ul&gt;
+&lt;li&gt;その中でmanpageの&lt;code&gt;--debootstrap&lt;/code&gt;オプションの設定が間違っていたようなので、こちらも&lt;a href=&#34;https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/7&#34;&gt;MergeRequest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;もう一つ、man pbuilderした時だったかにapt lineがftp.jp.debian.orgやftp.de.debian.orgを指定してたので&lt;code&gt;deb.debian.org&lt;/code&gt;指定に変更の&lt;a href=&#34;https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/5&#34;&gt;MergeRequest&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;LFのメーリングリストが復旧した。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -290,41 +325,6 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;groonga 9.0.0 を deleyed 3 でアップロードした。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/120&#34;&gt;CONFIG_IMX_THERMAL&lt;/a&gt;がマージされた&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/121&#34;&gt;CONFIG_ARM_ARMADA_37XX_CPUFREQ&lt;/a&gt;がマージされた&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salsa.debian.org/kernel-team/linux/merge_requests/122&#34;&gt;CONFIG_LEDS_PCA963X&lt;/a&gt;は「アーキテクチャ限定したほうが良いんじゃね？」というサジェスチョン。&lt;/li&gt;
-&lt;li&gt;jdimをstretch-backportsにアップロードした。これもNEW行きかな？入ったらjdを削除依頼しないと。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>DDのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
           </item>
         

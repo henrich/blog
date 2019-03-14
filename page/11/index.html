@@ -60,6 +60,85 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 16, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>qrencodeパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13">バグレポートにコメント追加しておいた</a>。数日様子を見てクローズするのが良いだろうと思う。</li>
+<li><a href="https://tracker.debian.org/news/901773">fonts-sawarabi-minchoパッケージをアップロード</a></li>
+</ul>
+
+<hr />
+
+<p>salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 15, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>昨日苦しんだ問題を<a href="https://github.com/fukuchi/libqrencode/issues/117">upstreamにissue報告した</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -545,98 +624,6 @@ gpg&gt; save
 <li>encryptしたUSBメモリにprivate master key置く、って言ってるけど、何を使ってencryptするんだろね？</li>
 <li>そもそもUSBメモリの耐久性とかどうなのかな、とか。何にバックアップしておくのが正しいのだろう？</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Dec 3, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>先日のDebian勉強会であった人とのキーサインを済ませた。caff便利。</p>
-
-<pre><code>$ caff -u 58E1222F9696C885A3CD104C5D328D082AAAB140 &lt;long KEYID&gt;
-</code></pre>
-
-<p>で、既にサインして頂いてたのがメールで来てたのをimportしてkeyserverにsendしておく。</p>
-
-<pre><code>$ gpg --import ~/*.asc
-$ gpg --send-keys &quot;58E1 222F 9696 C885 A3CD  104C 5D32 8D08 2AAA B140&quot;
-gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
-</code></pre>
-
-<p><a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x5D328D082AAAB140">よしよし</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Nov 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>libreoffice (1:5.4.3-3) unstable; urgency=medium
-(snip)
-  * debian/rules:
-    - replace some manual dpkg-parsechangelog calls with
-      $(DEB_VERSION) and $(DEB_DISTRIBUTION) and fix logic for
-      --disable-dependency-tracking
-</code></pre>
-
-<p>ほぅ？そんな変数取れるのか？</p>
 
 					
 				</div>

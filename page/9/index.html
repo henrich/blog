@@ -60,6 +60,125 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 24, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ここしばらくの作業とか。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/935657">jruby-joniパッケージを更新</a></li>
+<li>sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
+
+<ul>
+<li><a href="https://github.com/sphinx-doc/sphinx-intl/pull/21">reproducible buildパッチをupstreamにforward</a></li>
+</ul></li>
+<li>林さんの依頼でrepositoryをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/input-method-team/fcitx-imlist">fcitx-imlist</a>、アイコン追加。</li>
+<li><a href="https://salsa.debian.org/debian/groonga">groonga</a>、アイコン追加。</li>
+<li><a href="https://salsa.debian.org/debian/groonga-normalizer-mysql">groonga-normalizer-mysql</a></li>
+<li><a href="https://salsa.debian.org/debian/gntp-send">gntp-send</a></li>
+<li><a href="https://salsa.debian.org/debian/growl-for-linux">growl-for-linux</a></li>
+<li><a href="https://salsa.debian.org/debian/hal-flash">hal-flash</a></li>
+</ul></li>
+<li>倉敷さんの依頼でrepositoryをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/debian/goldencheetah">goldencheetah</a></li>
+<li><a href="https://salsa.debian.org/debian/yaskkserv">yaskkserv</a></li>
+</ul></li>
+<li>リポジトリをインポート
+
+<ul>
+<li><a href="https://salsa.debian.org/debian/tomoyo-tools">tomoyo-tools</a></li>
+<li><a href="https://salsa.debian.org/debian/riece">riece</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&hellip;とメーリングリストで訪ねてみた所、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665">systemd(udev) のバグ修正</a>のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。</p>
+
+<hr />
+
+<p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
+
+<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync -fするのはどうか、という話に首を突っ込んでみたり</a>。</p>
+
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Kaliをサポートするためにコードをシェアできないのかね？というのにパッチ</a>したり、その上で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Kaliサポートの追加のパッチ</a>投げたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり</a>、Ubuntuで何も言わずにfailするので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=736995">Suggests: ubuntu-archive-keyring 追加してみるのはどうか？を改めて押したり</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 14, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/932687">rieceパッケージを更新</a></li>
+<li><a href="https://tracker.debian.org/news/932971">tiarraパッケージの修正が不十分で動かなかったのでもう一度修正してexperimentalへ</a></li>
+<li><a href="https://tracker.debian.org/news/932972">tomoyo-toolsパッケージを更新</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -594,125 +713,6 @@ fi
 </code></pre>
 
 <p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 3, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>sylpheedパッケージのpatchを<a href="http://sylpheed.sraoss.jp/redmine/issues/291">forwardしておいた</a></li>
-<li>screenfetchパッケージの<a href="https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz">smokeテストがさっそくfailしとった。。。</a>。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、<code>/usr/bin/screenfetch: line 1341: [: too many arguments</code> となっていた、と。<a href="https://tracker.debian.org/news/929555">パッチ作ってアップロードしたけど</a>、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&hellip;。</li>
-<li><a href="https://anonscm.debian.org/git/pkg-sylpheed/">aliothから</a>、sylph-searcher, sylfilter, libsylphをsalsaにインポート。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Feb 1, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。</p>
-
-<p>まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら <code>autopkgtest . -- null</code> をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。</p>
-
-<p>また、<a href="https://ci.debian.net/doc/file.TUTORIAL.html">古い情報</a>では debian/control に <code>Testsuite: autopkgtest</code> の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。</p>
-
-<p>単純に <code>debian/tests/control</code> ファイルとそこで定義した <code>debian/tests/smoke</code> ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。</p>
-
-<pre><code>--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
-@@ -0,0 +1,2 @@
-+Tests: smoke
-+Depends: @, grep
-diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
---- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
-+++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
-@@ -0,0 +1,5 @@
-+#!/bin/sh
-+
-+screenfetch
-+
-+[ ! `screenfetch | grep 'command not found' &gt; /dev/null` ]
-</code></pre>
-
-<p>でもやっぱり <code>/usr/share/doc/autopkgtest/README.running-tests.rst.gz</code> を読んでおいたほうが良さそう…</p>
-
-<p>というところで<a href="https://tracker.debian.org/news/929044">screenfetchをアップロード</a>。</p>
-
-<hr />
-
-<ul>
-<li>jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
-<li>jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
-<li>nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。</li>
-<li>libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
-</ul>
-
-<p>小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。</p>
-
-<hr />
-
-<ul>
-<li><a href="https://tracker.debian.org/news/929053">snapperをアップロード</a>。</li>
-</ul>
 
 					
 				</div>

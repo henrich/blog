@@ -60,6 +60,213 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/05/04/vyos%E3%82%92%E3%82%82%E3%81%86%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E7%9C%BA%E3%82%81%E3%82%8B/">VyOSをもうちょっと眺める</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, May 4, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/vyos">vyos</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://github.com/vyos">https://github.com/vyos</a> を眺めてパッケージの一つ <a href="https://github.com/vyos/net-snmp">net-snmp のパッケージリポジトリ</a>を見たのだけど、変更点はdebian/rulesでconfigure option1行足してるだけ。issueが無いので質問も出来ないのだけど、これはdebian側で吸収してもらう検討をしたほうが良いのでは？</p>
+
+<p>他のパッケージでもdebian/rulesでvyosの開発環境だったらバージョン番号を変更する、というパッチを書いてるだけだったり&hellip;何のためのパッチなのだ？</p>
+
+<p>これに類することを確認するには</p>
+
+<ul>
+<li><a href="https://github.com/vyos">https://github.com/vyos</a> 以下のリポジトリを全て眺めて、debian/changelogを見てみる？</li>
+<li>とはいえchangelogまともに書いてない場合も多そうだから、export して元のバージョンのパッケージとdiffを作る？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/05/03/vyos%E3%81%A8%E6%88%AF%E3%82%8C%E3%81%A6%E3%81%BF%E3%81%9F/">VyOSと戯れてみた</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, May 3, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/vyos">vyos</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Note: VyOSの使い方とかは一切書いてません。</p>
+
+<p>Twitterで<a href="https://github.com/vyos/vyos-build/blob/current/README.md">VyOSのビルド説明の最新の場所</a>を教えてもらったので、それに従って作業</p>
+
+<pre><code>$ git clone https://github.com/vyos/vyos-build.git
+$ sudo debootstrap jessie ./jessie-chroot http://debian-mirror.sakura.ne.jp/debian
+$ sudo cp -arp vyos-build jessie-chroot/root/
+$ sudo chroot jessie-chroot
+</code></pre>
+
+<pre><code># cd root/vyos-build
+# ./configure
+/usr/bin/env: python3: No such file or directory
+</code></pre>
+
+<p>debootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。</p>
+
+<pre><code># apt install python3
+# ./configure 
+Checking if packages required for VyOS image build are installed
+Missing packages: sudo make live-build pbuilder devscripts python3-pystache python3-git
+Missing binaries: 
+Build environment check failed, fix the issues and retry
+</code></pre>
+
+<pre><code># apt install sudo make live-build pbuilder devscripts python3-pystache python3-git
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Unable to locate package python3-git
+</code></pre>
+
+<p>あれ。<a href="https://tracker.debian.org/pkg/python-git">https://tracker.debian.org/pkg/python-git</a> によると</p>
+
+<pre><code>oldstable:  0.3.2~RC1-3
+old-bpo:  2.1.1-2~bpo8+1
+</code></pre>
+
+<p>なので、多分 jessie-backports リポジトリ追加しないとダメなんじゃないだろうか。</p>
+
+<pre><code># echo &quot;deb http://debian-mirror.sakura.ne.jp/debian jessie-backports main&quot; &gt;&gt; /etc/apt/sources.list
+# apt update
+# apt install python3
+# ./configure 
+Checking if packages required for VyOS image build are installed
+All dependencies are installed
+</code></pre>
+
+<p>問題なく通ったので、isoイメージの作成をやってみる。</p>
+
+<pre><code># make iso
+Checking build configuration
+[2018-05-03 11:39:13] lb clean 
+P: Cleaning chroot
+Starting VyOS ISO image build
+Setting up additional APT entries
+Configuring live-build
+[2018-05-03 11:39:13] lb config noauto --architectures amd64 --bootappend-live boot=live components hostname=vyos username=live nopersistence noautologin nonetworking union=overlay --linux-flavours amd64-vyos --linux-packages linux-image-4.14.26 --bootloader syslinux --binary-images iso-hybrid --debian-installer false --distribution jessie --iso-application VyOS --iso-publisher root@hp --iso-volume VyOS --debootstrap-options --variant=minbase --exclude=isc-dhcp-client,isc-dhcp-common,ifupdown --include=apt-transport-https --mirror-bootstrap http://deb.debian.org/debian --mirror-chroot http://deb.debian.org/debian --mirror-chroot-security http://deb.debian.org/debian-security --mirror-binary http://deb.debian.org/debian --mirror-binary-security http://deb.debian.org/debian-security --archive-areas main contrib non-free --firmware-chroot true --updates true --security true
+P: Updating config tree for a debian/jessie/amd64 system
+P: Symlinking hooks...
+It's not like I'm building this specially for you or anything!
+[2018-05-03 11:39:13] lb build 
+P: live-build 4.0.3
+P: Building config tree for a debian/jessie/amd64 system
+[2018-05-03 11:39:13] lb bootstrap 
+P: Setting up cleanup function
+[2018-05-03 11:39:13] lb bootstrap_cache restore
+P: Restoring bootstrap stage from cache...
+[2018-05-03 11:39:14] lb bootstrap_cdebootstrap 
+[2018-05-03 11:39:14] lb bootstrap_debootstrap 
+P: Begin bootstrapping system...
+P: If the following stage fails, the most likely cause of the problem is with your mirror configuration or a caching proxy.
+P: Running debootstrap (download-only)... 
+I: Retrieving Release 
+I: Retrieving Release.gpg 
+I: Checking Release signature
+I: Valid Release signature (key id 75DDC3C4A499F1A18CB5F3C8CBF8D6FD518E17E1)
+I: Retrieving Packages 
+I: Validating Packages 
+I: Retrieving Packages 
+I: Validating Packages 
+I: Retrieving Packages 
+I: Validating Packages 
+I: Resolving dependencies of required packages...
+</code></pre>
+
+<p>んん？なんか見たことのある出力&hellip;debootstrap使ってるな&hellip;あ、lb云々とあるから <code>live-build</code> がdebootstrap呼んでるのね。</p>
+
+<pre><code>[2018-05-03 11:43:13] lb bootstrap_archive-keys 
+Ign http://deb.debian.org jessie InRelease
+Hit http://deb.debian.org jessie Release.gpg
+Hit http://deb.debian.org jessie Release
+Get:1 http://deb.debian.org jessie/main amd64 Packages [6789 kB]
+Hit http://deb.debian.org jessie/contrib amd64 Packages
+Hit http://deb.debian.org jessie/non-free amd64 Packages
+Get:2 http://deb.debian.org jessie/contrib Translation-en [38.3 kB]
+Get:3 http://deb.debian.org jessie/main Translation-en [4583 kB]
+Get:4 http://deb.debian.org jessie/non-free Translation-en [72.1 kB]
+Fetched 11.5 MB in 7s (1596 kB/s)
+Reading package lists...
+[2018-05-03 11:43:21] lb bootstrap_cache save
+P: Saving bootstrap stage to cache...
+[2018-05-03 11:43:22] lb chroot_devpts install
+P: Begin mounting /dev/pts...
+[2018-05-03 11:43:22] lb chroot_proc install
+P: Begin mounting /proc...
+[2018-05-03 11:43:22] lb chroot_selinuxfs install
+[2018-05-03 11:43:22] lb chroot_sysfs install
+P: Begin mounting /sys...
+(snip)
+</code></pre>
+
+<pre><code>Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
+</code></pre>
+
+<p>なるほど、Jessieでは足りない・変更した部分については<a href="http://dev.packages.vyos.net/repositories/">別のリポジトリ</a>を持ってるのね。あれ、見て回ったら<a href="http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/">http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/</a> とかに特にrevisionも変更されてないパッケージが。何故だろう？</p>
+
+<p>ビルドが終わってどこにisoが出来たかさっぱりわからぬ。。。あ、<code>build/vyos-1.2.0-rolling+201805031139-amd64.iso</code> というファイルがあった。これはsymlinkで <code>live-image-amd64.hybrid.iso</code> を指してる。あと、<code>build/cache/packages.binary</code> 以下にはdebパッケージが保存されてるな。さらにmake isoしたらこれが使われるのかな、ということで再度実行してみる。。。どうやらそのようだ。</p>
+
+<p>今日はここまで。
+で、<a href="https://github.com/vyos/vyos-build/pull/17">https://github.com/vyos/vyos-build/pull/17</a> に今日触ったところで <code>debootstrap使ったほうがいいな</code>、というプルリクエストを送っときました。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/05/02/%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E3%83%90%E3%82%B0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%82%8B%E3%81%8B%E3%81%A8%E3%81%8B.../">どうやってバグレポートしてるか、とか...</a></h3>
 						<small><span class="label label-primary">
 							
@@ -492,125 +699,6 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 <li><a href="https://tracker.debian.org/news/936899">libmojo-rabbitmq-client-perlパッケージをアップロード</a></li>
 <li><a href="https://tracker.debian.org/news/936895">libmojolicious-plugin-assetpack-perlパッケージをアップロード</a></li>
 <li>debootstrapパッケージと戯れたり。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 24, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ここしばらくの作業とか。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/935657">jruby-joniパッケージを更新</a></li>
-<li>sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
-
-<ul>
-<li><a href="https://github.com/sphinx-doc/sphinx-intl/pull/21">reproducible buildパッチをupstreamにforward</a></li>
-</ul></li>
-<li>林さんの依頼でrepositoryをインポート
-
-<ul>
-<li><a href="https://salsa.debian.org/input-method-team/fcitx-imlist">fcitx-imlist</a>、アイコン追加。</li>
-<li><a href="https://salsa.debian.org/debian/groonga">groonga</a>、アイコン追加。</li>
-<li><a href="https://salsa.debian.org/debian/groonga-normalizer-mysql">groonga-normalizer-mysql</a></li>
-<li><a href="https://salsa.debian.org/debian/gntp-send">gntp-send</a></li>
-<li><a href="https://salsa.debian.org/debian/growl-for-linux">growl-for-linux</a></li>
-<li><a href="https://salsa.debian.org/debian/hal-flash">hal-flash</a></li>
-</ul></li>
-<li>倉敷さんの依頼でrepositoryをインポート
-
-<ul>
-<li><a href="https://salsa.debian.org/debian/goldencheetah">goldencheetah</a></li>
-<li><a href="https://salsa.debian.org/debian/yaskkserv">yaskkserv</a></li>
-</ul></li>
-<li>リポジトリをインポート
-
-<ul>
-<li><a href="https://salsa.debian.org/debian/tomoyo-tools">tomoyo-tools</a></li>
-<li><a href="https://salsa.debian.org/debian/riece">riece</a></li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p>salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&hellip;とメーリングリストで訪ねてみた所、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665">systemd(udev) のバグ修正</a>のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。</p>
-
-<hr />
-
-<p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
-
-<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync -fするのはどうか、という話に首を突っ込んでみたり</a>。</p>
-
-<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Kaliをサポートするためにコードをシェアできないのかね？というのにパッチ</a>したり、その上で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Kaliサポートの追加のパッチ</a>投げたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり</a>、Ubuntuで何も言わずにfailするので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=736995">Suggests: ubuntu-archive-keyring 追加してみるのはどうか？を改めて押したり</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Feb 14, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/932687">rieceパッケージを更新</a></li>
-<li><a href="https://tracker.debian.org/news/932971">tiarraパッケージの修正が不十分で動かなかったのでもう一度修正してexperimentalへ</a></li>
-<li><a href="https://tracker.debian.org/news/932972">tomoyo-toolsパッケージを更新</a></li>
 </ul>
 
 					

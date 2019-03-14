@@ -60,6 +60,186 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/debcheck.php?dist=unstable&amp;package=snapper">snapperのdebcheck</a>を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。</p>
+
+<pre><code>I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service
+I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0
+</code></pre>
+
+<p>これは減らせるだろうか？</p>
+
+<hr />
+
+<p><a href="https://buildd.debian.org/status/package.php?p=os-autoinst">os-autoinst</a>も同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。</p>
+
+<p>qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？</p>
+
+<p>アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&hellip;。</p>
+
+<hr />
+
+<p><a href="https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932">美咲フォントのバグレポート</a>、内容を精査。直ってたので閉じておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jun 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>screenfetch、<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">Ubuntu側のバグ登録</a>を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。</p>
+
+<hr />
+
+<p>トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。</p>
+
+<ol>
+<li>cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&hellip;</li>
+<li>apt show pgf&hellip;パッケージは確かに存在しない。</li>
+<li><a href="https://tracker.debian.org/pkg/pgf">trackerのページ</a>で確認すると、最後のは<a href="https://tracker.debian.org/news/583320">[2014-11-03] Removed 2.10-1 from unstable</a>&hellip;なになに？「integrated into texlive」？</li>
+<li>ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）</li>
+
+<li><p>debsignしてdputして終わり。</p>
+
+<pre><code>diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
+--- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
++++ whizzytex-1.3.2/debian/changelog    2017-06-29 20:11:36.000000000 +0900
+@@ -1,3 +1,11 @@
++whizzytex (1.3.2-1.4) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * debian/control
++    - fix Build-Depends since pgf is intergrated into TeXLive.
++
++ -- Hideki Yamane &lt;henrich@debian.org&gt;  Thu, 29 Jun 2017 20:11:36 +0900
++
+whizzytex (1.3.2-1.3) unstable; urgency=medium
+
+* Non-maintainer upload.
+diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
+--- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
++++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
+@@ -2,7 +2,7 @@
+Section: tex
+Priority: optional
+Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
+-Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
++Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
+Build-Depends: debhelper (&gt;&gt; 7.0.50~)
+Standards-Version: 3.7.2
+</code></pre></li>
+</ol>
+
+<hr />
+
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861363">poppler-dataへのバグレポート</a>をチェック。レポートにも書いてある通り、<a href="https://bugzilla.redhat.com/show_bug.cgi?id=842351">RHBZを確認</a>。</p>
+
+<ul>
+<li>何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。</li>
+<li>なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。</li>
+
+<li><p>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</p>
+
+<pre><code># cidToUnicode, nameToUnicode and unicodeMap data files
+# are under the COPYING.gpl2 license
+# Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
+</code></pre></li>
+</ul>
+
+<p>とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると</p>
+
+<pre><code>The files in the Resource directory and any subdirectories thereof
+are also part of GPL Ghostscript, with the explicit exception of
+the files in the CMap subdirectory (except &quot;Identity-UTF16-H&quot;,
+which is part of GPL Ghostscript). The CMap files are copyright
+Adobe Systems Incorporated and covered by a separate, Affero GPL
+compatible license.
+</code></pre>
+
+<p>あれ？AGPLな気がするんだけど… debian/copyrightでチェックしよう。</p>
+
+<pre><code>Files: Resource/CMap/Identity-UTF16-H
+Copyright: 2003, Artifex Software
+License-Grant:
+ GPL Ghostscript is free software; you can redistribute it and/or modify
+ it under the terms the GNU Affero General Public License as published
+ by the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+License: AGPL-3+
+</code></pre>
+
+<p>だよねぇ。Fedoraの方は間違いだと思う。</p>
+
+<p>upstream tarball をもう一つ追加して対応、なんだけど git-buildpackage が multiple
+upstream tarball に対応してないのがアレ。</p>
+
+<hr />
+
+<p><a href="https://www.staff.science.uu.nl/~penni101/mirmon/">mirmon</a> のtypoにLintianがうるさく感じたのでパッチをメール。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
 						<small><span class="label label-primary">
 							
@@ -476,315 +656,6 @@ ImportError: No module named pkg_resources
 <p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
 
 <p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/">autopkgtest触ってみた（らしい）</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
-
-<p>Testsuite: autopkgtest-pkg-perl</p>
-
-<p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
-
-<p>実施されるテストは
-* smoke
-* use.t
-* syntax.t
-で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
-
-<p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
-
-<pre><code>$ sudo apt-get install sbuild
-$ sudo mkdir -p /srv/chroot/sid
-$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
-</code></pre>
-
-<pre><code>[sid-amd64-sbuild]
-type=directory
-description=Debian sid/amd64 autobuilder
-directory=/srv/chroot/sid
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:22:46]: version 3.14.3
-adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
-adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
-
-<pre><code>#union-type=aufs
-#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
-</code></pre>
-
-<p>とやってみたのだけど、</p>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:23:06]: version 3.14.3
-adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-Traceback (most recent call last):
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 190, in &lt;module&gt;
-    parse_args()
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 96, in parse_args
-    (key, val) = entry.split(&quot;=&quot;, 2)
-ValueError: too many values to unpack (expected 2)
-adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
-
-<pre><code>[sid-test]
-type=file
-description=test
-file=/srv/chroot/test/base.tgz
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:38]: version 3.14.3
-adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:41]: testbed dpkg architecture: amd64
-adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
-+ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
-gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg' created
-gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg' created
-++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&gt;++++++++++...............+++++
-
-Not enough random bytes available.  Please do some other work to give
-the OS a chance to collect more entropy! (Need 188 more bytes)
-gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
-gpg: key 0FB272FB marked as ultimately trusted
-</code></pre>
-
-<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/">dh-make-perlでPerlモジュールが半自動でDebianパッケージに</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。</p>
-
-<pre><code>$ dh-make-perl 
-== dh-make-perl 0.86 ==
-Trying /home/henrich/src/qa/../qa.tar.gz... not found.
-Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
-Trying /home/henrich/src/qa/../qa.tar.xz... not found.
-Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
-WARNING: Neither META.json nor META.yml was found
-Unable to determine dist name, no Build.PL, no Makefile.PL
-Please use --cpan.
-</code></pre>
-
-<p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
-
-<pre><code>$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
-== dh-make-perl 0.86 ==
-
-CPAN.pm requires configuration, but most of it can be done automatically.
-If you answer 'no' below, you will enter an interactive dialog for each
-configuration option instead.
-
-Would you like to configure as much as possible automatically? [yes]
-
- &lt;install_help&gt;
-
-Warning: You do not have write permission for Perl library directories.
-
-To install modules, you need to configure a local Perl library directory or
-escalate your privileges.  CPAN can help you by bootstrapping the local::lib
-module or by configuring itself to use 'sudo' (if available).  You may also
-resolve this problem manually if you need to customize your setup.
-
-What approach do you want?  (Choose 'local::lib', 'sudo' or 'manual')
- [local::lib] 
-
-
-Autoconfiguration complete.
-
-Attempting to bootstrap local::lib...
-(snip)
-PATH=&quot;/home/henrich/perl5/bin${PATH+:}${PATH}&quot;; export PATH;
-PERL5LIB=&quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&quot;; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT=&quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&quot;; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT=&quot;--install_base \&quot;/home/henrich/perl5\&quot;&quot;; export PERL_MB_OPT;
-PERL_MM_OPT=&quot;INSTALL_BASE=/home/henrich/perl5&quot;; export PERL_MM_OPT;
-
-Would you like me to append that to /home/henrich/.bashrc now? [yes] 
-(snip)
-</code></pre>
-
-<p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
-
-<pre><code>henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
-commit a1a9d209742905d33a3ffee587c32b7a5360a521
-Author: Hideki Yamane &lt;henrich@debian.org&gt;
-Date:   Sun Jun 28 00:12:59 2015 +0900
-
-    Initial packaging by dh-make-perl 0.84
-
-commit 29943cd28971248efb43e0e940957bf5086e118e
-Author: Hideki Yamane &lt;henrich@debian.org&gt;
-Date:   Sun Jun 28 00:10:38 2015 +0900
-
-    Import original source of DBIx-Class-OptimisticLocking 0.02
-</code></pre>
-
-<p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
-
-<p>debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。</p>
-
-<p>debian/copyrightもcpanから取ってきて記述されるようです。</p>
-
-<pre><code>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
-Upstream-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Upstream-Name: DBIx-Class-OptimisticLocking
-DISCLAIMER: This copyright info was automatically extracted
- from the perl module. It may not be accurate, so you better
- check the module sources in order to ensure the module for its
- inclusion in Debian or for general legal information. Please,
- if licensing information is incorrectly generated, file a bug
- on dh-make-perl.
- NOTE: Don't forget to remove this disclaimer once you are happy
- with this file.
-</code></pre>
-
-<p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
-
-<p>debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。</p>
-
-<p>debian/upstream/metadataなんてファイルも出来てました。中身は</p>
-
-<pre><code>Archive: CPAN
-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p>ほー。いたれりつくせりですね。</p>
-
-<p>あとはgit-buildpackageでビルドしてしまえばOKです。</p>
-
-<p>ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると</p>
-
-<pre><code>**********
-WARNING: a package named
-              'libsql-abstract-perl'
-         is already available in APT repositories
-Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
-Description: module to generate SQL from Perl data structures
-</code></pre>
-
-<p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
-
-<p>モジュールがcpanにない場合には</p>
-
-<pre><code>$ dh-make-perl --cpan selenium-remote-driver-perl
-== dh-make-perl 0.86 ==
-Reading '/home/henrich/.local/share/.cpan/Metadata'
-  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
-Can't find 'selenium::remote::driver::perl' module or distribution on CPAN
-</code></pre>
-
-<p>のように出てきます。</p>
-
-<p>また、変換の際にモジュールが依存する別のモジュールがない場合には</p>
-
-<pre><code>Needs the following modules for which there are no debian packages available:
- - Time::Mock
-</code></pre>
-
-<p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
-
-<pre><code>Needs the following modules for which there are no debian packages available:
- - CSS::Minifier::XS
- - JavaScript::Minifier::XS
-</code></pre>
-
-<p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
-
-<pre><code>**********
-WARNING: a package named
-              'libcss-minifier-xs-perl'
-         is already available in APT repositories
-Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
-Description: XS based CSS minifier
-</code></pre>
-
-<p>と出てきてしまいました。あらら。</p>
 
 					
 				</div>

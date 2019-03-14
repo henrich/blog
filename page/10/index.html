@@ -60,6 +60,125 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 3, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>sylpheedパッケージのpatchを<a href="http://sylpheed.sraoss.jp/redmine/issues/291">forwardしておいた</a></li>
+<li>screenfetchパッケージの<a href="https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz">smokeテストがさっそくfailしとった。。。</a>。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、<code>/usr/bin/screenfetch: line 1341: [: too many arguments</code> となっていた、と。<a href="https://tracker.debian.org/news/929555">パッチ作ってアップロードしたけど</a>、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&hellip;。</li>
+<li><a href="https://anonscm.debian.org/git/pkg-sylpheed/">aliothから</a>、sylph-searcher, sylfilter, libsylphをsalsaにインポート。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Feb 1, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。</p>
+
+<p>まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら <code>autopkgtest . -- null</code> をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。</p>
+
+<p>また、<a href="https://ci.debian.net/doc/file.TUTORIAL.html">古い情報</a>では debian/control に <code>Testsuite: autopkgtest</code> の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。</p>
+
+<p>単純に <code>debian/tests/control</code> ファイルとそこで定義した <code>debian/tests/smoke</code> ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。</p>
+
+<pre><code>--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
+@@ -0,0 +1,2 @@
++Tests: smoke
++Depends: @, grep
+diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
+--- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
+@@ -0,0 +1,5 @@
++#!/bin/sh
++
++screenfetch
++
++[ ! `screenfetch | grep 'command not found' &gt; /dev/null` ]
+</code></pre>
+
+<p>でもやっぱり <code>/usr/share/doc/autopkgtest/README.running-tests.rst.gz</code> を読んでおいたほうが良さそう…</p>
+
+<p>というところで<a href="https://tracker.debian.org/news/929044">screenfetchをアップロード</a>。</p>
+
+<hr />
+
+<ul>
+<li>jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+<li>jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+<li>nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。</li>
+<li>libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+</ul>
+
+<p>小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。</p>
+
+<hr />
+
+<ul>
+<li><a href="https://tracker.debian.org/news/929053">snapperをアップロード</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -475,85 +594,6 @@ index 1507b5d..9073ab3 100644
 <ul>
 <li><a href="https://bugs.documentfoundation.org/show_bug.cgi?id=115066">LibO on macOSで日本語パック当てるとフォントでかいよ問題をレポートしておいた</a></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 16, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13">バグレポートにコメント追加しておいた</a>。数日様子を見てクローズするのが良いだろうと思う。</li>
-<li><a href="https://tracker.debian.org/news/901773">fonts-sawarabi-minchoパッケージをアップロード</a></li>
-</ul>
-
-<hr />
-
-<p>salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 15, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>昨日苦しんだ問題を<a href="https://github.com/fukuchi/libqrencode/issues/117">upstreamにissue報告した</a>。</p>
 
 					
 				</div>
