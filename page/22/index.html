@@ -60,6 +60,164 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/">debsnapコケた</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Nov 28, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/trouble">trouble</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>gbp import-dscs &ndash;debsnapで過去のパッケージを取得してgit repoを作る…のは前にやったことがあるのだが、何故か今回はorig.tar.gzを取得できていなくてエラーになった。何故？</p>
+
+<pre><code>$ debsnap sylpheed 3.2.0-1 --force -v
+Getting json http://snapshot.debian.org/mr/package/sylpheed/
+Getting json http://snapshot.debian.org/mr/package/sylpheed//3.2.0-1/srcfiles?fileinfo=1
+Getting file sylpheed_3.2.0-1.dsc: http://snapshot.debian.org/file/13df739bd3cac3d58d46a06154c5fcdfe27110a6
+Getting file sylpheed_3.2.0-1.debian.tar.gz: http://snapshot.debian.org/file/36a9145a40f5c2197950acd525e15e7c493a552c
+Getting file sylpheed_3.2.0~rc0.orig.tar.gz: http://snapshot.debian.org/file/a41a8e2fc3c5e4935f30c7bacff8d72508546e35
+
+It downloads sylpheed_3.2.0~rc0.orig.tar.gz, instead of sylpheed_3.2.0.orig.tar.gz
+
+a41a8e2fc3c5e4935f30c7bacff8d72508546e35:
+sylpheed_3.2.0~rc0.orig.tar.gz
+Seen in debian on 2012-06-25 16:23:22 in /pool/main/s/sylpheed. 
+Size: 4925789
+sylpheed_3.2.0.orig.tar.gz
+Seen in debian on 2012-06-29 16:11:26 in /pool/main/s/sylpheed. 
+Size: 4925789
+
+Yes, those files are exactly same one.
+
+[{&quot;name&quot;: &quot;sylpheed_3.2.0~rc0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120625T162322Z&quot;, &quot;size&quot;: 4925789}, {&quot;name&quot;: &quot;sylpheed_3.2.0.orig.tar.gz&quot;, &quot;archive_name&quot;: &quot;debian&quot;, &quot;path&quot;: &quot;/pool/main/s/sylpheed&quot;, &quot;first_seen&quot;: &quot;20120629T161126Z&quot;, &quot;size&quot;: 4925789}],
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Nov 15, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/upstream">upstream</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。<a href="https://birdfont.org/bugtracker/view.php?id=101">upstreamに報告済み</a>。あと、git repoでタグ打ちがないのも。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 29, 2015
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
+
+<p>sparcでのビルド失敗は</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
+    from pkg_resources import load_entry_point
+ImportError: No module named pkg_resources
+</code></pre>
+
+<p>…なんでモジュールが無いというのか？</p>
+
+<p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
+さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
+
+<p>新しいバージョンになると</p>
+
+<pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
+</code></pre>
+
+<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
+
+<p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/">autopkgtest触ってみた（らしい）</a></h3>
 						<small><span class="label label-primary">
 							
@@ -649,137 +807,6 @@ vars = (('VERSION', VERSION),
 </code></pre>
 
 <p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 2, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに<a href="https://github.com/twitter/twitter-text-rb">まとめられていた</a>。
-これはtwitter-textパッケージから色々生成するほうがいいよね、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688">Todoをバグとして登録しておく</a>ことにした。</p>
-
-<p>あとはjcodingsをアップデートして放り込みなど。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/">Debian Policyはi18nできないかな</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 1, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
-policy.sgml:178: (po4a::sgml)
-               不明なタグ HTTPSITE
-</code></pre>
-
-<p>で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、</p>
-
-<pre><code>$ po4a-gettextize --help-format
-有効フォーマット一覧:
-(snip)
-  - sgml: DebianDoc DTD と DocBook DTD。
-(snip)
-</code></pre>
-
-<p>とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/">bash-completionとか</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, May 31, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ほぼ寝込んでいたので、<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321">dcut のbash completion</a>をコピペで作って投げただけです。</p>
 
 					
 				</div>

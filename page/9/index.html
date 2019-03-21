@@ -60,6 +60,152 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Mar 7, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/938331">nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した</a>。</p>
+
+<ul>
+<li>どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ</li>
+</ul></li>
+
+<li><p>debootstrapをNMUでuploadした。deleyed/10なので10日待つ。</p>
+
+<pre><code>debootstrap (1.0.93+nmu1) unstable; urgency=medium
+ 
+* Non-maintainer Upload.
+* Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373)
+Now you can create Ubuntu breezy/dapper/edgy chroot.
+* Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian.
+When you fetch Ubuntu packages ubuntu-archive-keyring is necessary.
+(Closes: #736995)
+* Change repository URI for old Ubuntu releases (Closes: #676370, #839073)
+Archived Ubuntu releases are at old-releases.ubuntu.com/ubuntu
+* Set correct keyring and default mirror for old debian releases.
+Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
+(Closes: #891404, #600647, #792729)
+ 
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Mar 2018 22:28:22 +0900
+</code></pre></li>
+
+<li><p>もういっちょdebootstrapのNMUを準備。上のがtestingに落ちたら即アップロード予定。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Mar 4, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>sylpheedパッケージの更新を放り込んだ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=346388">sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 3, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ここしばらくの作業とか。</p>
+
+<ul>
+<li>林さんの依頼で<a href="https://salsa.debian.org/debian/libhinawa">libhinawaをインポート</a></li>
+<li>birdfontが新しいvalacでコンパイルできない問題をupstreamに報告したら対応してもらえたので、<a href="https://tracker.debian.org/news/937423">更新してアップロード</a></li>
+<li><a href="https://tracker.debian.org/news/936899">libmojo-rabbitmq-client-perlパッケージをアップロード</a></li>
+<li><a href="https://tracker.debian.org/news/936895">libmojolicious-plugin-assetpack-perlパッケージをアップロード</a></li>
+<li>debootstrapパッケージと戯れたり。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -494,225 +640,6 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
 
  -- Hideki Yamane &lt;henrich@debian.org&gt;  Wed, 07 Feb 2018 20:45:32 +0900
 </code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Feb 6, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p>1日一つは、ということでdartsパッケージの更新。</p>
-
-<pre><code>darts (0.32-16) unstable; urgency=medium
-
-* debian/control
-- update Vcs-* to use salsa.debian.org
-- set Build-Depends: debhelper (&gt;= 11)
-- set Standards-Version: 4.1.3
-* debian/compat
-- set 11
-* debian/watch
-- update to version 4
-* debian/copyright
-- sort order to ignore lintian warning
-
--- Hideki Yamane &lt;henrich@debian.org&gt;  Tue, 06 Feb 2018 20:23:18 +0900
-</code></pre></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Feb 5, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p>chasenパッケージの更新。</p>
-
-<pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
-
-* debian/control
-- Vcs-* move to salsa.debian.org 
-- use https for Homepage:
-- set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
-  dependency (pulled automatically)
-- set Standards-Version: 4.1.3
-* debian/rules
-- drop &quot;--with autoreconf&quot;
-- specify &quot;--no-parallel&quot; to avoid FTBFS
-* debian/compat
-- set 10
-* debian/watch
-- update to version 4
-
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
-</code></pre></li>
-
-<li><p>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</p>
-
-<pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
-
-* debian/control
-- set Build-Depends: debhelper (&gt;= 11)
-* debian/compat
-- set 11
-
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
-</code></pre></li>
-
-<li><p><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</p></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Feb 4, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</p>
-
-<pre><code>image: debian:sid
-
-before_script:
-- echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
-
-build:
-script:
-- dpkg-buildpackage -us -uc -B
-</code></pre></li>
-
-<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
-
-<li><p>あれ、libsylphでonigurumaが有効になってない？</p>
-
-<pre><code>libsylph 1.1.0
-
-OpenSSL       : yes
-iconv         : yes
-IPv6          : yes
-Oniguruma     : no
-</code></pre>
-
-<pre><code>checking whether Oniguruma is available... no
-</code></pre></li>
-</ul>
-
-<p>なんでだ？？</p>
-
-<pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
-if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
-        AC_MSG_RESULT(yes)
-        AC_MSG_CHECKING([whether Oniguruma is available])
-        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
-        ONIG_CONFIG=onig-config
-        ONIG_VERSION=`$ONIG_CONFIG --version 2&gt;/dev/null`
-        if test &quot;x$ONIG_VERSION&quot; != &quot;x&quot;; then
-                AC_MSG_RESULT(yes)
-                CFLAGS=&quot;$CFLAGS `$ONIG_CONFIG --cflags`&quot;
-                LIBS=&quot;$LIBS `$ONIG_CONFIG --libs`&quot;
-                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
-        else
-                AC_MSG_RESULT(no)
-                ac_cv_enable_oniguruma=no
-        fi
-else
-        AC_MSG_RESULT(no)
-fi
-</code></pre>
-
-<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
-
-<pre><code>override_dh_install:
-        $(RM) debian/tmp/usr/bin/onig-config
-</code></pre>
-
-<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
 
 					
 				</div>
