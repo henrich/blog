@@ -8,7 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -16,7 +16,7 @@
     <item>
       <title>Bts</title>
       <link>https://henrich.github.io/blog/tags/bts/</link>
-      <pubDate>Mon, 22 Jun 2015 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/bts/</guid>
       <description></description>
@@ -34,7 +34,7 @@
     <item>
       <title>Debian</title>
       <link>https://henrich.github.io/blog/tags/debian/</link>
-      <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/debian/</guid>
       <description></description>
@@ -158,6 +158,15 @@
     </item>
     
     <item>
+      <title>Release</title>
+      <link>https://henrich.github.io/blog/tags/release/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/release/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Todo</title>
       <link>https://henrich.github.io/blog/tags/todo/</link>
       <pubDate>Thu, 17 Aug 2017 06:26:14 +0900</pubDate>
@@ -172,6 +181,15 @@
       <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/trouble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unblock</title>
+      <link>https://henrich.github.io/blog/tags/unblock/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/unblock/</guid>
       <description></description>
     </item>
     

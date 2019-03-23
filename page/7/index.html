@@ -60,6 +60,73 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 15, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
+
+<p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
+
+<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
+  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
+</code></pre>
+
+<p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
+
+<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
+index c6ac3e7..1581e98 100644
+--- a/aruba.gemspec
++++ b/aruba.gemspec
+@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
+ EOS
+   end
+
+-  s.files            = `git ls-files`.split(&quot;\n&quot;)
+-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
+-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
++  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
++  s.test_files       = Dir['spec/*,features/*']
++  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
+   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
+   s.require_path     = &quot;lib&quot;
+ end
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/">Retrospective 2018 11 26</a></h3>
 						<small><span class="label label-primary">
 							
@@ -586,55 +653,6 @@ VM
 <li>Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない</li>
 <li><a href="https://ossalsjp18.sched.com/event/Eat7/dandified-way-to-package-management-in-yocto-project-zheng-ruoqin-fujitsu">DNFを拡張してライセンスとかも表示したりとか</a>というのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。</li>
 <li><a href="https://schd.ws/hosted_files/ossalsjp18/6a/LTSI-OSSJ2018-final.pdf">LTS kernelはmainline＋8000コミットぐらいある</a>というところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/06/26/%E3%81%BE%E3%81%A0debootstrap%E3%81%84%E3%81%98%E3%81%A3%E3%81%A6%E3%82%8B/">まだdebootstrapいじってる</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/debootstrap">debootstrap</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>そういえば、<a href="https://tracker.debian.org/news/959523/accepted-debootstrap-10100-source-all-into-unstable/">1.0.100</a>, <a href="https://tracker.debian.org/news/962422/accepted-debootstrap-10101-source-all-into-unstable/">1.0.101</a>, <a href="https://tracker.debian.org/news/965045/accepted-debootstrap-10102-source-all-into-unstable/">1.0.102</a>, <a href="https://tracker.debian.org/news/967378/accepted-debootstrap-10103-source-all-into-unstable/">1.0.103</a>, <a href="https://tracker.debian.org/news/968234/accepted-debootstrap-10104-source-into-unstable/">1.0.104</a> という感じでdebootstrap直したりバグ埋め込んだりしてましたね。</p>
-
-<p>この中で得た知見&hellip;</p>
-
-<ul>
-<li>systemdのcontainer環境下かどうかは <code>$container</code> を見ればいい、あるいはsystemdが動作している環境なら <code>/var/run/systemd/container</code> 見る</li>
-<li><code>dnsmasq</code> を使うと Proxy DHCP が簡単にできるので、既にLAN内でDHCPサーバーが動いている環境でPXEブートしてみたい、という時に便利（<a href="https://int128.hatenablog.com/entry/20130101/1357055467">参考にさせてもらったサイト</a>)</li>
 </ul>
 
 					

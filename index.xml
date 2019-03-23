@@ -8,18 +8,383 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 18 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
     
       
         
           <item>
             <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
+            <link>https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;RCバグでunstableにuploadされてNEW queue待ちのがあったようなので、タグ付けした。&lt;/p&gt;
+            <guid>https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;今回は&lt;code&gt;ubuntu-keyring&lt;/code&gt;パッケージを題材に「full freeze期間に入ってしまったが、unstableにあるパッケージをリリース対象＝testingに入れたい」場合の手順をメモしてみました。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;まず、testingにあるバージョンとunstableにあるバージョンの差分（diff）を生成します。今だと&lt;code&gt;git diff&lt;/code&gt;でも良さそうな気はするのですが、慣例的にはソースパッケージに対して&lt;code&gt;debdiff&lt;/code&gt;を使って作ります。ソースパッケージを&lt;code&gt;dget&lt;/code&gt;コマンドで取得し、&lt;code&gt;.dsc&lt;/code&gt;ファイルに対して&lt;code&gt;debdiff&lt;/code&gt;コマンドを実行しています。ソースパッケージのURLは&lt;a href=&#34;https://tracker.debian.org/pkg/ubuntu-keyring&#34;&gt;distro tracker&lt;/a&gt;からコピペしていますが、別のやり方もあるでしょう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc \
+       http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc
+$ debdiff ubuntu-keyring_2018.09.18.1-4.dsc ubuntu-keyring_2018.09.18.1-5.dsc &amp;gt; ubuntu-keyring.diff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;diffが出来たので、これを元に&lt;code&gt;unblockリクエスト&lt;/code&gt;をバグ登録します。ツールとしては&lt;code&gt;reportbug&lt;/code&gt;コマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugは&lt;code&gt;reportbug &amp;lt;package&amp;gt;&lt;/code&gt;という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)である&lt;code&gt;release.debian.org&lt;/code&gt;を指定します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ reportbug release.debian.org
+Detected character set: UTF-8
+Please change your locale if this is incorrect.
+
+Using &#39;Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;&#39; as your from address.
+Will send report to Debian (per lsb_release).
+What sort of request is this? (If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.)
+
+1 binnmu      binNMU requests
+2 britney     testing migration script bugs
+3 other       None of the other options
+4 rm          Stable/Testing removal requests
+5 stretch-pu  stretch proposed updates requests
+6 transition  transition tracking
+7 unblock     unblock requests
+
+Choose the request type:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;今回行いたいのはunblockなので&lt;code&gt;&amp;quot;7&amp;quot;&lt;/code&gt;を選びます。続けて対象となるパッケージ名（今回は&lt;code&gt;ubuntu-keyring&lt;/code&gt;）を入力します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Choose the request type: 7
+Please enter the name of the package: ubuntu-keyring
+Checking status database...
+Latest version seems to be 2018.09.18.1-1, is this the proper one ? [Y|n|?]?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最新バージョンのチェックが行われます…あれ？間違ってますね。なんでだろう？このバージョンはtestingにも無いんですが…謎だ。仕方がないので&lt;code&gt;&amp;quot;n&amp;quot;&lt;/code&gt;を入力して現在の最新版である&lt;code&gt;2018.09.18.1-5&lt;/code&gt;を入力。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Latest version seems to be 2018.09.18.1-1, is this the proper one ? [Y|n|?]? n
+Please enter the version of the package: 2018.09.18.1-5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;するとテンプレートが埋められて雛形が出来上がり、&lt;code&gt;sensible-editor&lt;/code&gt;で指定されたエディタが立ち上がります&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Subject: unblock: ubuntu-keyring/2018.09.18.1-5
+Package: release.debian.org
+User: release.debian.org@packages.debian.org
+Usertags: unblock
+Severity: normal
+
+Please unblock package ubuntu-keyring
+
+(explain the reason for the unblock here)
+
+(include/attach the debdiff against the package in testing)
+
+unblock ubuntu-keyring/2018.09.18.1-5
+
+-- System Information:
+Debian Release: buster/sid
+  APT prefers unstable
+  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
+Architecture: amd64 (x86_64)
+
+Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
+Kernel taint flags: TAINT_OOT_MODULE, TAINT_UNSIGNED_MODULE
+Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/dash
+Init: systemd (via /run/systemd/system)
+LSM: AppArmor: enabled
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;(include/attach the debdiff against the package in testing)&lt;/code&gt;の所を消して、先程作ったdiffを貼り付け、&lt;code&gt;(explain the reason for the unblock here)&lt;/code&gt;のところに理由を書いて送ります。出来上がりはこんな感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Package: release.debian.org
+Severity: normal
+User: release.debian.org@packages.debian.org
+Usertags: unblock
+
+ Please unblock package ubuntu-keyring
+
+ * This update fixes file removal at maintainer script, and also deals with symlink
+   removal that the package in testing doesn&#39;t create properly as below
+
+&amp;gt;&amp;gt;      # force remove garbage that was created by previous version, oh moron...
+&amp;gt;&amp;gt;      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
+
+ * ubuntu-keyring is leaf package, no package will be affected with this
+   change if there would be a regression ;)
+
+&amp;gt;&amp;gt; $ apt-rdepends -r ubuntu-keyring
+&amp;gt;&amp;gt; ubuntu-keyring
+&amp;gt;&amp;gt;  Reverse Depends: ubuntu-archive-keyring (2018.09.18.1-5)
+
+ ubuntu-archive-keyring is just a transitional package.
+
+
+ Here&#39;s a debdiff.
+
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/changelog ubuntu-keyring-2018.09.18.1/debian/changelog
+--- ubuntu-keyring-2018.09.18.1/debian/changelog	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/changelog	2019-03-12 01:40:45.000000000 +0900
+@@ -1,3 +1,16 @@
++ubuntu-keyring (2018.09.18.1-5) unstable; urgency=medium
++
++  * debian/*.post{inst,rm}
++    - use apt-config(8)&#39;s Dir::Etc::trustedparts and fix keyring removal error.
++      Thanks to Linda Lapinlampi &amp;lt;linda@lindalap.fi&amp;gt; and
++      Hiroyuki YAMAMORI &amp;lt;h-yamamo@db3.so-net.ne.jp&amp;gt; (Closes: #922176, #922177)
++  * debian/ubuntu-dbgsym-keyring.templates
++    - add ubuntu-dbgsym-keyring.gpg (See #922348)
++  * debian/control
++    - add Rules-Requires-Root: no
++
++ -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Tue, 12 Mar 2019 01:40:45 +0900
++
+ ubuntu-keyring (2018.09.18.1-4) unstable; urgency=medium
+ 
+   * debian/control
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/control ubuntu-keyring-2018.09.18.1/debian/control
+--- ubuntu-keyring-2018.09.18.1/debian/control	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/control	2019-03-12 01:40:45.000000000 +0900
+@@ -8,6 +8,7 @@
+ Homepage: https://launchpad.net/ubuntu/+source/ubuntu-keyring
+ Vcs-Git: https://salsa.debian.org/debian/ubuntu-keyring.git
+ Vcs-Browser: https://salsa.debian.org/debian/ubuntu-keyring
++Rules-Requires-Root: no
+ 
+ Package: ubuntu-archive-keyring
+ Architecture: all
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
+@@ -5,15 +5,26 @@
+ case &amp;quot;$1&amp;quot; in
+     install|configure)
+ 
++      # force remove garbage that was created by previous version, oh moron...
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
++
++
++      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
++      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
++
++      # once clean up keyrings
++      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-removed-keys.gpg&amp;quot;
++
+       . /usr/share/debconf/confmodule
+       db_version 2.0
+       db_get ubuntu-cloud-keyring/keyring
+ 
+       if [ -n &amp;quot;$RET&amp;quot; ]; then
+-        for keyring in &amp;quot;$RET&amp;quot;
++        selected=$(echo &amp;quot;$RET&amp;quot; | sed -e &#39;s/, /\n/g&#39;)
++        echo &amp;quot;$selected&amp;quot; | while read keyring
+         do
+-          rm -f /etc/apt/trusted.gpg.d/&amp;quot;$keyring&amp;quot;.gpg
+-          ln -sf /usr/share/keyrings/&amp;quot;$keyring&amp;quot;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &amp;quot;/usr/share/keyrings/${keyring}.gpg&amp;quot; &amp;quot;$TRUSTEDPARTS&amp;quot;
+         done
+       fi
+ 
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
+@@ -5,9 +5,12 @@
+ case &amp;quot;$1&amp;quot; in
+     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+ 
+-        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloud-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloud-keyring.gpg
++        TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
++        eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
++
++        rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&amp;quot; \
++              &amp;quot;${TRUSTEDPARTS}ubuntu-cloud-removed-keys.gpg&amp;quot; \
++              &amp;quot;${TRUSTEDPARTS}ubuntu-cloud-keyring.gpg&amp;quot;
+ 
+     ;;
+     *)
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
+@@ -5,15 +5,28 @@
+ case &amp;quot;$1&amp;quot; in
+     install|configure)
+ 
++      # remove garbage that was created by previous version, oh moron...
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg\,\ *
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg\,\ *
++
++
++      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
++      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
++
++      # once clean up keyrings
++      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&amp;quot;
++
+       . /usr/share/debconf/confmodule
+       db_version 2.0
+       db_get ubuntu-dbgsym-keyring/keyring
+ 
+       if [ -n &amp;quot;$RET&amp;quot; ]; then
+-        for keyring in &amp;quot;$RET&amp;quot;
++        selected=$(echo &amp;quot;$RET&amp;quot; | sed -e &#39;s/, /\n/g&#39;)
++        echo &amp;quot;$selected&amp;quot; | while read keyring
+         do
+-          rm -f /etc/apt/trusted.gpg.d/&amp;quot;$keyring&amp;quot;.gpg
+-          ln -sf /usr/share/keyrings/&amp;quot;$keyring&amp;quot;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &amp;quot;/usr/share/keyrings/${keyring}.gpg&amp;quot; &amp;quot;$TRUSTEDPARTS&amp;quot;
+         done
+       fi
+ 
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
+@@ -5,9 +5,12 @@
+ case &amp;quot;$1&amp;quot; in
+     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+ 
+-        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-keyring.gpg
++        TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
++        eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
++
++        rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&amp;quot; \
++              &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&amp;quot; \
++              &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&amp;quot;
+ 
+     ;;
+     *)
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates	2019-03-12 01:40:45.000000000 +0900
+@@ -1,6 +1,6 @@
+ Template: ubuntu-dbgsym-keyring/keyring
+ Type: multiselect
+-Choices: ubuntu-keyring-2016-dbgsym, ubuntu-dbgsym-removed-keys
++Choices: ubuntu-dbgsym-keyring, ubuntu-keyring-2016-dbgsym, ubuntu-dbgsym-removed-keys
+ Default:
+ _Description: Trusted GPG keyring for package authentication
+  If you want to use the Ubuntu dbgsym archive in place of the Debian archive in
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
+@@ -12,15 +12,27 @@
+               /etc/apt/trusted.gpg.d/ubuntu-archive-removed-keys.gpg
+       fi
+ 
++      # and also remove garbage that was created by previous version.
++      # oh moron...
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-201[28]-archive\,\ *
++
++      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
++      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
++
++      # once clean up keyrings
++      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&amp;quot;
++
+       . /usr/share/debconf/confmodule
+       db_version 2.0
+       db_get ubuntu-keyring/keyring
+ 
+       if [ -n &amp;quot;$RET&amp;quot; ]; then
+-        for keyring in &amp;quot;$RET&amp;quot;
++        selected=$(echo &amp;quot;$RET&amp;quot; | sed -e &#39;s/, /\n/g&#39;)
++        echo &amp;quot;$selected&amp;quot; | while read keyring
+         do
+-          rm -f /etc/apt/trusted.gpg.d/&amp;quot;$keyring&amp;quot;.gpg
+-          ln -sf /usr/share/keyrings/&amp;quot;$keyring&amp;quot;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &amp;quot;/usr/share/keyrings/${keyring}.gpg&amp;quot; &amp;quot;$TRUSTEDPARTS&amp;quot;
+         done
+       fi
+ 
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
+@@ -5,14 +5,17 @@
+ case &amp;quot;$1&amp;quot; in
+     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+ 
+-        rm -f /etc/apt/trusted.gpg.d/ubuntu-archive-keyring.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-archive-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-archive.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-keyring.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-master-keyring.gpg
++      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
++      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
++
++      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-archive-keyring.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cdimage.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-cloudimage-keyring.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-cloudimage-removed-keys.gpg&amp;quot; \
++            &amp;quot;${TRUSTEDPARTS}ubuntu-master-keyring.gpg&amp;quot;
+ 
+     ;;
+     *)
+
+unblock ubuntu-keyring/2018.09.18.1-5
+
+-- System Information:
+Debian Release: buster/sid
+  APT prefers unstable
+  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
+Architecture: amd64 (x86_64)
+
+Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
+Kernel taint flags: TAINT_OOT_MODULE, TAINT_UNSIGNED_MODULE
+Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/dash
+Init: systemd (via /run/systemd/system)
+LSM: AppArmor: enabled
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;できたらエディタから抜けて&lt;code&gt;&amp;quot;y&amp;quot;&lt;/code&gt;で送信します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Report will be sent to Debian Bug Tracking System &amp;lt;submit@bugs.debian.org&amp;gt;
+Submit this report on release.debian.org (e to edit) [Y|n|a|c|e|i|l|m|p|q|d|t|s|?]? y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SMTPサーバーへの通信が行われ、特に問題なければ完了メッセージがでてきます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Connecting to mysmtp.example.jp:587 via SMTP...
+
+Bug report submitted to: Debian Bug Tracking System &amp;lt;submit@bugs.debian.org&amp;gt;
+Copies sent to:
+  Debian Bug Tracking System &amp;lt;submit@bugs.debian.org&amp;gt;
+  Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+
+If you want to provide additional information, please wait to receive the bug tracking number via email; you may then send any extra information to n@bugs.debian.org (e.g.
+nnnnnn@bugs.debian.org), where n is the bug number. Normally you will receive an acknowledgement via email including the bug report number within an hour; if you haven&#39;t received a
+confirmation, then the bug reporting process failed at some point (reportbug or MTA failure, BTS maintenance, etc.).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925048&#34;&gt;debootstrapにバグレポート来てた&lt;/a&gt;から確認したが、報告者がミスってるだけだった…&lt;/p&gt;
 </description>
           </item>
         
@@ -33,7 +398,7 @@
             <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925048&#34;&gt;debootstrapにバグレポート来てた&lt;/a&gt;から確認したが、報告者がミスってるだけだった…&lt;/p&gt;
+            <description>&lt;p&gt;RCバグでunstableにuploadされてNEW queue待ちのがあったようなので、タグ付けした。&lt;/p&gt;
 </description>
           </item>
         
@@ -283,45 +648,6 @@
 &lt;p&gt;おお、defunct…。&lt;/p&gt;
 
 &lt;p&gt;この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;http://debian-mirror.sakura.ne.jp/munin/&#34;&gt;debian-mirror.sakura.ne.jpでのmuninでの監視&lt;/a&gt;で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;You don&#39;t have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ということなので、いろいろ調べて &lt;a href=&#34;http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI&#34;&gt;http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI&lt;/a&gt; を見てから&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; $ sudo apt-get install libapache2-mod-fcgid
- $ sudo a2enmod rewrite
- $ sudo a2enmod fcgid
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;としてから&lt;code&gt;/etc/apache2/conf-enabled/munin.conf&lt;/code&gt;を以下のように書き換え。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
-+++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
-@@ -11,7 +11,7 @@
- 
- ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
- &amp;lt;Location /munin-cgi/munin-cgi-graph&amp;gt;
--        Require local
-+        Require all granted
-         &amp;lt;IfModule mod_fcgid.c&amp;gt;
-             SetHandler fcgid-script
-         &amp;lt;/IfModule&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         

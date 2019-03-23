@@ -60,6 +60,55 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/">ISOファイルのマウントが残っていてemergency modeで起動</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 13, 2016
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/trouble">trouble</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）</p>
+
+<p>前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。</p>
+
+<pre><code>#/dev/loop0     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
+#/dev/loop2     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51        udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
+#Entry for /dev/loop1 :
+#UUID=2015-10-30-20-02-13-00    /media/henrich/J_SSS_X64FRE_JA-JP_DV91  udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
+</code></pre>
+
+<p>なんなんだこれは。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2015/11/28/debsnap%E3%82%B3%E3%82%B1%E3%81%9F/">debsnapコケた</a></h3>
 						<small><span class="label label-primary">
 							
@@ -745,68 +794,6 @@ dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
  dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
 dpkg-genchanges: not including original source code in upload
 </code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jun 6, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>JDのreproducible buildがエラーになってるのは<a href="https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros">DATEとかを展開するMacroが入ってるから</a>、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。</p>
-
-<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&rdquo;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
-
-<p>jruby-joniパッケージは<a href="https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html">Java .jar files contain user login in the <code>Built-By</code> of <code>MANIFEST.MF</code></a>てなことだったので、この辺りを削るパッチを追加することにしました。</p>
-
-<p>reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。</p>
-
-<pre><code>&gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/buildflags.mk
-</code></pre>
-
-<p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
-
-<p>birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。</p>
-
-<pre><code>&gt; def write_config (prefix):
-print (&quot;Writing Config.vala&quot;)
-
-vars = (('VERSION', VERSION),
-('BUILD_TIMESTAMP', time.asctime( time.localtime(time.time()))),
-('PREFIX', prefix),
-)
-</code></pre>
-
-<p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
 
 					
 				</div>

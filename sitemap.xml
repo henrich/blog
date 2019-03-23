@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
-    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+    <loc>https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2019/03/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -1149,7 +1154,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/bts/</loc>
-    <lastmod>2015-06-22T00:00:00+09:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1166,13 +1171,13 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
-    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/categories/debian/</loc>
-    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1214,7 +1219,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/</loc>
-    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1256,7 +1261,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/post/</loc>
-    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1273,8 +1278,14 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/tags/release/</loc>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/tags/</loc>
-    <lastmod>2015-06-22T00:00:00+09:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1293,6 +1304,12 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/trouble/</loc>
     <lastmod>2016-02-13T00:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/tags/unblock/</loc>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
