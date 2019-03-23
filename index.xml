@@ -370,7 +370,32 @@ nnnnnn@bugs.debian.org), where n is the bug number. Normally you will receive an
 confirmation, then the bug reporting process failed at some point (reportbug or MTA failure, BTS maintenance, etc.).
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。&lt;/p&gt;
+&lt;p&gt;送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。今回は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350&#34;&gt;Bug#925350&lt;/a&gt;でした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Thank you for filing a new Bug report with Debian.
+
+You can follow progress on this Bug here: 925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350.
+
+This is an automatically generated reply to let you know your message
+has been received.
+
+Your message is being forwarded to the package maintainers and other
+interested parties for their attention; they will reply in due course.
+
+Your message has been sent to the package maintainer(s):
+ Debian Release Team &amp;lt;debian-release@lists.debian.org&amp;gt;
+
+If you wish to submit further information on this problem, please
+send it to 925350@bugs.debian.org.
+
+Please do not send mail to owner@bugs.debian.org unless you wish
+to report a problem with the Bug-tracking system.
+
+-- 
+925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350
+Debian Bug Tracking System
+Contact owner@bugs.debian.org with problems
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
