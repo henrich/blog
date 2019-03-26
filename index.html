@@ -60,6 +60,111 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/">サポート終了コンポーネントのアーカイブ削除に寄せて</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Mar 26, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/release">release</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日、ミラーアーカイブからDebian7とDebian8のサポート終了コンポーネントが削除されました。すると、Docker使ってる人やCircleCI使ってる人が「ぎゃー！」と叫び始めたという。どうも背景を理解されてる方は少ないようなので、簡単にざっと説明を書きました（ユーザーならともかく、イメージを提供するベンダー側は把握しておいてほしいですけどね…）。</p>
+
+<p>ベースイメージとしてDebian8 &ldquo;jessie&rdquo;を使っているという前提で話をします。</p>
+
+<ul>
+<li>Debian8はDebian9のリリースに伴って<code>「oldstable」（旧安定版）</code>という扱いになっています。oldstableはstableに比べて限定されたサポートの提供となります。そりゃぁでっかいリポジトリを複数バージョンに渡って長期間メンテナンスなんて難しいですからね。oldstable使ってる時点で色々制限が出てくる、ってもんです。ベストプラクティスとしては「<strong>ベースイメージのDebianはstableを使おう</strong>」です。
+
+<ul>
+<li>え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？</li>
+</ul></li>
+<li><code>jessie-updates</code>コンポーネントが無くてビルドがー！という人：<code>-updates</code>は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、<strong>jessieがoldstableになった時点で死んでます</strong>。外しちゃえばいいです。</li>
+<li><code>jessie-backports</code>が無くなってギャー！という人：<code>-backports</code>は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、<strong>jessieがoldstableになった時点で死んでます</strong>。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう</li>
+</ul>
+
+<p>Debian9がでて早２年近く、そろそろDebian10の足音も聞こえてるので、開発側としてはいまさらDebian8に固執してほしくはない、というのが正直な所。ベースイメージのバージョン移行は計画的に…。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Mar 24, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/unblock">unblock</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>tomoyo-toolsも一応[unblockを出した]()。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
+
+<ul>
+<li>→ダメだった。そらそーか。</li>
+</ul></li>
+<li>squid-deb-proxyは問い合わせてみたが特に反応がないが、週末だったので<code>--deleyed 3</code>でアップロードした。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -803,93 +908,6 @@ Contact owner@bugs.debian.org with problems
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Mar 8, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://elinux.org/Japan_Technical_Jamboree_68">Japan Linux Jamboree</a>で<a href="https://docs.google.com/presentation/d/14a3U852hYej_DqbHaZMwyrcec8u6Bh3cdKglauc52Hg/edit?usp=sharing">debootstrapの話</a>をしてきました。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Mar 7, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=921757">os-autoinstのtestでのrace condition bugの修正を先日NMUしてもらった</a>のだけど、何故かbugが自動で閉じられてなかったので処理。
-
-<ul>
-<li>後で気づいたが、これi386でのビルドがまたコケてるね…それでか。</li>
-</ul></li>
-<li>jruby-joniのバグがupstreamでようやく修正されたので<a href="https://tracker.debian.org/news/1034317/accepted-jruby-joni-2126-1-source-into-unstable/">upload</a></li>
-<li>そういえば<a href="https://gihyo.jp/magazine/SD/archive/2019/201904">Software Design2019年4月号</a>の画像を見かけたので<a href="https://www.debian.or.jp/using/book.html#sd201904">JPサイトに追加</a></li>
-<li>JDimのtestがらみのissueに<a href="https://github.com/JDimproved/JDim/issues/45#issuecomment-470464988">コメント</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -1122,7 +1140,16 @@ Contact owner@bugs.debian.org with problems
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/23/">23</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/24/">24</a></li>
     
     
     <li class="page-item">
@@ -1130,7 +1157,7 @@ Contact owner@bugs.debian.org with problems
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/23/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/24/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

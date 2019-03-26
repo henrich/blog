@@ -8,8 +8,57 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>サポート終了コンポーネントのアーカイブ削除に寄せて</title>
+            <link>https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/</link>
+            <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/</guid>
+            <description>&lt;p&gt;先日、ミラーアーカイブからDebian7とDebian8のサポート終了コンポーネントが削除されました。すると、Docker使ってる人やCircleCI使ってる人が「ぎゃー！」と叫び始めたという。どうも背景を理解されてる方は少ないようなので、簡単にざっと説明を書きました（ユーザーならともかく、イメージを提供するベンダー側は把握しておいてほしいですけどね…）。&lt;/p&gt;
+
+&lt;p&gt;ベースイメージとしてDebian8 &amp;ldquo;jessie&amp;rdquo;を使っているという前提で話をします。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Debian8はDebian9のリリースに伴って&lt;code&gt;「oldstable」（旧安定版）&lt;/code&gt;という扱いになっています。oldstableはstableに比べて限定されたサポートの提供となります。そりゃぁでっかいリポジトリを複数バージョンに渡って長期間メンテナンスなんて難しいですからね。oldstable使ってる時点で色々制限が出てくる、ってもんです。ベストプラクティスとしては「&lt;strong&gt;ベースイメージのDebianはstableを使おう&lt;/strong&gt;」です。
+
+&lt;ul&gt;
+&lt;li&gt;え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;jessie-updates&lt;/code&gt;コンポーネントが無くてビルドがー！という人：&lt;code&gt;-updates&lt;/code&gt;は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、&lt;strong&gt;jessieがoldstableになった時点で死んでます&lt;/strong&gt;。外しちゃえばいいです。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;jessie-backports&lt;/code&gt;が無くなってギャー！という人：&lt;code&gt;-backports&lt;/code&gt;は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、&lt;strong&gt;jessieがoldstableになった時点で死んでます&lt;/strong&gt;。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Debian9がでて早２年近く、そろそろDebian10の足音も聞こえてるので、開発側としてはいまさらDebian8に固執してほしくはない、というのが正直な所。ベースイメージのバージョン移行は計画的に…。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;tomoyo-toolsも一応[unblockを出した]()。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
+
+&lt;ul&gt;
+&lt;li&gt;→ダメだった。そらそーか。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;squid-deb-proxyは問い合わせてみたが特に反応がないが、週末だったので&lt;code&gt;--deleyed 3&lt;/code&gt;でアップロードした。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -621,58 +670,6 @@ Contact owner@bugs.debian.org with problems
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので&lt;a href=&#34;https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/&#34;&gt;対応&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949&#34;&gt;birdfontの依存関係を微調整するバグレポート&lt;/a&gt;が来てたので対応した。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-lintian&#34;&gt;W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とあったが、これはどっちに揃えるのが良いのだろうね？&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやら&lt;code&gt;squid-deb-proxy-client&lt;/code&gt;がおかしい。&lt;/p&gt;
-
-&lt;p&gt;squid-deb-proxy-clientの中身を見てコマンドを実行。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;23443 ?        Ss     1:44  \_ tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell
-23450 pts/2    Ss     0:00      \_ /bin/bash
-22690 pts/2    S+     0:00      |   \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian
-22691 pts/2    Z+     0:00      |       \_ [avahi-browse] &amp;lt;defunct&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;というようになったので、試しに引数なしで&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;23450 pts/2    Ss     0:00      \_ /bin/bash
-24148 pts/2    S+     0:00      |   \_ /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover
-24149 pts/2    Z+     0:00      |       \_ [avahi-browse] &amp;lt;defunct&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;おお、defunct…。&lt;/p&gt;
-
-&lt;p&gt;この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…&lt;/p&gt;
 </description>
           </item>
         

@@ -60,6 +60,105 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Dec 31, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/patch">patch</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のMerge Request</a>に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2">x86指定に変更した</a>→マージされました。</li>
+<li>昨日の<a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ruby-loofahパッケージの更新で脆弱性修正</a>したのだが、Debian9 &ldquo;stretch&rdquo;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、<a href="https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch">作業して</a>セキュリティチームに連絡だけしといた。</li>
+<li>なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8">意図的なものだということだけを伝えるreply</a>をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。</li>
+<li><a href="https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/">ubuntu-keyringパッケージを最新に更新</a>。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
+
+<ul>
+<li>次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 30, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/rcbug">RCbug</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;rtbuster-will-remove=ign&amp;rtbuster-can-defer=ign&amp;autoremovals=ign&amp;deferred=ign&amp;fnewer=ign&amp;fnewerval=30&amp;rc=1&amp;cpopcon=1&amp;chints=1&amp;ctags=1&amp;cclaimed=1&amp;cdeferred=1&amp;caffected=1&amp;crttags=1&amp;sortby=last_modified&amp;sorto=asc&amp;#results">Debian10 &ldquo;buster&rdquo;リリースの障害となるRelease Criticalバグ一覧</a>から簡単に直せそうなのを探して作業。</p>
+
+<ul>
+<li>ruby-slimパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=895500#16">New upstream version導入でFTBFS修正</a></li>
+<li>ruby-sinatra-contribパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911869#12">New upstream version導入でFTBFS修正</a></li>
+<li>ruby-loofahパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912398#14">New upstream version導入でCVE修正</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/12/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -437,100 +536,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Dec 20, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>水野さんの<a href="https://tracker.debian.org/news/1012874/accepted-silversearcher-ag-220-1-source-amd64-into-unstable/">silversearcher-agパッケージをアップロード</a>した。
-
-<ul>
-<li>あわせて<a href="https://salsa.debian.org/debian/silversearcher-ag">salsa.debian.orgにリポジトリを追加</a>し、権限を付与した</li>
-<li>さらに<a href="https://salsa.debian.org/debian/silversearcher-ag-el">silversearcher-ag-el</a>も追加</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/">birdfontパッケージをアップデート</a>した</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Dec 16, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/">ruby-rspec-instafailパッケージをアップデート</a>した</li>
-<li><a href="https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/">ruby-childprocessパッケージをアップデート</a>した</li>
-<li>twitterで不具合話を拾ったので、<a href="https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/">fonts-unfonts-coreパッケージをアップデート</a>した
-
-<ul>
-<li>fontforgeコマンドの指定で <code>Open(&quot;UnDinaruLight.ttf&quot;)</code> のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -771,7 +776,16 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/23/">23</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/24/">24</a></li>
     
     
     <li class="page-item">
@@ -779,7 +793,7 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/23/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/24/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
