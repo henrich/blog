@@ -84,6 +84,7 @@
 <li>え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？</li>
 </ul></li>
 <li><code>jessie-updates</code>コンポーネントが無くてビルドがー！という人：<code>-updates</code>は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、<strong>jessieがoldstableになった時点で死んでます</strong>。外しちゃえばいいです。</li>
+<li><strong>(追記)</strong> <code>http://security.debian.org/debian/ jessie/updates mainも削除…はしちゃダメです！</code> その行は<code>セキュリティアップデートの取得</code>です（取得先サーバーがsecurity.debian.orgでしょ？) たしかに<code>jessie/updates</code>というところだけを見たら削除したくなるかもしれませんが、LTSサポートのセキュリティアップデートが降ってくるのを消したらアカンですよ…。</li>
 <li><code>jessie-backports</code>が無くなってギャー！という人：<code>-backports</code>は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、<strong>jessieがoldstableになった時点で死んでます</strong>。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう</li>
 </ul>
 

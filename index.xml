@@ -30,6 +30,7 @@
 &lt;li&gt;え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;jessie-updates&lt;/code&gt;コンポーネントが無くてビルドがー！という人：&lt;code&gt;-updates&lt;/code&gt;は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、&lt;strong&gt;jessieがoldstableになった時点で死んでます&lt;/strong&gt;。外しちゃえばいいです。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;(追記)&lt;/strong&gt; &lt;code&gt;http://security.debian.org/debian/ jessie/updates mainも削除…はしちゃダメです！&lt;/code&gt; その行は&lt;code&gt;セキュリティアップデートの取得&lt;/code&gt;です（取得先サーバーがsecurity.debian.orgでしょ？) たしかに&lt;code&gt;jessie/updates&lt;/code&gt;というところだけを見たら削除したくなるかもしれませんが、LTSサポートのセキュリティアップデートが降ってくるのを消したらアカンですよ…。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;jessie-backports&lt;/code&gt;が無くなってギャー！という人：&lt;code&gt;-backports&lt;/code&gt;は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、&lt;strong&gt;jessieがoldstableになった時点で死んでます&lt;/strong&gt;。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう&lt;/li&gt;
 &lt;/ul&gt;
 
