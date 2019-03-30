@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2019-03-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/</loc>
     <lastmod>2019-03-26T00:00:00+00:00</lastmod>
   </url>
@@ -1181,13 +1186,13 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/categories/debian/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1229,7 +1234,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1271,7 +1276,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/post/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1319,7 +1324,7 @@
   
   <url>
     <loc>https://henrich.github.io/blog/tags/unblock/</loc>
-    <lastmod>2019-03-24T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

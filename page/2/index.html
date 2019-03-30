@@ -60,6 +60,73 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>昨日のdebootstrap話で平松さんがarchitecture指定がDebianだと独特なのがあって混乱する（例: amd64）と仰っていたので、<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/28">パッチ作成</a>した。</li>
+<li>birdfontのtestingへのmigrationを待って<a href="https://tracker.debian.org/news/1034605/accepted-birdfont-2260-1-source-into-unstable/">更新を押し込んだ</a>。</li>
+<li>libuninameslistはライブラリ更新だし、ということで作業はしたけどアップロードは見送り。</li>
+<li>jcodingsの更新を<a href="https://tracker.debian.org/news/1034671/accepted-jcodings-1043-1-source-into-unstable/">アップロード</a>
+
+<ul>
+<li>よく考えたらjruby-joniでのjcodings指定が上記の更新したバージョン依存であった…ミラーに来るのを待って明日更新しよう…。</li>
+</ul></li>
+<li>tomoyo-toolsがリリースされてたのでこちらも<a href="https://tracker.debian.org/news/1034677/accepted-tomoyo-tools-260-20190305-1-source-into-unstable/">アップロード</a></li>
+</ul>
+
+<hr />
+
+<p>OpenChainの下調べで日本のワーキンググループのメーリングリストに参加しようとするもエラーが出るので、list ownerに問い合わせを送った…のだがエラーになって帰ってくるよ？</p>
+
+<pre><code class="language-text">&lt;openchain-japan-wg-owner@mail.linuxfoundation.org&gt; (expanded from
+    &lt;openchain-japan-wg-owner@lists.linuxfoundation.org&gt;): Command died with
+    status 1: &quot;/usr/lib/mailman/mail/mailman owner openchain-japan-wg&quot;. Command
+    output: mailowner script, list not found: openchain-japan-wg
+</code></pre>
+
+<p>そのうちページにも一切アクセスできなくなった…なんだこれは、ということでLFのアカウントを取って（というか取り直して？）、<a href="https://jira.linuxfoundation.org/servicedesk/customer/portal/4/SUPPORT-3?sda_source=notification-email">Jiraに報告</a>した。</p>
+
+<p>メーリングリストの案内についてはページを指すようにPull Request送った。</p>
+
+<hr />
+
+<p>laptop（HP Elitebook G5 830）のBIOSアップデートを実施。UFEI画面から有線LAN経由でアップデートできるのは良い（Dockの方からは行けないのが残念）。一度処理途中で止まってしまい、電源強制切断からの更新のrevertと再アップデートしたのも中々ヒヤヒヤした。あとはDockとかのファームウェアのアップデートもしたいところだが、こちらはWindowsが無いとダメっぽいんだよな…。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -460,48 +527,6 @@
 					<br>
 					
 						<p><a href="https://github.com/knxm/mathlibre">MathLibre</a>をいじってて<code>live-build</code>パッケージでbusterサポートが抜けてたので<a href="https://salsa.debian.org/live-team/live-build/commit/f242323fa246840ba9581586ad78a8301629d84c">Merge Requestした</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 16, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>JDimでの<a href="https://github.com/JDimproved/JDim/pull/33/commits/5712a514f4ad4bfc1bcb71fabb74153f7af53c40">Debian向けの開発環境説明を修正</a>した。</li>
-<li>partman-lvmの修正がregressionを起こしてrevertされたので<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2">再チャレンジ</a></li>
-</ul>
 
 					
 				</div>

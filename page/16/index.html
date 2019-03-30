@@ -60,6 +60,68 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Oct 6, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
+</ul>
+
+<hr />
+
+<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
+
+<ul>
+<li>1.4GBが1.0GBになるのは大きいと思う</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
+
+<ul>
+<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
+
+<ul>
+<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
 						<small><span class="label label-primary">
 							
@@ -576,63 +638,6 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 <p><a href="http://server.sakura.ad.jp/specification/">さくらの専用サーバー</a>でDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係で<a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">hp側</a>のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも<a href="http://server.sakura.ad.jp/common/pdf/sd_spec.pdf">仕様</a>によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？</p>
 
 <p>何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&hellip;→s/hp/hpe/だけだったのでサクッと。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Sep 12, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/871738">fonts-oradano-mincho-gsrrをアップロード</a>
-
-<ul>
-<li>フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/871748">gnome-todoをアップロードした</a>、のだけど、色々変更が多かったのでメモ</p>
-
-<ul>
-<li>build systemがautotoolsから<a href="http://mesonbuild.com">meson</a>に変わった。
-
-<ul>
-<li>Build-Depends: meson (&gt;= 0.41.0) が追加、autoconf周りをdropした。</li>
-<li>debian/rules で <code>dh $@  --with gnome --buildsystem=meson</code> のように<code>--buildsystem=meson</code> の指定が必要。</li>
-<li>依存関係は <code>meson.build</code> ファイルに書いてある&hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。</li>
-<li>何か見落としがあるのかな？と思って dh_install &ndash;list-mising しようかと思ったら、今は <code>dh_missing --list-missing</code> のように <code>dh_missing</code> を使え、とのこと。適当なブランチで debian/rules に <code>override_dh_missing</code> で記述して実行したが漏れはなかった様子。</li>
-</ul></li>
-</ul>
 
 					
 				</div>

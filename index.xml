@@ -8,8 +8,22 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 30 Mar 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://lists.debian.org/debian-release/2019/03/msg01174.html&#34;&gt;jcodingsのunblock&lt;/a&gt;を出した&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -49,7 +63,7 @@
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;ul&gt;
-&lt;li&gt;tomoyo-toolsも一応[unblockを出した]()。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
+&lt;li&gt;tomoyo-toolsも一応&lt;a href=&#34;https://lists.debian.org/debian-release/2019/03/msg00905.html&#34;&gt;unblockを出した&lt;/a&gt;。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
 
 &lt;ul&gt;
 &lt;li&gt;→ダメだった。そらそーか。&lt;/li&gt;
@@ -657,20 +671,6 @@ Contact owner@bugs.debian.org with problems
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/02/27/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1032572/accepted-libhinawa-111-1-source-into-unstable/&#34;&gt;libhinawaをアップロード&lt;/a&gt;した。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので&lt;a href=&#34;https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/&#34;&gt;対応&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         

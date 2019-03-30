@@ -60,6 +60,48 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 30, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/unblock">unblock</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://lists.debian.org/debian-release/2019/03/msg01174.html">jcodingsのunblock</a>を出した</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/">サポート終了コンポーネントのアーカイブ削除に寄せて</a></h3>
 						<small><span class="label label-primary">
 							
@@ -141,7 +183,7 @@
 					<br>
 					
 						<ul>
-<li>tomoyo-toolsも一応[unblockを出した]()。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
+<li>tomoyo-toolsも一応<a href="https://lists.debian.org/debian-release/2019/03/msg00905.html">unblockを出した</a>。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
 
 <ul>
 <li>→ダメだった。そらそーか。</li>
@@ -829,73 +871,6 @@ Contact owner@bugs.debian.org with problems
 <li><a href="https://tracker.debian.org/pkg/shellcheck">shellcheck</a>を自動でkickするようにしたほうが良い気がしてきた…</li>
 </ul></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/03/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Mar 9, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>昨日のdebootstrap話で平松さんがarchitecture指定がDebianだと独特なのがあって混乱する（例: amd64）と仰っていたので、<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/28">パッチ作成</a>した。</li>
-<li>birdfontのtestingへのmigrationを待って<a href="https://tracker.debian.org/news/1034605/accepted-birdfont-2260-1-source-into-unstable/">更新を押し込んだ</a>。</li>
-<li>libuninameslistはライブラリ更新だし、ということで作業はしたけどアップロードは見送り。</li>
-<li>jcodingsの更新を<a href="https://tracker.debian.org/news/1034671/accepted-jcodings-1043-1-source-into-unstable/">アップロード</a>
-
-<ul>
-<li>よく考えたらjruby-joniでのjcodings指定が上記の更新したバージョン依存であった…ミラーに来るのを待って明日更新しよう…。</li>
-</ul></li>
-<li>tomoyo-toolsがリリースされてたのでこちらも<a href="https://tracker.debian.org/news/1034677/accepted-tomoyo-tools-260-20190305-1-source-into-unstable/">アップロード</a></li>
-</ul>
-
-<hr />
-
-<p>OpenChainの下調べで日本のワーキンググループのメーリングリストに参加しようとするもエラーが出るので、list ownerに問い合わせを送った…のだがエラーになって帰ってくるよ？</p>
-
-<pre><code class="language-text">&lt;openchain-japan-wg-owner@mail.linuxfoundation.org&gt; (expanded from
-    &lt;openchain-japan-wg-owner@lists.linuxfoundation.org&gt;): Command died with
-    status 1: &quot;/usr/lib/mailman/mail/mailman owner openchain-japan-wg&quot;. Command
-    output: mailowner script, list not found: openchain-japan-wg
-</code></pre>
-
-<p>そのうちページにも一切アクセスできなくなった…なんだこれは、ということでLFのアカウントを取って（というか取り直して？）、<a href="https://jira.linuxfoundation.org/servicedesk/customer/portal/4/SUPPORT-3?sda_source=notification-email">Jiraに報告</a>した。</p>
-
-<p>メーリングリストの案内についてはページを指すようにPull Request送った。</p>
-
-<hr />
-
-<p>laptop（HP Elitebook G5 830）のBIOSアップデートを実施。UFEI画面から有線LAN経由でアップデートできるのは良い（Dockの方からは行けないのが残念）。一度処理途中で止まってしまい、電源強制切断からの更新のrevertと再アップデートしたのも中々ヒヤヒヤした。あとはDockとかのファームウェアのアップデートもしたいところだが、こちらはWindowsが無いとダメっぽいんだよな…。</p>
 
 					
 				</div>
