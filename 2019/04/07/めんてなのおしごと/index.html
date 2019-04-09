@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sun, Apr 7, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>先日<code>gem2deb</code>で変換した<code>ruby-dig-rb</code>を仕上げておこうとしてdescription書く際に<a href="https://github.com/jrochkind/dig_rb">サイト</a>を見て「ん？」と気付く。</p>
+
+<pre><code class="language-text">Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig.
+
+If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you. This gem only adds #dig methods if they aren't already defined, so it's safe to use in code that is for all rubies, if run on MRI 2.3.0 you'll still be using native #dig, otherwise dig_rb's implementation.
+</code></pre>
+
+<p>Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&hellip;。んでは無視しよう。<a href="https://github.com/fluent/fluentd/pull/2372">fluentdにはPR上げてみておいた</a>。</p>
+
+<hr />
+
+<p>残りは<code>ruby-strptime</code>と<code>ruby-tzinfo-data</code>か、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926621">ruby-strptimeのITP作業</a>した。<code>ruby-tzinfo-data</code>の方はtzdataを引っ張ってこれない環境だと必要なのでは？と判断して削る方向で。</p>
+
+<p>あ、<a href="https://bugs.debian.org/926623">ruby-parallel-tests</a>も追加。</p>
+
+<p>これで大体依存関係終わったかな…。</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/926236">ruby-fluent-logger</a></li>
+<li><a href="https://bugs.debian.org/926266">ruby-cool.io</a></li>
+<li><a href="https://bugs.debian.org/926570">ruby-sigdump</a></li>
+<li><a href="https://bugs.debian.org/926572">ruby-serverengine</a></li>
+<li><a href="https://bugs.debian.org/926621">ruby-strptime</a></li>
+<li><a href="https://bugs.debian.org/926623">ruby-parallel-tests</a></li>
+</ul>
+
+<hr />
+
+<p>ここまで来て、ようやくfluentdに入れる。でビルド…テストがエラーになる。</p>
+
+<pre><code class="language-error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
+</code></pre>
+
+<p>という感じ。見ていく。</p>
+
+<pre><code class="language-error">Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
+  Exception raised:
+  Errno::ENOENT(&lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&gt;)
+/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &lt;class:TestFluentPluginConfigFormatter&gt;'
+</code></pre>
+
+<pre><code class="language-error"># grep templates -r ./
+(snip)
+./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &quot;../../../templates/new_gem&quot;).realpath
+./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &quot;../../../templates/plugin_config_formatter/#{name}&quot;).realpath
+</code></pre>
+
+<p><code>/build/fluentd-1.4.2/templates</code>を見たいのに<code>/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates</code>を参照しにいってるので、ここを直せば良い。templatesをlib配下に持っていって相対パスをadjustするのがよいかね。</p>
+
+<hr />
+
+<pre><code class="language-text">/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+</code></pre>
+
+<p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる（マイナーバージョン２つだけだけど）。パッケージメンテナが降りてしまってるので、[自分を加えて更新してアップロードした]()。</p>
+
+<hr />
+
+<p>psがない！というエラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
+
+<hr />
+
+<p>しかしまだまだtest failureは続く…。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

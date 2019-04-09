@@ -60,6 +60,286 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/">GPGめも - subkey</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Dec 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/gpg">gpg</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>GPGのsubkeyについて。</p>
+
+<ul>
+<li>たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、
+
+<ul>
+<li>masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。</li>
+<li>laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。</li>
+</ul></li>
+<li>そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&hellip;という時にはmasterkeyを使うということができる。</li>
+</ul>
+
+<p>なるほどねー。</p>
+
+<p>ちなみにどうしてもという時というのは以下らしい。
+   - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする
+   - 自分の鍵をrevokeする
+   - subkeyを作る・revokeする
+   - 有効期限の変更
+   - masterkeyのrevoke用の証明書の作成
+   - UIDの設定変更</p>
+
+<p>あー、今だとlaptopにはGPG鍵入れてないけど、これはありかもしれないね。ということで<a href="https://wiki.debian.org/Subkeys">Debian WikiでのSubkey作成手順</a>に従って作ってみる。</p>
+
+<pre><code>$ umask 077; tar -cf $HOME/gnupg-backup.tar -C $HOME .gnupg (バックアップ)
+$ gpg --list-keys henrich@debian.org (自分のKEYIDを取得)
+
+pub   rsa4096 2009-05-23 [SC] [有効期限: 2019-05-21]    
+      58E1222F9696C885A3CD104C5D328D082AAAB140          
+uid           [  究極  ] Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;  
+uid           [  究極  ] Hideki Yamane &lt;henrich@debian.org&gt;
+uid           [  究極  ] Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
+sub   rsa4096 2009-05-23 [E] [有効期限: 2019-05-21]
+
+$ gpg --edit-key  58E1222F9696C885A3CD104C5D328D082AAAB140
+gpg (GnuPG) 2.2.3; Copyright (C) 2017 Free Software Foundation, Inc.       
+This is free software: you are free to change and redistribute it.         
+There is NO WARRANTY, to the extent permitted by law.                      
+                                                                   
+秘密鍵が利用できます。                                                     
+                                                                           
+sec  rsa4096/5D328D082AAAB140                                              
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC                    
+     信用: 究極        有効性: 究極                                        
+ssb  rsa4096/95F59E65108820E1                                              
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E                     
+[  究極  ] (1). Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;           
+[  究極  ] (2)  Hideki Yamane &lt;henrich@debian.org&gt;
+[  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
+
+gpg&gt; addkey (subkeyの追加)
+ご希望の鍵の種類を選択してください:
+   (3) DSA (署名のみ)
+   (4) RSA (署名のみ)
+   (5) Elgamal (暗号化のみ)
+   (6) RSA (暗号化のみ)
+あなたの選択は? 4  (←Debianパッケージなどで署名が必要なのでこちらを今回は選択)
+RSA 鍵は 1024 から 4096 ビットの長さで可能です。
+鍵長は? (3072) 4096 (←4096にしたけど、masterkeyより大きなのは選べるのかしら？)
+要求された鍵長は4096ビット
+鍵の有効期限を指定してください。
+         0 = 鍵は無期限
+      &lt;n&gt;  = 鍵は n 日間で期限切れ
+      &lt;n&gt;w = 鍵は n 週間で期限切れ
+      &lt;n&gt;m = 鍵は n か月間で期限切れ
+      &lt;n&gt;y = 鍵は n 年間で期限切れ
+鍵の有効期間は? (0)1y (masterkeyよりも短いほうが良いそうなのでとりあえず1年にしておく)
+鍵は2018年12月04日 18時54分30秒 JSTで期限切れとなります
+これで正しいですか? (y/N) y
+本当に作成しますか? (y/N) y
+たくさんのランダム・バイトの生成が必要です。キーボードを打つ、マウスを動か
+す、ディスクにアクセスするなどの他の操作を素数生成の間に行うことで、乱数生
+成器に十分なエントロピーを供給する機会を与えることができます。
+
+sec  rsa4096/5D328D082AAAB140
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC
+     信用: 究極        有効性: 究極
+ssb  rsa4096/95F59E65108820E1
+     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E
+ssb  rsa4096/723BFA427D8774AD (←今回出来たのはこの鍵)
+     作成: 2017-12-04  有効期限: 2018-12-04  利用法: S
+[  究極  ] (1). Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;
+[  究極  ] (2)  Hideki Yamane &lt;henrich@debian.org&gt;
+[  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
+
+gpg&gt; save
+</code></pre>
+
+<p>で、この後の手順は、と&hellip;</p>
+
+<ul>
+<li>USBメモリに ~/.gnupg をバックアップして</li>
+<li><code>Here comes the tricky part: you need to remove the private master key.</code> え？「private masterkeyを削除する」？？？マジか。</li>
+</ul>
+
+<p>GnuPG 2.1以降なら <code>~/.gnupg/private-keys-v1.d/&lt;KEYGRIP&gt;.key</code> を削除せよ、と。KEYGRIPはmaster keyの&rdquo;keygrip&rdquo;で、<code>gpg2 --with-keygrip --list-key &lt;YOURMASTERKEYID&gt;</code> で手に入るぞ、と。ただし、旧バージョンのGnuPGから新しい形式に移行している場合は<code>~/.gnupg/secring.gpg</code> の方に private master keyがあるかもしれないから、こっちも消せ、と。GnuPG 2.1以前の場合も書いてあるけど、そんな環境使ってる人のことを考えるの面倒なので、原文見てほしい。</p>
+
+<p>ここまで来たら <code>gpg --edit-key &lt;YOURMASTERKEYID&gt; passwd</code> でパスフレーズを変更してしまう。これで日常のパスフレーズが漏れても、元々のパスフレーズがわからなければ、たとえprivate master keyにアクセスできても使えないよね&hellip;という、まぁ気休めにはなる？</p>
+
+<hr />
+
+<ul>
+<li>encryptしたUSBメモリにprivate master key置く、って言ってるけど、何を使ってencryptするんだろね？</li>
+<li>そもそもUSBメモリの耐久性とかどうなのかな、とか。何にバックアップしておくのが正しいのだろう？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 3, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日のDebian勉強会であった人とのキーサインを済ませた。caff便利。</p>
+
+<pre><code>$ caff -u 58E1222F9696C885A3CD104C5D328D082AAAB140 &lt;long KEYID&gt;
+</code></pre>
+
+<p>で、既にサインして頂いてたのがメールで来てたのをimportしてkeyserverにsendしておく。</p>
+
+<pre><code>$ gpg --import ~/*.asc
+$ gpg --send-keys &quot;58E1 222F 9696 C885 A3CD  104C 5D32 8D08 2AAA B140&quot;
+gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
+</code></pre>
+
+<p><a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x5D328D082AAAB140">よしよし</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Nov 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>libreoffice (1:5.4.3-3) unstable; urgency=medium
+(snip)
+  * debian/rules:
+    - replace some manual dpkg-parsechangelog calls with
+      $(DEB_VERSION) and $(DEB_DISTRIBUTION) and fix logic for
+      --disable-dependency-tracking
+</code></pre>
+
+<p>ほぅ？そんな変数取れるのか？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Nov 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>libxmlbirdをアップデートしようとしてgit mergeしようと思ったらタグがない。で、upstreamにpingしたのが反映されたのでmergeして<a href="https://tracker.debian.org/news/890110">アップロード</a>。ついでにreproducible buildパッチを減らすべく<a href="https://github.com/johanmattssonm/xmlbird/pull/7">Pull Request</a>。人の褌で相撲を取るのは楽だわー</li>
+<li>ruby-serverspecパッケージで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882515">「netstat使ってるからnet-toolsにSuggestsした」</a>というのを見かけて「後ろ向きだなぁ」と思ったのでちょっと調べた。
+
+<ul>
+<li>これ本当にnetstat呼んでるの？という疑問がでてgrepしたけど引っかからず。どうやらruby-specinfra側らしい。</li>
+<li>確かにnetstatを呼んでいた。。。んだけど、どうもおかしい。Debian8からss使うように変えてる？これはいかんでしょ。<code>I guess I am trying to understand which versions of Debian to support. Debian 6, 7, 8 all have ss by default.</code>という<a href="https://github.com/mizzy/specinfra/pull/453#issuecomment-125583639">発端のプルリクエスト</a>がそもそも間違っており、続いての<a href="https://github.com/mizzy/specinfra/pull/568">修正のプルリクエスト</a>も<code>I think jessie default command is ss.</code>と間違ってる&hellip;。</li>
+<li>厄介そうなのは上記が参照しているように、JessieのDockerイメージの方がiproute2使ってるっぽいんだよね、何でだよ&hellip;普通に直すとdockerのjessieでの動作を壊すことになる。それは避けたい。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/11/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -330,205 +610,6 @@ https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00086&amp;langu
 </code></pre>
 
 <p>これを確認するにはsqueezeあたりを入れないと&hellip;となるのだけども、debootstrapしたらエラーになるし、そのままchrootしたらsegfaultだからVM用意しないと、となると腰が重い&hellip;</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Nov 3, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>先日の問題は ~/.gbp.conf でのオプション指定が何故かエラーを引き起こすようになっていたのが原因だった（regressionだろうな）。ということで、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880624">バグ報告しておいた</a>。バグ報告には &ndash;pristine-tar-commit が動いてないのも付記しておいた。</p>
-
-<hr />
-
-<ul>
-<li><a href="https://tracker.debian.org/news/883620">gnome-todo をとりあえずアップロード</a>
-
-<ul>
-<li>git-buildpackageをダウングレードしてpristine-tarにも追加。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Nov 1, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/883148">libmojolicious-plugin-assetpack-perlパッケージをアップデート</a></li>
-<li>libxmlbirdをアップデートしようと思ったらtarballはできてるのにtagがpushされてないので、またお願いしておく</li>
-</ul>
-
-<hr />
-
-<p>gnome-todoをビルドしようとするとgbpがpristine-tar周りでエラーが出る&hellip;</p>
-
-<pre><code>$ gbp buildpackage  --git-pbuilder  --git-ignore-branch --git-pristine-tar-commit  --git-upstream-tag=GNOME_TODO_3_26_2 --git-verbose
-gbp:debug: ['git', 'rev-parse', '--show-cdup']
-gbp:debug: ['git', 'rev-parse', '--is-bare-repository']
-gbp:debug: ['git', 'rev-parse', '--git-dir']
-gbp:debug: /bin/true [] []
-gbp:debug: ['git', 'status', '--porcelain']
-gbp:debug: ['git', 'symbolic-ref', 'HEAD']
-gbp:debug: ['git', 'show-ref', 'refs/heads/debian/sid']
-gbp:debug: ['git', 'ls-tree', 'HEAD']
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/changelog']
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
-gbp:info: Building with (cowbuilder) for sid
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
-gbp:debug: ['git', 'show-ref', 'refs/heads/pristine-tar']
-gbp:debug: ['git', 'log', '--pretty=format:%H', '--grep=pristine-tar .* gnome-todo_3.26.2\\.orig.tar\\.', 'pristine-tar', '--']
-gbp:debug: ['git', 'rev-parse', '--quiet', '--verify', 'pristine-tar^0']
-gbp:debug: ['git', 'show', '--pretty=format:%an%x00%ae%x00%ad%x00%cn%x00%ce%x00%cd%x00%s%x00%f%x00%b%x00', '-z', '--date=raw', '--no-renames', '--name-status', '79d0e4f830d3beecf5770908c715616f6f7a3fdf']
-gbp:debug: Determined compression type 'gzip'
-gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
-gbp:debug: Looking for orig tarballs 'gnome-todo_3.26.2.orig.tar.gz' at '../tarballs/'
-gbp:info: Tarballs 'gnome-todo_3.26.2.orig.tar.gz' not found at '../tarballs/'
-gbp:debug: pristine-tar [] ['--help']
-gbp:debug: pristine-tar [] ['verify', '/home/henrich/src/pkg-gnome/build-area/gnome-todo_3.26.2.orig.tar.gz']
-gbp:error: Pristine-tar couldn't verify &quot;gnome-todo_3.26.2.orig.tar.gz&quot;: fatal: Path 'gnome-todo_3.26.2.orig.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
-pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.delta failed
-</code></pre>
-
-<p>&ndash;git-no-pristine-tar オプションをつけるとビルドはできるんだけど&hellip;負けた気がするよね。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 31, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>fontforgeのバグのtriageで、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206">古いバグが再現しなくなっているのでcloseした</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Oct 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=664789">fontforgeのバグ</a>を古いliveイメージ落としてreproduce検証。Debian9では無くなっていたので、fixedタグつけてcloseしておいた。</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254295">もう一つfontfogeのバグレポート</a>はfreefont側の問題なんじゃないかねぇ？という感じで再現もしなくなってるのでcloseしておいた。</li>
-<li>BTSのパッチを<a href="https://github.com/fontforge/fontforge/pull/3196">upstreamにPRしといた</a></li>
-</ul>
 
 					
 				</div>

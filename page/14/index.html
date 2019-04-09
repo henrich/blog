@@ -60,6 +60,205 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Nov 3, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日の問題は ~/.gbp.conf でのオプション指定が何故かエラーを引き起こすようになっていたのが原因だった（regressionだろうな）。ということで、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880624">バグ報告しておいた</a>。バグ報告には &ndash;pristine-tar-commit が動いてないのも付記しておいた。</p>
+
+<hr />
+
+<ul>
+<li><a href="https://tracker.debian.org/news/883620">gnome-todo をとりあえずアップロード</a>
+
+<ul>
+<li>git-buildpackageをダウングレードしてpristine-tarにも追加。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/11/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Nov 1, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/883148">libmojolicious-plugin-assetpack-perlパッケージをアップデート</a></li>
+<li>libxmlbirdをアップデートしようと思ったらtarballはできてるのにtagがpushされてないので、またお願いしておく</li>
+</ul>
+
+<hr />
+
+<p>gnome-todoをビルドしようとするとgbpがpristine-tar周りでエラーが出る&hellip;</p>
+
+<pre><code>$ gbp buildpackage  --git-pbuilder  --git-ignore-branch --git-pristine-tar-commit  --git-upstream-tag=GNOME_TODO_3_26_2 --git-verbose
+gbp:debug: ['git', 'rev-parse', '--show-cdup']
+gbp:debug: ['git', 'rev-parse', '--is-bare-repository']
+gbp:debug: ['git', 'rev-parse', '--git-dir']
+gbp:debug: /bin/true [] []
+gbp:debug: ['git', 'status', '--porcelain']
+gbp:debug: ['git', 'symbolic-ref', 'HEAD']
+gbp:debug: ['git', 'show-ref', 'refs/heads/debian/sid']
+gbp:debug: ['git', 'ls-tree', 'HEAD']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/changelog']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:info: Building with (cowbuilder) for sid
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: ['git', 'show-ref', 'refs/heads/pristine-tar']
+gbp:debug: ['git', 'log', '--pretty=format:%H', '--grep=pristine-tar .* gnome-todo_3.26.2\\.orig.tar\\.', 'pristine-tar', '--']
+gbp:debug: ['git', 'rev-parse', '--quiet', '--verify', 'pristine-tar^0']
+gbp:debug: ['git', 'show', '--pretty=format:%an%x00%ae%x00%ad%x00%cn%x00%ce%x00%cd%x00%s%x00%f%x00%b%x00', '-z', '--date=raw', '--no-renames', '--name-status', '79d0e4f830d3beecf5770908c715616f6f7a3fdf']
+gbp:debug: Determined compression type 'gzip'
+gbp:debug: ['git', 'show', '--pretty=medium', 'HEAD:debian/source/format']
+gbp:debug: Looking for orig tarballs 'gnome-todo_3.26.2.orig.tar.gz' at '../tarballs/'
+gbp:info: Tarballs 'gnome-todo_3.26.2.orig.tar.gz' not found at '../tarballs/'
+gbp:debug: pristine-tar [] ['--help']
+gbp:debug: pristine-tar [] ['verify', '/home/henrich/src/pkg-gnome/build-area/gnome-todo_3.26.2.orig.tar.gz']
+gbp:error: Pristine-tar couldn't verify &quot;gnome-todo_3.26.2.orig.tar.gz&quot;: fatal: Path 'gnome-todo_3.26.2.orig.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.delta failed
+</code></pre>
+
+<p>&ndash;git-no-pristine-tar オプションをつけるとビルドはできるんだけど&hellip;負けた気がするよね。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Oct 31, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fontforgeのバグのtriageで、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=474206">古いバグが再現しなくなっているのでcloseした</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=664789">fontforgeのバグ</a>を古いliveイメージ落としてreproduce検証。Debian9では無くなっていたので、fixedタグつけてcloseしておいた。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254295">もう一つfontfogeのバグレポート</a>はfreefont側の問題なんじゃないかねぇ？という感じで再現もしなくなってるのでcloseしておいた。</li>
+<li>BTSのパッチを<a href="https://github.com/fontforge/fontforge/pull/3196">upstreamにPRしといた</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -330,277 +529,6 @@ make: *** [build] Error 2
 <li><a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">HPEのリポジトリ</a>がStretch対応になっていたので、<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>をStretchに上げました。</li>
 <li>silversearcher-ag のレビューをした</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Oct 22, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/880679">tomoyo-toolsを更新</a></li>
-<li><a href="https://tracker.debian.org/news/880680">fonts-mikachanを更新</a></li>
-<li><a href="https://tracker.debian.org/news/880681">fonts-yozvox-yozfontを更新</a></li>
-<li><a href="https://tracker.debian.org/news/880476">libsylphを更新</a></li>
-<li><a href="https://tracker.debian.org/news/880691">fonts-kouzan-mouhitsuを更新</a></li>
-<li><a href="https://tracker.debian.org/news/880690">fonts-aoyagi-kouzan-tを更新</a></li>
-<li><a href="https://tracker.debian.org/news/880692">fonts-aoyagi-sosekiを更新</a></li>
-</ul>
-
-<hr />
-
-<ul>
-<li><a href="https://henrich-on-debian.blogspot.jp/2017/10/opensuseasia-summit-2017-in-tokyo.html">openSUSE Asia Summit 2017に行ってきた</a>。発表資料は<a href="https://www.slideshare.net/henrich_d/opensuse-tools-on-debian-81015400">slideshare</a>と<a href="https://wiki.debian.org/HidekiYamane/material">Debian Wiki</a>に。upstreamとの面識が出来たので良かったよかった。一応cacheなファイルはGPLだという話をされたので、それでチャレンジしてみるかーという所（gbpがmultiple upstream tarballを実験的サポートなところが面倒だけども）。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Oct 21, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/880472">screenfetchを少しだけ更新</a></li>
-<li><a href="https://tracker.debian.org/news/880475">pleiadesを少し修正</a></li>
-<li><a href="https://tracker.debian.org/news/880476">libsylphを修正</a></li>
-<li><a href="https://tracker.debian.org/news/880477">libspiroを更新</a>。-dbgパッケージ落とし忘れてたので<a href="https://wiki.debian.org/AutomaticDebugPackages">このへん</a>を参考に更新。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li>openSUSE Asia Summit 2017に行ってきた。本番は明日。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Oct 18, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>ミラースクリプトを<a href="https://lists.debian.org/debian-mirrors/2017/10/msg00017.html">案内</a>に従って入れ替えた</li>
-<li><a href="https://tracker.debian.org/news/880023">libmojolicious-plugin-assetpack-perlを更新</a></li>
-<li><a href="https://tracker.debian.org/news/879865">fonts-arphic-umingを更新</a></li>
-<li><a href="https://tracker.debian.org/news/879869">yydebugのポカを修正</a>&hellip;。</li>
-<li>libexport-attrs-perlがrejectされたので再アップロード</li>
-<li>nadokaを西山さんに押し付けるだけの仕事を :)</li>
-</ul>
-
-<hr />
-
-<p>openQAでコケる所を抜粋</p>
-
-<pre><code>[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-./t/05-scheduler-cancel.t ................. ok
-./t/05-scheduler-capabilities.t ........... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-./t/05-scheduler-dependencies.t ........... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;remotehost:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;localhost:&quot;
-./t/05-scheduler-restart-and-duplicate.t .. ok
-./t/06-users.t ............................ ok
-./t/07-api_jobtokens.t .................... ok
-./t/07-api_keys.t ......................... ok
-./t/09-job_clone.t ........................ ok
-./t/10-tests_overview.t ................... ok
-./t/13-joblocks.t ......................... ok
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-[ERROR] Failed dispatching message to websocket server over ipc for worker &quot;host:&quot;
-(snip)
-Uncaught exception from user code:
-        org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
-        Net::DBus::Binding::Bus::new(&quot;Net::DBus::Binding::Bus&quot;, &quot;type&quot;, 1) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 191
-        Net::DBus::system(&quot;Net::DBus&quot;) called at /usr/lib/x86_64-linux-gnu/perl5/5.26/Net/DBus.pm line 153
-        Net::DBus::find(&quot;Net::DBus&quot;, &quot;nomainloop&quot;, 1) called at lib/OpenQA/IPC.pm line 57
-        OpenQA::IPC::new(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/IPC.pm line 65
-        OpenQA::IPC::ipc(&quot;OpenQA::IPC&quot;, 1) called at lib/OpenQA/WebSockets.pm line 50
-        OpenQA::WebSockets::new(&quot;OpenQA::WebSockets&quot;) called at lib/OpenQA/WebSockets.pm line 41
-        OpenQA::WebSockets::run() called at /build/openqa-4.3+git20171018/t/lib/OpenQA/Test/Utils.pm line 85
-        OpenQA::Test::Utils::create_websocket_server(60430) called at ./t/05-scheduler-full.t line 65
-[6780:info] Listening at &quot;http://127.0.0.1:60429/&quot;
-Use of uninitialized value in symlink at ./t/05-scheduler-full.t line 73 (#1)
-    (W uninitialized) An undefined value was used as if it were already
-    defined.  It was interpreted as a &quot;&quot; or a 0, but maybe it was a mistake.
-    To suppress this warning assign a defined value to your variables.
-    
-    To help you figure out what was undefined, perl will try to tell you
-    the name of the variable (if any) that was undefined.  In some cases
-    it cannot do this, so it also tells you what operation you used the
-    undefined value in.  Note, however, that perl optimizes your program
-    and the operation displayed in the warning may not necessarily appear
-    literally in your program.  For example, &quot;that $foo&quot; is usually
-    optimized into &quot;that &quot; . $foo, and the warning will refer to the
-    concatenation (.) operator, even though there is no . in
-    your program.
-    
-Uncaught exception from user code:
-        can't symlink at ./t/05-scheduler-full.t line 73.
-</code></pre>
-
-<p>あれ、これはキャッシュを含めたときだったか、どうだったか。。。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 17, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>働きかけていた<a href="https://www.faq.idcf.jp/app/answers/detail/a_id/819/c/22">IDCFクラウドさんでのDebian8設定の不備</a>が漸く公開された。
-
-<ul>
-<li>ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&hellip;。</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p>bind9のchangelogが興味深い。</p>
-
-<pre><code>  * Add support for downloading upstream sources using d/watch
-    + Make d/copyright machine readable for Files-Excluded: support
-    + Update Files-Exclude: * to remove obsolete software dropped in
-      contrib/, but not really used
-</code></pre>
-
-<p>watchはこんな感じ</p>
-
-<pre><code>opts=\
-repack,\
-compression=xz,\
-repacksuffix=+dfsg,\
-uversionmangle=s/((rc|b)\d+)$/~$1/,\
-dirversionmangle=s/((rc|b)\d+)$/~$1/,\
-dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
-</code></pre>
-
-<p>copyrightはこんな感じ</p>
-
-<pre><code>Files-Excluded: contrib/idn
-                contrib/dnsperf-2.1.0.0-1
-                contrib/nslint-3.0a2
-                contrib/query-loc-0.4.0
-                contrib/queryperf
-                contrib/zkt-1.1.3
-</code></pre>
 
 					
 				</div>

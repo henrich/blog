@@ -8,10 +8,48 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 30 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>先日gem2debで変換したruby-dig-rbを仕上げておこうとしてdescription書く際にサイトを見て「ん？」と気付く。
+Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig. If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>itamaeのアップデートにfluentdが必要そうなのでこちらをやろうとしてみる。
+$ gem2deb fluentd fluentd doesn&#39;t seem to exist. Let&#39;s try to download it with &#39;gem fetch fluentd&#39; gem fetch fluentd Fetching: fluentd-1.4.2.gem (100%) Downloaded fluentd-1.4.2 -- Creating source tarball from fluentd-1.4.2.gem ... tar xfm /home/henrich/src/pkg-ruby-extras/fluentd-1.4.2.gem &amp;quot;tar xzfm data.tar.gz&amp;quot; tar czf /home/henrich/src/pkg-ruby-extras/fluentd-1.4.2.tar.gz fluentd-1.4.2 -- Successfully created ./fluentd-1.4.2.tar.gz -- Creating Debian source package from ./fluentd-1.4.2.tar.gz ... tar xzf ruby-fluentd_1.4.2.orig.tar.gz -- Generated Debian source tree in ruby-fluentd-1.4.2 -- Building Debian package ... dpkg-buildpackage -us -uc dpkg-buildpackage: info: source package ruby-fluentd dpkg-buildpackage: info: source version 1.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> ubuntu-keyringのunblockが進まないのでping。tomoyo-toolsは閉じた。 itamaeのバグの話がlaunchpadに上がってるのを見たので、Debian側に報告&amp;amp;修正してアップロードした。どうせあっちでは何もやらんでしょ…。あとでunblockもしとかないと。忘れそうだ… itamaeのバージョンが古いので、新しいのを作業…と依存関係でruby-fluentd-loggerのパッケージ申請を登録。あらかた終わったけど、テスト実行どうやるんだっけ…。  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/03/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/03/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> snapperをアップデートした fonts-sawarabi-minchoをアップデートした ruby-arubaをアップデートした libuninameslistをアップデートした  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

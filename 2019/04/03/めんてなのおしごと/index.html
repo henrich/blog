@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Wed, Apr 3, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><code>itamae</code>のアップデートに<code>fluentd</code>が必要そうなのでこちらをやろうとしてみる。</p>
+
+<pre><code class="language-bash">$ gem2deb fluentd
+fluentd doesn't seem to exist. Let's try to download it with 'gem fetch fluentd'
+gem fetch fluentd
+Fetching: fluentd-1.4.2.gem (100%)
+Downloaded fluentd-1.4.2
+-- Creating source tarball from fluentd-1.4.2.gem ...
+tar xfm /home/henrich/src/pkg-ruby-extras/fluentd-1.4.2.gem
+&quot;tar xzfm data.tar.gz&quot;
+tar czf /home/henrich/src/pkg-ruby-extras/fluentd-1.4.2.tar.gz fluentd-1.4.2
+-- Successfully created ./fluentd-1.4.2.tar.gz
+
+-- Creating Debian source package from ./fluentd-1.4.2.tar.gz ...
+tar xzf ruby-fluentd_1.4.2.orig.tar.gz
+-- Generated Debian source tree in ruby-fluentd-1.4.2
+
+-- Building Debian package ...
+dpkg-buildpackage -us -uc
+dpkg-buildpackage: info: source package ruby-fluentd
+dpkg-buildpackage: info: source version 1.4.2-1
+dpkg-buildpackage: info: source distribution UNRELEASED
+dpkg-buildpackage: info: source changed by Hideki Yamane &lt;henrich@debian.org&gt;
+dpkg-buildpackage: info: host architecture amd64
+ dpkg-source --before-build .
+dpkg-checkbuilddeps: error: Unmet build dependencies: ruby-cool.io (&lt;&lt; 2.0.0) ruby-cool.io (&gt;= 1.4.5) ruby-dig-rb (&gt;= 1.0.0) ruby-http-parser.rb (&lt;&lt; 0.7.0) ruby-http-parser.rb (&gt;= 0.5.1) ruby-msgpack (&lt;&lt; 2.0.0) ruby-msgpack (&gt;= 0.7.0) ruby-serverengine (&lt;&lt; 3.0.0) ruby-serverengine (&gt;= 2.0.4) ruby-sigdump (&gt;= 0.2.2) ruby-strptime (&lt;&lt; 1.0.0) ruby-strptime (&gt;= 0.2.2) ruby-tzinfo (&gt;= 1.0) ruby-tzinfo-data (&gt;= 1.0) ruby-yajl (&gt;= 1.0)
+dpkg-buildpackage: warning: build dependencies/conflicts unsatisfied; aborting
+</code></pre>
+
+<p>依存関係が解決できなくてビルド失敗してる。<code>ruby-cool.io</code>パッケージが無いようなので、まずはこちらから作業。<code>gem2deb</code>でサクッと変換…と思いきや</p>
+
+<pre><code class="language-bash">$ gem2deb cool.io
+(snip)
+dpkg-checkbuilddeps: error: Unmet build dependencies: ruby-rspec
+dpkg-buildpackage: warning: build dependencies/conflicts unsatisfied; aborting
+</code></pre>
+
+<p>なぜにruby-rspecが無いとでる？</p>
+
+<pre><code class="language-bash">$ apt show ruby-rspec
+Package: ruby-rspec
+Version: 3.8.0c0e1m0s0-1
+Priority: optional
+Section: ruby
+</code></pre>
+
+<p>あるよ？…もしかして、作業環境に入ってないから？いやー<code>cowbuilder</code>みたいにビルド環境で処理してよ…。とりあえず諸々作業…テストがコケたが、DNSを引きにいくものだったので無効にした。再度ビルド…</p>
+
+<pre><code class="language-bash">   dh_dwz -O--buildsystem=ruby
+dwz: debian/ruby-cool.io/usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/2.5.0/cool.io_ext.so: DWARF version 0 unhandled
+dwz: debian/ruby-cool.io/usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/2.5.0/iobuffer_ext.so: DWARF version 0 unhandled
+dwz: Too few files for multifile optimization
+objcopy: 'debian/ruby-cool.io/usr/lib/debug/.dwz/x86_64-linux-gnu/ruby-cool.io.debug': No such file
+dh_dwz: objcopy --compress-debug-sections debian/ruby-cool.io/usr/lib/debug/.dwz/x86_64-linux-gnu/ruby-cool.io.debug returned exit code 1
+make: *** [debian/rules:6: binary] Error 2
+dpkg-buildpackage: error: debian/rules binary subprocess returned exit status 2
+</code></pre>
+
+<p>どうも<code>debhelper level12</code>で出る問題なのだけど、<code>dh_dwz</code>って全く理解してないので一旦level11に落として回避…。あらかた出来たので<a href="https://salsa.debian.org/ruby-team/ruby-cool.io">リポジトリに追加</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926266">ITPバグも登録</a>してアップロードした（この間にupstreamのバージョンが1.5.3から1.5.4に上がってギョッとした）。<code>NEW queue</code>通るのはずっと先だろうな…。</p>
+
+<hr />
+
+<p>次は<code>ruby-dig-rb</code>パッケージ。</p>
+
+<pre><code class="language-bash">$ gem2deb dig-rb  
+dig-rb doesn't seem to exist. Let's try to download it with 'gem fetch dig-rb'
+gem fetch dig-rb
+ERROR:  Could not find a valid gem 'dig-rb' (&gt;= 0) in any repository
+ERROR:  Possible alternatives: dig_rb  
+Failed to download .gem file
+</code></pre>
+
+<p>gemが見つからない？とおもったら「dig_rb」と<code>_</code>使ってるでやんの…指定し直し。</p>
+
+<pre><code class="language-bash">$ gem2deb dig_rb  
+dig_rb doesn't seem to exist. Let's try to download it with 'gem fetch dig_rb'
+gem fetch dig_rb
+Fetching: dig_rb-1.0.1.gem (100%)
+Downloaded dig_rb-1.0.1
+(snip)
+-- Debian package successfully built!
+</code></pre>
+
+<p>素晴らしい、無事変換できた。</p>
+
+<hr />
+
+<p>次に無いのは<code>ruby-serverengine</code>パッケージ。</p>
+
+<pre><code class="language-bash">pbuilder-satisfydepends-dummy : Depends: ruby-sigdump (&gt;= 0.2.2) which is a virtual package and is not provided by any available package
+</code></pre>
+
+<p><code>gem2deb sigdump</code>で対応、basecowに入れておく。</p>
+
+<pre><code class="language-bash">$ sudo cp -arp /var/cache/pbuilder/base.cow /var/cache/pbuilder/ruby.cow
+$ sudo cp ruby-sigdump_0.2.4-1_all.deb /var/cache/pbuilder/ruby.cow/tmp
+$ sudo cowbuilder --login --basepath /var/cache/pbuilder/ruby.cow --save-after-exec
+</code></pre>
+
+<pre><code class="language-bash"># apt install /tmp/ruby-sigdump_0.2.4-1_all.deb
+</code></pre>
+
+<pre><code class="language-bash">$ sudo cowbuilder --build --basepath /var/cache/pbuilder/ruby.cow/ ruby-serverengine_2.1.0-1.dsc
+</code></pre>
+
+<p>で、パッケージバージョンでエラーになったのでこんなふうにしてみた。</p>
+
+<pre><code class="language-diff">--- a/serverengine.gemspec
++++ b/serverengine.gemspec
+@@ -21,8 +21,8 @@
+   gem.add_dependency &quot;sigdump&quot;, [&quot;~&gt; 0.2.2&quot;]
+
+   # rake v12.x doesn't work with rspec 2. rspec should be updated to 3
+-  gem.add_development_dependency &quot;rake&quot;, [&quot;~&gt; 11.0&quot;]
+-  gem.add_development_dependency &quot;rspec&quot;, [&quot;~&gt; 2.13.0&quot;]
++  gem.add_development_dependency &quot;rake&quot;
++  gem.add_development_dependency &quot;rspec&quot;
+
+   gem.add_development_dependency 'rake-compiler-dock', ['~&gt; 0.5.0']
+   gem.add_development_dependency 'rake-compiler', ['~&gt; 0.9.4']
+</code></pre>
+
+<p>でもやっぱりエラー。</p>
+
+<pre><code class="language-bash">Could not find gem 'rake-compiler-dock (~&gt; 0.5.0)' in any of the gem sources listed in your Gemfile.
+</code></pre>
+
+<p>あー。ないね。</p>
+
+<pre><code class="language-bash">$ gem2deb rake-compiler-dock
+(snip)
+7 tests, 21 assertions, 5 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+28.5714% passed
+</code></pre>
+
+<p>エラーログを見る。</p>
+
+<pre><code class="language-rake">TestEnvironmentVariables:
+  test_HOST_RUBY_PLATFORM:  Docker is not available.
+</code></pre>
+
+<p>これは難儀そう…とdebian/controlを眺めると「Easy to use and reliable cross compiler environment for building Windows and Linux binary gems.」との説明文。ということはこれ、要らないのでは？外す。</p>
+
+<pre><code class="language-bash">Could not find gem 'rake-compiler (~&gt; 0.9.4)' in any of the gem sources listed in your Gemfile.
+</code></pre>
+
+<pre><code class="language-bash">Package: rake-compiler
+Version: 1.0.5-1
+</code></pre>
+
+<p>なんだよもー。これもバージョン外してやってみよう。</p>
+
+<pre><code class="language-bash">/usr/bin/ruby2.5 /usr/bin/rspec --pattern ./spec/\*\*/\*_spec.rb --format documentation failed
+ERROR: Test &quot;ruby2.5&quot; failed. Exiting.
+dh_auto_install: dh_ruby --install /build/ruby-serverengine-2.1.0/debian/ruby-serverengine returned exit code 1
+make: *** [debian/rules:6: binary] Error 1
+</code></pre>
+
+<p>うーん、どこかのテストがエラーになるな。1個ずつやってみよう。。。。あれ、エラー吐いてるのにテストが問題ないとなるのもあるね…。</p>
+
+<pre><code class="language-bash">ServerEngine::Supervisor
+  initialize error
+  when :log=IO option is given
+I, [2019-04-03T14:37:32.253000 #27406]  INFO -- : Received graceful stop
+    can start
+  when :logger option is given
+I, [2019-04-03T14:37:33.055374 #27406]  INFO -- : Received graceful stop
+    uses specified logger instance
+  when both :logger and :log options are given
+I, [2019-04-03T14:37:33.857608 #27406]  INFO -- : Received graceful stop
+    start ignoring :log
+  when using signal as command_sender
+I, [2019-04-03T14:37:34.664887 #27574]  INFO -- : Received graceful stop
+I, [2019-04-03T14:37:34.862993 #27406]  INFO -- : Server finished with status 0
+    start and graceful stop
+I, [2019-04-03T14:37:35.671015 #27594]  INFO -- : Received immediate stop
+I, [2019-04-03T14:37:35.870587 #27406]  INFO -- : Server finished with status 0
+    immediate stop
+I, [2019-04-03T14:37:36.678895 #27615]  INFO -- : Received graceful restart
+I, [2019-04-03T14:37:37.477583 #27615]  INFO -- : Received graceful stop
+I, [2019-04-03T14:37:37.879210 #27406]  INFO -- : Server finished with status 0
+    graceful restart
+I, [2019-04-03T14:37:38.686002 #27654]  INFO -- : Received immediate restart
+I, [2019-04-03T14:37:39.489342 #27654]  INFO -- : Received graceful stop
+I, [2019-04-03T14:37:39.886976 #27406]  INFO -- : Server finished with status 0
+    immediate restart
+I, [2019-04-03T14:37:40.691983 #27688]  INFO -- : Received reload
+I, [2019-04-03T14:37:40.692981 #27688]  INFO -- : Received graceful stop
+I, [2019-04-03T14:37:40.892738 #27406]  INFO -- : Server finished with status 0
+    reload
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:195:in `main'
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor'
+I, [2019-04-03T14:37:41.398888 #27406]  INFO -- : Server finished unexpectedly with status 1
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in `reboot_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in `main'
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor'
+I, [2019-04-03T14:37:42.401104 #27406]  INFO -- : Server finished unexpectedly with status 1
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in `reboot_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in `main'
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor'
+I, [2019-04-03T14:37:43.400219 #27406]  INFO -- : Server finished with status 1
+    auto restart in limited ratio
+  when using pipe as command_sender
+I, [2019-04-03T14:37:44.204850 #27757]  INFO -- : Received graceful stop
+#&lt;Thread:0x000055ddba860f40@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers': undefined method `chomp' for nil:NilClass (NoMethodError)
+I, [2019-04-03T14:37:44.408173 #27406]  INFO -- : Server finished with status 0
+    start and graceful stop
+I, [2019-04-03T14:37:45.215304 #27780]  INFO -- : Received immediate stop
+#&lt;Thread:0x000055ddba97e760@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers': undefined method `chomp' for nil:NilClass (NoMethodError)
+    immediate stop
+I, [2019-04-03T14:37:45.414819 #27406]  INFO -- : Server finished with status 0
+I, [2019-04-03T14:37:46.220865 #27799]  INFO -- : Received graceful restart
+I, [2019-04-03T14:37:47.024452 #27799]  INFO -- : Received graceful stop
+#&lt;Thread:0x000055ddba9fa6f8@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers': undefined method `chomp' for nil:NilClass (NoMethodError)
+I, [2019-04-03T14:37:47.421282 #27406]  INFO -- : Server finished with status 0
+    graceful restart
+I, [2019-04-03T14:37:48.227456 #27837]  INFO -- : Received immediate restart
+I, [2019-04-03T14:37:49.029153 #27837]  INFO -- : Received graceful stop
+#&lt;Thread:0x000055ddbaaa8af0@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers': undefined method `chomp' for nil:NilClass (NoMethodError)
+I, [2019-04-03T14:37:49.429525 #27406]  INFO -- : Server finished with status 0
+    immediate restart
+I, [2019-04-03T14:37:50.238952 #27872]  INFO -- : Received reload
+I, [2019-04-03T14:37:50.240958 #27872]  INFO -- : Received graceful stop
+#&lt;Thread:0x000055ddba9cc2a8@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers': undefined method `chomp' for nil:NilClass (NoMethodError)
+I, [2019-04-03T14:37:50.439080 #27406]  INFO -- : Server finished with status 0
+    reload
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:195:in `main'
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor'
+I, [2019-04-03T14:37:50.943666 #27406]  INFO -- : Server finished unexpectedly with status 1
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in `reboot_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in `main'
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor'
+I, [2019-04-03T14:37:51.944788 #27406]  INFO -- : Server finished unexpectedly with status 1
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in `reboot_server'
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in `main'
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor'
+I, [2019-04-03T14:37:52.946855 #27406]  INFO -- : Server finished with status 1
+    auto restart in limited ratio
+
+
+1 deprecation warning total
+Deprecation Warnings:
+
+Finished in 24.13 seconds (files took 0.26415 seconds to load)
+28 examples, 0 failures
+</code></pre>
+
+<pre><code class="language-bash">ServerEngine::MultiThreadServer
+I, [2019-04-03T14:44:36.057152 #3330]  INFO -- : Received reload
+I, [2019-04-03T14:44:37.558054 #3330]  INFO -- : Received graceful stop
+  scale up
+I, [2019-04-03T14:44:38.560735 #3330]  INFO -- : Received graceful restart
+I, [2019-04-03T14:44:40.061600 #3330]  INFO -- : Received graceful stop
+  scale down
+/usr/bin/ruby2.5 /usr/bin/rspec --pattern ./spec/\*\*/multi_process\*_spec.rb --format documentation failed
+ERROR: Test &quot;ruby2.5&quot; failed. Exiting.
+</code></pre>
+
+<p><code>spec/multi_process_server_spec.rb</code>がコケてる</p>
+
+<pre><code class="language-ruby">    it 'raises SystemExit when all workers exit with specified code by unrecoverable_exit_codes' do
+      pending &quot;unrecoverable_exit_codes supported only for multi process workers&quot; if impl_class == ServerEngine::MultiThreadServer
+      pending &quot;Windows environment does not support fork&quot; if ServerEngine.windows? &amp;&amp; impl_class == ServerEngine::MultiProcessServer
+
+      config = {workers: 4, log_stdout: false, log_stderr: false, unrecoverable_exit_codes: [3, 4, 5]}
+
+      s = impl_class.new(TestExitWorker) { config.dup }
+      raised_error = nil
+      t = Thread.new do
+        begin
+          s.main
+        rescue SystemExit =&gt; e
+          raised_error = e
+        end
+      end
+
+      wait_for_fork
+      test_state(:worker_run).should == 4
+      t.join
+
+      test_state(:worker_stop).to_i.should == 0
+      raised_error.status.should == 3 # 4th process's exit status
+    end
+
+    it 'raises SystemExit immediately when a worker exits if stop_immediately_at_unrecoverable_exit specified' do
+      pending &quot;unrecoverable_exit_codes supported only for multi process workers&quot; if impl_class == ServerEngine::MultiThreadServer
+      pending &quot;Windows environment does not support fork&quot; if ServerEngine.windows? &amp;&amp; impl_class == ServerEngine::MultiProcessServer
+
+      config = {workers: 4, log_stdout: false, log_stderr: false, unrecoverable_exit_codes: [3, 4, 5], stop_immediately_at_unrecoverable_exit: true}
+
+      s = impl_class.new(TestExitWorker) { config.dup }
+      raised_error = nil
+      t = Thread.new do
+        begin
+          s.main
+        rescue SystemExit =&gt; e
+          raised_error = e
+        end
+      end
+
+      wait_for_fork
+      test_state(:worker_run).should == 4
+      t.join
+
+      test_state(:worker_stop).to_i.should == 3
+      test_state(:worker_finished).to_i.should == 3
+      raised_error.should_not be_nil
+      raised_error.status.should == 5 # 1st process's exit status
+    end
+</code></pre>
+
+<p>うーん。とりあえず該当のテストを無効にしておくか。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

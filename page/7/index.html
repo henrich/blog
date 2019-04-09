@@ -60,6 +60,195 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 23, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1013790/accepted-debootstrap-10112-source-into-unstable/">debootstrapをアップデート</a>。Mr.FAIのハックによってスピードが格段に速くなった。一応、前のバージョンと比較して取得パッケージの差異が無いのは確認済みだが、なんかregressionがあるのも嫌なので <a href="https://planet.debian.org/">Planet Debian</a> にも載ってる<a href="https://henrich-on-debian.blogspot.com/2018/12/debootstrap-speed-up.html">blogで告知</a>もしておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 22, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>アップロードがrejectされてたので</p>
+
+<pre><code>$ dcut dm --uid 0x9394F354891D7E07 --allow fonts-mmcedar
+Uploading commands file to ftp.upload.debian.org (incoming: /pub/UploadQueue/)
+Picking DM Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt; with fingerprint 66A4EA704FE240558D6AC2E69394F354891D7E07
+Uploading henrich-1545485367.dak-commands to ftp-master
+</code></pre>
+
+<p>として佐々木さんのDM uploadを設定しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 22, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>作業途中で夏から放置してた<a href="https://tracker.debian.org/news/1013364/accepted-ubuntu-keyring-20160513-2-source-into-unstable/">ubuntu-keyringパッケージをアップロード</a>。debconfを使って<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826558">デフォルトではtrusted GPG keyringとしては扱わないように変更</a>。</p>
+
+<p>さらにnew upstream release対応を手元で作成。Ubuntuでのrulesを見るとGPGファイルのチェックをしてたので、それを参考にしてautopkgtestを追加。いろいろGPGのオプションを指定する必要があった。</p>
+
+<ul>
+<li><code>--trusted-key &quot;$trusted_keyid&quot;</code> のようにして署名鍵を信頼しないとエラーになる。通常なら自分のtrustdbに追加されてる感じだけど、テスト環境にはそんなのはないし、fetchするのもネット環境必須になってしまうので。もう一つの解としてはローカルに落としておく、だけど、それは大仰かな。</li>
+<li><code>--no-auto-check-trustdb</code> を付けないとtrustdbのチェックにやたら時間がかかるので</li>
+</ul>
+
+<hr />
+
+<p>先日、<a href="https://salsa.debian.org/ocaml-team/camlimages/commit/152b6a35c9ff24fd0ad96a2b3d1e5aab3e404055">camlimagesパッケージの変更をmerge request</a>したのだけど、最小なテスト作っても意図通りにならなかったな、ということだけ覚えていたのでメモしておく。何をどうやったのか、は思い出したら書こう…</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/1013368/accepted-fonts-kanjistrokeorders-4002dfsg-1-source-into-unstable/">fonts-kanjistrokeordersパッケージをアップデート</a></p>
+
+<hr />
+
+<p>久々に<a href="https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html">installation guide訳を更新</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Dec 21, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>tdiary-contrib</code> の <code>tdiary-mode</code> が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら<a href="https://twitter.com/uwabami/">佐々木さん</a>がパッチ書いてくれて更新してくれた。言ってみるもんだね。</li>
+<li><code>bundler</code>の <code>git ls-files -z</code> が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/">initfamrs-toolsのバグを踏んでいた</a></h3>
 						<small><span class="label label-primary">
 							
@@ -378,292 +567,6 @@ index c6ac3e7..1581e98 100644
 <li>[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。</li>
 <li>os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Oct 1, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>依頼を受けたので</p>
-
-<pre><code>$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql
-</code></pre>
-
-<p>として林さんのDM uploadを設定しておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/">HP Elitebook 830 G5で苦しむ</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Sep 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>debian-installerが何をやっても画面がブランクになってしまってDebianがインストールできないという。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Sep 25, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>birdfont</code>パッケージ、<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-i386&amp;ver=2.23.0-1&amp;stamp=1537307881&amp;raw=0">kfreebsd-i386</a>と<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-amd64&amp;ver=2.23.0-1&amp;stamp=1537300422&amp;raw=0">kfreebsd-amd64</a>で同じエラー…。</li>
-</ul>
-
-<pre><code class="language-make">rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf
-rm: cannot remove 'debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf': No such file or directory
-make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1
-</code></pre>
-
-<p>なぜエラーになるのか？ <code>debian/rules</code> をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした</p>
-
-<ul>
-<li><code>vmdk-stream-converter</code> の tag push を忘れていた…</li>
-<li><code>libsql-splitstatement-perl</code> を更新</li>
-<li><code>libdbix-class-optimisticlocking-perl</code> を更新</li>
-<li><code>libdbix-class-schema-config-perl</code> は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。</li>
-</ul>
-
-<pre><code class="language-shell">$ cat debian/upstream/metadata
----
-Archive: CPAN
-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p><code>debian/upstream/metadata</code> はこういうのを書くのかぁ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 24, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>os-autoinstパッケージを放置していたので、アップデート作業を実施。</p>
-
-<ul>
-<li>upstreamをpullしてdebian/sidブランチにmerge</li>
-<li>ビルド…するも、testでエラーが出る。しかもランダム。どうも test が serial に実施される前提で書かれていて、ある test での input file が別の test でも使われてたりする＆その test 実施後に削除されたりするので、順序によっては input file が存在しない、ということでエラーになったりするようだ。仕方がないので <code>--no-parallel</code> オプションを dh_auto_test につけて <code>make -j1</code> で実行されるようにする</li>
-<li>それでも 02-test_ocr.t だけがコケ続けたりする（上記の際にはごくごく稀にだが成功したりする…）。<code>t/02-test_ocr.t.log</code> を見てみる…。</li>
-</ul>
-
-<pre><code class="language-debug">FAIL: 02-test_ocr.t
-===================
-
-Use of uninitialized value in index at ../needle.pm line 44.
-Use of uninitialized value $bmwqemu::vars{&quot;PRJDIR&quot;} in addition (+) at ../needle.pm line 45.
-[2018-09-24T07:08:55.0584 UTC] [debug] MATCH(bootmenu-ocr.ref:1.00)
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 138
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-#   Failed test 'multiple OCR regions'
-#   at ./02-test_ocr.t line 42.
-1..2
-# Looks like you failed 1 test of 2.
-FAIL 02-test_ocr.t (exit status: 1)
-</code></pre>
-
-<ul>
-<li>最初は <code>Warning. Invalid resolution 0 dpi. Using 70 instead.</code> というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで <code>convert a.png -density 300 -units PixelsPerInch b.png</code> のようにして埋め込んだのだが、さっぱり出力が変わらない。</li>
-<li>ぐぐったところ<a href="https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/">「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」</a>という説明のページを見つけてへたりこんだり。</li>
-<li>どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と <code>Data::Dumper</code> を使う</li>
-</ul>
-
-<pre><code class="language-perl">use Data::Dumper;
-...
-print Dumper $ocr;
-</code></pre>
-
-<ul>
-<li>おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで <code>t/data/bootmenu-ocr.png</code> を開き、認識してる文字列の座標を確認→ <code>t/data/bootmenu-ocr.ref.json</code> を調整→成功！</li>
-<li><code>make check-doc</code> でエラー。</li>
-</ul>
-
-<pre><code class="language-shell"># [ -z &quot;$(podspell testapi.pm | spell)&quot; ]
-# echo $?
-1
-# podspell testapi.pm | spell
-deselected
-VM
-kvm
-VM
-</code></pre>
-
-<ul>
-<li>これ、<code>spell</code> の問題じゃないの？とは思うけど、<code>sed</code> で削って対応。</li>
-<li>ビルドは問題なくできるようになったので、piuparts…と変なエラーが出たが、os-autoinstのパッケージには含まれてない問題なので無視（フォント絡みなので後で追わないといけない気もする…）。</li>
-</ul>
-
-<pre><code class="language-debug">5m12.7s ERROR: FAIL: Package purging left files on system:
-  /usr/local/share/fonts/        not owned
-  /usr/local/share/fonts/.uuid   not owned
-  /usr/share/fonts/      owned by: fonts-dejavu-core
-  /usr/share/fonts/.uuid         not owned
-  /usr/share/fonts/truetype/     owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/.uuid        not owned
-  /usr/share/fonts/truetype/dejavu/      owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/dejavu/.uuid         not owned
-</code></pre>
-
-<p>ということで <a href="https://bugs.debian.org/893645">Bug#893645</a>と<a href="https://bugs.debian.org/880791">Bug#880791</a>をcloseにしておいた。</p>
-
-<pre><code class="language-changelog"> os-autoinst (4.5.1527308405.8b586d5-1) unstable; urgency=medium
- .
-   * New upstream release
-   * debian/patches
-     - refresh patch
-     - add 0003-adjust-to-avoid-ocr-test-failure.patch (Closes: #893645)
-     - add 0004-avoid-make-check-doc-failure.patch
-     - add 0005-set-perl-path.patch to avoid lintian error
-   * debian/control
-     - add Build-Depends: libsocket-msghdr-perl, spell for test
-     - move Vcs-* to salsa.debian.org
-   * debian/rules
-     - set --no-parallel for dh_auto_test to avoid random test failure
-       (Closes: #880791)
-</code></pre>
 
 					
 				</div>
