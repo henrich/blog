@@ -60,6 +60,170 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/24/debootstrap-bug-triage/">debootstrap bug triage</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 24, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p>ここしばらくの作業はdebootstrapのbug triageを中心。</p>
+
+<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=563647">manpageの不備にはパッチ提案</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=698677">エラーメッセージの不備にもパッチ提案</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861343">mawk固定でダメじゃん</a>には、意味あるかな〜と思ってパッチ出したけど「意味ないじゃん、このパッチ」とやっぱりツッコミが。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866401">ダウンロードエラーのメッセージが情報量０</a>には提案パッチ出したけど、それ意味なくね？のツッコミが。もうちょっと続ける予定。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872059">昔と同じ挙動にしてよ</a>には「パッチ当てるの反対の人〜？」と質問だけ流した。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890419">libvirt-lxcで動かすパッチ</a>にはpatchタグがついてなかったので追加。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877855">&ndash;second-stageで指定したコンポーネント情報が欠落</a>は挙動を確認して該当のソースを提示してコメント。</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707033">/homeをvfatなパーティションでマウントしてるとエラー出る</a>は再現できないのでunreproducibleタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=731859">variant=fakechrootが動かない</a>も再現できないのでunreproducibleタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=684520">Android+busyboxで動かない</a>は情報量少なすぎなのでmoreinfoタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync指定があるがsync -fの方がいい</a>も理由がわからないのでmoreinfoタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">Ubuntuのchroot作ろうとしてるのにdeb.debian.orgがリポジトリ指定されちゃう</a>のを登録</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891393">Ubuntuのchroot作ろうとしてエラーになる</a>のは登録したらLinuxカーネルパッケージのメンテナからamd64だと過去のカーネルと非互換性があるから、というのを教えてもらった</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=700368">apt-moveで作ったリポジトリだとエラーになる</a>のは「SHA1は既に過去のものなので、このために対応する必要あるのかな？」というコメント入れて重要度下げた</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=640992">ChrootでもProxy設定引き継いで欲しい</a>はパッと見でわかるようにタイトルを変えた</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=627073">ダウンロード時にどこからダウンロードしたのか表示して欲しい</a>は「なんで？」とコメントしてmoreinfoタグ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">blankonというdistro対応して</a>はパッチのリンクが全部死んでたのでmoreinfoタグ</li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893713">udebに不要なスクリプトファイルがあるよね</a>を登録</p></li>
+
+<li><p>TriageではなくNMUを既に準備したのは <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=864734">Bug#864734</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=586158">Bug#586158</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=718632">Bug#718632</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=754318">Bug#754318</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=762431">Bug#762431</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806780">Bug#806780</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=833525">Bug#833525</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=732628">Bug#732628</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=734324">Bug#734324</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=775444">Bug#775444</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Bug#798562</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Bug#798564</a>。大半はpatchが登録してあったのでそれを進めてるだけ。ただ、regressionが怖いので小分けにしてNMUし、10日ごとに投入していく予定。先は長い。</p></li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Mar 7, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/938331">nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した</a>。</p>
+
+<ul>
+<li>どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ</li>
+</ul></li>
+
+<li><p>debootstrapをNMUでuploadした。deleyed/10なので10日待つ。</p>
+
+<pre><code>debootstrap (1.0.93+nmu1) unstable; urgency=medium
+ 
+* Non-maintainer Upload.
+* Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373)
+Now you can create Ubuntu breezy/dapper/edgy chroot.
+* Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian.
+When you fetch Ubuntu packages ubuntu-archive-keyring is necessary.
+(Closes: #736995)
+* Change repository URI for old Ubuntu releases (Closes: #676370, #839073)
+Archived Ubuntu releases are at old-releases.ubuntu.com/ubuntu
+* Set correct keyring and default mirror for old debian releases.
+Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
+(Closes: #891404, #600647, #792729)
+ 
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Mar 2018 22:28:22 +0900
+</code></pre></li>
+
+<li><p>もういっちょdebootstrapのNMUを準備。上のがtestingに落ちたら即アップロード予定。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Mar 4, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>sylpheedパッケージの更新を放り込んだ</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=346388">sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -486,182 +650,6 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
 </code></pre></li>
 
 <li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></p></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Feb 7, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>コツコツと事務作業&hellip;。</p>
-
-<pre><code>mecab (0.996-5) unstable; urgency=medium
-
-  * debian/control
-    - move Vcs-* to salsa.debian.org 
-    - use https for upstream Homepage
-    - set Standards-Version: 4.1.3
-    - set Build-Depends: debhelper (&gt;= 11)
-  * debian/copyright
-    - use https for upstream site
-  * debian/compat
-    - set 11
-
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Wed, 07 Feb 2018 20:45:32 +0900
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Feb 6, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p>1日一つは、ということでdartsパッケージの更新。</p>
-
-<pre><code>darts (0.32-16) unstable; urgency=medium
-
-* debian/control
-- update Vcs-* to use salsa.debian.org
-- set Build-Depends: debhelper (&gt;= 11)
-- set Standards-Version: 4.1.3
-* debian/compat
-- set 11
-* debian/watch
-- update to version 4
-* debian/copyright
-- sort order to ignore lintian warning
-
--- Hideki Yamane &lt;henrich@debian.org&gt;  Tue, 06 Feb 2018 20:23:18 +0900
-</code></pre></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Feb 5, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><p>chasenパッケージの更新。</p>
-
-<pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
-
-* debian/control
-- Vcs-* move to salsa.debian.org 
-- use https for Homepage:
-- set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
-  dependency (pulled automatically)
-- set Standards-Version: 4.1.3
-* debian/rules
-- drop &quot;--with autoreconf&quot;
-- specify &quot;--no-parallel&quot; to avoid FTBFS
-* debian/compat
-- set 10
-* debian/watch
-- update to version 4
-
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
-</code></pre></li>
-
-<li><p>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</p>
-
-<pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
-
-* debian/control
-- set Build-Depends: debhelper (&gt;= 11)
-* debian/compat
-- set 11
-
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
-</code></pre></li>
-
-<li><p><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</p></li>
 </ul>
 
 					

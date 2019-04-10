@@ -8,10 +8,43 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>fluentdのビルド…テストがエラーになる。
+2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications  という感じ。見ていく。
+Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments): Exception raised: Errno::ENOENT(&amp;lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&amp;gt;) /build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &amp;lt;class:TestFluentPluginConfigFormatter&amp;gt;&#39;  # grep templates -r ./ (snip) ./lib/fluent/command/plugin_generator.rb: (Pathname(__dir__) + &amp;quot;../../../templates/new_gem&amp;quot;).realpath ./lib/fluent/command/plugin_config_formatter.rb: (Pathname(__dir__) + &amp;quot;../../../templates/plugin_config_formatter/#{name}&amp;quot;).realpath  /build/fluentd-1.4.2/templatesを見たいのに/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templatesを参照しにいってるので、ここを直せば良い。templatesをlib配下に持っていって相対パスをadjustするのがよいかね。
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized /usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized /usr/lib/ruby/vendor_ruby/flexmock/core.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>fluentdパッケージングでのテストエラー続き。
+? Encoding: US-ASCII-8BIT =============================================================================== : (0.005571) test: should output compressed file when compress option is gzip: F =============================================================================== Failure: test: should output compressed file when compress option is gzip(FileOutputSecondaryTest::write) /build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:129:in `check_gzipped_result&#39; /build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `block (2 levels) in &amp;lt;class:FileOutputSecondaryTest&amp;gt;&#39; 151: path = d.instance.write(@chunk) 152: 153: assert_equal &amp;quot;#{TMP_DIR}/out_file_test.0.gz&amp;quot;, path =&amp;gt; 154: check_gzipped_result(path, @es.to_msgpack_stream.force_encoding(&#39;ASCII-8BIT&#39;)) 155: end 156: 157: test &#39;should output plain text when compress option is default(text)&#39; do &amp;lt;&amp;quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&amp;quot;&amp;gt;(ASCII-8BIT) expected but was &amp;lt;&amp;quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&amp;quot;&amp;gt;(US-ASCII) diff: 潰^@\ｬメ^D^DZ氈｣key･value  文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>パッケージング、残りはruby-strptimeとruby-tzinfo-dataか、ということでruby-strptimeのITP作業した。ruby-tzinfo-dataの方はtzdataを引っ張ってこれない環境だと必要なのでは？と判断して削る方向で…あ、ruby-parallel-testsも追加。
+これで大体依存関係終わったかな…。
+ ruby-cool.io ruby-sigdump ruby-serverengine ruby-strptime ruby-parallel-tests  ここまで来て、ようやくfluentdのパッケージングに再度入れる。</description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

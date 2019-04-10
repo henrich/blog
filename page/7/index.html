@@ -60,6 +60,145 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 29, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/patch">patch</a>
+						
+								 , 
+							<a href="/blog/tags/rcbug">RCbug</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>１文字でFTBFSが直せるやつだったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893821">やっといた</a></p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Dec 27, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/patch">patch</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>たまたまbug reportを見かけてmerge request作ったほうが話が早い奴だと思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917388#10">やっといた</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Dec 24, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>debian-installerのコンポーネントの一つ、<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/">partman-lvmでのバグ修正</a>が含まれたパッケージがようやくアップロードされた。</p>
+
+<p>もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることに。</p>
+
+<ul>
+<li>手元の放置してたBBBを設定、<a href="http://select.marutsu.co.jp/list/detail.php?id=235">参考ページ</a>を元に初期化し直し</li>
+<li><a href="http://beagleboard.org/latest-images">stretchベースのイメージ</a>をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。</li>
+<li>２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で <code>dpkg --get-selections &gt; distro.txt</code> のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
+
+<ul>
+<li>ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…</li>
+</ul></li>
+<li>あとはarm64アーキテクチャである<a href="https://db.debian.org/machines.cgi?host=amdahl">debian.orgのporterboxマシン</a>にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -378,194 +517,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 <ul>
 <li>fontforgeコマンドの指定で <code>Open(&quot;UnDinaruLight.ttf&quot;)</code> のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。</li>
 </ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Dec 15, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
-
-<p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
-
-<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
-</code></pre>
-
-<p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
-
-<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
-index c6ac3e7..1581e98 100644
---- a/aruba.gemspec
-+++ b/aruba.gemspec
-@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
- EOS
-   end
-
--  s.files            = `git ls-files`.split(&quot;\n&quot;)
--  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
--  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
-+  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
-+  s.test_files       = Dir['spec/*,features/*']
-+  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
-   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
-   s.require_path     = &quot;lib&quot;
- end
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/">Retrospective 2018 11 26</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Nov 26, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>すっかりかまけてしまったので、思い出しつつ何やったかとか…。</p>
-
-<ul>
-<li><a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a> のIPv6逆引きの設定変更を依頼されたので、さくらさんに依頼→受理された</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914448">eclipseパッケージの削除依頼が登録された</a>ため、依存するパッケージである<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914566">Pleiadesも削除依頼が登録された</a>。正直複雑な心境。
-
-<ul>
-<li>Eclipseを再パッケージしなおせばいいのだろうが、どうやるのかさっぱりだよな…</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">psphereパッケージを削除</a>。これは問題なし。</li>
-<li><a href="https://tracker.debian.org/news/1004788/accepted-fonts-sawarabi-mincho-20181115-1-source-into-unstable/">fonts-sawarabi-minchoパッケージを更新</a>、単にフォントファイルが指定位置にあるかを確認するだけというsmokeテストを追加。これ、フォントファイルとして認識できる（壊れてない）というのも追加したほうが本当は良さそう</li>
-<li>fonts-ibm-plexが追加された、というのを見て中身をチラ見したら<code>debian/upstream/metadata</code>ファイルが追加されてた。これは真似ると良さそう
-
-<ul>
-<li>その流れで他のパッケージの<code>debian/upstream/metadata</code>ファイル見てみたら、saneのがalioth指定したままだった…ので<a href="https://salsa.debian.org/debian/sane-backends/merge_requests/2">merge request</a></li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/1005906/accepted-snapper-081-1-source-into-unstable/">snapperパッケージの更新</a>。<a href="https://wiki.debian.org/UpstreamMetadata">Wiki</a>を参考にして、<code>debian/upstream/metadata</code>ファイルを追加してみた。
-
-<ul>
-<li>ついでにbackportsパッケージも生成。</li>
-<li>水野さんにmetadataの作り方をpingしておく</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/1005996/accepted-libuninameslist-20180701-1-source-into-unstable/">libuninameslistパッケージの更新</a>。
-
-<ul>
-<li>しかし、<code>python binding</code>が有効になっていない…configure.acではpythonの所在を確認している。</li>
-<li>これも<code>metadata</code>作るか？</li>
-</ul></li>
-<li><a href="https://lists.debian.org/debian-devel/2018/11/msg00640.html">メールを投げてみる</a>→「unstableを快適にするのじゃなくて、freezeを改善する方に力入れようぜ！」というような反応。</li>
-</ul>
-
-<p>Todo の書き出しとか…。</p>
-
-<ul>
-<li><code>Natural Language Processing (Japanese) &lt;team+pkg-nlp-ja@tracker.debian.org&gt;</code> 配下になっているパッケージ、少なすぎ？と思ったら <code>&quot;Natural Language Processing (Japanese)&quot; &lt;team+pkgnlpja@tracker.debian.org&gt;</code> もあった。どっちの表記が正しいのだ？本来であればidentiferの部分で<code>-</code>が含まれていてもきちんと処理されるのが理想なはずだが。
-
-<ul>
-<li><a href="https://tracker.debian.org/teams/pkg-nlp-ja/">trackerページ</a>を作り直してみた。</li>
-</ul></li>
-<li>mecab-ipadicとか、辞書パッケージの統一した扱いを何とか…</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 2, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。</li>
-<li>os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。</li>
 </ul>
 
 					

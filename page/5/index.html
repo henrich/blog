@@ -60,6 +60,133 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 21, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597向けにMergeRequest</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832458">Bug#832458</a>での<code>CONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=m</code>はすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 19, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">別途MergeRequestを作った</a></li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/ed1d855c885f6834a7e0f6a5e152802a2a61d304">Bug#918589向けパッチ</a>を作成、テストビルドは無事通った</li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/5b7a1313dbaf2eedb69d6e53d1fa20bbcf81c083">Bug#918114向けパッチ</a>を作った。</li>
+<li>ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 17, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>whizzytex</code>のパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -447,164 +574,6 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 </code></pre>
 
 <p>なんじゃこりゃー。<code>tools/tidy</code>スクリプトによるチェックが<code>check-local</code>ターゲットで走って、修正が加わってないのがエラーになるという…なんでupstream側で対処してないんだよ。もういい、今日はここまで。openSUSEのtrackerに<a href="https://progress.opensuse.org/issues/45740">報告しておく</a>。ついでに<a href="https://progress.opensuse.org/issues/45743">tag打って</a>、も。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 5, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/dd">DD</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>倉敷さんの<code>goldencheetah</code>パッケージの状況をヒアリング。</p>
-
-<ul>
-<li><code>libusb0.1</code>に依存しているが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470">libusb0.1はもう古いからDebianから消したいよね</a>という動きがある。</li>
-<li>でも<code>goldencheetah</code>側としては<a href="https://groups.google.com/forum/#!msg/golden-cheetah-developers/EQxEEIQbRXc/ZSeSOBF8AwAJ">「マルチプラットフォーム対応してるので、壊したくないよね」</a>なので<code>libusb1.0</code>に動くのは消極的</li>
-<li><a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat</a>という「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。
-
-<ul>
-<li>ただし、<code>goldencheetah</code>では「使うようにしよう」というPRが来ているものの実装はされてない感じ</li>
-<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。</li>
-<li>個人的にはhalf-deadならいいじゃん、と思うけど…</li>
-<li>ちなみに<code>libusb-compat</code>はDebianではパッケージになっていない</li>
-</ul></li>
-<li>ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ
-
-<ul>
-<li>最新の<code>dh12</code>に更新、不要になったファイルやオプションを消す</li>
-<li>insecureなgitプロトコルやhttpをhttpsに置き換え</li>
-<li><code>debian/watch</code>はv4形式にして簡易に書ける</li>
-</ul></li>
-<li>cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 5, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://nthykier.wordpress.com/2019/01/04/debhelper-compat-12-is-now-released/">“debhelper-compat (= 12)” is now released</a>を読む。<code>Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster).  Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.</code>との記述。<code>Rules-Requires-Root: no</code>のようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。</p>
-
-<p>試しに<code>dpkg-dev</code>をBuild-Dependsにしてみたら</p>
-
-<pre><code class="language-bash">E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev [build-depends: dpkg-dev]
-</code></pre>
-
-<p>あら。。。<code>dpkg-dev 1.19.0</code>からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは<code>no</code>をデフォルトにして<code>Rules-Requires-Root: yes</code>を明示的に宣言させるほうが良くないかね？と思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81">質問してみた</a>→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。</p>
-
-<hr />
-
-<ul>
-<li>上記の変更その他を加えて<a href="https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/">os-autoinstパッケージをアップロード</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463">RCバグ</a>は<code>severity</code>を下げておいた。</li>
-<li><code>debootstrap</code>パッケージ、夏に作業して放置してたMergeRequestを変更を追加して<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9">Mergeした</a>。<code>git rebase</code>なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 4, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/dd">DD</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</p>
 
 					
 				</div>

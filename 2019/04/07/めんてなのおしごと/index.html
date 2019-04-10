@@ -79,68 +79,6 @@ If you are writing an app and want to use dig in it you should probably just upg
 
 <p>Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&hellip;。んでは無視しよう。<a href="https://github.com/fluent/fluentd/pull/2372">fluentdにはPR上げてみておいた</a>。</p>
 
-<hr />
-
-<p>残りは<code>ruby-strptime</code>と<code>ruby-tzinfo-data</code>か、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926621">ruby-strptimeのITP作業</a>した。<code>ruby-tzinfo-data</code>の方はtzdataを引っ張ってこれない環境だと必要なのでは？と判断して削る方向で。</p>
-
-<p>あ、<a href="https://bugs.debian.org/926623">ruby-parallel-tests</a>も追加。</p>
-
-<p>これで大体依存関係終わったかな…。</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/926266">ruby-cool.io</a></li>
-<li><a href="https://bugs.debian.org/926570">ruby-sigdump</a></li>
-<li><a href="https://bugs.debian.org/926572">ruby-serverengine</a></li>
-<li><a href="https://bugs.debian.org/926621">ruby-strptime</a></li>
-<li><a href="https://bugs.debian.org/926623">ruby-parallel-tests</a></li>
-</ul>
-
-<hr />
-
-<p>ここまで来て、ようやく<code>fluentd</code>のパッケージングに再度入れる。でビルド…テストがエラーになる。</p>
-
-<pre><code class="language-error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
-</code></pre>
-
-<p>という感じ。見ていく。</p>
-
-<pre><code class="language-error">Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
-  Exception raised:
-  Errno::ENOENT(&lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&gt;)
-/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &lt;class:TestFluentPluginConfigFormatter&gt;'
-</code></pre>
-
-<pre><code class="language-error"># grep templates -r ./
-(snip)
-./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &quot;../../../templates/new_gem&quot;).realpath
-./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &quot;../../../templates/plugin_config_formatter/#{name}&quot;).realpath
-</code></pre>
-
-<p><code>/build/fluentd-1.4.2/templates</code>を見たいのに<code>/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates</code>を参照しにいってるので、ここを直せば良い。templatesをlib配下に持っていって相対パスをadjustするのがよいかね。</p>
-
-<hr />
-
-<pre><code class="language-text">/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-</code></pre>
-
-<p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、<a href="https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/">自分を加えて更新してアップロードした</a>。</p>
-
-<hr />
-
-<p>psがない！というエラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
-
-<hr />
-
-<p>しかしまだまだtest failureは続く…。</p>
-
 		</div>
 	</div>
 	<div class="row">
