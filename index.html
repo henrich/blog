@@ -98,7 +98,6 @@ If you are writing an app and want to use dig in it you should probably just upg
 <p>これで大体依存関係終わったかな…。</p>
 
 <ul>
-<li><a href="https://bugs.debian.org/926236">ruby-fluent-logger</a></li>
 <li><a href="https://bugs.debian.org/926266">ruby-cool.io</a></li>
 <li><a href="https://bugs.debian.org/926570">ruby-sigdump</a></li>
 <li><a href="https://bugs.debian.org/926572">ruby-serverengine</a></li>
@@ -108,7 +107,7 @@ If you are writing an app and want to use dig in it you should probably just upg
 
 <hr />
 
-<p>ここまで来て、ようやくfluentdに入れる。でビルド…テストがエラーになる。</p>
+<p>ここまで来て、ようやく<code>fluentd</code>のパッケージングに再度入れる。でビルド…テストがエラーになる。</p>
 
 <pre><code class="language-error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
 </code></pre>
@@ -142,7 +141,7 @@ If you are writing an app and want to use dig in it you should probably just upg
 /usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
 </code></pre>
 
-<p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる（マイナーバージョン２つだけだけど）。パッケージメンテナが降りてしまってるので、[自分を加えて更新してアップロードした]()。</p>
+<p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、<a href="https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/">自分を加えて更新してアップロードした</a>。</p>
 
 <hr />
 

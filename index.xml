@@ -37,7 +37,6 @@ If you are writing an app and want to use dig in it you should probably just upg
 &lt;p&gt;これで大体依存関係終わったかな…。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926236&#34;&gt;ruby-fluent-logger&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926266&#34;&gt;ruby-cool.io&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926570&#34;&gt;ruby-sigdump&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926572&#34;&gt;ruby-serverengine&lt;/a&gt;&lt;/li&gt;
@@ -47,7 +46,7 @@ If you are writing an app and want to use dig in it you should probably just upg
 
 &lt;hr /&gt;
 
-&lt;p&gt;ここまで来て、ようやくfluentdに入れる。でビルド…テストがエラーになる。&lt;/p&gt;
+&lt;p&gt;ここまで来て、ようやく&lt;code&gt;fluentd&lt;/code&gt;のパッケージングに再度入れる。でビルド…テストがエラーになる。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
 &lt;/code&gt;&lt;/pre&gt;
@@ -81,7 +80,7 @@ If you are writing an app and want to use dig in it you should probably just upg
 /usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;とwarningが5万行も出ていたので、&lt;code&gt;ruby-flexmock&lt;/code&gt;パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる（マイナーバージョン２つだけだけど）。パッケージメンテナが降りてしまってるので、[自分を加えて更新してアップロードした]()。&lt;/p&gt;
+&lt;p&gt;とwarningが5万行も出ていたので、&lt;code&gt;ruby-flexmock&lt;/code&gt;パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、&lt;a href=&#34;https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/&#34;&gt;自分を加えて更新してアップロードした&lt;/a&gt;。&lt;/p&gt;
 
 &lt;hr /&gt;
 
