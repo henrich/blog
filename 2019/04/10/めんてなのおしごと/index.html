@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Wed, Apr 10, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p><code>fluentd</code>パッケージングでのテストエラー続き。</p>
+
+<pre><code class="language-ruby">? Encoding: US-ASCII-8BIT
+===============================================================================
+: (0.005571)
+    test: should output compressed file when compress option is gzip:   F
+===============================================================================
+Failure: test: should output compressed file when compress option is gzip(FileOutputSecondaryTest::write)
+/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:129:in `check_gzipped_result'
+/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `block (2 levels) in &lt;class:FileOutputSecondaryTest&gt;'
+     151:       path = d.instance.write(@chunk)
+     152: 
+     153:       assert_equal &quot;#{TMP_DIR}/out_file_test.0.gz&quot;, path
+  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding('ASCII-8BIT'))
+     155:     end
+     156: 
+     157:     test 'should output plain text when compress option is default(text)' do
+&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(ASCII-8BIT) expected but was
+&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(US-ASCII)
+
+diff:
+  潰^@\ｬメ^D^DZ氈｣key･value
+</code></pre>
+
+<p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
+
+<pre><code class="language-ruby">  Gem2Deb::Rake::TestTask.new do |t|
+    t.libs = ['test']
+    t.test_files = FileList['test/**/*_test.rb'] + FileList['test/**/test_*.rb']
++   t.ruby_opts = [&quot;-Eascii-8bit:ascii-8bit&quot;]
+  end
+</code></pre>
+
+<p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

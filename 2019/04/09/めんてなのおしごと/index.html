@@ -70,81 +70,45 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<p><code>fluentd</code>パッケージングでのテストエラー続き。</p>
+			<p><code>fluentd</code>のビルド…テストがエラーになる。</p>
 
-<pre><code class="language-ruby">? Encoding: US-ASCII-8BIT
-===============================================================================
-: (0.005571)
-    test: should output compressed file when compress option is gzip:   F
-===============================================================================
-Failure: test: should output compressed file when compress option is gzip(FileOutputSecondaryTest::write)
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:129:in `check_gzipped_result'
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `block (2 levels) in &lt;class:FileOutputSecondaryTest&gt;'
-     151:       path = d.instance.write(@chunk)
-     152: 
-     153:       assert_equal &quot;#{TMP_DIR}/out_file_test.0.gz&quot;, path
-  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding('ASCII-8BIT'))
-     155:     end
-     156: 
-     157:     test 'should output plain text when compress option is default(text)' do
-&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(ASCII-8BIT) expected but was
-&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(US-ASCII)
-
-diff:
-  潰^@\ｬメ^D^DZ氈｣key･value
+<pre><code class="language-error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
 </code></pre>
 
-<p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
+<p>という感じ。見ていく。</p>
 
-<pre><code class="language-ruby">  Gem2Deb::Rake::TestTask.new do |t|
-    t.libs = ['test']
-    t.test_files = FileList['test/**/*_test.rb'] + FileList['test/**/test_*.rb']
-+   t.ruby_opts = [&quot;-Eascii-8bit:ascii-8bit&quot;]
-  end
+<pre><code class="language-error">Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
+  Exception raised:
+  Errno::ENOENT(&lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&gt;)
+/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &lt;class:TestFluentPluginConfigFormatter&gt;'
 </code></pre>
 
-<p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
+<pre><code class="language-error"># grep templates -r ./
+(snip)
+./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &quot;../../../templates/new_gem&quot;).realpath
+./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &quot;../../../templates/plugin_config_formatter/#{name}&quot;).realpath
+</code></pre>
 
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<hr>
-		</div>
-	</div>
-</div>
+<p><code>/build/fluentd-1.4.2/templates</code>を見たいのに<code>/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates</code>を参照しにいってるので、ここを直せば良い。<a href="https://salsa.debian.org/ruby-team/fluentd/blob/debian/sid/debian/patches/0004-move-templates-to-appropriate-path.patch">templatesをlib配下に持っていって相対パスをadjustする</a>のがよいかね。</p>
 
-    <div class="container">
-        <div class="row col-md-12">
-            <footer>
-                <div class="pull-left">
-                    <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
-                    </p>
-                </div>
+<hr />
 
-                
-                <div class="pull-right">
-                    
-                    
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <i class="fa fa-twitter-square fa-2x"></i></a>
-                    
-                    
-                    
-                    
-                    
-                </div>
-            </footer>
-        </div>
-    </div>
+<pre><code class="language-text">/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+</code></pre>
 
-    
-    </body>
-</html>
+<p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、<a href="https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/">自分を加えて更新してアップロードした</a>。</p>
 
-�エラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
+<hr />
+
+<p>psがない！というエラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
 
 <hr />
 
