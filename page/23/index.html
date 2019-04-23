@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.54.0" />
+	<meta name="generator" content="Hugo 0.55.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,526 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 1, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/852775">darts をアップデート</a>。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
+<li><a href="https://tracker.debian.org/news/852940">mecab-naist-jdic をアップデート</a>。特にこれということもなく。</li>
+<li><a href="https://tracker.debian.org/news/852917">unidic-mecab をアップデート</a> 。dh10でスッキリと。</li>
+<li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
+<li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>
+
+<li><p><a href="https://tracker.debian.org/news/852781">mecab-jumandic をアップデート</a>。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。<code>$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz</code>っと。</p>
+
+<pre><code>git-buildpackage (0.8.17) unstable; urgency=medium
+(snip)
+* [956982c] New command 'pristine-tar'
+This allows one to run the pristine-tar import at a later point.  This
+is useful when using component tarballs and we need to reference the
+right trees for the commits.
+</code></pre></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>消えたら可哀想だな、ということで<a href="https://tracker.debian.org/news/852950">plumをAdoptした</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/proposal">proposal</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation">pkg-configとpkgconfigの入れ替え話</a>もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。</li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/ChangeSet">https://fedoraproject.org/wiki/Releases/26/ChangeSet</a> のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
+
+<ul>
+<li>現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう</li>
+<li>開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう</li>
+<li>ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）</li>
+<li>リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう</li>
+</ul></li>
+<li><a href="https://fedoraproject.org/wiki/Releases/26/Schedule">https://fedoraproject.org/wiki/Releases/26/Schedule</a> を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
+
+<ul>
+<li>→ <a href="https://wiki.debian.org/upstream-schedule">https://wiki.debian.org/upstream-schedule</a> を作ってみた。</li>
+</ul></li>
+<li><a href="http://debian-mirror.sakura.ne.jp/">debian-mirror.sakura.ne.jp</a> をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jun 30, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://qa.debian.org/debcheck.php?dist=unstable&amp;package=snapper">snapperのdebcheck</a>を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。</p>
+
+<pre><code>I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service
+I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service
+I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0
+</code></pre>
+
+<p>これは減らせるだろうか？</p>
+
+<hr />
+
+<p><a href="https://buildd.debian.org/status/package.php?p=os-autoinst">os-autoinst</a>も同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。</p>
+
+<p>qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？</p>
+
+<p>アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&hellip;。</p>
+
+<hr />
+
+<p><a href="https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932">美咲フォントのバグレポート</a>、内容を精査。直ってたので閉じておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jun 29, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>screenfetch、<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">Ubuntu側のバグ登録</a>を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。</p>
+
+<hr />
+
+<p>トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。</p>
+
+<ol>
+<li>cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&hellip;</li>
+<li>apt show pgf&hellip;パッケージは確かに存在しない。</li>
+<li><a href="https://tracker.debian.org/pkg/pgf">trackerのページ</a>で確認すると、最後のは<a href="https://tracker.debian.org/news/583320">[2014-11-03] Removed 2.10-1 from unstable</a>&hellip;なになに？「integrated into texlive」？</li>
+<li>ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）</li>
+
+<li><p>debsignしてdputして終わり。</p>
+
+<pre><code>diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
+--- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
++++ whizzytex-1.3.2/debian/changelog    2017-06-29 20:11:36.000000000 +0900
+@@ -1,3 +1,11 @@
++whizzytex (1.3.2-1.4) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * debian/control
++    - fix Build-Depends since pgf is intergrated into TeXLive.
++
++ -- Hideki Yamane &lt;henrich@debian.org&gt;  Thu, 29 Jun 2017 20:11:36 +0900
++
+whizzytex (1.3.2-1.3) unstable; urgency=medium
+
+* Non-maintainer upload.
+diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
+--- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
++++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
+@@ -2,7 +2,7 @@
+Section: tex
+Priority: optional
+Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
+-Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
++Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
+Build-Depends: debhelper (&gt;&gt; 7.0.50~)
+Standards-Version: 3.7.2
+</code></pre></li>
+</ol>
+
+<hr />
+
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861363">poppler-dataへのバグレポート</a>をチェック。レポートにも書いてある通り、<a href="https://bugzilla.redhat.com/show_bug.cgi?id=842351">RHBZを確認</a>。</p>
+
+<ul>
+<li>何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。</li>
+<li>なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。</li>
+
+<li><p>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</p>
+
+<pre><code># cidToUnicode, nameToUnicode and unicodeMap data files
+# are under the COPYING.gpl2 license
+# Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
+</code></pre></li>
+</ul>
+
+<p>とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると</p>
+
+<pre><code>The files in the Resource directory and any subdirectories thereof
+are also part of GPL Ghostscript, with the explicit exception of
+the files in the CMap subdirectory (except &quot;Identity-UTF16-H&quot;,
+which is part of GPL Ghostscript). The CMap files are copyright
+Adobe Systems Incorporated and covered by a separate, Affero GPL
+compatible license.
+</code></pre>
+
+<p>あれ？AGPLな気がするんだけど… debian/copyrightでチェックしよう。</p>
+
+<pre><code>Files: Resource/CMap/Identity-UTF16-H
+Copyright: 2003, Artifex Software
+License-Grant:
+ GPL Ghostscript is free software; you can redistribute it and/or modify
+ it under the terms the GNU Affero General Public License as published
+ by the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+License: AGPL-3+
+</code></pre>
+
+<p>だよねぇ。Fedoraの方は間違いだと思う。</p>
+
+<p>upstream tarball をもう一つ追加して対応、なんだけど git-buildpackage が multiple
+upstream tarball に対応してないのがアレ。</p>
+
+<hr />
+
+<p><a href="https://www.staff.science.uu.nl/~penni101/mirmon/">mirmon</a> のtypoにLintianがうるさく感じたのでパッチをメール。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jun 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
+Calling ['apt-get', '-qq', 'changelog', 'console-setup-linux=1.165'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'libavutil55=7:3.2.6-1+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'gvfs-backends=1.30.4-1+b1'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-notify=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-visualization=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-skins2=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'vlc=2.2.6-2+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'mplayer=2:1.3.0-6+b3'] to retrive changelog
+Calling ['apt-get', '-qq', 'changelog', 'gstreamer1.0-plugins-bad=1.12.1-1+b1'] to retrive changelog
+changelog を読んでいます... 完了
+</code></pre>
+
+<p>??? 何故こんな出力が？</p>
+
+<pre><code>Package: apt
+Version: 1.4.6
+</code></pre>
+
+<pre><code>Package: apt-listchanges
+Version: 3.12
+</code></pre>
+
+<p>どちらだろうか？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jun 28, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
+
+<p>次にbase.cowを作る。</p>
+
+<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
+</code></pre>
+
+<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
+
+<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
+</code></pre>
+
+<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
+
+<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
+</code></pre>
+
+<p>以上でアップロード。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/">epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
+gbp:info: Tarballs 'xfonts-kappa20_0.396.orig.tar.xz' not found at '../tarballs/'
+gbp:error: Pristine-tar couldn't checkout &quot;xfonts-kappa20_0.396.orig.tar.xz&quot;: fatal: Path 'xfonts-kappa20_0.396.orig.tar.xz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
+</code></pre>
+
+<p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
+
+<pre><code>henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
+Switched to branch 'pristine-tar'
+henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
+Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
+</code></pre>
+
+<p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/">ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 26, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>git-buildpackageでビルドしたのだけど、pristine-tarブランチに作られたファイルから生成されるtarballと最初にアップロードしたorig.tarballとハッシュ値が違うということで蹴られることがある。tarballは都度若干違う値になっちゃうから、そもそもgbp import-origした際にキチンとpristine-tar作るようにしてあるはず、なんだけど、ミスをすることが多々&hellip;</p>
+
+<p>で、どうやってリカバリするかというと、apt source して orig.tarball を差し替える（ダメな場当たり対応。良くやる）というのが思いつくのだけど、ちゃんとpristine-tarブランチのファイルを置き換えた方が良い。</p>
+
+<p>とはいうものの、このブランチのファイル、どうやって生成しているのかよく分かってない。いっつも単にimport-origしてただけだし。うーん。</p>
+
+<p>色々試行錯誤した末に、こうしてみた。</p>
+
+<ul>
+<li>適当なところに apt source <package> でリポジトリにあるorig.tarballを持ってくる</li>
+<li>適当なところで debcheckout <package> してテンポラリ作業用のgitリポジトリを持ってくる</li>
+
+<li><p>テンポラリgitリポジトリで</p>
+
+<pre><code>$ cd /tmp/&lt;package repo&gt;
+$ git checkout pristine-tar
+$ git rm &lt;該当バージョンのファイル&gt;; git commit -a
+$ git checkout master; git tag -d upstream/&lt;version&gt;
+$ gbp import-orig &lt;orig.tarball&gt;
+</code></pre>
+
+<p>などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う</p>
+
+<pre><code>$ cd ~/&lt;package repo&gt;
+$ git checkout pristine-tar
+$ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
+</code></pre></li>
+</ul>
+
+<p>回りくどいなーとは思うのだけども。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -165,648 +685,6 @@ Yes, those files are exactly same one.
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/11/15/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Nov 15, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/upstream">upstream</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルドが1.0.7になってこけるのだが、理由はpkgconfigファイルをビルドするタスクがデフォルトで外れているので、.pcファイルがないにも関わらず、install.pyで指定されているためだった。<a href="https://birdfont.org/bugtracker/view.php?id=101">upstreamに報告済み</a>。あと、git repoでタグ打ちがないのも。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/29/libxmlbird-%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%9F/">libxmlbird のビルド直してた</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 29, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
-
-<p>sparcでのビルド失敗は</p>
-
-<pre><code>Traceback (most recent call last):
-  File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-ImportError: No module named pkg_resources
-</code></pre>
-
-<p>…なんでモジュールが無いというのか？</p>
-
-<p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
-さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
-
-<p>新しいバージョンになると</p>
-
-<pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-</code></pre>
-
-<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
-
-<p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/autopkgtest%E8%A7%A6%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%82%89%E3%81%97%E3%81%84/">autopkgtest触ってみた（らしい）</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
-
-<p>Testsuite: autopkgtest-pkg-perl</p>
-
-<p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
-
-<p>実施されるテストは
-* smoke
-* use.t
-* syntax.t
-で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
-
-<p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
-
-<pre><code>$ sudo apt-get install sbuild
-$ sudo mkdir -p /srv/chroot/sid
-$ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
-</code></pre>
-
-<pre><code>[sid-amd64-sbuild]
-type=directory
-description=Debian sid/amd64 autobuilder
-directory=/srv/chroot/sid
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:22:46]: version 3.14.3
-adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
-adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
-
-<pre><code>#union-type=aufs
-#union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
-</code></pre>
-
-<p>とやってみたのだけど、</p>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-adt-run [20:23:06]: version 3.14.3
-adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
-Traceback (most recent call last):
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 190, in &lt;module&gt;
-    parse_args()
-  File &quot;/usr/bin/adt-virt-schroot&quot;, line 96, in parse_args
-    (key, val) = entry.split(&quot;=&quot;, 2)
-ValueError: too many values to unpack (expected 2)
-adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
-
-<pre><code>[sid-test]
-type=file
-description=test
-file=/srv/chroot/test/base.tgz
-groups=root,sbuild
-root-groups=root,sbuild
-profile=sbuild
-
-users=henrich
-root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:38]: version 3.14.3
-adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
-adt-run [18:52:41]: testbed dpkg architecture: amd64
-adt-run [18:52:41]: @@@@@@@@@@@@@@@@@@@@ source libdbix-class-optimisticlocking-perl_0.02-1.dsc
-+ gpg --homedir=/home/henrich/.cache/autopkgtest --batch --no-random-seed-file --gen-key key-gen-params
-gpg: keyring `/home/henrich/.cache/autopkgtest/secring.gpg' created
-gpg: keyring `/home/henrich/.cache/autopkgtest/pubring.gpg' created
-++++++++++++++++++++.+++++++++++++++.++++++++++.+++++.++++++++++.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++....++++++++++&gt;++++++++++...............+++++
-
-Not enough random bytes available.  Please do some other work to give
-the OS a chance to collect more entropy! (Need 188 more bytes)
-gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
-gpg: key 0FB272FB marked as ultimately trusted
-</code></pre>
-
-<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/dh-make-perl%E3%81%A7perl%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E5%8D%8A%E8%87%AA%E5%8B%95%E3%81%A7debian%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB/">dh-make-perlでPerlモジュールが半自動でDebianパッケージに</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。</p>
-
-<pre><code>$ dh-make-perl 
-== dh-make-perl 0.86 ==
-Trying /home/henrich/src/qa/../qa.tar.gz... not found.
-Trying /home/henrich/src/qa/../qa.tar.bz2... not found.
-Trying /home/henrich/src/qa/../qa.tar.xz... not found.
-Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
-WARNING: Neither META.json nor META.yml was found
-Unable to determine dist name, no Build.PL, no Makefile.PL
-Please use --cpan.
-</code></pre>
-
-<p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
-
-<pre><code>$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
-== dh-make-perl 0.86 ==
-
-CPAN.pm requires configuration, but most of it can be done automatically.
-If you answer 'no' below, you will enter an interactive dialog for each
-configuration option instead.
-
-Would you like to configure as much as possible automatically? [yes]
-
- &lt;install_help&gt;
-
-Warning: You do not have write permission for Perl library directories.
-
-To install modules, you need to configure a local Perl library directory or
-escalate your privileges.  CPAN can help you by bootstrapping the local::lib
-module or by configuring itself to use 'sudo' (if available).  You may also
-resolve this problem manually if you need to customize your setup.
-
-What approach do you want?  (Choose 'local::lib', 'sudo' or 'manual')
- [local::lib] 
-
-
-Autoconfiguration complete.
-
-Attempting to bootstrap local::lib...
-(snip)
-PATH=&quot;/home/henrich/perl5/bin${PATH+:}${PATH}&quot;; export PATH;
-PERL5LIB=&quot;/home/henrich/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}&quot;; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT=&quot;/home/henrich/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}&quot;; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT=&quot;--install_base \&quot;/home/henrich/perl5\&quot;&quot;; export PERL_MB_OPT;
-PERL_MM_OPT=&quot;INSTALL_BASE=/home/henrich/perl5&quot;; export PERL_MM_OPT;
-
-Would you like me to append that to /home/henrich/.bashrc now? [yes] 
-(snip)
-</code></pre>
-
-<p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
-
-<pre><code>henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
-commit a1a9d209742905d33a3ffee587c32b7a5360a521
-Author: Hideki Yamane &lt;henrich@debian.org&gt;
-Date:   Sun Jun 28 00:12:59 2015 +0900
-
-    Initial packaging by dh-make-perl 0.84
-
-commit 29943cd28971248efb43e0e940957bf5086e118e
-Author: Hideki Yamane &lt;henrich@debian.org&gt;
-Date:   Sun Jun 28 00:10:38 2015 +0900
-
-    Import original source of DBIx-Class-OptimisticLocking 0.02
-</code></pre>
-
-<p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
-
-<p>debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。</p>
-
-<p>debian/copyrightもcpanから取ってきて記述されるようです。</p>
-
-<pre><code>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
-Upstream-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Upstream-Name: DBIx-Class-OptimisticLocking
-DISCLAIMER: This copyright info was automatically extracted
- from the perl module. It may not be accurate, so you better
- check the module sources in order to ensure the module for its
- inclusion in Debian or for general legal information. Please,
- if licensing information is incorrectly generated, file a bug
- on dh-make-perl.
- NOTE: Don't forget to remove this disclaimer once you are happy
- with this file.
-</code></pre>
-
-<p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
-
-<p>debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。</p>
-
-<p>debian/upstream/metadataなんてファイルも出来てました。中身は</p>
-
-<pre><code>Archive: CPAN
-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p>ほー。いたれりつくせりですね。</p>
-
-<p>あとはgit-buildpackageでビルドしてしまえばOKです。</p>
-
-<p>ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると</p>
-
-<pre><code>**********
-WARNING: a package named
-              'libsql-abstract-perl'
-         is already available in APT repositories
-Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
-Description: module to generate SQL from Perl data structures
-</code></pre>
-
-<p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
-
-<p>モジュールがcpanにない場合には</p>
-
-<pre><code>$ dh-make-perl --cpan selenium-remote-driver-perl
-== dh-make-perl 0.86 ==
-Reading '/home/henrich/.local/share/.cpan/Metadata'
-  Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
-Can't find 'selenium::remote::driver::perl' module or distribution on CPAN
-</code></pre>
-
-<p>のように出てきます。</p>
-
-<p>また、変換の際にモジュールが依存する別のモジュールがない場合には</p>
-
-<pre><code>Needs the following modules for which there are no debian packages available:
- - Time::Mock
-</code></pre>
-
-<p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
-
-<pre><code>Needs the following modules for which there are no debian packages available:
- - CSS::Minifier::XS
- - JavaScript::Minifier::XS
-</code></pre>
-
-<p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
-
-<pre><code>**********
-WARNING: a package named
-              'libcss-minifier-xs-perl'
-         is already available in APT repositories
-Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
-Description: XS based CSS minifier
-</code></pre>
-
-<p>と出てきてしまいました。あらら。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/28/test%E3%81%A7skipped%E3%81%8C%E5%A4%9A%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%8C%E6%BA%80%E3%81%9F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84/">testでskippedが多い場合は依存関係が満たされてないかもしれない</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jun 28, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>さて、ドキュメントにはテストについて色々書いてありました。</p>
-
-<pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl &quot;-MExtUtils::Command::MM&quot; &quot;-MTest::Harness&quot; &quot;-e&quot; &quot;undef *Test::Harness::Switches; test_harness(1, 'blib/lib', 'blib/arch')&quot; t/*.t
-t/00-compile.t ................ 
-1..1
-ok 1 - DBIx::Class::OptimisticLocking loaded ok
-ok
-t/01-dirty.t .................. skipped: needs DBD::SQLite for testing
-t/02-dirty-ignored.t .......... skipped: needs DBD::SQLite for testing
-t/03-all.t .................... skipped: needs DBD::SQLite for testing
-t/04-all-ignored.t ............ skipped: needs DBD::SQLite for testing
-t/05-version.t ................ skipped: needs DBD::SQLite for testing
-t/06-version-custom-column.t .. skipped: needs DBD::SQLite for testing
-t/07-version-with-ignored.t ... skipped: needs DBD::SQLite for testing
-t/08-none.t ................... skipped: needs DBD::SQLite for testing
-t/release-pod-coverage.t ...... skipped: these tests are for release candidate testing
-t/release-pod-syntax.t ........ skipped: these tests are for release candidate testing
-All tests successful.
-Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
-Result: PASS
-</code></pre>
-
-<p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
-
-<p>結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。</p>
-
-<p>もうひとつは些細な話ですがパラレルビルドの話「dh $@ &ndash;parallel」という形で渡せば</p>
-
-<pre><code>   dh_auto_build -O--parallel
-	make -j4
-</code></pre>
-
-<p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/">git repoとdh-make</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 23, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>一度upstream tarballを元にdh-makeでパッケージを作った。
-で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。</p>
-
-<pre><code>git clone https://github.com/os-autoinst/os-autoinst.git
-cd os-autoinst
-git checkout 4.1
-git tag upstream/4.1
-git checkout -b debian
-cp -arp ../os-autoinst-4.1/debian ./
-git add debian
-git commit
-</code></pre>
-
-<p>debian/gbp.conf はこんな感じ。</p>
-
-<pre><code>[DEFAULT]
-debian-branch=debian
-
-gbp buildpackage
-</code></pre>
-
-<p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
-
-<pre><code>git config remote.pushdefault alioth 
-</code></pre>
-
-<ul>
-<li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
-<li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 22, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>proposed-updatesリポジトリにパッケージをアップロードする際、
-changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？</p>
-
-<p>疑問が晴れなかったので<a href="https://lists.debian.org/debian-devel/2015/06/msg00305.html">debian-develに質問</a>したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587">登録しておいた。Bug#789587</a>です。</p>
-
-<p>しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/">gbpとpbuilderのオプション</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jun 19, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>gbp buildpackage --git-pbuilder-options=&quot;-sa&quot;
-</code></pre>
-
-<p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
-
-<pre><code>sudo cowbuilder --build --debbuildopt=&quot;-sa&quot; libxmlbird_1.0.4-2.dsc
-</code></pre>
-
-<p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
-
-<pre><code>$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
-gbp:info: Orig tarball 'libxmlbird_1.0.4.orig.tar.xz' not found at '../tarballs/'
-gbp:info: Exporting 'HEAD' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp'
-gbp:info: Moving '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4'
-Building with cowbuilder for distribution sid
-I: using cowbuilder as pbuilder
-(snip)
-dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
- dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
-dpkg-genchanges: not including original source code in upload
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -823,6 +701,7 @@ dpkg-genchanges: not including original source code in upload
     <li class="page-item">
     <a href="/blog/page/22/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
+    
     
     
     
@@ -1055,12 +934,23 @@ dpkg-genchanges: not including original source code in upload
     <li class="page-item"><a class="page-link" href="/blog/page/24/">24</a></li>
     
     
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/25/">25</a></li>
+    
+    
     <li class="page-item">
     <a href="/blog/page/24/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/24/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/25/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -1079,7 +969,7 @@ dpkg-genchanges: not including original source code in upload
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

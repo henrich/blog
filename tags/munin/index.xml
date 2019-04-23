@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Munin on Forget me not...</title>
+    <title>munin on Forget me not...</title>
     <link>https://henrich.github.io/blog/tags/munin/</link>
-    <description>Recent content in Munin on Forget me not...</description>
+    <description>Recent content in munin on Forget me not...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>

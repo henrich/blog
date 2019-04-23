@@ -8,184 +8,22 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bts</title>
-      <link>https://henrich.github.io/blog/tags/bts/</link>
-      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/bts/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dd</title>
-      <link>https://henrich.github.io/blog/tags/dd/</link>
-      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/dd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Debian</title>
+      <title>debian</title>
       <link>https://henrich.github.io/blog/tags/debian/</link>
-      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/debian/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Debianjp</title>
-      <link>https://henrich.github.io/blog/tags/debianjp/</link>
-      <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/debianjp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Debootstrap</title>
-      <link>https://henrich.github.io/blog/tags/debootstrap/</link>
-      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/debootstrap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Etc</title>
-      <link>https://henrich.github.io/blog/tags/etc/</link>
-      <pubDate>Sun, 29 Apr 2018 22:23:46 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/etc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Event</title>
-      <link>https://henrich.github.io/blog/tags/event/</link>
-      <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/event/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fedora</title>
-      <link>https://henrich.github.io/blog/tags/fedora/</link>
-      <pubDate>Sat, 05 May 2018 14:40:09 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/fedora/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://henrich.github.io/blog/tags/git/</link>
-      <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gpg</title>
-      <link>https://henrich.github.io/blog/tags/gpg/</link>
-      <pubDate>Sun, 17 Dec 2017 17:42:42 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/gpg/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Infra</title>
-      <link>https://henrich.github.io/blog/tags/infra/</link>
-      <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/infra/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>License</title>
-      <link>https://henrich.github.io/blog/tags/license/</link>
-      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/license/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Munin</title>
-      <link>https://henrich.github.io/blog/tags/munin/</link>
-      <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/munin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Patch</title>
-      <link>https://henrich.github.io/blog/tags/patch/</link>
-      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/patch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Proposal</title>
-      <link>https://henrich.github.io/blog/tags/proposal/</link>
-      <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/proposal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rcbug</title>
-      <link>https://henrich.github.io/blog/tags/rcbug/</link>
-      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/rcbug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Release</title>
-      <link>https://henrich.github.io/blog/tags/release/</link>
-      <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/release/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Todo</title>
-      <link>https://henrich.github.io/blog/tags/todo/</link>
-      <pubDate>Thu, 17 Aug 2017 06:26:14 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/todo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Trouble</title>
-      <link>https://henrich.github.io/blog/tags/trouble/</link>
-      <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
-      <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/trouble/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Unblock</title>
+      <title>unblock</title>
       <link>https://henrich.github.io/blog/tags/unblock/</link>
       <pubDate>Sat, 30 Mar 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
@@ -194,20 +32,182 @@
     </item>
     
     <item>
-      <title>Upstream</title>
-      <link>https://henrich.github.io/blog/tags/upstream/</link>
-      <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
+      <title>release</title>
+      <link>https://henrich.github.io/blog/tags/release/</link>
+      <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
-      <guid>https://henrich.github.io/blog/tags/upstream/</guid>
+      <guid>https://henrich.github.io/blog/tags/release/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Vyos</title>
+      <title>bts</title>
+      <link>https://henrich.github.io/blog/tags/bts/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/bts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>license</title>
+      <link>https://henrich.github.io/blog/tags/license/</link>
+      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/license/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debianjp</title>
+      <link>https://henrich.github.io/blog/tags/debianjp/</link>
+      <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/debianjp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DD</title>
+      <link>https://henrich.github.io/blog/tags/dd/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/dd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>munin</title>
+      <link>https://henrich.github.io/blog/tags/munin/</link>
+      <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/munin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debootstrap</title>
+      <link>https://henrich.github.io/blog/tags/debootstrap/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/debootstrap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patch</title>
+      <link>https://henrich.github.io/blog/tags/patch/</link>
+      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/patch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RCbug</title>
+      <link>https://henrich.github.io/blog/tags/rcbug/</link>
+      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/rcbug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fedora</title>
+      <link>https://henrich.github.io/blog/tags/fedora/</link>
+      <pubDate>Sat, 05 May 2018 14:40:09 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/fedora/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vyos</title>
       <link>https://henrich.github.io/blog/tags/vyos/</link>
       <pubDate>Fri, 04 May 2018 12:03:23 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/tags/vyos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>etc</title>
+      <link>https://henrich.github.io/blog/tags/etc/</link>
+      <pubDate>Sun, 29 Apr 2018 22:23:46 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/etc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://henrich.github.io/blog/tags/git/</link>
+      <pubDate>Sun, 28 Jan 2018 09:16:36 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gpg</title>
+      <link>https://henrich.github.io/blog/tags/gpg/</link>
+      <pubDate>Sun, 17 Dec 2017 17:42:42 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/gpg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>event</title>
+      <link>https://henrich.github.io/blog/tags/event/</link>
+      <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/event/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>infra</title>
+      <link>https://henrich.github.io/blog/tags/infra/</link>
+      <pubDate>Sun, 17 Sep 2017 20:14:49 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/infra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>todo</title>
+      <link>https://henrich.github.io/blog/tags/todo/</link>
+      <pubDate>Thu, 17 Aug 2017 06:26:14 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/todo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proposal</title>
+      <link>https://henrich.github.io/blog/tags/proposal/</link>
+      <pubDate>Fri, 30 Jun 2017 23:48:25 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/proposal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trouble</title>
+      <link>https://henrich.github.io/blog/tags/trouble/</link>
+      <pubDate>Sat, 13 Feb 2016 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/trouble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>upstream</title>
+      <link>https://henrich.github.io/blog/tags/upstream/</link>
+      <pubDate>Sun, 15 Nov 2015 00:00:00 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/tags/upstream/</guid>
       <description></description>
     </item>
     

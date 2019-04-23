@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.54.0" />
+	<meta name="generator" content="Hugo 0.55.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,395 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Dec 24, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>debian-installerのコンポーネントの一つ、<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/">partman-lvmでのバグ修正</a>が含まれたパッケージがようやくアップロードされた。</p>
+
+<p>もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることに。</p>
+
+<ul>
+<li>手元の放置してたBBBを設定、<a href="http://select.marutsu.co.jp/list/detail.php?id=235">参考ページ</a>を元に初期化し直し</li>
+<li><a href="http://beagleboard.org/latest-images">stretchベースのイメージ</a>をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。</li>
+<li>２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で <code>dpkg --get-selections &gt; distro.txt</code> のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
+
+<ul>
+<li>ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…</li>
+</ul></li>
+<li>あとはarm64アーキテクチャである<a href="https://db.debian.org/machines.cgi?host=amdahl">debian.orgのporterboxマシン</a>にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 23, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1013790/accepted-debootstrap-10112-source-into-unstable/">debootstrapをアップデート</a>。Mr.FAIのハックによってスピードが格段に速くなった。一応、前のバージョンと比較して取得パッケージの差異が無いのは確認済みだが、なんかregressionがあるのも嫌なので <a href="https://planet.debian.org/">Planet Debian</a> にも載ってる<a href="https://henrich-on-debian.blogspot.com/2018/12/debootstrap-speed-up.html">blogで告知</a>もしておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/22/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 22, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>アップロードがrejectされてたので</p>
+
+<pre><code>$ dcut dm --uid 0x9394F354891D7E07 --allow fonts-mmcedar
+Uploading commands file to ftp.upload.debian.org (incoming: /pub/UploadQueue/)
+Picking DM Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt; with fingerprint 66A4EA704FE240558D6AC2E69394F354891D7E07
+Uploading henrich-1545485367.dak-commands to ftp-master
+</code></pre>
+
+<p>として佐々木さんのDM uploadを設定しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Dec 22, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>作業途中で夏から放置してた<a href="https://tracker.debian.org/news/1013364/accepted-ubuntu-keyring-20160513-2-source-into-unstable/">ubuntu-keyringパッケージをアップロード</a>。debconfを使って<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826558">デフォルトではtrusted GPG keyringとしては扱わないように変更</a>。</p>
+
+<p>さらにnew upstream release対応を手元で作成。Ubuntuでのrulesを見るとGPGファイルのチェックをしてたので、それを参考にしてautopkgtestを追加。いろいろGPGのオプションを指定する必要があった。</p>
+
+<ul>
+<li><code>--trusted-key &quot;$trusted_keyid&quot;</code> のようにして署名鍵を信頼しないとエラーになる。通常なら自分のtrustdbに追加されてる感じだけど、テスト環境にはそんなのはないし、fetchするのもネット環境必須になってしまうので。もう一つの解としてはローカルに落としておく、だけど、それは大仰かな。</li>
+<li><code>--no-auto-check-trustdb</code> を付けないとtrustdbのチェックにやたら時間がかかるので</li>
+</ul>
+
+<hr />
+
+<p>先日、<a href="https://salsa.debian.org/ocaml-team/camlimages/commit/152b6a35c9ff24fd0ad96a2b3d1e5aab3e404055">camlimagesパッケージの変更をmerge request</a>したのだけど、最小なテスト作っても意図通りにならなかったな、ということだけ覚えていたのでメモしておく。何をどうやったのか、は思い出したら書こう…</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/1013368/accepted-fonts-kanjistrokeorders-4002dfsg-1-source-into-unstable/">fonts-kanjistrokeordersパッケージをアップデート</a></p>
+
+<hr />
+
+<p>久々に<a href="https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html">installation guide訳を更新</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Dec 21, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>tdiary-contrib</code> の <code>tdiary-mode</code> が Release Critical bug が出ていたのが解消できてないのをメーリングリストに投げたのだけど、実は依存パッケージ起因で tdiary-mode 悪くなかったという。直してもらってめでたしめでたし、なのだが、さらに elpa の管理下にしてもらうといいなーと言ったら<a href="https://twitter.com/uwabami/">佐々木さん</a>がパッチ書いてくれて更新してくれた。言ってみるもんだね。</li>
+<li><code>bundler</code>の <code>git ls-files -z</code> が何故使われるのか？という疑問。「git管理下にないファイルを含めないため」という理由では？という意見を頂いた。うーん、そうするとupstreamでのDirで置き換えは厳しいか…。かと言ってgitを使うのもsourceパッケージを展開してのautopkgtestではエラーになるよね…地道に対応するしか無い？それは負けな気がする…。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/">initfamrs-toolsのバグを踏んでいた</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Dec 20, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。</p>
+
+<p>？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて <code>sudo update-initramfs -c -k 4.9.0-3-amd64</code> のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。</p>
+
+<pre><code class="language-bash">$ LC_ALL=C ls -al /usr/sbin/update-initramfs*
+lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&gt; /bin/true
+-rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
+</code></pre>
+
+<p>あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と <code>sudo update-initramfs/distrib -c -k 4.9.0-3-amd64</code> のようにすると無事にイメージが作られたので、<code>update-grub</code> を実行して変更を反映、再起動すると無事起動できた。更に調べたところ</p>
+
+<pre><code class="language-bash">$ dpkg -L initramfs-tools
+(snip)
+diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
+</code></pre>
+
+<p>ということで <code>pkgsel</code> なるパッケージがこれを実施したことが判明。
+じゃぁ、と <code>apt show pkgsel</code> しても出てこない…あ、これはudebだね、ということで<a href="https://packages.debian.org/sid/pkgsel">サイト</a>を確認…あたり。
+<code>apt source pkgsel</code> して <code>debian/changelog</code> をみたら <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073">Bug#912073</a> を踏んでいたと判明。んもー。寝る前の貴重な時間が…</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Dec 20, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>水野さんの<a href="https://tracker.debian.org/news/1012874/accepted-silversearcher-ag-220-1-source-amd64-into-unstable/">silversearcher-agパッケージをアップロード</a>した。
+
+<ul>
+<li>あわせて<a href="https://salsa.debian.org/debian/silversearcher-ag">salsa.debian.orgにリポジトリを追加</a>し、権限を付与した</li>
+<li>さらに<a href="https://salsa.debian.org/debian/silversearcher-ag-el">silversearcher-ag-el</a>も追加</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/">birdfontパッケージをアップデート</a>した</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 16, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/">ruby-rspec-instafailパッケージをアップデート</a>した</li>
+<li><a href="https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/">ruby-childprocessパッケージをアップデート</a>した</li>
+<li>twitterで不具合話を拾ったので、<a href="https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/">fonts-unfonts-coreパッケージをアップデート</a>した
+
+<ul>
+<li>fontforgeコマンドの指定で <code>Open(&quot;UnDinaruLight.ttf&quot;)</code> のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -198,475 +587,6 @@ index c6ac3e7..1581e98 100644
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 2, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。</li>
-<li>os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Oct 1, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>依頼を受けたので</p>
-
-<pre><code>$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql
-</code></pre>
-
-<p>として林さんのDM uploadを設定しておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/">HP Elitebook 830 G5で苦しむ</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Sep 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>debian-installerが何をやっても画面がブランクになってしまってDebianがインストールできないという。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Sep 25, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>birdfont</code>パッケージ、<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-i386&amp;ver=2.23.0-1&amp;stamp=1537307881&amp;raw=0">kfreebsd-i386</a>と<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-amd64&amp;ver=2.23.0-1&amp;stamp=1537300422&amp;raw=0">kfreebsd-amd64</a>で同じエラー…。</li>
-</ul>
-
-<pre><code class="language-make">rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf
-rm: cannot remove 'debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf': No such file or directory
-make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1
-</code></pre>
-
-<p>なぜエラーになるのか？ <code>debian/rules</code> をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした</p>
-
-<ul>
-<li><code>vmdk-stream-converter</code> の tag push を忘れていた…</li>
-<li><code>libsql-splitstatement-perl</code> を更新</li>
-<li><code>libdbix-class-optimisticlocking-perl</code> を更新</li>
-<li><code>libdbix-class-schema-config-perl</code> は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。</li>
-</ul>
-
-<pre><code class="language-shell">$ cat debian/upstream/metadata
----
-Archive: CPAN
-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p><code>debian/upstream/metadata</code> はこういうのを書くのかぁ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 24, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>os-autoinstパッケージを放置していたので、アップデート作業を実施。</p>
-
-<ul>
-<li>upstreamをpullしてdebian/sidブランチにmerge</li>
-<li>ビルド…するも、testでエラーが出る。しかもランダム。どうも test が serial に実施される前提で書かれていて、ある test での input file が別の test でも使われてたりする＆その test 実施後に削除されたりするので、順序によっては input file が存在しない、ということでエラーになったりするようだ。仕方がないので <code>--no-parallel</code> オプションを dh_auto_test につけて <code>make -j1</code> で実行されるようにする</li>
-<li>それでも 02-test_ocr.t だけがコケ続けたりする（上記の際にはごくごく稀にだが成功したりする…）。<code>t/02-test_ocr.t.log</code> を見てみる…。</li>
-</ul>
-
-<pre><code class="language-debug">FAIL: 02-test_ocr.t
-===================
-
-Use of uninitialized value in index at ../needle.pm line 44.
-Use of uninitialized value $bmwqemu::vars{&quot;PRJDIR&quot;} in addition (+) at ../needle.pm line 45.
-[2018-09-24T07:08:55.0584 UTC] [debug] MATCH(bootmenu-ocr.ref:1.00)
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 138
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-#   Failed test 'multiple OCR regions'
-#   at ./02-test_ocr.t line 42.
-1..2
-# Looks like you failed 1 test of 2.
-FAIL 02-test_ocr.t (exit status: 1)
-</code></pre>
-
-<ul>
-<li>最初は <code>Warning. Invalid resolution 0 dpi. Using 70 instead.</code> というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで <code>convert a.png -density 300 -units PixelsPerInch b.png</code> のようにして埋め込んだのだが、さっぱり出力が変わらない。</li>
-<li>ぐぐったところ<a href="https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/">「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」</a>という説明のページを見つけてへたりこんだり。</li>
-<li>どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と <code>Data::Dumper</code> を使う</li>
-</ul>
-
-<pre><code class="language-perl">use Data::Dumper;
-...
-print Dumper $ocr;
-</code></pre>
-
-<ul>
-<li>おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで <code>t/data/bootmenu-ocr.png</code> を開き、認識してる文字列の座標を確認→ <code>t/data/bootmenu-ocr.ref.json</code> を調整→成功！</li>
-<li><code>make check-doc</code> でエラー。</li>
-</ul>
-
-<pre><code class="language-shell"># [ -z &quot;$(podspell testapi.pm | spell)&quot; ]
-# echo $?
-1
-# podspell testapi.pm | spell
-deselected
-VM
-kvm
-VM
-</code></pre>
-
-<ul>
-<li>これ、<code>spell</code> の問題じゃないの？とは思うけど、<code>sed</code> で削って対応。</li>
-<li>ビルドは問題なくできるようになったので、piuparts…と変なエラーが出たが、os-autoinstのパッケージには含まれてない問題なので無視（フォント絡みなので後で追わないといけない気もする…）。</li>
-</ul>
-
-<pre><code class="language-debug">5m12.7s ERROR: FAIL: Package purging left files on system:
-  /usr/local/share/fonts/        not owned
-  /usr/local/share/fonts/.uuid   not owned
-  /usr/share/fonts/      owned by: fonts-dejavu-core
-  /usr/share/fonts/.uuid         not owned
-  /usr/share/fonts/truetype/     owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/.uuid        not owned
-  /usr/share/fonts/truetype/dejavu/      owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/dejavu/.uuid         not owned
-</code></pre>
-
-<p>ということで <a href="https://bugs.debian.org/893645">Bug#893645</a>と<a href="https://bugs.debian.org/880791">Bug#880791</a>をcloseにしておいた。</p>
-
-<pre><code class="language-changelog"> os-autoinst (4.5.1527308405.8b586d5-1) unstable; urgency=medium
- .
-   * New upstream release
-   * debian/patches
-     - refresh patch
-     - add 0003-adjust-to-avoid-ocr-test-failure.patch (Closes: #893645)
-     - add 0004-avoid-make-check-doc-failure.patch
-     - add 0005-set-perl-path.patch to avoid lintian error
-   * debian/control
-     - add Build-Depends: libsocket-msghdr-perl, spell for test
-     - move Vcs-* to salsa.debian.org
-   * debian/rules
-     - set --no-parallel for dh_auto_test to avoid random test failure
-       (Closes: #880791)
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Sep 23, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>vmdk-stream-converter</code> が、aliothを指したままだったので<a href="https://tracker.debian.org/news/989198/accepted-vmdk-stream-converter-02-4-source-all-into-unstable/">とりあえず更新</a>。python2依存なんだよね、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=883804">patchはある</a>のでupstreamが対応してくれないものか。</li>
-<li><code>sphere</code> はupstreamが開発停止＆VMWare自体がライブラリを出していてそちらは既にDebianにあるのでそちらを推す格好で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">削除依頼</a>。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Sep 22, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							
-								 , 
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>jcodings</code>が何故か細かくバージョンアップが繰り返されたので追従。1.0.34が&ndash;deleyedでまだ入ってなかったので、それが入ってからになるように調整。</li>
-<li><code>jruby-joni</code>も同様。patchのrefreshが面倒くさい。最新のjcodings依存になっているようなので、ビルドはまだ。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/">OSSummit Japanでボランティアスタッフした</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/floss">floss</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><sup>6</sup>&frasl;<sub>20</sub>-22で行われた<a href="https://events.linuxfoundation.org/events/open-source-summit-japan-2018/">Open Source Summit Japan</a>でのボランティアスタッフに参加してきました。会場の様子は<a href="https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page1">公式の写真</a>（<a href="https://www.flickr.com/photos/linuxfoundation/albums/72157670342071148/page2">その２</a>）で雰囲気をどうぞ。</p>
-
-<ul>
-<li>Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。</li>
-<li>CIPは<a href="https://schd.ws/hosted_files/ossalsjp18/e4/20180620-CIP-OSSJ-v2.1-web.pdf">Debian LTSに協力が進んでいる</a>けど、もっとコラボレーションの要素を増やしたいね&hellip;。CIPに関わる人にパッケージングのレクチャーとか？</li>
-<li><a href="https://ossalsjp18.sched.com/event/EaY5/oss-license-compliance-for-software-developers-not-for-legal-experts-satoru-ueda-sony">CELFイベントでお会いした方</a>に挨拶できたのは良かった</li>
-<li>Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない</li>
-<li><a href="https://ossalsjp18.sched.com/event/Eat7/dandified-way-to-package-management-in-yocto-project-zheng-ruoqin-fujitsu">DNFを拡張してライセンスとかも表示したりとか</a>というのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。</li>
-<li><a href="https://schd.ws/hosted_files/ossalsjp18/6a/LTSI-OSSJ2018-final.pdf">LTS kernelはmainline＋8000コミットぐらいある</a>というところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -683,6 +603,7 @@ VM
     <li class="page-item">
     <a href="/blog/page/7/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
+    
     
     
     
@@ -916,7 +837,16 @@ VM
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/24/">24</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/25/">25</a></li>
     
     
     <li class="page-item">
@@ -924,7 +854,7 @@ VM
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/24/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/25/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -943,7 +873,7 @@ VM
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

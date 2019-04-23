@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.54.0" />
+	<meta name="generator" content="Hugo 0.55.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,544 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 5, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p>chasenパッケージの更新。</p>
+
+<pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
+
+* debian/control
+- Vcs-* move to salsa.debian.org 
+- use https for Homepage:
+- set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
+  dependency (pulled automatically)
+- set Standards-Version: 4.1.3
+* debian/rules
+- drop &quot;--with autoreconf&quot;
+- specify &quot;--no-parallel&quot; to avoid FTBFS
+* debian/compat
+- set 10
+* debian/watch
+- update to version 4
+
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
+</code></pre></li>
+
+<li><p>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</p>
+
+<pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
+
+* debian/control
+- set Build-Depends: debhelper (&gt;= 11)
+* debian/compat
+- set 11
+
+-- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
+</code></pre></li>
+
+<li><p><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Feb 4, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</p>
+
+<pre><code>image: debian:sid
+
+before_script:
+- echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
+
+build:
+script:
+- dpkg-buildpackage -us -uc -B
+</code></pre></li>
+
+<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
+
+<li><p>あれ、libsylphでonigurumaが有効になってない？</p>
+
+<pre><code>libsylph 1.1.0
+
+OpenSSL       : yes
+iconv         : yes
+IPv6          : yes
+Oniguruma     : no
+</code></pre>
+
+<pre><code>checking whether Oniguruma is available... no
+</code></pre></li>
+</ul>
+
+<p>なんでだ？？</p>
+
+<pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
+if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
+        AC_MSG_RESULT(yes)
+        AC_MSG_CHECKING([whether Oniguruma is available])
+        dnl AC_CHECK_PROG(ONIG_CONFIG, onig-config, onig-config)
+        ONIG_CONFIG=onig-config
+        ONIG_VERSION=`$ONIG_CONFIG --version 2&gt;/dev/null`
+        if test &quot;x$ONIG_VERSION&quot; != &quot;x&quot;; then
+                AC_MSG_RESULT(yes)
+                CFLAGS=&quot;$CFLAGS `$ONIG_CONFIG --cflags`&quot;
+                LIBS=&quot;$LIBS `$ONIG_CONFIG --libs`&quot;
+                AC_DEFINE(USE_ONIGURUMA, 1, Define if you want to use Oniguruma.)
+        else
+                AC_MSG_RESULT(no)
+                ac_cv_enable_oniguruma=no
+        fi
+else
+        AC_MSG_RESULT(no)
+fi
+</code></pre>
+
+<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
+
+<pre><code>override_dh_install:
+        $(RM) debian/tmp/usr/bin/onig-config
+</code></pre>
+
+<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 3, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>sylpheedパッケージのpatchを<a href="http://sylpheed.sraoss.jp/redmine/issues/291">forwardしておいた</a></li>
+<li>screenfetchパッケージの<a href="https://ci.debian.net/data/autopkgtest/unstable/amd64/s/screenfetch/20180202_195711/log.gz">smokeテストがさっそくfailしとった。。。</a>。どうやら/proc/fbの値がxen cirrusdrmfbという形になっていたので、<code>/usr/bin/screenfetch: line 1341: [: too many arguments</code> となっていた、と。<a href="https://tracker.debian.org/news/929555">パッチ作ってアップロードしたけど</a>、upstreamにforwardしようとしたら既に対策されてた。リリースしてほしいなぁ&hellip;。</li>
+<li><a href="https://anonscm.debian.org/git/pkg-sylpheed/">aliothから</a>、sylph-searcher, sylfilter, libsylphをsalsaにインポート。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Feb 1, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>autopkgtestしたほうがいいよね、ということを考えてはや幾星霜。ようやく手を付けることにする。</p>
+
+<p>まずは実際に追加されたテストのソースとドキュメントを見比べてどうやって実行するのかを調べる…のだけど、古い情報が引っかかってくる…きちんと隔離された環境での実行は後にして、どうやら <code>autopkgtest . -- null</code> をソースディレクトリで実行すると（とりあえずは）良いということのようだ。あと、pbuilder/cowbuilderだと hook スクリプトがあるのでそれを有効にしたら実行される…のはlintianとかと同じですね。</p>
+
+<p>また、<a href="https://ci.debian.net/doc/file.TUTORIAL.html">古い情報</a>では debian/control に <code>Testsuite: autopkgtest</code> の宣言が要るようだけども、これは dh11 では自動実施なので不要（debhelperいくつで自動実施になったのだろう？ざっとdebhelperのmanpageを見たが不明…）で、逆に warning が出てきた。</p>
+
+<p>単純に <code>debian/tests/control</code> ファイルとそこで定義した <code>debian/tests/smoke</code> ファイルをおけば完了。おもったよりも簡単。。。ではあるが、適切なtestをどう書く？それをどう担保する？みたいなのはあるね。。。</p>
+
+<pre><code>--- screenfetch-3.8.0/debian/tests/control      1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/control      2018-02-01 17:07:09.000000000 +0900
+@@ -0,0 +1,2 @@
++Tests: smoke
++Depends: @, grep
+diff -Nru screenfetch-3.8.0/debian/tests/smoke screenfetch-3.8.0/debian/tests/smoke
+--- screenfetch-3.8.0/debian/tests/smoke        1970-01-01 09:00:00.000000000 +0900
++++ screenfetch-3.8.0/debian/tests/smoke        2018-02-01 16:37:53.000000000 +0900
+@@ -0,0 +1,5 @@
++#!/bin/sh
++
++screenfetch
++
++[ ! `screenfetch | grep 'command not found' &gt; /dev/null` ]
+</code></pre>
+
+<p>でもやっぱり <code>/usr/share/doc/autopkgtest/README.running-tests.rst.gz</code> を読んでおいたほうが良さそう…</p>
+
+<p>というところで<a href="https://tracker.debian.org/news/929044">screenfetchをアップロード</a>。</p>
+
+<hr />
+
+<ul>
+<li>jcodingsをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+<li>jruby-joniをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+<li>nailgunをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;＆今までのbranchがtarballベースだったので、マージしないとな、という所。</li>
+<li>libmojolicious-plugin-assetpack-perlをアップデート。しかしsalsaにリポジトリが作れないのでアップロード待ち&hellip;</li>
+</ul>
+
+<p>小さなパッチをupstreamに取り込んでもらえてほんの少しだけ負債が減った。</p>
+
+<hr />
+
+<ul>
+<li><a href="https://tracker.debian.org/news/929053">snapperをアップロード</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 30, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>nailgunのPR、ownerが変わって「6ヶ月経ったのでクローズするわ。なんかあったらreopenして」となっていたのでreopenしようとするも、forkしたリポジトリを消してしまっていたせいか、どうやってreopenするのかサッパリ不明&hellip;<a href="https://github.com/facebook/nailgun/pull/118">新しくPR作ったところ、マージされた</a>。これでパッケージ側のパッチがまた一つ減らせる。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 29, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p>Sylpheedパッケージのリポジトリをsalsaに作成。過去のaliothのはdebianディレクトリ以下だけで、私には扱いづらかったので、別の独立したリポジトリとして含めている。</p>
+
+<pre><code>$ git checkout --orphan mones
+$ git rm --cached -r *
+$ rm -r ./*
+$ git pull alioth master
+$ git push salsa mones
+</code></pre></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jan 28, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/git">git</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>qrencodeパッケージをsalsaに配置してもらって、<a href="https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a">前に報告した些細な修正</a>をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？</li>
+<li>同じくqrencodeパッケージの報告者の勘違いに起因すると思われる<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984">バグ</a><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266">二つ</a>をクローズしておいた</li>
+</ul>
+
+<hr />
+
+<p>qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。</p>
+
+<p>さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。</p>
+
+<ol>
+<li>まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。<code>mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av</code> などとした。</li>
+<li>つぎに親が同一ではないブランチ（orphan branch)を作る <code>git checkout --orphan master</code></li>
+<li>この段階では debianディレクトリが残ってしまってるので、含まれないようにこれも消す <code>git rm --cached -r debian</code></li>
+<li><code>git remote add upstream https://github.com/fukuchi/libqrencode</code> でupstreamを引っ張ってくる</li>
+<li><code>git pull upstream master</code>したがtag持ってこなかったから<code>git pull upstream</code>も実行</li>
+<li><code>git checkout debian</code>して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために <code>git merge v4.0.0  --allow-unrelated-histories</code></li>
+</ol>
+
+<p>上記の変更点がackされたら提案したい</p>
+
+<hr />
+
+<ul>
+<li>svn-workbenchの<a href="http://pysvn.tigris.org/issues/show_bug.cgi?id=212">1行パッチをフォワード</a>。使いづらいな。。。</li>
+<li>svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。</li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</p>
+
+<pre><code>dh_install                                                                                                                         
+perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
+
+Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
+</code></pre></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347">パッチしておいた</a></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/01/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 27, 2018
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=888535">snapperのmanpageで/etc/sysconfigのままになっとるやんけ、という指摘</a>。あー昔気づいて直さないとなぁ、と思ったきり忘れていた件でした。単にDebian側でパッチ当てるというのがシンプルなんですけど、debian/patches以下を増やしたくはないのでconfigure.acをいじってちゃんと条件分岐するようにして<a href="https://github.com/openSUSE/snapper/pull/386">Pull Request</a>。</p>
+
+<pre><code>--- configure.ac.orig   2018-01-27 15:56:50.839599352 +0000
++++ configure.ac        2018-01-27 16:24:56.910015986 +0000
+@@ -60,11 +60,14 @@
+ 
+fillupdir=/var/adm/fillup-templates
+ 
++SYSCONFIG=/etc/sysconfig
++
+AC_ARG_WITH([conf], AC_HELP_STRING([--with-conf], [Use a custom sysconfig directory (default is /etc/sysconfig)]),
+    [with_conf=$withval], [with_conf=no])
+ 
+-AS_IF([test &quot;x$with_conf&quot; != xno], [CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;${with_conf}\&quot;'&quot;],
+-       [CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;/etc/sysconfig\&quot;'&quot;])
++AS_IF([test &quot;x$with_conf&quot; != xno], [SYSCONFIG=&quot;${with_conf}&quot;])
++
++CPPFLAGS=&quot;${CPPFLAGS} -DCONFDIR='\&quot;${SYSCONFIG}\&quot;'&quot;
+ 
+AC_ARG_ENABLE([btrfs], AC_HELP_STRING([--disable-btrfs],[Disable Btrfs internal snapshots support]),
+            [with_btrfs=$enableval],[with_btrfs=yes])
+@@ -153,6 +156,7 @@
+AC_SUBST(LIBVERSION_MINOR)
+AC_SUBST(LIBVERSION_PATCHLEVEL)
+AC_SUBST(LIBVERSION_INFO)
++AC_SUBST(SYSCONFIG)
+AC_SUBST(docdir)
+AC_SUBST(fillupdir)
+
+
+diff --git a/doc/snapper.xml.in b/doc/snapper.xml.in
+index 1507b5d..9073ab3 100644
+--- a/doc/snapper.xml.in
++++ b/doc/snapper.xml.in
+@@ -686,7 +686,7 @@
+ &lt;title&gt;FILES&lt;/title&gt;
+ &lt;variablelist&gt;
+   &lt;varlistentry&gt;
+-       &lt;term&gt;&lt;filename&gt;/etc/sysconfig/snapper&lt;/filename&gt;&lt;/term&gt;
++       &lt;term&gt;&lt;filename&gt;@SYSCONFIG@/snapper&lt;/filename&gt;&lt;/term&gt;
+    &lt;listitem&gt;
+      &lt;para&gt;Global configuration file.&lt;/para&gt;
+    &lt;/listitem&gt;
+</code></pre></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -148,390 +686,6 @@
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 23, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>snapperパッケージのメンテ。</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=880144">aptが動いたときの自動スナップショットを無効にできないか？調整する設定を追加してはどうか？という提案</a>。「デフォルト有効ならいいように思う」とコメント。</li>
-<li>e2fsprogsがessentialパッケージでなくなるのに伴い、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887292">e2fsprogsに依存してるみたいなんだけど、明示的にしてくれる？</a>というバグレポート。ext4サポートがそもそも動いてなかったから明示的にdisableにするかーという結論なんだけど、確認方法がわからないとリリースできない。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jan 17, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>新しい<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>の稼働に伴い<a href="http://debian-mirror.sakura.ne.jp/munin/">munin</a>の設定を微調整。</li>
-<li>新旧ミラーサーバーにて、自ホストをサーバーにして apt でパッケージを取得してみた。旧サーバーが65MB程度のところ、新サーバーだと95MB程度は出るので1.5倍というところか（乱暴だけど）。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li><a href="https://bugs.documentfoundation.org/show_bug.cgi?id=115066">LibO on macOSで日本語パック当てるとフォントでかいよ問題をレポートしておいた</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 16, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984#13">バグレポートにコメント追加しておいた</a>。数日様子を見てクローズするのが良いだろうと思う。</li>
-<li><a href="https://tracker.debian.org/news/901773">fonts-sawarabi-minchoパッケージをアップロード</a></li>
-</ul>
-
-<hr />
-
-<p>salsaに移行する際にgitのURLが「git@salsa.debian.org:fonts-team/fonts-sawarabi-mincho.git」のように設定されているのにモニョモニョしている。今までは「git+ssh://anonscm.debian.org/&hellip;git」のようにプロトコル指定だったが、これを追加するとエラーになる。でもgitコマンドはSSH使ってsalsaにアクセスしている。何故だ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 15, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>昨日苦しんだ問題を<a href="https://github.com/fukuchi/libqrencode/issues/117">upstreamにissue報告した</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jan 14, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>qrencodeパッケージがちょっと古くなっているようだ。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=887144">upstreamのサイトが移動してるね、ということでBTS</a></li>
-<li>ついでに自分の手元でアップデート出来ないかな？と作業して大方できた。新規追加されたtestスクリプトがconfigureを引数なしでハードコードしていて実行されるのでパッケージのインストールが壊れるという問題があったのに引っかかって小一時間潰してしまった&hellip;。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/">subversionからお引っ越し</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 13, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>www.debian.or.jpのコンテンツはSubversionで管理していて、コミット可能なのはJPのメンバーだけだったのだけど、salsa.debian.orgに引っ越して見通しを良くしてみたくなったので作業した。</p>
-
-<p>svn2gitを使いコンバート。</p>
-
-<p>非常にわかりづらい（というか導線がない？）のだけど、GitLabにOrganizationというかTeamというかを登録するページからdebianjp-teamとして登録し、適当なsub projectとしてwebを作り、コンバートしたGit repositoryを突っ込む。</p>
-
-<p>Ansibleで<a href="https://cloudgarage.jp/">CloudGarage</a>のVPSへデプロイ（ここで現状のサイトコンテンツの更新手順に更新漏れを見つけたり）。CloudGarageさんは<a href="https://cloudgarage.jp/dap/">開発者支援プログラム</a>を使わせてもらっていて助かる。相変わらず書いたplaybook.ymlがちょっと出来のいいバッチファイル程度なのが気になるけど、仕方がない。</p>
-
-<p>とまぁ、そんなこんなで時間を使った。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 8, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/900074">fonts-oradano-mincho-gsrrをアップロード</a></li>
-<li><a href="https://tracker.debian.org/news/900087">birdfontをアップロード</a></li>
-<li>ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jan 7, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>年末年始で間が空いてしまった&hellip;。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/899819">libxmlbirdをアップデート</a></li>
-</ul>
-
-<hr />
-
-<p>年末年始でようやく新しいミラーサーバー new-debian-mirror.sakura.ne.jp の設定に手を付けました（ありがとうございます＞さくらインターネットさま）。初めてのAnsible&hellip;ですが、今のところはバッチファイルよりちょっとマシ程度の状況。やはり複数サーバー運用して整理するのが必要とかじゃないとモチベーションが湧かないですね&hellip;。まぁ、次にセットアップが必要になった場合は一発流せばいいだけというのは気楽にはなりました。</p>
-
-<p>新しいサーバーにはbcacheを使っています、<a href="https://wiki.archlinux.jp/index.php/Bcache">ありがとうArch Wiki</a>。ディスクを大量に積むのもよいのですが、既に後2年ぐらいは戦えそうな容量を頂けたので、SSDでキャッシュする方向に走るのが良いかな、と。速度はそこまで出ないにしてもアクセスが多くなっても大丈夫よ、と。</p>
-
-<p>CacheデバイスのSSDですが、最初はRAID1を設定してもらっていましたが、思い直して設定変更。JBODが選べないので仕方なくRAID0にしました。生まれて初めて使ったよ、RAID0&hellip;。HDDよりは死にづらいかなーというのと、死んでも構わないよねー（負荷が増えるだけ）というのと、容量が欲しかったんや&hellip;というのの3点からRAID0選択と相成りました。</p>
-
-<pre><code>#!/bin/sh
-
-BACKING_DEVICE=/dev/sda3
-CACHE_DEVICE=/dev/sdb
-
-make-bcache -B $BACKING_DEVICE -C $CACHE_DEVICE
-
-echo `bcache-super-show $CACHE_DEVICE | grep cset.uuid | awk '{print $2}'` \
- &gt; /sys/block/bcache0/bcache/attach
-
-if [ -f /dev/bcache0 ]; then
-  mkfs.xfs /dev/bcache0
-else
-  echo &quot;There's no Bcache device.&quot;
-fi
-</code></pre>
-
-<p>手作業でやったのを後からまとめ直すと上記のような感じ。短いな&hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。</p>
-
-<p>ufwを実行しようかどうしようか、という辺りとSNMP監視が出来てない風味だよね？というのを確認したら、終わり。そして、切り替え前後でおかしなことが起きたらその対処、と。</p>
-
-<hr />
-
-<p>muninの設定続き。</p>
-
-<pre><code>$ sudo munin-run http_loadtime auto
-http___localhost_.value /etc/munin/plugins/http_loadtime: line 105: -f: command not found
-</code></pre>
-
-<p>$time_binというのが無いようだ。<code>which time</code> してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&hellip;</p>
-
-<pre><code>$ sudo munin-run acpi
-/etc/munin/plugins/acpi: 1: eval: bc: not found
-thermal_zone0.value
-/etc/munin/plugins/acpi: 1: eval: bc: not found
-thermal_zone1.value
-
-$ sudo apt install bc
-
-$ sudo munin-run acpi
-thermal_zone0.value 49.000
-thermal_zone1.value 40.000
-</code></pre>
-
-<p>これはbc。</p>
-
-<p>Suggestsにあるのが多いパターンなのだけど、それを確認して入れろ、というのはしんどくないかなぁ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -548,6 +702,7 @@ thermal_zone1.value 40.000
     <li class="page-item">
     <a href="/blog/page/11/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
+    
     
     
     
@@ -781,7 +936,16 @@ thermal_zone1.value 40.000
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/24/">24</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/25/">25</a></li>
     
     
     <li class="page-item">
@@ -789,7 +953,7 @@ thermal_zone1.value 40.000
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/24/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/25/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -808,7 +972,7 @@ thermal_zone1.value 40.000
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.54.0 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

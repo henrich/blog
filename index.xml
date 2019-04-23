@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Forget me not... on Forget me not...</title>
@@ -8,8 +7,224 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;jessieのstable-updatesリポジトリ削除でaptのエラー→jessieを利用してたコンテナ環境がビルド失敗という話題があったが、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927776&#34;&gt;「stretchではstable-updatesは削除しないで」というバグをファイルしておいた&lt;/a&gt;。関係する人たちとかにも伝えておいたほうが良いだろうということで、&lt;a href=&#34;https://discuss.circleci.com/t/fyi-asking-debian-ftpmasters-to-not-remove-obsolete-stable-updates-repo-from-mirror/29944&#34;&gt;CircleCI側でも告知しておいた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;fonts-arphic-bkai00mpパッケージの&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927578&#34;&gt;更新（引退したbubulleをUploadresから削除）&lt;/a&gt;を実施。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://osdn.net/projects/ipafonts/ticket/39148&#34;&gt;IPAフォントの令和対応チケット&lt;/a&gt;を起票しておいた。忘れそうだったので。
+最悪、IPAフォントの「令」「和」から「㍻」を真似て作る、だろうか。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;OpenBVE界隈の人がDebianからパッケージが削除されてて困ってたので、スポンサーするよという話をしておいたらWNPPバグに登録したようなので、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927278#8&#34;&gt;内容をざっくりレビューしておいた&lt;/a&gt;。疲れた…。ライセンス周りはまだ精査が必要そう。&lt;/p&gt;
+
+&lt;p&gt;一応&lt;a href=&#34;https://salsa.debian.org/debian/openbve&#34;&gt;リポジトリは用意しておいた&lt;/a&gt;。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;fluentdのrubyサポートバージョンについて、&lt;a href=&#34;https://github.com/fluent/fluentd/issues/2380?fbclid=IwAR2GhPl7EEX5m-bTf4GbfTzc3yex5N-2bHReQ5B07-tdP6QnQ_Oqz-upo0w&#34;&gt;各distroではこうなんだから、もう切っちゃっても良いんじゃない？&lt;/a&gt;というのを書いてきた。まぁ、継続されても別に問題はないんだけど。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;で、パッケージング。通ったり通らなかったりするテストを落として、名前がかぶるテストを名前変えて、ようやく100%通るように。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;-------------------------------------------------------------------------------
+2705 tests, 10932 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications  
+100% passed
+-------------------------------------------------------------------------------
+3.13 tests/s, 12.67 assertions/s
+rake aborted!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちょ、なんで100% passedなのに&lt;code&gt;rake aborted!&lt;/code&gt;なのよ？このために止まってる。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 19 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;武藤さんに&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927263&#34;&gt;rieceが起動しないバグ&lt;/a&gt;を見つけてもらって、木下さんにも助力いただき対応策が分かったので適用して閉じた&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 16 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;まずは&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926570&#34;&gt;ruby-sigdumpパッケージが入った&lt;/a&gt;。これでbuild用の独自chroot環境なくすのに一歩近づいた。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 15 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;残りのメモ。まだ長いなぁ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
+    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
+    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
+    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
+    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
+    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
+    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
+    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 14 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;ひたすらbad smellを消す作業。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
+    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
+    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
+    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
+    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
+    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
+    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
+    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;octiconsはやたら以前にupstreamブランチをマージしたけど、依存パッケージが多くなってしまっていてどうしたものか…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
+    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;debian/copyright&lt;/code&gt;が旧形式で書き直し必要だよ…後日。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://trends.debian.net&#34;&gt;trends.debian.net&lt;/a&gt;より&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
+
+    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
+    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
+    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
+    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
+    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
+    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
+    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
+    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
+    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
+    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
+    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
+    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
+    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
+    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
+    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
+    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
+    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
+    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
+    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
+    libtime-mock-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.0.2-2)
+    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
+    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
+    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とりあえず以下を対処。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
+    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
+    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;はデータが古い？&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -582,523 +797,6 @@ ERROR: Test &amp;quot;ruby2.5&amp;quot; failed. Exiting.
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1036925/accepted-fonts-sawarabi-mincho-20190317-1-source-into-unstable/&#34;&gt;fonts-sawarabi-mincho&lt;/a&gt;をアップデートした&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1036914/accepted-ruby-aruba-0149-1-source-into-unstable/&#34;&gt;ruby-aruba&lt;/a&gt;をアップデートした&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1036928/accepted-libuninameslist-20190305-1-source-into-unstable/&#34;&gt;libuninameslist&lt;/a&gt;をアップデートした&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 30 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://lists.debian.org/debian-release/2019/03/msg01174.html&#34;&gt;jcodingsのunblock&lt;/a&gt;を出した&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>サポート終了コンポーネントのアーカイブ削除に寄せて</title>
-            <link>https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/</link>
-            <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/</guid>
-            <description>&lt;p&gt;先日、ミラーアーカイブからDebian7とDebian8のサポート終了コンポーネントが削除されました。すると、Docker使ってる人やCircleCI使ってる人が「ぎゃー！」と叫び始めたという。どうも背景を理解されてる方は少ないようなので、簡単にざっと説明を書きました（ユーザーならともかく、イメージを提供するベンダー側は把握しておいてほしいですけどね…）。&lt;/p&gt;
-
-&lt;p&gt;ベースイメージとしてDebian8 &amp;ldquo;jessie&amp;rdquo;を使っているという前提で話をします。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Debian8はDebian9のリリースに伴って&lt;code&gt;「oldstable」（旧安定版）&lt;/code&gt;という扱いになっています。oldstableはstableに比べて限定されたサポートの提供となります。そりゃぁでっかいリポジトリを複数バージョンに渡って長期間メンテナンスなんて難しいですからね。oldstable使ってる時点で色々制限が出てくる、ってもんです。ベストプラクティスとしては「&lt;strong&gt;ベースイメージのDebianはstableを使おう&lt;/strong&gt;」です。
-
-&lt;ul&gt;
-&lt;li&gt;え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;jessie-updates&lt;/code&gt;コンポーネントが無くてビルドがー！という人：&lt;code&gt;-updates&lt;/code&gt;は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、&lt;strong&gt;jessieがoldstableになった時点で死んでます&lt;/strong&gt;。外しちゃえばいいです。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;(追記)&lt;/strong&gt; &lt;code&gt;http://security.debian.org/debian-security jessie/updates mainも削除…はしちゃダメです！&lt;/code&gt; その行は&lt;code&gt;セキュリティアップデートの取得&lt;/code&gt;です（取得先サーバーがsecurity.debian.orgでしょ？) たしかに&lt;code&gt;jessie/updates&lt;/code&gt;というところだけを見たら削除したくなるかもしれませんが、LTSサポートのセキュリティアップデートが降ってくるのを消したらアカンですよ…。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;jessie-backports&lt;/code&gt;が無くなってギャー！という人：&lt;code&gt;-backports&lt;/code&gt;は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、&lt;strong&gt;jessieがoldstableになった時点で死んでます&lt;/strong&gt;。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Debian9がでて早２年近く、そろそろDebian10の足音も聞こえてるので、開発側としてはいまさらDebian8に固執してほしくはない、というのが正直な所。ベースイメージのバージョン移行は計画的に…。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;tomoyo-toolsも一応&lt;a href=&#34;https://lists.debian.org/debian-release/2019/03/msg00905.html&#34;&gt;unblockを出した&lt;/a&gt;。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
-
-&lt;ul&gt;
-&lt;li&gt;→ダメだった。そらそーか。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;squid-deb-proxyは問い合わせてみたが特に反応がないが、週末だったので&lt;code&gt;--deleyed 3&lt;/code&gt;でアップロードした。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;今回は&lt;code&gt;ubuntu-keyring&lt;/code&gt;パッケージを題材に「full freeze期間に入ってしまったが、unstableにあるパッケージをリリース対象＝testingに入れたい」場合の手順をメモしてみました。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;まず、testingにあるバージョンとunstableにあるバージョンの差分（diff）を生成します。今だと&lt;code&gt;git diff&lt;/code&gt;でも良さそうな気はするのですが、慣例的にはソースパッケージに対して&lt;code&gt;debdiff&lt;/code&gt;を使って作ります。ソースパッケージを&lt;code&gt;dget&lt;/code&gt;コマンドで取得し、&lt;code&gt;.dsc&lt;/code&gt;ファイルに対して&lt;code&gt;debdiff&lt;/code&gt;コマンドを実行しています。ソースパッケージのURLは&lt;a href=&#34;https://tracker.debian.org/pkg/ubuntu-keyring&#34;&gt;distro tracker&lt;/a&gt;からコピペしていますが、別のやり方もあるでしょう。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc \
-       http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc
-$ debdiff ubuntu-keyring_2018.09.18.1-4.dsc ubuntu-keyring_2018.09.18.1-5.dsc &amp;gt; ubuntu-keyring.diff
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;diffが出来たので、これを元に&lt;code&gt;unblockリクエスト&lt;/code&gt;をバグ登録します。ツールとしては&lt;code&gt;reportbug&lt;/code&gt;コマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugは&lt;code&gt;reportbug &amp;lt;package&amp;gt;&lt;/code&gt;という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)である&lt;code&gt;release.debian.org&lt;/code&gt;を指定します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ reportbug release.debian.org
-Detected character set: UTF-8
-Please change your locale if this is incorrect.
-
-Using &#39;Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;&#39; as your from address.
-Will send report to Debian (per lsb_release).
-What sort of request is this? (If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.)
-
-1 binnmu      binNMU requests
-2 britney     testing migration script bugs
-3 other       None of the other options
-4 rm          Stable/Testing removal requests
-5 stretch-pu  stretch proposed updates requests
-6 transition  transition tracking
-7 unblock     unblock requests
-
-Choose the request type:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;今回行いたいのはunblockなので&lt;code&gt;&amp;quot;7&amp;quot;&lt;/code&gt;を選びます。続けて対象となるパッケージ名（今回は&lt;code&gt;ubuntu-keyring&lt;/code&gt;）を入力します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Choose the request type: 7
-Please enter the name of the package: ubuntu-keyring
-Checking status database...
-Latest version seems to be 2018.09.18.1-1, is this the proper one ? [Y|n|?]?
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;最新バージョンのチェックが行われます…あれ？間違ってますね。なんでだろう？このバージョンはtestingにも無いんですが…謎だ。仕方がないので&lt;code&gt;&amp;quot;n&amp;quot;&lt;/code&gt;を入力して現在の最新版である&lt;code&gt;2018.09.18.1-5&lt;/code&gt;を入力。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Latest version seems to be 2018.09.18.1-1, is this the proper one ? [Y|n|?]? n
-Please enter the version of the package: 2018.09.18.1-5
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;するとテンプレートが埋められて雛形が出来上がり、&lt;code&gt;sensible-editor&lt;/code&gt;で指定されたエディタが立ち上がります&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Subject: unblock: ubuntu-keyring/2018.09.18.1-5
-Package: release.debian.org
-User: release.debian.org@packages.debian.org
-Usertags: unblock
-Severity: normal
-
-Please unblock package ubuntu-keyring
-
-(explain the reason for the unblock here)
-
-(include/attach the debdiff against the package in testing)
-
-unblock ubuntu-keyring/2018.09.18.1-5
-
--- System Information:
-Debian Release: buster/sid
-  APT prefers unstable
-  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
-Architecture: amd64 (x86_64)
-
-Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
-Kernel taint flags: TAINT_OOT_MODULE, TAINT_UNSIGNED_MODULE
-Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.UTF-8 (charmap=UTF-8)
-Shell: /bin/sh linked to /bin/dash
-Init: systemd (via /run/systemd/system)
-LSM: AppArmor: enabled
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;(include/attach the debdiff against the package in testing)&lt;/code&gt;の所を消して、先程作ったdiffを貼り付け、&lt;code&gt;(explain the reason for the unblock here)&lt;/code&gt;のところに理由を書いて送ります。出来上がりはこんな感じ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Package: release.debian.org
-Severity: normal
-User: release.debian.org@packages.debian.org
-Usertags: unblock
-
- Please unblock package ubuntu-keyring
-
- * This update fixes file removal at maintainer script, and also deals with symlink
-   removal that the package in testing doesn&#39;t create properly as below
-
-&amp;gt;&amp;gt;      # force remove garbage that was created by previous version, oh moron...
-&amp;gt;&amp;gt;      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
-
- * ubuntu-keyring is leaf package, no package will be affected with this
-   change if there would be a regression ;)
-
-&amp;gt;&amp;gt; $ apt-rdepends -r ubuntu-keyring
-&amp;gt;&amp;gt; ubuntu-keyring
-&amp;gt;&amp;gt;  Reverse Depends: ubuntu-archive-keyring (2018.09.18.1-5)
-
- ubuntu-archive-keyring is just a transitional package.
-
-
- Here&#39;s a debdiff.
-
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/changelog ubuntu-keyring-2018.09.18.1/debian/changelog
---- ubuntu-keyring-2018.09.18.1/debian/changelog	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/changelog	2019-03-12 01:40:45.000000000 +0900
-@@ -1,3 +1,16 @@
-+ubuntu-keyring (2018.09.18.1-5) unstable; urgency=medium
-+
-+  * debian/*.post{inst,rm}
-+    - use apt-config(8)&#39;s Dir::Etc::trustedparts and fix keyring removal error.
-+      Thanks to Linda Lapinlampi &amp;lt;linda@lindalap.fi&amp;gt; and
-+      Hiroyuki YAMAMORI &amp;lt;h-yamamo@db3.so-net.ne.jp&amp;gt; (Closes: #922176, #922177)
-+  * debian/ubuntu-dbgsym-keyring.templates
-+    - add ubuntu-dbgsym-keyring.gpg (See #922348)
-+  * debian/control
-+    - add Rules-Requires-Root: no
-+
-+ -- Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;  Tue, 12 Mar 2019 01:40:45 +0900
-+
- ubuntu-keyring (2018.09.18.1-4) unstable; urgency=medium
- 
-   * debian/control
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/control ubuntu-keyring-2018.09.18.1/debian/control
---- ubuntu-keyring-2018.09.18.1/debian/control	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/control	2019-03-12 01:40:45.000000000 +0900
-@@ -8,6 +8,7 @@
- Homepage: https://launchpad.net/ubuntu/+source/ubuntu-keyring
- Vcs-Git: https://salsa.debian.org/debian/ubuntu-keyring.git
- Vcs-Browser: https://salsa.debian.org/debian/ubuntu-keyring
-+Rules-Requires-Root: no
- 
- Package: ubuntu-archive-keyring
- Architecture: all
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
-@@ -5,15 +5,26 @@
- case &amp;quot;$1&amp;quot; in
-     install|configure)
- 
-+      # force remove garbage that was created by previous version, oh moron...
-+      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
-+
-+
-+      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
-+      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
-+
-+      # once clean up keyrings
-+      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-removed-keys.gpg&amp;quot;
-+
-       . /usr/share/debconf/confmodule
-       db_version 2.0
-       db_get ubuntu-cloud-keyring/keyring
- 
-       if [ -n &amp;quot;$RET&amp;quot; ]; then
--        for keyring in &amp;quot;$RET&amp;quot;
-+        selected=$(echo &amp;quot;$RET&amp;quot; | sed -e &#39;s/, /\n/g&#39;)
-+        echo &amp;quot;$selected&amp;quot; | while read keyring
-         do
--          rm -f /etc/apt/trusted.gpg.d/&amp;quot;$keyring&amp;quot;.gpg
--          ln -sf /usr/share/keyrings/&amp;quot;$keyring&amp;quot;.gpg /etc/apt/trusted.gpg.d/
-+          ln -sf &amp;quot;/usr/share/keyrings/${keyring}.gpg&amp;quot; &amp;quot;$TRUSTEDPARTS&amp;quot;
-         done
-       fi
- 
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
-@@ -5,9 +5,12 @@
- case &amp;quot;$1&amp;quot; in
-     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
- 
--        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-cloud-removed-keys.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-cloud-keyring.gpg
-+        TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
-+        eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
-+
-+        rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&amp;quot; \
-+              &amp;quot;${TRUSTEDPARTS}ubuntu-cloud-removed-keys.gpg&amp;quot; \
-+              &amp;quot;${TRUSTEDPARTS}ubuntu-cloud-keyring.gpg&amp;quot;
- 
-     ;;
-     *)
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
-@@ -5,15 +5,28 @@
- case &amp;quot;$1&amp;quot; in
-     install|configure)
- 
-+      # remove garbage that was created by previous version, oh moron...
-+      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg\,\ *
-+      rm -f /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg\,\ *
-+
-+
-+      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
-+      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
-+
-+      # once clean up keyrings
-+      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&amp;quot;
-+
-       . /usr/share/debconf/confmodule
-       db_version 2.0
-       db_get ubuntu-dbgsym-keyring/keyring
- 
-       if [ -n &amp;quot;$RET&amp;quot; ]; then
--        for keyring in &amp;quot;$RET&amp;quot;
-+        selected=$(echo &amp;quot;$RET&amp;quot; | sed -e &#39;s/, /\n/g&#39;)
-+        echo &amp;quot;$selected&amp;quot; | while read keyring
-         do
--          rm -f /etc/apt/trusted.gpg.d/&amp;quot;$keyring&amp;quot;.gpg
--          ln -sf /usr/share/keyrings/&amp;quot;$keyring&amp;quot;.gpg /etc/apt/trusted.gpg.d/
-+          ln -sf &amp;quot;/usr/share/keyrings/${keyring}.gpg&amp;quot; &amp;quot;$TRUSTEDPARTS&amp;quot;
-         done
-       fi
- 
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
-@@ -5,9 +5,12 @@
- case &amp;quot;$1&amp;quot; in
-     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
- 
--        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-keyring.gpg
-+        TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
-+        eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
-+
-+        rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&amp;quot; \
-+              &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&amp;quot; \
-+              &amp;quot;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&amp;quot;
- 
-     ;;
-     *)
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates	2019-03-12 01:40:45.000000000 +0900
-@@ -1,6 +1,6 @@
- Template: ubuntu-dbgsym-keyring/keyring
- Type: multiselect
--Choices: ubuntu-keyring-2016-dbgsym, ubuntu-dbgsym-removed-keys
-+Choices: ubuntu-dbgsym-keyring, ubuntu-keyring-2016-dbgsym, ubuntu-dbgsym-removed-keys
- Default:
- _Description: Trusted GPG keyring for package authentication
-  If you want to use the Ubuntu dbgsym archive in place of the Debian archive in
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
-@@ -12,15 +12,27 @@
-               /etc/apt/trusted.gpg.d/ubuntu-archive-removed-keys.gpg
-       fi
- 
-+      # and also remove garbage that was created by previous version.
-+      # oh moron...
-+      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-201[28]-archive\,\ *
-+
-+      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
-+      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
-+
-+      # once clean up keyrings
-+      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&amp;quot;
-+
-       . /usr/share/debconf/confmodule
-       db_version 2.0
-       db_get ubuntu-keyring/keyring
- 
-       if [ -n &amp;quot;$RET&amp;quot; ]; then
--        for keyring in &amp;quot;$RET&amp;quot;
-+        selected=$(echo &amp;quot;$RET&amp;quot; | sed -e &#39;s/, /\n/g&#39;)
-+        echo &amp;quot;$selected&amp;quot; | while read keyring
-         do
--          rm -f /etc/apt/trusted.gpg.d/&amp;quot;$keyring&amp;quot;.gpg
--          ln -sf /usr/share/keyrings/&amp;quot;$keyring&amp;quot;.gpg /etc/apt/trusted.gpg.d/
-+          ln -sf &amp;quot;/usr/share/keyrings/${keyring}.gpg&amp;quot; &amp;quot;$TRUSTEDPARTS&amp;quot;
-         done
-       fi
- 
-diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm
---- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
-+++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
-@@ -5,14 +5,17 @@
- case &amp;quot;$1&amp;quot; in
-     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
- 
--        rm -f /etc/apt/trusted.gpg.d/ubuntu-archive-keyring.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-archive-removed-keys.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-archive.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-keyring.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-removed-keys.gpg \
--              /etc/apt/trusted.gpg.d/ubuntu-master-keyring.gpg
-+      TRUSTEDPARTS=&amp;quot;/etc/apt/trusted.gpg.d/&amp;quot;
-+      eval &amp;quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&amp;quot;
-+
-+      rm -f &amp;quot;${TRUSTEDPARTS}ubuntu-archive-keyring.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cdimage.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-cloudimage-keyring.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-cloudimage-removed-keys.gpg&amp;quot; \
-+            &amp;quot;${TRUSTEDPARTS}ubuntu-master-keyring.gpg&amp;quot;
- 
-     ;;
-     *)
-
-unblock ubuntu-keyring/2018.09.18.1-5
-
--- System Information:
-Debian Release: buster/sid
-  APT prefers unstable
-  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
-Architecture: amd64 (x86_64)
-
-Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
-Kernel taint flags: TAINT_OOT_MODULE, TAINT_UNSIGNED_MODULE
-Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.UTF-8 (charmap=UTF-8)
-Shell: /bin/sh linked to /bin/dash
-Init: systemd (via /run/systemd/system)
-LSM: AppArmor: enabled
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;できたらエディタから抜けて&lt;code&gt;&amp;quot;y&amp;quot;&lt;/code&gt;で送信します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Report will be sent to Debian Bug Tracking System &amp;lt;submit@bugs.debian.org&amp;gt;
-Submit this report on release.debian.org (e to edit) [Y|n|a|c|e|i|l|m|p|q|d|t|s|?]? y
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;SMTPサーバーへの通信が行われ、特に問題なければ完了メッセージがでてきます。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Connecting to mysmtp.example.jp:587 via SMTP...
-
-Bug report submitted to: Debian Bug Tracking System &amp;lt;submit@bugs.debian.org&amp;gt;
-Copies sent to:
-  Debian Bug Tracking System &amp;lt;submit@bugs.debian.org&amp;gt;
-  Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
-
-If you want to provide additional information, please wait to receive the bug tracking number via email; you may then send any extra information to n@bugs.debian.org (e.g.
-nnnnnn@bugs.debian.org), where n is the bug number. Normally you will receive an acknowledgement via email including the bug report number within an hour; if you haven&#39;t received a
-confirmation, then the bug reporting process failed at some point (reportbug or MTA failure, BTS maintenance, etc.).
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。今回は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350&#34;&gt;Bug#925350&lt;/a&gt;でした。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Thank you for filing a new Bug report with Debian.
-
-You can follow progress on this Bug here: 925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350.
-
-This is an automatically generated reply to let you know your message
-has been received.
-
-Your message is being forwarded to the package maintainers and other
-interested parties for their attention; they will reply in due course.
-
-Your message has been sent to the package maintainer(s):
- Debian Release Team &amp;lt;debian-release@lists.debian.org&amp;gt;
-
-If you wish to submit further information on this problem, please
-send it to 925350@bugs.debian.org.
-
-Please do not send mail to owner@bugs.debian.org unless you wish
-to report a problem with the Bug-tracking system.
-
--- 
-925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350
-Debian Bug Tracking System
-Contact owner@bugs.debian.org with problems
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925048&#34;&gt;debootstrapにバグレポート来てた&lt;/a&gt;から確認したが、報告者がミスってるだけだった…&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;RCバグでunstableにuploadされてNEW queue待ちのがあったようなので、タグ付けした。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;RCバグつぶし出来ないかなーと眺めて、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867682&#34;&gt;squid-deb-proxy-clientにパッチを送っておいた&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/03/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/03/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;cowbuilderを動かしてて、そういえばコイツ…というかpbuilderはbaseイメージ作成の際にdebootstrapを呼ぶな、という考えに至り、&lt;code&gt;--cache-dir&lt;/code&gt;オプションが使えるのではないか？と思いつく。で、&lt;a href=&#34;https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/6&#34;&gt;MergeRequestした&lt;/a&gt;。
-
-&lt;ul&gt;
-&lt;li&gt;その中でmanpageの&lt;code&gt;--debootstrap&lt;/code&gt;オプションの設定が間違っていたようなので、こちらも&lt;a href=&#34;https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/7&#34;&gt;MergeRequest&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;もう一つ、man pbuilderした時だったかにapt lineがftp.jp.debian.orgやftp.de.debian.orgを指定してたので&lt;code&gt;deb.debian.org&lt;/code&gt;指定に変更の&lt;a href=&#34;https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/5&#34;&gt;MergeRequest&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
