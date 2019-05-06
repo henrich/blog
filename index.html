@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.1" />
+	<meta name="generator" content="Hugo 0.55.4" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,231 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, May 6, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、<a href="https://lists.debian.org/debian-lts/2019/05/msg00016.html">LTSメーリングリストにmentionを飛ばして</a>、コマンドメールでfixedバージョンを追加しておいた。</li>
+<li>gsの修正がunblock依頼が出てなかったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927429#42">つついた</a></li>
+<li>linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。</li>
+<li></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Apr 30, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>手元の日経Linux誌見たらPPA指定が必要になっていた<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928217">aobookのITP</a>登録してuploadしといた。現実逃避だけど。</p>
+
+<hr />
+
+<p><a href="https://togetter.com/li/1342936">「OpenJDK 11.0.3/8u212 LTS以降でのリリースノートや脆弱性の追い方」</a>は一読しただけでは理解が追いつかないな…。</p>
+
+<hr />
+
+<p><code>debian/watch</code>のOSDNでの書き方は下記が良いらしい。うーん、RSS必死に見てたのは不要だったか…</p>
+
+<pre><code class="language-text">https://osdn.net/projects/@PACKAGE@/releases/rss \
+ https://osdn.net/projects/@PACKAGE@/downloads/\d*/@PACKAGE@-@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
+</code></pre>
+
+<p><code>uscan</code>にバグ登録したほうが良いか</p>
+
+<hr />
+
+<p><a href="https://blogs.apache.org/foundation/entry/the-apache-software-foundation-expands">ASFがGitHubに移行してた</a>。</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/1039012/accepted-fonts-ipaexfont-00401-1-source-into-unstable/">IPAexフォントのアップデート</a>を放り込んだ。</p>
+
+<p>upstreamの方に確認したいことがあったので、<a href="https://www.ipa.go.jp/about/inquiry_index_0.html">問い合わせページ</a>から以下のような問い合わせを送った</p>
+
+<pre><code class="language-text">IPAフォントならびにIPAexフォントをLinuxディストリビューション Debianにてパッケージとして配布しています。
+
+問１）IPAフォントならびにIPAexフォントの問題・要望報告先としてOSDNにプロジェクト https://ja.osdn.net/projects/ipafonts/ を開設されていますが、こちらに報告をしても全く反応がありません。今回のIPAexフォントの配布もこちらで実施されてないようです
+- こちらのプロジェクトは活動しているのでしょうか
+- していないとしたら、どこで誰に連絡をすればよいのでしょうか
+- GitHub等に移行はできないでしょうか。
+
+問２）IPAexフォントの配布ページがバージョンごとに毎回URLが変更されており、機械的に新しいバージョンが出ているかのチェックがしずらいのですが、何故この様な形にしているのでしょうか（以前の https://ipafont.ipa.go.jp/old/ipafont/download.html であれば問題なく確認が出来ましたので、改悪と言えます）。
+</code></pre>
+
+<hr />
+
+<p><code>openjdk-11</code>パッケージの中身をチェックしようと<code>debcheckout</code>コマンドで落としたのだが、どうにもおかしい。<code>git checkout &lt;tag&gt;</code>として古いバージョンなのに令和対応がされてる、というように見えてしまう。悩んだ結果、<code>openjdk-11</code>パッケージのリポジトリは<code>debian</code>ディレクトリ以下の保守しかしておらず、<code>debcheckout</code>コマンドがおせっかいにもtarballを落としてきてたという。</p>
+
+<pre><code class="language-shell">$ debcheckout openjdk-11
+declared git repository at https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
+git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11 openjdk-11 ...
+Cloning into 'openjdk-11'...
+remote: Counting objects: 722, done. 
+remote: Compressing objects: 100% (706/706), done. 
+remote: Total 722 (delta 422), reused 103 (delta 10)
+Receiving objects: 100% (722/722), 824.71 KiB | 241.00 KiB/s, done.
+Resolving deltas: 100% (422/422), done.
+repository only contains the debian directory, using apt-get source 
+パッケージリストを読み込んでいます... 完了   
+注意: 'openjdk-11' パッケージは以下の場所の 'Git' バージョン制御システムで保守されています:
+https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
+パッケージの最新の (まだリリースされていないかもしれない) 更新を取得するには、
+git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
+を使用してください。
+75.8 MB のソースアーカイブを取得する必要があります。
+取得:1 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 (dsc) [4,692 B]
+取得:2 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 (tar) [75.4 MB]
+取得:3 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 (diff) [414 kB]
+75.8 MB を 1分 32秒 で取得しました (824 kB/s)
+</code></pre>
+
+<p>仕方がないのでsnapshot.debian.orgから落としてきてgrepした結果、11.0.3+7-1から令和対応、ということが判明。</p>
+
+<hr />
+
+<p>その他、令和対応情報まとめてた。unicode-dataでリビルド必要なの確認（すでにbinNMU依頼済みだったらしい）、FTBFSなのにパッチ書いたりとか。</p>
+
+<hr />
+
+<p><code>/etc/mtab</code>は<code>/proc/self/mounts</code>だが、これはどこで出来てるのか？というと<a href="http://blog.keshi.org/hogememo/2013/10/28/about-debian-wheezy-etc-mtab">/etc/init.d/checkroot.sh らしい</a>→<code>initscripts</code>パッケージだから入ってないのもあるんじゃない？（少なくともdebootstrapした環境にはない）と思って新しくインストールしてみた</p>
+
+<pre><code class="language-text">Package: initscripts
+Version: 2.94-4
+Priority: optional
+</code></pre>
+
+<p>だから無くても仕方がない…が、新規にbusterを入れた環境でも<code>/etc/mtab</code>がsymlinkとして存在する！なんだこれは。grepしたが、パッケージのメンテナスクリプトで触ってる風味でもない…systemdだろうか？…見つからずに大まかにgrepしなおしたら<code>/usr/lib/tmpfiles.d/debian.conf</code>とかいうのに記述があった。systemdパッケージの一部らしい。</p>
+
+<p>ということは</p>
+
+<ul>
+<li><code>initscripts</code>または<code>systemd</code>が入ってると<code>/etc/mtab</code>は<code>/proc/self/mounts</code>へのsymlinkとして生成される。</li>
+<li><code>openrc</code>などではどうなるのだろう？…と思ったら<code>initscripts</code>が引っ張られて入ったので問題なし。</li>
+<li>上書きされるのだから、debootstrapで記述しても問題ないのでは？</li>
+<li>過去の<code>initscripts</code>では<code>/etc/mtab</code>は<code>/proc/mounts</code>を指してるらしい</li>
+</ul>
+
+<p>という感想だったので、パッチ作った→速攻ボコボコにされた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Apr 25, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927914">glibcの令和対応パッチをupstreamから取ってきてペタペタした</a>
+
+<ul>
+<li>対応されたのでbusterは対応になるだろう。stretchどうするかねぇ</li>
+</ul></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927857">openjdk8での令和対応をBTSに登録した</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927857">icuでの令和対応をBTSに登録した</a></li>
+</ul>
+
+<hr />
+
+<p>OpenChainのワーキンググループでツールの話を聞いてきたので、どんな感じかなーと<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924659">fosslogyのWNPPバグ</a>を覗いてみた。</p>
+
+<p>ついでに<a href="https://github.com/spdx/tools">SPDXのtool</a>のパッケージングが出来ないかを色々と。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -389,241 +614,6 @@ rake aborted!
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Apr 13, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://trends.debian.net">trends.debian.net</a>より</p>
-
-<pre><code class="language-text">Hideki Yamane &lt;henrich@debian.org&gt;
-
-    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
-    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
-    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
-    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
-    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
-    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
-    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
-    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
-    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
-    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
-    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
-    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
-    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
-    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
-    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
-    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
-    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
-    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
-    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
-    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
-    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
-    libtime-mock-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.0.2-2)
-    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
-    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
-    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
-</code></pre>
-
-<p>とりあえず以下を対処。</p>
-
-<pre><code class="language-text">    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
-    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
-    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
-</code></pre>
-
-<pre><code class="language-text">    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
-</code></pre>
-
-<p>はデータが古い？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Apr 10, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><code>fluentd</code>パッケージングでのテストエラー続き。</p>
-
-<pre><code class="language-ruby">? Encoding: US-ASCII-8BIT
-===============================================================================
-: (0.005571)
-    test: should output compressed file when compress option is gzip:   F
-===============================================================================
-Failure: test: should output compressed file when compress option is gzip(FileOutputSecondaryTest::write)
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:129:in `check_gzipped_result'
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `block (2 levels) in &lt;class:FileOutputSecondaryTest&gt;'
-     151:       path = d.instance.write(@chunk)
-     152: 
-     153:       assert_equal &quot;#{TMP_DIR}/out_file_test.0.gz&quot;, path
-  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding('ASCII-8BIT'))
-     155:     end
-     156: 
-     157:     test 'should output plain text when compress option is default(text)' do
-&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(ASCII-8BIT) expected but was
-&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(US-ASCII)
-
-diff:
-  潰^@\ｬメ^D^DZ氈｣key･value
-</code></pre>
-
-<p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
-
-<pre><code class="language-ruby">  Gem2Deb::Rake::TestTask.new do |t|
-    t.libs = ['test']
-    t.test_files = FileList['test/**/*_test.rb'] + FileList['test/**/test_*.rb']
-+   t.ruby_opts = [&quot;-Eascii-8bit:ascii-8bit&quot;]
-  end
-</code></pre>
-
-<p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Apr 9, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><code>fluentd</code>のビルド…テストがエラーになる。</p>
-
-<pre><code class="language-error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
-</code></pre>
-
-<p>という感じ。見ていく。</p>
-
-<pre><code class="language-error">Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
-  Exception raised:
-  Errno::ENOENT(&lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&gt;)
-/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &lt;class:TestFluentPluginConfigFormatter&gt;'
-</code></pre>
-
-<pre><code class="language-error"># grep templates -r ./
-(snip)
-./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &quot;../../../templates/new_gem&quot;).realpath
-./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &quot;../../../templates/plugin_config_formatter/#{name}&quot;).realpath
-</code></pre>
-
-<p><code>/build/fluentd-1.4.2/templates</code>を見たいのに<code>/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates</code>を参照しにいってるので、ここを直せば良い。<a href="https://salsa.debian.org/ruby-team/fluentd/blob/debian/sid/debian/patches/0004-move-templates-to-appropriate-path.patch">templatesをlib配下に持っていって相対パスをadjustする</a>のがよいかね。</p>
-
-<hr />
-
-<pre><code class="language-text">/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-</code></pre>
-
-<p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、<a href="https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/">自分を加えて更新してアップロードした</a>。</p>
-
-<hr />
-
-<p>psがない！というエラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
-
-<hr />
-
-<p>しかしまだまだtest failureは続く…。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -875,7 +865,16 @@ diff:
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/25/">25</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/26/">26</a></li>
     
     
     <li class="page-item">
@@ -883,7 +882,7 @@ diff:
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/25/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/26/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -902,7 +901,7 @@ diff:
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.4 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

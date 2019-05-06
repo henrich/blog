@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Tue, Apr 30, 2019</span> in 
+				
+					
+					<a href="/blog/categories/debian">debian</a>
+				 using tags
+				
+					
+					<a href="/blog/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>手元の日経Linux誌見たらPPA指定が必要になっていた<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928217">aobookのITP</a>登録してuploadしといた。現実逃避だけど。</p>
+
+<hr />
+
+<p><a href="https://togetter.com/li/1342936">「OpenJDK 11.0.3/8u212 LTS以降でのリリースノートや脆弱性の追い方」</a>は一読しただけでは理解が追いつかないな…。</p>
+
+<hr />
+
+<p><code>debian/watch</code>のOSDNでの書き方は下記が良いらしい。うーん、RSS必死に見てたのは不要だったか…</p>
+
+<pre><code class="language-text">https://osdn.net/projects/@PACKAGE@/releases/rss \
+ https://osdn.net/projects/@PACKAGE@/downloads/\d*/@PACKAGE@-@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
+</code></pre>
+
+<p><code>uscan</code>にバグ登録したほうが良いか</p>
+
+<hr />
+
+<p><a href="https://blogs.apache.org/foundation/entry/the-apache-software-foundation-expands">ASFがGitHubに移行してた</a>。</p>
+
+<hr />
+
+<p><a href="https://tracker.debian.org/news/1039012/accepted-fonts-ipaexfont-00401-1-source-into-unstable/">IPAexフォントのアップデート</a>を放り込んだ。</p>
+
+<p>upstreamの方に確認したいことがあったので、<a href="https://www.ipa.go.jp/about/inquiry_index_0.html">問い合わせページ</a>から以下のような問い合わせを送った</p>
+
+<pre><code class="language-text">IPAフォントならびにIPAexフォントをLinuxディストリビューション Debianにてパッケージとして配布しています。
+
+問１）IPAフォントならびにIPAexフォントの問題・要望報告先としてOSDNにプロジェクト https://ja.osdn.net/projects/ipafonts/ を開設されていますが、こちらに報告をしても全く反応がありません。今回のIPAexフォントの配布もこちらで実施されてないようです
+- こちらのプロジェクトは活動しているのでしょうか
+- していないとしたら、どこで誰に連絡をすればよいのでしょうか
+- GitHub等に移行はできないでしょうか。
+
+問２）IPAexフォントの配布ページがバージョンごとに毎回URLが変更されており、機械的に新しいバージョンが出ているかのチェックがしずらいのですが、何故この様な形にしているのでしょうか（以前の https://ipafont.ipa.go.jp/old/ipafont/download.html であれば問題なく確認が出来ましたので、改悪と言えます）。
+</code></pre>
+
+<hr />
+
+<p><code>openjdk-11</code>パッケージの中身をチェックしようと<code>debcheckout</code>コマンドで落としたのだが、どうにもおかしい。<code>git checkout &lt;tag&gt;</code>として古いバージョンなのに令和対応がされてる、というように見えてしまう。悩んだ結果、<code>openjdk-11</code>パッケージのリポジトリは<code>debian</code>ディレクトリ以下の保守しかしておらず、<code>debcheckout</code>コマンドがおせっかいにもtarballを落としてきてたという。</p>
+
+<pre><code class="language-shell">$ debcheckout openjdk-11
+declared git repository at https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
+git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11 openjdk-11 ...
+Cloning into 'openjdk-11'...
+remote: Counting objects: 722, done. 
+remote: Compressing objects: 100% (706/706), done. 
+remote: Total 722 (delta 422), reused 103 (delta 10)
+Receiving objects: 100% (722/722), 824.71 KiB | 241.00 KiB/s, done.
+Resolving deltas: 100% (422/422), done.
+repository only contains the debian directory, using apt-get source 
+パッケージリストを読み込んでいます... 完了   
+注意: 'openjdk-11' パッケージは以下の場所の 'Git' バージョン制御システムで保守されています:
+https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
+パッケージの最新の (まだリリースされていないかもしれない) 更新を取得するには、
+git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
+を使用してください。
+75.8 MB のソースアーカイブを取得する必要があります。
+取得:1 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 (dsc) [4,692 B]
+取得:2 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 (tar) [75.4 MB]
+取得:3 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 (diff) [414 kB]
+75.8 MB を 1分 32秒 で取得しました (824 kB/s)
+</code></pre>
+
+<p>仕方がないのでsnapshot.debian.orgから落としてきてgrepした結果、11.0.3+7-1から令和対応、ということが判明。</p>
+
+<hr />
+
+<p>その他、令和対応情報まとめてた。unicode-dataでリビルド必要なの確認（すでにbinNMU依頼済みだったらしい）、FTBFSなのにパッチ書いたりとか。</p>
+
+<hr />
+
+<p><code>/etc/mtab</code>は<code>/proc/self/mounts</code>だが、これはどこで出来てるのか？というと<a href="http://blog.keshi.org/hogememo/2013/10/28/about-debian-wheezy-etc-mtab">/etc/init.d/checkroot.sh らしい</a>→<code>initscripts</code>パッケージだから入ってないのもあるんじゃない？（少なくともdebootstrapした環境にはない）と思って新しくインストールしてみた</p>
+
+<pre><code class="language-text">Package: initscripts
+Version: 2.94-4
+Priority: optional
+</code></pre>
+
+<p>だから無くても仕方がない…が、新規にbusterを入れた環境でも<code>/etc/mtab</code>がsymlinkとして存在する！なんだこれは。grepしたが、パッケージのメンテナスクリプトで触ってる風味でもない…systemdだろうか？…見つからずに大まかにgrepしなおしたら<code>/usr/lib/tmpfiles.d/debian.conf</code>とかいうのに記述があった。systemdパッケージの一部らしい。</p>
+
+<p>ということは</p>
+
+<ul>
+<li><code>initscripts</code>または<code>systemd</code>が入ってると<code>/etc/mtab</code>は<code>/proc/self/mounts</code>へのsymlinkとして生成される。</li>
+<li><code>openrc</code>などではどうなるのだろう？…と思ったら<code>initscripts</code>が引っ張られて入ったので問題なし。</li>
+<li>上書きされるのだから、debootstrapで記述しても問題ないのでは？</li>
+<li>過去の<code>initscripts</code>では<code>/etc/mtab</code>は<code>/proc/mounts</code>を指してるらしい</li>
+</ul>
+
+<p>という感想だったので、パッチ作った→速攻ボコボコにされた。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.4 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/henrich" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

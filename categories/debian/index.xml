@@ -8,10 +8,46 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/categories/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、LTSメーリングリストにmentionを飛ばして、コマンドメールでfixedバージョンを追加しておいた。 gsの修正がunblock依頼が出てなかったのでつついた linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>手元の日経Linux誌見たらPPA指定が必要になっていたaobookのITP登録してuploadしといた。現実逃避だけど。
+「OpenJDK 11.0.3/8u212 LTS以降でのリリースノートや脆弱性の追い方」は一読しただけでは理解が追いつかないな…。
+debian/watchのOSDNでの書き方は下記が良いらしい。うーん、RSS必死に見てたのは不要だったか…
+https://osdn.net/projects/@PACKAGE@/releases/rss \ https://osdn.net/projects/@PACKAGE@/downloads/\d*/@PACKAGE@-@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate  uscanにバグ登録したほうが良いか
+ASFがGitHubに移行してた。
+IPAexフォントのアップデートを放り込んだ。
+upstreamの方に確認したいことがあったので、問い合わせページから以下のような問い合わせを送った
+IPAフォントならびにIPAexフォントをLinuxディストリビューション Debianにてパッケージとして配布しています。 問１）IPAフォントならびにIPAexフォントの問題・要望報告先としてOSDNにプロジェクト https://ja.osdn.net/projects/ipafonts/ を開設されていますが、こちらに報告をしても全く反応がありません。今回のIPAexフォントの配布もこちらで実施されてないようです - こちらのプロジェクトは活動しているのでしょうか - していないとしたら、どこで誰に連絡をすればよいのでしょうか - GitHub等に移行はできないでしょうか。 問２）IPAexフォントの配布ページがバージョンごとに毎回URLが変更されており、機械的に新しいバージョンが出ているかのチェックがしずらいのですが、何故この様な形にしているのでしょうか（以前の https://ipafont.ipa.go.jp/old/ipafont/download.html であれば問題なく確認が出来ましたので、改悪と言えます）。  openjdk-11パッケージの中身をチェックしようとdebcheckoutコマンドで落としたのだが、どうにもおかしい。git checkout &amp;lt;tag&amp;gt;として古いバージョンなのに令和対応がされてる、というように見えてしまう。悩んだ結果、openjdk-11パッケージのリポジトリはdebianディレクトリ以下の保守しかしておらず、debcheckoutコマンドがおせっかいにもtarballを落としてきてたという。
+$ debcheckout openjdk-11 declared git repository at https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11 git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11 openjdk-11 ... Cloning into &#39;openjdk-11&#39;... remote: Counting objects: 722, done. remote: Compressing objects: 100% (706/706), done. remote: Total 722 (delta 422), reused 103 (delta 10) Receiving objects: 100% (722/722), 824.</description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/04/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Thu, 25 Apr 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/04/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description>glibcの令和対応パッチをupstreamから取ってきてペタペタした  対応されたのでbusterは対応になるだろう。stretchどうするかねぇ  openjdk8での令和対応をBTSに登録した icuでの令和対応をBTSに登録した  OpenChainのワーキンググループでツールの話を聞いてきたので、どんな感じかなーとfosslogyのWNPPバグを覗いてみた。
+ついでにSPDXのtoolのパッケージングが出来ないかを色々と。</description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
