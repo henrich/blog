@@ -7,8 +7,26 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 06 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926623&#34;&gt;ruby-parallel-tests&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/926572&#34;&gt;ruby-serverengine&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/926621&#34;&gt;ruby-strptime&lt;/a&gt;がリポジトリに入った。&lt;code&gt;fluentd&lt;/code&gt;に向けてだいぶ進んだ。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lists.debian.org/debian-devel/2019/05/msg00044.html&#34;&gt;令和対応状況メール&lt;/a&gt;を投げた&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928410&#34;&gt;「ppc64elのインストールに失敗した〜」メール&lt;/a&gt;を見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -22,7 +40,6 @@
 &lt;li&gt;firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、&lt;a href=&#34;https://lists.debian.org/debian-lts/2019/05/msg00016.html&#34;&gt;LTSメーリングリストにmentionを飛ばして&lt;/a&gt;、コマンドメールでfixedバージョンを追加しておいた。&lt;/li&gt;
 &lt;li&gt;gsの修正がunblock依頼が出てなかったので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927429#42&#34;&gt;つついた&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -500,27 +517,6 @@ diff:
 &lt;/ul&gt;
 
 &lt;p&gt;ここまで来て、ようやく&lt;code&gt;fluentd&lt;/code&gt;のパッケージングに再度入れる。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;先日&lt;code&gt;gem2deb&lt;/code&gt;で変換した&lt;code&gt;ruby-dig-rb&lt;/code&gt;を仕上げておこうとしてdescription書く際に&lt;a href=&#34;https://github.com/jrochkind/dig_rb&#34;&gt;サイト&lt;/a&gt;を見て「ん？」と気付く。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig.
-
-If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you. This gem only adds #dig methods if they aren&#39;t already defined, so it&#39;s safe to use in code that is for all rubies, if run on MRI 2.3.0 you&#39;ll still be using native #dig, otherwise dig_rb&#39;s implementation.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&amp;hellip;。んでは無視しよう。&lt;a href=&#34;https://github.com/fluent/fluentd/pull/2372&#34;&gt;fluentdにはPR上げてみておいた&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         

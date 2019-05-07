@@ -60,6 +60,51 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Sep 22, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/floss">floss</a>
+							
+								 , 
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>jcodings</code>が何故か細かくバージョンアップが繰り返されたので追従。1.0.34が&ndash;deleyedでまだ入ってなかったので、それが入ってからになるように調整。</li>
+<li><code>jruby-joni</code>も同様。patchのrefreshが面倒くさい。最新のjcodings依存になっているようなので、ビルドはまだ。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/">OSSummit Japanでボランティアスタッフした</a></h3>
 						<small><span class="label label-primary">
 							
@@ -814,71 +859,6 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 </code></pre>
 
 <p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/">遅々として進まず</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Apr 29, 2018
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/etc">etc</a>
-						
-								 , 
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Samsung SSDに/homeを移そうとコピーを実施したが、一晩経っても10GBぐらいしか進まず。これはいくらなんでも遅すぎる&hellip;ということでファームウェアを更新することを決める。</p>
-
-<p><a href="http://www.samsung.com/semiconductor/minisite/ssd/download/tools/">http://www.samsung.com/semiconductor/minisite/ssd/download/tools/</a> にてファームウェアのisoファイルを取得、マウントしてimgファイルを取り出してさらにそれをマウントしてファイルを取り出し、FreeDOSのブータブルUSBメモリにコピーしてファームウェアのアップデートを行った。以前よりはマシになったが、それでも遅い&hellip;。</p>
-
-<hr />
-
-<p>古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。</p>
-
-<p>次にUbuntu18.04 Server版を入れる&hellip;jaistミラーから落としたら中身がdebian-installerで変わってない？途中のpartitionerのところ（47%までは進んだ）で進まなくなってしまったので中断して、改めてUbuntu.comから落としたら、こちらのイメージは独自インストーラー版に変わっていた。こちらを試したかったのよね、シンプルでいい感じですね&hellip;とインストールは特にエラーも無く終わったのだけど、やっぱりoperating system not foundで変わらず。何故だ&hellip;。</p>
-
-<p>で、Debian9.4のインストーラーでやったら、普通にインストール終わり→起動したので、これにArchを上書きして完了。パーティションテーブルがおかしかったのだろうけど、d-iがなんとかしてくれた、という感じ。</p>
-
-<p>めも
-* d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする
-* あと全体通して読み返してみたい所</p>
-
-<hr />
-
-<p>Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。<a href="https://git.archlinux.org/arch-install-scripts.git/">https://git.archlinux.org/arch-install-scripts.git/</a> にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。</p>
-
-<hr />
-
-<p>poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべく<a href="https://lists.freedesktop.org/archives/poppler/2018-April/012999.html">popplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメール</a>には一切反応せず、か。相変わらずだな、popplerの人は&hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。</p>
-
-<p>&hellip;debian/changelogの記述間違えた。。。</p>
-
-<p>あと libmojolicious-plugin-assetpack-perl もアップデートしておいた。</p>
 
 					
 				</div>

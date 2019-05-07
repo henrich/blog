@@ -60,6 +60,105 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Oct 4, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
+
+<pre><code>Package: texlive-latex-extra-doc
+Download-Size: 384 MB
+
+Package: texlive-pstricks-doc
+Download-Size: 248 MB
+</code></pre>
+
+<pre><code class="language-time">
+
+まずは普通にftp.jp.debian.orgからの取得。
+
+</code></pre>
+
+<p>Fetched 412 MB in 36s (11.3 MB/s)
+real    0m36.643s</p>
+
+<p>Fetched 412 MB in 30s (13.4 MB/s)
+real    0m30.864s</p>
+
+<p>Fetched 412 MB in 26s (15.4 MB/s)
+real    0m27.031s</p>
+
+<pre><code>
+次に西日本から取得。
+
+</code></pre>
+
+<p>Fetched 412 MB in 19s (20.7 MB/s)
+real    0m20.026s</p>
+
+<p>Fetched 412 MB in 19s (21.1 MB/s)
+real    0m19.688s</p>
+
+<p>Fetched 412 MB in 18s (22.2 MB/s)
+real    0m18.746s</p>
+
+<pre><code>
+
+東でやってみたら
+
+</code></pre>
+
+<p>Fetched 412 MB in 24s (16.9 MB/s)
+real    0m24.203s</p>
+
+<p>Fetched 412 MB in 24s (17.2 MB/s)
+real    0m24.598s</p>
+
+<pre><code>
+という感じでリージョンまたぐよりも逆に遅かった…何故だ。
+
+--------
+結論
+
+</code></pre>
+
+<p>西日本： 21.3MBs
+東日本： 17.0MBs
+ダイレクト： 13.6 MBs
+```</p>
+
+<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -532,53 +631,6 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 <li>debian/rules で <code>dh $@  --with gnome --buildsystem=meson</code> のように<code>--buildsystem=meson</code> の指定が必要。</li>
 <li>依存関係は <code>meson.build</code> ファイルに書いてある&hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。</li>
 <li>何か見落としがあるのかな？と思って dh_install &ndash;list-mising しようかと思ったら、今は <code>dh_missing --list-missing</code> のように <code>dh_missing</code> を使え、とのこと。適当なブランチで debian/rules に <code>override_dh_missing</code> で記述して実行したが漏れはなかった様子。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 11, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=875432">python3-sphinx-intlをITP</a>した。
-
-<ul>
-<li>何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業で<code>git checkout --orphan pristine-tar; rm *; git commit --allow-empty</code>みたいなことをして作った。何故だ。</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/871063">cutter-testing-frameworkがリポジトリから削除されていた</a>ので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたので<a href="https://github.com/clear-code/cutter/pull/30">pull request</a>。
-
-<ul>
-<li>他にもpo/Makefile.in.inファイルが無くて<code>intltoolize --force || exit 1</code>が必要だったり。</li>
 </ul></li>
 </ul>
 

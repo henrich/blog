@@ -8,10 +8,19 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 06 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> ruby-parallel-tests、ruby-serverengine、ruby-strptimeがリポジトリに入った。fluentdに向けてだいぶ進んだ。 令和対応状況メールを投げた 「ppc64elのインストールに失敗した〜」メールを見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
@@ -19,7 +28,7 @@
       <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/05/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、LTSメーリングリストにmentionを飛ばして、コマンドメールでfixedバージョンを追加しておいた。 gsの修正がunblock依頼が出てなかったのでつついた linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。   </description>
+      <description> firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、LTSメーリングリストにmentionを飛ばして、コマンドメールでfixedバージョンを追加しておいた。 gsの修正がunblock依頼が出てなかったのでつついた linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。  </description>
     </item>
     
     <item>
