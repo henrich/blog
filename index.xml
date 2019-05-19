@@ -7,8 +7,128 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 May 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;docker.io&lt;/code&gt;パッケージがアップデートされたのを見て、パッケージ情報見てたらupstreamのサイトが移動してたので&lt;a href=&#34;https://salsa.debian.org/docker-team/docker/merge_requests/1&#34;&gt;MergeRequestだした&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;マージされた&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git-buildpackage&lt;/code&gt;のサンプル&lt;code&gt;gbp.conf&lt;/code&gt;の設定が&lt;code&gt;bzip2&lt;/code&gt;使っていたので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929141&#34;&gt;xzに置き換えパッチ&lt;/a&gt;だした
+
+&lt;ul&gt;
+&lt;li&gt;マージされた&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unblock: ubuntu-keyring/2018.09.18.1-5&lt;/code&gt;が通った、が指摘を受けてた点は&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929165&#34;&gt;別バグとしてファイルされた&lt;/a&gt;。見直さないとな…&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1039981/accepted-sphinx-intl-0912-1-source-into-unstable/&#34;&gt;sphinx-intlパッケージをアップデートした&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.0.0が最新、となっているもののmasterブランチにはタグが見当たらないので&lt;a href=&#34;https://github.com/sphinx-doc/sphinx-intl/issues/32&#34;&gt;Issue立てといた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1039984/accepted-jcodings-1044-1-source-into-unstable/&#34;&gt;jcodingsパッケージをアップデートした&lt;/a&gt;。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;debian/libjcodings-java.poms&lt;/code&gt;で&lt;code&gt;--no-parent&lt;/code&gt;オプションを使えばいいのを発見して&lt;code&gt;debian/patches&lt;/code&gt;はdropした。なんで今まで気づいてなかったんだ。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1039985/accepted-jruby-joni-2127-1-source-into-unstable/&#34;&gt;jruby-joniパッケージをアップデートした&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;その他、フリーズ中でアップロードしないほうがいいかな、と思ったのは更新したのをgitリポジトリにアップロードするに止めた&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1039927/accepted-ruby-parallel-tests-2290-1-source-into-unstable/&#34;&gt;ruby-parallel-testsパッケージをアップデート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tracker.debian.org/news/1039928/accepted-ruby-serverengine-211-1-source-into-unstable/&#34;&gt;ruby-serverengineパッケージをアップデート&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;今見たら&lt;a href=&#34;https://ci.debian.net/data/autopkgtest/testing/amd64/r/ruby-serverengine/2385536/log.gz&#34;&gt;ciがコケてる&lt;/a&gt;…要調査だ。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>OSSummit Japan 2019ボランティアスタッフに応募</title>
+            <link>https://henrich.github.io/blog/2019/05/15/ossummit-japan-2019%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%AB%E5%BF%9C%E5%8B%9F/</link>
+            <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/15/ossummit-japan-2019%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%AB%E5%BF%9C%E5%8B%9F/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://events.linuxfoundation.org/events/open-source-summit-japan-2019/attend/about/&#34;&gt;OSSummit Japan 2019&lt;/a&gt;のボランティアスタッフに応募しておいた。DebConfの移動があるので初日だけ。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://debconf19.debconf.org/&#34;&gt;DebConf19&lt;/a&gt;に向けて思いつきのCfPを投げた&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gnu.org/software/guix/blog/2019/gnu-guix-1.0.0-released/&#34;&gt;GUIX&lt;/a&gt;の売り文句が素晴らしいのでホントかなー？と思ってVMを立ち上げるもいきなりぶっ壊れててまともに動かせない様に見えるので涙した。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>ライターのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/08/%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Wed, 08 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/08/%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;検証用にHDD 2TB「Seagate IronWolf 3.5」を一つ購入した…。PCのバックアップ体制をきちんと整理しておかねば、という思いが強まった。
+そして「2.&lt;sup&gt;5&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt;.5インチSATA HDDエンクロージャーの不具合」についても問い合わせ。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -22,6 +142,8 @@
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926623&#34;&gt;ruby-parallel-tests&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/926572&#34;&gt;ruby-serverengine&lt;/a&gt;、&lt;a href=&#34;https://bugs.debian.org/926621&#34;&gt;ruby-strptime&lt;/a&gt;がリポジトリに入った。&lt;code&gt;fluentd&lt;/code&gt;に向けてだいぶ進んだ。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://lists.debian.org/debian-devel/2019/05/msg00044.html&#34;&gt;令和対応状況メール&lt;/a&gt;を投げた&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928410&#34;&gt;「ppc64elのインストールに失敗した〜」メール&lt;/a&gt;を見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。&lt;/li&gt;
+&lt;li&gt;jdのbackports削除依頼を出した。&lt;/li&gt;
+&lt;li&gt;byobuの依存関係のパッケージ名が古かったので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928600&#34;&gt;パッチ出した&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -269,254 +391,6 @@ rake aborted!
             <author>henrich@debian.org (Hideki Yamane)</author>
             <guid>https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
             <description>&lt;p&gt;まずは&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926570&#34;&gt;ruby-sigdumpパッケージが入った&lt;/a&gt;。これでbuild用の独自chroot環境なくすのに一歩近づいた。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 15 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;残りのメモ。まだ長いなぁ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
-    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
-    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
-    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
-    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
-    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
-    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
-    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 14 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;ひたすらbad smellを消す作業。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
-    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
-    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
-    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
-    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
-    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
-    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
-    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
-    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
-    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;octiconsはやたら以前にupstreamブランチをマージしたけど、依存パッケージが多くなってしまっていてどうしたものか…&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
-    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;debian/copyright&lt;/code&gt;が旧形式で書き直し必要だよ…後日。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;a href=&#34;https://trends.debian.net&#34;&gt;trends.debian.net&lt;/a&gt;より&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;
-
-    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
-    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
-    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
-    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
-    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
-    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
-    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
-    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
-    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
-    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
-    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
-    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
-    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
-    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
-    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
-    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
-    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
-    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
-    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
-    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
-    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
-    libtime-mock-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.0.2-2)
-    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
-    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
-    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とりあえず以下を対処。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
-    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
-    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;はデータが古い？&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;code&gt;fluentd&lt;/code&gt;パッケージングでのテストエラー続き。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;? Encoding: US-ASCII-8BIT
-===============================================================================
-: (0.005571)
-    test: should output compressed file when compress option is gzip:   F
-===============================================================================
-Failure: test: should output compressed file when compress option is gzip(FileOutputSecondaryTest::write)
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:129:in `check_gzipped_result&#39;
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `block (2 levels) in &amp;lt;class:FileOutputSecondaryTest&amp;gt;&#39;
-     151:       path = d.instance.write(@chunk)
-     152: 
-     153:       assert_equal &amp;quot;#{TMP_DIR}/out_file_test.0.gz&amp;quot;, path
-  =&amp;gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding(&#39;ASCII-8BIT&#39;))
-     155:     end
-     156: 
-     157:     test &#39;should output plain text when compress option is default(text)&#39; do
-&amp;lt;&amp;quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&amp;quot;&amp;gt;(ASCII-8BIT) expected but was
-&amp;lt;&amp;quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&amp;quot;&amp;gt;(US-ASCII)
-
-diff:
-  潰^@\ｬメ^D^DZ氈｣key･value
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  Gem2Deb::Rake::TestTask.new do |t|
-    t.libs = [&#39;test&#39;]
-    t.test_files = FileList[&#39;test/**/*_test.rb&#39;] + FileList[&#39;test/**/test_*.rb&#39;]
-+   t.ruby_opts = [&amp;quot;-Eascii-8bit:ascii-8bit&amp;quot;]
-  end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;しかし、エラーがどうしても一つ潰せず、&lt;a href=&#34;https://github.com/fluent/fluentd/issues/2375&#34;&gt;upstreamにIssueを上げた&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;&lt;code&gt;fluentd&lt;/code&gt;のビルド…テストがエラーになる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;という感じ。見ていく。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
-  Exception raised:
-  Errno::ENOENT(&amp;lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&amp;gt;)
-/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &amp;lt;class:TestFluentPluginConfigFormatter&amp;gt;&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-error&#34;&gt;# grep templates -r ./
-(snip)
-./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &amp;quot;../../../templates/new_gem&amp;quot;).realpath
-./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &amp;quot;../../../templates/plugin_config_formatter/#{name}&amp;quot;).realpath
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;/build/fluentd-1.4.2/templates&lt;/code&gt;を見たいのに&lt;code&gt;/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&lt;/code&gt;を参照しにいってるので、ここを直せば良い。&lt;a href=&#34;https://salsa.debian.org/ruby-team/fluentd/blob/debian/sid/debian/patches/0004-move-templates-to-appropriate-path.patch&#34;&gt;templatesをlib配下に持っていって相対パスをadjustする&lt;/a&gt;のがよいかね。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とwarningが5万行も出ていたので、&lt;code&gt;ruby-flexmock&lt;/code&gt;パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、&lt;a href=&#34;https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/&#34;&gt;自分を加えて更新してアップロードした&lt;/a&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;psがない！というエラーが出ていたので、これは最小環境に&lt;code&gt;procps&lt;/code&gt;パッケージが入ってないことによるものだったので、さくっと解決。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;しかしまだまだtest failureは続く…。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;パッケージング、残りは&lt;code&gt;ruby-strptime&lt;/code&gt;と&lt;code&gt;ruby-tzinfo-data&lt;/code&gt;か、ということで&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926621&#34;&gt;ruby-strptimeのITP作業&lt;/a&gt;した。&lt;code&gt;ruby-tzinfo-data&lt;/code&gt;の方はtzdataを引っ張ってこれない環境だと必要なのでは？と判断して削る方向で…あ、&lt;a href=&#34;https://bugs.debian.org/926623&#34;&gt;ruby-parallel-tests&lt;/a&gt;も追加。&lt;/p&gt;
-
-&lt;p&gt;これで大体依存関係終わったかな…。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926266&#34;&gt;ruby-cool.io&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926570&#34;&gt;ruby-sigdump&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926572&#34;&gt;ruby-serverengine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926621&#34;&gt;ruby-strptime&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/926623&#34;&gt;ruby-parallel-tests&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ここまで来て、ようやく&lt;code&gt;fluentd&lt;/code&gt;のパッケージングに再度入れる。&lt;/p&gt;
 </description>
           </item>
         

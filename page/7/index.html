@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.4" />
+	<meta name="generator" content="Hugo 0.55.5" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,305 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 17, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>whizzytex</code>のパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 16, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>昨日の<code>jd</code>パッケージの削除依頼が実行されてた。早いなー。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">ruby-bcatパッケージの削除</a>もその日のうちだったし。</li>
+<li>systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918914">該当のバグ登録</a>を教えてもらった。subscribeして様子見しよう。</li>
+<li><code>ubuntu-keyring</code>パッケージのdebcont templateのレビューを反映した。なるほどなー
+
+<ul>
+<li>既に翻訳版を送ってくれた方々に「こっちでお願い」を送った</li>
+</ul></li>
+<li><code>ubuntu-keyring</code>、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度<code>NEW queue</code>へ</li>
+<li><code>grcompiler</code>、4.2.7以降のがテストこけちゃうので<a href="https://github.com/silnrsi/grcompiler/issues/15">test failureをreport</a>した</li>
+<li><code>curl</code>が最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919445">バグ登録した</a></li>
+<li><a href="https://tracker.debian.org/news/1021421/accepted-fonts-sawarabi-mincho-20190115-1-source-into-unstable/">fonts-sawarabi-minchoを更新</a></li>
+<li><code>nadoka</code>が古いままでwatchもエラーになっていたので、重い腰を上げて<a href="https://tracker.debian.org/news/1021441/accepted-nadoka-092-1-source-into-unstable/">更新しておいた</a>。前のメンテナの安井さんにも連絡済み。</li>
+<li><code>whizzytex</code>のパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
+<li><code>jruby-joni</code>パッケージがFTBFSになってる？なぜだ… <code>org.jcodings.exception.CharacterPropertyException: invalid character property name &lt;graphemeclusterbreak=emodifier&gt;</code>と出てくるのでその辺りから検索したけど、よくわからんよね…<a href="https://github.com/jruby/joni/issues/40">issue登録</a>だけしておいた</li>
+</ul>
+
+<pre><code class="language-bash">  $ grep emodifier -r ./
+  ./src/org/joni/Parser.java:        static final byte[]Grapheme_Cluster_Break_E_Modifier = &quot;graphemeclusterbreak=emodifier&quot;.getBytes();
+</code></pre>
+
+<ul>
+<li>気になったのでgem2debのテンプレートから<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterを削除するMR</a>を送っておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 15, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919337">JDパッケージの削除を登録した</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/14/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 14, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://twitter.com/kmuto/status/1083503599374675968">武藤さんがDDを引退された</a>ので、その引き継ぎとして<a href="https://tracker.debian.org/pkg/mlterm">mltermパッケージ</a>の今後のsponsor uploadを引き受けることになった。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 14, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><p><a href="https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/">whizzytexパッケージをアップロード</a>。作業自体は以前にあらかたしていた。</p>
+
+<ul>
+<li>問題だったのは<code>autopkgtest</code>。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので<code>emacs --script test.el test.tex</code>のようにして<code>test.el</code>の中で以下のようにするなどした。</li>
+</ul>
+
+<pre><code class="language-elisp">(find-file (nth 0 command-line-args-left))
+(whizzytex-mode 1)
+</code></pre>
+
+<ul>
+<li>その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの<code>testfile</code>ファイルにtypoがあって<code>test.tex</code>とすべきところを<code>test.txt</code>になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…</li>
+<li><a href="https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/">ruby-arubaパッケージをアップロード</a></li>
+<li><code>ruby-bcat</code>への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。</li>
+<li>ん？ということは<code>ruby-bcat</code>をRMしてもいいんじゃないか。ざっくり<code>apt-rdepends</code>した結果では依存はないし、<a href="https://codesearch.debian.net/search?q=ruby-bcat&amp;perpkg=1">codesearch.debian.netの検索結果</a>もそれらしいものはない。<code>grep-dctrl</code>でも同様なので、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">RM依頼を登録</a></li>
+</ul>
+
+<pre><code class="language-bash">$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
+Package: ruby-aruba
+</code></pre></li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474">libmojo-ioloop-readwriteprocess-perlパッケージ</a>が入ってくれたので、手元の<code>os-autoinst</code>をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。</p></li>
+
+<li><p><code>ubuntu-keyring</code>パッケージの<code>debconf template</code>査読が返ってきてたので、mergeしないと…。</p></li>
+
+<li><p>だいぶ前に<a href="https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044">jdがクラッシュするよ、とlaunchpadの方でレポートがあった</a>（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、<a href="https://github.com/yama-natuki/JD/issues/15">パッケージにしたいなー</a>というのは伝えておいた。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>debootstrapにバグレポートが。
+
+<ul>
+<li>busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加</li>
+<li>もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。<code>Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC</code>のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。</li>
+</ul></li>
+<li><a href="https://www.debian.org/security/2019/dsa-4364">DSA-4364-1</a>が出た。お疲れ様でした。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -305,561 +604,6 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 <li>上記の変更その他を加えて<a href="https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/">os-autoinstパッケージをアップロード</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463">RCバグ</a>は<code>severity</code>を下げておいた。</li>
 <li><code>debootstrap</code>パッケージ、夏に作業して放置してたMergeRequestを変更を追加して<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9">Mergeした</a>。<code>git rebase</code>なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 4, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/dd">DD</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/">debootstrapを速くするには</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 4, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/tips">tips</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/debootstrap">debootstrap</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は<code>apt</code>も使えないので<code>wget</code>で取得するんだぜ？）。うーむ。</p>
-
-<p>で、どうやって時間を短縮するか？というと、以下のような選択肢がある。</p>
-
-<ol>
-<li>ローカルミラーをセットアップしてそれを参照する</li>
-<li>ローカルプロキシをセットアップしてそれを参照する</li>
-<li>ローカルキャッシュをセットアップしてそれを参照する</li>
-</ol>
-
-<ul>
-<li>1のミラーはまるっとDebianリポジトリをコピーするやり方。
-
-<ul>
-<li>クライアントが何十台、スペックによっては何百台とかあっても対応できる</li>
-<li>どのパッケージでもLAN内にあるので取得が早い</li>
-<li>でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる</li>
-<li>ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。</li>
-<li>あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも</li>
-<li>構築するなら<code>ftpsync</code>使おうね。他のツールはダメダメ。</li>
-</ul></li>
-<li>2のプロキシは<code>squid</code>などのサーバーを立てるやり方。
-
-<ul>
-<li>取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む</li>
-<li>ミラーと同様に複数のマシンからも参照可能</li>
-<li><code>debootstrap 1.0.96</code>から<code>squid-deb-proxy-client</code>をインストールしておくと、<code>squid-deb-proxy</code>で立ち上げたプロキシサーバーを自動的に参照するようになる。<code>apt-cacher</code>などだと一々プロキシがどこにあるのかを指定しないといけないので、<code>squid-deb-proxy</code>マジおすすめ</li>
-</ul></li>
-<li>3のキャッシュは<code>--cache-dir</code>オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
-
-<ul>
-<li><code>debootstrap 1.0.97</code>から実装済み。一台だけでやるならこれで十分。</li>
-<li><code>--cache-dir=/home/henrich/tmp/cachedir</code>というように、このオプションでは絶対パスで参照するのが必要。<code>~/tmp/cachedir</code>の様な指定はできない。</li>
-</ul></li>
-</ul>
-
-<p>あと、リポジトリのミラーは<code>debootstrap 1.0.85</code>から<a href="https://deb.debian.org">deb.debian.org</a>を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？</p>
-
-<p>最後に、記述時の最新である<code>debootstrap 1.0.112</code>はMr.FAIこと<code>Thomas Lange</code>さんのハックによってパッケージ依存関係の最適化（これも<code>apt</code>が使われてはいない）が図られているので、随分と時間が短縮されている。</p>
-
-<p><strong>結論：debootstrap 1.0.112以降を使おう</strong>。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 4, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>Ultimate Debian Databaseの<a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;done=only&amp;rc=1&amp;flastmod=ign&amp;flastmodval=5&amp;sortby=last_modified&amp;sorto=asc&amp;ctags=1&amp;cdeferred=1&amp;caffected=1&amp;cautormtime=1&amp;cmissingbuilds=1&amp;">Bug search Cleaner view</a>から。</p>
-
-<ul>
-<li>xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。
-
-<ul>
-<li>どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ</li>
-<li>fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。</li>
-<li>というのを踏まえて「どーする？」という質問を投げた→「わかってる、4.14がリリースされたらそれを入れる」という回答。んーしばらくは放置か…。</li>
-</ul></li>
-<li>uglifyjsのFTBFS、experimentalでは直ってるよ、という話
-
-<ul>
-<li>semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ</li>
-<li>では、ということでお手軽に<code>apr-rdependes</code>で依存パッケージの確認</li>
-<li>emscriptenは内部に古い古いuglifyjs持ってるみたい…</li>
-<li>lavaはソース落としてみたけど、バージョン指定の情報は特に無し。</li>
-<li>node-grunt-contrib-uglifyは新しいバージョンならサポートしてる</li>
-<li>node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる</li>
-<li>ruby-uglifierも新しいバージョンならサポートしている</li>
-<li>というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
-
-<ul>
-<li>やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…</li>
-<li><a href="https://wiki.debian.org/Java/Packaging/Gradle">Debian Wikiのページ</a>にあった。<code>gradle-debian-helper</code>パッケージをBuild-Dependsに加えて、<code>debian/rules</code>で<code>dh $@ -with buildsystem=gradle</code>&hellip;って間違ってるやん<code>--buildsystem=gradle</code>だよね…。</li>
-</ul></li>
-</ul>
-
-<pre><code class="language-java">* What went wrong:
-A problem occurred configuring root project 'powermock'.
-&gt; Could not resolve all files for configuration ':classpath'.
-   &gt; Could not resolve org.springframework.build.gradle:propdeps-plugin:0.0.7.
-     Required by:
-         project :
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-   &gt; Could not resolve com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4.
-     Required by:  
-         project : 
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.      
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-   &gt; Could not resolve net.researchgate:gradle-release:2.4.0.
-     Required by:
-         project :   
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.    
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode. 
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-   &gt; Could not resolve com.github.jengelman.gradle.plugins:shadow:1.2.4.  
-     Required by:
-         project : 
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.     
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode. 
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.        
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.  
-   &gt; Could not resolve org.shipkit:shipkit:2.0.31.
-     Required by:      
-         project :
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-   &gt; Could not resolve ru.vyarus:gradle-animalsniffer-plugin:1.4.1.
-     Required by:
-         project :
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-</code></pre>
-
-<p>エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
-
-<pre><code class="language-bash"> pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
-                                 Depends: gradle-release which is a virtual package and is not provided by any available package
-                                 Depends: gradle-shadow which is a virtual package and is not provided by any available package
-                                 Depends: gradle-shipkit which is a virtual package and is not provided by any available package
-                                 Depends: gradle-animalsniffer-plugin which is a virtual package and is not provided by any available package
-</code></pre>
-
-<ul>
-<li><code>gradle-propdeps-plugin</code>はパッケージがあったので追加。</li>
-<li><code>gradle-animalsniffer-plugin</code>は<a href="https://github.com/xvik/gradle-animalsniffer-plugin">https://github.com/xvik/gradle-animalsniffer-plugin</a>かららしい。
-
-<ul>
-<li>で、これは<code>animalsniffer</code>に依存している。<code>libanimal-sniffer-java</code>パッケージがあるのでこれだな。</li>
-<li>注意点が書いてある<code>「Use version 1.17 (toolVersion=1.17) if you need to run on java 9, but note that 1.17 can't be used on java 8 (and that's why it is not set by default)」</code>→Java11でbusterはリリースされるので1.17が必要</li>
-<li><code>libanimal-sniffer-java</code> は1.16なので、まずコイツのアップデートが必要…。</li>
-<li><code>$ apt-rdepends -r libanimal-sniffer-java</code>の結果は何もなかったので、ぶっ込んでも大丈夫じゃないかな。</li>
-</ul></li>
-<li><code>gradle-shipkit</code>は<a href="https://github.com/mockito/shipkit">https://github.com/mockito/shipkit</a>だな</li>
-<li><code>gradle-shadow</code>は<a href="https://github.com/johnrengelman/shadow">https://github.com/johnrengelman/shadow</a></li>
-<li><code>gradle-release</code>は<a href="https://github.com/researchgate/gradle-release">https://github.com/researchgate/gradle-release</a></li>
-<li><code>gradle-bintray-plugin</code>は<a href="https://github.com/bintray/gradle-bintray-plugin">https://github.com/bintray/gradle-bintray-plugin</a></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>os-autoinstを<code>dh12</code>に上げたらビルドがコケるように。あれ？</li>
-</ul>
-
-<pre><code class="language-bash"># root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name '*.pm' -print
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshXtermIPMI.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/vnc_base.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/localXvnc.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshX3270.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshVirtsh.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/virtio_terminal.pm
-</code></pre>
-
-<p>おいおい。何故か<code>/usr/libexec</code>以下にインストールするようになっとるやん。<code>man debhelper</code>で答えを探す…見つけた。</p>
-
-<p><code>The build systems meson and autoconf no longer explicitly set the --libexecdir variable and thus relies on the build system default - which should be /usr/libexec (per FHS 3.0, adopted in Debian Policy 4.1.5).</code>ということで。どうやって直すかね。。。</p>
-
-<hr />
-
-<p>YubikeyでSSH接続しようとしたら謎のエラーがでて焦る。結局、手元の<code>~/.gnupg/private-keys-v1.d</code>のファイルが腐ってるというオチだったのだけど、絞り込むのも時間かかった…</p>
-
-<ul>
-<li>Yubikey側の異常を疑って、testing環境で接続→問題なし（これでYubikeyが壊れた疑惑はなくなった）</li>
-<li>異常がでたdesktopのunstable環境の問題を疑って、別のunstable環境なマシンで接続→問題なし（設定が全くしていなかったのでちょっと戸惑った、これでunstableだと壊れてるというパッケージ側の問題は無い）</li>
-<li>ユーザー環境の差異を疑って、テストユーザーを作って接続→問題なし（これでいつものユーザーのhome directoryの設定が問題だろうと絞り込めた）</li>
-<li>とりあえず<code>mv .gnupg bak.gnupg</code>などとして接続→問題なし（これで<code>.gnupg</code>以下のファイルのうちどれかがおかしい）</li>
-<li>ひたすら旧ディレクトリから１つずつディレクトリやファイルをコピーする→絞り込めた</li>
-</ul>
-
-<p>やれやれ。</p>
-
-<hr />
-
-<p>今日は成果が得られなかった一日。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jan 3, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688">ruby-netrcパッケージのバグ</a>のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。<code>assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path</code>が以下のような結果になる。</p>
-
-<pre><code class="language-ruby">  1) Failure:
-TestNetrc#test_missing_environment [/&lt;&lt;PKGBUILDDIR&gt;&gt;/test/test_netrc.rb:203]:
---- expected
-+++ actual
-@@ -1,2 +1 @@
--# encoding: ASCII-8BIT
--&quot;/&lt;&lt;PKGBUILDDIR&gt;&gt;/.netrc&quot;
-+&quot;/build/.netrc&quot;
-</code></pre>
-
-<p><code>&lt;&lt;PKGBUILDDIR&gt;&gt;</code>なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は<code>cowbuilder</code>でやってしまっていたので、<code>sbuild</code>環境を用意するのにも時間が&hellip;あれ？<code>sbuild</code>でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？</p>
-
-<p>バグレポートを再度よく読み、テスト部分を再確認。</p>
-
-<pre><code class="language-ruby">  def test_missing_environment
-    nil_home = nil
-    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
-    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
-  ensure
-    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
-  end
-</code></pre>
-
-<p><code>default_path</code>でgrep…。</p>
-
-<pre><code class="language-ruby">  def self.default_path
-    File.join(ENV['NETRC'] || home_path, netrc_filename)
-  end
-</code></pre>
-
-<p>あー、これだ。<code>NETRC</code>が存在しない場合に<code>home_path</code>、つまりは上記のエラーになる環境では<code>/build</code>が指定されてるのにもかかわらず、ビルドをしている<code>Dir.pwd</code>は別、ということだろうな。さて、どういうふうにして回避するかね…</p>
-
-<pre><code class="language-ruby">    p nil_home
-    p ENV[&quot;HOME&quot;]
-    p Netrc.home_path
-</code></pre>
-
-<p>とすると</p>
-
-<pre><code class="language-ruby">&quot;/home/henrich&quot;
-nil
-&quot;/build/ruby-netrc-0.11.0&quot;
-</code></pre>
-
-<p>が返る。あれ？予想と違う。<code>home_path</code>は<code>/build/ruby-netrc-0.11.0</code>なのか。<code>ENV[&quot;HOME&quot;]</code>が<code>nil</code>であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう</p>
-
-<pre><code class="language-ruby">--- a/test/test_netrc.rb
-+++ b/test/test_netrc.rb
-@@ -200,7 +200,7 @@
-   def test_missing_environment
-     nil_home = nil
-     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
--    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
-+    assert_equal File.join(Netrc.home_path, '.netrc'), Netrc.default_path
-   ensure
-     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
-   end
-</code></pre>
-
-<p>でアップロードした。</p>
-
-<hr />
-
-<p>ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26">質問した</a>。→どうやらsegfaultするという問題があるらしい。うーむ。</p>
-
-<hr />
-
-<p>os-autoinstを直せるかな、と思ってビルドするも</p>
-
-<pre><code class="language-bash">The following packages have unmet dependencies:
- libopencv-imgcodecs3.2 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package
-
- libvtk6.3 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package 
-</code></pre>
-
-<p>げぇ。</p>
-
-<pre><code class="language-bash">Package: libgdal20
-Version: 2.4.0+dfsg-1
-Priority: optional
-Section: libs
-Source: gdal
-Maintainer: Debian GIS Project &lt;pkg-grass-devel@lists.alioth.debian.org&gt;
-Installed-Size: 20.2 MB
-Provides: gdal-abi-2-4-0
-</code></pre>
-
-<p>こいつか…。<a href="https://release.debian.org/transitions/html/gdal-2-4-0.html">Transition tracker</a>を見る限り、ここ１時間でビルドされたりしてるので、今日はたまたまあたってしまった、という感じか。</p>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/">fonts-monapoパッケージをアップデート</a>。upstreamが配布しなくなってた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jan 2, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
-
-<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
-
-<ul>
-<li>パッケージを分割した</li>
-<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
-<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
-<li>autopkgtestをまともなものにした</li>
-<li>build時にもautopkgtest相当が動作するようにした</li>
-</ul>
-
-<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
-
-<p>そしてアップロード後もエラーを踏む。</p>
-
-<pre><code>Source-only uploads to NEW are not allowed.
-</code></pre>
-
-<p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
-
-<hr />
-
-<ul>
-<li>淡々と<a href="https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/">jcodingsパッケージをアップデート</a>。</li>
-<li>grcompilerに<a href="https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/">投稿されてたパッチをマージ</a>。自分の作った地雷を踏むという失態を。
-
-<ul>
-<li>upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。</li>
-<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
-<br /></li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jan 1, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。<code>.install</code>ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、<code>[0-9]*</code>で数字だけ指定されるかと思ったら、そうでなかった。。。</p>
-
-<pre><code>keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
-</code></pre>
-
-<p>というようにした。</p>
 
 					
 				</div>
@@ -1168,7 +912,7 @@ Provides: gdal-abi-2-4-0
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.4 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.5 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

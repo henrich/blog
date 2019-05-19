@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.4" />
+	<meta name="generator" content="Hugo 0.55.5" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,471 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jul 25, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業。</p>
+
+<ul>
+<li>grcompiler&hellip;を見てみた。
+
+<ul>
+<li>upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&hellip;gitのmasterから取ってきてもコケる&hellip;これは一体？</li>
+<li>upstreamが<a href="https://github.com/silnrsi/grcompiler/tree/master/debian">debianディレクトリ追加してる&hellip;</a>困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&hellip;なんだこりゃ。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/858733">fonts-vlgothic</a></li>
+<li><a href="https://tracker.debian.org/news/858736">fonts-kacst-one</a></li>
+<li><a href="https://tracker.debian.org/news/858737">fonts-motoya-l-cedar</a></li>
+<li><a href="https://tracker.debian.org/news/858740">fonts-motoya-l-maruberi</a>
+
+<ul>
+<li>モトヤLマルベリ3・Lシーダ3が<a href="https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67">Androidのリポジトリから消えていた</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&hellip;。shellアクセスできる範囲には無いっぽいし。<a href="https://osdn.net/cvs/view/mplus-fonts/">ダウンロード</a>でいけるのかな？</p>
+
+<pre><code>$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &gt; ./cvs2git.options
+$ vi cvs2git.options
+$ cvs2git --options=./cvs2git.options
+</code></pre>
+
+<p>などとやってみたが、必要な情報がtarballの中にはないようだ。<a href="https://osdn.net/docs-ja/SCM_Migration">サポートリクエスト</a>を出して欲しい、ということらしい。あとで問い合わせよう。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jul 24, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858508">fonts-kacst-one</a>
+
+<ul>
+<li>アップロードしてから「あ、ttf-パッケージがあった&hellip;落とし忘れ&hellip;」と気付く。あとでもう一度アップロードしよう。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/858510">fonts-takao</a>
+
+<ul>
+<li>pristine-tarブランチにコミットし忘れてたのが発覚。<code>apt source fonts-takao</code>と<a href="http://snapshot.debian.org">snapshot.debian.org</a>からダウンロードして、<code>gbp pristine-tar commit</code>で追加。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/">digging into gpgme on hurd</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jul 24, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>gpgme1.0 on Hurdの続き。</p>
+
+<pre><code>Running tests using /usr/bin/python2 (2.7)...
+PASS: initial.py
+PASS: t-wrapper.py
+PASS: t-callbacks.py
+FAIL: t-data.py
+FAIL: t-encrypt.py
+FAIL: t-encrypt-sym.py
+FAIL: t-encrypt-sign.py
+FAIL: t-sign.py
+FAIL: t-signers.py
+FAIL: t-decrypt.py
+FAIL: t-verify.py
+FAIL: t-decrypt-verify.py
+FAIL: t-sig-notation.py
+PASS: t-export.py
+PASS: t-import.py
+PASS: t-trustlist.py
+PASS: t-edit.py
+PASS: t-keylist.py
+PASS: t-keylist-from-data.py
+PASS: t-wait.py
+PASS: t-encrypt-large.py
+FAIL: t-file-name.py
+PASS: t-idiomatic.py
+PASS: t-protocol-assuan.py
+FAIL: t-quick-key-creation.py
+FAIL: t-quick-subkey-creation.py
+PASS: t-quick-key-manipulation.py
+PASS: t-quick-key-signing.py
+PASS: final.py
+Running tests using /usr/bin/python3 (3.5)...          
+PASS: initial.py                                       
+PASS: t-wrapper.py                                     
+PASS: t-callbacks.py                                   
+FAIL: t-data.py                                        
+FAIL: t-encrypt.py                                     
+FAIL: t-encrypt-sym.py                                 
+FAIL: t-encrypt-sign.py                                
+FAIL: t-sign.py                                        
+FAIL: t-signers.py                                     
+FAIL: t-decrypt.py
+FAIL: t-verify.py
+FAIL: t-decrypt-verify.py
+FAIL: t-sig-notation.py
+PASS: t-export.py
+PASS: t-import.py
+PASS: t-trustlist.py
+PASS: t-edit.py
+PASS: t-keylist.py
+PASS: t-keylist-from-data.py
+PASS: t-wait.py
+PASS: t-encrypt-large.py
+FAIL: t-file-name.py
+FAIL: t-idiomatic.py
+PASS: t-protocol-assuan.py
+FAIL: t-quick-key-creation.py
+FAIL: t-quick-subkey-creation.py
+PASS: t-quick-key-manipulation.py
+PASS: t-quick-key-signing.py
+PASS: final.py
+58 tests run, 31 succeeded, 27 failed, 0 skipped.
+</code></pre>
+
+<p>めっちゃコケる。</p>
+
+<pre><code>GNUPGHOME=/root/gpgme1.0-1.9.0/lang/python/tests LC_ALL=C GPG_AGENT_INFO= top_srcdir=../../.. srcdir=. LD_LIBRARY_PATH=&quot;../../../src/.libs:&quot; /usr/bin/python2 ./run-tests.py \
+  --interpreters=&quot;/usr/bin/python2 /usr/bin/python3&quot; --srcdir=.  \
+  initial.py t-wrapper.py t-callbacks.py t-data.py t-encrypt.py t-encrypt-sym.py t-encrypt-sign.py t-sign.py t-signers.py t-decrypt.py t-verify.py t-decrypt-verify.py t-sig-notation.py t-export.py t-import.py t-trustlist.py t-edit.py t-keylist.py t-keylist-from-data.py t-wait.py t-encrypt-large.py t-file-name.py t-idiomatic.py t-protocol-assuan.py t-quick-key-creation.py t-quick-subkey-creation.py t-quick-key-manipulation.py t-quick-key-signing.py final.py
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 23, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業</p>
+
+<ul>
+<li><p><a href="https://tracker.debian.org/news/858132">fonts-breip</a>。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。</p>
+
+<pre><code>* Team upload.                                       
+* add epoch to version since upstream releases it as 0.5.1 and previous
+packaging introduced unnecessary non-upstream files
+* debian/control
+- remove Mauro Lizaur &lt;mauro@debian.org&gt; from Uploaders, thank you for
+  your work! (Closes: #869339)                     
+- add myself to Uploaders.                         
+- update Vcs-* and use https                       
+- set Standards-Version: 4.0.0                     
+- set Build-Depends: debhelper (&gt;= 10)
+* debian/compat
+- set 10
+* add debian/watch
+* add debian/gbp.conf
+* debian/copyright
+- convert to copyright format 1.0
+</code></pre></li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p>ttf-adfとfonts-adfかぶってるよ、問題。
+<a href="https://bugs.debian.org/869346">Bug#869346</a>をみて、古いttf-adfを削除依頼するか&hellip;と思ったのだけど、念の為ソースパッケージを落としている際、どうもorig.tar.gzのサイズが大きく違うのに気づいた。</p>
+
+<pre><code>$ ls -al fonts-adf_0.20110505.orig.tar.gz ttf-adf_0.20090423.orig.tar.gz 
+-rw-r--r-- 1 henrich henrich  9294398 10月 20  2016 fonts-adf_0.20110505.orig.tar.gz
+-rw-r--r-- 1 henrich henrich 15055654  5月  7  2009 ttf-adf_0.20090423.orig.tar.gz
+</code></pre></li>
+</ul>
+
+<p>これは一体？&hellip;どうやら<a href="http://arkandis.tuxfamily.org/adffonts.html">複数のupstream source</a>をまとめてぶち込んでいるようだ。あんまり筋が良くないなぁ。これ、分割してやったほうがいいと思う。</p>
+
+<hr />
+
+<ul>
+<li><p>昨日のSylpheed on HurdがPerl 5.26 transitionが落ち着いて関連パッケージがインストールできるようになったのでビルドを試す。</p>
+
+<pre><code># ./configure --build=i686-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --disable-silent-rules --libdir=${prefix}/lib/i386-gnu --libexecdir=${prefix}/lib/i386-gnu --disable-maintainer-mode --disable-dependency-tracking --enable-static --enable-languages=python cpp qt --infodir=/usr/share/info
+(snip)
+checking build system type... i686-pc-gnu
+checking host system type... Invalid configuration `cpp': machine `cpp' not recognized
+configure: error: /bin/bash build-aux/config.sub cpp failed
+</code></pre></li>
+</ul>
+
+<p>あら？ 試しにconfigure の引数に <code>--host=i686-gnu</code> を指定したら通るようにはなったが、これが自動で引っ張ってこられないのが問題かな&hellip;と思ったら、どうやら <code>--enable-languages=python cpp qt</code> が問題でおかしな値を引っ張ってきているようだ。これを除去したらとりあえずconfigure通ってビルドできるようになった。ただ、testcaseがコケるのでパッケージは生成できていない。</p>
+
+<pre><code>PASS: t-thread1
+PASS: t-thread-keylist
+t-thread-keylist-verify.c:92: GPGME: Too many open files
+FAIL: t-thread-keylist-verify
+stopping gpg-agent 
+PASS: final.test
+======================================
+1 of 26 tests failed
+Please report to http://bugs.gnupg.org
+======================================
+Makefile:852: recipe for target 'check-TESTS' failed
+make: *** [check-TESTS] Error 1
+</code></pre>
+
+<p>これはGNUPGのサイトでアカウント作って<a href="https://dev.gnupg.org/T3294">報告した</a>→どうやら新しいバージョン1.9.0がupstreamでは出ているようだったのでこちらで試したら上記のtest caseは通るようになっていたので早速close。ただ、他のテストが通らない&hellip;。</p>
+
+<p>configure.acみると</p>
+
+<pre><code>available_languages=&quot;cl cpp python python2 python3 qt&quot;
+default_languages=&quot;cl cpp python qt&quot;
+</code></pre>
+
+<p>なので、<code>--enable-languages=python cpp qt</code> が本当に必要かどうか、他のArchでも削除して問題ないことを確認したら、とりあえずこれを外すだけでもしたい。</p>
+
+<hr />
+
+<ul>
+<li>9.1が出ていたので<a href="http://www.debian.or.jp">debian.or.jp</a>の情報を更新。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 22, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のグルーミング作業。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/858089">vmdk-stream-converter</a>
+
+<ul>
+<li>LaunchPadで<a href="https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995">Bug登録されてた</a>から何かね？と思ったらMIR&hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/858088">psphere</a></li>
+<li><a href="https://tracker.debian.org/news/858092">fonts-kanjistrokeorders</a></li>
+<li><a href="https://tracker.debian.org/news/858099">fonts-komatuna</a></li>
+<li><a href="https://tracker.debian.org/news/858098">fonts-ipafont</a></li>
+<li><a href="https://tracker.debian.org/news/858130">svn-workbench</a>。<a href="https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html">desktopファイルにkeywordが足りない</a>ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。</li>
+<li>fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。<a href="https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name">short-name</a>では「public-domain」とハイフン入れるのね。→<a href="https://tracker.debian.org/news/858133">アップロードした</a>。</li>
+</ul>
+
+<hr />
+
+<p>珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ<code>@ANY_VERSION@</code>・<code>@ARCHIVE_EXT@</code> と書けるのでそれを使うと良いよ、という話をした。</p>
+
+<hr />
+
+<p>sylpheedのビルドが全部揃ってないのが気になったので調査。</p>
+
+<pre><code>sylpheed build-depends on missing:
+- libgpgme-dev:hurd-i386 (&gt;= 1.0.0)
+</code></pre>
+
+<p>これか。<a href="https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid">https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid</a> を見るとoverride_dh_auto_configureでコケてビルドが失敗している&hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。<a href="https://people.debian.org/~sthibault/hurd-i386/">qemuイメージの配布</a>で新しいイメージが出てたのでそれをベースにやり直してみよう。</p>
+
+<pre><code>$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI
+Converting from raw image file=&quot;debian-hurd-20170613.img&quot; to file=&quot;debian-hurd-converted-20170613.vdi&quot;... 
+Creating dynamic image with size 5243928576 bytes (5001MB)...
+</code></pre>
+
+<p>で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思って<code>sudo modprobe vboxdrv</code>してVBoxを立ち上げなおしてみても同じエラー。&hellip;あ、kernelが変わったせい？ <code>sudo dpkg-reconfigure virtualbox-dkms</code>してみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&hellip;という謎の対処療法的な解決の仕方でスッキリしない。</p>
+
+<p>あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ</p>
+
+<p>ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&hellip;</p>
+
+<pre><code>The following packages have unmet dependencies:
+ texinfo : Depends: perlapi-5.24.1 but it is not installable
+           Depends: libxml-libxml-perl but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 21, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fontforgeで新しいバージョンになってからhurdだけがビルドできてないなーと気づいたので、<a href="https://github.com/fontforge/fontforge/issues/3119">問い合わせ</a>だけしておく。。。</li>
+<li>VcsWatchでどうやってチェックするブランチを指定するかわからなかったので、<a href="https://lists.debian.org/debian-qa/2017/07/msg00031.html">問い合わせ</a>だけしておく。。。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -329,351 +794,6 @@ and may not include tests.
 <hr />
 
 <p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">READMEなmanのファイル名がおかしい件</a>は<a href="https://lists.debian.org/debian-perl/2017/07/msg00012.html">debian-perlに飛ばして</a>ヘルプを乞うてみる&hellip;「READMEは削除しとるで。<a href="https://sources.debian.net/src/libmojolicious-plugin-authentication-perl/1.29-1/debian/rules/">こんな風に</a>」&hellip;な、なるほど。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 16, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/todo">todo</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のケアリスト。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a>、<a href="https://tracker.debian.org/news/856662">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a>、<a href="https://tracker.debian.org/news/856663">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856571">xfonts-shinonome</a>、<a href="https://tracker.debian.org/news/856666">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856648">xfonts-naga10</a>、<a href="https://tracker.debian.org/news/856665">その２</a></li>
-<li><a href="https://tracker.debian.org/news/856650">tiarra</a></li>
-<li><a href="https://tracker.debian.org/news/856669">libspiro</a></li>
-<li><a href="https://tracker.debian.org/news/856686">xfonts-ayu</a></li>
-<li><a href="https://tracker.debian.org/news/856690">fonts-horai-umefont</a></li>
-<li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
-
-<ul>
-<li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
-</ul></li>
-</ul>
-
-<p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
-
-<p>その他、ruby-interpriterのdropなど。なぜか<a href="https://packages.debian.org/sid/ruby2.1">ruby2.1がarm64のdeb-portsに残ってる</a>状況なのが不思議。</p>
-
-<hr />
-
-<p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
-
-<hr />
-
-<p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
-
-<pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
-$ cd libselenium-remote-driver-perl
-
-(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
-$ git branch -D upstream
-$ git tag -d upstream/1.20
-
-(空のブランチを作る)
-$ git checkout --orphan upstream
-$ git rm -rf *
-
-(upstreamブランチはGithubのmasterから取得するようにする)
-$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
-$ git pull github
-$ git fetch
-$ git branch -u github/master upstream
-</code></pre>
-
-<pre><code class="language-git">
-------------------------------
-前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489)、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。
-
-</code></pre>
-
-<p>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
-```</p>
-
-<p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
-
-<p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 15, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>M+ BITMAP FONTSのパッチを<a href="https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html">upstreamに送付</a>完了。やれやれ。</p>
-
-<hr />
-
-<p><a href="https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/">openSUSE Conference Asia</a>
-の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。</p>
-
-<p>さて<a href="https://events.opensuse.org/">submit</a>&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
-
-<pre><code>You have used 99 words. Abstracts must be between 150 and 500 words.
-</code></pre>
-
-<p>&hellip;150 wordsつらい(´・ω・`)</p>
-
-<hr />
-
-<p>今日はcollab-maintな奴を更新</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/856447">docx2txt</a></li>
-<li><a href="https://tracker.debian.org/news/856445">riece</a></li>
-<li><a href="https://tracker.debian.org/news/856446">g-wrap</a></li>
-</ul>
-
-<hr />
-
-<p>libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&hellip;</p>
-
-<pre><code>E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
-E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
-</code></pre>
-
-<p>これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。</p>
-
-<p>それと最近のバージョンではMock::Timeが必要なようなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428">libmock-time-perlをITP</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jul 14, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
-
-<ul>
-<li>ちょっとした待ち時間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">バグ報告</a>の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。<code>mv README.pod README</code>したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jul 13, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
-
-<ul>
-<li>screenfetchの<a href="https://tracker.debian.org/news/855944">watchファイルを直した</a>。</li>
-<li>twittering-modeの<a href="https://tracker.debian.org/news/855945">watchファイルを直してたやつをNMUした</a>。</li>
-<li>先日のfonts-konatuの更新で<a href="https://tracker.debian.org/news/855946">watchファイルが漏れていたので対応した</a>。</li>
-</ul>
-
-<p>その他も少し。</p>
-
-<ul>
-<li>osdn.jp→.netへの切り替えを作業&hellip;してる間に他にもアップデートできそうなところを見つけたので<a href="https://tracker.debian.org/news/855956">xfonts-ayuを更新</a>&hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。</li>
-<li><a href="https://tracker.debian.org/news/855949">xfonts-mplusを更新</a>。M+ BITMAP FONTSのパッチをupstreamに送付&hellip;したのだが届かない。添付だと跳ねられるのかしら？</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jul 12, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
-
-<ul>
-<li>fonts-tomsontalksの<a href="https://tracker.debian.org/news/855734">debian/watchファイルを修正、他</a></li>
-<li>もう一つmadfuloadについても<a href="https://tracker.debian.org/news/855736">watchファイルの修正他</a></li>
-<li>さらにfonts-ocr-aも<a href="https://tracker.debian.org/news/855738">watchファイルの修正他</a></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>Todoリストから「libuninameslistのmulti-arch対応」実施。&ndash;deleyed 2 で放り込んでおく。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jul 11, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗いて、fonts-konatuのupstreamのURLが変わっていたのを思い出したので<a href="https://tracker.debian.org/news/855486">対応</a>。さらにfonts-kilojiもupstreamのURLが変わってたようなのでこちらも<a href="https://tracker.debian.org/news/855490">対応</a>。</p>
-
-<hr />
-
-<p>krb5でsaslバックエンドなLDAPが使えるようになってない、というのを見かけたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868035">判る範囲でBTS</a>しておいた。</p>
 
 					
 				</div>
@@ -982,7 +1102,7 @@ E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.4 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.5 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

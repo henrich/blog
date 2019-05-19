@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.4" />
+	<meta name="generator" content="Hugo 0.55.5" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,6 +60,276 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 19, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>docker.io</code>パッケージがアップデートされたのを見て、パッケージ情報見てたらupstreamのサイトが移動してたので<a href="https://salsa.debian.org/docker-team/docker/merge_requests/1">MergeRequestだした</a>
+
+<ul>
+<li>マージされた</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, May 18, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>git-buildpackage</code>のサンプル<code>gbp.conf</code>の設定が<code>bzip2</code>使っていたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929141">xzに置き換えパッチ</a>だした
+
+<ul>
+<li>マージされた</li>
+</ul></li>
+<li><code>unblock: ubuntu-keyring/2018.09.18.1-5</code>が通った、が指摘を受けてた点は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929165">別バグとしてファイルされた</a>。見直さないとな…</li>
+<li><a href="https://tracker.debian.org/news/1039981/accepted-sphinx-intl-0912-1-source-into-unstable/">sphinx-intlパッケージをアップデートした</a>
+
+<ul>
+<li>1.0.0が最新、となっているもののmasterブランチにはタグが見当たらないので<a href="https://github.com/sphinx-doc/sphinx-intl/issues/32">Issue立てといた</a></li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/1039984/accepted-jcodings-1044-1-source-into-unstable/">jcodingsパッケージをアップデートした</a>。
+
+<ul>
+<li><code>debian/libjcodings-java.poms</code>で<code>--no-parent</code>オプションを使えばいいのを発見して<code>debian/patches</code>はdropした。なんで今まで気づいてなかったんだ。</li>
+</ul></li>
+<li><a href="https://tracker.debian.org/news/1039985/accepted-jruby-joni-2127-1-source-into-unstable/">jruby-joniパッケージをアップデートした</a></li>
+<li>その他、フリーズ中でアップロードしないほうがいいかな、と思ったのは更新したのをgitリポジトリにアップロードするに止めた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, May 17, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/1039927/accepted-ruby-parallel-tests-2290-1-source-into-unstable/">ruby-parallel-testsパッケージをアップデート</a></li>
+<li><a href="https://tracker.debian.org/news/1039928/accepted-ruby-serverengine-211-1-source-into-unstable/">ruby-serverengineパッケージをアップデート</a>
+
+<ul>
+<li>今見たら<a href="https://ci.debian.net/data/autopkgtest/testing/amd64/r/ruby-serverengine/2385536/log.gz">ciがコケてる</a>…要調査だ。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/15/ossummit-japan-2019%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%AB%E5%BF%9C%E5%8B%9F/">OSSummit Japan 2019ボランティアスタッフに応募</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 15, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/oss">oss</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/oss">oss</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://events.linuxfoundation.org/events/open-source-summit-japan-2019/attend/about/">OSSummit Japan 2019</a>のボランティアスタッフに応募しておいた。DebConfの移動があるので初日だけ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, May 13, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://debconf19.debconf.org/">DebConf19</a>に向けて思いつきのCfPを投げた</li>
+<li><a href="https://www.gnu.org/software/guix/blog/2019/gnu-guix-1.0.0-released/">GUIX</a>の売り文句が素晴らしいのでホントかなー？と思ってVMを立ち上げるもいきなりぶっ壊れててまともに動かせない様に見えるので涙した。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/08/%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ライターのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 8, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/pc">pc</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/writing">writing</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>検証用にHDD 2TB「Seagate IronWolf 3.5」を一つ購入した…。PCのバックアップ体制をきちんと整理しておかねば、という思いが強まった。
+そして「2.<sup>5</sup>&frasl;<sub>3</sub>.5インチSATA HDDエンクロージャーの不具合」についても問い合わせ。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -84,6 +354,8 @@
 <li><a href="https://bugs.debian.org/926623">ruby-parallel-tests</a>、<a href="https://bugs.debian.org/926572">ruby-serverengine</a>、<a href="https://bugs.debian.org/926621">ruby-strptime</a>がリポジトリに入った。<code>fluentd</code>に向けてだいぶ進んだ。</li>
 <li><a href="https://lists.debian.org/debian-devel/2019/05/msg00044.html">令和対応状況メール</a>を投げた</li>
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928410">「ppc64elのインストールに失敗した〜」メール</a>を見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。</li>
+<li>jdのbackports削除依頼を出した。</li>
+<li>byobuの依存関係のパッケージ名が古かったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928600">パッチ出した</a></li>
 </ul>
 
 					
@@ -309,278 +581,6 @@ Priority: optional
 <p>OpenChainのワーキンググループでツールの話を聞いてきたので、どんな感じかなーと<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924659">fosslogyのWNPPバグ</a>を覗いてみた。</p>
 
 <p>ついでに<a href="https://github.com/spdx/tools">SPDXのtool</a>のパッケージングが出来ないかを色々と。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Apr 23, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>jessieのstable-updatesリポジトリ削除でaptのエラー→jessieを利用してたコンテナ環境がビルド失敗という話題があったが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927776">「stretchではstable-updatesは削除しないで」というバグをファイルしておいた</a>。関係する人たちとかにも伝えておいたほうが良いだろうということで、<a href="https://discuss.circleci.com/t/fyi-asking-debian-ftpmasters-to-not-remove-obsolete-stable-updates-repo-from-mirror/29944">CircleCI側でも告知しておいた</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Apr 21, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>fonts-arphic-bkai00mpパッケージの<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927578">更新（引退したbubulleをUploadresから削除）</a>を実施。</p>
-
-<hr />
-
-<p><a href="https://osdn.net/projects/ipafonts/ticket/39148">IPAフォントの令和対応チケット</a>を起票しておいた。忘れそうだったので。
-最悪、IPAフォントの「令」「和」から「㍻」を真似て作る、だろうか。</p>
-
-<hr />
-
-<p>OpenBVE界隈の人がDebianからパッケージが削除されてて困ってたので、スポンサーするよという話をしておいたらWNPPバグに登録したようなので、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927278#8">内容をざっくりレビューしておいた</a>。疲れた…。ライセンス周りはまだ精査が必要そう。</p>
-
-<p>一応<a href="https://salsa.debian.org/debian/openbve">リポジトリは用意しておいた</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Apr 20, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>fluentdのrubyサポートバージョンについて、<a href="https://github.com/fluent/fluentd/issues/2380?fbclid=IwAR2GhPl7EEX5m-bTf4GbfTzc3yex5N-2bHReQ5B07-tdP6QnQ_Oqz-upo0w">各distroではこうなんだから、もう切っちゃっても良いんじゃない？</a>というのを書いてきた。まぁ、継続されても別に問題はないんだけど。</p>
-
-<hr />
-
-<p>で、パッケージング。通ったり通らなかったりするテストを落として、名前がかぶるテストを名前変えて、ようやく100%通るように。</p>
-
-<pre><code class="language-ruby">-------------------------------------------------------------------------------
-2705 tests, 10932 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications  
-100% passed
--------------------------------------------------------------------------------
-3.13 tests/s, 12.67 assertions/s
-rake aborted!
-</code></pre>
-
-<p>ちょ、なんで100% passedなのに<code>rake aborted!</code>なのよ？このために止まってる。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Apr 19, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>武藤さんに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927263">rieceが起動しないバグ</a>を見つけてもらって、木下さんにも助力いただき対応策が分かったので適用して閉じた</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Apr 16, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>まずは<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926570">ruby-sigdumpパッケージが入った</a>。これでbuild用の独自chroot環境なくすのに一歩近づいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Apr 15, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>残りのメモ。まだ長いなぁ。</p>
-
-<pre><code class="language-text">    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
-    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
-    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
-    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
-    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
-    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
-    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
-    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
-    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
-</code></pre>
 
 					
 				</div>
@@ -881,7 +881,7 @@ rake aborted!
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.4 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.5 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

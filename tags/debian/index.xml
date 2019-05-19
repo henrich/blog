@@ -8,10 +8,46 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> docker.ioパッケージがアップデートされたのを見て、パッケージ情報見てたらupstreamのサイトが移動してたのでMergeRequestだした  マージされた   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> git-buildpackageのサンプルgbp.confの設定がbzip2使っていたのでxzに置き換えパッチだした  マージされた  unblock: ubuntu-keyring/2018.09.18.1-5が通った、が指摘を受けてた点は別バグとしてファイルされた。見直さないとな… sphinx-intlパッケージをアップデートした  1.0.0が最新、となっているもののmasterブランチにはタグが見当たらないのでIssue立てといた  jcodingsパッケージをアップデートした。  debian/libjcodings-java.pomsで--no-parentオプションを使えばいいのを発見してdebian/patchesはdropした。なんで今まで気づいてなかったんだ。  jruby-joniパッケージをアップデートした その他、フリーズ中でアップロードしないほうがいいかな、と思ったのは更新したのをgitリポジトリにアップロードするに止めた  </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> ruby-parallel-testsパッケージをアップデート ruby-serverengineパッケージをアップデート  今見たらciがコケてる…要調査だ。   </description>
+    </item>
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> DebConf19に向けて思いつきのCfPを投げた GUIXの売り文句が素晴らしいのでホントかなー？と思ってVMを立ち上げるもいきなりぶっ壊れててまともに動かせない様に見えるので涙した。  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
@@ -19,7 +55,7 @@
       <pubDate>Tue, 07 May 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> ruby-parallel-tests、ruby-serverengine、ruby-strptimeがリポジトリに入った。fluentdに向けてだいぶ進んだ。 令和対応状況メールを投げた 「ppc64elのインストールに失敗した〜」メールを見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。  </description>
+      <description> ruby-parallel-tests、ruby-serverengine、ruby-strptimeがリポジトリに入った。fluentdに向けてだいぶ進んだ。 令和対応状況メールを投げた 「ppc64elのインストールに失敗した〜」メールを見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。 jdのbackports削除依頼を出した。 byobuの依存関係のパッケージ名が古かったのでパッチ出した  </description>
     </item>
     
     <item>

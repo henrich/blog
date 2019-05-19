@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.4" />
+	<meta name="generator" content="Hugo 0.55.5" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,351 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 16, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/todo">todo</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>今日のケアリスト。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a>、<a href="https://tracker.debian.org/news/856662">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a>、<a href="https://tracker.debian.org/news/856663">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856571">xfonts-shinonome</a>、<a href="https://tracker.debian.org/news/856666">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856648">xfonts-naga10</a>、<a href="https://tracker.debian.org/news/856665">その２</a></li>
+<li><a href="https://tracker.debian.org/news/856650">tiarra</a></li>
+<li><a href="https://tracker.debian.org/news/856669">libspiro</a></li>
+<li><a href="https://tracker.debian.org/news/856686">xfonts-ayu</a></li>
+<li><a href="https://tracker.debian.org/news/856690">fonts-horai-umefont</a></li>
+<li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
+
+<ul>
+<li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
+</ul></li>
+</ul>
+
+<p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
+
+<p>その他、ruby-interpriterのdropなど。なぜか<a href="https://packages.debian.org/sid/ruby2.1">ruby2.1がarm64のdeb-portsに残ってる</a>状況なのが不思議。</p>
+
+<hr />
+
+<p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
+
+<hr />
+
+<p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
+
+<pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
+$ cd libselenium-remote-driver-perl
+
+(せっかく作ってくれたupstreamブランチとタグだが消してしまう)
+$ git branch -D upstream
+$ git tag -d upstream/1.20
+
+(空のブランチを作る)
+$ git checkout --orphan upstream
+$ git rm -rf *
+
+(upstreamブランチはGithubのmasterから取得するようにする)
+$ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
+$ git pull github
+$ git fetch
+$ git branch -u github/master upstream
+</code></pre>
+
+<pre><code class="language-git">
+------------------------------
+前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489)、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。
+
+</code></pre>
+
+<p>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
+```</p>
+
+<p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
+
+<p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jul 15, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>M+ BITMAP FONTSのパッチを<a href="https://ja.osdn.net/projects/mplus-fonts/lists/archive/dev/2017-July/000822.html">upstreamに送付</a>完了。やれやれ。</p>
+
+<hr />
+
+<p><a href="https://news.opensuse.org/2017/07/07/opensuse-asia-summit-2017-tokyo-call-for-proposals-is-open/">openSUSE Conference Asia</a>
+の情報を見てCfP書いてみる。snapperとかメンテしてるし、openQAは今作業中だし、その内容を、ということで。</p>
+
+<p>さて<a href="https://events.opensuse.org/">submit</a>&hellip;としようと思ったら登録が必要とな。しかし、「アドレス登録済み』と言われて跳ねられる&hellip;あ、昔Novellのアカウント作ったな、そう言えば。探してみたけど見つからず、リセットしようにもユーザー名は「存在しない」とな？？どういうことやねん。メールアドレスからユーザー名を割り出し→秘密の質問の答えを割り出し→ようやくリセットして登録したところ&hellip;</p>
+
+<pre><code>You have used 99 words. Abstracts must be between 150 and 500 words.
+</code></pre>
+
+<p>&hellip;150 wordsつらい(´・ω・`)</p>
+
+<hr />
+
+<p>今日はcollab-maintな奴を更新</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/856447">docx2txt</a></li>
+<li><a href="https://tracker.debian.org/news/856445">riece</a></li>
+<li><a href="https://tracker.debian.org/news/856446">g-wrap</a></li>
+</ul>
+
+<hr />
+
+<p>libselenium-remote-driver-perlのパッケージングが止まったままになっていたのを突かれていたので、思い出す作業から&hellip;</p>
+
+<pre><code>E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/libibushandler.so
+E: libselenium-remote-driver-perl source: source-is-missing lib/Selenium/Firefox/x86/x_ignore_nofocus.so
+</code></pre>
+
+<p>これか。upstreamに「どうしたらこのバイナリ作れるの？」を問い合わせ。</p>
+
+<p>それと最近のバージョンではMock::Timeが必要なようなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868428">libmock-time-perlをITP</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jul 14, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
+
+<ul>
+<li>ちょっとした待ち時間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839621">バグ報告</a>の内容を調査。かち合ってるパッケージを見ると両方共README.podファイルを誤ったファイル名でインストールしようとしてるようだ。<code>mv README.pod README</code>したら回避はできる、けどどう考えてもworkaroundである。Makefile.PLを実行した時点で生成されるMakefileがおかしいのだが、はてさて。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jul 13, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
+
+<ul>
+<li>screenfetchの<a href="https://tracker.debian.org/news/855944">watchファイルを直した</a>。</li>
+<li>twittering-modeの<a href="https://tracker.debian.org/news/855945">watchファイルを直してたやつをNMUした</a>。</li>
+<li>先日のfonts-konatuの更新で<a href="https://tracker.debian.org/news/855946">watchファイルが漏れていたので対応した</a>。</li>
+</ul>
+
+<p>その他も少し。</p>
+
+<ul>
+<li>osdn.jp→.netへの切り替えを作業&hellip;してる間に他にもアップデートできそうなところを見つけたので<a href="https://tracker.debian.org/news/855956">xfonts-ayuを更新</a>&hellip;何故かpristine-tarブランチのデータがorig.tar.xzと違うようだ。しかたがないのであとから再度インポート。</li>
+<li><a href="https://tracker.debian.org/news/855949">xfonts-mplusを更新</a>。M+ BITMAP FONTSのパッチをupstreamに送付&hellip;したのだが届かない。添付だと跳ねられるのかしら？</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jul 12, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗く。</p>
+
+<ul>
+<li>fonts-tomsontalksの<a href="https://tracker.debian.org/news/855734">debian/watchファイルを修正、他</a></li>
+<li>もう一つmadfuloadについても<a href="https://tracker.debian.org/news/855736">watchファイルの修正他</a></li>
+<li>さらにfonts-ocr-aも<a href="https://tracker.debian.org/news/855738">watchファイルの修正他</a></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>Todoリストから「libuninameslistのmulti-arch対応」実施。&ndash;deleyed 2 で放り込んでおく。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jul 11, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗いて、fonts-konatuのupstreamのURLが変わっていたのを思い出したので<a href="https://tracker.debian.org/news/855486">対応</a>。さらにfonts-kilojiもupstreamのURLが変わってたようなのでこちらも<a href="https://tracker.debian.org/news/855490">対応</a>。</p>
+
+<hr />
+
+<p>krb5でsaslバックエンドなLDAPが使えるようになってない、というのを見かけたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868035">判る範囲でBTS</a>しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -315,411 +660,6 @@ Please see the logfiles in /var/log/letsencrypt for more details.
 </code></pre>
 
 <p>Oh&hellip; 上位ドメインであるsakura.ne.jpに既に発行しまくってるのでもうダメよ、と出て失敗。Let&rsquo;s Encryptは諦めざるを得ない&hellip;</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jul 1, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/852775">darts をアップデート</a>。未だにVcs-* をhttpsにしてなかったとは&hellip;</li>
-<li><a href="https://tracker.debian.org/news/852940">mecab-naist-jdic をアップデート</a>。特にこれということもなく。</li>
-<li><a href="https://tracker.debian.org/news/852917">unidic-mecab をアップデート</a> 。dh10でスッキリと。</li>
-<li>naist-jdic、<a href="https://bugs.launchpad.net/ubuntu/+source/naist-jdic/+bug/1676960">LPのバグ報告</a>がまったく原因が思いつかない。なんでiconvがusage出すんだ？ 報告にあったUbuntu 16.10はもう終わりになってたのかと思ったが、まだEOLになってなかったようなので、検証のためにイメージをダウンロードして仮想マシンを&hellip;と思ったが、よくよく考えたらdebootstrapしたら良かったんじゃないか？ということで、<code>$ sudo debootstrap xenial /srv/chroot/xenial http://ftp.riken.jp/pub/Linux/ubuntu/</code> などとしてchroot作ってテスト。再現せず。だよねー</li>
-<li>mecab、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">バグ報告</a>を確認。どうすっかなーというところで今日は見送りかな。</li>
-
-<li><p><a href="https://tracker.debian.org/news/852781">mecab-jumandic をアップデート</a>。あれ？pristine-tarブランチがないよ？ということで先日の方法と思ったのだけど、つい先日にアップデートされたgit-buildpackageにpristine-tarコマンドが追加されてたのでそれを。<code>$ gbp pristine-tar commit ~/ダウンロード/mecab-jumandic_7.0-20130310.orig.tar.gz</code>っと。</p>
-
-<pre><code>git-buildpackage (0.8.17) unstable; urgency=medium
-(snip)
-* [956982c] New command 'pristine-tar'
-This allows one to run the pristine-tar import at a later point.  This
-is useful when using component tarballs and we need to reference the
-right trees for the commits.
-</code></pre></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>消えたら可哀想だな、ということで<a href="https://tracker.debian.org/news/852950">plumをAdoptした</a>。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E6%8F%90%E6%A1%88%E3%82%81%E3%82%82/">提案めも</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jun 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/proposal">proposal</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation">pkg-configとpkgconfigの入れ替え話</a>もDebianに適用できたりするのかな？という気が。両方のメンテナに振ってみるのはありかな。</li>
-<li><a href="https://fedoraproject.org/wiki/Releases/26/ChangeSet">https://fedoraproject.org/wiki/Releases/26/ChangeSet</a> のようなChangeSetをリリースの度に作っておいて、それをリリースノートに反映するのはどうだろうか？Pros,Consを整理して提案したい。
-
-<ul>
-<li>現在、リリーススケジュールがタイトに決まってないからあまり考慮されていないが、リリースマネジメントするのにGo/NoGo出す（あるいはその前にフォローする）のに重要だろう</li>
-<li>開発の現状を潜在的Contributorに伝えて開発を上手く進めていくのに重要だろう</li>
-<li>ユーザーに開発中のDebianをアピールするのに重要だろう（リリースまでの空白期間を無くす）</li>
-<li>リリースノートの記述が楽になるし、少ない労力で漏れ無く記述できるだろう</li>
-</ul></li>
-<li><a href="https://fedoraproject.org/wiki/Releases/26/Schedule">https://fedoraproject.org/wiki/Releases/26/Schedule</a> を参考にDebian Wikiにupstream-scheduleページを作っておくべきだな。
-
-<ul>
-<li>→ <a href="https://wiki.debian.org/upstream-schedule">https://wiki.debian.org/upstream-schedule</a> を作ってみた。</li>
-</ul></li>
-<li><a href="http://debian-mirror.sakura.ne.jp/">debian-mirror.sakura.ne.jp</a> をHTTPS対応にするのはどうしたら良いか、を確認すること。Let&rsquo;s encryptを利用する？さくらインターネットさんがwildcard証明書を取得していたらそれを利用する？</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jun 30, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://qa.debian.org/debcheck.php?dist=unstable&amp;package=snapper">snapperのdebcheck</a>を見るとbtrfs-toolsはLinux specificだから、Arch:linux-anyにしたほうが良いのだろうか？&hellip;と思って中身見たが、既にlinux-anyだった。なんなんだ。btrfs-toolsは既にbtrfs-progsに置き換わってたので、そちらだけ反映。アップロードはまだ。</p>
-
-<pre><code>I: snapper: systemd-service-file-missing-documentation-key lib/systemd/system/snapper-boot.service
-I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-cleanup.service
-I: snapper: systemd-service-file-missing-install-key lib/systemd/system/snapper-timeline.service
-I: libsnapper4: no-symbols-control-file usr/lib/x86_64-linux-gnu/libsnapper.so.4.1.0
-</code></pre>
-
-<p>これは減らせるだろうか？</p>
-
-<hr />
-
-<p><a href="https://buildd.debian.org/status/package.php?p=os-autoinst">os-autoinst</a>も同様かな？ビルドが失敗してたのが気になるが、どうなんだろう。KVM依存とかがあるとしたら外すのが妥当なんだけど。</p>
-
-<p>qemu依存はあったので、こちらはqemuと合わせる形にしてみた。armだけは死んでるし取り除いたのだけど。qemuのArchのズラッと並んだ感じ、linux-anyに出来ない理由はあるのだろうか？</p>
-
-<p>アップロードはまだ。それよりもupstreamがタグを打たないのが気になる&hellip;。</p>
-
-<hr />
-
-<p><a href="https://bugs.launchpad.net/ubuntu/+source/fonts-misaki/+bug/1121932">美咲フォントのバグレポート</a>、内容を精査。直ってたので閉じておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jun 29, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>screenfetch、<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">Ubuntu側のバグ登録</a>を確認。Power7なマシンにログインするのは、porterboxがあるだろうから出来なくもないけど面倒くさそう…最新版でも同じかを確認する返事。</p>
-
-<hr />
-
-<p>トレーニング用のサンプルにでも使うか、と思っていたWhizzytexパッケージがビルドできなくなっているのを発見してしまった。FTBFSって奴ですな（通常のバイナリパッケージはmass rebuildする奇特な人が居て見つけられるのだけど、これはArch: allだから逃れてしまったんじゃないかな、という推測）。</p>
-
-<ol>
-<li>cowbuilderでビルドしようとしたらpgfは仮想パッケージだからビルドできないよ、と出てきた&hellip;</li>
-<li>apt show pgf&hellip;パッケージは確かに存在しない。</li>
-<li><a href="https://tracker.debian.org/pkg/pgf">trackerのページ</a>で確認すると、最後のは<a href="https://tracker.debian.org/news/583320">[2014-11-03] Removed 2.10-1 from unstable</a>&hellip;なになに？「integrated into texlive」？</li>
-<li>ということで、texliveなパッケージにpgfが含まれてるようだと言うことを踏まえてapt searchしてtexlive-picturesを追加（よく考えたらapt-fileの方が正確だったか？）</li>
-
-<li><p>debsignしてdputして終わり。</p>
-
-<pre><code>diff -Nru whizzytex-1.3.2/debian/changelog whizzytex-1.3.2/debian/changelog
---- whizzytex-1.3.2/debian/changelog    2014-09-15 11:44:18.000000000 +0900
-+++ whizzytex-1.3.2/debian/changelog    2017-06-29 20:11:36.000000000 +0900
-@@ -1,3 +1,11 @@
-+whizzytex (1.3.2-1.4) unstable; urgency=medium
-+
-+  * Non-maintainer upload.
-+  * debian/control
-+    - fix Build-Depends since pgf is intergrated into TeXLive.
-+
-+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Thu, 29 Jun 2017 20:11:36 +0900
-+
-whizzytex (1.3.2-1.3) unstable; urgency=medium
-
-* Non-maintainer upload.
-diff -Nru whizzytex-1.3.2/debian/control whizzytex-1.3.2/debian/control
---- whizzytex-1.3.2/debian/control      2014-09-15 11:43:30.000000000 +0900
-+++ whizzytex-1.3.2/debian/control      2017-06-29 20:11:36.000000000 +0900
-@@ -2,7 +2,7 @@
-Section: tex
-Priority: optional
-Maintainer: Junichi Uekawa &lt;dancer@debian.org&gt;
--Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, pgf
-+Build-Depends-Indep: hevea (&gt;= 1.08), texlive-pstricks, texlive-latex-extra, advi, texlive-latex-recommended, tex-common, texlive-pictures,
-Build-Depends: debhelper (&gt;&gt; 7.0.50~)
-Standards-Version: 3.7.2
-</code></pre></li>
-</ol>
-
-<hr />
-
-<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861363">poppler-dataへのバグレポート</a>をチェック。レポートにも書いてある通り、<a href="https://bugzilla.redhat.com/show_bug.cgi?id=842351">RHBZを確認</a>。</p>
-
-<ul>
-<li>何故か最初にUbuntu（つまりはDebianからそのまま引っ張った）のパッケージの話が…あー、upstreamがファイル追加をrejectした、らしい（もう覚えてないけど）。</li>
-<li>なので、Identity-UTF16-Hファイルはghostscriptから取ってきた、ようだ。ということは同じことすれば良いのかな。</li>
-
-<li><p>ということで、fedoraのpoppler-dataのsrpmを取ってきて展開。rpm2cpio *.srpm|cpio -id実行。Identity-UTF16-Hがデーンと置かれていた。specファイルを見るとIdentity-UTF16-HはGPL-3?</p>
-
-<pre><code># cidToUnicode, nameToUnicode and unicodeMap data files
-# are under the COPYING.gpl2 license
-# Identity-UTF16-H is GPLv3+ (from GPL ghostscript)
-</code></pre></li>
-</ul>
-
-<p>とりあえず、ghostscriptのパッケージを取ってきてLICENSEファイルを見ると</p>
-
-<pre><code>The files in the Resource directory and any subdirectories thereof
-are also part of GPL Ghostscript, with the explicit exception of
-the files in the CMap subdirectory (except &quot;Identity-UTF16-H&quot;,
-which is part of GPL Ghostscript). The CMap files are copyright
-Adobe Systems Incorporated and covered by a separate, Affero GPL
-compatible license.
-</code></pre>
-
-<p>あれ？AGPLな気がするんだけど… debian/copyrightでチェックしよう。</p>
-
-<pre><code>Files: Resource/CMap/Identity-UTF16-H
-Copyright: 2003, Artifex Software
-License-Grant:
- GPL Ghostscript is free software; you can redistribute it and/or modify
- it under the terms the GNU Affero General Public License as published
- by the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-License: AGPL-3+
-</code></pre>
-
-<p>だよねぇ。Fedoraの方は間違いだと思う。</p>
-
-<p>upstream tarball をもう一つ追加して対応、なんだけど git-buildpackage が multiple
-upstream tarball に対応してないのがアレ。</p>
-
-<hr />
-
-<p><a href="https://www.staff.science.uu.nl/~penni101/mirmon/">mirmon</a> のtypoにLintianがうるさく感じたのでパッチをメール。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/28/apt%E3%81%AE%E5%A5%87%E5%A6%99%E3%81%AA%E5%87%BA%E5%8A%9B/">aptの奇妙な出力</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jun 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>582 MB を 7分 1秒 で取得しました (1,382 kB/s)                                                                                                                                                               
-Calling ['apt-get', '-qq', 'changelog', 'console-setup-linux=1.165'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'libavutil55=7:3.2.6-1+b3'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'gvfs-backends=1.30.4-1+b1'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-notify=2.2.6-2+b3'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-visualization=2.2.6-2+b3'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'vlc-plugin-skins2=2.2.6-2+b3'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'vlc=2.2.6-2+b3'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'mplayer=2:1.3.0-6+b3'] to retrive changelog
-Calling ['apt-get', '-qq', 'changelog', 'gstreamer1.0-plugins-bad=1.12.1-1+b1'] to retrive changelog
-changelog を読んでいます... 完了
-</code></pre>
-
-<p>??? 何故こんな出力が？</p>
-
-<pre><code>Package: apt
-Version: 1.4.6
-</code></pre>
-
-<pre><code>Package: apt-listchanges
-Version: 3.12
-</code></pre>
-
-<p>どちらだろうか？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jun 28, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
-
-<p>次にbase.cowを作る。</p>
-
-<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
-</code></pre>
-
-<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
-
-<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
-</code></pre>
-
-<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
-</code></pre>
-
-<p>以上でアップロード。</p>
 
 					
 				</div>
@@ -1028,7 +968,7 @@ Version: 3.12
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.4 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.5 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
