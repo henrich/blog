@@ -7,8 +7,25 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Sun, 19 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Mon, 20 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;1.0.0がmasterにマージされたので、&lt;a href=&#34;https://tracker.debian.org/news/1040085/accepted-sphinx-intl-100-1-source-into-unstable/&#34;&gt;sphinx-intlパッケージをアップデートした&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929115&#34;&gt;酷いバグレポート&lt;/a&gt;を見かけたので閉じておいた。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -79,6 +96,20 @@
 &lt;li&gt;今見たら&lt;a href=&#34;https://ci.debian.net/data/autopkgtest/testing/amd64/r/ruby-serverengine/2385536/log.gz&#34;&gt;ciがコケてる&lt;/a&gt;…要調査だ。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;p&gt;&lt;a href=&#34;https://tracker.debian.org/news/1039893/accepted-fonts-sawarabi-mincho-20190515-1-source-into-unstable/&#34;&gt;fonts-sawarabi-minchoをアップデート&lt;/a&gt;&lt;/p&gt;
 </description>
           </item>
         
@@ -363,34 +394,6 @@ rake aborted!
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ちょ、なんで100% passedなのに&lt;code&gt;rake aborted!&lt;/code&gt;なのよ？このために止まってる。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Fri, 19 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;武藤さんに&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927263&#34;&gt;rieceが起動しないバグ&lt;/a&gt;を見つけてもらって、木下さんにも助力いただき対応策が分かったので適用して閉じた&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Tue, 16 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;まずは&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926570&#34;&gt;ruby-sigdumpパッケージが入った&lt;/a&gt;。これでbuild用の独自chroot環境なくすのに一歩近づいた。&lt;/p&gt;
 </description>
           </item>
         
