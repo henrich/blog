@@ -7,8 +7,44 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;fontconfigのRCバグ、直ってるよという報告者の話があったのに閉じてなかったので&lt;a href=&#34;https://bugs.debian.org/927153&#34;&gt;閉じた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;jrubyのCVEバグだが、rubygem由来でパッチそのものがあったので&lt;a href=&#34;https://bugs.debian.org/925987&#34;&gt;適用して閉じた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;snapdのCVEバグ、あとで確認しよう…&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bugs.debian.org/927942&#34;&gt;gucharmapのFTBFS&lt;/a&gt;、unicode-data 12.0由来なので弄ってビルド通るようにしてアップロードした&lt;/li&gt;
+&lt;li&gt;ghostscriptのunblockをメンテナに代わって&lt;a href=&#34;https://bugs.debian.org/929422&#34;&gt;実施してあげた&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/925555&#34;&gt;Linuxパッケージのバグ&lt;/a&gt;、upstreamで直ってたのでタグ付け&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;リリースノートをいじる&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CDがメディアとして挙げられてるが、基本DVDメディアになったので&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/23&#34;&gt;そのあたり&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ttpsで繋がるところは&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/24&#34;&gt;httpsに直した&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;ビルドがうまくいってないところが出てきちゃう、とあったので一部revert&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;notoフォントパッケージのバグじゃない？という&lt;a href=&#34;https://bugs.debian.org/929128&#34;&gt;問い合わせ&lt;/a&gt;に対応&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;firmware-atherosパッケージ変、というのがあったので&lt;a href=&#34;https://bugs.debian.org/929307&#34;&gt;replyしてみた&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929115&#34;&gt;酷いバグレポート&lt;/a&gt;を見かけたのでコメントして閉じた。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -366,34 +402,6 @@ Priority: optional
 &lt;p&gt;OpenBVE界隈の人がDebianからパッケージが削除されてて困ってたので、スポンサーするよという話をしておいたらWNPPバグに登録したようなので、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927278#8&#34;&gt;内容をざっくりレビューしておいた&lt;/a&gt;。疲れた…。ライセンス周りはまだ精査が必要そう。&lt;/p&gt;
 
 &lt;p&gt;一応&lt;a href=&#34;https://salsa.debian.org/debian/openbve&#34;&gt;リポジトリは用意しておいた&lt;/a&gt;。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;fluentdのrubyサポートバージョンについて、&lt;a href=&#34;https://github.com/fluent/fluentd/issues/2380?fbclid=IwAR2GhPl7EEX5m-bTf4GbfTzc3yex5N-2bHReQ5B07-tdP6QnQ_Oqz-upo0w&#34;&gt;各distroではこうなんだから、もう切っちゃっても良いんじゃない？&lt;/a&gt;というのを書いてきた。まぁ、継続されても別に問題はないんだけど。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;で、パッケージング。通ったり通らなかったりするテストを落として、名前がかぶるテストを名前変えて、ようやく100%通るように。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;-------------------------------------------------------------------------------
-2705 tests, 10932 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications  
-100% passed
--------------------------------------------------------------------------------
-3.13 tests/s, 12.67 assertions/s
-rake aborted!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ちょ、なんで100% passedなのに&lt;code&gt;rake aborted!&lt;/code&gt;なのよ？このために止まってる。&lt;/p&gt;
 </description>
           </item>
         

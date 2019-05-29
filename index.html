@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.5" />
+	<meta name="generator" content="Hugo 0.55.6" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,67 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, May 28, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fontconfigのRCバグ、直ってるよという報告者の話があったのに閉じてなかったので<a href="https://bugs.debian.org/927153">閉じた</a></li>
+<li>jrubyのCVEバグだが、rubygem由来でパッチそのものがあったので<a href="https://bugs.debian.org/925987">適用して閉じた</a></li>
+<li>snapdのCVEバグ、あとで確認しよう…</li>
+<li><a href="https://bugs.debian.org/927942">gucharmapのFTBFS</a>、unicode-data 12.0由来なので弄ってビルド通るようにしてアップロードした</li>
+<li>ghostscriptのunblockをメンテナに代わって<a href="https://bugs.debian.org/929422">実施してあげた</a></li>
+
+<li><p><a href="https://bugs.debian.org/925555">Linuxパッケージのバグ</a>、upstreamで直ってたのでタグ付け</p></li>
+
+<li><p>リリースノートをいじる</p>
+
+<ul>
+<li>CDがメディアとして挙げられてるが、基本DVDメディアになったので<a href="https://salsa.debian.org/ddp-team/release-notes/merge_requests/23">そのあたり</a></li>
+<li>ttpsで繋がるところは<a href="https://salsa.debian.org/ddp-team/release-notes/merge_requests/24">httpsに直した</a>。</li>
+<li>ビルドがうまくいってないところが出てきちゃう、とあったので一部revert</li>
+</ul></li>
+
+<li><p>notoフォントパッケージのバグじゃない？という<a href="https://bugs.debian.org/929128">問い合わせ</a>に対応</p></li>
+
+<li><p>firmware-atherosパッケージ変、というのがあったので<a href="https://bugs.debian.org/929307">replyしてみた</a></p></li>
+
+<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929115">酷いバグレポート</a>を見かけたのでコメントして閉じた。</p></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -451,49 +512,6 @@
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, May 6, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、<a href="https://lists.debian.org/debian-lts/2019/05/msg00016.html">LTSメーリングリストにmentionを飛ばして</a>、コマンドメールでfixedバージョンを追加しておいた。</li>
-<li>gsの修正がunblock依頼が出てなかったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927429#42">つついた</a></li>
-<li>linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -754,7 +772,16 @@
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/26/">26</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/27/">27</a></li>
     
     
     <li class="page-item">
@@ -762,7 +789,7 @@
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/26/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/27/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -781,7 +808,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.5 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 

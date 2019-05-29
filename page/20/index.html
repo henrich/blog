@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.5" />
+	<meta name="generator" content="Hugo 0.55.6" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,46 @@
 
     <div class="container">
         
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/09/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Sep 5, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>elpa-migemo をアップロード</li>
+<li>nailgun をアップロード。全く変えてないのに殆どのアーキテクチャでビルドが成功している（失敗は<a href="https://buildd.debian.org/status/fetch.php?pkg=nailgun&amp;arch=m68k&amp;ver=0.9.1-5&amp;stamp=1504617916&amp;raw=0">m68kぐらい</a>）ので、前にbuild failureが各アーキテクチャで出ていたのはやっぱりJava周りのビルド環境がおかしかったんじゃないか疑惑。</li>
+<li>os-autoinstのビルド。１年ぶりにupstreamのgitからmergeしたので色々変化が&hellip;（タグ打ってほしいなぁ。。。）。まだビルドには成功せず（テストが終わらない&hellip;これ動くのかな。）</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
         
             	
 		
@@ -485,55 +525,6 @@ E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/08/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Aug 22, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>debian-policy 4.1.0がアップロードされた&hellip;のだけども、<a href="https://www.debian.org/doc/debian-policy/">Webサイトの方</a>はCSSなどのファイルが一切アップロードされて無くて見栄えが悪い。<a href="https://lists.debian.org/debian-policy/2017/08/msg00477.html">問い合わせ</a>してみた。
-
-<ul>
-<li>どうやらウェブサイト側の問題のようでSeanが<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872944">バグを登録</a>してくれた。</li>
-</ul></li>
-<li>昨日のpkg-perlチームへの加入がOKされてたのでgit pushしておく。パッケージ自体の修正はまだ。
-
-<ul>
-<li>何故かpristine-tarブランチが切られてないパッケージがあった。どうやって作るかな？と思ったが git checkout debian/<tag>;
-gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-ignore-branch を繰り返して作成した。古いバージョンだとビルドができなくなっていたのにちょっと驚いたのと、testがskipしてるのを見逃していたなーという点。</li>
-<li>teamのroot直下じゃなくてpackagesというディレクトリを切っていたのに後で気づいて慌ててsshで入って移動した。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -802,7 +793,16 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/26/">26</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/27/">27</a></li>
     
     
     <li class="page-item">
@@ -810,7 +810,7 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/26/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/27/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -829,7 +829,7 @@ gbp buildpackage &ndash;git-pristine-tar-commit &ndash;git-pbuilder &ndash;git-i
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.5 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
