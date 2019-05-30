@@ -60,6 +60,54 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 28, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>JDimのITPを投げた。<a href="https://bugs.debian.org/920684">Bug#920684</a>が割り当てられました。</li>
+<li><a href="https://cdimage.debian.or.jp">cdimage.debian.or.jp</a>を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。</li>
+<li><a href="https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html">PublickeyのSSPL記事</a>について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。</li>
+<li><a href="https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org">Maintainer Dashboard</a>でsnapperのアップデートを見つけたので、<a href="https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/">放り込んだ</a>。
+
+<ul>
+<li>backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。</li>
+</ul></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -472,55 +520,6 @@ Package: ruby-aruba
 <li>もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。<code>Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC</code>のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。</li>
 </ul></li>
 <li><a href="https://www.debian.org/security/2019/dsa-4364">DSA-4364-1</a>が出た。お疲れ様でした。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 7, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>眠れなくなってしまったので<a href="https://tracker.debian.org/news/1018082/accepted-snapper-081-3-source-into-unstable/">snapperパッケージのミス修正とR3いれてアップロード</a></li>
-<li>もう月曜日だ！ということで<a href="https://tracker.debian.org/news/1018088/accepted-debootstrap-10113-source-into-unstable/">debootstrapのアップロードを上げる</a></li>
-<li>某所の喧々諤々のメールのやり取りに辟易して「おまらディスカッション好きなの結構だがな、とっととコード書けやコラ」というメールを送ってしまう。ふー。</li>
-<li>os-autoinstのperltidyの問題、<a href="https://progress.opensuse.org/issues/45740">バージョン間の非互換性によるものだった</a>
-
-<ul>
-<li>で、amd64でのビルドは通ったのでi386でやったらまたも同じエラー…仕方がないので<a href="https://progress.opensuse.org/issues/45782">チケットを上げた</a></li>
-</ul></li>
-<li>先日のsecurity update、「前のパッチにノイズがー」と言われて「？？？」となったが、よく見たら<code>git-buildpackage</code>によるpatchへの変更が入ってた…取り除いて<code>security-master</code>へアップロード。</li>
 </ul>
 
 					

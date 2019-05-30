@@ -60,6 +60,63 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/">サポート終了コンポーネントのアーカイブ削除に寄せて</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Mar 26, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+								 , 
+							<a href="/blog/tags/release">release</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日、ミラーアーカイブからDebian7とDebian8のサポート終了コンポーネントが削除されました。すると、Docker使ってる人やCircleCI使ってる人が「ぎゃー！」と叫び始めたという。どうも背景を理解されてる方は少ないようなので、簡単にざっと説明を書きました（ユーザーならともかく、イメージを提供するベンダー側は把握しておいてほしいですけどね…）。</p>
+
+<p>ベースイメージとしてDebian8 &ldquo;jessie&rdquo;を使っているという前提で話をします。</p>
+
+<ul>
+<li>Debian8はDebian9のリリースに伴って<code>「oldstable」（旧安定版）</code>という扱いになっています。oldstableはstableに比べて限定されたサポートの提供となります。そりゃぁでっかいリポジトリを複数バージョンに渡って長期間メンテナンスなんて難しいですからね。oldstable使ってる時点で色々制限が出てくる、ってもんです。ベストプラクティスとしては「<strong>ベースイメージのDebianはstableを使おう</strong>」です。
+
+<ul>
+<li>え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？</li>
+</ul></li>
+<li><code>jessie-updates</code>コンポーネントが無くてビルドがー！という人：<code>-updates</code>は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、<strong>jessieがoldstableになった時点で死んでます</strong>。外しちゃえばいいです。</li>
+<li><strong>(追記)</strong> <code>http://security.debian.org/debian-security jessie/updates mainも削除…はしちゃダメです！</code> その行は<code>セキュリティアップデートの取得</code>です（取得先サーバーがsecurity.debian.orgでしょ？) たしかに<code>jessie/updates</code>というところだけを見たら削除したくなるかもしれませんが、LTSサポートのセキュリティアップデートが降ってくるのを消したらアカンですよ…。</li>
+<li><code>jessie-backports</code>が無くなってギャー！という人：<code>-backports</code>は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、<strong>jessieがoldstableになった時点で死んでます</strong>。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう</li>
+</ul>
+
+<p>Debian9がでて早２年近く、そろそろDebian10の足音も聞こえてるので、開発側としてはいまさらDebian8に固執してほしくはない、というのが正直な所。ベースイメージのバージョン移行は計画的に…。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -839,45 +896,6 @@ Contact owner@bugs.debian.org with problems
 <hr />
 
 <p>laptop（HP Elitebook G5 830）のBIOSアップデートを実施。UFEI画面から有線LAN経由でアップデートできるのは良い（Dockの方からは行けないのが残念）。一度処理途中で止まってしまい、電源強制切断からの更新のrevertと再アップデートしたのも中々ヒヤヒヤした。あとはDockとかのファームウェアのアップデートもしたいところだが、こちらはWindowsが無いとダメっぽいんだよな…。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Mar 8, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://elinux.org/Japan_Technical_Jamboree_68">Japan Linux Jamboree</a>で<a href="https://docs.google.com/presentation/d/14a3U852hYej_DqbHaZMwyrcec8u6Bh3cdKglauc52Hg/edit?usp=sharing">debootstrapの話</a>をしてきました。</p>
 
 					
 				</div>

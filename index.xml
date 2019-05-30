@@ -7,8 +7,31 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 May 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>めんてなのおしごと</title>
+            <link>https://henrich.github.io/blog/2019/05/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+            <pubDate>Thu, 30 May 2019 00:00:00 +0000</pubDate>
+            <author>henrich@debian.org (Hideki Yamane)</author>
+            <guid>https://henrich.github.io/blog/2019/05/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;報告者が2年ほど放置しているので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866758&#34;&gt;バグを閉じるのはどうか？とsuggestion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;snapのCVE、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928052&#34;&gt;タグ付けと修正コミットへのリンク&lt;/a&gt;を。修正はどうしたもんかねぇ&lt;/li&gt;
+&lt;li&gt;mass rebuildでFTBFS報告があったが、ちょうどアップロードしたところのやつだったので&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929719&#34;&gt;閉じた&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;mass rebuildどうやるか情報確認しておくか…&lt;a href=&#34;https://wiki.debian.org/qa.debian.org/ArchiveTesting&#34;&gt;これ&lt;/a&gt;かな？
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -375,31 +398,6 @@ Priority: optional
             <description>&lt;ul&gt;
 &lt;li&gt;jessieのstable-updatesリポジトリ削除でaptのエラー→jessieを利用してたコンテナ環境がビルド失敗という話題があったが、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927776&#34;&gt;「stretchではstable-updatesは削除しないで」というバグをファイルしておいた&lt;/a&gt;。関係する人たちとかにも伝えておいたほうが良いだろうということで、&lt;a href=&#34;https://discuss.circleci.com/t/fyi-asking-debian-ftpmasters-to-not-remove-obsolete-stable-updates-repo-from-mirror/29944&#34;&gt;CircleCI側でも告知しておいた&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>めんてなのおしごと</title>
-            <link>https://henrich.github.io/blog/2019/04/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
-            <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
-            <author>henrich@debian.org (Hideki Yamane)</author>
-            <guid>https://henrich.github.io/blog/2019/04/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-            <description>&lt;p&gt;fonts-arphic-bkai00mpパッケージの&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927578&#34;&gt;更新（引退したbubulleをUploadresから削除）&lt;/a&gt;を実施。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://osdn.net/projects/ipafonts/ticket/39148&#34;&gt;IPAフォントの令和対応チケット&lt;/a&gt;を起票しておいた。忘れそうだったので。
-最悪、IPAフォントの「令」「和」から「㍻」を真似て作る、だろうか。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;OpenBVE界隈の人がDebianからパッケージが削除されてて困ってたので、スポンサーするよという話をしておいたらWNPPバグに登録したようなので、&lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927278#8&#34;&gt;内容をざっくりレビューしておいた&lt;/a&gt;。疲れた…。ライセンス周りはまだ精査が必要そう。&lt;/p&gt;
-
-&lt;p&gt;一応&lt;a href=&#34;https://salsa.debian.org/debian/openbve&#34;&gt;リポジトリは用意しておいた&lt;/a&gt;。&lt;/p&gt;
 </description>
           </item>
         

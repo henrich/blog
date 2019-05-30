@@ -60,6 +60,63 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Oct 15, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>パッケージを拾って色々分析居しているサイトが<a href="https://repology.org/maintainer/henrich%40debian.org/problems">担当しているパッケージの問題を列挙してた</a>ので対応する。</p>
+
+<ul>
+<li><a href="https://tracker.debian.org/news/879346">poppler-data</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879341">fonts-ipaexfont</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879347">fonts-ipafont-nonfree</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879348">fonts-ipafont-nonfree-jisx0208</a>を更新</li>
+<li><a href="https://tracker.debian.org/news/879353">fonts-ipafont</a>を更新</li>
+</ul>
+
+<hr />
+
+<p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">packages overview</a>を参照して問題洗い出し</p>
+
+<ul>
+<li>git pushを忘れていたのを幾つか対応。</li>
+<li>xfonts-* パッケージが今までの<code>Section: x11</code>でなくて<code>Section: fonts</code>をlintianで推奨されるようになったので、ホント？という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878609">質問をした</a></li>
+<li><a href="https://tracker.debian.org/news/879352">pleaiades</a>のwatchファイルがhttpだったのを直した</li>
+<li><a href="https://tracker.debian.org/news/879349">jcodings</a>のwatchファイルもhttpだったのを直した（まぁgitでmergeしてるんだけども）</li>
+<li><a href="https://tracker.debian.org/news/879439">yydebug</a>を諸々更新。</li>
+<li><a href="http://martiansoftware.com/nailgun/">nailgunのウェブサイト</a>を見たら、「facebookに移管するぜ」って書いてあったので、数カ月したらそっち見るようにしないと&hellip;。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -592,105 +649,6 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Oct 4, 2017
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
-
-<pre><code>Package: texlive-latex-extra-doc
-Download-Size: 384 MB
-
-Package: texlive-pstricks-doc
-Download-Size: 248 MB
-</code></pre>
-
-<pre><code class="language-time">
-
-まずは普通にftp.jp.debian.orgからの取得。
-
-</code></pre>
-
-<p>Fetched 412 MB in 36s (11.3 MB/s)
-real    0m36.643s</p>
-
-<p>Fetched 412 MB in 30s (13.4 MB/s)
-real    0m30.864s</p>
-
-<p>Fetched 412 MB in 26s (15.4 MB/s)
-real    0m27.031s</p>
-
-<pre><code>
-次に西日本から取得。
-
-</code></pre>
-
-<p>Fetched 412 MB in 19s (20.7 MB/s)
-real    0m20.026s</p>
-
-<p>Fetched 412 MB in 19s (21.1 MB/s)
-real    0m19.688s</p>
-
-<p>Fetched 412 MB in 18s (22.2 MB/s)
-real    0m18.746s</p>
-
-<pre><code>
-
-東でやってみたら
-
-</code></pre>
-
-<p>Fetched 412 MB in 24s (16.9 MB/s)
-real    0m24.203s</p>
-
-<p>Fetched 412 MB in 24s (17.2 MB/s)
-real    0m24.598s</p>
-
-<pre><code>
-という感じでリージョンまたぐよりも逆に遅かった…何故だ。
-
---------
-結論
-
-</code></pre>
-
-<p>西日本： 21.3MBs
-東日本： 17.0MBs
-ダイレクト： 13.6 MBs
-```</p>
-
-<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
 
 					
 				</div>

@@ -60,6 +60,56 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/06/27/epoch%E4%BB%98%E3%81%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A0%E3%81%A8pristine-tar%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%8B%E3%82%89%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/">epoch付きバージョンだとpristine-tarブランチからチェックアウトできない</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 27, 2017
+							</span>&nbsp;in
+							 using tags
+							
+								
+							<a href="/blog/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<pre><code>$ gbp buildpackage --git-pbuilder --git-pristine-tar --git-tag
+gbp:info: Tarballs 'xfonts-kappa20_0.396.orig.tar.xz' not found at '../tarballs/'
+gbp:error: Pristine-tar couldn't checkout &quot;xfonts-kappa20_0.396.orig.tar.xz&quot;: fatal: Path 'xfonts-kappa20_0.396.orig.tar.xz.delta' does not exist in 'refs/heads/pristine-tar'
+pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
+</code></pre>
+
+<p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
+
+<pre><code>henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
+Switched to branch 'pristine-tar'
+henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
+Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
+</code></pre>
+
+<p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/06/26/%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E5%80%A4%E3%81%8C%E4%B8%80%E8%87%B4%E3%81%97%E3%81%AA%E3%81%84orig.tarball%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%8C%E8%B9%B4%E3%82%89%E3%82%8C%E3%82%8B%E6%99%82/">ハッシュ値が一致しないorig.tarballでアップロードが蹴られる時</a></h3>
 						<small><span class="label label-primary">
 							
@@ -756,50 +806,6 @@ gbp buildpackage
 <li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
 <li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 22, 2015
-							</span>&nbsp;in
-							 using tags
-							
-								
-							<a href="/blog/tags/debian">debian</a>
-						
-								 , 
-							<a href="/blog/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>proposed-updatesリポジトリにパッケージをアップロードする際、
-changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？</p>
-
-<p>疑問が晴れなかったので<a href="https://lists.debian.org/debian-devel/2015/06/msg00305.html">debian-develに質問</a>したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587">登録しておいた。Bug#789587</a>です。</p>
-
-<p>しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</p>
 
 					
 				</div>
