@@ -54,7 +54,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;CDがメディアとして挙げられてるが、基本DVDメディアになったので&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/23&#34;&gt;そのあたり&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ttpsで繋がるところは&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/24&#34;&gt;httpsに直した&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;httpsで繋がるところは&lt;a href=&#34;https://salsa.debian.org/ddp-team/release-notes/merge_requests/24&#34;&gt;httpsに直した&lt;/a&gt;。&lt;/li&gt;
 &lt;li&gt;ビルドがうまくいってないところが出てきちゃう、とあったので一部revert&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 

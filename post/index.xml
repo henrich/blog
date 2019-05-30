@@ -30,7 +30,7 @@
       <guid>https://henrich.github.io/blog/2019/05/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description> fontconfigのRCバグ、直ってるよという報告者の話があったのに閉じてなかったので閉じた jrubyのCVEバグだが、rubygem由来でパッチそのものがあったので適用して閉じた snapdのCVEバグ、あとで確認しよう… gucharmapのFTBFS、unicode-data 12.0由来なので弄ってビルド通るようにしてアップロードした ghostscriptのunblockをメンテナに代わって実施してあげた Linuxパッケージのバグ、upstreamで直ってたのでタグ付け
  リリースノートをいじる
- CDがメディアとして挙げられてるが、基本DVDメディアになったのでそのあたり ttpsで繋がるところはhttpsに直した。 ビルドがうまくいってないところが出てきちゃう、とあったので一部revert  notoフォントパッケージのバグじゃない？という問い合わせに対応
+ CDがメディアとして挙げられてるが、基本DVDメディアになったのでそのあたり httpsで繋がるところはhttpsに直した。 ビルドがうまくいってないところが出てきちゃう、とあったので一部revert  notoフォントパッケージのバグじゃない？という問い合わせに対応
  firmware-atherosパッケージ変、というのがあったのでreplyしてみた
   </description>
     </item>
