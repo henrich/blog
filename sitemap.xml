@@ -27,13 +27,13 @@
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/tags/debian/</loc>
+    <loc>https://henrich.github.io/blog/categories/debian/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/categories/debian/</loc>
+    <loc>https://henrich.github.io/blog/tags/debian/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -84,13 +84,13 @@
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/tags/oss/</loc>
+    <loc>https://henrich.github.io/blog/categories/oss/</loc>
     <lastmod>2019-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/categories/oss/</loc>
+    <loc>https://henrich.github.io/blog/tags/oss/</loc>
     <lastmod>2019-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
