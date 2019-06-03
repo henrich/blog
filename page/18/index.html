@@ -63,6 +63,45 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/10/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Oct 16, 2017
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fonts-sawarabi-minchoをアップロード</li>
+<li>yydebugのVcs-Gitが間違ったままだった&hellip;直した。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/10/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -590,68 +629,6 @@ BEGIN failed--compilation aborted at ./t/ui/01-list.t line 37 (#1)
 <hr />
 
 <p>色々と試行錯誤してみたが、多分最新のupstreamだと上記のMojolicious::Plugin周りは解決してるんだろうと思う&hellip;ということで、masterをそのまま 4.3+20170928 としてビルド（9/28が最終コミットだったから）&hellip;うわ、これ Makefile の最初のところで <code>./script/generate-packed-assets</code> というのを実行して、どうやらネット越しにファイルを取ってくるようになってるぞ&hellip;厄介な&hellip;。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Oct 6, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
-</ul>
-
-<hr />
-
-<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
-
-<ul>
-<li>1.4GBが1.0GBになるのは大きいと思う</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
-
-<ul>
-<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
-
-<ul>
-<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
-</ul>
 
 					
 				</div>

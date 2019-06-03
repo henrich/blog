@@ -63,6 +63,51 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/09/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Sep 23, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/floss">floss</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>vmdk-stream-converter</code> が、aliothを指したままだったので<a href="https://tracker.debian.org/news/989198/accepted-vmdk-stream-converter-02-4-source-all-into-unstable/">とりあえず更新</a>。python2依存なんだよね、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=883804">patchはある</a>のでupstreamが対応してくれないものか。</li>
+<li><code>sphere</code> はupstreamが開発停止＆VMWare自体がライブラリを出していてそちらは既にDebianにあるのでそちらを推す格好で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">削除依頼</a>。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2018/09/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -798,70 +843,6 @@ Cloning into 'git-buildpackage'...
 </code></pre>
 
 <p>あれ？全然引っかかってないね。componentで検索し直して、諸々を見てみるとcomp_typeとかで指定されてるようで、これはoptions.comp_typeから取ってる。んで、これはgbp.confで指定してるのか&hellip;じゃぁ、複数のcomp_typeは存在できないね！という感じ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/01/gbp-buildpackage-git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/">gbp buildpackage --git-componentオプションの罠</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, May 1, 2018
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>poppler-dataパッケージは、一般的なパッケージと違ってupstream tarballが複数ある構成（multiple upstream tarball）なので、git-buildpackageが使えなかったのだけど、git-buildpackage側での実験的なサポートが追加されていたので思い立って作業。</p>
-
-<p>まずはGitリポジトリにリリース済みのパッケージをインポートして、salsaにインポート。</p>
-
-<pre><code>$ gbp import-dscs --debsnap poppler-data
-$ git remote add salsa git@salsa.debian.org:debian/poppler-data.git
-$ git push salsa --all
-$ git push salsa --tags
-</code></pre>
-
-<p>で、manページを参照して実験的な &ndash;git-component オプションの使い方を確認。</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=ai0 --git-component=from-ghostscript
-</code></pre>
-
-<ul>
-<li>対象となるtarballはpoppler-data_0.4.9.orig-from-ghostscript.tar.xzとpoppler-data_0.4.9.orig-ai0.tar.gzとしてpristine-tarブランチにコミットされている</li>
-<li>multiple tarballは orig.tarball-<name>.tar.[g|x]gという形で保持されているので、<name>の部分だけを指定</li>
-</ul>
-
-<p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。<del>理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため</del>&hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&hellip;）</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
-(snip)
-gbp:error: Error creating poppler-data_0.4.9.orig-from-ghostscript.tar.gz: Pristine-tar couldn't checkout &quot;poppler-data_0.4.9.orig-from-ghostscript.tar.gz&quot;: fatal: Path 'poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
-pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta failed
-</code></pre>
-
-<p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
 
 					
 				</div>

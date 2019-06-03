@@ -8,10 +8,19 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
-    <lastBuildDate>Thu, 30 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>めんてなのおしごと</title>
+      <link>https://henrich.github.io/blog/2019/05/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</link>
+      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2019/05/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
+      <description> インストールガイドのアップデートやりかけを見つけたのでpushしておいた  </description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>

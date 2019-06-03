@@ -63,6 +63,46 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2017/07/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jul 11, 2017
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>を覗いて、fonts-konatuのupstreamのURLが変わっていたのを思い出したので<a href="https://tracker.debian.org/news/855486">対応</a>。さらにfonts-kilojiもupstreamのURLが変わってたようなのでこちらも<a href="https://tracker.debian.org/news/855490">対応</a>。</p>
+
+<hr />
+
+<p>krb5でsaslバックエンドなLDAPが使えるようになってない、というのを見かけたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868035">判る範囲でBTS</a>しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2017/07/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -670,59 +710,6 @@ Version: 3.12
 </code></pre>
 
 <p>どちらだろうか？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/06/28/%E4%B9%85%E3%80%85%E3%81%ABbackports/">久々にbackports</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jun 28, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>そういえばjdがstretchに入らなかったのだった。stretch-backportsに入れるか。久々にbackportsを使うのでサッパリ忘れていた。debian/stretch-backportsブランチを作り、dch &ndash;bpoでchangelog作成&hellip;（この時点ではdevscriptsが更新されて無くてjessie-backportsが指定されてしまったのでそれも直す。）</p>
-
-<p>次にbase.cowを作る。</p>
-
-<pre><code>$ sudo cowbuilder --create --distribution stretch --basepath /var/cache/pbuilder/stretch.cow
-</code></pre>
-
-<p>あとはビルドするだけ。。。でもlintianが<a href="https://lintian.debian.org/tags/backports-changes-missing.html">backports-changes-missing</a>なる警告を出す。ふむふむ。。。</p>
-
-<pre><code>It is recommended to include all changelog entries since the last version on debian-backports or since stable if it's the first version. You should do this by passing &quot;-v&quot; to dpkg-buildpackage. Eg: &quot;debuild -v0.7.5-2&quot;, where &quot;0.7.5-2&quot; is the version in stable. If the package wasn't in stable or backports before you don't have include the changelog entries (but you are free to do so). It helps others to follow the changes introduced with the backport (by reading the changes mailing list).
-</code></pre>
-
-<p>なるほど。-v<version> とすればいい。しかし、gbpへのオプションとしてはどうなるのかな？と思ったが、単にpbuilderのmanを見てoptionを探せばいいだけだった。&ndash;debbuildoptsを指定、ね。</p>
-
-<pre><code>$ gbp buildpackage --git-pbuilder --git-pbuilder-options=&quot;--basepath /var/cache/pbuilder/stretch.cow --distribution stretch --debbuildopts -v1:2.8.8-140601-4&quot; --git-ignore-branch
-</code></pre>
-
-<p>以上でアップロード。</p>
 
 					
 				</div>
