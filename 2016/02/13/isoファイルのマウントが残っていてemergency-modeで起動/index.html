@@ -74,16 +74,12 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）</p>
-
 <p>前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。</p>
-
 <pre><code>#/dev/loop0     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
 #/dev/loop2     /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51        udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
 #Entry for /dev/loop1 :
 #UUID=2015-10-30-20-02-13-00    /media/henrich/J_SSS_X64FRE_JA-JP_DV91  udf     ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8       0       0
-</code></pre>
-
-<p>なんなんだこれは。</p>
+</code></pre><p>なんなんだこれは。</p>
 
 		</div>
 	</div>
@@ -99,7 +95,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -107,10 +103,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

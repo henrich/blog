@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,17 +57,21 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Jul 30, 2017
+								Sun, Feb 24, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -80,17 +84,18 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング</p>
-
-<ul>
-<li>fonts-mikachan、deley-15 に放り込み。</li>
-<li><a href="https://tracker.debian.org/news/859608">fonts-f500</a></li>
-<li><a href="https://tracker.debian.org/news/859609">fonts-manchufont</a></li>
-</ul>
-
-<hr />
-
-<p>何か作業しようと思っていたのだが、続きをすっかり忘れていたDebian PolicyのSphinx変換提案、どうやって作業していたのかを思い出したので<a href="https://github.com/henrich/policydoc/tree/sed-raplacement/convert/scripts">historyから5行ほどの手順</a>を送りつけておいた。8/1にSprintがあるらしいので、そこで話題にしてくれるといいなぁ。とりあえずIRCチャンネルに接続だけしてログを取っておこう。</p>
+						<p>いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやら<code>squid-deb-proxy-client</code>がおかしい。</p>
+<p>squid-deb-proxy-clientの中身を見てコマンドを実行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">23443</span> ?        Ss     1:44  <span style="color:#ae81ff">\_</span> tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell
+<span style="color:#ae81ff">23450</span> pts/2    Ss     0:00      <span style="color:#ae81ff">\_</span> /bin/bash
+<span style="color:#ae81ff">22690</span> pts/2    S+     0:00      |   <span style="color:#ae81ff">\_</span> /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian
+<span style="color:#ae81ff">22691</span> pts/2    Z+     0:00      |       <span style="color:#ae81ff">\_</span> <span style="color:#f92672">[</span>avahi-browse<span style="color:#f92672">]</span> &lt;defunct&gt;
+</code></pre></div><p>というようになったので、試しに引数なしで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">23450</span> pts/2    Ss     0:00      <span style="color:#ae81ff">\_</span> /bin/bash
+<span style="color:#ae81ff">24148</span> pts/2    S+     0:00      |   <span style="color:#ae81ff">\_</span> /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover
+<span style="color:#ae81ff">24149</span> pts/2    Z+     0:00      |       <span style="color:#ae81ff">\_</span> <span style="color:#f92672">[</span>avahi-browse<span style="color:#f92672">]</span> &lt;defunct&gt;
+</code></pre></div><p>おお、defunct…。</p>
+<p>この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…</p>
 
 					
 				</div>
@@ -103,580 +108,27 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/29/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Jul 29, 2017
+								Sat, Feb 23, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>昨日の gnome-todo の続き。</p>
-
-<h2 id="lintian-warningを確認">lintian warningを確認。</h2>
-
-<pre><code>W: gnome-todo: gir-section-not-libdevel usr/share/gir-1.0/Gtd-1.0.gir gnome
-N: 
-N:    GObject-Introspection XML files (/usr/share/gir-1.0/Foo-23.gir) must be
-N:    made available in a development package in the libdevel section of the
-N:    archive. This is normally the same libfoo-dev package that contains
-N:    other development files.
-N:    
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:    
-N:    Severity: normal, Certainty: certain
-N:    
-N:    Check: gir, Type: binary, source
-</code></pre>
-
-<pre><code class="language-/usr/share/gir-1.0/Gtd-1.0.gir```">
-</code></pre>
-
-<p>W: gnome-todo: typelib-section-not-introspection usr/lib/x86_64-linux-gnu/girepository-1.0/Gtd-1.0.typelib gnome
-N:
-N:    GObject-Introspection binary typelibs (Foo-23.typelib) should be made
-N:    available in a GObject-Introspection package in the introspection
-N:    section of the archive, normally named gir1.2-foo-23.
-N:<br />
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:<br />
-N:    Severity: normal, Certainty: certain
-N:<br />
-N:    Check: gir, Type: binary, source</p>
-
-<pre><code>
-これも ```section: introspection``` なパッケージを作れ、と。どういう名前で作ればいいのかは他のを参考にしよう...
-
-</code></pre>
-
-<p>W: gnome-todo: gir-missing-typelib-dependency usr/share/gir-1.0/Gtd-1.0.gir gir1.2-gtd-1.0
-N:
-N:    Development packages that contain GObject-Introspection XML files
-N:    (/usr/share/gir-1.0/Foo-23.gir) must depend on the package containing
-N:    the corresponding binary typelib, which is conventionally named
-N:    gir1.2-foo-23. The dependency must be strictly versioned (for example
-N:    gir1.2-foo-23 (= ${binary:Version}) when using debhelper).
-N:<br />
-N:    Please ignore and override this tag if the typelib is shipped in a
-N:    package whose name does not match the typelib&rsquo;s machine-readable name,
-N:    and the development package correctly depends on that package instead.
-N:    For example, gir1.2-glib-2.0 is named for the GLib-2.0 typelib, but also
-N:    contains the GObject-2.0 and Gio-2.0 typelibs, so it is correct that
-N:    libglib2.0-dev depends on gir1.2-glib-2.0 but not on gir1.2-gobject-2.0
-N:    or gir1.2-gio-2.0.
-N:<br />
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:<br />
-N:    Severity: normal, Certainty: possible
-N:<br />
-N:    Check: gir, Type: binary, source</p>
-
-<pre><code>
-先程の ```section: introspection``` なパッケージは```gir1.2-gtd-1.0```でいいのか。で、それに対する依存関係を記述せよ、と。
-
-</code></pre>
-
-<p>W: gnome-todo: typelib-package-name-does-not-match usr/lib/x86_64-linux-gnu/girepository-1.0/Gtd-1.0.typelib gir1.2-gtd-1.0
-N:
-N:    GObject-Introspection binary typelibs (Foo-23.typelib) should normally
-N:    be made available in a package named gir1.2-foo-23.
-N:<br />
-N:    Please ignore and override this tag if the typelib is deliberately
-N:    shipped in a package whose name does not match the typelib&rsquo;s
-N:    machine-readable name. For example, gir1.2-glib-2.0 is named for the
-N:    GLib-2.0 typelib, but also contains the GObject-2.0 and Gio-2.0
-N:    typelibs; this is unconventional, but is allowed.
-N:<br />
-N:    Refer to /usr/share/doc/gobject-introspection/policy.txt for details.
-N:<br />
-N:    Severity: normal, Certainty: possible
-N:<br />
-N:    Check: gir, Type: binary, source</p>
-
-<pre><code>
-```gir1.2-gtd-1.0``` にtypelibを含めろ、と。
-
-
-## 他のパッケージを参考に
-
-正直lintianの指示は概念だけなので、実際にどう対処するかは既存パッケージを真似るのが手っ取り早い。
-
-* ```apt-cache pkgnames gir1.2-``` して適当なパッケージを探し、
-* ```apt source foobar``` してソースを眺めて記述を確認し、
-* ```debian/control.in``` にパッケージを追加。
-* ```debian/*.install``` を追加してどのファイルをどのパッケージに入れるかを決める
-
-ここまででパッケージがビルドできるようになったが、piupartsで既存パッケージからのアップグレードが失敗するんじゃないかな〜と思って眠い頭で実行したらやっぱり失敗した。
-
-</code></pre>
-
-<p>/tmp/apt-dpkg-install-g8TuRA/0-gir1.2-gtd-1.0_3.24.2-3_amd64.deb
-   /tmp/apt-dpkg-install-g8TuRA/1-gnome-todo-common_3.24.2-3_all.deb
-   /tmp/apt-dpkg-install-g8TuRA/2-libgnome-todo_3.24.2-3_amd64.deb</p>
-
-<pre><code>
-ふむ、前のgnome-todoと名前は違うのに同じファイルがあるから、ぶつかっちゃうよね。```Conflicts:``` か ```Breakes:``` の記述が必要だよな。多分 ```Breakes:``` が適当。これが完全にreplaceな場合は ```Replaces:``` を記述するのだけど、今回は部分的だからそれはなし。で、記述してもう一度piupartsを通す...通った。今回はかなり変更が大きいのでexperimentalにアップロードするようにしておく。[NEW queue](https://ftp-master.debian.org/new.html)で数日待つことになるだろう。
-
-
-## 作業結果
-
-</code></pre>
-
-<p>diff -Nru gnome-todo-3.24.2/debian/changelog gnome-todo-3.24.2/debian/changelog
-&mdash; gnome-todo-3.24.2/debian/changelog  2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/changelog  2017-07-28 22:52:28.000000000 +0900
-@@ -1,3 +1,12 @@
-+gnome-todo (3.24.2-3) experimental; urgency=medium
-+
-+  * debian/patches
-+    - add 0001-deal-with-appstream-metadata-in-legacy-location.patch
-+  * debian/{control.in,*.install}
-+    - split gnome-todo package to several packages
-+
-+ &ndash; Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>  Fri, 28 Jul 2017 22:52:28 +0900
-+
- gnome-todo (3.24.2-2) unstable; urgency=medium</p>
-
-<ul>
-<li>Upload to unstable
-diff -Nru gnome-todo-3.24.2/debian/control gnome-todo-3.24.2/debian/control
-&mdash; gnome-todo-3.24.2/debian/control    2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/control    2017-07-28 22:52:28.000000000 +0900
-@@ -6,7 +6,7 @@
-Section: gnome
-Priority: optional
-Maintainer: Debian GNOME Maintainers <a href="mailto:pkg-gnome-maintainers@lists.alioth.debian.org">pkg-gnome-maintainers@lists.alioth.debian.org</a>
--Uploaders: Andreas Henriksson <a href="mailto:andreas@fatal.se">andreas@fatal.se</a>, Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>, Michael Biebl <a href="mailto:biebl@debian.org">biebl@debian.org</a>
-+Uploaders: Andreas Henriksson <a href="mailto:andreas@fatal.se">andreas@fatal.se</a>, Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>
-Build-Depends: debhelper (&gt;= 10),
-            autoconf-archive,
-            gnome-pkg-tools,
-@@ -30,6 +30,8 @@
-Architecture: any
-Depends: ${shlibs:Depends},
-      ${misc:Depends},</li>
-<li>gnome-todo-common,</li>
-<li>libgnome-todo (= ${binary:Version}),
-      evolution-data-server (&gt;= 3.17.1),
-      gsettings-desktop-schemas
-Description: minimalistic personal task manager designed to fit GNOME desktop
-@@ -37,3 +39,56 @@
-the GNOME desktop. Designed from ground up to seamlessly integrate with
-the GNOME desktop environment, To Do enables you to be as productive as
-you want.
-+
-+Package: gnome-todo-common
-+Architecture: all
-+Depends: ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: common files for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains common files.
-+
-+Package: libgnome-todo
-+Section: libs
-+Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library files.
-+
-+Package: libgnome-todo-dev
-+Section: libdevel
-+Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},</li>
-<li>gir1.2-gtd-1.0 (= ${binary:Version}),
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: development library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library development files.
-+
-+Package: gir1.2-gtd-1.0
-+Section: introspection
-+Architecture: any
-+Depends: ${gir:Depends},</li>
-<li>${shlibs:Depends},</li>
-<li>${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: GObject introspection data for GNOME To Do</li>
-<li>GNOME To Do is a simplistic personal task manager designed to perfectly fit</li>
-<li>the GNOME desktop. Designed from ground up to seamlessly integrate with</li>
-<li>the GNOME desktop environment, To Do enables you to be as productive as</li>
-<li>you want.</li>
-<li>.</li>
-<li>This package contains introspection data for GNOME To Do.</li>
-<li>.</li>
-<li>It can be used by packages using the GIRepository format to generate</li>
-<li>dynamic bindings.
-diff -Nru gnome-todo-3.24.2/debian/control.in gnome-todo-3.24.2/debian/control.in
-&mdash; gnome-todo-3.24.2/debian/control.in 2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/control.in 2017-07-28 22:52:28.000000000 +0900
-@@ -26,6 +26,8 @@
-Architecture: any
-Depends: ${shlibs:Depends},
-      ${misc:Depends},</li>
-<li>gnome-todo-common,</li>
-<li>libgnome-todo (= ${binary:Version}),
-      evolution-data-server (&gt;= 3.17.1),
-      gsettings-desktop-schemas
-Description: minimalistic personal task manager designed to fit GNOME desktop
-@@ -33,3 +35,56 @@
-the GNOME desktop. Designed from ground up to seamlessly integrate with
-the GNOME desktop environment, To Do enables you to be as productive as
-you want.
-+
-+Package: gnome-todo-common
-+Architecture: all
-+Depends: ${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: common files for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains common files.
-+
-+Package: libgnome-todo
-+Section: libs
-+Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library files.
-+
-+Package: libgnome-todo-dev
-+Section: libdevel
-+Architecture: any
-+Depends: ${shlibs:Depends},</li>
-<li>${misc:Depends},</li>
-<li>gir1.2-gtd-1.0 (= ${binary:Version}),
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: development library data for GNOME To Do</li>
-<li>Library that provides GObject-based interface of GNOME To Do, simplistic</li>
-<li>personal task manager designed to perfectly fit the GNOME desktop.</li>
-<li>.</li>
-<li>This package contains the library development files.
-+
-+Package: gir1.2-gtd-1.0
-+Section: introspection
-+Architecture: any
-+Depends: ${gir:Depends},</li>
-<li>${shlibs:Depends},</li>
-<li>${misc:Depends},
-+Breaks: gnome-todo (&lt;&lt; 3.24.2-3)
-+Description: GObject introspection data for GNOME To Do</li>
-<li>GNOME To Do is a simplistic personal task manager designed to perfectly fit</li>
-<li>the GNOME desktop. Designed from ground up to seamlessly integrate with</li>
-<li>the GNOME desktop environment, To Do enables you to be as productive as</li>
-<li>you want.</li>
-<li>.</li>
-<li>This package contains introspection data for GNOME To Do.</li>
-<li>.</li>
-<li>It can be used by packages using the GIRepository format to generate</li>
-<li>dynamic bindings.
-diff -Nru gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install
-&mdash; gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/gir1.2-gtd-1.0.install 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1 @@
-+usr/lib/<em>/girepository-1.0/</em>.typelib
-diff -Nru gnome-todo-3.24.2/debian/gnome-todo-common.install gnome-todo-3.24.2/debian/gnome-todo-common.install
-&mdash; gnome-todo-3.24.2/debian/gnome-todo-common.install  1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/gnome-todo-common.install  2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,6 @@
-+usr/share/icons/
-+usr/share/locale/
-+usr/share/gnome-todo/
-+usr/share/metainfo/
-+usr/share/dbus-1/
-+usr/share/glib-2.0/
-diff -Nru gnome-todo-3.24.2/debian/gnome-todo.install gnome-todo-3.24.2/debian/gnome-todo.install
-&mdash; gnome-todo-3.24.2/debian/gnome-todo.install 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/gnome-todo.install 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,2 @@
-+usr/bin/gnome-todo
-+usr/share/applications/
-diff -Nru gnome-todo-3.24.2/debian/libgnome-todo-dev.install gnome-todo-3.24.2/debian/libgnome-todo-dev.install
-&mdash; gnome-todo-3.24.2/debian/libgnome-todo-dev.install  1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/libgnome-todo-dev.install  2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,3 @@
-+usr/include/gnome-todo/
-+usr/lib/<em>/pkgconfig/gnome-todo.pc
-+usr/share/gir-</em>/Gtd-<em>.gir
-diff -Nru gnome-todo-3.24.2/debian/libgnome-todo.install gnome-todo-3.24.2/debian/libgnome-todo.install
-&mdash; gnome-todo-3.24.2/debian/libgnome-todo.install  1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/libgnome-todo.install  2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1 @@
-+usr/lib/</em>/gnome-todo/
-diff -Nru gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch
-&mdash; gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/patches/0001-deal-with-appstream-metadata-in-legacy-location.patch 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1,25 @@
-+From: Hideki Yamane <a href="mailto:henrich@debian.org">henrich@debian.org</a>
-+Date: Fri, 28 Jul 2017 22:51:23 +0900
-+Subject: deal with appstream-metadata-in-legacy-location
-+
-+not /usr/share/appdata/ but /usr/share/metainfo/
-+
-+Perhaps this patch will be not necessary when build system would move to
-+new one.
-+&mdash;</li>
-<li>data/Makefile.am | 2 +-</li>
-<li>1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff &ndash;git a/data/Makefile.am b/data/Makefile.am
-+index 827ee36..af44715 100644
-+&mdash; a/data/Makefile.am
-++++ b/data/Makefile.am
-+@@ -13,7 +13,7 @@ autostart_DATA = org.gnome.Todo.Autostart.desktop</li>
-<li>%.desktop: %.desktop.in</li>
-<li>$(AM_V_GEN) $(MSGFMT) &ndash;desktop &ndash;template $&lt; -d $(top_srcdir)/po -o $@</li>
-<li>
-+-appdatadir = $(datadir)/appdata
-++appdatadir = $(datadir)/metainfo</li>
-<li>appdata_DATA = $(appdata_in_files:.xml.in=.xml)</li>
-<li>appdata_in_files = $(srcdir)/appdata/org.gnome.Todo.appdata.xml.in</li>
-
-<li><p>diff -Nru gnome-todo-3.24.2/debian/patches/series gnome-todo-3.24.2/debian/patches/series
-&mdash; gnome-todo-3.24.2/debian/patches/series 1970-01-01 09:00:00.000000000 +0900
-+++ gnome-todo-3.24.2/debian/patches/series 2017-07-28 22:52:28.000000000 +0900
-@@ -0,0 +1 @@
-+0001-deal-with-appstream-metadata-in-legacy-location.patch
-diff -Nru gnome-todo-3.24.2/debian/rules gnome-todo-3.24.2/debian/rules
-&mdash; gnome-todo-3.24.2/debian/rules  2017-06-18 19:47:46.000000000 +0900
-+++ gnome-todo-3.24.2/debian/rules  2017-07-28 22:52:28.000000000 +0900
-@@ -28,4 +28,4 @@
-override_dh_auto_install:
-dh_auto_install</p>
-
-<h1 id="get-rid-of-non-empty-dependency-libs-in-la-file">get rid of &ldquo;non-empty-dependency_libs-in-la-file&rdquo;</h1></li>
-
-<li><p>find $(CURDIR)/debian/gnome-todo -name *.la -delete</p></li>
-
-<li><p>find $(CURDIR)/debian/ -name *.la -delete
-```</p>
-
-<hr />
-
-<p>今日のグルーミング</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/859497">fonts-bpg-georgian</a></li>
-<li>debian/copyrightのconvertの際にcopyright holderの記述が website と異なっていて？？？となって調べて回った。その甲斐あって整理できた＆一部フォントが違うライセンスだということもわかったので良かった。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jul 28, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング作業</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/859085">fonts-ipafont-nonfree</a></li>
-<li><a href="https://tracker.debian.org/news/859086">fonts-ipafont-nonfree-jisx0208</a></li>
-<li><a href="https://tracker.debian.org/news/859145">jcodings</a></li>
-<li>gnome-todo をちょっとだけ。
-
-<ul>
-<li><a href="https://lintian.debian.org/tags/appstream-metadata-in-legacy-location.html">appstream-metadata-in-legacy-location</a> は grep で検索して <code>gbp pq import</code> して Makefile.am を少し書き換え、git commit してパッチを作って対応。</li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jul 27, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/858988">yudit</a></li>
-<li><a href="https://tracker.debian.org/news/859063">fonts-tomsontalks</a></li>
-<li><a href="https://tracker.debian.org/news/859070">fonts-kacst</a></li>
-<li><a href="https://tracker.debian.org/news/859077">nailgun</a></li>
-<li>fonts-bpg-georgian を見てみたら、upstreamがBoxに色々ソースを置いているようだ、が読めなくて何が最善なのかが全くわからん&hellip;</li>
-<li>fonts-manchufont は途中まで&hellip;。</li>
-<li>fonts-wqy-zenhei は途中まで&hellip;。</li>
-<li>fonts-mikachan は途中まで&hellip;で、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839677">アップロード予告</a>だけしておく。</li>
-</ul>
-
-<p>yudit は以下をなんとかしたいところではある&hellip;とりあえずtypoは直した。</p>
-
-<pre><code>I: yudit: spelling-error-in-binary usr/bin/uniprint pres press
-I: yudit: spelling-error-in-binary usr/bin/yudit preceed precede
-I: yudit: spelling-error-in-binary usr/bin/yudit pres press
-I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
-I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz enconding encoding
-I: yudit: spelling-error-in-manpage usr/share/man/man1/uniconv.1.gz recommened recommended
-I: yudit: desktop-entry-lacks-keywords-entry usr/share/applications/yudit.desktop
-I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
-</code></pre>
-
-<hr />
-
-<p>mplus-fontsのCVS-&gt;Gitリポジトリ変換を<a href="https://osdn.net/ticket/browse.php?group_id=1&amp;tid=37404">依頼</a>しておく。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/26/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Jul 26, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>今日のグルーミング作業</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/858925">fonts-mmceder</a></li>
-</ul>
-
-<hr />
-
-<p>DebConf17の申し込み確認を見ていたら、到着日を1日勘違いしていたのに気づいた。危ない&hellip;とりあえず「1日早められる？」と問い合わせてみる。→無事調整された。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jul 25, 2017
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
 						
 								 , 
-							<a href="/tags/todo">todo</a>
+							<a href="/tags/munin">munin</a>
 						
 					</small>
 				</div>
@@ -685,36 +137,25 @@ I: yudit-common: font-in-non-font-package usr/share/yudit/fonts/yudit.ttf
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング作業。</p>
-
-<ul>
-<li>grcompiler&hellip;を見てみた。
-
-<ul>
-<li>upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&hellip;gitのmasterから取ってきてもコケる&hellip;これは一体？</li>
-<li>upstreamが<a href="https://github.com/silnrsi/grcompiler/tree/master/debian">debianディレクトリ追加してる&hellip;</a>困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&hellip;なんだこりゃ。</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/858733">fonts-vlgothic</a></li>
-<li><a href="https://tracker.debian.org/news/858736">fonts-kacst-one</a></li>
-<li><a href="https://tracker.debian.org/news/858737">fonts-motoya-l-cedar</a></li>
-<li><a href="https://tracker.debian.org/news/858740">fonts-motoya-l-maruberi</a>
-
-<ul>
-<li>モトヤLマルベリ3・Lシーダ3が<a href="https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67">Androidのリポジトリから消えていた</a></li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p>mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&hellip;。shellアクセスできる範囲には無いっぽいし。<a href="https://osdn.net/cvs/view/mplus-fonts/">ダウンロード</a>でいけるのかな？</p>
-
-<pre><code>$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &gt; ./cvs2git.options
-$ vi cvs2git.options
-$ cvs2git --options=./cvs2git.options
-</code></pre>
-
-<p>などとやってみたが、必要な情報がtarballの中にはないようだ。<a href="https://osdn.net/docs-ja/SCM_Migration">サポートリクエスト</a>を出して欲しい、ということらしい。あとで問い合わせよう。</p>
-
+						<p><a href="http://debian-mirror.sakura.ne.jp/munin/">debian-mirror.sakura.ne.jpでのmuninでの監視</a>で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。</p>
+<pre><code class="language-error" data-lang="error">You don't have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
+</code></pre><p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> $ sudo apt-get install libapache2-mod-fcgid
+ $ sudo a2enmod rewrite
+ $ sudo a2enmod fcgid
+</code></pre></div><p>としてから<code>/etc/apache2/conf-enabled/munin.conf</code>を以下のように書き換え。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -11,7 +11,7 @@
+</span><span style="color:#75715e"></span> 
+ ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
+ &lt;Location /munin-cgi/munin-cgi-graph&gt;
+<span style="color:#f92672">-        Require local
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+        Require all granted
+</span><span style="color:#a6e22e"></span>         &lt;IfModule mod_fcgid.c&gt;
+             SetHandler fcgid-script
+         &lt;/IfModule&gt;
+</code></pre></div>
 					
 				</div>
 			</div>
@@ -726,17 +167,20 @@ $ cvs2git --options=./cvs2git.options
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, Jul 24, 2017
+								Sun, Feb 17, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -749,19 +193,48 @@ $ cvs2git --options=./cvs2git.options
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング作業</p>
+						<p><a href="https://github.com/knxm/mathlibre">MathLibre</a>をいじってて<code>live-build</code>パッケージでbusterサポートが抜けてたので<a href="https://salsa.debian.org/live-team/live-build/commit/f242323fa246840ba9581586ad78a8301629d84c">Merge Requestした</a>。</p>
 
-<ul>
-<li><a href="https://tracker.debian.org/news/858508">fonts-kacst-one</a>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
 
-<ul>
-<li>アップロードしてから「あ、ttf-パッケージがあった&hellip;落とし忘れ&hellip;」と気付く。あとでもう一度アップロードしよう。</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/858510">fonts-takao</a>
 
-<ul>
-<li>pristine-tarブランチにコミットし忘れてたのが発覚。<code>apt source fonts-takao</code>と<a href="http://snapshot.debian.org">snapshot.debian.org</a>からダウンロードして、<code>gbp pristine-tar commit</code>で追加。</li>
-</ul></li>
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 16, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>JDimでの<a href="https://github.com/JDimproved/JDim/pull/33/commits/5712a514f4ad4bfc1bcb71fabb74153f7af53c40">Debian向けの開発環境説明を修正</a>した。</li>
+<li>partman-lvmの修正がregressionを起こしてrevertされたので<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2">再チャレンジ</a></li>
 </ul>
 
 					
@@ -775,130 +248,27 @@ $ cvs2git --options=./cvs2git.options
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/24/digging-into-gpgme-on-hurd/">digging into gpgme on hurd</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, Jul 24, 2017
+								Sat, Feb 9, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>gpgme1.0 on Hurdの続き。</p>
-
-<pre><code>Running tests using /usr/bin/python2 (2.7)...
-PASS: initial.py
-PASS: t-wrapper.py
-PASS: t-callbacks.py
-FAIL: t-data.py
-FAIL: t-encrypt.py
-FAIL: t-encrypt-sym.py
-FAIL: t-encrypt-sign.py
-FAIL: t-sign.py
-FAIL: t-signers.py
-FAIL: t-decrypt.py
-FAIL: t-verify.py
-FAIL: t-decrypt-verify.py
-FAIL: t-sig-notation.py
-PASS: t-export.py
-PASS: t-import.py
-PASS: t-trustlist.py
-PASS: t-edit.py
-PASS: t-keylist.py
-PASS: t-keylist-from-data.py
-PASS: t-wait.py
-PASS: t-encrypt-large.py
-FAIL: t-file-name.py
-PASS: t-idiomatic.py
-PASS: t-protocol-assuan.py
-FAIL: t-quick-key-creation.py
-FAIL: t-quick-subkey-creation.py
-PASS: t-quick-key-manipulation.py
-PASS: t-quick-key-signing.py
-PASS: final.py
-Running tests using /usr/bin/python3 (3.5)...          
-PASS: initial.py                                       
-PASS: t-wrapper.py                                     
-PASS: t-callbacks.py                                   
-FAIL: t-data.py                                        
-FAIL: t-encrypt.py                                     
-FAIL: t-encrypt-sym.py                                 
-FAIL: t-encrypt-sign.py                                
-FAIL: t-sign.py                                        
-FAIL: t-signers.py                                     
-FAIL: t-decrypt.py
-FAIL: t-verify.py
-FAIL: t-decrypt-verify.py
-FAIL: t-sig-notation.py
-PASS: t-export.py
-PASS: t-import.py
-PASS: t-trustlist.py
-PASS: t-edit.py
-PASS: t-keylist.py
-PASS: t-keylist-from-data.py
-PASS: t-wait.py
-PASS: t-encrypt-large.py
-FAIL: t-file-name.py
-FAIL: t-idiomatic.py
-PASS: t-protocol-assuan.py
-FAIL: t-quick-key-creation.py
-FAIL: t-quick-subkey-creation.py
-PASS: t-quick-key-manipulation.py
-PASS: t-quick-key-signing.py
-PASS: final.py
-58 tests run, 31 succeeded, 27 failed, 0 skipped.
-</code></pre>
-
-<p>めっちゃコケる。</p>
-
-<pre><code>GNUPGHOME=/root/gpgme1.0-1.9.0/lang/python/tests LC_ALL=C GPG_AGENT_INFO= top_srcdir=../../.. srcdir=. LD_LIBRARY_PATH=&quot;../../../src/.libs:&quot; /usr/bin/python2 ./run-tests.py \
-  --interpreters=&quot;/usr/bin/python2 /usr/bin/python3&quot; --srcdir=.  \
-  initial.py t-wrapper.py t-callbacks.py t-data.py t-encrypt.py t-encrypt-sym.py t-encrypt-sign.py t-sign.py t-signers.py t-decrypt.py t-verify.py t-decrypt-verify.py t-sig-notation.py t-export.py t-import.py t-trustlist.py t-edit.py t-keylist.py t-keylist-from-data.py t-wait.py t-encrypt-large.py t-file-name.py t-idiomatic.py t-protocol-assuan.py t-quick-key-creation.py t-quick-subkey-creation.py t-quick-key-manipulation.py t-quick-key-signing.py final.py
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Jul 23, 2017
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
 						
 								 , 
-							<a href="/tags/todo">todo</a>
+							<a href="/tags/dd">DD</a>
 						
 					</small>
 				</div>
@@ -907,87 +277,50 @@ PASS: final.py
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング作業</p>
+						<p>groonga 9.0.0 を deleyed 3 でアップロードした。</p>
 
-<ul>
-<li><p><a href="https://tracker.debian.org/news/858132">fonts-breip</a>。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。</p>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
 
-<pre><code>* Team upload.                                       
-* add epoch to version since upstream releases it as 0.5.1 and previous
-packaging introduced unnecessary non-upstream files
-* debian/control
-- remove Mauro Lizaur &lt;mauro@debian.org&gt; from Uploaders, thank you for
-  your work! (Closes: #869339)                     
-- add myself to Uploaders.                         
-- update Vcs-* and use https                       
-- set Standards-Version: 4.0.0                     
-- set Build-Depends: debhelper (&gt;= 10)
-* debian/compat
-- set 10
-* add debian/watch
-* add debian/gbp.conf
-* debian/copyright
-- convert to copyright format 1.0
-</code></pre></li>
-</ul>
 
-<hr />
-
-<ul>
-<li><p>ttf-adfとfonts-adfかぶってるよ、問題。
-<a href="https://bugs.debian.org/869346">Bug#869346</a>をみて、古いttf-adfを削除依頼するか&hellip;と思ったのだけど、念の為ソースパッケージを落としている際、どうもorig.tar.gzのサイズが大きく違うのに気づいた。</p>
-
-<pre><code>$ ls -al fonts-adf_0.20110505.orig.tar.gz ttf-adf_0.20090423.orig.tar.gz 
--rw-r--r-- 1 henrich henrich  9294398 10月 20  2016 fonts-adf_0.20110505.orig.tar.gz
--rw-r--r-- 1 henrich henrich 15055654  5月  7  2009 ttf-adf_0.20090423.orig.tar.gz
-</code></pre></li>
-</ul>
-
-<p>これは一体？&hellip;どうやら<a href="http://arkandis.tuxfamily.org/adffonts.html">複数のupstream source</a>をまとめてぶち込んでいるようだ。あんまり筋が良くないなぁ。これ、分割してやったほうがいいと思う。</p>
-
-<hr />
-
-<ul>
-<li><p>昨日のSylpheed on HurdがPerl 5.26 transitionが落ち着いて関連パッケージがインストールできるようになったのでビルドを試す。</p>
-
-<pre><code># ./configure --build=i686-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --disable-silent-rules --libdir=${prefix}/lib/i386-gnu --libexecdir=${prefix}/lib/i386-gnu --disable-maintainer-mode --disable-dependency-tracking --enable-static --enable-languages=python cpp qt --infodir=/usr/share/info
-(snip)
-checking build system type... i686-pc-gnu
-checking host system type... Invalid configuration `cpp': machine `cpp' not recognized
-configure: error: /bin/bash build-aux/config.sub cpp failed
-</code></pre></li>
-</ul>
-
-<p>あら？ 試しにconfigure の引数に <code>--host=i686-gnu</code> を指定したら通るようにはなったが、これが自動で引っ張ってこられないのが問題かな&hellip;と思ったら、どうやら <code>--enable-languages=python cpp qt</code> が問題でおかしな値を引っ張ってきているようだ。これを除去したらとりあえずconfigure通ってビルドできるようになった。ただ、testcaseがコケるのでパッケージは生成できていない。</p>
-
-<pre><code>PASS: t-thread1
-PASS: t-thread-keylist
-t-thread-keylist-verify.c:92: GPGME: Too many open files
-FAIL: t-thread-keylist-verify
-stopping gpg-agent 
-PASS: final.test
-======================================
-1 of 26 tests failed
-Please report to http://bugs.gnupg.org
-======================================
-Makefile:852: recipe for target 'check-TESTS' failed
-make: *** [check-TESTS] Error 1
-</code></pre>
-
-<p>これはGNUPGのサイトでアカウント作って<a href="https://dev.gnupg.org/T3294">報告した</a>→どうやら新しいバージョン1.9.0がupstreamでは出ているようだったのでこちらで試したら上記のtest caseは通るようになっていたので早速close。ただ、他のテストが通らない&hellip;。</p>
-
-<p>configure.acみると</p>
-
-<pre><code>available_languages=&quot;cl cpp python python2 python3 qt&quot;
-default_languages=&quot;cl cpp python qt&quot;
-</code></pre>
-
-<p>なので、<code>--enable-languages=python cpp qt</code> が本当に必要かどうか、他のArchでも削除して問題ないことを確認したら、とりあえずこれを外すだけでもしたい。</p>
-
-<hr />
-
-<ul>
-<li>9.1が出ていたので<a href="http://www.debian.or.jp">debian.or.jp</a>の情報を更新。</li>
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/120">CONFIG_IMX_THERMAL</a>がマージされた</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/121">CONFIG_ARM_ARMADA_37XX_CPUFREQ</a>がマージされた</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/122">CONFIG_LEDS_PCA963X</a>は「アーキテクチャ限定したほうが良いんじゃね？」というサジェスチョン。</li>
+<li>jdimをstretch-backportsにアップロードした。これもNEW行きかな？入ったらjdを削除依頼しないと。</li>
 </ul>
 
 					
@@ -1001,24 +334,27 @@ default_languages=&quot;cl cpp python qt&quot;
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Jul 22, 2017
+								Fri, Feb 8, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
 						
 								 , 
-							<a href="/tags/todo">todo</a>
+							<a href="/tags/dd">DD</a>
 						
 					</small>
 				</div>
@@ -1027,52 +363,9 @@ default_languages=&quot;cl cpp python qt&quot;
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今日のグルーミング作業。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/858089">vmdk-stream-converter</a>
-
-<ul>
-<li>LaunchPadで<a href="https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995">Bug登録されてた</a>から何かね？と思ったらMIR&hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/858088">psphere</a></li>
-<li><a href="https://tracker.debian.org/news/858092">fonts-kanjistrokeorders</a></li>
-<li><a href="https://tracker.debian.org/news/858099">fonts-komatuna</a></li>
-<li><a href="https://tracker.debian.org/news/858098">fonts-ipafont</a></li>
-<li><a href="https://tracker.debian.org/news/858130">svn-workbench</a>。<a href="https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html">desktopファイルにkeywordが足りない</a>ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。</li>
-<li>fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。<a href="https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name">short-name</a>では「public-domain」とハイフン入れるのね。→<a href="https://tracker.debian.org/news/858133">アップロードした</a>。</li>
+						<ul>
+<li>groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。</li>
 </ul>
-
-<hr />
-
-<p>珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ<code>@ANY_VERSION@</code>・<code>@ARCHIVE_EXT@</code> と書けるのでそれを使うと良いよ、という話をした。</p>
-
-<hr />
-
-<p>sylpheedのビルドが全部揃ってないのが気になったので調査。</p>
-
-<pre><code>sylpheed build-depends on missing:
-- libgpgme-dev:hurd-i386 (&gt;= 1.0.0)
-</code></pre>
-
-<p>これか。<a href="https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid">https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid</a> を見るとoverride_dh_auto_configureでコケてビルドが失敗している&hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。<a href="https://people.debian.org/~sthibault/hurd-i386/">qemuイメージの配布</a>で新しいイメージが出てたのでそれをベースにやり直してみよう。</p>
-
-<pre><code>$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI
-Converting from raw image file=&quot;debian-hurd-20170613.img&quot; to file=&quot;debian-hurd-converted-20170613.vdi&quot;... 
-Creating dynamic image with size 5243928576 bytes (5001MB)...
-</code></pre>
-
-<p>で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思って<code>sudo modprobe vboxdrv</code>してVBoxを立ち上げなおしてみても同じエラー。&hellip;あ、kernelが変わったせい？ <code>sudo dpkg-reconfigure virtualbox-dkms</code>してみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&hellip;という謎の対処療法的な解決の仕方でスッキリしない。</p>
-
-<p>あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ</p>
-
-<p>ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&hellip;</p>
-
-<pre><code>The following packages have unmet dependencies:
- texinfo : Depends: perlapi-5.24.1 but it is not installable
-           Depends: libxml-libxml-perl but it is not going to be installed
-E: Unable to correct problems, you have held broken packages.
-</code></pre>
 
 					
 				</div>
@@ -1084,6 +377,131 @@ E: Unable to correct problems, you have held broken packages.
 			</div>
 		
 	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Feb 8, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>fonts-misakiがサイト移転＆アップデートしてたので<a href="https://tracker.debian.org/news/1028702/accepted-fonts-misaki-20190203a-1-source-into-unstable/">対応</a>を。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Feb 7, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>linuxパッケージのconfigをいじる作業の続き。<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/113">Bug#920809</a>と<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/114">Bug#918114</a>がマージされた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 6, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>gem2debのテンプレートで<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterが入ってたのを削除するパッチがマージされた</a>。リリースはまだ。</li>
+<li><a href="https://tracker.debian.org/news/1028017/accepted-ubuntu-keyring-201809181-4-source-into-unstable/">ubuntu-keyringパッケージのdebconf poの更新</a>を取り込んだ。これ、次回からMerge Requestの方が良いような…</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
 
         
 	</div>
@@ -1376,6 +794,7 @@ E: Unable to correct problems, you have held broken packages.
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -1390,7 +809,7 @@ E: Unable to correct problems, you have held broken packages.
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -1399,18 +818,10 @@ E: Unable to correct problems, you have held broken packages.
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

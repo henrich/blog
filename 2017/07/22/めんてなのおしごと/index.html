@@ -74,13 +74,12 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>今日のグルーミング作業。</p>
-
 <ul>
 <li><a href="https://tracker.debian.org/news/858089">vmdk-stream-converter</a>
-
 <ul>
 <li>LaunchPadで<a href="https://bugs.launchpad.net/ubuntu/+source/vmdk-stream-converter/+bug/1700995">Bug登録されてた</a>から何かね？と思ったらMIR&hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://tracker.debian.org/news/858088">psphere</a></li>
 <li><a href="https://tracker.debian.org/news/858092">fonts-kanjistrokeorders</a></li>
 <li><a href="https://tracker.debian.org/news/858099">fonts-komatuna</a></li>
@@ -88,38 +87,24 @@
 <li><a href="https://tracker.debian.org/news/858130">svn-workbench</a>。<a href="https://lintian.debian.org/tags/desktop-entry-lacks-keywords-entry.html">desktopファイルにkeywordが足りない</a>ので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。</li>
 <li>fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。<a href="https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name">short-name</a>では「public-domain」とハイフン入れるのね。→<a href="https://tracker.debian.org/news/858133">アップロードした</a>。</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ<code>@ANY_VERSION@</code>・<code>@ARCHIVE_EXT@</code> と書けるのでそれを使うと良いよ、という話をした。</p>
-
-<hr />
-
+<hr>
 <p>sylpheedのビルドが全部揃ってないのが気になったので調査。</p>
-
 <pre><code>sylpheed build-depends on missing:
 - libgpgme-dev:hurd-i386 (&gt;= 1.0.0)
-</code></pre>
-
-<p>これか。<a href="https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid">https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid</a> を見るとoverride_dh_auto_configureでコケてビルドが失敗している&hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。<a href="https://people.debian.org/~sthibault/hurd-i386/">qemuイメージの配布</a>で新しいイメージが出てたのでそれをベースにやり直してみよう。</p>
-
+</code></pre><p>これか。https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;suite=sid を見るとoverride_dh_auto_configureでコケてビルドが失敗している&hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。<a href="https://people.debian.org/~sthibault/hurd-i386/">qemuイメージの配布</a>で新しいイメージが出てたのでそれをベースにやり直してみよう。</p>
 <pre><code>$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI
 Converting from raw image file=&quot;debian-hurd-20170613.img&quot; to file=&quot;debian-hurd-converted-20170613.vdi&quot;... 
 Creating dynamic image with size 5243928576 bytes (5001MB)...
-</code></pre>
-
-<p>で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思って<code>sudo modprobe vboxdrv</code>してVBoxを立ち上げなおしてみても同じエラー。&hellip;あ、kernelが変わったせい？ <code>sudo dpkg-reconfigure virtualbox-dkms</code>してみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&hellip;という謎の対処療法的な解決の仕方でスッキリしない。</p>
-
+</code></pre><p>で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思って<code>sudo modprobe vboxdrv</code>してVBoxを立ち上げなおしてみても同じエラー。&hellip;あ、kernelが変わったせい？ <code>sudo dpkg-reconfigure virtualbox-dkms</code>してみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&hellip;という謎の対処療法的な解決の仕方でスッキリしない。</p>
 <p>あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ</p>
-
 <p>ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&hellip;</p>
-
 <pre><code>The following packages have unmet dependencies:
  texinfo : Depends: perlapi-5.24.1 but it is not installable
            Depends: libxml-libxml-perl but it is not going to be installed
 E: Unable to correct problems, you have held broken packages.
 </code></pre>
-
 		</div>
 	</div>
 	<div class="row">
@@ -134,7 +119,7 @@ E: Unable to correct problems, you have held broken packages.
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -142,10 +127,6 @@ E: Unable to correct problems, you have held broken packages.
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

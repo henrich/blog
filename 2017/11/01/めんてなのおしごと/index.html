@@ -74,11 +74,8 @@
 <li><a href="https://tracker.debian.org/news/883148">libmojolicious-plugin-assetpack-perlパッケージをアップデート</a></li>
 <li>libxmlbirdをアップデートしようと思ったらtarballはできてるのにtagがpushされてないので、またお願いしておく</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>gnome-todoをビルドしようとするとgbpがpristine-tar周りでエラーが出る&hellip;</p>
-
 <pre><code>$ gbp buildpackage  --git-pbuilder  --git-ignore-branch --git-pristine-tar-commit  --git-upstream-tag=GNOME_TODO_3_26_2 --git-verbose
 gbp:debug: ['git', 'rev-parse', '--show-cdup']
 gbp:debug: ['git', 'rev-parse', '--is-bare-repository']
@@ -107,9 +104,7 @@ gbp:debug: pristine-tar [] ['--help']
 gbp:debug: pristine-tar [] ['verify', '/home/henrich/src/pkg-gnome/build-area/gnome-todo_3.26.2.orig.tar.gz']
 gbp:error: Pristine-tar couldn't verify &quot;gnome-todo_3.26.2.orig.tar.gz&quot;: fatal: Path 'gnome-todo_3.26.2.orig.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
 pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.delta failed
-</code></pre>
-
-<p>&ndash;git-no-pristine-tar オプションをつけるとビルドはできるんだけど&hellip;負けた気がするよね。</p>
+</code></pre><p>&ndash;git-no-pristine-tar オプションをつけるとビルドはできるんだけど&hellip;負けた気がするよね。</p>
 
 		</div>
 	</div>
@@ -125,7 +120,7 @@ pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.del
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -133,10 +128,6 @@ pristine-tar: git show refs/heads/pristine-tar:gnome-todo_3.26.2.orig.tar.gz.del
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

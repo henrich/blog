@@ -74,15 +74,9 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<pre><code>gbp buildpackage --git-pbuilder-options=&quot;-sa&quot;
-</code></pre>
-
-<p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
-
+</code></pre><p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
 <pre><code>sudo cowbuilder --build --debbuildopt=&quot;-sa&quot; libxmlbird_1.0.4-2.dsc
-</code></pre>
-
-<p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
-
+</code></pre><p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
 <pre><code>$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
 gbp:info: Orig tarball 'libxmlbird_1.0.4.orig.tar.xz' not found at '../tarballs/'
 gbp:info: Exporting 'HEAD' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp'
@@ -94,7 +88,6 @@ dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
  dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
 dpkg-genchanges: not including original source code in upload
 </code></pre>
-
 		</div>
 	</div>
 	<div class="row">
@@ -109,7 +102,7 @@ dpkg-genchanges: not including original source code in upload
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -117,10 +110,6 @@ dpkg-genchanges: not including original source code in upload
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

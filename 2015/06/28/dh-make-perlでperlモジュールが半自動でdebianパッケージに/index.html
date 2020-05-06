@@ -71,7 +71,6 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>dh-make-perlを使えばperl moduleのパッケージは容易にできるというのは知ってたけど、どう使うのかな、と。</p>
-
 <pre><code>$ dh-make-perl 
 == dh-make-perl 0.86 ==
 Trying /home/henrich/src/qa/../qa.tar.gz... not found.
@@ -81,10 +80,7 @@ Trying /home/henrich/src/qa/../qa.tar.lzma... not found.
 WARNING: Neither META.json nor META.yml was found
 Unable to determine dist name, no Build.PL, no Makefile.PL
 Please use --cpan.
-</code></pre>
-
-<p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
-
+</code></pre><p>ダウンロードしたtarballに対して使う、と思い込んでたんだけども、&ndash;cpanなんてオプションがある。もしかして、モジュール名を指定したら…</p>
 <pre><code>$ dh-make-perl --cpan DBIx-Class-OptimisticLocking
 == dh-make-perl 0.86 ==
 
@@ -119,10 +115,7 @@ PERL_MM_OPT=&quot;INSTALL_BASE=/home/henrich/perl5&quot;; export PERL_MM_OPT;
 
 Would you like me to append that to /home/henrich/.bashrc now? [yes] 
 (snip)
-</code></pre>
-
-<p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
-
+</code></pre><p>なんと、cpanからダウンロードしてパッケージを作ってくれる模様。初回だけ色々な設定をするので質問されますが、それも次回以降は不要。DBIx-Class-OptimisticLockingを指定したら、libdbix-class-optimisticlocking-perlパッケージのディレクトリができています。しかもgitで管理されるようになっています。楽だ…</p>
 <pre><code>henrich@hp:~/src/qa/libdbix-class-optimisticlocking-perl(master) $ git log
 commit a1a9d209742905d33a3ffee587c32b7a5360a521
 Author: Hideki Yamane &lt;henrich@debian.org&gt;
@@ -135,14 +128,9 @@ Author: Hideki Yamane &lt;henrich@debian.org&gt;
 Date:   Sun Jun 28 00:10:38 2015 +0900
 
     Import original source of DBIx-Class-OptimisticLocking 0.02
-</code></pre>
-
-<p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
-
+</code></pre><p>面倒なdebian/controlでの依存関係もほぼ自動で出来上がります。descriptionもcpanから取得したものがあります（が、モジュールによっては手動での記述が必要になることも）。手直しは若干必要ですが、楽ですね。</p>
 <p>debian/rulesでのビルド記述は素のままですが、Perl moduleなら特にいじることもない、という感じでしょうか。</p>
-
 <p>debian/copyrightもcpanから取ってきて記述されるようです。</p>
-
 <pre><code>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://metacpan.org/release/DBIx-Class-OptimisticLocking
 Upstream-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
@@ -155,71 +143,45 @@ DISCLAIMER: This copyright info was automatically extracted
  on dh-make-perl.
  NOTE: Don't forget to remove this disclaimer once you are happy
  with this file.
-</code></pre>
-
-<p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
-
+</code></pre><p>とあるので、念を入れて確認を実施し、問題を見つけたらdh-make-perlにBTSするのがいいでしょう。</p>
 <p>debian/watchファイルも生成されていましたので、アップデートを追いかけるのも楽ですね。</p>
-
 <p>debian/upstream/metadataなんてファイルも出来てました。中身は</p>
-
 <pre><code>Archive: CPAN
 Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
 Name: DBIx-Class-OptimisticLocking
 Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p>ほー。いたれりつくせりですね。</p>
-
+</code></pre><p>ほー。いたれりつくせりですね。</p>
 <p>あとはgit-buildpackageでビルドしてしまえばOKです。</p>
-
 <p>ちなみに既にあるモジュールをdh-make-perlでパッケージにしようとすると</p>
-
 <pre><code>**********
 WARNING: a package named
               'libsql-abstract-perl'
          is already available in APT repositories
 Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
 Description: module to generate SQL from Perl data structures
-</code></pre>
-
-<p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
-
+</code></pre><p>などと出てきますので、不要なディレクトリとtarballを削除しておきましょう。</p>
 <p>モジュールがcpanにない場合には</p>
-
 <pre><code>$ dh-make-perl --cpan selenium-remote-driver-perl
 == dh-make-perl 0.86 ==
 Reading '/home/henrich/.local/share/.cpan/Metadata'
   Database was generated on Sat, 27 Jun 2015 14:17:02 GMT
 Can't find 'selenium::remote::driver::perl' module or distribution on CPAN
-</code></pre>
-
-<p>のように出てきます。</p>
-
+</code></pre><p>のように出てきます。</p>
 <p>また、変換の際にモジュールが依存する別のモジュールがない場合には</p>
-
 <pre><code>Needs the following modules for which there are no debian packages available:
  - Time::Mock
-</code></pre>
-
-<p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
-
+</code></pre><p>と警告が出てきます。しかし、これも万能というわけでもなく、</p>
 <pre><code>Needs the following modules for which there are no debian packages available:
  - CSS::Minifier::XS
  - JavaScript::Minifier::XS
-</code></pre>
-
-<p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
-
+</code></pre><p>と出てきたのでdh-make-perl &ndash;cpan CSS-Minifier-XSしたら</p>
 <pre><code>**********
 WARNING: a package named
               'libcss-minifier-xs-perl'
          is already available in APT repositories
 Maintainer: Debian Perl Group &lt;pkg-perl-maintainers@lists.alioth.debian.org&gt;
 Description: XS based CSS minifier
-</code></pre>
-
-<p>と出てきてしまいました。あらら。</p>
+</code></pre><p>と出てきてしまいました。あらら。</p>
 
 		</div>
 	</div>
@@ -235,7 +197,7 @@ Description: XS based CSS minifier
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -243,10 +205,6 @@ Description: XS based CSS minifier
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

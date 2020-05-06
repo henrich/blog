@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="めんてなのおしごと">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>めんてなのおしごと &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/solid.js" integrity="sha384-F4BRNf3onawQt7LDHDJm/hwm3wBtbLIfGk1VSB/3nn3E+7Rox1YpYcKJMsmHBJIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/regular.js" integrity="sha384-V+AkgA1cZ+p3DRK63AHCaXvO68V7B5eHoxl7QVN21zftbkFn/sGAIVR7vmQL3Zhp" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/brands.js" integrity="sha384-VLgz+MgaFCnsFLiBwE3ItNouuqbWV2ZnIqfsA6QRHksEAQfgbcoaQ4PP0ZeS0zS5" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/fontawesome.js" integrity="sha384-treYPdjUrP4rW5q82SnECO7TPVAz4bpas16yuE9F5o7CeBn2YYw1yr5oC8s8Mf8t" crossorigin="anonymous"></script>
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Sat, Jun 15, 2019</span> in
+				
+					
+					<a href="/categories/debian">debian</a>
+				
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li>先日<code>delayed/5 queue</code>にいれたpython-arucoがtestingに落ちないので「？」と思ってたのだが、<code>debian/changelog</code>ファイルにきちんとclose書き忘れていた…仕方がないので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929714">closeメール</a>を送ったりした。いかんいかん。unblockもしないとダメかな。</li>
+<li>報告者が数年放置のRCバグがあったので２週間前ぐらいに「どうなってんの？」とつついたが、二人目の報告者しか反応せず。こちらも<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866758">closeしといた</a></li>
+</ul>
+<hr>
+<p>久々にダウンロードしたパッケージが壊れている、というのを体験。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">thunderbird (1:60.7.1-1) で (1:60.7.0-1 に) 上書き展開しています ...
+dpkg-deb (サブプロセス): アーカイブメンバーを伸張しています: lzma エラー: 圧縮データが壊れています
+dpkg-deb: エラー: &lt;伸張&gt; subprocess returned error exit status 2
+dpkg: アーカイブ /tmp/apt-dpkg-install-72mWan/34-thunderbird_1%3a60.7.1-1_amd64.deb の処理中にエラーが発生しました (--unpack):
+ &#39;./usr/lib/thunderbird/libxul.so&#39; の展開済みデータを &#39;/usr/lib/thunderbird/libxul.so.dpkg-new&#39; にコピーできません: ファイルまたは
+ストリームの予期しない終わりです
+</code></pre></div><p><code>apt clean</code>して対処。</p>
+<hr>
+<ul>
+<li>自前の<code>debian/.gitlab-ci.yml</code>から<a href="https://salsa.debian.org/salsa-ci-team/pipeline/">salsa-ciチームのpipeline</a>を使う方向に転換した。gitlabのCI設定を変更して<code>debian/salsa-ci.yml</code>を参照するようにし、ファイルには以下の３行を書くだけで、ビルドから<code>piuparts</code>, <code>lintian</code>, <code>reproducible test</code>, <code>autopkgtest</code>, <code>blhc</code>の５つのテストが走る。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">include</span>:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+</code></pre></div><hr>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>trouble on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Sat, 13 Feb 2016 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/trouble/index.xml" rel="self" type="application/rss+xml" />
@@ -21,7 +22,7 @@
       <guid>https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</guid>
       <description>デスクトップを再起動したらemergency modeになってしまった。ううん？なんか変なののアップグレード踏んだかな、でもここ数日そんなクリティカルな情報は見た記憶がない。Sidを使ってるからこういう事態はあり得る…とはいえ、嬉しいものでもない。とりあえずカーネルを差し替えて再起動…1分半ほど待たされた後、同じくemergency modeになった。はて、systemdかX.org周りか。でもアップデートした記憶ないな…と、メッセージ通りrootでログインしてjournalctl -xbでログを見る…あれ？なんかマウントしようとして失敗してる？（ログは消えたので例示できないけど）
 前にnautilus経由でイメージマウントしたISOファイルが/etc/fstabにマウントポイントが残っていたのでコメントアウトして、再起動…うまくいった。
-#/dev/loop0 /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 #/dev/loop2 /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 #Entry for /dev/loop1 : #UUID=2015-10-30-20-02-13-00 /media/henrich/J_SSS_X64FRE_JA-JP_DV91 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0  なんなんだこれは。</description>
+#/dev/loop0 /media/henrich/IRM_SHV_X64FRE_JA-JP_DV5 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 #/dev/loop2 /media/henrich/IRM_SHV_X64FRE_JA-JP_DV51 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 #Entry for /dev/loop1 : #UUID=2015-10-30-20-02-13-00 /media/henrich/J_SSS_X64FRE_JA-JP_DV91 udf ro,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8 0 0 なんなんだこれは。</description>
     </item>
     
     <item>
@@ -40,9 +41,9 @@ $ debsnap sylpheed 3.2.0-1 --force -v Getting json http://snapshot.debian.org/mr
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
-      <description>gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot;  上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。
-sudo cowbuilder --build --debbuildopt=&amp;quot;-sa&amp;quot; libxmlbird_1.0.4-2.dsc  だとうまくいった。おかしいな、基本的に&amp;ndash;git-pbuilder-optionsと&amp;ndash;debbuildoptは等価ではないのか？
-$ gbp buildpackage --git-tag --git-pbuilder-options=-sa gbp:info: Orig tarball &#39;libxmlbird_1.0.4.orig.tar.xz&#39; not found at &#39;../tarballs/&#39; gbp:info: Exporting &#39;HEAD&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; gbp:info: Moving &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4&#39; Building with cowbuilder for distribution sid I: using cowbuilder as pbuilder (snip) dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc dpkg-genchanges -S &amp;gt;../libxmlbird_1.0.4-2_source.changes dpkg-genchanges: not including original source code in upload  </description>
+      <description>gbp buildpackage --git-pbuilder-options=&amp;quot;-sa&amp;quot; 上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。
+sudo cowbuilder --build --debbuildopt=&amp;quot;-sa&amp;quot; libxmlbird_1.0.4-2.dsc だとうまくいった。おかしいな、基本的に&amp;ndash;git-pbuilder-optionsと&amp;ndash;debbuildoptは等価ではないのか？
+$ gbp buildpackage --git-tag --git-pbuilder-options=-sa gbp:info: Orig tarball &#39;libxmlbird_1.0.4.orig.tar.xz&#39; not found at &#39;../tarballs/&#39; gbp:info: Exporting &#39;HEAD&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; gbp:info: Moving &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp&#39; to &#39;/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4&#39; Building with cowbuilder for distribution sid I: using cowbuilder as pbuilder (snip) dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc dpkg-genchanges -S &amp;gt;../libxmlbird_1.0.4-2_source.changes dpkg-genchanges: not including original source code in upload </description>
     </item>
     
   </channel>

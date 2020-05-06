@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,61 +57,21 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/13/subversion%E3%81%8B%E3%82%89%E3%81%8A%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97/">subversionからお引っ越し</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Jan 13, 2018
+								Thu, Mar 14, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>www.debian.or.jpのコンテンツはSubversionで管理していて、コミット可能なのはJPのメンバーだけだったのだけど、salsa.debian.orgに引っ越して見通しを良くしてみたくなったので作業した。</p>
-
-<p>svn2gitを使いコンバート。</p>
-
-<p>非常にわかりづらい（というか導線がない？）のだけど、GitLabにOrganizationというかTeamというかを登録するページからdebianjp-teamとして登録し、適当なsub projectとしてwebを作り、コンバートしたGit repositoryを突っ込む。</p>
-
-<p>Ansibleで<a href="https://cloudgarage.jp/">CloudGarage</a>のVPSへデプロイ（ここで現状のサイトコンテンツの更新手順に更新漏れを見つけたり）。CloudGarageさんは<a href="https://cloudgarage.jp/dap/">開発者支援プログラム</a>を使わせてもらっていて助かる。相変わらず書いたplaybook.ymlがちょっと出来のいいバッチファイル程度なのが気になるけど、仕方がない。</p>
-
-<p>とまぁ、そんなこんなで時間を使った。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 8, 2018
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -125,9 +85,12 @@
 					<br>
 					
 						<ul>
-<li><a href="https://tracker.debian.org/news/900074">fonts-oradano-mincho-gsrrをアップロード</a></li>
-<li><a href="https://tracker.debian.org/news/900087">birdfontをアップロード</a></li>
-<li>ミラーサーバーのリソースがCPUを中心に余ってるので、GitLab Runnerにホストを提供しようと思ったのだけども、salsa-adminに問い合わせた所「無理かもー」ともらった。排他的にサービスを提供する、という点だけがネック。</li>
+<li>cowbuilderを動かしてて、そういえばコイツ…というかpbuilderはbaseイメージ作成の際にdebootstrapを呼ぶな、という考えに至り、<code>--cache-dir</code>オプションが使えるのではないか？と思いつく。で、<a href="https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/6">MergeRequestした</a>。
+<ul>
+<li>その中でmanpageの<code>--debootstrap</code>オプションの設定が間違っていたようなので、こちらも<a href="https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/7">MergeRequest</a></li>
+</ul>
+</li>
+<li>もう一つ、man pbuilderした時だったかにapt lineがftp.jp.debian.orgやftp.de.debian.orgを指定してたので<code>deb.debian.org</code>指定に変更の<a href="https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/5">MergeRequest</a>。</li>
 </ul>
 
 					
@@ -141,261 +104,27 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Jan 7, 2018
+								Tue, Mar 12, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>年末年始で間が空いてしまった&hellip;。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/899819">libxmlbirdをアップデート</a></li>
-</ul>
-
-<hr />
-
-<p>年末年始でようやく新しいミラーサーバー new-debian-mirror.sakura.ne.jp の設定に手を付けました（ありがとうございます＞さくらインターネットさま）。初めてのAnsible&hellip;ですが、今のところはバッチファイルよりちょっとマシ程度の状況。やはり複数サーバー運用して整理するのが必要とかじゃないとモチベーションが湧かないですね&hellip;。まぁ、次にセットアップが必要になった場合は一発流せばいいだけというのは気楽にはなりました。</p>
-
-<p>新しいサーバーにはbcacheを使っています、<a href="https://wiki.archlinux.jp/index.php/Bcache">ありがとうArch Wiki</a>。ディスクを大量に積むのもよいのですが、既に後2年ぐらいは戦えそうな容量を頂けたので、SSDでキャッシュする方向に走るのが良いかな、と。速度はそこまで出ないにしてもアクセスが多くなっても大丈夫よ、と。</p>
-
-<p>CacheデバイスのSSDですが、最初はRAID1を設定してもらっていましたが、思い直して設定変更。JBODが選べないので仕方なくRAID0にしました。生まれて初めて使ったよ、RAID0&hellip;。HDDよりは死にづらいかなーというのと、死んでも構わないよねー（負荷が増えるだけ）というのと、容量が欲しかったんや&hellip;というのの3点からRAID0選択と相成りました。</p>
-
-<pre><code>#!/bin/sh
-
-BACKING_DEVICE=/dev/sda3
-CACHE_DEVICE=/dev/sdb
-
-make-bcache -B $BACKING_DEVICE -C $CACHE_DEVICE
-
-echo `bcache-super-show $CACHE_DEVICE | grep cset.uuid | awk '{print $2}'` \
- &gt; /sys/block/bcache0/bcache/attach
-
-if [ -f /dev/bcache0 ]; then
-  mkfs.xfs /dev/bcache0
-else
-  echo &quot;There's no Bcache device.&quot;
-fi
-</code></pre>
-
-<p>手作業でやったのを後からまとめ直すと上記のような感じ。短いな&hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。</p>
-
-<p>ufwを実行しようかどうしようか、という辺りとSNMP監視が出来てない風味だよね？というのを確認したら、終わり。そして、切り替え前後でおかしなことが起きたらその対処、と。</p>
-
-<hr />
-
-<p>muninの設定続き。</p>
-
-<pre><code>$ sudo munin-run http_loadtime auto
-http___localhost_.value /etc/munin/plugins/http_loadtime: line 105: -f: command not found
-</code></pre>
-
-<p>$time_binというのが無いようだ。<code>which time</code> してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&hellip;</p>
-
-<pre><code>$ sudo munin-run acpi
-/etc/munin/plugins/acpi: 1: eval: bc: not found
-thermal_zone0.value
-/etc/munin/plugins/acpi: 1: eval: bc: not found
-thermal_zone1.value
-
-$ sudo apt install bc
-
-$ sudo munin-run acpi
-thermal_zone0.value 49.000
-thermal_zone1.value 40.000
-</code></pre>
-
-<p>これはbc。</p>
-
-<p>Suggestsにあるのが多いパターンなのだけど、それを確認して入れろ、というのはしんどくないかなぁ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Dec 23, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/895990">apt-listchangesのpo訳が取り込まれました</a>。</li>
-</ul>
-
-<hr />
-
-<ul>
-<li><a href="https://salsa.debian.org/">https://salsa.debian.org/</a> が動き始めたようだ。リポジトリは自動で移動したりするのだろうか？</li>
-<li>とりあえず二要素認証をOnに&hellip;と思って有効にしようとしたら、まずはQRコードをGoogle Authenticatorで読み取って有効にしないといけなかった。その上でYubiKeyを追加。何故この手順が必要なのだろう？デバイスが1つだけじゃない、ということが重要？</li>
-</ul>
-
-<hr />
-
-<ul>
-<li><p>boot時のエラーメッセージが気になったので、BIOSを上げてみようと思い立つ。そう言えば昔grubから直接ISOイメージ起動した記憶が&hellip;と思って<a href="http://www.thinkwiki.org/wiki/BIOS_Upgrade">調べる</a>と<a href="https://packages.debian.org/stretch/grub-imageboot">grub-imageboot</a>というツールがあったのでインストール、<a href="https://download.lenovo.com/pccbbs/mobiles/j5uj58ww.txt">該当のBIOSのISOイメージ</a>をダウンロードして、bootできるようにして再起動&hellip;したのだけども、うんともすんとも言わず。仕方がないのでUSBメモリに書き出す方法の方で対応した。</p>
-
-<pre><code>$ sudo apt install genisoimage
-$ geteltorito biosimage.iso &gt; biosupdate.img
-$ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
-</code></pre></li>
-
-<li><p>BIOSは最新になった、でも消えない。。。ってあれ、これmicrocodeって言ってるからCPUじゃね？ということで <code>apt install intel-microcode</code> で直った（<a href="https://tracker.debian.org/pkg/intel-microcode">最新のパッケージはbackports提供</a>なので、Stretchの人はbackportsから入れると良い）。AMDなCPUの人もamd-microcodeで。どちらもnon-freeコンポーネントに含まれてるが、まぁbinaryだしどうしようもないだろうなぁ。TPMのエラーもBIOSで有効にしたら消えた。残ってるのはACPIなエラーだけ。</p></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Dec 17, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/gpg">gpg</a>
-						
-								 , 
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://dev.gnupg.org/T3619">GnuPGのバグを見つけたのでレポートしておきました</a>。あとLFの人が書いてるガイドに<a href="https://github.com/lfit/itpol/issues/27">Issue</a>と<a href="https://github.com/lfit/itpol/pull/26">PR</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Dec 11, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/895478">fonts-ricty-diminishedを更新</a>（GPGキーのテストをしていたらsignキーを間違えてたのでアップロードがものすごく遅くなった&hellip;）</li>
-<li><a href="https://tracker.debian.org/news/896167">os-autoinstのしょうもないミスを指摘されたので修正</a>。なんで気づかなかったんや。。。</li>
-<li><a href="https://tracker.debian.org/news/896165">jruby-joniの更新</a>
-
-<ul>
-<li>ついでに debian/patches 以下をforwardして<a href="https://github.com/jruby/joni/pull/31">Pull Request</a></li>
-</ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/04/gpg%E3%82%81%E3%82%82-subkey/">GPGめも - subkey</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Dec 4, 2017
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
 						
 								 , 
-							<a href="/tags/gpg">gpg</a>
+							<a href="/tags/license">license</a>
 						
 					</small>
 				</div>
@@ -404,111 +133,7 @@ $ sudo dd if=biosupdate.img of=/dev/sdb bs=512K
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>GPGのsubkeyについて。</p>
-
-<ul>
-<li>たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、
-
-<ul>
-<li>masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。</li>
-<li>laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。</li>
-</ul></li>
-<li>そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&hellip;という時にはmasterkeyを使うということができる。</li>
-</ul>
-
-<p>なるほどねー。</p>
-
-<p>ちなみにどうしてもという時というのは以下らしい。
-   - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする
-   - 自分の鍵をrevokeする
-   - subkeyを作る・revokeする
-   - 有効期限の変更
-   - masterkeyのrevoke用の証明書の作成
-   - UIDの設定変更</p>
-
-<p>あー、今だとlaptopにはGPG鍵入れてないけど、これはありかもしれないね。ということで<a href="https://wiki.debian.org/Subkeys">Debian WikiでのSubkey作成手順</a>に従って作ってみる。</p>
-
-<pre><code>$ umask 077; tar -cf $HOME/gnupg-backup.tar -C $HOME .gnupg (バックアップ)
-$ gpg --list-keys henrich@debian.org (自分のKEYIDを取得)
-
-pub   rsa4096 2009-05-23 [SC] [有効期限: 2019-05-21]    
-      58E1222F9696C885A3CD104C5D328D082AAAB140          
-uid           [  究極  ] Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;  
-uid           [  究極  ] Hideki Yamane &lt;henrich@debian.org&gt;
-uid           [  究極  ] Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
-sub   rsa4096 2009-05-23 [E] [有効期限: 2019-05-21]
-
-$ gpg --edit-key  58E1222F9696C885A3CD104C5D328D082AAAB140
-gpg (GnuPG) 2.2.3; Copyright (C) 2017 Free Software Foundation, Inc.       
-This is free software: you are free to change and redistribute it.         
-There is NO WARRANTY, to the extent permitted by law.                      
-                                                                   
-秘密鍵が利用できます。                                                     
-                                                                           
-sec  rsa4096/5D328D082AAAB140                                              
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC                    
-     信用: 究極        有効性: 究極                                        
-ssb  rsa4096/95F59E65108820E1                                              
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E                     
-[  究極  ] (1). Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;           
-[  究極  ] (2)  Hideki Yamane &lt;henrich@debian.org&gt;
-[  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
-
-gpg&gt; addkey (subkeyの追加)
-ご希望の鍵の種類を選択してください:
-   (3) DSA (署名のみ)
-   (4) RSA (署名のみ)
-   (5) Elgamal (暗号化のみ)
-   (6) RSA (暗号化のみ)
-あなたの選択は? 4  (←Debianパッケージなどで署名が必要なのでこちらを今回は選択)
-RSA 鍵は 1024 から 4096 ビットの長さで可能です。
-鍵長は? (3072) 4096 (←4096にしたけど、masterkeyより大きなのは選べるのかしら？)
-要求された鍵長は4096ビット
-鍵の有効期限を指定してください。
-         0 = 鍵は無期限
-      &lt;n&gt;  = 鍵は n 日間で期限切れ
-      &lt;n&gt;w = 鍵は n 週間で期限切れ
-      &lt;n&gt;m = 鍵は n か月間で期限切れ
-      &lt;n&gt;y = 鍵は n 年間で期限切れ
-鍵の有効期間は? (0)1y (masterkeyよりも短いほうが良いそうなのでとりあえず1年にしておく)
-鍵は2018年12月04日 18時54分30秒 JSTで期限切れとなります
-これで正しいですか? (y/N) y
-本当に作成しますか? (y/N) y
-たくさんのランダム・バイトの生成が必要です。キーボードを打つ、マウスを動か
-す、ディスクにアクセスするなどの他の操作を素数生成の間に行うことで、乱数生
-成器に十分なエントロピーを供給する機会を与えることができます。
-
-sec  rsa4096/5D328D082AAAB140
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: SC
-     信用: 究極        有効性: 究極
-ssb  rsa4096/95F59E65108820E1
-     作成: 2009-05-23  有効期限: 2019-05-21  利用法: E
-ssb  rsa4096/723BFA427D8774AD (←今回出来たのはこの鍵)
-     作成: 2017-12-04  有効期限: 2018-12-04  利用法: S
-[  究極  ] (1). Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;
-[  究極  ] (2)  Hideki Yamane &lt;henrich@debian.org&gt;
-[  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
-
-gpg&gt; save
-</code></pre>
-
-<p>で、この後の手順は、と&hellip;</p>
-
-<ul>
-<li>USBメモリに ~/.gnupg をバックアップして</li>
-<li><code>Here comes the tricky part: you need to remove the private master key.</code> え？「private masterkeyを削除する」？？？マジか。</li>
-</ul>
-
-<p>GnuPG 2.1以降なら <code>~/.gnupg/private-keys-v1.d/&lt;KEYGRIP&gt;.key</code> を削除せよ、と。KEYGRIPはmaster keyの&rdquo;keygrip&rdquo;で、<code>gpg2 --with-keygrip --list-key &lt;YOURMASTERKEYID&gt;</code> で手に入るぞ、と。ただし、旧バージョンのGnuPGから新しい形式に移行している場合は<code>~/.gnupg/secring.gpg</code> の方に private master keyがあるかもしれないから、こっちも消せ、と。GnuPG 2.1以前の場合も書いてあるけど、そんな環境使ってる人のことを考えるの面倒なので、原文見てほしい。</p>
-
-<p>ここまで来たら <code>gpg --edit-key &lt;YOURMASTERKEYID&gt; passwd</code> でパスフレーズを変更してしまう。これで日常のパスフレーズが漏れても、元々のパスフレーズがわからなければ、たとえprivate master keyにアクセスできても使えないよね&hellip;という、まぁ気休めにはなる？</p>
-
-<hr />
-
-<ul>
-<li>encryptしたUSBメモリにprivate master key置く、って言ってるけど、何を使ってencryptするんだろね？</li>
-<li>そもそもUSBメモリの耐久性とかどうなのかな、とか。何にバックアップしておくのが正しいのだろう？</li>
-</ul>
+						<p>LFのメーリングリストが復旧した。</p>
 
 					
 				</div>
@@ -521,109 +146,20 @@ gpg&gt; save
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/12/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Dec 3, 2017
+								Mon, Mar 11, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>先日のDebian勉強会であった人とのキーサインを済ませた。caff便利。</p>
-
-<pre><code>$ caff -u 58E1222F9696C885A3CD104C5D328D082AAAB140 &lt;long KEYID&gt;
-</code></pre>
-
-<p>で、既にサインして頂いてたのがメールで来てたのをimportしてkeyserverにsendしておく。</p>
-
-<pre><code>$ gpg --import ~/*.asc
-$ gpg --send-keys &quot;58E1 222F 9696 C885 A3CD  104C 5D32 8D08 2AAA B140&quot;
-gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
-</code></pre>
-
-<p><a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x5D328D082AAAB140">よしよし</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Nov 30, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>libreoffice (1:5.4.3-3) unstable; urgency=medium
-(snip)
-  * debian/rules:
-    - replace some manual dpkg-parsechangelog calls with
-      $(DEB_VERSION) and $(DEB_DISTRIBUTION) and fix logic for
-      --disable-dependency-tracking
-</code></pre>
-
-<p>ほぅ？そんな変数取れるのか？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/11/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Nov 28, 2017
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -637,14 +173,18 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
 					<br>
 					
 						<ul>
-<li>libxmlbirdをアップデートしようとしてgit mergeしようと思ったらタグがない。で、upstreamにpingしたのが反映されたのでmergeして<a href="https://tracker.debian.org/news/890110">アップロード</a>。ついでにreproducible buildパッチを減らすべく<a href="https://github.com/johanmattssonm/xmlbird/pull/7">Pull Request</a>。人の褌で相撲を取るのは楽だわー</li>
-<li>ruby-serverspecパッケージで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882515">「netstat使ってるからnet-toolsにSuggestsした」</a>というのを見かけて「後ろ向きだなぁ」と思ったのでちょっと調べた。
-
+<li>partman-lvmの<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2/diffs">regression修正</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#62">release managerからは「もう遅い」と言われてしまった</a>が、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#83">アップロードされた</a>。恐らくBug Squashing Partyのおかげ。</li>
+<li>リリースノートの翻訳を始めたが、<a href="https://salsa.debian.org/ddp-team/release-notes/merge_requests/2">細かい所（entityで「svn」の文字が残ってるのが気になった）のでMerge Requestした</a>ら速攻でMergeされた。</li>
+<li>live-buildがbuster対応してない件、未だにアップロードされないので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924293">バグ登録しておいた</a>。patchはマージ済みなのに。
 <ul>
-<li>これ本当にnetstat呼んでるの？という疑問がでてgrepしたけど引っかからず。どうやらruby-specinfra側らしい。</li>
-<li>確かにnetstatを呼んでいた。。。んだけど、どうもおかしい。Debian8からss使うように変えてる？これはいかんでしょ。<code>I guess I am trying to understand which versions of Debian to support. Debian 6, 7, 8 all have ss by default.</code>という<a href="https://github.com/mizzy/specinfra/pull/453#issuecomment-125583639">発端のプルリクエスト</a>がそもそも間違っており、続いての<a href="https://github.com/mizzy/specinfra/pull/568">修正のプルリクエスト</a>も<code>I think jessie default command is ss.</code>と間違ってる&hellip;。</li>
-<li>厄介そうなのは上記が参照しているように、JessieのDockerイメージの方がiproute2使ってるっぽいんだよね、何でだよ&hellip;普通に直すとdockerのjessieでの動作を壊すことになる。それは避けたい。</li>
-</ul></li>
+<li>その日のうちにアップロードが来ました。よしよし</li>
+</ul>
+</li>
+<li>色々泣きそうになりながらubuntu-keyringパッケージに対して自分で仕込んだバグへの対応。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922177">バグレポートの指摘</a>がありがたい。。。なんとかクローズ。
+<ul>
+<li><a href="https://tracker.debian.org/pkg/shellcheck">shellcheck</a>を自動でkickするようにしたほうが良い気がしてきた…</li>
+</ul>
+</li>
 </ul>
 
 					
@@ -657,6 +197,317 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
 			</div>
 		
 	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>昨日のdebootstrap話で平松さんがarchitecture指定がDebianだと独特なのがあって混乱する（例: amd64）と仰っていたので、<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/28">パッチ作成</a>した。</li>
+<li>birdfontのtestingへのmigrationを待って<a href="https://tracker.debian.org/news/1034605/accepted-birdfont-2260-1-source-into-unstable/">更新を押し込んだ</a>。</li>
+<li>libuninameslistはライブラリ更新だし、ということで作業はしたけどアップロードは見送り。</li>
+<li>jcodingsの更新を<a href="https://tracker.debian.org/news/1034671/accepted-jcodings-1043-1-source-into-unstable/">アップロード</a>
+<ul>
+<li>よく考えたらjruby-joniでのjcodings指定が上記の更新したバージョン依存であった…ミラーに来るのを待って明日更新しよう…。</li>
+</ul>
+</li>
+<li>tomoyo-toolsがリリースされてたのでこちらも<a href="https://tracker.debian.org/news/1034677/accepted-tomoyo-tools-260-20190305-1-source-into-unstable/">アップロード</a></li>
+</ul>
+<hr>
+<p>OpenChainの下調べで日本のワーキンググループのメーリングリストに参加しようとするもエラーが出るので、list ownerに問い合わせを送った…のだがエラーになって帰ってくるよ？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;openchain-japan-wg-owner@mail.linuxfoundation.org&gt; (expanded from
+    &lt;openchain-japan-wg-owner@lists.linuxfoundation.org&gt;): Command died with
+    status 1: &#34;/usr/lib/mailman/mail/mailman owner openchain-japan-wg&#34;. Command
+    output: mailowner script, list not found: openchain-japan-wg
+</code></pre></div><p>そのうちページにも一切アクセスできなくなった…なんだこれは、ということでLFのアカウントを取って（というか取り直して？）、<a href="https://jira.linuxfoundation.org/servicedesk/customer/portal/4/SUPPORT-3?sda_source=notification-email">Jiraに報告</a>した。</p>
+<p>メーリングリストの案内についてはページを指すようにPull Request送った。</p>
+<hr>
+<p>laptop（HP Elitebook G5 830）のBIOSアップデートを実施。UFEI画面から有線LAN経由でアップデートできるのは良い（Dockの方からは行けないのが残念）。一度処理途中で止まってしまい、電源強制切断からの更新のrevertと再アップデートしたのも中々ヒヤヒヤした。あとはDockとかのファームウェアのアップデートもしたいところだが、こちらはWindowsが無いとダメっぽいんだよな…。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Mar 8, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://elinux.org/Japan_Technical_Jamboree_68">Japan Linux Jamboree</a>で<a href="https://docs.google.com/presentation/d/14a3U852hYej_DqbHaZMwyrcec8u6Bh3cdKglauc52Hg/edit?usp=sharing">debootstrapの話</a>をしてきました。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Mar 7, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=921757">os-autoinstのtestでのrace condition bugの修正を先日NMUしてもらった</a>のだけど、何故かbugが自動で閉じられてなかったので処理。
+<ul>
+<li>後で気づいたが、これi386でのビルドがまたコケてるね…それでか。</li>
+</ul>
+</li>
+<li>jruby-joniのバグがupstreamでようやく修正されたので<a href="https://tracker.debian.org/news/1034317/accepted-jruby-joni-2126-1-source-into-unstable/">upload</a></li>
+<li>そういえば<a href="https://gihyo.jp/magazine/SD/archive/2019/201904">Software Design2019年4月号</a>の画像を見かけたので<a href="https://www.debian.or.jp/using/book.html#sd201904">JPサイトに追加</a></li>
+<li>JDimのtestがらみのissueに<a href="https://github.com/JDimproved/JDim/issues/45#issuecomment-470464988">コメント</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Mar 3, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/debianjp">debianjp</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Debian JPの<a href="https://www.debian.or.jp/using/mirror.html">ミラーサーバ一覧</a>、Ring Serverプロジェクトの部分を更新しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/27/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 27, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1032572/accepted-libhinawa-111-1-source-into-unstable/">libhinawaをアップロード</a>した。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 27, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので<a href="https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/">対応</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 25, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949">birdfontの依存関係を微調整するバグレポート</a>が来てたので対応した。</p>
+<pre><code class="language-lintian" data-lang="lintian">W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
+</code></pre><p>とあったが、これはどっちに揃えるのが良いのだろうね？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
 
         
 	</div>
@@ -949,6 +800,7 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -963,7 +815,7 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -972,18 +824,10 @@ gpg: 鍵5D328D082AAAB140をhkp://pgp.mit.eduへ送信
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

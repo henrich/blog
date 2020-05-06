@@ -71,19 +71,13 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>年末年始で間が空いてしまった&hellip;。</p>
-
 <ul>
 <li><a href="https://tracker.debian.org/news/899819">libxmlbirdをアップデート</a></li>
 </ul>
-
-<hr />
-
+<hr>
 <p>年末年始でようやく新しいミラーサーバー new-debian-mirror.sakura.ne.jp の設定に手を付けました（ありがとうございます＞さくらインターネットさま）。初めてのAnsible&hellip;ですが、今のところはバッチファイルよりちょっとマシ程度の状況。やはり複数サーバー運用して整理するのが必要とかじゃないとモチベーションが湧かないですね&hellip;。まぁ、次にセットアップが必要になった場合は一発流せばいいだけというのは気楽にはなりました。</p>
-
 <p>新しいサーバーにはbcacheを使っています、<a href="https://wiki.archlinux.jp/index.php/Bcache">ありがとうArch Wiki</a>。ディスクを大量に積むのもよいのですが、既に後2年ぐらいは戦えそうな容量を頂けたので、SSDでキャッシュする方向に走るのが良いかな、と。速度はそこまで出ないにしてもアクセスが多くなっても大丈夫よ、と。</p>
-
 <p>CacheデバイスのSSDですが、最初はRAID1を設定してもらっていましたが、思い直して設定変更。JBODが選べないので仕方なくRAID0にしました。生まれて初めて使ったよ、RAID0&hellip;。HDDよりは死にづらいかなーというのと、死んでも構わないよねー（負荷が増えるだけ）というのと、容量が欲しかったんや&hellip;というのの3点からRAID0選択と相成りました。</p>
-
 <pre><code>#!/bin/sh
 
 BACKING_DEVICE=/dev/sda3
@@ -99,22 +93,13 @@ if [ -f /dev/bcache0 ]; then
 else
   echo &quot;There's no Bcache device.&quot;
 fi
-</code></pre>
-
-<p>手作業でやったのを後からまとめ直すと上記のような感じ。短いな&hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。</p>
-
+</code></pre><p>手作業でやったのを後からまとめ直すと上記のような感じ。短いな&hellip;。チューンしたほうがいい点があるのかもしれませんが、知見がないのでデフォルト値そのまま。ファイルシステムにxfs選んだのは毎度ext?なので、ちょっとは変わったことしたかったのと、btrfsの利点を活かせることはなさそうだよなぁ、という辺りから。</p>
 <p>ufwを実行しようかどうしようか、という辺りとSNMP監視が出来てない風味だよね？というのを確認したら、終わり。そして、切り替え前後でおかしなことが起きたらその対処、と。</p>
-
-<hr />
-
+<hr>
 <p>muninの設定続き。</p>
-
 <pre><code>$ sudo munin-run http_loadtime auto
 http___localhost_.value /etc/munin/plugins/http_loadtime: line 105: -f: command not found
-</code></pre>
-
-<p>$time_binというのが無いようだ。<code>which time</code> してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&hellip;</p>
-
+</code></pre><p>$time_binというのが無いようだ。<code>which time</code> してるだけなのに、見つからない？timeパッケージにあるのだけど、これが入ってないんだな&hellip;</p>
 <pre><code>$ sudo munin-run acpi
 /etc/munin/plugins/acpi: 1: eval: bc: not found
 thermal_zone0.value
@@ -126,10 +111,7 @@ $ sudo apt install bc
 $ sudo munin-run acpi
 thermal_zone0.value 49.000
 thermal_zone1.value 40.000
-</code></pre>
-
-<p>これはbc。</p>
-
+</code></pre><p>これはbc。</p>
 <p>Suggestsにあるのが多いパターンなのだけど、それを確認して入れろ、というのはしんどくないかなぁ。</p>
 
 		</div>
@@ -146,7 +128,7 @@ thermal_zone1.value 40.000
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -154,10 +136,6 @@ thermal_zone1.value 40.000
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

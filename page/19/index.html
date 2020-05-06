@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,17 +57,21 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, Oct 6, 2017
+								Thu, Mar 14, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -81,31 +85,12 @@
 					<br>
 					
 						<ul>
-<li>Updated <a href="http://www.debian.or.jp/using/mirror.html">mirror list on JP site</a></li>
+<li>cowbuilderを動かしてて、そういえばコイツ…というかpbuilderはbaseイメージ作成の際にdebootstrapを呼ぶな、という考えに至り、<code>--cache-dir</code>オプションが使えるのではないか？と思いつく。で、<a href="https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/6">MergeRequestした</a>。
+<ul>
+<li>その中でmanpageの<code>--debootstrap</code>オプションの設定が間違っていたようなので、こちらも<a href="https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/7">MergeRequest</a></li>
 </ul>
-
-<hr />
-
-<p>texliveの-docなパッケージがデカくて毎度のアップデートに時間取られるのが嫌だよねーという話から、色々と改善を模索してみる</p>
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=675869">PDFのバージョンを上げてサイズを落とす作戦</a>を深掘り。
-
-<ul>
-<li>1.4GBが1.0GBになるのは大きいと思う</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877771">-docパッケージがRecommendsになっていて引っ張られるのをSuggestsにしてインストールされないようにする作戦</a>
-
-<ul>
-<li>そもそもインストールされなければ気にしなくて済むよね、という話</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877862">texlive-fullを-docs-と-utilsに分けて、-docなパッケージをインストールしないようにする作戦</a>
-
-<ul>
-<li>わかんないから-fullを入れるのだけど、-docはいらないという人は多そうだから</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877770">-docパッケージがtexに依存してるのを確認する問題提起</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877769">逆に-docなパッケージ内でgzipでcompressされてるのはいいのか？という問題提起</a></li>
+</li>
+<li>もう一つ、man pbuilderした時だったかにapt lineがftp.jp.debian.orgやftp.de.debian.orgを指定してたので<code>deb.debian.org</code>指定に変更の<a href="https://salsa.debian.org/pbuilder-team/pbuilder/merge_requests/5">MergeRequest</a>。</li>
 </ul>
 
 					
@@ -119,445 +104,27 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/04/%E5%AE%9F%E9%A8%93%E5%AE%9F%E9%A8%93/">実験実験。</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Oct 4, 2017
+								Tue, Mar 12, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>go-apt-cacherによるキャッシュプロキシ実験、今度はもっと大きなパッケージ2つで試してみましょう。</p>
-
-<pre><code>Package: texlive-latex-extra-doc
-Download-Size: 384 MB
-
-Package: texlive-pstricks-doc
-Download-Size: 248 MB
-</code></pre>
-
-<pre><code class="language-time">
-
-まずは普通にftp.jp.debian.orgからの取得。
-
-</code></pre>
-
-<p>Fetched 412 MB in 36s (11.3 MB/s)
-real    0m36.643s</p>
-
-<p>Fetched 412 MB in 30s (13.4 MB/s)
-real    0m30.864s</p>
-
-<p>Fetched 412 MB in 26s (15.4 MB/s)
-real    0m27.031s</p>
-
-<pre><code>
-次に西日本から取得。
-
-</code></pre>
-
-<p>Fetched 412 MB in 19s (20.7 MB/s)
-real    0m20.026s</p>
-
-<p>Fetched 412 MB in 19s (21.1 MB/s)
-real    0m19.688s</p>
-
-<p>Fetched 412 MB in 18s (22.2 MB/s)
-real    0m18.746s</p>
-
-<pre><code>
-
-東でやってみたら
-
-</code></pre>
-
-<p>Fetched 412 MB in 24s (16.9 MB/s)
-real    0m24.203s</p>
-
-<p>Fetched 412 MB in 24s (17.2 MB/s)
-real    0m24.598s</p>
-
-<pre><code>
-という感じでリージョンまたぐよりも逆に遅かった…何故だ。
-
---------
-結論
-
-</code></pre>
-
-<p>西日本： 21.3MBs
-東日本： 17.0MBs
-ダイレクト： 13.6 MBs
-```</p>
-
-<p>大体25-56%ぐらいの速度アップは望めるが、以前ほどでもない、という印象です。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 3, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://twitter.com/eldesh/status/915031977094389760">JPのページの誤りの指摘</a>を頂いたので修正した</li>
-<li><a href="https://idcfcloud.com">IDCFクラウド</a>のDebianテンプレートで問題を見つけたのでチケットを切っておいた。</li>
-</ul>
-
-<hr />
-
-<p>「VPSサービスに対して、高速なDebianミラーを提供したい」というのを思いつきました。ただ、あらゆるサービスでフルミラーを内部に置くのは難しいでしょうから、キャッシュプロキシを設置して対応するのはどうでしょう？</p>
-
-<ul>
-<li>思いついた対象候補
-
-<ul>
-<li>さくらのVPS</li>
-<li>ConoHa</li>
-<li><a href="https://www.idcf.jp/cloud/?cl=top_cloud">IDCFクラウド</a>(←ここではこれをチョイス)</li>
-</ul></li>
-</ul>
-
-<p>IDCFクラウドは、<a href="https://www.idcf.jp/cloud/order.html?cl=cl_top#try">500円クーポン</a>があったのでこの範囲内で収めたいと思います（この後、さらに1000円クーポンを見つけたので今回の実験には十分ですね）。</p>
-
-<ul>
-<li>Debian8 と Ubuntu16.04 なテンプレートがあったので、こちらから仮想マシンを作ります（ファイアウォールの許可設定を忘れてSSHが通らなかった&hellip;）。</li>
-<li>次に<a href="https://github.com/cybozu-go/aptutil/releases">go-apt-cacher</a>をダウンロードしてちょっと設定して起動します。</li>
-
-<li><p>最後に/etc/apt/sources.listをいじってcache proxyを参照するようにします。2つのマシンは同じローカルセグメント内に居るので、apt lineのサーバー名はローカルIPを指定しました。</p>
-
-<pre><code># apt show openclipart-png
-Package: openclipart-png
-Source: openclipart
-Version: 1:0.18+dfsg-14
-Installed-Size: 148 MB
-</code></pre></li>
-</ul>
-
-<p>有意な差を確認したいので、そこそこの大きさのパッケージを見つけておきました。約150MBなら違いもでるでしょう。</p>
-
-<pre><code># time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 10s (12.2 MB/s)          
-
-real    0m10.742s
-user    0m2.204s
-sys 0m0.420s
-</code></pre>
-
-<p>まだキャッシュされていない状態からの取得は10.7秒（12.2MB/s）</p>
-
-<pre><code># time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (50.3 MB/s)           
-
-real    0m2.758s
-user    0m2.028s
-sys 0m0.336s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 2s (43.0 MB/s)          
-
-real    0m3.423s
-user    0m2.292s
-sys 0m0.396s
-
-# time apt-get download openclipart-png
-Get:1 http://10.6.0.179:3142/debian/ jessie/main openclipart-png all 1:0.18+dfsg-14 [128 MB]
-Fetched 128 MB in 3s (42.2 MB/s)           
-
-real    0m3.237s
-user    0m2.496s
-sys 0m0.464s
-</code></pre>
-
-<p>キャッシュされた状態からだと平均で3.13秒（45.1MB/s）</p>
-
-<p>ということで、12.2MB/s vs 45.1MB/s で3倍は速くなりそう、という雑な結論&hellip;ではありますが、IDCFクラウドで最も低スペックなマシン（light.S1、0.8GHz 1CPU/1GB Mem）で提供してもこの結果が出せたので、そこそこの大きさのVM作っておけば、めっちゃ多くのVMからのアクセスでもコンスタントに出せるようにはなるのでは？という推論。次は「同じサービスで他のネットワークにいるVMから同じことやったらどうなるか？」→これでスピードが出るなら、各サービスでgo-apt-cacher使うようにしたら、どうだろう？という提案になるかも。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/10/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Oct 1, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/876227">libmojolicious-plugin-assetpack-perlの更新をアップロード</a></li>
-<li><a href="https://www.debian.org/mirror/ftpmirror">ftpsyncスクリプト</a>が新しくなったよ、というメールをもらっていたので入れ替えた。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Sep 30, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>体調を崩して諸々が進まず&hellip;。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/pkg/libmojolicious-plugin-renderfile-perl">libmojolicious-plugin-renderfile-perlの更新をアップロード</a>
-
-<ul>
-<li>lintianでUNRELEASEDだったらWarning入れてくれないかな&hellip;（ドジッた）</li>
-</ul></li>
-<li>sphinx-intlをアップデートした上でバイナリパッケージ名をsphinx-intlにしてアップロード。</li>
-<li>一旦消えた<a href="http://cutter.sourceforge.net">cutter-testing-framework</a>のDebianパッケージを復活させない？と打診だけ。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Sep 27, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://connpass.com/event/64845/">さくらの夕べ「さくらのVPS ユーザーミートアップ」</a>のLT枠に参加して<a href="https://docs.google.com/presentation/d/1_L4a5eXeyYOh6v9VKcvZAg84d6Y8a5go2F8cmO2ATKo/">debianミラーの宣伝</a>をしてきました。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 25, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://events.opensuse.org/conference/summitasia17">openSUSE.Asia Summit 2017</a>のトークが通ったので返信。<a href="https://events.opensuse.org/conference/summitasia17/program/proposal/1512">openSUSE tools on Debian</a>というタイトルで15分喋る予定です。資料も大体作成完了。</p>
-
-<hr />
-
-<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876691">fonts-arphic-uming FTBFS修正</a>。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 18, 2017
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>さくら専用サーバーのOSバージョンについては問い合わせておいた。手伝えることがあるとよいのだけども。</li>
-<li>IDCFクラウドのはそろそろ<a href="https://twitter.com/idcfrontier/status/899915015989469184">一ヶ月</a>なのでなんとかならんか。１０月まで待つか&hellip;。</li>
-<li><a href="https://cloudgarage.jp/plan/">Cloudgarade</a>、規約改定は早かったがDebian対応はまだ。。。
-
-<ul>
-<li>10/5に対応いただいた。</li>
-</ul></li>
-<li>IIJのミラーはできないものかをわかりそうな人に尋ねることに</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Sep 17, 2017
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
 						
 								 , 
-							<a href="/tags/infra">infra</a>
-						
-								 , 
-							<a href="/tags/event">event</a>
+							<a href="/tags/license">license</a>
 						
 					</small>
 				</div>
@@ -566,40 +133,58 @@ sys 0m0.464s
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p><a href="https://manpages.debian.org/stretch/git-buildpackage/gbp-import-orig.1.en.html">gbp-import-orig</a>のこのオプション、multiple upstream tarball用じゃないか。いつ追加されてた？</p>
+						<p>LFのメーリングリストが復旧した。</p>
 
-<pre><code>--component=COMPONENT
-When importing the upstream tarball also look for an additional tarball with component name COMPONENT. E.g. in hello-debhelper_1.0.orig-foo.tar.gz the component would be foo. The additional tarball is expected to be in the same directory than the upstream tarball and to use the same compression type.
- 
-Using additional original tarballs is a feature of the 3.0 (quilt) source format. See the dpkg-source manpage for details. This is currently considered an experimental feature and might change incompatibly.
-</code></pre>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
 
-<p>でも「実験的機能」なのか。。。継続ウォッチだな。</p>
 
-<hr />
-
-<p>openSUSE Asia summit 2017で話をすることにしているんので資料作成。
-するとロゴを入れたくなる、が上演権はともかくその後の資料の配布を考えると無難なライセンスにしておきたい。Debianのロゴはもんだいないのだが、openSUSEのロゴはどうかしら？</p>
-
-<pre><code>この辺から探して下さい
-https://en.opensuse.org/Portal:Artwork
-https://github.com/openSUSE/artwork
-
-ロゴそのもののライセンスは:
-https://en.opensuse.org/openSUSE:Trademark_guidelines
-
-その他は CC-BY-SA 3.0 のものが多いです
-</code></pre>
-
-<p>とのことでCC-BY-SA 3.0のopenSUSEロゴを１つ入れてみた。何となくそれらしくなった気がする。Debianのも同じライセンスなので問題なし。
-足りない部分の資料は今回は来られないAndrewにお願いしてみた。</p>
-
-<hr />
-
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/11/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Mar 11, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>partman-lvmの<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2/diffs">regression修正</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#62">release managerからは「もう遅い」と言われてしまった</a>が、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911036#83">アップロードされた</a>。恐らくBug Squashing Partyのおかげ。</li>
+<li>リリースノートの翻訳を始めたが、<a href="https://salsa.debian.org/ddp-team/release-notes/merge_requests/2">細かい所（entityで「svn」の文字が残ってるのが気になった）のでMerge Requestした</a>ら速攻でMergeされた。</li>
+<li>live-buildがbuster対応してない件、未だにアップロードされないので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924293">バグ登録しておいた</a>。patchはマージ済みなのに。
 <ul>
-<li><p>ミラーサーバー、ディスク80%消費していて継続的に2%使ってる＝１０ヶ月後には溢れてる、なのでご相談メールを。今後も使えるかどうか、もしかしたら「もう無理だねー」と言われるかもしれないけど。生かされてる風味。</p></li>
-
-<li><p>ところで老舗 iij.ad.jp のミラーも置いてほしいのですが、誰が窓口なのかしら？（momonga置きっぱなし放置するぐらいならあれはアーカイブとか行って別のところに置いてあげたほうが救われるのでは&hellip;？）</p></li>
+<li>その日のうちにアップロードが来ました。よしよし</li>
+</ul>
+</li>
+<li>色々泣きそうになりながらubuntu-keyringパッケージに対して自分で仕込んだバグへの対応。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922177">バグレポートの指摘</a>がありがたい。。。なんとかクローズ。
+<ul>
+<li><a href="https://tracker.debian.org/pkg/shellcheck">shellcheck</a>を自動でkickするようにしたほうが良い気がしてきた…</li>
+</ul>
+</li>
 </ul>
 
 					
@@ -613,17 +198,20 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2017/09/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, Sep 15, 2017
+								Sat, Mar 9, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -636,11 +224,27 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>今回はパッケージメンテナじゃなくてサーバーのメンテナンスの話。</p>
-
-<p><a href="http://server.sakura.ad.jp/specification/">さくらの専用サーバー</a>でDebian7だけになってるのが気になったのだけど、今貸してもらっているサーバーはHPのRAID使ってた関係で<a href="http://downloads.linux.hpe.com/SDR/repo/mcp/Debian/dists/">hp側</a>のアップデートが無いと使えないんじゃないか？という点に思い至った。あ、でも<a href="http://server.sakura.ad.jp/common/pdf/sd_spec.pdf">仕様</a>によると、今はNEC Express5800 E120f-MかFujitsu PRIMERGY RX1330 M2/RX2530 M2 だから違うのかな？</p>
-
-<p>何にせよ、debian-mirror.sakura.ne.jpのアップデートはしたいので問い合わせモードに。昔この件でhp側のサポートの人とやり取りしたから、とりあえずhp側の対応をもう一度確認してみるか。。。あ、hpからhpeになったから送れない&hellip;→s/hp/hpe/だけだったのでサクッと。</p>
+						<ul>
+<li>昨日のdebootstrap話で平松さんがarchitecture指定がDebianだと独特なのがあって混乱する（例: amd64）と仰っていたので、<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/28">パッチ作成</a>した。</li>
+<li>birdfontのtestingへのmigrationを待って<a href="https://tracker.debian.org/news/1034605/accepted-birdfont-2260-1-source-into-unstable/">更新を押し込んだ</a>。</li>
+<li>libuninameslistはライブラリ更新だし、ということで作業はしたけどアップロードは見送り。</li>
+<li>jcodingsの更新を<a href="https://tracker.debian.org/news/1034671/accepted-jcodings-1043-1-source-into-unstable/">アップロード</a>
+<ul>
+<li>よく考えたらjruby-joniでのjcodings指定が上記の更新したバージョン依存であった…ミラーに来るのを待って明日更新しよう…。</li>
+</ul>
+</li>
+<li>tomoyo-toolsがリリースされてたのでこちらも<a href="https://tracker.debian.org/news/1034677/accepted-tomoyo-tools-260-20190305-1-source-into-unstable/">アップロード</a></li>
+</ul>
+<hr>
+<p>OpenChainの下調べで日本のワーキンググループのメーリングリストに参加しようとするもエラーが出るので、list ownerに問い合わせを送った…のだがエラーになって帰ってくるよ？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;openchain-japan-wg-owner@mail.linuxfoundation.org&gt; (expanded from
+    &lt;openchain-japan-wg-owner@lists.linuxfoundation.org&gt;): Command died with
+    status 1: &#34;/usr/lib/mailman/mail/mailman owner openchain-japan-wg&#34;. Command
+    output: mailowner script, list not found: openchain-japan-wg
+</code></pre></div><p>そのうちページにも一切アクセスできなくなった…なんだこれは、ということでLFのアカウントを取って（というか取り直して？）、<a href="https://jira.linuxfoundation.org/servicedesk/customer/portal/4/SUPPORT-3?sda_source=notification-email">Jiraに報告</a>した。</p>
+<p>メーリングリストの案内についてはページを指すようにPull Request送った。</p>
+<hr>
+<p>laptop（HP Elitebook G5 830）のBIOSアップデートを実施。UFEI画面から有線LAN経由でアップデートできるのは良い（Dockの方からは行けないのが残念）。一度処理途中で止まってしまい、電源強制切断からの更新のrevertと再アップデートしたのも中々ヒヤヒヤした。あとはDockとかのファームウェアのアップデートもしたいところだが、こちらはWindowsが無いとダメっぽいんだよな…。</p>
 
 					
 				</div>
@@ -652,6 +256,258 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
 			</div>
 		
 	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Mar 8, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://elinux.org/Japan_Technical_Jamboree_68">Japan Linux Jamboree</a>で<a href="https://docs.google.com/presentation/d/14a3U852hYej_DqbHaZMwyrcec8u6Bh3cdKglauc52Hg/edit?usp=sharing">debootstrapの話</a>をしてきました。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Mar 7, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=921757">os-autoinstのtestでのrace condition bugの修正を先日NMUしてもらった</a>のだけど、何故かbugが自動で閉じられてなかったので処理。
+<ul>
+<li>後で気づいたが、これi386でのビルドがまたコケてるね…それでか。</li>
+</ul>
+</li>
+<li>jruby-joniのバグがupstreamでようやく修正されたので<a href="https://tracker.debian.org/news/1034317/accepted-jruby-joni-2126-1-source-into-unstable/">upload</a></li>
+<li>そういえば<a href="https://gihyo.jp/magazine/SD/archive/2019/201904">Software Design2019年4月号</a>の画像を見かけたので<a href="https://www.debian.or.jp/using/book.html#sd201904">JPサイトに追加</a></li>
+<li>JDimのtestがらみのissueに<a href="https://github.com/JDimproved/JDim/issues/45#issuecomment-470464988">コメント</a></li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Mar 3, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/debianjp">debianjp</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Debian JPの<a href="https://www.debian.or.jp/using/mirror.html">ミラーサーバ一覧</a>、Ring Serverプロジェクトの部分を更新しておいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/27/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 27, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1032572/accepted-libhinawa-111-1-source-into-unstable/">libhinawaをアップロード</a>した。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 27, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので<a href="https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/">対応</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 25, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949">birdfontの依存関係を微調整するバグレポート</a>が来てたので対応した。</p>
+<pre><code class="language-lintian" data-lang="lintian">W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
+</code></pre><p>とあったが、これはどっちに揃えるのが良いのだろうね？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
 
         
 	</div>
@@ -944,6 +800,7 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -958,7 +815,7 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -967,18 +824,10 @@ https://en.opensuse.org/openSUSE:Trademark_guidelines
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

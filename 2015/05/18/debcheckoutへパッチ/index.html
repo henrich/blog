@@ -75,11 +75,8 @@
 			<br>
 			<p>Debianパッケージのソースを取得したいときには「apt-get source」を使う。
 だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。</p>
-
 <p>とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。</p>
-
 <p>debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立って<a href="http://sources.debian.net/src/devscripts/2.15.4/scripts/debcheckout.pl/">debcheckoutの中身</a>を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。</p>
-
 <p>じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して
 <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=739104#15">Bug#739104</a>
 へパッチをポストしておいた。</p>
@@ -98,7 +95,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -106,10 +103,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

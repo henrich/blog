@@ -71,7 +71,6 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>さて、ドキュメントにはテストについて色々書いてありました。</p>
-
 <pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl &quot;-MExtUtils::Command::MM&quot; &quot;-MTest::Harness&quot; &quot;-e&quot; &quot;undef *Test::Harness::Switches; test_harness(1, 'blib/lib', 'blib/arch')&quot; t/*.t
 t/00-compile.t ................ 
 1..1
@@ -90,19 +89,12 @@ t/release-pod-syntax.t ........ skipped: these tests are for release candidate t
 All tests successful.
 Files=11, Tests=1,  0 wallclock secs ( 0.05 usr  0.00 sys +  0.22 cusr  0.02 csys =  0.29 CPU)
 Result: PASS
-</code></pre>
-
-<p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
-
+</code></pre><p>ふむ？skippedが多いですね。ということでDBD::SQLiteを提供するlibdbd-sqlite3-perlをBuild-Depends-Indepに追加したら一気にテストが増えました。</p>
 <p>結論：例え問題なくビルドが通ったとしても、ビルドログを見てtestをより有効にするのを忘れないようにしよう。…でも、自動的にskippedでlog grepしてもうちょっとなんとか出来ないものですかね。</p>
-
 <p>もうひとつは些細な話ですがパラレルビルドの話「dh $@ &ndash;parallel」という形で渡せば</p>
-
 <pre><code>   dh_auto_build -O--parallel
 	make -j4
-</code></pre>
-
-<p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
+</code></pre><p>のように展開してくれます。デフォルトでは有効ではないのでこれも追加してみて、ダメなら外すという方向で。これの効果はソースによるので追加しても余り意味がないこともありますが、そう悪くなることはないので（2017年での注釈：dh10にしたらdefaultで&ndash;parallelが実行される）。</p>
 
 		</div>
 	</div>
@@ -118,7 +110,7 @@ Result: PASS
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -126,10 +118,6 @@ Result: PASS
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

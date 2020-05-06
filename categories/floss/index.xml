@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>floss on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Tue, 02 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/categories/floss/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +20,7 @@
       <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> [jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。 os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。  </description>
+      <description> jcodingsとjruby-joniのアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。 os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。  </description>
     </item>
     
     <item>
@@ -29,7 +30,7 @@
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>依頼を受けたので
-$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql  として林さんのDM uploadを設定しておいた。</description>
+$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql として林さんのDM uploadを設定しておいた。</description>
     </item>
     
     <item>
@@ -47,8 +48,8 @@ $ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-s
       <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>birdfontパッケージ、kfreebsd-i386とkfreebsd-amd64で同じエラー…。  rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf rm: cannot remove &#39;debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf&#39;: No such file or directory make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1  なぜエラーになるのか？ debian/rules をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした
- vmdk-stream-converter の tag push を忘れていた… libsql-splitstatement-perl を更新 libdbix-class-optimisticlocking-perl を更新 libdbix-class-schema-config-perl は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。  $ cat debian/upstream/metadata --- Archive: CPAN Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt; Name: DBIx-Class-OptimisticLocking Repository: http://github.com/brianphillips/dbix-class-optimisticlocking  debian/upstream/metadata はこういうのを書くのかぁ。</description>
+      <description>birdfontパッケージ、kfreebsd-i386とkfreebsd-amd64で同じエラー…。  rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf rm: cannot remove &amp;#39;debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf&amp;#39;: No such file or directory make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1 なぜエラーになるのか？ debian/rules をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした
+ vmdk-stream-converter の tag push を忘れていた… libsql-splitstatement-perl を更新 libdbix-class-optimisticlocking-perl を更新 libdbix-class-schema-config-perl は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。  $ cat debian/upstream/metadata --- Archive: CPAN Contact: Brian Phillips &amp;lt;bphillips@cpan.org&amp;gt; Name: DBIx-Class-OptimisticLocking Repository: http://github.com/brianphillips/dbix-class-optimisticlocking debian/upstream/metadata はこういうのを書くのかぁ。</description>
     </item>
     
     <item>
@@ -85,7 +86,7 @@ $ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-s
       <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2018/06/26/ossummit-japan%E3%81%A7%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%97%E3%81%9F/</guid>
-      <description>6&amp;frasl;20-22で行われたOpen Source Summit Japanでのボランティアスタッフに参加してきました。会場の様子は公式の写真（その２）で雰囲気をどうぞ。
+      <description>6/20-22で行われたOpen Source Summit Japanでのボランティアスタッフに参加してきました。会場の様子は公式の写真（その２）で雰囲気をどうぞ。
  Linusが「プロダクションで使ってるカーネルが7年前ので、次に乗り換えた時に「必要な機能が無くなってる！」とかいうのやめて。継続的にリリースしてるんだからテスト環境でテストしてよ」っていうのはホントそれ、と思った。とはいえ、Debianの場合だと「リリース」という区切りが無くてテスト環境に投入しないのはあるのじゃないか？という思いもある。やはりbuster~pre-release-2018-06みたいな月で無理やり区切ってでもsnapshotリリースすべきだろうか。どうしたらもっとテストしてもらえるようになるか、を考えたほうがいい。 CIPはDebian LTSに協力が進んでいるけど、もっとコラボレーションの要素を増やしたいね&amp;hellip;。CIPに関わる人にパッケージングのレクチャーとか？ CELFイベントでお会いした方に挨拶できたのは良かった Licenseを考える、というので開発者側のモチベーションをどう引き出すか、という視点は面白いので検討したい。単なる面倒事、と捉えるだけだと「避ける」しか出てこない DNFを拡張してライセンスとかも表示したりとかというのは面白かった。aptだとどうだろうか。そもそもバイナリのライセンスがなにか、というのとソースのライセンスがなにか、というのは完全に同一ではないのだけど（複数のソースファイルが違うライセンスの場合とか複雑）。 LTS kernelはmainline＋8000コミットぐらいあるというところから考えるに、1コミットするのに5万払うとか考えたら4億の価値があるんだな。。。これを自力でやるとなるとかなり辛い。  </description>
     </item>
     

@@ -71,22 +71,15 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。</p>
-
 <p>？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて <code>sudo update-initramfs -c -k 4.9.0-3-amd64</code> のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。</p>
-
-<pre><code class="language-bash">$ LC_ALL=C ls -al /usr/sbin/update-initramfs*
-lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&gt; /bin/true
--rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
-</code></pre>
-
-<p>あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と <code>sudo update-initramfs/distrib -c -k 4.9.0-3-amd64</code> のようにすると無事にイメージが作られたので、<code>update-grub</code> を実行して変更を反映、再起動すると無事起動できた。更に調べたところ</p>
-
-<pre><code class="language-bash">$ dpkg -L initramfs-tools
-(snip)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ LC_ALL<span style="color:#f92672">=</span>C ls -al /usr/sbin/update-initramfs*
+lrwxrwxrwx <span style="color:#ae81ff">1</span> root root    <span style="color:#ae81ff">9</span> Oct <span style="color:#ae81ff">24</span> 11:14 /usr/sbin/update-initramfs -&gt; /bin/true
+-rwxr-xr-x <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">7093</span> Jul <span style="color:#ae81ff">26</span> 02:16 /usr/sbin/update-initramfs.distrib
+</code></pre></div><p>あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と <code>sudo update-initramfs/distrib -c -k 4.9.0-3-amd64</code> のようにすると無事にイメージが作られたので、<code>update-grub</code> を実行して変更を反映、再起動すると無事起動できた。更に調べたところ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ dpkg -L initramfs-tools
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
 diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
-</code></pre>
-
-<p>ということで <code>pkgsel</code> なるパッケージがこれを実施したことが判明。
+</code></pre></div><p>ということで <code>pkgsel</code> なるパッケージがこれを実施したことが判明。
 じゃぁ、と <code>apt show pkgsel</code> しても出てこない…あ、これはudebだね、ということで<a href="https://packages.debian.org/sid/pkgsel">サイト</a>を確認…あたり。
 <code>apt source pkgsel</code> して <code>debian/changelog</code> をみたら <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073">Bug#912073</a> を踏んでいたと判明。んもー。寝る前の貴重な時間が…</p>
 
@@ -104,7 +97,7 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -112,10 +105,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

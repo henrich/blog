@@ -74,39 +74,33 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p><code>fluentd</code>パッケージングでのテストエラー続き。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">? <span style="color:#e6db74">Encoding</span>: <span style="color:#66d9ef">US</span><span style="color:#f92672">-</span><span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span>
+<span style="color:#f92672">===============================================================================</span>
+: (<span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">005571</span>)
+    test: should output compressed file <span style="color:#66d9ef">when</span> compress option is <span style="color:#e6db74">gzip</span>:   F
+<span style="color:#f92672">===============================================================================</span>
+<span style="color:#e6db74">Failure</span>: test: should output compressed file <span style="color:#66d9ef">when</span> compress option is gzip(<span style="color:#66d9ef">FileOutputSecondaryTest</span><span style="color:#f92672">::</span>write)
+<span style="color:#e6db74">/build/</span>fluentd<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">.</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>plugin<span style="color:#f92672">/</span>test_out_secondary_file<span style="color:#f92672">.</span>rb:<span style="color:#ae81ff">129</span><span style="color:#e6db74">:in</span> <span style="color:#e6db74">`check_gzipped_result&#39;
+</span><span style="color:#e6db74">/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `</span>block (<span style="color:#ae81ff">2</span> levels) <span style="color:#66d9ef">in</span> <span style="color:#f92672">&lt;</span><span style="color:#e6db74">class</span>:<span style="color:#66d9ef">FileOutputSecondaryTest</span><span style="color:#f92672">&gt;</span><span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">     151:       path = d.instance.write(@chunk)
+</span><span style="color:#e6db74">     152: 
+</span><span style="color:#e6db74">     153:       assert_equal &#34;#{TMP_DIR}/out_file_test.0.gz&#34;, path
+</span><span style="color:#e6db74">  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding(&#39;</span><span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span><span style="color:#e6db74">&#39;))
+</span><span style="color:#e6db74">     155:     end
+</span><span style="color:#e6db74">     156: 
+</span><span style="color:#e6db74">     157:     test &#39;</span>should output plain text <span style="color:#66d9ef">when</span> compress option is default(text)<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">do</span>
+<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x92\xD7\x00\\\xAC\x83\x81\x04\x04</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\x9F\x81\xA3</span><span style="color:#e6db74">key</span><span style="color:#ae81ff">\xA5</span><span style="color:#e6db74">value&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span>) expected but was
+<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x92\xD7\x00\\\xAC\x83\x81\x04\x04</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\x9F\x81\xA3</span><span style="color:#e6db74">key</span><span style="color:#ae81ff">\xA5</span><span style="color:#e6db74">value&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">US</span><span style="color:#f92672">-</span><span style="color:#66d9ef">ASCII</span>)
 
-<pre><code class="language-ruby">? Encoding: US-ASCII-8BIT
-===============================================================================
-: (0.005571)
-    test: should output compressed file when compress option is gzip:   F
-===============================================================================
-Failure: test: should output compressed file when compress option is gzip(FileOutputSecondaryTest::write)
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:129:in `check_gzipped_result'
-/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `block (2 levels) in &lt;class:FileOutputSecondaryTest&gt;'
-     151:       path = d.instance.write(@chunk)
-     152: 
-     153:       assert_equal &quot;#{TMP_DIR}/out_file_test.0.gz&quot;, path
-  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding('ASCII-8BIT'))
-     155:     end
-     156: 
-     157:     test 'should output plain text when compress option is default(text)' do
-&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(ASCII-8BIT) expected but was
-&lt;&quot;\x92\xD7\x00\\\xAC\x83\x81\x04\x04Z\x9F\x81\xA3key\xA5value&quot;&gt;(US-ASCII)
-
-diff:
-  潰^@\ｬメ^D^DZ氈｣key･value
-</code></pre>
-
-<p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
-
-<pre><code class="language-ruby">  Gem2Deb::Rake::TestTask.new do |t|
-    t.libs = ['test']
-    t.test_files = FileList['test/**/*_test.rb'] + FileList['test/**/test_*.rb']
-+   t.ruby_opts = [&quot;-Eascii-8bit:ascii-8bit&quot;]
-  end
-</code></pre>
-
-<p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
+<span style="color:#e6db74">diff</span>:
+  <span style="color:#960050;background-color:#1e0010">潰</span><span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">@</span>\<span style="color:#960050;background-color:#1e0010">ｬメ</span><span style="color:#f92672">^</span>D<span style="color:#f92672">^</span><span style="color:#66d9ef">DZ氈</span><span style="color:#960050;background-color:#1e0010">｣</span>key<span style="color:#960050;background-color:#1e0010">･</span>value
+</code></pre></div><p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#66d9ef">Gem2Deb</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Rake</span><span style="color:#f92672">::</span><span style="color:#66d9ef">TestTask</span><span style="color:#f92672">.</span>new <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>t<span style="color:#f92672">|</span>
+    t<span style="color:#f92672">.</span>libs <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test&#39;</span><span style="color:#f92672">]</span>
+    t<span style="color:#f92672">.</span>test_files <span style="color:#f92672">=</span> <span style="color:#66d9ef">FileList</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test/**/*_test.rb&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">FileList</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test/**/test_*.rb&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">+</span>   t<span style="color:#f92672">.</span>ruby_opts <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;-Eascii-8bit:ascii-8bit&#34;</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
 
 		</div>
 	</div>
@@ -122,7 +116,7 @@ diff:
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -130,10 +124,6 @@ diff:
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

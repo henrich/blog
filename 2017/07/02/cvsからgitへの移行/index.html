@@ -17,7 +17,10 @@
         <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
     
 
-    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/solid.js" integrity="sha384-F4BRNf3onawQt7LDHDJm/hwm3wBtbLIfGk1VSB/3nn3E+7Rox1YpYcKJMsmHBJIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/regular.js" integrity="sha384-V+AkgA1cZ+p3DRK63AHCaXvO68V7B5eHoxl7QVN21zftbkFn/sGAIVR7vmQL3Zhp" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/brands.js" integrity="sha384-VLgz+MgaFCnsFLiBwE3ItNouuqbWV2ZnIqfsA6QRHksEAQfgbcoaQ4PP0ZeS0zS5" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/fontawesome.js" integrity="sha384-treYPdjUrP4rW5q82SnECO7TPVAz4bpas16yuE9F5o7CeBn2YYw1yr5oC8s8Mf8t" crossorigin="anonymous"></script>
 
    	
    	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
@@ -55,14 +58,14 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<h3>CVSからGitへの移行</h3>
-				<span class="label label-primary">Sun, Jul 2, 2017</span> in 
-				 using tags
+				<span class="label label-primary">Sun, Jul 2, 2017</span> in
+				
 				
 					
-					<a href="/blog/tags/debian">debian</a>
+					<a href="/tags/debian">debian</a>
 				
 					 , 
-					<a href="/blog/tags/proposal">proposal</a>
+					<a href="/tags/proposal">proposal</a>
 				
 			</small>
 		</div>
@@ -71,17 +74,12 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>コンバートにはcvs2gitコマンドが一番良さそう&hellip;なのだけど、これcvs2svnパッケージに入ってるので最初気づかなかった。</p>
-
 <p>利用には現在のリポジトリを生の形式で取得する必要があった（git cloneじゃなくて）。幸い、git.debian.orgにssh出来たのでこれで取得してscpして取ってきた。</p>
-
 <p>$ git log |grep ^Author|sort |uniq &gt; ~/tmp/cvs-author-list
 $ wc -l ~/tmp/cvs-author-list
 368 /home/henrich/tmp/cvs-author-list</p>
-
 <p>おおぅ&hellip;この人数取ってくるのか。</p>
-
 <p><a href="https://db.debian.org/doc-direct.html">https://db.debian.org/doc-direct.html</a> でLDAP情報の取得があるので、ここを確認しよう&hellip;LDAPアクセスは制限されてるが、*.debian.orgなマシンからアクセスすればいいらしい。つまり、SSHで入れれば大丈夫（ん？ということはporterboxもいいのか？）people.debian.orgがオススメらしいので、入る。</p>
-
 <pre><code>henrich@paradis:~$ ldapsearch -x uid=henrich cn sn
 # extended LDIF
 #
@@ -102,18 +100,14 @@ result: 0 Success
 
 # numResponses: 2
 # numEntries: 1
-</code></pre>
-
-<pre><code>Author_transforms={
+</code></pre><pre><code>Author_transforms={
     'jrandom' : ('J. Random', 'jrandom@example.com'),
     'mhagger' : 'Michael Haggerty &lt;mhagger@alum.mit.edu&gt;',
     'brane' : (u'Branko Čibej', 'brane@xbc.nu'),
     'ringstrom' : 'Tobias Ringström &lt;tobias@ringstrom.mine.nu&gt;',
     'dionisos' : (u'Erik Hülsmann', 'e.huelsmann@gmx.net'),
 }
-</code></pre>
-
-<p>上記の形式で</p>
+</code></pre><p>上記の形式で</p>
 
 		</div>
 	</div>
@@ -129,7 +123,7 @@ result: 0 Success
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.18.1 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -138,8 +132,6 @@ result: 0 Success
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <i class="fa fa-twitter-square fa-2x"></i></a>
                     
                     
                     

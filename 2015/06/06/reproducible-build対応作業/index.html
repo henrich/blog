@@ -71,22 +71,14 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>JDのreproducible buildがエラーになってるのは<a href="https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros">DATEとかを展開するMacroが入ってるから</a>、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。</p>
-
-<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&rdquo;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
-
+<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&quot;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
 <p>jruby-joniパッケージは<a href="https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html">Java .jar files contain user login in the <code>Built-By</code> of <code>MANIFEST.MF</code></a>てなことだったので、この辺りを削るパッチを追加することにしました。</p>
-
 <p>reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。</p>
-
 <pre><code>&gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/buildflags.mk
-</code></pre>
-
-<p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
-
+</code></pre><p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
 <p>birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。</p>
-
 <pre><code>&gt; def write_config (prefix):
 print (&quot;Writing Config.vala&quot;)
 
@@ -94,9 +86,7 @@ vars = (('VERSION', VERSION),
 ('BUILD_TIMESTAMP', time.asctime( time.localtime(time.time()))),
 ('PREFIX', prefix),
 )
-</code></pre>
-
-<p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
+</code></pre><p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
 
 		</div>
 	</div>
@@ -112,7 +102,7 @@ vars = (('VERSION', VERSION),
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -120,10 +110,6 @@ vars = (('VERSION', VERSION),
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

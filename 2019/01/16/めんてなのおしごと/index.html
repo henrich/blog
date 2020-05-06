@@ -74,28 +74,44 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li>昨日の<code>jd</code>パッケージの削除依頼が実行されてた。早いなー。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">ruby-bcatパッケージの削除</a>もその日のうちだったし。</li>
-<li>systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918914">該当のバグ登録</a>を教えてもらった。subscribeして様子見しよう。</li>
-<li><code>ubuntu-keyring</code>パッケージのdebcont templateのレビューを反映した。なるほどなー
-
+<li>
+<p>昨日の<code>jd</code>パッケージの削除依頼が実行されてた。早いなー。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">ruby-bcatパッケージの削除</a>もその日のうちだったし。</p>
+</li>
+<li>
+<p>systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918914">該当のバグ登録</a>を教えてもらった。subscribeして様子見しよう。</p>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>パッケージのdebcont templateのレビューを反映した。なるほどなー</p>
 <ul>
 <li>既に翻訳版を送ってくれた方々に「こっちでお願い」を送った</li>
-</ul></li>
-<li><code>ubuntu-keyring</code>、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度<code>NEW queue</code>へ</li>
-<li><code>grcompiler</code>、4.2.7以降のがテストこけちゃうので<a href="https://github.com/silnrsi/grcompiler/issues/15">test failureをreport</a>した</li>
-<li><code>curl</code>が最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919445">バグ登録した</a></li>
-<li><a href="https://tracker.debian.org/news/1021421/accepted-fonts-sawarabi-mincho-20190115-1-source-into-unstable/">fonts-sawarabi-minchoを更新</a></li>
-<li><code>nadoka</code>が古いままでwatchもエラーになっていたので、重い腰を上げて<a href="https://tracker.debian.org/news/1021441/accepted-nadoka-092-1-source-into-unstable/">更新しておいた</a>。前のメンテナの安井さんにも連絡済み。</li>
-<li><code>whizzytex</code>のパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
-<li><code>jruby-joni</code>パッケージがFTBFSになってる？なぜだ… <code>org.jcodings.exception.CharacterPropertyException: invalid character property name &lt;graphemeclusterbreak=emodifier&gt;</code>と出てくるのでその辺りから検索したけど、よくわからんよね…<a href="https://github.com/jruby/joni/issues/40">issue登録</a>だけしておいた</li>
 </ul>
-
-<pre><code class="language-bash">  $ grep emodifier -r ./
-  ./src/org/joni/Parser.java:        static final byte[]Grapheme_Cluster_Break_E_Modifier = &quot;graphemeclusterbreak=emodifier&quot;.getBytes();
-</code></pre>
-
-<ul>
-<li>気になったのでgem2debのテンプレートから<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterを削除するMR</a>を送っておいた</li>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度<code>NEW queue</code>へ</p>
+</li>
+<li>
+<p><code>grcompiler</code>、4.2.7以降のがテストこけちゃうので<a href="https://github.com/silnrsi/grcompiler/issues/15">test failureをreport</a>した</p>
+</li>
+<li>
+<p><code>curl</code>が最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919445">バグ登録した</a></p>
+</li>
+<li>
+<p><a href="https://tracker.debian.org/news/1021421/accepted-fonts-sawarabi-mincho-20190115-1-source-into-unstable/">fonts-sawarabi-minchoを更新</a></p>
+</li>
+<li>
+<p><code>nadoka</code>が古いままでwatchもエラーになっていたので、重い腰を上げて<a href="https://tracker.debian.org/news/1021441/accepted-nadoka-092-1-source-into-unstable/">更新しておいた</a>。前のメンテナの安井さんにも連絡済み。</p>
+</li>
+<li>
+<p><code>whizzytex</code>のパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</p>
+</li>
+<li>
+<p><code>jruby-joni</code>パッケージがFTBFSになってる？なぜだ… <code>org.jcodings.exception.CharacterPropertyException: invalid character property name &lt;graphemeclusterbreak=emodifier&gt;</code>と出てくるのでその辺りから検索したけど、よくわからんよね…<a href="https://github.com/jruby/joni/issues/40">issue登録</a>だけしておいた</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ grep emodifier -r ./
+./src/org/joni/Parser.java:        static final byte<span style="color:#f92672">[]</span>Grapheme_Cluster_Break_E_Modifier <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;graphemeclusterbreak=emodifier&#34;</span>.getBytes<span style="color:#f92672">()</span>;
+</code></pre></div></li>
+<li>
+<p>気になったのでgem2debのテンプレートから<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterを削除するMR</a>を送っておいた</p>
+</li>
 </ul>
 
 		</div>
@@ -112,7 +128,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -120,10 +136,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

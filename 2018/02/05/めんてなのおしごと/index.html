@@ -71,40 +71,38 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li><p>chasenパッケージの更新。</p>
-
+<li>chasenパッケージの更新。</li>
+</ul>
 <pre><code>chasen (2.4.5-40) UNRELEASED; urgency=medium
 
-* debian/control
-- Vcs-* move to salsa.debian.org 
-- use https for Homepage:
-- set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
-  dependency (pulled automatically)
-- set Standards-Version: 4.1.3
-* debian/rules
-- drop &quot;--with autoreconf&quot;
-- specify &quot;--no-parallel&quot; to avoid FTBFS
-* debian/compat
-- set 10
-* debian/watch
-- update to version 4
+  * debian/control
+    - Vcs-* move to salsa.debian.org 
+    - use https for Homepage:
+    - set Bulid-Depends: debhelper (&gt;= 10), and drop unnecessary dh-autoreconf
+      dependency (pulled automatically)
+    - set Standards-Version: 4.1.3
+  * debian/rules
+    - drop &quot;--with autoreconf&quot;
+    - specify &quot;--no-parallel&quot; to avoid FTBFS
+  * debian/compat
+    - set 10
+  * debian/watch
+    - update to version 4
 
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
-</code></pre></li>
-
-<li><p>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</p>
-
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 21:47:29 +0900
+</code></pre><ul>
+<li>mecab-ipadicのbuildがdebhelperバージョンが低過ぎでコケてたので、そこだけまずは更新しておいた</li>
+</ul>
 <pre><code>mecab-ipadic (2.7.0-20070801+main-2) UNRELEASED; urgency=medium
 
-* debian/control
-- set Build-Depends: debhelper (&gt;= 11)
-* debian/compat
-- set 11
+  * debian/control
+    - set Build-Depends: debhelper (&gt;= 11)
+  * debian/compat
+    - set 11
 
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
-</code></pre></li>
-
-<li><p><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</p></li>
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Feb 2018 22:25:20 +0900
+</code></pre><ul>
+<li><a href="http://bugs.debian.org/889662">昨日のlibsylphの件を忘れないうちにBTSへ</a>。</li>
 </ul>
 
 		</div>
@@ -121,7 +119,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -129,10 +127,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

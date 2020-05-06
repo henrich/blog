@@ -74,17 +74,15 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>debian-installerのコンポーネントの一つ、<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/1/">partman-lvmでのバグ修正</a>が含まれたパッケージがようやくアップロードされた。</p>
-
 <p>もう一つ、重要なコンポーネントのdebootstrapの昨日の変更だけど、リリースマネージャーが難色を示しているのでamd64以外でもチェックすることに。</p>
-
 <ul>
 <li>手元の放置してたBBBを設定、<a href="http://select.marutsu.co.jp/list/detail.php?id=235">参考ページ</a>を元に初期化し直し</li>
 <li><a href="http://beagleboard.org/latest-images">stretchベースのイメージ</a>をSDカードに。ちなみにxz圧縮したままで展開せずに書き込めるのでGNOMEなかなか優秀である。</li>
 <li>２つ前のバージョン（1.0.110~bpo9+1）のがstretch-backportsに入ってるので、そちらをインストールして stretch / buster / sid のchroot環境を作る。あとは各環境で <code>dpkg --get-selections &gt; distro.txt</code> のようにしてパッケージ一覧を作成。次にunstableから debootstrap 1.0.112 を入れて同じことを繰り返し。この後で diff をとってそれぞれのchrootで違いが出てるのかどうかをチェックする、という流れ。しかし、SDカードへの書き込みは遅く、マシンも非力なためにめっちゃ時間が…
-
 <ul>
 <li>ちなみにBBB＝armhfアーキテクチャでも特に変化は見られませんでした。そりゃそうだ、と思うのですが…</li>
-</ul></li>
+</ul>
+</li>
 <li>あとはarm64アーキテクチャである<a href="https://db.debian.org/machines.cgi?host=amdahl">debian.orgのporterboxマシン</a>にsshログインしたものの、password設定わからず（どうなってるんだっけ？）sudo出来なかったのでこちらは明日以降で…</li>
 </ul>
 
@@ -102,7 +100,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -110,10 +108,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

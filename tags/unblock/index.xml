@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>unblock on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Sat, 30 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/unblock/index.xml" rel="self" type="application/rss+xml" />
@@ -28,7 +29,7 @@
       <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> tomoyo-toolsも一応unblockを出した。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。  →ダメだった。そらそーか。  squid-deb-proxyは問い合わせてみたが特に反応がないが、週末だったので--deleyed 3でアップロードした。  </description>
+      <description> tomoyo-toolsも一応unblockを出した。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。  →ダメだった。そらそーか。   squid-deb-proxyは問い合わせてみたが特に反応がないが、週末だったので--deleyed 3でアップロードした。  </description>
     </item>
     
     <item>
@@ -38,9 +39,9 @@
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今回はubuntu-keyringパッケージを題材に「full freeze期間に入ってしまったが、unstableにあるパッケージをリリース対象＝testingに入れたい」場合の手順をメモしてみました。
-まず、testingにあるバージョンとunstableにあるバージョンの差分（diff）を生成します。今だとgit diffでも良さそうな気はするのですが、慣例的にはソースパッケージに対してdebdiffを使って作ります。ソースパッケージをdgetコマンドで取得し、.dscファイルに対してdebdiffコマンドを実行しています。ソースパッケージのURLはdistro trackerからコピペしていますが、別のやり方もあるでしょう。
-$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc \ http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc $ debdiff ubuntu-keyring_2018.09.18.1-4.dsc ubuntu-keyring_2018.09.18.1-5.dsc &amp;gt; ubuntu-keyring.diff  diffが出来たので、これを元にunblockリクエストをバグ登録します。ツールとしてはreportbugコマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugはreportbug &amp;lt;package&amp;gt;という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)であるrelease.debian.orgを指定します。
-$ reportbug release.debian.org Detected character set: UTF-8 Please change your locale if this is incorrect. Using &#39;Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;&#39; as your from address. Will send report to Debian (per lsb_release). What sort of request is this? (If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.</description>
+ まず、testingにあるバージョンとunstableにあるバージョンの差分（diff）を生成します。今だとgit diffでも良さそうな気はするのですが、慣例的にはソースパッケージに対してdebdiffを使って作ります。ソースパッケージをdgetコマンドで取得し、.dscファイルに対してdebdiffコマンドを実行しています。ソースパッケージのURLはdistro trackerからコピペしていますが、別のやり方もあるでしょう。
+$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc \  http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc $ debdiff ubuntu-keyring_2018.09.18.1-4.dsc ubuntu-keyring_2018.09.18.1-5.dsc &amp;gt; ubuntu-keyring.diff diffが出来たので、これを元にunblockリクエストをバグ登録します。ツールとしてはreportbugコマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugはreportbug &amp;lt;package&amp;gt;という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)であるrelease.debian.orgを指定します。
+$ reportbug release.debian.org Detected character set: UTF-8 Please change your locale if this is incorrect. Using &amp;#39;Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;&amp;#39; as your from address. Will send report to Debian (per lsb_release). What sort of request is this? (If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.</description>
     </item>
     
   </channel>

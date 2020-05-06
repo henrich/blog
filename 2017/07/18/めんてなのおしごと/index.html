@@ -70,33 +70,21 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<p>どうやら<a href="http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340">3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた</a>ようだ。</p>
-
-<hr />
-
+			<p>どうやら<a href="http://support.sakura.ad.jp/mainte/mainteentry.php?id=22340">3時間ほどdebian-mirror.sakura.ne.jpが繋がらなくなっていた</a>ようだ。</p>
+<hr>
 <p><a href="https://udd.debian.org/dmd/?henrich%40debian.org#todo">maintainer dashboard</a>より。</p>
-
 <ul>
 <li>libmojolicious-plugin-renderfile-perlの<a href="http://bugs.debian.org/839621">#839621</a>を修正。manのtypoは<a href="https://github.com/koorchik/Mojolicious-Plugin-RenderFile/pull/20">PR送った</a>。</li>
 <li>libmojolicious-plugin-assetpack-perlもついでに更新&hellip;しようとしたら手元のリポジトリが作業途中で放棄したものになっていた&hellip;</li>
 </ul>
-
-<hr />
-
+<hr>
 <p><a href="https://qa.debian.org/developer.php?login=henrich&amp;comaint=yes">パッケージ一覧</a>を眺めてのグルーミング作業。</p>
-
 <ul>
 <li><a href="https://tracker.debian.org/news/857081">fonts-kouzan-mouhitsu</a>。サイトを見に行ったら更新されていたので反映。</li>
 </ul>
-
-<hr />
-
+<hr>
 <h2 id="octiconsのビルドにはnpmモジュールが必要">octiconsのビルドにはnpmモジュールが必要</h2>
-
 <p>octiconsのビルドに必要なのを見てみるか&hellip;コイツの場合、buildすることになるのでdevDependenciesみた方が良いよね。</p>
-
 <pre><code>  &quot;devDependencies&quot;: {
     &quot;autoprefixer&quot;: &quot;^6.3.6&quot;,
     &quot;ava&quot;: &quot;^0.16.0&quot;,
@@ -107,30 +95,19 @@
     &quot;grunt-svgmin&quot;: &quot;^4.0.0&quot;,
     &quot;grunt-svgstore&quot;: &quot;^1.0.0&quot;
   },
-</code></pre>
-
-<p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
-
+</code></pre><p>grunt,grunt-contrib-clean,grunt-contrib-copyはパッケージがある。逆に言うと他のは全部無い&hellip;のでパッケージングが必要。ではnpm2debでチャレンジしてみるか。autoprefixerをnpm2debすると</p>
 <pre><code> [error]   num2fraction: dependency node-num2fraction not in debian
  [error]   browserslist: dependency node-browserslist not in debian
  [error]   normalize-range: dependency node-normalize-range not in debian
  [error]   postcss-value-parser: dependency node-postcss-value-parser not in debian
  [error]   caniuse-lite: dependency node-caniuse-lite not in debian
  [error]   postcss: dependency node-postcss not in debian
-</code></pre>
-
-<p>browserslistをnpm2debすると</p>
-
+</code></pre><p>browserslistをnpm2debすると</p>
 <pre><code> [error]   caniuse-lite: dependency node-caniuse-lite not in debian
  [error]   electron-to-chromium: dependency node-electron-to-chromium not in debian
-</code></pre>
-
-<p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で<strong>150個以上のnpmモジュールをdebパッケージにすることが必要</strong>なようだ。マジか&hellip;。</p>
-
+</code></pre><p>&hellip;という感じでひたすら叩いていく。雛形づくりまでは簡単だけど、その後のITP登録やライセンス周りの雛形直しとかが大変そう。&hellip;この作業で<strong>150個以上のnpmモジュールをdebパッケージにすることが必要</strong>なようだ。マジか&hellip;。</p>
 <h3 id="パッケージに落とせてない所">パッケージに落とせてない所</h3>
-
 <p>css-treeはalpha版しかないからかnpm2debがコケる。</p>
-
 <pre><code>$ npm2deb create css-tree
 Traceback (most recent call last):
   File &quot;/usr/bin/npm2deb&quot;, line 7, in &lt;module&gt;
@@ -162,26 +139,18 @@ npm ERR!
 npm ERR! Additional logging details can be found in:
 npm ERR!     /home/henrich/src/collabmaint/npm-for-octicons/css-tree/npm-debug.log
 npm ERR! not ok code 0
-</code></pre>
-
-<p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
-
+</code></pre><p>それから以下については、どのモジュールに対して作業すればいいのかがまだ理解できていない。</p>
 <pre><code> [error]   @ava/write-file-atomic: dependency node-@ava/write-file-atomic not in debian                      
  [error]   @ava/babel-preset-transform-test-files: dependency node-@ava/babel-preset-transform-test-files not in debian                                                                                              
  [error]   @ava/babel-preset-stage-4: dependency node-@ava/babel-preset-stage-4 not in debian                
  [error]   @concordance/react: dependency node-@concordance/react not in debian                              
  [error]   @types/node: dependency node-@types/node not in debian
-</code></pre>
-
-<p>npm2debでの変換中、気になるメッセージとしては以下。</p>
-
+</code></pre><p>npm2debでの変換中、気になるメッセージとしては以下。</p>
 <pre><code>Using fakeupstream to download npm dist tarballs, because upstream
 git repo is missing tags. Its better to ask upstream to tag their releases
 instead of using npm dist tarballs as dist tarballs may contain pre built files
 and may not include tests.
-</code></pre>
-
-<p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
+</code></pre><p>upstreamにタグうちをお願いしてこい、ということらしいが、150個以上もあるとどれだったかわからんわ。。。</p>
 
 		</div>
 	</div>
@@ -197,7 +166,7 @@ and may not include tests.
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -205,10 +174,6 @@ and may not include tests.
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

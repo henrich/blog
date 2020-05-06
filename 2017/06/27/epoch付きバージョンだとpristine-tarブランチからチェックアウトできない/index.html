@@ -74,17 +74,12 @@
 gbp:info: Tarballs 'xfonts-kappa20_0.396.orig.tar.xz' not found at '../tarballs/'
 gbp:error: Pristine-tar couldn't checkout &quot;xfonts-kappa20_0.396.orig.tar.xz&quot;: fatal: Path 'xfonts-kappa20_0.396.orig.tar.xz.delta' does not exist in 'refs/heads/pristine-tar'
 pristine-tar: git show refs/heads/pristine-tar:xfonts-kappa20_0.396.orig.tar.xz.delta failed
-</code></pre>
-
-<p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
-
+</code></pre><p>何故かprsistine-tarブランチからtarballがチェックアウトできないとな。</p>
 <pre><code>henrich@hp:~/src/pkg-fonts/xfonts-kappa20(master)$ git checkout pristine-tar
 Switched to branch 'pristine-tar'
 henrich@hp:~/src/pkg-fonts/xfonts-kappa20(pristine-tar)$ ls
 Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.orig.tar.xz.delta  xfonts-kappa20_1:0.396.orig.tar.xz.id
-</code></pre>
-
-<p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
+</code></pre><p>ある。どうやら、バージョン番号にepochが付くとダメっぽい。どうするよ。。。</p>
 
 		</div>
 	</div>
@@ -100,7 +95,7 @@ Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.or
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -108,10 +103,6 @@ Kappa20-0.396.tar.bz2.delta  Kappa20-0.396.tar.bz2.id  xfonts-kappa20_1:0.396.or
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

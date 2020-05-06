@@ -72,24 +72,18 @@
 			<br>
 			<ul>
 <li>働きかけていた<a href="https://www.faq.idcf.jp/app/answers/detail/a_id/819/c/22">IDCFクラウドさんでのDebian8設定の不備</a>が漸く公開された。
-
 <ul>
 <li>ただ、個人的には「不具合」だと思っていて、tipsで公開というのは足りないと思っています。セキュリティですし&hellip;。</li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+</ul>
+<hr>
 <p>bind9のchangelogが興味深い。</p>
-
 <pre><code>  * Add support for downloading upstream sources using d/watch
     + Make d/copyright machine readable for Files-Excluded: support
     + Update Files-Exclude: * to remove obsolete software dropped in
       contrib/, but not really used
-</code></pre>
-
-<p>watchはこんな感じ</p>
-
+</code></pre><p>watchはこんな感じ</p>
 <pre><code>opts=\
 repack,\
 compression=xz,\
@@ -97,10 +91,7 @@ repacksuffix=+dfsg,\
 uversionmangle=s/((rc|b)\d+)$/~$1/,\
 dirversionmangle=s/((rc|b)\d+)$/~$1/,\
 dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
-</code></pre>
-
-<p>copyrightはこんな感じ</p>
-
+</code></pre><p>copyrightはこんな感じ</p>
 <pre><code>Files-Excluded: contrib/idn
                 contrib/dnsperf-2.1.0.0-1
                 contrib/nslint-3.0a2
@@ -108,7 +99,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
                 contrib/queryperf
                 contrib/zkt-1.1.3
 </code></pre>
-
 		</div>
 	</div>
 	<div class="row">
@@ -123,7 +113,7 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -131,10 +121,6 @@ dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

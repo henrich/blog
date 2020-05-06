@@ -71,31 +71,29 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li><p><a href="https://tracker.debian.org/news/931241">libsylphを更新</a></p>
-
+<li><a href="https://tracker.debian.org/news/931241">libsylphを更新</a></li>
+</ul>
 <pre><code>libsylph (1.1.0-19) unstable; urgency=medium
 
-* debian/patches
-- add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
+  * debian/patches
+    - add 0005-use-oniguruma-without-onig-config.patch (Closes: #889662)
 
--- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 09 Feb 2018 23:32:14 +0900
-</code></pre></li>
-
-<li><p>sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。<a href="https://sylpheed.sraoss.jp/redmine/issues/296">忘れないうちにupstreamにも登録</a></p>
-
+ -- Hideki Yamane &lt;henrich@debian.org&gt;  Fri, 09 Feb 2018 23:32:14 +0900
+</code></pre><ul>
+<li>sylpheedを少し変更。不要ライブラリを落として、libsylph同様のバグを修正。<a href="https://sylpheed.sraoss.jp/redmine/issues/296">忘れないうちにupstreamにも登録</a></li>
+</ul>
 <pre><code>sylpheed (3.7.0-2) UNRELEASED; urgency=medium
 
-* debian/control
-- drop Build-Depends: libdbus-glib-1-dev
-  It was introduced since enchant with zemberek crashes without it in 3.0,
-  however, enchant package was built with &quot;--disable-zemberek&quot; option,
-  so it isn't necessary.
-* debian/patches
-- add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
-  properly (Closes: #889971)
-</code></pre></li>
-
-<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></p></li>
+  * debian/control
+    - drop Build-Depends: libdbus-glib-1-dev
+      It was introduced since enchant with zemberek crashes without it in 3.0,
+      however, enchant package was built with &quot;--disable-zemberek&quot; option,
+      so it isn't necessary.
+  * debian/patches
+    - add 0008-detect-oniguruma-without-onig-config.patch to use libonig-dev
+      properly (Closes: #889971)
+</code></pre><ul>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889974">sylpheedの依存関係に疑問があったので、Ricardoの意見も聞くべくBTS</a></li>
 </ul>
 
 		</div>
@@ -112,7 +110,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -120,10 +118,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

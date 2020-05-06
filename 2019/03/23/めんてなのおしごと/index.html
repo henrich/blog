@@ -83,54 +83,39 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>今回は<code>ubuntu-keyring</code>パッケージを題材に「full freeze期間に入ってしまったが、unstableにあるパッケージをリリース対象＝testingに入れたい」場合の手順をメモしてみました。</p>
-
-<hr />
-
+<hr>
 <p>まず、testingにあるバージョンとunstableにあるバージョンの差分（diff）を生成します。今だと<code>git diff</code>でも良さそうな気はするのですが、慣例的にはソースパッケージに対して<code>debdiff</code>を使って作ります。ソースパッケージを<code>dget</code>コマンドで取得し、<code>.dsc</code>ファイルに対して<code>debdiff</code>コマンドを実行しています。ソースパッケージのURLは<a href="https://tracker.debian.org/pkg/ubuntu-keyring">distro tracker</a>からコピペしていますが、別のやり方もあるでしょう。</p>
-
-<pre><code class="language-bash">$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc \
-       http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc
 $ debdiff ubuntu-keyring_2018.09.18.1-4.dsc ubuntu-keyring_2018.09.18.1-5.dsc &gt; ubuntu-keyring.diff
-</code></pre>
-
-<p>diffが出来たので、これを元に<code>unblockリクエスト</code>をバグ登録します。ツールとしては<code>reportbug</code>コマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugは<code>reportbug &lt;package&gt;</code>という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)である<code>release.debian.org</code>を指定します。</p>
-
-<pre><code class="language-bash">$ reportbug release.debian.org
+</code></pre></div><p>diffが出来たので、これを元に<code>unblockリクエスト</code>をバグ登録します。ツールとしては<code>reportbug</code>コマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugは<code>reportbug &lt;package&gt;</code>という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)である<code>release.debian.org</code>を指定します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ reportbug release.debian.org
 Detected character set: UTF-8
-Please change your locale if this is incorrect.
+Please change your locale <span style="color:#66d9ef">if</span> this is incorrect.
 
-Using 'Hideki Yamane &lt;henrich@debian.org&gt;' as your from address.
-Will send report to Debian (per lsb_release).
-What sort of request is this? (If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.)
+Using <span style="color:#e6db74">&#39;Hideki Yamane &lt;henrich@debian.org&gt;&#39;</span> as your from address.
+Will send report to Debian <span style="color:#f92672">(</span>per lsb_release<span style="color:#f92672">)</span>.
+What sort of request is this? <span style="color:#f92672">(</span>If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.<span style="color:#f92672">)</span>
 
-1 binnmu      binNMU requests
-2 britney     testing migration script bugs
-3 other       None of the other options
-4 rm          Stable/Testing removal requests
-5 stretch-pu  stretch proposed updates requests
-6 transition  transition tracking
-7 unblock     unblock requests
+<span style="color:#ae81ff">1</span> binnmu      binNMU requests
+<span style="color:#ae81ff">2</span> britney     testing migration script bugs
+<span style="color:#ae81ff">3</span> other       None of the other options
+<span style="color:#ae81ff">4</span> rm          Stable/Testing removal requests
+<span style="color:#ae81ff">5</span> stretch-pu  stretch proposed updates requests
+<span style="color:#ae81ff">6</span> transition  transition tracking
+<span style="color:#ae81ff">7</span> unblock     unblock requests
 
 Choose the request type:
-</code></pre>
-
-<p>今回行いたいのはunblockなので<code>&quot;7&quot;</code>を選びます。続けて対象となるパッケージ名（今回は<code>ubuntu-keyring</code>）を入力します。</p>
-
-<pre><code class="language-bash">Choose the request type: 7
+</code></pre></div><p>今回行いたいのはunblockなので<code>&quot;7&quot;</code>を選びます。続けて対象となるパッケージ名（今回は<code>ubuntu-keyring</code>）を入力します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Choose the request type: <span style="color:#ae81ff">7</span>
 Please enter the name of the package: ubuntu-keyring
 Checking status database...
-Latest version seems to be 2018.09.18.1-1, is this the proper one ? [Y|n|?]?
-</code></pre>
-
-<p>最新バージョンのチェックが行われます…あれ？間違ってますね。なんでだろう？このバージョンはtestingにも無いんですが…謎だ。仕方がないので<code>&quot;n&quot;</code>を入力して現在の最新版である<code>2018.09.18.1-5</code>を入力。</p>
-
-<pre><code class="language-bash">Latest version seems to be 2018.09.18.1-1, is this the proper one ? [Y|n|?]? n
+Latest version seems to be 2018.09.18.1-1, is this the proper one ? <span style="color:#f92672">[</span>Y|n|?<span style="color:#f92672">]</span>?
+</code></pre></div><p>最新バージョンのチェックが行われます…あれ？間違ってますね。なんでだろう？このバージョンはtestingにも無いんですが…謎だ。仕方がないので<code>&quot;n&quot;</code>を入力して現在の最新版である<code>2018.09.18.1-5</code>を入力。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Latest version seems to be 2018.09.18.1-1, is this the proper one ? <span style="color:#f92672">[</span>Y|n|?<span style="color:#f92672">]</span>? n
 Please enter the version of the package: 2018.09.18.1-5
-</code></pre>
-
-<p>するとテンプレートが埋められて雛形が出来上がり、<code>sensible-editor</code>で指定されたエディタが立ち上がります</p>
-
-<pre><code class="language-text">Subject: unblock: ubuntu-keyring/2018.09.18.1-5
+</code></pre></div><p>するとテンプレートが埋められて雛形が出来上がり、<code>sensible-editor</code>で指定されたエディタが立ち上がります</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Subject: unblock: ubuntu-keyring/2018.09.18.1-5
 Package: release.debian.org
 User: release.debian.org@packages.debian.org
 Usertags: unblock
@@ -147,7 +132,7 @@ unblock ubuntu-keyring/2018.09.18.1-5
 -- System Information:
 Debian Release: buster/sid
   APT prefers unstable
-  APT policy: (500, 'unstable'), (1, 'experimental')
+  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
 Architecture: amd64 (x86_64)
 
 Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
@@ -156,11 +141,8 @@ Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.U
 Shell: /bin/sh linked to /bin/dash
 Init: systemd (via /run/systemd/system)
 LSM: AppArmor: enabled
-</code></pre>
-
-<p><code>(include/attach the debdiff against the package in testing)</code>の所を消して、先程作ったdiffを貼り付け、<code>(explain the reason for the unblock here)</code>のところに理由を書いて送ります。出来上がりはこんな感じ。</p>
-
-<pre><code class="language-text">Package: release.debian.org
+</code></pre></div><p><code>(include/attach the debdiff against the package in testing)</code>の所を消して、先程作ったdiffを貼り付け、<code>(explain the reason for the unblock here)</code>のところに理由を書いて送ります。出来上がりはこんな感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Package: release.debian.org
 Severity: normal
 User: release.debian.org@packages.debian.org
 Usertags: unblock
@@ -168,7 +150,7 @@ Usertags: unblock
  Please unblock package ubuntu-keyring
 
  * This update fixes file removal at maintainer script, and also deals with symlink
-   removal that the package in testing doesn't create properly as below
+   removal that the package in testing doesn&#39;t create properly as below
 
 &gt;&gt;      # force remove garbage that was created by previous version, oh moron...
 &gt;&gt;      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
@@ -183,7 +165,7 @@ Usertags: unblock
  ubuntu-archive-keyring is just a transitional package.
 
 
- Here's a debdiff.
+ Here&#39;s a debdiff.
 
 diff -Nru ubuntu-keyring-2018.09.18.1/debian/changelog ubuntu-keyring-2018.09.18.1/debian/changelog
 --- ubuntu-keyring-2018.09.18.1/debian/changelog	2019-02-07 00:26:23.000000000 +0900
@@ -192,7 +174,7 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/changelog ubuntu-keyring-2018.09.18
 +ubuntu-keyring (2018.09.18.1-5) unstable; urgency=medium
 +
 +  * debian/*.post{inst,rm}
-+    - use apt-config(8)'s Dir::Etc::trustedparts and fix keyring removal error.
++    - use apt-config(8)&#39;s Dir::Etc::trustedparts and fix keyring removal error.
 +      Thanks to Linda Lapinlampi &lt;linda@lindalap.fi&gt; and
 +      Hiroyuki YAMAMORI &lt;h-yamamo@db3.so-net.ne.jp&gt; (Closes: #922176, #922177)
 +  * debian/ubuntu-dbgsym-keyring.templates
@@ -220,32 +202,32 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst ubunt
 --- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
 +++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
 @@ -5,15 +5,26 @@
- case &quot;$1&quot; in
+ case &#34;$1&#34; in
      install|configure)
  
 +      # force remove garbage that was created by previous version, oh moron...
 +      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
 +
 +
-+      TRUSTEDPARTS=&quot;/etc/apt/trusted.gpg.d/&quot;
-+      eval &quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&quot;
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
 +
 +      # once clean up keyrings
-+      rm -f &quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-keyring-2012-removed-keys.gpg&quot;
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-removed-keys.gpg&#34;
 +
        . /usr/share/debconf/confmodule
        db_version 2.0
        db_get ubuntu-cloud-keyring/keyring
  
-       if [ -n &quot;$RET&quot; ]; then
--        for keyring in &quot;$RET&quot;
-+        selected=$(echo &quot;$RET&quot; | sed -e 's/, /\n/g')
-+        echo &quot;$selected&quot; | while read keyring
+       if [ -n &#34;$RET&#34; ]; then
+-        for keyring in &#34;$RET&#34;
++        selected=$(echo &#34;$RET&#34; | sed -e &#39;s/, /\n/g&#39;)
++        echo &#34;$selected&#34; | while read keyring
          do
--          rm -f /etc/apt/trusted.gpg.d/&quot;$keyring&quot;.gpg
--          ln -sf /usr/share/keyrings/&quot;$keyring&quot;.gpg /etc/apt/trusted.gpg.d/
-+          ln -sf &quot;/usr/share/keyrings/${keyring}.gpg&quot; &quot;$TRUSTEDPARTS&quot;
+-          rm -f /etc/apt/trusted.gpg.d/&#34;$keyring&#34;.gpg
+-          ln -sf /usr/share/keyrings/&#34;$keyring&#34;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &#34;/usr/share/keyrings/${keyring}.gpg&#34; &#34;$TRUSTEDPARTS&#34;
          done
        fi
  
@@ -253,18 +235,18 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm ubuntu-
 --- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
 +++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
 @@ -5,9 +5,12 @@
- case &quot;$1&quot; in
+ case &#34;$1&#34; in
      purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
  
 -        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive.gpg \
 -              /etc/apt/trusted.gpg.d/ubuntu-cloud-removed-keys.gpg \
 -              /etc/apt/trusted.gpg.d/ubuntu-cloud-keyring.gpg
-+        TRUSTEDPARTS=&quot;/etc/apt/trusted.gpg.d/&quot;
-+        eval &quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&quot;
++        TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++        eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
 +
-+        rm -f &quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&quot; \
-+              &quot;${TRUSTEDPARTS}ubuntu-cloud-removed-keys.gpg&quot; \
-+              &quot;${TRUSTEDPARTS}ubuntu-cloud-keyring.gpg&quot;
++        rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-cloud-removed-keys.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-cloud-keyring.gpg&#34;
  
      ;;
      *)
@@ -272,7 +254,7 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst ubun
 --- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
 +++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
 @@ -5,15 +5,28 @@
- case &quot;$1&quot; in
+ case &#34;$1&#34; in
      install|configure)
  
 +      # remove garbage that was created by previous version, oh moron...
@@ -280,26 +262,26 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst ubun
 +      rm -f /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg\,\ *
 +
 +
-+      TRUSTEDPARTS=&quot;/etc/apt/trusted.gpg.d/&quot;
-+      eval &quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&quot;
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
 +
 +      # once clean up keyrings
-+      rm -f &quot;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&quot;
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&#34;
 +
        . /usr/share/debconf/confmodule
        db_version 2.0
        db_get ubuntu-dbgsym-keyring/keyring
  
-       if [ -n &quot;$RET&quot; ]; then
--        for keyring in &quot;$RET&quot;
-+        selected=$(echo &quot;$RET&quot; | sed -e 's/, /\n/g')
-+        echo &quot;$selected&quot; | while read keyring
+       if [ -n &#34;$RET&#34; ]; then
+-        for keyring in &#34;$RET&#34;
++        selected=$(echo &#34;$RET&#34; | sed -e &#39;s/, /\n/g&#39;)
++        echo &#34;$selected&#34; | while read keyring
          do
--          rm -f /etc/apt/trusted.gpg.d/&quot;$keyring&quot;.gpg
--          ln -sf /usr/share/keyrings/&quot;$keyring&quot;.gpg /etc/apt/trusted.gpg.d/
-+          ln -sf &quot;/usr/share/keyrings/${keyring}.gpg&quot; &quot;$TRUSTEDPARTS&quot;
+-          rm -f /etc/apt/trusted.gpg.d/&#34;$keyring&#34;.gpg
+-          ln -sf /usr/share/keyrings/&#34;$keyring&#34;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &#34;/usr/share/keyrings/${keyring}.gpg&#34; &#34;$TRUSTEDPARTS&#34;
          done
        fi
  
@@ -307,18 +289,18 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm ubuntu
 --- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
 +++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
 @@ -5,9 +5,12 @@
- case &quot;$1&quot; in
+ case &#34;$1&#34; in
      purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
  
 -        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg \
 -              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg \
 -              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-keyring.gpg
-+        TRUSTEDPARTS=&quot;/etc/apt/trusted.gpg.d/&quot;
-+        eval &quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&quot;
++        TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++        eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
 +
-+        rm -f &quot;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&quot; \
-+              &quot;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&quot; \
-+              &quot;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&quot;
++        rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&#34;
  
      ;;
      *)
@@ -344,26 +326,26 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst ubuntu-keyr
 +      # oh moron...
 +      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-201[28]-archive\,\ *
 +
-+      TRUSTEDPARTS=&quot;/etc/apt/trusted.gpg.d/&quot;
-+      eval &quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&quot;
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
 +
 +      # once clean up keyrings
-+      rm -f &quot;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&quot;
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&#34;
 +
        . /usr/share/debconf/confmodule
        db_version 2.0
        db_get ubuntu-keyring/keyring
  
-       if [ -n &quot;$RET&quot; ]; then
--        for keyring in &quot;$RET&quot;
-+        selected=$(echo &quot;$RET&quot; | sed -e 's/, /\n/g')
-+        echo &quot;$selected&quot; | while read keyring
+       if [ -n &#34;$RET&#34; ]; then
+-        for keyring in &#34;$RET&#34;
++        selected=$(echo &#34;$RET&#34; | sed -e &#39;s/, /\n/g&#39;)
++        echo &#34;$selected&#34; | while read keyring
          do
--          rm -f /etc/apt/trusted.gpg.d/&quot;$keyring&quot;.gpg
--          ln -sf /usr/share/keyrings/&quot;$keyring&quot;.gpg /etc/apt/trusted.gpg.d/
-+          ln -sf &quot;/usr/share/keyrings/${keyring}.gpg&quot; &quot;$TRUSTEDPARTS&quot;
+-          rm -f /etc/apt/trusted.gpg.d/&#34;$keyring&#34;.gpg
+-          ln -sf /usr/share/keyrings/&#34;$keyring&#34;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &#34;/usr/share/keyrings/${keyring}.gpg&#34; &#34;$TRUSTEDPARTS&#34;
          done
        fi
  
@@ -371,7 +353,7 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm ubuntu-keyrin
 --- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
 +++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
 @@ -5,14 +5,17 @@
- case &quot;$1&quot; in
+ case &#34;$1&#34; in
      purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
  
 -        rm -f /etc/apt/trusted.gpg.d/ubuntu-archive-keyring.gpg \
@@ -382,17 +364,17 @@ diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm ubuntu-keyrin
 -              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-keyring.gpg \
 -              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-removed-keys.gpg \
 -              /etc/apt/trusted.gpg.d/ubuntu-master-keyring.gpg
-+      TRUSTEDPARTS=&quot;/etc/apt/trusted.gpg.d/&quot;
-+      eval &quot;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&quot;
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
 +
-+      rm -f &quot;${TRUSTEDPARTS}ubuntu-archive-keyring.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-keyring-2012-cdimage.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-cloudimage-keyring.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-cloudimage-removed-keys.gpg&quot; \
-+            &quot;${TRUSTEDPARTS}ubuntu-master-keyring.gpg&quot;
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-archive-keyring.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-cdimage.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-cloudimage-keyring.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-cloudimage-removed-keys.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-master-keyring.gpg&#34;
  
      ;;
      *)
@@ -402,7 +384,7 @@ unblock ubuntu-keyring/2018.09.18.1-5
 -- System Information:
 Debian Release: buster/sid
   APT prefers unstable
-  APT policy: (500, 'unstable'), (1, 'experimental')
+  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
 Architecture: amd64 (x86_64)
 
 Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
@@ -411,31 +393,22 @@ Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.U
 Shell: /bin/sh linked to /bin/dash
 Init: systemd (via /run/systemd/system)
 LSM: AppArmor: enabled
-</code></pre>
-
-<p>できたらエディタから抜けて<code>&quot;y&quot;</code>で送信します。</p>
-
-<pre><code class="language-bash">Report will be sent to Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
-Submit this report on release.debian.org (e to edit) [Y|n|a|c|e|i|l|m|p|q|d|t|s|?]? y
-</code></pre>
-
-<p>SMTPサーバーへの通信が行われ、特に問題なければ完了メッセージがでてきます。</p>
-
-<pre><code class="language-bash">Connecting to mysmtp.example.jp:587 via SMTP...
+</code></pre></div><p>できたらエディタから抜けて<code>&quot;y&quot;</code>で送信します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Report will be sent to Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
+Submit this report on release.debian.org <span style="color:#f92672">(</span>e to edit<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Y|n|a|c|e|i|l|m|p|q|d|t|s|?<span style="color:#f92672">]</span>? y
+</code></pre></div><p>SMTPサーバーへの通信が行われ、特に問題なければ完了メッセージがでてきます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Connecting to mysmtp.example.jp:587 via SMTP...
 
 Bug report submitted to: Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
 Copies sent to:
   Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
   Hideki Yamane &lt;henrich@debian.org&gt;
 
-If you want to provide additional information, please wait to receive the bug tracking number via email; you may then send any extra information to n@bugs.debian.org (e.g.
-nnnnnn@bugs.debian.org), where n is the bug number. Normally you will receive an acknowledgement via email including the bug report number within an hour; if you haven't received a
-confirmation, then the bug reporting process failed at some point (reportbug or MTA failure, BTS maintenance, etc.).
-</code></pre>
-
-<p>送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。今回は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350">Bug#925350</a>でした。</p>
-
-<pre><code class="language-text">Thank you for filing a new Bug report with Debian.
+If you want to provide additional information, please wait to receive the bug tracking number via email; you may <span style="color:#66d9ef">then</span> send any extra information to n@bugs.debian.org <span style="color:#f92672">(</span>e.g.
+nnnnnn@bugs.debian.org<span style="color:#f92672">)</span>, where n is the bug number. Normally you will receive an acknowledgement via email including the bug report number within an hour; <span style="color:#66d9ef">if</span> you haven<span style="color:#960050;background-color:#1e0010">&#39;</span>t received a
+confirmation, <span style="color:#66d9ef">then</span> the bug reporting process failed at some point <span style="color:#f92672">(</span>reportbug or MTA failure, BTS maintenance, etc.<span style="color:#f92672">)</span>.
+</code></pre></div><p>送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。今回は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350">Bug#925350</a>でした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Thank you for filing a new Bug report with Debian.
 
 You can follow progress on this Bug here: 925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350.
 
@@ -458,8 +431,7 @@ to report a problem with the Bug-tracking system.
 925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350
 Debian Bug Tracking System
 Contact owner@bugs.debian.org with problems
-</code></pre>
-
+</code></pre></div>
 		</div>
 	</div>
 	<div class="row">
@@ -474,7 +446,7 @@ Contact owner@bugs.debian.org with problems
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -482,10 +454,6 @@ Contact owner@bugs.debian.org with problems
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

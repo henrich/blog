@@ -71,34 +71,24 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>git-buildpackageでビルドしたのだけど、pristine-tarブランチに作られたファイルから生成されるtarballと最初にアップロードしたorig.tarballとハッシュ値が違うということで蹴られることがある。tarballは都度若干違う値になっちゃうから、そもそもgbp import-origした際にキチンとpristine-tar作るようにしてあるはず、なんだけど、ミスをすることが多々&hellip;</p>
-
 <p>で、どうやってリカバリするかというと、apt source して orig.tarball を差し替える（ダメな場当たり対応。良くやる）というのが思いつくのだけど、ちゃんとpristine-tarブランチのファイルを置き換えた方が良い。</p>
-
 <p>とはいうものの、このブランチのファイル、どうやって生成しているのかよく分かってない。いっつも単にimport-origしてただけだし。うーん。</p>
-
 <p>色々試行錯誤した末に、こうしてみた。</p>
-
 <ul>
-<li>適当なところに apt source <package> でリポジトリにあるorig.tarballを持ってくる</li>
-<li>適当なところで debcheckout <package> してテンポラリ作業用のgitリポジトリを持ってくる</li>
-
-<li><p>テンポラリgitリポジトリで</p>
-
+<li>適当なところに apt source <!-- raw HTML omitted --> でリポジトリにあるorig.tarballを持ってくる</li>
+<li>適当なところで debcheckout <!-- raw HTML omitted --> してテンポラリ作業用のgitリポジトリを持ってくる</li>
+<li>テンポラリgitリポジトリで
 <pre><code>$ cd /tmp/&lt;package repo&gt;
 $ git checkout pristine-tar
 $ git rm &lt;該当バージョンのファイル&gt;; git commit -a
 $ git checkout master; git tag -d upstream/&lt;version&gt;
 $ gbp import-orig &lt;orig.tarball&gt;
-</code></pre>
-
-<p>などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う</p>
-
+</code></pre><p>などとしてpristine-tarブランチのファイルを更新して、実際のgitリポジトリに移動して、更新分だけ貰う</p>
 <pre><code>$ cd ~/&lt;package repo&gt;
 $ git checkout pristine-tar
 $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
 </code></pre></li>
 </ul>
-
 <p>回りくどいなーとは思うのだけども。</p>
 
 		</div>
@@ -115,7 +105,7 @@ $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -123,10 +113,6 @@ $ git pull file:::/tmp/&lt;package repo&gt; pristine-tar
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

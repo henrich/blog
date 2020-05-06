@@ -71,24 +71,18 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>OSDN側の仕様変更に追随。</p>
-
 <ol>
 <li>最新バージョンがブラウザ（Javascript）でしか表示されなくなって、uscanで取得できなくなった</li>
 <li>要望を出した</li>
 <li>対応としてRSS経由での取得が実装された</li>
-
-<li><p>&hellip;ということで debian/watch ファイルを書き換えて取得できるように</p>
-
+<li>&hellip;ということで debian/watch ファイルを書き換えて取得できるように</li>
+</ol>
 <pre><code>opts=&quot;uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/, \
 pagemangle=s%&lt;osdn:file url=&quot;([^&lt;]*)&lt;/osdn:file&gt;%&lt;a href=&quot;$1&quot;&gt;$1&lt;/a&gt;%g, \
 downloadurlmangle=s%projects/sawarabi-fonts/downloads%frs/redir\.php?m=iij&amp;f=sawarabi-fonts%g;s/xz\//xz/&quot; \
 https://osdn.net/projects/sawarabi-fonts/releases/rss \
-https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
-</code></pre></li>
-</ol>
-
-<p>&hellip;自分でも何やってるか、よくわからなくなる。</p>
-
+ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
+</code></pre><p>&hellip;自分でも何やってるか、よくわからなくなる。</p>
 <ul>
 <li><a href="https://osdn.net/projects/sawarabi-fonts/releases/rss">https://osdn.net/projects/sawarabi-fonts/releases/rss</a> が取得元のファイルなのだけど、RSSでxmlなのでHTMLではない。</li>
 <li>で、uscan は <code>&lt;a href=&quot;foobar.html&quot;&lt;/a&gt;</code> のような記述から対象のファイルを探している（これに気付くのにしばらくかかった）</li>
@@ -96,11 +90,8 @@ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSIO
 <li>これで最新版のバージョン自体は取得できる&hellip;のだが、osdnはミラーサーバーにリダイレクトするので、取得先がそのページのHTMLになってしまう</li>
 <li>リダイレクト先のURLに<code>downloadurlmangle</code>オプションで無理やり書き換え。ミラーサーバーはIIJ決め打ちになっちゃうが仕方がない。</li>
 </ul>
-
 <p>ここまでやって、とりあえずfonts-sawarabi-michonパッケージのアップデートをした。</p>
-
-<hr />
-
+<hr>
 <p>debootstrapのregressionな部分を直す提案&hellip;とはいっても、先方のコードをそのまま頂いて調整するだけなのだけど。
 <code>set -- -O &quot;$dest&quot; &quot;$from&quot; &quot;$@&quot;</code> は $@ に -O $dest $from を追加している。shellscriptはこんなふうにも指定できるのね。</p>
 
@@ -118,7 +109,7 @@ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSIO
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -126,10 +117,6 @@ https://osdn.net/projects/sawarabi-fonts/downloads/.*/sawarabi-mincho@ANY_VERSIO
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

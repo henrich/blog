@@ -71,44 +71,41 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>すっかりかまけてしまったので、思い出しつつ何やったかとか…。</p>
-
 <ul>
 <li><a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a> のIPv6逆引きの設定変更を依頼されたので、さくらさんに依頼→受理された</li>
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914448">eclipseパッケージの削除依頼が登録された</a>ため、依存するパッケージである<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914566">Pleiadesも削除依頼が登録された</a>。正直複雑な心境。
-
 <ul>
 <li>Eclipseを再パッケージしなおせばいいのだろうが、どうやるのかさっぱりだよな…</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">psphereパッケージを削除</a>。これは問題なし。</li>
 <li><a href="https://tracker.debian.org/news/1004788/accepted-fonts-sawarabi-mincho-20181115-1-source-into-unstable/">fonts-sawarabi-minchoパッケージを更新</a>、単にフォントファイルが指定位置にあるかを確認するだけというsmokeテストを追加。これ、フォントファイルとして認識できる（壊れてない）というのも追加したほうが本当は良さそう</li>
 <li>fonts-ibm-plexが追加された、というのを見て中身をチラ見したら<code>debian/upstream/metadata</code>ファイルが追加されてた。これは真似ると良さそう
-
 <ul>
 <li>その流れで他のパッケージの<code>debian/upstream/metadata</code>ファイル見てみたら、saneのがalioth指定したままだった…ので<a href="https://salsa.debian.org/debian/sane-backends/merge_requests/2">merge request</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://tracker.debian.org/news/1005906/accepted-snapper-081-1-source-into-unstable/">snapperパッケージの更新</a>。<a href="https://wiki.debian.org/UpstreamMetadata">Wiki</a>を参考にして、<code>debian/upstream/metadata</code>ファイルを追加してみた。
-
 <ul>
 <li>ついでにbackportsパッケージも生成。</li>
 <li>水野さんにmetadataの作り方をpingしておく</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://tracker.debian.org/news/1005996/accepted-libuninameslist-20180701-1-source-into-unstable/">libuninameslistパッケージの更新</a>。
-
 <ul>
 <li>しかし、<code>python binding</code>が有効になっていない…configure.acではpythonの所在を確認している。</li>
 <li>これも<code>metadata</code>作るか？</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://lists.debian.org/debian-devel/2018/11/msg00640.html">メールを投げてみる</a>→「unstableを快適にするのじゃなくて、freezeを改善する方に力入れようぜ！」というような反応。</li>
 </ul>
-
 <p>Todo の書き出しとか…。</p>
-
 <ul>
 <li><code>Natural Language Processing (Japanese) &lt;team+pkg-nlp-ja@tracker.debian.org&gt;</code> 配下になっているパッケージ、少なすぎ？と思ったら <code>&quot;Natural Language Processing (Japanese)&quot; &lt;team+pkgnlpja@tracker.debian.org&gt;</code> もあった。どっちの表記が正しいのだ？本来であればidentiferの部分で<code>-</code>が含まれていてもきちんと処理されるのが理想なはずだが。
-
 <ul>
 <li><a href="https://tracker.debian.org/teams/pkg-nlp-ja/">trackerページ</a>を作り直してみた。</li>
-</ul></li>
+</ul>
+</li>
 <li>mecab-ipadicとか、辞書パッケージの統一した扱いを何とか…</li>
 </ul>
 
@@ -126,7 +123,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -134,10 +131,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

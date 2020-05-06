@@ -74,13 +74,10 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>先日<code>gem2deb</code>で変換した<code>ruby-dig-rb</code>を仕上げておこうとしてdescription書く際に<a href="https://github.com/jrochkind/dig_rb">サイト</a>を見て「ん？」と気付く。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig.
 
-<pre><code class="language-text">Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig.
-
-If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you. This gem only adds #dig methods if they aren't already defined, so it's safe to use in code that is for all rubies, if run on MRI 2.3.0 you'll still be using native #dig, otherwise dig_rb's implementation.
-</code></pre>
-
-<p>Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&hellip;。んでは無視しよう。<a href="https://github.com/fluent/fluentd/pull/2372">fluentdにはPR上げてみておいた</a>。</p>
+If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you. This gem only adds #dig methods if they aren&#39;t already defined, so it&#39;s safe to use in code that is for all rubies, if run on MRI 2.3.0 you&#39;ll still be using native #dig, otherwise dig_rb&#39;s implementation.
+</code></pre></div><p>Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&hellip;。んでは無視しよう。<a href="https://github.com/fluent/fluentd/pull/2372">fluentdにはPR上げてみておいた</a>。</p>
 
 		</div>
 	</div>
@@ -96,7 +93,7 @@ If you are writing an app and want to use dig in it you should probably just upg
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -104,10 +101,6 @@ If you are writing an app and want to use dig in it you should probably just upg
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

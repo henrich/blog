@@ -4,20 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="future work">
+    <meta name="description" content="めんてなのおしごと">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>future work &middot; Forget me not...</title>
+    <title>めんてなのおしごと &middot; Forget me not...</title>
 
    	
     
         <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
     
 
-    <link rel="stylesheet" href="https://henrich.github.io/blog//css/font-awesome.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/solid.js" integrity="sha384-F4BRNf3onawQt7LDHDJm/hwm3wBtbLIfGk1VSB/3nn3E+7Rox1YpYcKJMsmHBJIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/regular.js" integrity="sha384-V+AkgA1cZ+p3DRK63AHCaXvO68V7B5eHoxl7QVN21zftbkFn/sGAIVR7vmQL3Zhp" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/brands.js" integrity="sha384-VLgz+MgaFCnsFLiBwE3ItNouuqbWV2ZnIqfsA6QRHksEAQfgbcoaQ4PP0ZeS0zS5" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/fontawesome.js" integrity="sha384-treYPdjUrP4rW5q82SnECO7TPVAz4bpas16yuE9F5o7CeBn2YYw1yr5oC8s8Mf8t" crossorigin="anonymous"></script>
 
    	
    	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
@@ -54,15 +57,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
-			<h3>future work</h3>
-				<span class="label label-primary">Fri, Jan 1, 2100</span> in 
-				 using tags
+			<h3>めんてなのおしごと</h3>
+				<span class="label label-primary">Wed, Jun 5, 2019</span> in
 				
 					
-					<a href="/blog/tags/debian">debian</a>
+					<a href="/categories/debian">debian</a>
 				
-					 , 
-					<a href="/blog/tags/todo">todo</a>
+				
+					
+					<a href="/tags/debian">debian</a>
 				
 			</small>
 		</div>
@@ -70,31 +73,15 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h1 id="支援について">支援について</h1>
-
-<p>このBlogにあるようなDebian関連の作業について支援して頂ける方、henrich @ debian.org 宛に<a href="http://amzn.to/2u7MfE5">Amazonギフト券</a>でのコントリビューションをお待ちしております :-)</p>
-
-<h2 id="とりあえずのtodoリスト">とりあえずのTodoリスト</h2>
-
+			<ul>
+<li>python-aruco、ちょいと <code>debian/rules</code> いじって不要そうなのを削ったらビルド自体は通った。なんであんなやり方してたのだろう？ それよりは同じ<code>override</code>ルールが２度に渡って書いてある方も気になったが、手は加えなかった。</li>
+<li><a href="https://bugs.debian.org/929720">hklのFTBFS</a>に<code>unreproducible</code>タグつけて来た</li>
+<li>php7で動かねぇ、という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929575">simpleidパッケージのバグ</a>、<code>fixed-upstream</code>タグは着けるが、testingからは削除バグを登録しておいた。
 <ul>
-<li>openQAをビルドできるように、必要なツールをパッケージにする
-
-<ul>
-<li>Selenium::Remote::Driver <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839569">Bug#839569</a></li>
-<li><a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">specファイル</a>参照</li>
-</ul></li>
-<li><a href="https://lintian.debian.org/maintainer/pkg-fonts-devel@lists.alioth.debian.org.html">pkg-fonts-devel</a>
-
-<ul>
-<li>afdkoをビルドできるように、必要なツールをパッケージにする</li>
-<li>ttf- パッケージを可能な限りdropする（現在55個）</li>
-<li>duplicate font fileをなくす</li>
-</ul></li>
-<li>webwmlリポジトリをcvsからgitに変換する。その際にはcommitしたユーザー情報を用意する</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=719557">mecabパッケージのバグ修正</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=796882">hyperv-daemonsの修正</a></li>
+<li>即座に削除が実施された。stableはまた別口なのでもう１個登録してね、と言われたので見様見真似で登録</li>
+</ul>
+</li>
+<li>直ってるsqlalchemyがunblockまだなのでZigoを突つく</li>
 </ul>
 
 		</div>
@@ -111,7 +98,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.26 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -120,8 +107,6 @@
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <i class="fa fa-twitter-square fa-2x"></i></a>
                     
                     
                     

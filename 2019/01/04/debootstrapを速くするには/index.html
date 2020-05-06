@@ -80,18 +80,14 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は<code>apt</code>も使えないので<code>wget</code>で取得するんだぜ？）。うーむ。</p>
-
 <p>で、どうやって時間を短縮するか？というと、以下のような選択肢がある。</p>
-
 <ol>
 <li>ローカルミラーをセットアップしてそれを参照する</li>
 <li>ローカルプロキシをセットアップしてそれを参照する</li>
 <li>ローカルキャッシュをセットアップしてそれを参照する</li>
 </ol>
-
 <ul>
 <li>1のミラーはまるっとDebianリポジトリをコピーするやり方。
-
 <ul>
 <li>クライアントが何十台、スペックによっては何百台とかあっても対応できる</li>
 <li>どのパッケージでもLAN内にあるので取得が早い</li>
@@ -99,26 +95,24 @@
 <li>ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。</li>
 <li>あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも</li>
 <li>構築するなら<code>ftpsync</code>使おうね。他のツールはダメダメ。</li>
-</ul></li>
+</ul>
+</li>
 <li>2のプロキシは<code>squid</code>などのサーバーを立てるやり方。
-
 <ul>
 <li>取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む</li>
 <li>ミラーと同様に複数のマシンからも参照可能</li>
 <li><code>debootstrap 1.0.96</code>から<code>squid-deb-proxy-client</code>をインストールしておくと、<code>squid-deb-proxy</code>で立ち上げたプロキシサーバーを自動的に参照するようになる。<code>apt-cacher</code>などだと一々プロキシがどこにあるのかを指定しないといけないので、<code>squid-deb-proxy</code>マジおすすめ</li>
-</ul></li>
+</ul>
+</li>
 <li>3のキャッシュは<code>--cache-dir</code>オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
-
 <ul>
 <li><code>debootstrap 1.0.97</code>から実装済み。一台だけでやるならこれで十分。</li>
 <li><code>--cache-dir=/home/henrich/tmp/cachedir</code>というように、このオプションでは絶対パスで参照するのが必要。<code>~/tmp/cachedir</code>の様な指定はできない。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>あと、リポジトリのミラーは<code>debootstrap 1.0.85</code>から<a href="https://deb.debian.org">deb.debian.org</a>を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？</p>
-
 <p>最後に、記述時の最新である<code>debootstrap 1.0.112</code>はMr.FAIこと<code>Thomas Lange</code>さんのハックによってパッケージ依存関係の最適化（これも<code>apt</code>が使われてはいない）が図られているので、随分と時間が短縮されている。</p>
-
 <p><strong>結論：debootstrap 1.0.112以降を使おう</strong>。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
 
 		</div>
@@ -135,7 +129,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -143,10 +137,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

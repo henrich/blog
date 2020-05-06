@@ -71,28 +71,16 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>birdfontパッケージに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=871963">バグレポートパッチをもらっていた</a>のでこちらを適用した。</p>
-
 <p>んで、パッケージをビルドしたら以下のlintianエラーがでた</p>
-
 <pre><code>W: birdfont: appstream-metadata-in-legacy-location usr/share/appdata/birdfont.appdata.xml
 E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata.xml
-</code></pre>
-
-<p>のでパッチ作成、忘れないうちに<a href="https://github.com/johanmattssonm/birdfont/pull/52">PullRequest</a>。</p>
-
+</code></pre><p>のでパッチ作成、忘れないうちに<a href="https://github.com/johanmattssonm/birdfont/pull/52">PullRequest</a>。</p>
 <p>しかし</p>
-
 <pre><code>E: birdfont changes: orig-tarball-missing-upstream-signature birdfont_2.19.4.orig.tar.xz
-</code></pre>
-
-<p>が残っている。<a href="https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html">orig-tarball-missing-upstream-signature</a>はキツすぎるだろう？ということで既にBTSに登録されていて<a href="https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207">gitでwarningに落とされた</a>ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。</p>
-
+</code></pre><p>が残っている。<a href="https://lintian.debian.org/tags/orig-tarball-missing-upstream-signature.html">orig-tarball-missing-upstream-signature</a>はキツすぎるだろう？ということで既にBTSに登録されていて<a href="https://anonscm.debian.org/git/lintian/lintian.git/commit/?id=126157380dc0eba302f3d476b1cffc13f968c207">gitでwarningに落とされた</a>ようなんだけども、本当は対処するのがよいのだ？今回はoverrideしておこうと思う。あと、BTSでdupな感じのがあったのでmergeしておいた。</p>
 <p>う、overrideしようとしたら</p>
-
 <pre><code>E: birdfont: malformed-override Override of orig-tarball-missing-upstream-signature for package type changes (expecting binary) at line 1
-</code></pre>
-
-<p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
+</code></pre><p>と言われてしまった。changes? どうやって置くのだ？？&hellip;ignoreできそうにないので、ビルド時のlintianチェックをgbp.confで指定しないように変更＆pbuilder hookのファイル名をいじってすっ飛ばすようにした（hook scriptの存在に気が付かなくて「何故またlintianが走ってるのだ？？」となったバカ）。</p>
 
 		</div>
 	</div>
@@ -108,7 +96,7 @@ E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -116,10 +104,6 @@ E: birdfont: appstream-metadata-legacy-format usr/share/appdata/birdfont.appdata
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

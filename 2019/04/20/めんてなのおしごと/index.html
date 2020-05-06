@@ -74,20 +74,15 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>fluentdのrubyサポートバージョンについて、<a href="https://github.com/fluent/fluentd/issues/2380?fbclid=IwAR2GhPl7EEX5m-bTf4GbfTzc3yex5N-2bHReQ5B07-tdP6QnQ_Oqz-upo0w">各distroではこうなんだから、もう切っちゃっても良いんじゃない？</a>というのを書いてきた。まぁ、継続されても別に問題はないんだけど。</p>
-
-<hr />
-
+<hr>
 <p>で、パッケージング。通ったり通らなかったりするテストを落として、名前がかぶるテストを名前変えて、ようやく100%通るように。</p>
-
-<pre><code class="language-ruby">-------------------------------------------------------------------------------
-2705 tests, 10932 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications  
-100% passed
--------------------------------------------------------------------------------
-3.13 tests/s, 12.67 assertions/s
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#f92672">-------------------------------------------------------------------------------</span>
+<span style="color:#ae81ff">2705</span> tests, <span style="color:#ae81ff">10932</span> assertions, <span style="color:#ae81ff">0</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">0</span> pendings, <span style="color:#ae81ff">0</span> omissions, <span style="color:#ae81ff">0</span> notifications  
+<span style="color:#ae81ff">100</span><span style="color:#f92672">%</span> passed
+<span style="color:#f92672">-------------------------------------------------------------------------------</span>
+<span style="color:#ae81ff">3</span><span style="color:#f92672">.</span><span style="color:#ae81ff">13</span> tests<span style="color:#f92672">/</span>s, <span style="color:#ae81ff">12</span><span style="color:#f92672">.</span><span style="color:#ae81ff">67</span> assertions<span style="color:#f92672">/</span>s
 rake aborted!
-</code></pre>
-
-<p>ちょ、なんで100% passedなのに<code>rake aborted!</code>なのよ？このために止まってる。</p>
+</code></pre></div><p>ちょ、なんで100% passedなのに<code>rake aborted!</code>なのよ？このために止まってる。</p>
 
 		</div>
 	</div>
@@ -103,7 +98,7 @@ rake aborted!
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -111,10 +106,6 @@ rake aborted!
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

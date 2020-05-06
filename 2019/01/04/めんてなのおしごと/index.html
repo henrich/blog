@@ -74,135 +74,123 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>Ultimate Debian Databaseの<a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;done=only&amp;rc=1&amp;flastmod=ign&amp;flastmodval=5&amp;sortby=last_modified&amp;sorto=asc&amp;ctags=1&amp;cdeferred=1&amp;caffected=1&amp;cautormtime=1&amp;cmissingbuilds=1&amp;">Bug search Cleaner view</a>から。</p>
-
 <ul>
 <li>xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。
-
 <ul>
 <li>どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ</li>
 <li>fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。</li>
 <li>というのを踏まえて「どーする？」という質問を投げた→「わかってる、4.14がリリースされたらそれを入れる」という回答。んーしばらくは放置か…。</li>
-</ul></li>
+</ul>
+</li>
 <li>uglifyjsのFTBFS、experimentalでは直ってるよ、という話
-
 <ul>
 <li>semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ</li>
-<li>では、ということでお手軽に<code>apr-rdependes</code>で依存パッケージの確認</li>
+<li>では、ということでお手軽に<code>apr-rdependes</code>で依存パッケージの確認
+<ul>
 <li>emscriptenは内部に古い古いuglifyjs持ってるみたい…</li>
 <li>lavaはソース落としてみたけど、バージョン指定の情報は特に無し。</li>
 <li>node-grunt-contrib-uglifyは新しいバージョンならサポートしてる</li>
 <li>node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる</li>
 <li>ruby-uglifierも新しいバージョンならサポートしている</li>
-<li>というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。</li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+<li>というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。</li>
+</ul>
+</li>
+</ul>
+<hr>
 <ul>
 <li>powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
-
 <ul>
-<li>やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…</li>
+<li>やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…
+<ul>
 <li><a href="https://wiki.debian.org/Java/Packaging/Gradle">Debian Wikiのページ</a>にあった。<code>gradle-debian-helper</code>パッケージをBuild-Dependsに加えて、<code>debian/rules</code>で<code>dh $@ -with buildsystem=gradle</code>&hellip;って間違ってるやん<code>--buildsystem=gradle</code>だよね…。</li>
-</ul></li>
 </ul>
-
-<pre><code class="language-java">* What went wrong:
-A problem occurred configuring root project 'powermock'.
-&gt; Could not resolve all files for configuration ':classpath'.
-   &gt; Could not resolve org.springframework.build.gradle:propdeps-plugin:0.0.7.
-     Required by:
-         project :
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-   &gt; Could not resolve com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4.
-     Required by:  
-         project : 
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.      
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-   &gt; Could not resolve net.researchgate:gradle-release:2.4.0.
-     Required by:
-         project :   
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.    
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode. 
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-   &gt; Could not resolve com.github.jengelman.gradle.plugins:shadow:1.2.4.  
-     Required by:
-         project : 
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.     
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode. 
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.        
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.  
-   &gt; Could not resolve org.shipkit:shipkit:2.0.31.
-     Required by:      
-         project :
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-   &gt; Could not resolve ru.vyarus:gradle-animalsniffer-plugin:1.4.1.
-     Required by:
-         project :
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-</code></pre>
-
-<p>エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
-
-<pre><code class="language-bash"> pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">*</span> What went wrong<span style="color:#f92672">:</span>
+A problem occurred configuring root project <span style="color:#960050;background-color:#1e0010">&#39;</span>powermock<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">.</span>
+<span style="color:#f92672">&gt;</span> Could not resolve all files <span style="color:#66d9ef">for</span> configuration <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>classpath<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>  
+         project <span style="color:#f92672">:</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>   
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>      
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>   
+   <span style="color:#f92672">&gt;</span> Could not resolve net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span>   
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>    
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span>  
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>     
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>        
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>  
+   <span style="color:#f92672">&gt;</span> Could not resolve org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>      
+         project <span style="color:#f92672">:</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+</code></pre></div><p>エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
                                  Depends: gradle-release which is a virtual package and is not provided by any available package
                                  Depends: gradle-shadow which is a virtual package and is not provided by any available package
                                  Depends: gradle-shipkit which is a virtual package and is not provided by any available package
                                  Depends: gradle-animalsniffer-plugin which is a virtual package and is not provided by any available package
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li><code>gradle-propdeps-plugin</code>はパッケージがあったので追加。</li>
 <li><code>gradle-animalsniffer-plugin</code>は<a href="https://github.com/xvik/gradle-animalsniffer-plugin">https://github.com/xvik/gradle-animalsniffer-plugin</a>かららしい。
-
 <ul>
 <li>で、これは<code>animalsniffer</code>に依存している。<code>libanimal-sniffer-java</code>パッケージがあるのでこれだな。</li>
 <li>注意点が書いてある<code>「Use version 1.17 (toolVersion=1.17) if you need to run on java 9, but note that 1.17 can't be used on java 8 (and that's why it is not set by default)」</code>→Java11でbusterはリリースされるので1.17が必要</li>
 <li><code>libanimal-sniffer-java</code> は1.16なので、まずコイツのアップデートが必要…。</li>
 <li><code>$ apt-rdepends -r libanimal-sniffer-java</code>の結果は何もなかったので、ぶっ込んでも大丈夫じゃないかな。</li>
-</ul></li>
+</ul>
+</li>
 <li><code>gradle-shipkit</code>は<a href="https://github.com/mockito/shipkit">https://github.com/mockito/shipkit</a>だな</li>
 <li><code>gradle-shadow</code>は<a href="https://github.com/johnrengelman/shadow">https://github.com/johnrengelman/shadow</a></li>
 <li><code>gradle-release</code>は<a href="https://github.com/researchgate/gradle-release">https://github.com/researchgate/gradle-release</a></li>
 <li><code>gradle-bintray-plugin</code>は<a href="https://github.com/bintray/gradle-bintray-plugin">https://github.com/bintray/gradle-bintray-plugin</a></li>
 </ul>
-
-<hr />
-
+<hr>
 <ul>
 <li>os-autoinstを<code>dh12</code>に上げたらビルドがコケるように。あれ？</li>
 </ul>
-
-<pre><code class="language-bash"># root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name '*.pm' -print
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name &#39;*.pm&#39; -print</span>
 ./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshXtermIPMI.pm
 ./debian/os-autoinst/usr/libexec/os-autoinst/consoles/vnc_base.pm
 ./debian/os-autoinst/usr/libexec/os-autoinst/consoles/localXvnc.pm
 ./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshX3270.pm
 ./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshVirtsh.pm
 ./debian/os-autoinst/usr/libexec/os-autoinst/consoles/virtio_terminal.pm
-</code></pre>
-
-<p>おいおい。何故か<code>/usr/libexec</code>以下にインストールするようになっとるやん。<code>man debhelper</code>で答えを探す…見つけた。</p>
-
+</code></pre></div><p>おいおい。何故か<code>/usr/libexec</code>以下にインストールするようになっとるやん。<code>man debhelper</code>で答えを探す…見つけた。</p>
 <p><code>The build systems meson and autoconf no longer explicitly set the --libexecdir variable and thus relies on the build system default - which should be /usr/libexec (per FHS 3.0, adopted in Debian Policy 4.1.5).</code>ということで。どうやって直すかね。。。</p>
-
-<hr />
-
+<hr>
 <p>YubikeyでSSH接続しようとしたら謎のエラーがでて焦る。結局、手元の<code>~/.gnupg/private-keys-v1.d</code>のファイルが腐ってるというオチだったのだけど、絞り込むのも時間かかった…</p>
-
 <ul>
 <li>Yubikey側の異常を疑って、testing環境で接続→問題なし（これでYubikeyが壊れた疑惑はなくなった）</li>
 <li>異常がでたdesktopのunstable環境の問題を疑って、別のunstable環境なマシンで接続→問題なし（設定が全くしていなかったのでちょっと戸惑った、これでunstableだと壊れてるというパッケージ側の問題は無い）</li>
@@ -210,11 +198,8 @@ A problem occurred configuring root project 'powermock'.
 <li>とりあえず<code>mv .gnupg bak.gnupg</code>などとして接続→問題なし（これで<code>.gnupg</code>以下のファイルのうちどれかがおかしい）</li>
 <li>ひたすら旧ディレクトリから１つずつディレクトリやファイルをコピーする→絞り込めた</li>
 </ul>
-
 <p>やれやれ。</p>
-
-<hr />
-
+<hr>
 <p>今日は成果が得られなかった一日。</p>
 
 		</div>
@@ -231,7 +216,7 @@ A problem occurred configuring root project 'powermock'.
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -239,10 +224,6 @@ A problem occurred configuring root project 'powermock'.
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

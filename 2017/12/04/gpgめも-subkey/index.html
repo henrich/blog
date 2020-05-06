@@ -74,29 +74,26 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>GPGのsubkeyについて。</p>
-
 <ul>
 <li>たとえば持ち運びを行うlaptopでGPGを使っているが、laptopを紛失盗難したとしたとする。当然、鍵のrevokeが必要になるがこの場合、
-
 <ul>
 <li>masterkeyのみの運用だとすると、新しいGPG鍵を作って1から知り合いなどとkeysignを交換してweb of trustを再構築する羽目になる。</li>
 <li>laptopではsubkeyを運用していれば、それをrevokeしてもmasterkeyのweb of trustは失われない。</li>
-</ul></li>
+</ul>
+</li>
 <li>そしてprivate masterkeyは通常触らないところに厳重に保管しておける。通常使いはsubkeyで行い、どうしても&hellip;という時にはmasterkeyを使うということができる。</li>
 </ul>
-
 <p>なるほどねー。</p>
-
-<p>ちなみにどうしてもという時というのは以下らしい。
-   - 他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする
-   - 自分の鍵をrevokeする
-   - subkeyを作る・revokeする
-   - 有効期限の変更
-   - masterkeyのrevoke用の証明書の作成
-   - UIDの設定変更</p>
-
+<p>ちなみにどうしてもという時というのは以下らしい。</p>
+<ul>
+<li>他の人の鍵にsignする（キーサインのときですね）、あまりないけど前にしたsignをrevokeする</li>
+<li>自分の鍵をrevokeする</li>
+<li>subkeyを作る・revokeする</li>
+<li>有効期限の変更</li>
+<li>masterkeyのrevoke用の証明書の作成</li>
+<li>UIDの設定変更</li>
+</ul>
 <p>あー、今だとlaptopにはGPG鍵入れてないけど、これはありかもしれないね。ということで<a href="https://wiki.debian.org/Subkeys">Debian WikiでのSubkey作成手順</a>に従って作ってみる。</p>
-
 <pre><code>$ umask 077; tar -cf $HOME/gnupg-backup.tar -C $HOME .gnupg (バックアップ)
 $ gpg --list-keys henrich@debian.org (自分のKEYIDを取得)
 
@@ -159,21 +156,14 @@ ssb  rsa4096/723BFA427D8774AD (←今回出来たのはこの鍵)
 [  究極  ] (3)  Hideki Yamane (private) &lt;henrich@iijmio-mail.jp&gt;
 
 gpg&gt; save
-</code></pre>
-
-<p>で、この後の手順は、と&hellip;</p>
-
+</code></pre><p>で、この後の手順は、と&hellip;</p>
 <ul>
 <li>USBメモリに ~/.gnupg をバックアップして</li>
 <li><code>Here comes the tricky part: you need to remove the private master key.</code> え？「private masterkeyを削除する」？？？マジか。</li>
 </ul>
-
-<p>GnuPG 2.1以降なら <code>~/.gnupg/private-keys-v1.d/&lt;KEYGRIP&gt;.key</code> を削除せよ、と。KEYGRIPはmaster keyの&rdquo;keygrip&rdquo;で、<code>gpg2 --with-keygrip --list-key &lt;YOURMASTERKEYID&gt;</code> で手に入るぞ、と。ただし、旧バージョンのGnuPGから新しい形式に移行している場合は<code>~/.gnupg/secring.gpg</code> の方に private master keyがあるかもしれないから、こっちも消せ、と。GnuPG 2.1以前の場合も書いてあるけど、そんな環境使ってる人のことを考えるの面倒なので、原文見てほしい。</p>
-
+<p>GnuPG 2.1以降なら <code>~/.gnupg/private-keys-v1.d/&lt;KEYGRIP&gt;.key</code> を削除せよ、と。KEYGRIPはmaster keyの&quot;keygrip&quot;で、<code>gpg2 --with-keygrip --list-key &lt;YOURMASTERKEYID&gt;</code> で手に入るぞ、と。ただし、旧バージョンのGnuPGから新しい形式に移行している場合は<code> ~/.gnupg/secring.gpg</code> の方に private master keyがあるかもしれないから、こっちも消せ、と。GnuPG 2.1以前の場合も書いてあるけど、そんな環境使ってる人のことを考えるの面倒なので、原文見てほしい。</p>
 <p>ここまで来たら <code>gpg --edit-key &lt;YOURMASTERKEYID&gt; passwd</code> でパスフレーズを変更してしまう。これで日常のパスフレーズが漏れても、元々のパスフレーズがわからなければ、たとえprivate master keyにアクセスできても使えないよね&hellip;という、まぁ気休めにはなる？</p>
-
-<hr />
-
+<hr>
 <ul>
 <li>encryptしたUSBメモリにprivate master key置く、って言ってるけど、何を使ってencryptするんだろね？</li>
 <li>そもそもUSBメモリの耐久性とかどうなのかな、とか。何にバックアップしておくのが正しいのだろう？</li>
@@ -193,7 +183,7 @@ gpg&gt; save
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -201,10 +191,6 @@ gpg&gt; save
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

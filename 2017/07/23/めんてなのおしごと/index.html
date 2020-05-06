@@ -74,58 +74,44 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>今日のグルーミング作業</p>
-
 <ul>
-<li><p><a href="https://tracker.debian.org/news/858132">fonts-breip</a>。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。</p>
-
-<pre><code>* Team upload.                                       
-* add epoch to version since upstream releases it as 0.5.1 and previous
-packaging introduced unnecessary non-upstream files
-* debian/control
-- remove Mauro Lizaur &lt;mauro@debian.org&gt; from Uploaders, thank you for
-  your work! (Closes: #869339)                     
-- add myself to Uploaders.                         
-- update Vcs-* and use https                       
-- set Standards-Version: 4.0.0                     
-- set Build-Depends: debhelper (&gt;= 10)
-* debian/compat
-- set 10
-* add debian/watch
-* add debian/gbp.conf
-* debian/copyright
-- convert to copyright format 1.0
-</code></pre></li>
+<li><a href="https://tracker.debian.org/news/858132">fonts-breip</a>。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。</li>
 </ul>
-
-<hr />
-
+<pre><code>  * Team upload.                                       
+  * add epoch to version since upstream releases it as 0.5.1 and previous
+    packaging introduced unnecessary non-upstream files
+  * debian/control
+    - remove Mauro Lizaur &lt;mauro@debian.org&gt; from Uploaders, thank you for
+      your work! (Closes: #869339)                     
+    - add myself to Uploaders.                         
+    - update Vcs-* and use https                       
+    - set Standards-Version: 4.0.0                     
+    - set Build-Depends: debhelper (&gt;= 10)
+  * debian/compat
+    - set 10
+  * add debian/watch
+  * add debian/gbp.conf
+  * debian/copyright
+    - convert to copyright format 1.0
+</code></pre><hr>
 <ul>
-<li><p>ttf-adfとfonts-adfかぶってるよ、問題。
-<a href="https://bugs.debian.org/869346">Bug#869346</a>をみて、古いttf-adfを削除依頼するか&hellip;と思ったのだけど、念の為ソースパッケージを落としている際、どうもorig.tar.gzのサイズが大きく違うのに気づいた。</p>
-
+<li>ttf-adfとfonts-adfかぶってるよ、問題。
+<a href="https://bugs.debian.org/869346">Bug#869346</a>をみて、古いttf-adfを削除依頼するか&hellip;と思ったのだけど、念の為ソースパッケージを落としている際、どうもorig.tar.gzのサイズが大きく違うのに気づいた。</li>
+</ul>
 <pre><code>$ ls -al fonts-adf_0.20110505.orig.tar.gz ttf-adf_0.20090423.orig.tar.gz 
 -rw-r--r-- 1 henrich henrich  9294398 10月 20  2016 fonts-adf_0.20110505.orig.tar.gz
 -rw-r--r-- 1 henrich henrich 15055654  5月  7  2009 ttf-adf_0.20090423.orig.tar.gz
-</code></pre></li>
-</ul>
-
-<p>これは一体？&hellip;どうやら<a href="http://arkandis.tuxfamily.org/adffonts.html">複数のupstream source</a>をまとめてぶち込んでいるようだ。あんまり筋が良くないなぁ。これ、分割してやったほうがいいと思う。</p>
-
-<hr />
-
+</code></pre><p>これは一体？&hellip;どうやら<a href="http://arkandis.tuxfamily.org/adffonts.html">複数のupstream source</a>をまとめてぶち込んでいるようだ。あんまり筋が良くないなぁ。これ、分割してやったほうがいいと思う。</p>
+<hr>
 <ul>
-<li><p>昨日のSylpheed on HurdがPerl 5.26 transitionが落ち着いて関連パッケージがインストールできるようになったのでビルドを試す。</p>
-
+<li>昨日のSylpheed on HurdがPerl 5.26 transitionが落ち着いて関連パッケージがインストールできるようになったのでビルドを試す。</li>
+</ul>
 <pre><code># ./configure --build=i686-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --disable-silent-rules --libdir=${prefix}/lib/i386-gnu --libexecdir=${prefix}/lib/i386-gnu --disable-maintainer-mode --disable-dependency-tracking --enable-static --enable-languages=python cpp qt --infodir=/usr/share/info
 (snip)
 checking build system type... i686-pc-gnu
 checking host system type... Invalid configuration `cpp': machine `cpp' not recognized
 configure: error: /bin/bash build-aux/config.sub cpp failed
-</code></pre></li>
-</ul>
-
-<p>あら？ 試しにconfigure の引数に <code>--host=i686-gnu</code> を指定したら通るようにはなったが、これが自動で引っ張ってこられないのが問題かな&hellip;と思ったら、どうやら <code>--enable-languages=python cpp qt</code> が問題でおかしな値を引っ張ってきているようだ。これを除去したらとりあえずconfigure通ってビルドできるようになった。ただ、testcaseがコケるのでパッケージは生成できていない。</p>
-
+</code></pre><p>あら？ 試しにconfigure の引数に <code>--host=i686-gnu</code> を指定したら通るようにはなったが、これが自動で引っ張ってこられないのが問題かな&hellip;と思ったら、どうやら <code>--enable-languages=python cpp qt</code> が問題でおかしな値を引っ張ってきているようだ。これを除去したらとりあえずconfigure通ってビルドできるようになった。ただ、testcaseがコケるのでパッケージは生成できていない。</p>
 <pre><code>PASS: t-thread1
 PASS: t-thread-keylist
 t-thread-keylist-verify.c:92: GPGME: Too many open files
@@ -138,20 +124,12 @@ Please report to http://bugs.gnupg.org
 ======================================
 Makefile:852: recipe for target 'check-TESTS' failed
 make: *** [check-TESTS] Error 1
-</code></pre>
-
-<p>これはGNUPGのサイトでアカウント作って<a href="https://dev.gnupg.org/T3294">報告した</a>→どうやら新しいバージョン1.9.0がupstreamでは出ているようだったのでこちらで試したら上記のtest caseは通るようになっていたので早速close。ただ、他のテストが通らない&hellip;。</p>
-
+</code></pre><p>これはGNUPGのサイトでアカウント作って<a href="https://dev.gnupg.org/T3294">報告した</a>→どうやら新しいバージョン1.9.0がupstreamでは出ているようだったのでこちらで試したら上記のtest caseは通るようになっていたので早速close。ただ、他のテストが通らない&hellip;。</p>
 <p>configure.acみると</p>
-
 <pre><code>available_languages=&quot;cl cpp python python2 python3 qt&quot;
 default_languages=&quot;cl cpp python qt&quot;
-</code></pre>
-
-<p>なので、<code>--enable-languages=python cpp qt</code> が本当に必要かどうか、他のArchでも削除して問題ないことを確認したら、とりあえずこれを外すだけでもしたい。</p>
-
-<hr />
-
+</code></pre><p>なので、<code>--enable-languages=python cpp qt</code> が本当に必要かどうか、他のArchでも削除して問題ないことを確認したら、とりあえずこれを外すだけでもしたい。</p>
+<hr>
 <ul>
 <li>9.1が出ていたので<a href="http://www.debian.or.jp">debian.or.jp</a>の情報を更新。</li>
 </ul>
@@ -170,7 +148,7 @@ default_languages=&quot;cl cpp python qt&quot;
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -178,10 +156,6 @@ default_languages=&quot;cl cpp python qt&quot;
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

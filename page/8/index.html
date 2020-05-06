@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,16 +57,17 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Jan 9, 2019
+								Sat, Apr 20, 2019
 							</span>&nbsp;in
 							
 								
@@ -83,15 +84,16 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>debootstrapにバグレポートが。
-
-<ul>
-<li>busyboxではdateのparseに失敗する、とのことだったのでそのチェックを追加</li>
-<li>もう一つはInReleaseファイルの書式の方なので、もうちょっと検討する。<code>Valid-Until: Tue, 15 Jan 2019 20:29:52 UTC</code>のようにValid-Untilがあるのが普通と思ったが、Stretchだとないな…「存在しなければOKを返す」が必要そうだ。</li>
-</ul></li>
-<li><a href="https://www.debian.org/security/2019/dsa-4364">DSA-4364-1</a>が出た。お疲れ様でした。</li>
-</ul>
+						<p>fluentdのrubyサポートバージョンについて、<a href="https://github.com/fluent/fluentd/issues/2380?fbclid=IwAR2GhPl7EEX5m-bTf4GbfTzc3yex5N-2bHReQ5B07-tdP6QnQ_Oqz-upo0w">各distroではこうなんだから、もう切っちゃっても良いんじゃない？</a>というのを書いてきた。まぁ、継続されても別に問題はないんだけど。</p>
+<hr>
+<p>で、パッケージング。通ったり通らなかったりするテストを落として、名前がかぶるテストを名前変えて、ようやく100%通るように。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#f92672">-------------------------------------------------------------------------------</span>
+<span style="color:#ae81ff">2705</span> tests, <span style="color:#ae81ff">10932</span> assertions, <span style="color:#ae81ff">0</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">0</span> pendings, <span style="color:#ae81ff">0</span> omissions, <span style="color:#ae81ff">0</span> notifications  
+<span style="color:#ae81ff">100</span><span style="color:#f92672">%</span> passed
+<span style="color:#f92672">-------------------------------------------------------------------------------</span>
+<span style="color:#ae81ff">3</span><span style="color:#f92672">.</span><span style="color:#ae81ff">13</span> tests<span style="color:#f92672">/</span>s, <span style="color:#ae81ff">12</span><span style="color:#f92672">.</span><span style="color:#ae81ff">67</span> assertions<span style="color:#f92672">/</span>s
+rake aborted!
+</code></pre></div><p>ちょ、なんで100% passedなのに<code>rake aborted!</code>なのよ？このために止まってる。</p>
 
 					
 				</div>
@@ -104,16 +106,16 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, Jan 7, 2019
+								Fri, Apr 19, 2019
 							</span>&nbsp;in
 							
 								
@@ -130,17 +132,7 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>眠れなくなってしまったので<a href="https://tracker.debian.org/news/1018082/accepted-snapper-081-3-source-into-unstable/">snapperパッケージのミス修正とR3いれてアップロード</a></li>
-<li>もう月曜日だ！ということで<a href="https://tracker.debian.org/news/1018088/accepted-debootstrap-10113-source-into-unstable/">debootstrapのアップロードを上げる</a></li>
-<li>某所の喧々諤々のメールのやり取りに辟易して「おまらディスカッション好きなの結構だがな、とっととコード書けやコラ」というメールを送ってしまう。ふー。</li>
-<li>os-autoinstのperltidyの問題、<a href="https://progress.opensuse.org/issues/45740">バージョン間の非互換性によるものだった</a>
-
-<ul>
-<li>で、amd64でのビルドは通ったのでi386でやったらまたも同じエラー…仕方がないので<a href="https://progress.opensuse.org/issues/45782">チケットを上げた</a></li>
-</ul></li>
-<li>先日のsecurity update、「前のパッチにノイズがー」と言われて「？？？」となったが、よく見たら<code>git-buildpackage</code>によるpatchへの変更が入ってた…取り除いて<code>security-master</code>へアップロード。</li>
-</ul>
+						<p>武藤さんに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927263">rieceが起動しないバグ</a>を見つけてもらって、木下さんにも助力いただき対応策が分かったので適用して閉じた</p>
 
 					
 				</div>
@@ -153,16 +145,16 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Jan 6, 2019
+								Tue, Apr 16, 2019
 							</span>&nbsp;in
 							
 								
@@ -179,66 +171,7 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li><code>snapperパッケージ</code>のbug triage
-
-<ul>
-<li>報告から３年、<code>moreinfo</code>タグ付けて「もっと詳しくー」と書いたのに何も有用な話が無い<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=791365#20">バグを閉じた</a></li>
-<li>「snapshotでディスクフルになるー」は、0.8.0からどうやら新しいオプションが増えて有用そうなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876675#37">「これで解決しない？」と聞いてみる</a></li>
-<li>その過程でmanで書いてあることとconfigで書いてあることが違うのを見つけたので<a href="https://github.com/openSUSE/snapper/pull/469">pull request</a>して、パッケージの方に当てて<a href="https://tracker.debian.org/news/1017985/accepted-snapper-081-2-source-into-unstable/">アップロード</a></li>
-</ul></li>
-<li><code>debootstrap</code>の変更をpush</li>
-<li>ruby-なパッケージのtest failed、<a href="https://uwabami.junkhub.org/log/20121210.html">佐々木さんのblog</a>にあった<code>「test/ 以下で実行されることを前提として, 相対パスで必要なライブラリを読み込んでいたりする gem とか?」</code>ということやね。
-
-<ul>
-<li>ということで、<code>ruby-netrc</code>パッケージについて<code>require_relative</code> に書き換えて実施してみる。あとで<a href="https://ci.debian.net/packages/r/ruby-netrc/unstable/amd64/">結果</a>確認しよう…</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p>昨日のos-autoinst、対象アーキテクチャを絞ったつもりで忘れてた…<a href="https://tracker.debian.org/news/1017986/accepted-os-autoinst-4515273084058b586d5-4-source-into-unstable/">アップロード</a>…ぬぉぉ <code>i386</code>アーキテクチャで<code>FAIL: 01-test_needle.t</code>とテストに失敗するぞ…、手元の<code>sbuild</code>でも同じだ…以前は問題なく通ってたのにどうなってんだ？</p>
-
-<pre><code class="language-perl">not ok 14 - found area is the original one too
-#   Failed test 'found area is the original one too'
-#   at ./01-test_needle.t line 73.
-#  got: '944'
-#     expected: '108'
-</code></pre>
-
-<p>うーん。</p>
-
-<p>とはいえ、upstreamでは直ってるかもしれないよな、と１年間タグが打たれてないupstream HEADをmergeしてビルドする…とテストがコケまくる。一つは依存関係のパッケージが無かったのでいれたのだけど、もう一つの<code>Mojo::IOLoop::ReadWriteProcess</code>はパッケージ自体がDebianのリポジトリにない…仕方がないから<code>dh-make-perl</code>で手元で作って<code>ITP(intend to package)</code>して、アップロードした。</p>
-
-<p>で、<code>libmojo-ioloop-readwriteprocess-perl</code>パッケージをテスト環境のchrootに突っ込んでビルドの様子見るか…としたら、やっぱり<code>FAIL: 03-testapi.t</code>とエラーが出る。</p>
-
-<pre><code class="language-perl">^* matches null string many times in regex; marked by &lt;-- HERE in m/^* &lt;-- HERE \.t|^data\/tests\/*|^fake\/tests\/*/ at /usr/lib/x86_64-linux-gnu/perl5/5.28/Devel/Cover.pm line 379.
-Can't locate Test/Exception.pm in @INC (you may need to install the Test::Exception module) (@INC contains: .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv .. ../ppmclibs ../ppmclibs/blib/arch/auto/tinycv /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at ./03-testapi.t line 14.
-BEGIN failed--compilation aborted at ./03-testapi.t line 14.
-FAIL 03-testapi.t (exit status: 2)
-</code></pre>
-
-<p>あー <code>Test/Exception.pm</code>が見つけられないのか。<code>libtest-exception-perl</code>パッケージを入れる…お、テストは全部通った！と思いきや</p>
-
-<pre><code class="language-bash">make  check-local
-make[4]: Entering directory '/build/os-autoinst-4.5.1527308405.8b586d5.20190104'
-./tools/tidy --check 
---- ./t/16-send_with_fd.t       2019-01-04 11:55:46.000000000 +0000   
-+++ ./t/16-send_with_fd.t.tdy   2019-01-06 13:43:40.463129038 +0000   
-@@ -33,7 +33,7 @@    
-     shutdown($ask, 2);      
-   
-     my @cmsg = $msg-&gt;cmsghdr();       
--    my $fd   = unpack('i', $cmsg[2]); 
-+    my $fd = unpack('i', $cmsg[2]);   
-   
-     POSIX::write($fd, $msg-&gt;buf(), 4) 
-       || die &quot;Failed to write echo to pipe: $!&quot;;   
-RUN tools/tidy script before checkin
-make[4]: *** [Makefile:1457: check-local] Error 1
-</code></pre>
-
-<p>なんじゃこりゃー。<code>tools/tidy</code>スクリプトによるチェックが<code>check-local</code>ターゲットで走って、修正が加わってないのがエラーになるという…なんでupstream側で対処してないんだよ。もういい、今日はここまで。openSUSEのtrackerに<a href="https://progress.opensuse.org/issues/45740">報告しておく</a>。ついでに<a href="https://progress.opensuse.org/issues/45743">tag打って</a>、も。</p>
+						<p>まずは<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926570">ruby-sigdumpパッケージが入った</a>。これでbuild用の独自chroot環境なくすのに一歩近づいた。</p>
 
 					
 				</div>
@@ -251,79 +184,16 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 		
 	
 
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 5, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/dd">DD</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>倉敷さんの<code>goldencheetah</code>パッケージの状況をヒアリング。</p>
 
-<ul>
-<li><code>libusb0.1</code>に依存しているが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470">libusb0.1はもう古いからDebianから消したいよね</a>という動きがある。</li>
-<li>でも<code>goldencheetah</code>側としては<a href="https://groups.google.com/forum/#!msg/golden-cheetah-developers/EQxEEIQbRXc/ZSeSOBF8AwAJ">「マルチプラットフォーム対応してるので、壊したくないよね」</a>なので<code>libusb1.0</code>に動くのは消極的</li>
-<li><a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat</a>という「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。
-
-<ul>
-<li>ただし、<code>goldencheetah</code>では「使うようにしよう」というPRが来ているものの実装はされてない感じ</li>
-<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。</li>
-<li>個人的にはhalf-deadならいいじゃん、と思うけど…</li>
-<li>ちなみに<code>libusb-compat</code>はDebianではパッケージになっていない</li>
-</ul></li>
-<li>ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ
-
-<ul>
-<li>最新の<code>dh12</code>に更新、不要になったファイルやオプションを消す</li>
-<li>insecureなgitプロトコルやhttpをhttpsに置き換え</li>
-<li><code>debian/watch</code>はv4形式にして簡易に書ける</li>
-</ul></li>
-<li>cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
 	
-
-        
-            	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Jan 5, 2019
+								Mon, Apr 15, 2019
 							</span>&nbsp;in
 							
 								
@@ -340,22 +210,17 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p><a href="https://nthykier.wordpress.com/2019/01/04/debhelper-compat-12-is-now-released/">“debhelper-compat (= 12)” is now released</a>を読む。<code>Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster).  Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.</code>との記述。<code>Rules-Requires-Root: no</code>のようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。</p>
-
-<p>試しに<code>dpkg-dev</code>をBuild-Dependsにしてみたら</p>
-
-<pre><code class="language-bash">E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev [build-depends: dpkg-dev]
-</code></pre>
-
-<p>あら。。。<code>dpkg-dev 1.19.0</code>からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは<code>no</code>をデフォルトにして<code>Rules-Requires-Root: yes</code>を明示的に宣言させるほうが良くないかね？と思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81">質問してみた</a>→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。</p>
-
-<hr />
-
-<ul>
-<li>上記の変更その他を加えて<a href="https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/">os-autoinstパッケージをアップロード</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463">RCバグ</a>は<code>severity</code>を下げておいた。</li>
-<li><code>debootstrap</code>パッケージ、夏に作業して放置してたMergeRequestを変更を追加して<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9">Mergeした</a>。<code>git rebase</code>なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。</li>
-</ul>
-
+						<p>残りのメモ。まだ長いなぁ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
+    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
+    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
+    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
+    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
+    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
+    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
+    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
+</code></pre></div>
 					
 				</div>
 			</div>
@@ -367,143 +232,16 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 		
 	
 
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 4, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/dd">DD</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</p>
 
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
 	
-
-        
-            	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/">debootstrapを速くするには</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, Jan 4, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/tips">tips</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/debootstrap">debootstrap</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は<code>apt</code>も使えないので<code>wget</code>で取得するんだぜ？）。うーむ。</p>
-
-<p>で、どうやって時間を短縮するか？というと、以下のような選択肢がある。</p>
-
-<ol>
-<li>ローカルミラーをセットアップしてそれを参照する</li>
-<li>ローカルプロキシをセットアップしてそれを参照する</li>
-<li>ローカルキャッシュをセットアップしてそれを参照する</li>
-</ol>
-
-<ul>
-<li>1のミラーはまるっとDebianリポジトリをコピーするやり方。
-
-<ul>
-<li>クライアントが何十台、スペックによっては何百台とかあっても対応できる</li>
-<li>どのパッケージでもLAN内にあるので取得が早い</li>
-<li>でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる</li>
-<li>ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。</li>
-<li>あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも</li>
-<li>構築するなら<code>ftpsync</code>使おうね。他のツールはダメダメ。</li>
-</ul></li>
-<li>2のプロキシは<code>squid</code>などのサーバーを立てるやり方。
-
-<ul>
-<li>取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む</li>
-<li>ミラーと同様に複数のマシンからも参照可能</li>
-<li><code>debootstrap 1.0.96</code>から<code>squid-deb-proxy-client</code>をインストールしておくと、<code>squid-deb-proxy</code>で立ち上げたプロキシサーバーを自動的に参照するようになる。<code>apt-cacher</code>などだと一々プロキシがどこにあるのかを指定しないといけないので、<code>squid-deb-proxy</code>マジおすすめ</li>
-</ul></li>
-<li>3のキャッシュは<code>--cache-dir</code>オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
-
-<ul>
-<li><code>debootstrap 1.0.97</code>から実装済み。一台だけでやるならこれで十分。</li>
-<li><code>--cache-dir=/home/henrich/tmp/cachedir</code>というように、このオプションでは絶対パスで参照するのが必要。<code>~/tmp/cachedir</code>の様な指定はできない。</li>
-</ul></li>
-</ul>
-
-<p>あと、リポジトリのミラーは<code>debootstrap 1.0.85</code>から<a href="https://deb.debian.org">deb.debian.org</a>を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？</p>
-
-<p>最後に、記述時の最新である<code>debootstrap 1.0.112</code>はMr.FAIこと<code>Thomas Lange</code>さんのハックによってパッケージ依存関係の最適化（これも<code>apt</code>が使われてはいない）が図られているので、随分と時間が短縮されている。</p>
-
-<p><strong>結論：debootstrap 1.0.112以降を使おう</strong>。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jan 4, 2019
+								Sun, Apr 14, 2019
 							</span>&nbsp;in
 							
 								
@@ -520,149 +258,22 @@ make[4]: *** [Makefile:1457: check-local] Error 1
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>Ultimate Debian Databaseの<a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;done=only&amp;rc=1&amp;flastmod=ign&amp;flastmodval=5&amp;sortby=last_modified&amp;sorto=asc&amp;ctags=1&amp;cdeferred=1&amp;caffected=1&amp;cautormtime=1&amp;cmissingbuilds=1&amp;">Bug search Cleaner view</a>から。</p>
-
-<ul>
-<li>xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。
-
-<ul>
-<li>どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ</li>
-<li>fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。</li>
-<li>というのを踏まえて「どーする？」という質問を投げた→「わかってる、4.14がリリースされたらそれを入れる」という回答。んーしばらくは放置か…。</li>
-</ul></li>
-<li>uglifyjsのFTBFS、experimentalでは直ってるよ、という話
-
-<ul>
-<li>semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ</li>
-<li>では、ということでお手軽に<code>apr-rdependes</code>で依存パッケージの確認</li>
-<li>emscriptenは内部に古い古いuglifyjs持ってるみたい…</li>
-<li>lavaはソース落としてみたけど、バージョン指定の情報は特に無し。</li>
-<li>node-grunt-contrib-uglifyは新しいバージョンならサポートしてる</li>
-<li>node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる</li>
-<li>ruby-uglifierも新しいバージョンならサポートしている</li>
-<li>というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。</li>
-</ul></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
-
-<ul>
-<li>やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…</li>
-<li><a href="https://wiki.debian.org/Java/Packaging/Gradle">Debian Wikiのページ</a>にあった。<code>gradle-debian-helper</code>パッケージをBuild-Dependsに加えて、<code>debian/rules</code>で<code>dh $@ -with buildsystem=gradle</code>&hellip;って間違ってるやん<code>--buildsystem=gradle</code>だよね…。</li>
-</ul></li>
-</ul>
-
-<pre><code class="language-java">* What went wrong:
-A problem occurred configuring root project 'powermock'.
-&gt; Could not resolve all files for configuration ':classpath'.
-   &gt; Could not resolve org.springframework.build.gradle:propdeps-plugin:0.0.7.
-     Required by:
-         project :
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode. 
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-      &gt; No cached version of org.springframework.build.gradle:propdeps-plugin:0.0.7 available for offline mode.
-   &gt; Could not resolve com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4.
-     Required by:  
-         project : 
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.      
-      &gt; No cached version of com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4 available for offline mode.   
-   &gt; Could not resolve net.researchgate:gradle-release:2.4.0.
-     Required by:
-         project :   
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.    
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode. 
-      &gt; No cached version of net.researchgate:gradle-release:2.4.0 available for offline mode.
-   &gt; Could not resolve com.github.jengelman.gradle.plugins:shadow:1.2.4.  
-     Required by:
-         project : 
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.     
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode. 
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.        
-      &gt; No cached version of com.github.jengelman.gradle.plugins:shadow:1.2.4 available for offline mode.  
-   &gt; Could not resolve org.shipkit:shipkit:2.0.31.
-     Required by:      
-         project :
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-      &gt; No cached version of org.shipkit:shipkit:2.0.31 available for offline mode.
-   &gt; Could not resolve ru.vyarus:gradle-animalsniffer-plugin:1.4.1.
-     Required by:
-         project :
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-      &gt; No cached version of ru.vyarus:gradle-animalsniffer-plugin:1.4.1 available for offline mode.
-</code></pre>
-
-<p>エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
-
-<pre><code class="language-bash"> pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
-                                 Depends: gradle-release which is a virtual package and is not provided by any available package
-                                 Depends: gradle-shadow which is a virtual package and is not provided by any available package
-                                 Depends: gradle-shipkit which is a virtual package and is not provided by any available package
-                                 Depends: gradle-animalsniffer-plugin which is a virtual package and is not provided by any available package
-</code></pre>
-
-<ul>
-<li><code>gradle-propdeps-plugin</code>はパッケージがあったので追加。</li>
-<li><code>gradle-animalsniffer-plugin</code>は<a href="https://github.com/xvik/gradle-animalsniffer-plugin">https://github.com/xvik/gradle-animalsniffer-plugin</a>かららしい。
-
-<ul>
-<li>で、これは<code>animalsniffer</code>に依存している。<code>libanimal-sniffer-java</code>パッケージがあるのでこれだな。</li>
-<li>注意点が書いてある<code>「Use version 1.17 (toolVersion=1.17) if you need to run on java 9, but note that 1.17 can't be used on java 8 (and that's why it is not set by default)」</code>→Java11でbusterはリリースされるので1.17が必要</li>
-<li><code>libanimal-sniffer-java</code> は1.16なので、まずコイツのアップデートが必要…。</li>
-<li><code>$ apt-rdepends -r libanimal-sniffer-java</code>の結果は何もなかったので、ぶっ込んでも大丈夫じゃないかな。</li>
-</ul></li>
-<li><code>gradle-shipkit</code>は<a href="https://github.com/mockito/shipkit">https://github.com/mockito/shipkit</a>だな</li>
-<li><code>gradle-shadow</code>は<a href="https://github.com/johnrengelman/shadow">https://github.com/johnrengelman/shadow</a></li>
-<li><code>gradle-release</code>は<a href="https://github.com/researchgate/gradle-release">https://github.com/researchgate/gradle-release</a></li>
-<li><code>gradle-bintray-plugin</code>は<a href="https://github.com/bintray/gradle-bintray-plugin">https://github.com/bintray/gradle-bintray-plugin</a></li>
-</ul>
-
-<hr />
-
-<ul>
-<li>os-autoinstを<code>dh12</code>に上げたらビルドがコケるように。あれ？</li>
-</ul>
-
-<pre><code class="language-bash"># root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name '*.pm' -print
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshXtermIPMI.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/vnc_base.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/localXvnc.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshX3270.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshVirtsh.pm
-./debian/os-autoinst/usr/libexec/os-autoinst/consoles/virtio_terminal.pm
-</code></pre>
-
-<p>おいおい。何故か<code>/usr/libexec</code>以下にインストールするようになっとるやん。<code>man debhelper</code>で答えを探す…見つけた。</p>
-
-<p><code>The build systems meson and autoconf no longer explicitly set the --libexecdir variable and thus relies on the build system default - which should be /usr/libexec (per FHS 3.0, adopted in Debian Policy 4.1.5).</code>ということで。どうやって直すかね。。。</p>
-
-<hr />
-
-<p>YubikeyでSSH接続しようとしたら謎のエラーがでて焦る。結局、手元の<code>~/.gnupg/private-keys-v1.d</code>のファイルが腐ってるというオチだったのだけど、絞り込むのも時間かかった…</p>
-
-<ul>
-<li>Yubikey側の異常を疑って、testing環境で接続→問題なし（これでYubikeyが壊れた疑惑はなくなった）</li>
-<li>異常がでたdesktopのunstable環境の問題を疑って、別のunstable環境なマシンで接続→問題なし（設定が全くしていなかったのでちょっと戸惑った、これでunstableだと壊れてるというパッケージ側の問題は無い）</li>
-<li>ユーザー環境の差異を疑って、テストユーザーを作って接続→問題なし（これでいつものユーザーのhome directoryの設定が問題だろうと絞り込めた）</li>
-<li>とりあえず<code>mv .gnupg bak.gnupg</code>などとして接続→問題なし（これで<code>.gnupg</code>以下のファイルのうちどれかがおかしい）</li>
-<li>ひたすら旧ディレクトリから１つずつディレクトリやファイルをコピーする→絞り込めた</li>
-</ul>
-
-<p>やれやれ。</p>
-
-<hr />
-
-<p>今日は成果が得られなかった一日。</p>
+						<p>ひたすらbad smellを消す作業。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
+    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
+    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
+    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
+    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
+    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
+    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
+    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
+</code></pre></div><p>octiconsはやたら以前にupstreamブランチをマージしたけど、依存パッケージが多くなってしまっていてどうしたものか…</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
+    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+</code></pre></div><p><code>debian/copyright</code>が旧形式で書き直し必要だよ…後日。</p>
 
 					
 				</div>
@@ -675,16 +286,16 @@ A problem occurred configuring root project 'powermock'.
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Thu, Jan 3, 2019
+								Sat, Apr 13, 2019
 							</span>&nbsp;in
 							
 								
@@ -701,100 +312,42 @@ A problem occurred configuring root project 'powermock'.
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688">ruby-netrcパッケージのバグ</a>のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。<code>assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path</code>が以下のような結果になる。</p>
+						<p><a href="https://trends.debian.net">trends.debian.net</a>より</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hideki Yamane &lt;henrich@debian.org&gt;
 
-<pre><code class="language-ruby">  1) Failure:
-TestNetrc#test_missing_environment [/&lt;&lt;PKGBUILDDIR&gt;&gt;/test/test_netrc.rb:203]:
---- expected
-+++ actual
-@@ -1,2 +1 @@
--# encoding: ASCII-8BIT
--&quot;/&lt;&lt;PKGBUILDDIR&gt;&gt;/.netrc&quot;
-+&quot;/build/.netrc&quot;
-</code></pre>
-
-<p><code>&lt;&lt;PKGBUILDDIR&gt;&gt;</code>なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は<code>cowbuilder</code>でやってしまっていたので、<code>sbuild</code>環境を用意するのにも時間が&hellip;あれ？<code>sbuild</code>でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？</p>
-
-<p>バグレポートを再度よく読み、テスト部分を再確認。</p>
-
-<pre><code class="language-ruby">  def test_missing_environment
-    nil_home = nil
-    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
-    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
-  ensure
-    ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
-  end
-</code></pre>
-
-<p><code>default_path</code>でgrep…。</p>
-
-<pre><code class="language-ruby">  def self.default_path
-    File.join(ENV['NETRC'] || home_path, netrc_filename)
-  end
-</code></pre>
-
-<p>あー、これだ。<code>NETRC</code>が存在しない場合に<code>home_path</code>、つまりは上記のエラーになる環境では<code>/build</code>が指定されてるのにもかかわらず、ビルドをしている<code>Dir.pwd</code>は別、ということだろうな。さて、どういうふうにして回避するかね…</p>
-
-<pre><code class="language-ruby">    p nil_home
-    p ENV[&quot;HOME&quot;]
-    p Netrc.home_path
-</code></pre>
-
-<p>とすると</p>
-
-<pre><code class="language-ruby">&quot;/home/henrich&quot;
-nil
-&quot;/build/ruby-netrc-0.11.0&quot;
-</code></pre>
-
-<p>が返る。あれ？予想と違う。<code>home_path</code>は<code>/build/ruby-netrc-0.11.0</code>なのか。<code>ENV[&quot;HOME&quot;]</code>が<code>nil</code>であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう</p>
-
-<pre><code class="language-ruby">--- a/test/test_netrc.rb
-+++ b/test/test_netrc.rb
-@@ -200,7 +200,7 @@
-   def test_missing_environment
-     nil_home = nil
-     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
--    assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path
-+    assert_equal File.join(Netrc.home_path, '.netrc'), Netrc.default_path
-   ensure
-     ENV[&quot;HOME&quot;], nil_home = nil_home, ENV[&quot;HOME&quot;]
-   end
-</code></pre>
-
-<p>でアップロードした。</p>
-
-<hr />
-
-<p>ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26">質問した</a>。→どうやらsegfaultするという問題があるらしい。うーむ。</p>
-
-<hr />
-
-<p>os-autoinstを直せるかな、と思ってビルドするも</p>
-
-<pre><code class="language-bash">The following packages have unmet dependencies:
- libopencv-imgcodecs3.2 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package
-
- libvtk6.3 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package 
-</code></pre>
-
-<p>げぇ。</p>
-
-<pre><code class="language-bash">Package: libgdal20
-Version: 2.4.0+dfsg-1
-Priority: optional
-Section: libs
-Source: gdal
-Maintainer: Debian GIS Project &lt;pkg-grass-devel@lists.alioth.debian.org&gt;
-Installed-Size: 20.2 MB
-Provides: gdal-abi-2-4-0
-</code></pre>
-
-<p>こいつか…。<a href="https://release.debian.org/transitions/html/gdal-2-4-0.html">Transition tracker</a>を見る限り、ここ１時間でビルドされたりしてるので、今日はたまたまあたってしまった、という感じか。</p>
-
-<hr />
-
-<p><a href="https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/">fonts-monapoパッケージをアップデート</a>。upstreamが配布しなくなってた。</p>
+    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
+    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
+    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
+    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
+    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
+    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
+    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
+    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
+    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
+    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
+    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
+    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
+    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
+    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
+    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
+    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
+    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
+    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
+    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
+    libtime-mock-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.0.2-2)
+    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
+    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
+    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
+</code></pre></div><p>とりあえず以下を対処。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
+    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
+    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
+</code></pre></div><p>はデータが古い？</p>
 
 					
 				</div>
@@ -807,16 +360,16 @@ Provides: gdal-abi-2-4-0
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Jan 2, 2019
+								Wed, Apr 10, 2019
 							</span>&nbsp;in
 							
 								
@@ -833,39 +386,34 @@ Provides: gdal-abi-2-4-0
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
+						<p><code>fluentd</code>パッケージングでのテストエラー続き。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">? <span style="color:#e6db74">Encoding</span>: <span style="color:#66d9ef">US</span><span style="color:#f92672">-</span><span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span>
+<span style="color:#f92672">===============================================================================</span>
+: (<span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">005571</span>)
+    test: should output compressed file <span style="color:#66d9ef">when</span> compress option is <span style="color:#e6db74">gzip</span>:   F
+<span style="color:#f92672">===============================================================================</span>
+<span style="color:#e6db74">Failure</span>: test: should output compressed file <span style="color:#66d9ef">when</span> compress option is gzip(<span style="color:#66d9ef">FileOutputSecondaryTest</span><span style="color:#f92672">::</span>write)
+<span style="color:#e6db74">/build/</span>fluentd<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">.</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>plugin<span style="color:#f92672">/</span>test_out_secondary_file<span style="color:#f92672">.</span>rb:<span style="color:#ae81ff">129</span><span style="color:#e6db74">:in</span> <span style="color:#e6db74">`check_gzipped_result&#39;
+</span><span style="color:#e6db74">/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `</span>block (<span style="color:#ae81ff">2</span> levels) <span style="color:#66d9ef">in</span> <span style="color:#f92672">&lt;</span><span style="color:#e6db74">class</span>:<span style="color:#66d9ef">FileOutputSecondaryTest</span><span style="color:#f92672">&gt;</span><span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">     151:       path = d.instance.write(@chunk)
+</span><span style="color:#e6db74">     152: 
+</span><span style="color:#e6db74">     153:       assert_equal &#34;#{TMP_DIR}/out_file_test.0.gz&#34;, path
+</span><span style="color:#e6db74">  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding(&#39;</span><span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span><span style="color:#e6db74">&#39;))
+</span><span style="color:#e6db74">     155:     end
+</span><span style="color:#e6db74">     156: 
+</span><span style="color:#e6db74">     157:     test &#39;</span>should output plain text <span style="color:#66d9ef">when</span> compress option is default(text)<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">do</span>
+<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x92\xD7\x00\\\xAC\x83\x81\x04\x04</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\x9F\x81\xA3</span><span style="color:#e6db74">key</span><span style="color:#ae81ff">\xA5</span><span style="color:#e6db74">value&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span>) expected but was
+<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x92\xD7\x00\\\xAC\x83\x81\x04\x04</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\x9F\x81\xA3</span><span style="color:#e6db74">key</span><span style="color:#ae81ff">\xA5</span><span style="color:#e6db74">value&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">US</span><span style="color:#f92672">-</span><span style="color:#66d9ef">ASCII</span>)
 
-<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
-
-<ul>
-<li>パッケージを分割した</li>
-<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
-<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
-<li>autopkgtestをまともなものにした</li>
-<li>build時にもautopkgtest相当が動作するようにした</li>
-</ul>
-
-<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
-
-<p>そしてアップロード後もエラーを踏む。</p>
-
-<pre><code>Source-only uploads to NEW are not allowed.
-</code></pre>
-
-<p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
-
-<hr />
-
-<ul>
-<li>淡々と<a href="https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/">jcodingsパッケージをアップデート</a>。</li>
-<li>grcompilerに<a href="https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/">投稿されてたパッチをマージ</a>。自分の作った地雷を踏むという失態を。
-
-<ul>
-<li>upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。</li>
-<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
-<br /></li>
-</ul></li>
-</ul>
+<span style="color:#e6db74">diff</span>:
+  <span style="color:#960050;background-color:#1e0010">潰</span><span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">@</span>\<span style="color:#960050;background-color:#1e0010">ｬメ</span><span style="color:#f92672">^</span>D<span style="color:#f92672">^</span><span style="color:#66d9ef">DZ氈</span><span style="color:#960050;background-color:#1e0010">｣</span>key<span style="color:#960050;background-color:#1e0010">･</span>value
+</code></pre></div><p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#66d9ef">Gem2Deb</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Rake</span><span style="color:#f92672">::</span><span style="color:#66d9ef">TestTask</span><span style="color:#f92672">.</span>new <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>t<span style="color:#f92672">|</span>
+    t<span style="color:#f92672">.</span>libs <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test&#39;</span><span style="color:#f92672">]</span>
+    t<span style="color:#f92672">.</span>test_files <span style="color:#f92672">=</span> <span style="color:#66d9ef">FileList</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test/**/*_test.rb&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">FileList</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test/**/test_*.rb&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">+</span>   t<span style="color:#f92672">.</span>ruby_opts <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;-Eascii-8bit:ascii-8bit&#34;</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
 
 					
 				</div>
@@ -877,6 +425,163 @@ Provides: gdal-abi-2-4-0
 			</div>
 		
 	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Apr 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>fluentd</code>のビルド…テストがエラーになる。</p>
+<pre><code class="language-error" data-lang="error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
+</code></pre><p>という感じ。見ていく。</p>
+<pre><code class="language-error" data-lang="error">Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
+  Exception raised:
+  Errno::ENOENT(&lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&gt;)
+/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &lt;class:TestFluentPluginConfigFormatter&gt;'
+</code></pre><pre><code class="language-error" data-lang="error"># grep templates -r ./
+(snip)
+./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &quot;../../../templates/new_gem&quot;).realpath
+./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &quot;../../../templates/plugin_config_formatter/#{name}&quot;).realpath
+</code></pre><p><code>/build/fluentd-1.4.2/templates</code>を見たいのに<code>/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates</code>を参照しにいってるので、ここを直せば良い。<a href="https://salsa.debian.org/ruby-team/fluentd/blob/debian/sid/debian/patches/0004-move-templates-to-appropriate-path.patch">templatesをlib配下に持っていって相対パスをadjustする</a>のがよいかね。</p>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+</code></pre></div><p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、<a href="https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/">自分を加えて更新してアップロードした</a>。</p>
+<hr>
+<p>psがない！というエラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
+<hr>
+<p>しかしまだまだtest failureは続く…。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Apr 8, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>パッケージング、残りは<code>ruby-strptime</code>と<code>ruby-tzinfo-data</code>か、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926621">ruby-strptimeのITP作業</a>した。<code>ruby-tzinfo-data</code>の方はtzdataを引っ張ってこれない環境だと必要なのでは？と判断して削る方向で…あ、<a href="https://bugs.debian.org/926623">ruby-parallel-tests</a>も追加。</p>
+<p>これで大体依存関係終わったかな…。</p>
+<ul>
+<li><a href="https://bugs.debian.org/926266">ruby-cool.io</a></li>
+<li><a href="https://bugs.debian.org/926570">ruby-sigdump</a></li>
+<li><a href="https://bugs.debian.org/926572">ruby-serverengine</a></li>
+<li><a href="https://bugs.debian.org/926621">ruby-strptime</a></li>
+<li><a href="https://bugs.debian.org/926623">ruby-parallel-tests</a></li>
+</ul>
+<p>ここまで来て、ようやく<code>fluentd</code>のパッケージングに再度入れる。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Apr 7, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日<code>gem2deb</code>で変換した<code>ruby-dig-rb</code>を仕上げておこうとしてdescription書く際に<a href="https://github.com/jrochkind/dig_rb">サイト</a>を見て「ん？」と気付く。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig.
+
+If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you. This gem only adds #dig methods if they aren&#39;t already defined, so it&#39;s safe to use in code that is for all rubies, if run on MRI 2.3.0 you&#39;ll still be using native #dig, otherwise dig_rb&#39;s implementation.
+</code></pre></div><p>Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&hellip;。んでは無視しよう。<a href="https://github.com/fluent/fluentd/pull/2372">fluentdにはPR上げてみておいた</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
 
         
 	</div>
@@ -1169,6 +874,7 @@ Provides: gdal-abi-2-4-0
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -1183,7 +889,7 @@ Provides: gdal-abi-2-4-0
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -1192,18 +898,10 @@ Provides: gdal-abi-2-4-0
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

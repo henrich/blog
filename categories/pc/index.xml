@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pc on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Wed, 08 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/categories/pc/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +20,7 @@
       <pubDate>Wed, 08 May 2019 00:00:00 +0000</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2019/05/08/%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description>検証用にHDD 2TB「Seagate IronWolf 3.5」を一つ購入した…。PCのバックアップ体制をきちんと整理しておかねば、という思いが強まった。 そして「2.5&amp;frasl;3.5インチSATA HDDエンクロージャーの不具合」についても問い合わせ。</description>
+      <description>検証用にHDD 2TB「Seagate IronWolf 3.5」を一つ購入した…。PCのバックアップ体制をきちんと整理しておかねば、という思いが強まった。 そして「2.5/3.5インチSATA HDDエンクロージャーの不具合」についても問い合わせ。</description>
     </item>
     
   </channel>

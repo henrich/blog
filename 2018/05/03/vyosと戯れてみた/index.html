@@ -74,55 +74,37 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>Note: VyOSの使い方とかは一切書いてません。</p>
-
 <p>Twitterで<a href="https://github.com/vyos/vyos-build/blob/current/README.md">VyOSのビルド説明の最新の場所</a>を教えてもらったので、それに従って作業</p>
-
 <pre><code>$ git clone https://github.com/vyos/vyos-build.git
 $ sudo debootstrap jessie ./jessie-chroot http://debian-mirror.sakura.ne.jp/debian
 $ sudo cp -arp vyos-build jessie-chroot/root/
 $ sudo chroot jessie-chroot
-</code></pre>
-
-<pre><code># cd root/vyos-build
+</code></pre><pre><code># cd root/vyos-build
 # ./configure
 /usr/bin/env: python3: No such file or directory
-</code></pre>
-
-<p>debootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。</p>
-
+</code></pre><p>debootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。</p>
 <pre><code># apt install python3
 # ./configure 
 Checking if packages required for VyOS image build are installed
 Missing packages: sudo make live-build pbuilder devscripts python3-pystache python3-git
 Missing binaries: 
 Build environment check failed, fix the issues and retry
-</code></pre>
-
-<pre><code># apt install sudo make live-build pbuilder devscripts python3-pystache python3-git
+</code></pre><pre><code># apt install sudo make live-build pbuilder devscripts python3-pystache python3-git
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
 E: Unable to locate package python3-git
-</code></pre>
-
-<p>あれ。<a href="https://tracker.debian.org/pkg/python-git">https://tracker.debian.org/pkg/python-git</a> によると</p>
-
+</code></pre><p>あれ。https://tracker.debian.org/pkg/python-git によると</p>
 <pre><code>oldstable:  0.3.2~RC1-3
 old-bpo:  2.1.1-2~bpo8+1
-</code></pre>
-
-<p>なので、多分 jessie-backports リポジトリ追加しないとダメなんじゃないだろうか。</p>
-
+</code></pre><p>なので、多分 jessie-backports リポジトリ追加しないとダメなんじゃないだろうか。</p>
 <pre><code># echo &quot;deb http://debian-mirror.sakura.ne.jp/debian jessie-backports main&quot; &gt;&gt; /etc/apt/sources.list
 # apt update
 # apt install python3
 # ./configure 
 Checking if packages required for VyOS image build are installed
 All dependencies are installed
-</code></pre>
-
-<p>問題なく通ったので、isoイメージの作成をやってみる。</p>
-
+</code></pre><p>問題なく通ったので、isoイメージの作成をやってみる。</p>
 <pre><code># make iso
 Checking build configuration
 [2018-05-03 11:39:13] lb clean 
@@ -157,10 +139,7 @@ I: Validating Packages
 I: Retrieving Packages 
 I: Validating Packages 
 I: Resolving dependencies of required packages...
-</code></pre>
-
-<p>んん？なんか見たことのある出力&hellip;debootstrap使ってるな&hellip;あ、lb云々とあるから <code>live-build</code> がdebootstrap呼んでるのね。</p>
-
+</code></pre><p>んん？なんか見たことのある出力&hellip;debootstrap使ってるな&hellip;あ、lb云々とあるから <code>live-build</code> がdebootstrap呼んでるのね。</p>
 <pre><code>[2018-05-03 11:43:13] lb bootstrap_archive-keys 
 Ign http://deb.debian.org jessie InRelease
 Hit http://deb.debian.org jessie Release.gpg
@@ -183,17 +162,11 @@ P: Begin mounting /proc...
 [2018-05-03 11:43:22] lb chroot_sysfs install
 P: Begin mounting /sys...
 (snip)
-</code></pre>
-
-<pre><code>Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
-</code></pre>
-
-<p>なるほど、Jessieでは足りない・変更した部分については<a href="http://dev.packages.vyos.net/repositories/">別のリポジトリ</a>を持ってるのね。あれ、見て回ったら<a href="http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/">http://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/</a> とかに特にrevisionも変更されてないパッケージが。何故だろう？</p>
-
+</code></pre><pre><code>Get:1 http://dev.packages.vyos.net/repositories/current/vyos/ current/main libsnmp-base all 5.7.2.1+vyos2+current1 [230 kB]
+</code></pre><p>なるほど、Jessieでは足りない・変更した部分については<a href="http://dev.packages.vyos.net/repositories/">別のリポジトリ</a>を持ってるのね。あれ、見て回ったらhttp://dev.packages.vyos.net/repositories/current/vyos/pool/main/l/live-boot/ とかに特にrevisionも変更されてないパッケージが。何故だろう？</p>
 <p>ビルドが終わってどこにisoが出来たかさっぱりわからぬ。。。あ、<code>build/vyos-1.2.0-rolling+201805031139-amd64.iso</code> というファイルがあった。これはsymlinkで <code>live-image-amd64.hybrid.iso</code> を指してる。あと、<code>build/cache/packages.binary</code> 以下にはdebパッケージが保存されてるな。さらにmake isoしたらこれが使われるのかな、ということで再度実行してみる。。。どうやらそのようだ。</p>
-
 <p>今日はここまで。
-で、<a href="https://github.com/vyos/vyos-build/pull/17">https://github.com/vyos/vyos-build/pull/17</a> に今日触ったところで <code>debootstrap使ったほうがいいな</code>、というプルリクエストを送っときました。</p>
+で、https://github.com/vyos/vyos-build/pull/17 に今日触ったところで <code>debootstrap使ったほうがいいな</code>、というプルリクエストを送っときました。</p>
 
 		</div>
 	</div>
@@ -209,7 +182,7 @@ P: Begin mounting /sys...
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -217,10 +190,6 @@ P: Begin mounting /sys...
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

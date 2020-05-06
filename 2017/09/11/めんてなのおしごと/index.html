@@ -72,15 +72,15 @@
 			<br>
 			<ul>
 <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=875432">python3-sphinx-intlをITP</a>した。
-
 <ul>
 <li>何故かpristine-tarブランチがgbpでエラーでまくりで作れなかったので、手作業で<code>git checkout --orphan pristine-tar; rm *; git commit --allow-empty</code>みたいなことをして作った。何故だ。</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://tracker.debian.org/news/871063">cutter-testing-frameworkがリポジトリから削除されていた</a>ので、upstreamの須藤さんにpingしておいた。ついでにissueを見てみると過去にsidでビルド出来なかった問題はgit repositoryでは修正されていたので、そちらを使うように手元でパッケージを更新してみた。別の問題でビルドに失敗したが、すぐに検討がついたので<a href="https://github.com/clear-code/cutter/pull/30">pull request</a>。
-
 <ul>
 <li>他にもpo/Makefile.in.inファイルが無くて<code>intltoolize --force || exit 1</code>が必要だったり。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
 		</div>
@@ -97,7 +97,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -105,10 +105,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

@@ -74,35 +74,29 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
-
 <p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Ruby" data-lang="Ruby">  s<span style="color:#f92672">.</span>files            <span style="color:#f92672">=</span> <span style="color:#e6db74">`git ls-files`</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+  s<span style="color:#f92672">.</span>test_files       <span style="color:#f92672">=</span> <span style="color:#e6db74">`git ls-files -- {spec,features}/*`</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+  s<span style="color:#f92672">.</span>executables      <span style="color:#f92672">=</span> <span style="color:#e6db74">`git ls-files -- bin/*`</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)<span style="color:#f92672">.</span>map{ <span style="color:#f92672">|</span>f<span style="color:#f92672">|</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>basename(f) }
+</code></pre></div><p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Ruby" data-lang="Ruby">diff <span style="color:#f92672">--</span>git a<span style="color:#f92672">/</span>aruba<span style="color:#f92672">.</span>gemspec b<span style="color:#f92672">/</span>aruba<span style="color:#f92672">.</span>gemspec
+index c6ac3e7<span style="color:#f92672">..</span><span style="color:#ae81ff">1581</span>e98 <span style="color:#ae81ff">100644</span>
+<span style="color:#f92672">---</span> a<span style="color:#f92672">/</span>aruba<span style="color:#f92672">.</span>gemspec
+<span style="color:#f92672">+++</span> b<span style="color:#f92672">/</span>aruba<span style="color:#f92672">.</span>gemspec
+<span style="color:#960050;background-color:#1e0010">@@</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">9</span> <span style="color:#960050;background-color:#1e0010">@@</span> <span style="color:#66d9ef">With</span> aruba <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">0</span> there will be breaking changes<span style="color:#f92672">.</span> <span style="color:#66d9ef">Make</span> sure to read <span style="color:#e6db74">https</span>:<span style="color:#e6db74">//</span>gith
+ <span style="color:#66d9ef">EOS</span>
+   <span style="color:#66d9ef">end</span>
 
-<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
-</code></pre>
-
-<p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
-
-<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
-index c6ac3e7..1581e98 100644
---- a/aruba.gemspec
-+++ b/aruba.gemspec
-@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
- EOS
-   end
-
--  s.files            = `git ls-files`.split(&quot;\n&quot;)
--  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
--  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
-+  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
-+  s.test_files       = Dir['spec/*,features/*']
-+  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
-   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
-   s.require_path     = &quot;lib&quot;
- end
-</code></pre>
-
+<span style="color:#f92672">-</span>  s<span style="color:#f92672">.</span>files            <span style="color:#f92672">=</span> <span style="color:#e6db74">`git ls-files`</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#f92672">-</span>  s<span style="color:#f92672">.</span>test_files       <span style="color:#f92672">=</span> <span style="color:#e6db74">`git ls-files -- {spec,features}/*`</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#f92672">-</span>  s<span style="color:#f92672">.</span>executables      <span style="color:#f92672">=</span> <span style="color:#e6db74">`git ls-files -- bin/*`</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)<span style="color:#f92672">.</span>map{ <span style="color:#f92672">|</span>f<span style="color:#f92672">|</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>basename(f) }
+<span style="color:#f92672">+</span>  s<span style="color:#f92672">.</span>files            <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;**/*&#39;</span><span style="color:#f92672">].</span>reject { <span style="color:#f92672">|</span>f<span style="color:#f92672">|</span> f <span style="color:#f92672">=~</span> <span style="color:#e6db74">%r{^debian/}</span> }
+<span style="color:#f92672">+</span>  s<span style="color:#f92672">.</span>test_files       <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;spec/*,features/*&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">+</span>  s<span style="color:#f92672">.</span>executables      <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;bin/*&#39;</span><span style="color:#f92672">].</span>map{ <span style="color:#f92672">|</span>f<span style="color:#f92672">|</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>basename(f) }
+   s<span style="color:#f92672">.</span>rdoc_options     <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;--charset=UTF-8&#34;</span><span style="color:#f92672">]</span>
+   s<span style="color:#f92672">.</span>require_path     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lib&#34;</span>
+ <span style="color:#66d9ef">end</span>
+</code></pre></div>
 		</div>
 	</div>
 	<div class="row">
@@ -117,7 +111,7 @@ index c6ac3e7..1581e98 100644
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -125,10 +119,6 @@ index c6ac3e7..1581e98 100644
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

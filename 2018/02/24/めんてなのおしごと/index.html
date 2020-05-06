@@ -71,16 +71,14 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>ここしばらくの作業とか。</p>
-
 <ul>
 <li><a href="https://tracker.debian.org/news/935657">jruby-joniパッケージを更新</a></li>
 <li>sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
-
 <ul>
 <li><a href="https://github.com/sphinx-doc/sphinx-intl/pull/21">reproducible buildパッチをupstreamにforward</a></li>
-</ul></li>
+</ul>
+</li>
 <li>林さんの依頼でrepositoryをインポート
-
 <ul>
 <li><a href="https://salsa.debian.org/input-method-team/fcitx-imlist">fcitx-imlist</a>、アイコン追加。</li>
 <li><a href="https://salsa.debian.org/debian/groonga">groonga</a>、アイコン追加。</li>
@@ -88,31 +86,26 @@
 <li><a href="https://salsa.debian.org/debian/gntp-send">gntp-send</a></li>
 <li><a href="https://salsa.debian.org/debian/growl-for-linux">growl-for-linux</a></li>
 <li><a href="https://salsa.debian.org/debian/hal-flash">hal-flash</a></li>
-</ul></li>
+</ul>
+</li>
 <li>倉敷さんの依頼でrepositoryをインポート
-
 <ul>
 <li><a href="https://salsa.debian.org/debian/goldencheetah">goldencheetah</a></li>
 <li><a href="https://salsa.debian.org/debian/yaskkserv">yaskkserv</a></li>
-</ul></li>
+</ul>
+</li>
 <li>リポジトリをインポート
-
 <ul>
 <li><a href="https://salsa.debian.org/debian/tomoyo-tools">tomoyo-tools</a></li>
 <li><a href="https://salsa.debian.org/debian/riece">riece</a></li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+</ul>
+<hr>
 <p>salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&hellip;とメーリングリストで訪ねてみた所、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665">systemd(udev) のバグ修正</a>のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。</p>
-
-<hr />
-
+<hr>
 <p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
-
 <p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync -fするのはどうか、という話に首を突っ込んでみたり</a>。</p>
-
 <p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Kaliをサポートするためにコードをシェアできないのかね？というのにパッチ</a>したり、その上で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Kaliサポートの追加のパッチ</a>投げたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり</a>、Ubuntuで何も言わずにfailするので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=736995">Suggests: ubuntu-archive-keyring 追加してみるのはどうか？を改めて押したり</a>。</p>
 
 		</div>
@@ -129,7 +122,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -137,10 +130,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

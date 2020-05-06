@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>vyos on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Fri, 04 May 2018 12:03:23 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/vyos/index.xml" rel="self" type="application/rss+xml" />
@@ -33,8 +34,8 @@
       <guid>https://henrich.github.io/blog/2018/05/03/vyos%E3%81%A8%E6%88%AF%E3%82%8C%E3%81%A6%E3%81%BF%E3%81%9F/</guid>
       <description>Note: VyOSの使い方とかは一切書いてません。
 TwitterでVyOSのビルド説明の最新の場所を教えてもらったので、それに従って作業
-$ git clone https://github.com/vyos/vyos-build.git $ sudo debootstrap jessie ./jessie-chroot http://debian-mirror.sakura.ne.jp/debian $ sudo cp -arp vyos-build jessie-chroot/root/ $ sudo chroot jessie-chroot  # cd root/vyos-build # ./configure /usr/bin/env: python3: No such file or directory  debootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。
-# apt install python3 # ./configure Checking if packages required for VyOS image build are installed Missing packages: sudo make live-build pbuilder devscripts python3-pystache python3-git Missing binaries: Build environment check failed, fix the issues and retry  # apt install sudo make live-build pbuilder devscripts python3-pystache python3-git Reading package lists.</description>
+$ git clone https://github.com/vyos/vyos-build.git$ sudo debootstrap jessie ./jessie-chroot http://debian-mirror.sakura.ne.jp/debian$ sudo cp -arp vyos-build jessie-chroot/root/$ sudo chroot jessie-chroot# cd root/vyos-build# ./configure/usr/bin/env: python3: No such file or directorydebootstrapで作った最小環境なのでそりゃそうですよね、ということでpython3パッケージを追加。
+# apt install python3# ./configure Checking if packages required for VyOS image build are installedMissing packages: sudo make live-build pbuilder devscripts python3-pystache python3-gitMissing binaries: Build environment check failed, fix the issues and retry# apt install sudo make live-build pbuilder devscripts python3-pystache python3-gitReading package lists.</description>
     </item>
     
   </channel>

@@ -71,34 +71,23 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>poppler-dataパッケージは、一般的なパッケージと違ってupstream tarballが複数ある構成（multiple upstream tarball）なので、git-buildpackageが使えなかったのだけど、git-buildpackage側での実験的なサポートが追加されていたので思い立って作業。</p>
-
 <p>まずはGitリポジトリにリリース済みのパッケージをインポートして、salsaにインポート。</p>
-
 <pre><code>$ gbp import-dscs --debsnap poppler-data
 $ git remote add salsa git@salsa.debian.org:debian/poppler-data.git
 $ git push salsa --all
 $ git push salsa --tags
-</code></pre>
-
-<p>で、manページを参照して実験的な &ndash;git-component オプションの使い方を確認。</p>
-
+</code></pre><p>で、manページを参照して実験的な &ndash;git-component オプションの使い方を確認。</p>
 <pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=ai0 --git-component=from-ghostscript
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>対象となるtarballはpoppler-data_0.4.9.orig-from-ghostscript.tar.xzとpoppler-data_0.4.9.orig-ai0.tar.gzとしてpristine-tarブランチにコミットされている</li>
-<li>multiple tarballは orig.tarball-<name>.tar.[g|x]gという形で保持されているので、<name>の部分だけを指定</li>
+<li>multiple tarballは orig.tarball-<!-- raw HTML omitted -->.tar.[g|x]gという形で保持されているので、<!-- raw HTML omitted -->の部分だけを指定</li>
 </ul>
-
 <p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。<del>理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため</del>&hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&hellip;）</p>
-
 <pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
 (snip)
 gbp:error: Error creating poppler-data_0.4.9.orig-from-ghostscript.tar.gz: Pristine-tar couldn't checkout &quot;poppler-data_0.4.9.orig-from-ghostscript.tar.gz&quot;: fatal: Path 'poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
 pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta failed
-</code></pre>
-
-<p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
+</code></pre><p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
 
 		</div>
 	</div>
@@ -114,7 +103,7 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -122,10 +111,6 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

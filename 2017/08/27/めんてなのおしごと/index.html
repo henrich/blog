@@ -73,38 +73,29 @@
 			<ul>
 <li>jcodingsのアップデートがmaintainer dashboardで出てたのを見つけたので、<a href="https://tracker.debian.org/news/866103">アップロード</a>。</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>fonttoolsのアップデートをしようということで作業を始める。</p>
-
 <ul>
 <li>upstreamの更新に合わせて対応</li>
 <li>そろそろbusterを視野に入れてpython3限定でビルド
-
 <ul>
 <li>Build-Dependsは python-* が python3-* になるのはわかっていたが、Dependsも　<code>${python:Depends}</code> ではなく <code>${python3:Depends}</code> だった。</li>
-</ul></li>
+</ul>
+</li>
 <li>ドキュメントがsphinx前提になっていたのでdh-sphinxdocを導入</li>
 </ul>
-
 <p>dh-sphinxdoc周りが今まで作業していなかったので勝手がわからずに苦労。</p>
-
 <ul>
 <li>Build-Dependsに <code>python-sphinx</code> 指定。<code>dh-sphinxdoc</code>を含んでいる<code>sphinx-common</code> だけでもいいのかしら？</li>
 <li><code>dh @ --with sphinxdoc</code> しないと発動しない。</li>
 <li><code>Depends: ${sphinxdoc:Depends}</code>加えとくのも忘れずに。</li>
 <li>ビルド時にsphinx起動していなかったのでoverrideした。</li>
 </ul>
-
 <p>で、sphinx動かすと以下のエラー。</p>
-
 <pre><code>Traceback (most recent call last):
   File &quot;/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py&quot;, line 560, in import_object
 /build/fonttools-3.15.1/Doc/source/varLib/models.rst:5: WARNING: autodoc: failed to import module u'fontTools.varLib.models'; the following exception was raised:
-</code></pre>
-
-<p>これは<a href="http://www.sphinx-doc.org/ja/stable/ext/autodoc.html">.. automodule::</a>というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</p>
+</code></pre><p>これは<a href="http://www.sphinx-doc.org/ja/stable/ext/autodoc.html">.. automodule::</a>というディレクティブを指定しているためで、ビルドしたモジュールからdocstringを抽出してドキュメントにする機能を持つ、と。しかし、今回ビルドしたモジュールを読み込むのってどうやるんだろうね？</p>
 
 		</div>
 	</div>
@@ -120,7 +111,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -128,10 +119,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,27 +57,25 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/30/xmlto%E3%81%8C%E3%82%89%E3%81%BF%E3%81%A8orphan%E3%81%A8%E3%81%84%E3%81%86%E8%A8%80%E8%91%89%E3%81%AE%E8%AA%9E%E6%84%9F/">xmltoがらみとOrphanという言葉の語感</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, May 30, 2015
+								Tue, Feb 5, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
-						
-								 , 
-							<a href="/tags/upstream">upstream</a>
 						
 					</small>
 				</div>
@@ -86,10 +84,10 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>upstreamの方にパッチの話をしたら「もう<a href="https://fedorahosted.org/xmlto/changeset/76">svn</a>に取り込み済みやっちゅーねん」って返信が。おぉ、tarballしか見てなかった…大変失礼。</p>
-
-<p>あと、メンテナが「手放すよー」ってメールしてた。引き金引いちゃったかなーと思いつつ、健全なことだなとも思う。
-個人的にはOrphanという言葉はあまりよくなく、彼のメールにもあった「fresh blood」を使うのが良いんじゃないかな、と感じる。Needs Fresh Blood, 略してNFB。</p>
+						<ul>
+<li><a href="https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/">ruby-arubaのアップデート</a></li>
+<li><a href="https://github.com/enkessler/childprocess/issues/146">ruby-childprocessのissue</a>に返信があったので、さらにコメント追記。</li>
+</ul>
 
 					
 				</div>
@@ -102,24 +100,24 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/28/developers-reference%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">developers-referenceへパッチ</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Thu, May 28, 2015
+								Sat, Feb 2, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -128,13 +126,11 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p><a href="https://www.debian.org/doc/manuals/developers-reference/">developers-reference</a>がここの所ずっとアップデートされていない。
-せっかくfuzzyを潰したというのに、パッケージのほうが更新されないため、サイトの方は未訳のままに見える。</p>
-
-<p>どうするんだろう？ということでuploaderにメールしたら「I would welcome a patch.」とな。
-ああそうかい、やるよやるよ、ということで<a href="http://bugs.debian.org/developers-reference">BTS</a>に溜まっていたパッチをまとめたものと、epubがらみでのエラーの修正やら、wheezy-&gt;jessieに合わせた変更などをgit format-patchで作って送りつけた。</p>
-
-<p>その際にepubの方のエラーでxmltoを見る機会があったのだけど、これもアップデートが3年ぐらい滞ってるし、パッチも放置されてたのでメンテナに「アップデートしたいんだけど」とメールして、忘れないうちにDeleyed queue/15に放り込み。upstreamの方にも<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=738629#16">BTSにあったパッチを送りつけておいた</a>。やれやれ。</p>
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/106">Bug#918589</a>がマージされた。</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597</a>がマージされた。</li>
+<li>ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずは<a href="https://github.com/enkessler/childprocess/issues/146">issue登録</a>しておく。</li>
+</ul>
 
 					
 				</div>
@@ -147,24 +143,24 @@
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/18/debcheckout%E3%81%B8%E3%83%91%E3%83%83%E3%83%81/">debcheckoutへパッチ</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, May 18, 2015
+								Fri, Feb 1, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -173,16 +169,9 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>Debianパッケージのソースを取得したいときには「apt-get source」を使う。
-だが、これだと開発用のソースリポジトリで色々変更されている場合にパッチを送られた側が微調整することになるので嬉しくない。できればgit cloneとかsvn coしたものをゲットしてそれを元に作業したほうが良い。</p>
-
-<p>とはいえ、一々「このパッケージのリポジトリはどこにあるんだ？」なんて探しまわりたくはない。そんな時に便利なツール「debcheckout」。これでDebianパッケージ内のdebian/controlファイルで指定されているVcs-* (Vcs-Git や Vcs-Svn) を見てcheckoutができる。</p>
-
-<p>debcheckoutのあとでgit-buildpackageでnew upstream versionをimportしようとすると毎回エラーになる。回避策としては一旦git checkout upstream; git checkout masterするだけなんだけど、鬱陶しいことには変わりない。で、今日思い立って<a href="http://sources.debian.net/src/devscripts/2.15.4/scripts/debcheckout.pl/">debcheckoutの中身</a>を覗いてみた。gitコマンドを発行しているのはsystem()使ってるのね、じゃぁこれで…と対応パッチがかけた。1行。</p>
-
-<p>じゃぁ早速バグレポート…とreportbugを実行したら既存の報告済みバグが大量に出てきた。一応同じ内容が無いか…と確認した所、同じではないがよく似た内容のものがあったので、それにも対応して
-<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=739104#15">Bug#739104</a>
-へパッチをポストしておいた。</p>
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">Bug#917388</a>がマージされた</li>
+</ul>
 
 					
 				</div>
@@ -194,6 +183,345 @@
 			</div>
 		
 	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 31, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>JDimをビルドしたのでアップロードした。NEW queue待ち。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 28, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>JDimのITPを投げた。<a href="https://bugs.debian.org/920684">Bug#920684</a>が割り当てられました。</li>
+<li><a href="https://cdimage.debian.or.jp">cdimage.debian.or.jp</a>を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。</li>
+<li><a href="https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html">PublickeyのSSPL記事</a>について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。</li>
+<li><a href="https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org">Maintainer Dashboard</a>でsnapperのアップデートを見つけたので、<a href="https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/">放り込んだ</a>。
+<ul>
+<li>backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。</li>
+</ul>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 24, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://internet.watch.impress.co.jp/docs/news/1166054.html">Internetwatchの記事</a>の見出しが「「Debian GNU/Linux」に関する脆弱性が171件、第4四半期「JVN iPedia」への登録状況」と、Debianだけ危険みたいな感じだったので苦情を入れた。こんな感じ。</p>
+<pre><code>IPAの該当レポートについては、確かにDebianについての脆弱性数がトップであることは事実として記述されておりましたが、レポートの構成としてはサポートが終了するJava8、それからXSS脆弱性とバッファオーバーランについてが多くを占めています（それぞれ章立てされていました）。ここに全く触れていないことはどの様な意図があったのでしょうか。
+
+「3. 脆弱性対策情報の製品別登録状況」の項にてDebianの脆弱性数が述べられていますが、DebianやUbuntuそしてRed Hat Enterprise Linuxの様なLinuxディストリビューションはWindows Serverなどとは違ってOSのみだけではなくLibreOfficeなどのオフィススイート、Firefoxなどのブラウザ、Tomcatなどのミドルウェア、Apacheなどのサーバーなどを全て含んで提供されています。Debianでの配布ソフトウェアパッケージ数はおおよそ5〜6万です。その背景を把握せずに、単純に「脆弱性が多い」とだけ見出しに書かれるのは、大変遺憾であると同時に、記事の薄さを指摘せざるを得ません。
+
+今後の改善に期待したいと思います。失礼します。
+</code></pre>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 21, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597向けにMergeRequest</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832458">Bug#832458</a>での<code>CONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=m</code>はすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 19, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">別途MergeRequestを作った</a></li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/ed1d855c885f6834a7e0f6a5e152802a2a61d304">Bug#918589向けパッチ</a>を作成、テストビルドは無事通った</li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/5b7a1313dbaf2eedb69d6e53d1fa20bbcf81c083">Bug#918114向けパッチ</a>を作った。</li>
+<li>ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 17, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>whizzytex</code>のパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 16, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>
+<p>昨日の<code>jd</code>パッケージの削除依頼が実行されてた。早いなー。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">ruby-bcatパッケージの削除</a>もその日のうちだったし。</p>
+</li>
+<li>
+<p>systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918914">該当のバグ登録</a>を教えてもらった。subscribeして様子見しよう。</p>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>パッケージのdebcont templateのレビューを反映した。なるほどなー</p>
+<ul>
+<li>既に翻訳版を送ってくれた方々に「こっちでお願い」を送った</li>
+</ul>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度<code>NEW queue</code>へ</p>
+</li>
+<li>
+<p><code>grcompiler</code>、4.2.7以降のがテストこけちゃうので<a href="https://github.com/silnrsi/grcompiler/issues/15">test failureをreport</a>した</p>
+</li>
+<li>
+<p><code>curl</code>が最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919445">バグ登録した</a></p>
+</li>
+<li>
+<p><a href="https://tracker.debian.org/news/1021421/accepted-fonts-sawarabi-mincho-20190115-1-source-into-unstable/">fonts-sawarabi-minchoを更新</a></p>
+</li>
+<li>
+<p><code>nadoka</code>が古いままでwatchもエラーになっていたので、重い腰を上げて<a href="https://tracker.debian.org/news/1021441/accepted-nadoka-092-1-source-into-unstable/">更新しておいた</a>。前のメンテナの安井さんにも連絡済み。</p>
+</li>
+<li>
+<p><code>whizzytex</code>のパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</p>
+</li>
+<li>
+<p><code>jruby-joni</code>パッケージがFTBFSになってる？なぜだ… <code>org.jcodings.exception.CharacterPropertyException: invalid character property name &lt;graphemeclusterbreak=emodifier&gt;</code>と出てくるのでその辺りから検索したけど、よくわからんよね…<a href="https://github.com/jruby/joni/issues/40">issue登録</a>だけしておいた</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ grep emodifier -r ./
+./src/org/joni/Parser.java:        static final byte<span style="color:#f92672">[]</span>Grapheme_Cluster_Break_E_Modifier <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;graphemeclusterbreak=emodifier&#34;</span>.getBytes<span style="color:#f92672">()</span>;
+</code></pre></div></li>
+<li>
+<p>気になったのでgem2debのテンプレートから<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterを削除するMR</a>を送っておいた</p>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
 
         
 	</div>
@@ -471,7 +799,7 @@
     
     
     <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
@@ -479,6 +807,7 @@
     </li>
     
 </ul>
+
 
                 </div>
             </div>
@@ -494,7 +823,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -503,18 +832,10 @@
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

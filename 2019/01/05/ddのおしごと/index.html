@@ -77,25 +77,27 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>倉敷さんの<code>goldencheetah</code>パッケージの状況をヒアリング。</p>
-
 <ul>
 <li><code>libusb0.1</code>に依存しているが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470">libusb0.1はもう古いからDebianから消したいよね</a>という動きがある。</li>
 <li>でも<code>goldencheetah</code>側としては<a href="https://groups.google.com/forum/#!msg/golden-cheetah-developers/EQxEEIQbRXc/ZSeSOBF8AwAJ">「マルチプラットフォーム対応してるので、壊したくないよね」</a>なので<code>libusb1.0</code>に動くのは消極的</li>
 <li><a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat</a>という「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。
-
 <ul>
 <li>ただし、<code>goldencheetah</code>では「使うようにしよう」というPRが来ているものの実装はされてない感じ</li>
-<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。</li>
+<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。
+<ul>
 <li>個人的にはhalf-deadならいいじゃん、と思うけど…</li>
+</ul>
+</li>
 <li>ちなみに<code>libusb-compat</code>はDebianではパッケージになっていない</li>
-</ul></li>
+</ul>
+</li>
 <li>ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ
-
 <ul>
 <li>最新の<code>dh12</code>に更新、不要になったファイルやオプションを消す</li>
 <li>insecureなgitプロトコルやhttpをhttpsに置き換え</li>
 <li><code>debian/watch</code>はv4形式にして簡易に書ける</li>
-</ul></li>
+</ul>
+</li>
 <li>cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。</li>
 </ul>
 
@@ -113,7 +115,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -121,10 +123,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

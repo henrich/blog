@@ -77,13 +77,9 @@
 <li>qrencodeパッケージをsalsaに配置してもらって、<a href="https://salsa.debian.org/debian/qrencode/commit/503acbc181d89a30c0c672fb0fb41e7f792d5d7a">前に報告した些細な修正</a>をぶっこむなど。別ブランチにしてマージしてもらったほうがスマートだっただろうか？</li>
 <li>同じくqrencodeパッケージの報告者の勘違いに起因すると思われる<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677984">バグ</a><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611266">二つ</a>をクローズしておいた</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>qrencode は upstream が Git 使ってないときから作業していたので、リポジトリは debian アーカイブから生成されたものになっている。masterブランチをdebianブランチと変えてgbp.confでdebianブランチがdebianであることを明示している。</p>
-
 <p>さて、ここでupstreamのmergeを従来通りのtarballで実施するのか、それともupstreamのgit repositoryをmasterとして追加して都度mergeするのか、というのを考えた時、後者のほうがスマートであるように思える。前にも書いたかもしれないが手順を改めて整理しておこう。</p>
-
 <ol>
 <li>まず、debianブランチ上のupstream由来ファイルを全て消す＝debianディレクトリ以外を消す。<code>mv debian /tmp; git rm -r ./*; mv /tmp/debian ./; git add debian; git commit -av</code> などとした。</li>
 <li>つぎに親が同一ではないブランチ（orphan branch)を作る <code>git checkout --orphan master</code></li>
@@ -92,36 +88,25 @@
 <li><code>git pull upstream master</code>したがtag持ってこなかったから<code>git pull upstream</code>も実行</li>
 <li><code>git checkout debian</code>して、同一ヒストリをもたないorphanなブランチと無理やりマージさせるために <code>git merge v4.0.0  --allow-unrelated-histories</code></li>
 </ol>
-
 <p>上記の変更点がackされたら提案したい</p>
-
-<hr />
-
+<hr>
 <ul>
 <li>svn-workbenchの<a href="http://pysvn.tigris.org/issues/show_bug.cgi?id=212">1行パッチをフォワード</a>。使いづらいな。。。</li>
 <li>svn-workbenchのdebian/copyrightをcopyright format 1.0にコンバートしてsalsaに移動してpush、アップロードもしておいた。</li>
 </ul>
-
-<hr />
-
+<hr>
 <ul>
-<li><p>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</p>
-
+<li>tiarraもsalsaに移動したけど、気になるメッセージが出てた。該当の所を見るとtiarra内の関数じゃなくてライブラリ使えとあったのでそのようにして、とりあえずまずはexperimentalに放り込んで使ってみることにする。</li>
+</ul>
 <pre><code>dh_install                                                                                                                         
 perl /build/tiarra-20100212+r39209/debian/handle_version.pl /build/tiarra-20100212+r39209/debian/tiarra/usr/share/tiarra/tiarra
 
 Constants from lexical variables potentially modified elsewhere are deprecated. This will not be allowed in Perl 5.32 at main/Tiarra/Utils/DefineHelper.pm line 351. 
-</code></pre></li>
-</ul>
-
-<hr />
-
+</code></pre><hr>
 <ul>
 <li>libdvd-pkgなるものを見つけたが、httpでダウンロードするのは嫌だなぁと思っていた所すでにBTSに上がっていたので、中身を見てみる。なんか変に入り組んだ構造だが、無視して<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=865347">パッチしておいた</a></li>
 </ul>
-
-<hr />
-
+<hr>
 <ul>
 <li>sylpheedのパッケージをアップデートしてみようとしてdh11にしたらビルドエラーになって苦しむ。どうもautoreconfして生成したconfigureがおかしい。ごそごそ弄って対処。</li>
 </ul>
@@ -140,7 +125,7 @@ Constants from lexical variables potentially modified elsewhere are deprecated. 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -148,10 +133,6 @@ Constants from lexical variables potentially modified elsewhere are deprecated. 
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

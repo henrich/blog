@@ -70,23 +70,14 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
-
-<hr />
-
-<h2 id="openqaをビルドできるように-必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
-
+			<p>birdfontのtag打ちが抜けてたのでupstreamにping、<a href="https://twitter.com/Birdfont/status/883712098609573889">pushしてもらえた</a>ので<a href="https://tracker.debian.org/news/854863">uploadした</a>。</p>
+<hr>
+<h2 id="openqaをビルドできるように必要なツールをパッケージにする">openQAをビルドできるように、必要なツールをパッケージにする</h2>
 <p>そもそも何が足りてないのか？という問題があるので、ソースを確認。cpanfilesにはやたら多くのパッケージがあるが、手元で作業中のdebian/controlファイルには指定してないパッケージが幾つかある？<a href="https://build.opensuse.org/package/view_file/openSUSE:Factory/openQA/openQA.spec?expand=1">upstreamのspecファイルを確認</a>すると、testを実行するときだけ指定するとかなのかな。</p>
-
 <pre><code>%if %{with tests}
 cpanm --installdeps --with-feature=test . 
 %endif
-</code></pre>
-
-<p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&rdquo;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
-
+</code></pre><p>ファイルに書かれていた require されているモジュール、Debianでは基本的にlib&quot;モジュール名&rdquo;-perlという名前に変換されるけど、そうじゃないものは以下のパッケージが提供していたのまでは確認。</p>
 <pre><code>libmojolicious-perl
 libwww-perl
 libtimedate-perl
@@ -96,31 +87,19 @@ libscalar-list-utils-perl
 libtest-simple-perl
 liburi-perl
 libcgi-pm-perl
-</code></pre>
-
-<h3 id="sql-splitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
-
+</code></pre><h3 id="sqlsplitstatementがパッケージになってないので依存パッケージをアップロード">SQL::SplitStatementがパッケージになってないので依存パッケージをアップロード</h3>
 <pre><code>$ dh-make-perl --cpan SQL::SplitStatement
 == dh-make-perl 0.95 ==
 (snip)
 Needs the following debian packages during building: perl (&gt;= 5.8.9), libtest-exception-perl (&gt;= 0.27)
 Needs the following modules for which there are no debian packages available:
  - SQL::Tokenizer
-</code></pre>
-
-<p>あら、また足りない&hellip;</p>
-
+</code></pre><p>あら、また足りない&hellip;</p>
 <pre><code>$ dh-make-perl --cpan SQL::Tokenizer
-</code></pre>
-
-<p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
-
+</code></pre><p>とりあえずlibsql-tokenizer-perlをITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867750">Bug#867750</a>として登録。そしてNEW queueへとアップロードしておいた。</p>
 <p>(あと<code>upstream/metadata</code>なるファイルが作成されてたのだけど、これはAppStreamがらみ？)</p>
-
 <p>ここまで出来たのでlibsql-splitstatement-perlもITP、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867752">Bug#867752</a>として登録、NEW queueへとアップロードしておいた</p>
-
-<hr />
-
+<hr>
 <p>気分転換に<a href="https://tracker.debian.org/news/854888">xgridfitを更新</a>。</p>
 
 		</div>
@@ -137,7 +116,7 @@ Needs the following modules for which there are no debian packages available:
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -145,10 +124,6 @@ Needs the following modules for which there are no debian packages available:
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

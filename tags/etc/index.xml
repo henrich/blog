@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>etc on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Sun, 29 Apr 2018 22:23:46 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/etc/index.xml" rel="self" type="application/rss+xml" />
@@ -21,12 +22,12 @@
       <guid>https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/</guid>
       <description>Samsung SSDに/homeを移そうとコピーを実施したが、一晩経っても10GBぐらいしか進まず。これはいくらなんでも遅すぎる&amp;hellip;ということでファームウェアを更新することを決める。
 http://www.samsung.com/semiconductor/minisite/ssd/download/tools/ にてファームウェアのisoファイルを取得、マウントしてimgファイルを取り出してさらにそれをマウントしてファイルを取り出し、FreeDOSのブータブルUSBメモリにコピーしてファームウェアのアップデートを行った。以前よりはマシになったが、それでも遅い&amp;hellip;。
-古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&amp;hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。
+ 古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&amp;hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。
 次にUbuntu18.04 Server版を入れる&amp;hellip;jaistミラーから落としたら中身がdebian-installerで変わってない？途中のpartitionerのところ（47%までは進んだ）で進まなくなってしまったので中断して、改めてUbuntu.comから落としたら、こちらのイメージは独自インストーラー版に変わっていた。こちらを試したかったのよね、シンプルでいい感じですね&amp;hellip;とインストールは特にエラーも無く終わったのだけど、やっぱりoperating system not foundで変わらず。何故だ&amp;hellip;。
 で、Debian9.4のインストーラーでやったら、普通にインストール終わり→起動したので、これにArchを上書きして完了。パーティションテーブルがおかしかったのだろうけど、d-iがなんとかしてくれた、という感じ。
-めも * d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする * あと全体通して読み返してみたい所
-Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。https://git.archlinux.org/arch-install-scripts.git/ にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。
-poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべくpopplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメールには一切反応せず、か。相変わらずだな、popplerの人は&amp;hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。
+めも
+ d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする あと全体通して読み返してみたい所   Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。https://git.archlinux.org/arch-install-scripts.git/ にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。
+ poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべくpopplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメールには一切反応せず、か。相変わらずだな、popplerの人は&amp;hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。
 &amp;hellip;debian/changelogの記述間違えた。。。
 あと libmojolicious-plugin-assetpack-perl もアップデートしておいた。</description>
     </item>

@@ -79,30 +79,23 @@
 			<ul>
 <li><code>birdfont</code>パッケージ、<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-i386&amp;ver=2.23.0-1&amp;stamp=1537307881&amp;raw=0">kfreebsd-i386</a>と<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-amd64&amp;ver=2.23.0-1&amp;stamp=1537300422&amp;raw=0">kfreebsd-amd64</a>で同じエラー…。</li>
 </ul>
-
-<pre><code class="language-make">rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf
-rm: cannot remove 'debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf': No such file or directory
-make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1
-</code></pre>
-
-<p>なぜエラーになるのか？ <code>debian/rules</code> をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#960050;background-color:#1e0010">rm</span> <span style="color:#960050;background-color:#1e0010">debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf</span>
+<span style="color:#a6e22e">rm</span><span style="color:#f92672">:</span> cannot remove &#39;debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf&#39;: No such file or directory
+<span style="color:#a6e22e">make[1]</span><span style="color:#f92672">:</span> *** [debian/rules:20: override_dh_auto_install] Error 1
+</code></pre></div><p>なぜエラーになるのか？ <code>debian/rules</code> をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした</p>
 <ul>
 <li><code>vmdk-stream-converter</code> の tag push を忘れていた…</li>
 <li><code>libsql-splitstatement-perl</code> を更新</li>
 <li><code>libdbix-class-optimisticlocking-perl</code> を更新</li>
 <li><code>libdbix-class-schema-config-perl</code> は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。</li>
 </ul>
-
-<pre><code class="language-shell">$ cat debian/upstream/metadata
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cat debian/upstream/metadata
 ---
 Archive: CPAN
 Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
 Name: DBIx-Class-OptimisticLocking
 Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p><code>debian/upstream/metadata</code> はこういうのを書くのかぁ。</p>
+</code></pre></div><p><code>debian/upstream/metadata</code> はこういうのを書くのかぁ。</p>
 
 		</div>
 	</div>
@@ -118,7 +111,7 @@ Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -126,10 +119,6 @@ Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

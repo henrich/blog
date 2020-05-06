@@ -74,16 +74,10 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p><a href="https://nthykier.wordpress.com/2019/01/04/debhelper-compat-12-is-now-released/">“debhelper-compat (= 12)” is now released</a>を読む。<code>Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster).  Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.</code>との記述。<code>Rules-Requires-Root: no</code>のようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。</p>
-
 <p>試しに<code>dpkg-dev</code>をBuild-Dependsにしてみたら</p>
-
-<pre><code class="language-bash">E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev [build-depends: dpkg-dev]
-</code></pre>
-
-<p>あら。。。<code>dpkg-dev 1.19.0</code>からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは<code>no</code>をデフォルトにして<code>Rules-Requires-Root: yes</code>を明示的に宣言させるほうが良くないかね？と思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81">質問してみた</a>→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。</p>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev <span style="color:#f92672">[</span>build-depends: dpkg-dev<span style="color:#f92672">]</span>
+</code></pre></div><p>あら。。。<code>dpkg-dev 1.19.0</code>からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは<code>no</code>をデフォルトにして<code>Rules-Requires-Root: yes</code>を明示的に宣言させるほうが良くないかね？と思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81">質問してみた</a>→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。</p>
+<hr>
 <ul>
 <li>上記の変更その他を加えて<a href="https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/">os-autoinstパッケージをアップロード</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463">RCバグ</a>は<code>severity</code>を下げておいた。</li>
 <li><code>debootstrap</code>パッケージ、夏に作業して放置してたMergeRequestを変更を追加して<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9">Mergeした</a>。<code>git rebase</code>なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。</li>
@@ -103,7 +97,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -111,10 +105,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

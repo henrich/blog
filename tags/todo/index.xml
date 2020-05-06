@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>todo on Forget me not...</title>
@@ -8,6 +8,7 @@
     <language>ja-JP</language>
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
+    <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
     <lastBuildDate>Thu, 17 Aug 2017 06:26:14 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/tags/todo/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +20,7 @@
       <pubDate>Thu, 17 Aug 2017 06:26:14 +0900</pubDate>
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/08/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
-      <description> poppler-dataが新しいバージョンが上がっていたので、これ幸いとアップロード。popconいわく、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。  別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。  libtest-time-perlの新しいバージョン&amp;hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、アップロード。  d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&amp;hellip;。  fonts-sawarabi-minchoをアップロード libxmlbirdのFTBFS修正をアップロード、1文字だけの違いだけども。 https://wiki.debian.org/LocalGroups/Debian-JP の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。  </description>
+      <description> poppler-dataが新しいバージョンが上がっていたので、これ幸いとアップロード。popconいわく、非常に利用者数の多いパッケージなのでurgency=lowにして様子見。  別の登録されてるバグ、サッパリ糸口が見えないので「新しいバージョン取ってきて試してくれる？」とだけ送っておく。   libtest-time-perlの新しいバージョン&amp;hellip;が古いソースどこやったかサッパリ分からないのでapt sourceして改めてgit repositoryにして作業、アップロード。  d-perlかd-qaかのリポジトリに上げないといかんなぁ、と思いつつ&amp;hellip;。   fonts-sawarabi-minchoをアップロード libxmlbirdのFTBFS修正をアップロード、1文字だけの違いだけども。 https://wiki.debian.org/LocalGroups/Debian-JP の情報が若干古い気がしたので多少追記しといた。残りは誰かがやってくれるだろう、多分。  </description>
     </item>
     
     <item>
@@ -29,8 +30,8 @@
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今日のグルーミング作業。
- grcompiler&amp;hellip;を見てみた。  upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&amp;hellip;gitのmasterから取ってきてもコケる&amp;hellip;これは一体？ upstreamがdebianディレクトリ追加してる&amp;hellip;困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&amp;hellip;なんだこりゃ。  fonts-vlgothic fonts-kacst-one fonts-motoya-l-cedar fonts-motoya-l-maruberi  モトヤLマルベリ3・Lシーダ3がAndroidのリポジトリから消えていた   mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&amp;hellip;。shellアクセスできる範囲には無いっぽいし。ダウンロードでいけるのかな？
-$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs2git.options $ vi cvs2git.options $ cvs2git --options=./cvs2git.options  などとやってみたが、必要な情報がtarballの中にはないようだ。サポートリクエストを出して欲しい、ということらしい。あとで問い合わせよう。</description>
+ grcompiler&amp;hellip;を見てみた。  upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&amp;hellip;gitのmasterから取ってきてもコケる&amp;hellip;これは一体？ upstreamがdebianディレクトリ追加してる&amp;hellip;困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&amp;hellip;なんだこりゃ。   fonts-vlgothic fonts-kacst-one fonts-motoya-l-cedar fonts-motoya-l-maruberi  モトヤLマルベリ3・Lシーダ3がAndroidのリポジトリから消えていた     mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&amp;hellip;。shellアクセスできる範囲には無いっぽいし。ダウンロードでいけるのかな？
+$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs2git.options $ vi cvs2git.options $ cvs2git --options=./cvs2git.options などとやってみたが、必要な情報がtarballの中にはないようだ。サポートリクエストを出して欲しい、ということらしい。あとで問い合わせよう。</description>
     </item>
     
     <item>
@@ -40,8 +41,7 @@ $ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今日のグルーミング作業
- fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。
-* Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
+ fonts-breip。メンテナが引退してるからUploadersから削除して、というバグ登録を見かけて作業したのだけど、結構大掛かりになった。   * Team upload. * add epoch to version since upstream releases it as 0.5.1 and previous packaging introduced unnecessary non-upstream files * debian/control - remove Mauro Lizaur &amp;lt;mauro@debian.org&amp;gt; from Uploaders, thank you for your work! (Closes: #869339) - add myself to Uploaders. - update Vcs-* and use https - set Standards-Version: 4.0.0 - set Build-Depends: debhelper (&amp;gt;= 10) * debian/compat - set 10 * add debian/watch * add debian/gbp.</description>
     </item>
     
     <item>
@@ -51,10 +51,10 @@ $ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &amp;gt; ./cvs
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/22/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今日のグルーミング作業。
- vmdk-stream-converter  LaunchPadでBug登録されてたから何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。  psphere fonts-kanjistrokeorders fonts-komatuna fonts-ipafont svn-workbench。desktopファイルにkeywordが足りないので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。 fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。short-nameでは「public-domain」とハイフン入れるのね。→アップロードした。  珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ@ANY_VERSION@・@ARCHIVE_EXT@ と書けるのでそれを使うと良いよ、という話をした。
-sylpheedのビルドが全部揃ってないのが気になったので調査。
-sylpheed build-depends on missing: - libgpgme-dev:hurd-i386 (&amp;gt;= 1.0.0)  これか。https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid を見るとoverride_dh_auto_configureでコケてビルドが失敗している&amp;hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。qemuイメージの配布で新しいイメージが出てたのでそれをベースにやり直してみよう。
-$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI Converting from raw image file=&amp;quot;debian-hurd-20170613.img&amp;quot; to file=&amp;quot;debian-hurd-converted-20170613.vdi&amp;quot;... Creating dynamic image with size 5243928576 bytes (5001MB)...  で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思ってsudo modprobe vboxdrvしてVBoxを立ち上げなおしてみても同じエラー。&amp;hellip;あ、kernelが変わったせい？ sudo dpkg-reconfigure virtualbox-dkmsしてみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&amp;hellip;という謎の対処療法的な解決の仕方でスッキリしない。
+ vmdk-stream-converter  LaunchPadでBug登録されてたから何かね？と思ったらMIR&amp;hellip;まじかよ。「debhelper compatibility levelが8でちょっと古い」とか書いてあったから「10にしたわ」とコメント残しておく。   psphere fonts-kanjistrokeorders fonts-komatuna fonts-ipafont svn-workbench。desktopファイルにkeywordが足りないので、追加しておく。GNOME Shellのキーワード入力でsubversion/svnでsvn-workbenchが出てくるようになった。 fonts-monapo は copyright format 1.0にしている最中でスクリプトのライセンスが不明瞭だったので問い合わせ。→PDだと回答をいただく。short-nameでは「public-domain」とハイフン入れるのね。→アップロードした。   珍しくMLでの質問に答えた。debian/watchファイルはversion4になってからバージョン名とアーカイブの種類をそれぞれ@ANY_VERSION@・@ARCHIVE_EXT@ と書けるのでそれを使うと良いよ、という話をした。
+ sylpheedのビルドが全部揃ってないのが気になったので調査。
+sylpheed build-depends on missing: - libgpgme-dev:hurd-i386 (&amp;gt;= 1.0.0) これか。https://buildd.debian.org/status/package.php?p=gpgme1.0&amp;amp;suite=sid を見るとoverride_dh_auto_configureでコケてビルドが失敗している&amp;hellip;って、それならビルドしなおしでもいける可能性があるんじゃないか？ということで立ち上げっぱなしのhurdのVBoxイメージで動かして調査しよう。。。としたらapt updateで止まってしまうという謎の現象。qemuイメージの配布で新しいイメージが出てたのでそれをベースにやり直してみよう。
+$ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170613.vdi --format VDI Converting from raw image file=&amp;quot;debian-hurd-20170613.img&amp;quot; to file=&amp;quot;debian-hurd-converted-20170613.vdi&amp;quot;... Creating dynamic image with size 5243928576 bytes (5001MB)... で、起動しなおしたらmodprobe vboxdrvしろ、とでてくる。あれ？VBoxが更新されたせいかな、と思ってsudo modprobe vboxdrvしてVBoxを立ち上げなおしてみても同じエラー。&amp;hellip;あ、kernelが変わったせい？ sudo dpkg-reconfigure virtualbox-dkmsしてみる。動いた。…がやっぱりapt updateが止まる現象は変わらず。間を置いて再起動したら動くようになった&amp;hellip;という謎の対処療法的な解決の仕方でスッキリしない。
 あれ？パッケージの取得場所がdeb.debian.orgからsnapshot.debian.orgとdebian-portsに変わってる？？？不便だなぁ＞Hurdイメージ
 ゴソゴソと作業するが、Perl 5.26 transitionの影響でパッケージの依存関係が一時的に破損しているので諦め。後日に回そう&amp;hellip;</description>
     </item>
@@ -66,11 +66,11 @@ $ VBoxManage convertfromraw debian-hurd-20170613.img debian-hurd-converted-20170
       <author>henrich@debian.org (Hideki Yamane)</author>
       <guid>https://henrich.github.io/blog/2017/07/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</guid>
       <description>今日のケアリスト。
- xfonts-efont-unicode、その２ xfonts-kaname、その２ xfonts-shinonome、その２ xfonts-naga10、その２ tiarra libspiro xfonts-ayu fonts-horai-umefont xfonts-kappa20もアップロードしたが、xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.と言われてrejectされる&amp;hellip;  恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？   xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&amp;hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&amp;hellip;)。
+ xfonts-efont-unicode、その２ xfonts-kaname、その２ xfonts-shinonome、その２ xfonts-naga10、その２ tiarra libspiro xfonts-ayu fonts-horai-umefont xfonts-kappa20もアップロードしたが、xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.と言われてrejectされる&amp;hellip;  恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？    xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&amp;hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&amp;hellip;)。
 その他、ruby-interpriterのdropなど。なぜかruby2.1がarm64のdeb-portsに残ってる状況なのが不思議。
-apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、本体側のpo訳してた＼(^o^)／
-Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、GitHubを見るようにする。以下、試行錯誤の結果。
-$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream  ------------------------------ 前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.</description>
+ apt-listchangesのdebconfメッセージを訳しておく&amp;hellip;と思ったら、本体側のpo訳してた＼(^o^)／
+ Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、GitHubを見るようにする。以下、試行錯誤の結果。
+$ dh-make-perl --cpan Selenium::Remote::Driver $ cd libselenium-remote-driver-perl (せっかく作ってくれたupstreamブランチとタグだが消してしまう) $ git branch -D upstream $ git tag -d upstream/1.20 (空のブランチを作る) $ git checkout --orphan upstream $ git rm -rf * (upstreamブランチはGithubのmasterから取得するようにする) $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git $ git pull github $ git fetch $ git branch -u github/master upstream git checkout --orphan &amp;lt;branch&amp;gt;はなかなか思いつかない&amp;hellip;</description>
     </item>
     
   </channel>

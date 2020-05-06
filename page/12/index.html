@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,17 +57,21 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/05/01/gbp-buildpackage-git-component%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%BD%A0/">gbp buildpackage --git-componentオプションの罠</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Tue, May 1, 2018
+								Wed, Apr 3, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -80,35 +84,323 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>poppler-dataパッケージは、一般的なパッケージと違ってupstream tarballが複数ある構成（multiple upstream tarball）なので、git-buildpackageが使えなかったのだけど、git-buildpackage側での実験的なサポートが追加されていたので思い立って作業。</p>
+						<p><code>itamae</code>のアップデートに<code>fluentd</code>が必要そうなのでこちらをやろうとしてみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gem2deb fluentd
+fluentd doesn<span style="color:#e6db74">&#39;t seem to exist. Let&#39;</span>s try to download it with <span style="color:#e6db74">&#39;gem fetch fluentd&#39;</span>
+gem fetch fluentd
+Fetching: fluentd-1.4.2.gem <span style="color:#f92672">(</span>100%<span style="color:#f92672">)</span>
+Downloaded fluentd-1.4.2
+-- Creating source tarball from fluentd-1.4.2.gem ...
+tar xfm /home/henrich/src/pkg-ruby-extras/fluentd-1.4.2.gem
+<span style="color:#e6db74">&#34;tar xzfm data.tar.gz&#34;</span>
+tar czf /home/henrich/src/pkg-ruby-extras/fluentd-1.4.2.tar.gz fluentd-1.4.2
+-- Successfully created ./fluentd-1.4.2.tar.gz
 
-<p>まずはGitリポジトリにリリース済みのパッケージをインポートして、salsaにインポート。</p>
+-- Creating Debian source package from ./fluentd-1.4.2.tar.gz ...
+tar xzf ruby-fluentd_1.4.2.orig.tar.gz
+-- Generated Debian source tree in ruby-fluentd-1.4.2
 
-<pre><code>$ gbp import-dscs --debsnap poppler-data
-$ git remote add salsa git@salsa.debian.org:debian/poppler-data.git
-$ git push salsa --all
-$ git push salsa --tags
-</code></pre>
+-- Building Debian package ...
+dpkg-buildpackage -us -uc
+dpkg-buildpackage: info: source package ruby-fluentd
+dpkg-buildpackage: info: source version 1.4.2-1
+dpkg-buildpackage: info: source distribution UNRELEASED
+dpkg-buildpackage: info: source changed by Hideki Yamane &lt;henrich@debian.org&gt;
+dpkg-buildpackage: info: host architecture amd64
+ dpkg-source --before-build .
+dpkg-checkbuilddeps: error: Unmet build dependencies: ruby-cool.io <span style="color:#f92672">(</span><span style="color:#e6db74">&lt;&lt; 2.0.0) ruby-cool.io (&gt;= 1.4.5) ruby-dig-rb (&gt;= 1.0.0) ruby-http-parser.rb (&lt;&lt; 0.7.0) ruby-http-parser.rb (&gt;= 0.5.1) ruby-msgpack (&lt;&lt; 2</span>.0.0<span style="color:#f92672">)</span> ruby-msgpack <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 0.7.0<span style="color:#f92672">)</span> ruby-serverengine <span style="color:#f92672">(</span>&lt;&lt; 3.0.0<span style="color:#f92672">)</span> ruby-serverengine <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 2.0.4<span style="color:#f92672">)</span> ruby-sigdump <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 0.2.2<span style="color:#f92672">)</span> ruby-strptime <span style="color:#f92672">(</span><span style="color:#e6db74">&lt;&lt; 1.0.0) ruby-strptime (&gt;= 0.2.2) ruby-tzinfo (&gt;= 1</span>.0<span style="color:#f92672">)</span> ruby-tzinfo-data <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 1.0<span style="color:#f92672">)</span> ruby-yajl <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 1.0<span style="color:#f92672">)</span>
+dpkg-buildpackage: warning: build dependencies/conflicts unsatisfied; aborting
+</code></pre></div><p>依存関係が解決できなくてビルド失敗してる。<code>ruby-cool.io</code>パッケージが無いようなので、まずはこちらから作業。<code>gem2deb</code>でサクッと変換…と思いきや</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gem2deb cool.io
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
+dpkg-checkbuilddeps: error: Unmet build dependencies: ruby-rspec
+dpkg-buildpackage: warning: build dependencies/conflicts unsatisfied; aborting
+</code></pre></div><p>なぜにruby-rspecが無いとでる？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ apt show ruby-rspec
+Package: ruby-rspec
+Version: 3.8.0c0e1m0s0-1
+Priority: optional
+Section: ruby
+</code></pre></div><p>あるよ？…もしかして、作業環境に入ってないから？いやー<code>cowbuilder</code>みたいにビルド環境で処理してよ…。とりあえず諸々作業…テストがコケたが、DNSを引きにいくものだったので無効にした。再度ビルド…</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   dh_dwz -O--buildsystem<span style="color:#f92672">=</span>ruby
+dwz: debian/ruby-cool.io/usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/2.5.0/cool.io_ext.so: DWARF version <span style="color:#ae81ff">0</span> unhandled
+dwz: debian/ruby-cool.io/usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/2.5.0/iobuffer_ext.so: DWARF version <span style="color:#ae81ff">0</span> unhandled
+dwz: Too few files <span style="color:#66d9ef">for</span> multifile optimization
+objcopy: <span style="color:#e6db74">&#39;debian/ruby-cool.io/usr/lib/debug/.dwz/x86_64-linux-gnu/ruby-cool.io.debug&#39;</span>: No such file
+dh_dwz: objcopy --compress-debug-sections debian/ruby-cool.io/usr/lib/debug/.dwz/x86_64-linux-gnu/ruby-cool.io.debug returned exit code <span style="color:#ae81ff">1</span>
+make: *** <span style="color:#f92672">[</span>debian/rules:6: binary<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">2</span>
+dpkg-buildpackage: error: debian/rules binary subprocess returned exit status <span style="color:#ae81ff">2</span>
+</code></pre></div><p>どうも<code>debhelper level12</code>で出る問題なのだけど、<code>dh_dwz</code>って全く理解してないので一旦level11に落として回避…。あらかた出来たので<a href="https://salsa.debian.org/ruby-team/ruby-cool.io">リポジトリに追加</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926266">ITPバグも登録</a>してアップロードした（この間にupstreamのバージョンが1.5.3から1.5.4に上がってギョッとした）。<code>NEW queue</code>通るのはずっと先だろうな…。</p>
+<hr>
+<p>次は<code>ruby-dig-rb</code>パッケージ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gem2deb dig-rb  
+dig-rb doesn<span style="color:#e6db74">&#39;t seem to exist. Let&#39;</span>s try to download it with <span style="color:#e6db74">&#39;gem fetch dig-rb&#39;</span>
+gem fetch dig-rb
+ERROR:  Could not find a valid gem <span style="color:#e6db74">&#39;dig-rb&#39;</span> <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 0<span style="color:#f92672">)</span> in any repository
+ERROR:  Possible alternatives: dig_rb  
+Failed to download .gem file
+</code></pre></div><p>gemが見つからない？とおもったら「dig_rb」と<code>_</code>使ってるでやんの…指定し直し。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gem2deb dig_rb  
+dig_rb doesn<span style="color:#e6db74">&#39;t seem to exist. Let&#39;</span>s try to download it with <span style="color:#e6db74">&#39;gem fetch dig_rb&#39;</span>
+gem fetch dig_rb
+Fetching: dig_rb-1.0.1.gem <span style="color:#f92672">(</span>100%<span style="color:#f92672">)</span>
+Downloaded dig_rb-1.0.1
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
+-- Debian package successfully built!
+</code></pre></div><p>素晴らしい、無事変換できた。</p>
+<hr>
+<p>次に無いのは<code>ruby-serverengine</code>パッケージ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pbuilder-satisfydepends-dummy : Depends: ruby-sigdump <span style="color:#f92672">(</span>&gt;<span style="color:#f92672">=</span> 0.2.2<span style="color:#f92672">)</span> which is a virtual package and is not provided by any available package
+</code></pre></div><p><code>gem2deb sigdump</code>で対応、basecowに入れておく。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo cp -arp /var/cache/pbuilder/base.cow /var/cache/pbuilder/ruby.cow
+$ sudo cp ruby-sigdump_0.2.4-1_all.deb /var/cache/pbuilder/ruby.cow/tmp
+$ sudo cowbuilder --login --basepath /var/cache/pbuilder/ruby.cow --save-after-exec
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># apt install /tmp/ruby-sigdump_0.2.4-1_all.deb</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo cowbuilder --build --basepath /var/cache/pbuilder/ruby.cow/ ruby-serverengine_2.1.0-1.dsc
+</code></pre></div><p>で、パッケージバージョンでエラーになったのでこんなふうにしてみた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">--- a/serverengine.gemspec
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/serverengine.gemspec
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -21,8 +21,8 @@
+</span><span style="color:#75715e"></span>   gem.add_dependency &#34;sigdump&#34;, [&#34;~&gt; 0.2.2&#34;]
 
-<p>で、manページを参照して実験的な &ndash;git-component オプションの使い方を確認。</p>
+   # rake v12.x doesn&#39;t work with rspec 2. rspec should be updated to 3
+<span style="color:#f92672">-  gem.add_development_dependency &#34;rake&#34;, [&#34;~&gt; 11.0&#34;]
+</span><span style="color:#f92672">-  gem.add_development_dependency &#34;rspec&#34;, [&#34;~&gt; 2.13.0&#34;]
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+  gem.add_development_dependency &#34;rake&#34;
+</span><span style="color:#a6e22e">+  gem.add_development_dependency &#34;rspec&#34;
+</span><span style="color:#a6e22e"></span>
+   gem.add_development_dependency &#39;rake-compiler-dock&#39;, [&#39;~&gt; 0.5.0&#39;]
+   gem.add_development_dependency &#39;rake-compiler&#39;, [&#39;~&gt; 0.9.4&#39;]
+</code></pre></div><p>でもやっぱりエラー。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Could not find gem <span style="color:#e6db74">&#39;rake-compiler-dock (~&gt; 0.5.0)&#39;</span> in any of the gem sources listed in your Gemfile.
+</code></pre></div><p>あー。ないね。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gem2deb rake-compiler-dock
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
+<span style="color:#ae81ff">7</span> tests, <span style="color:#ae81ff">21</span> assertions, <span style="color:#ae81ff">5</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">0</span> pendings, <span style="color:#ae81ff">0</span> omissions, <span style="color:#ae81ff">0</span> notifications
+28.5714% passed
+</code></pre></div><p>エラーログを見る。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rake" data-lang="rake"><span style="color:#e6db74">TestEnvironmentVariables</span>:
+  <span style="color:#e6db74">test_HOST_RUBY_PLATFORM</span>:  <span style="color:#66d9ef">Docker</span> is <span style="color:#f92672">not</span> available<span style="color:#f92672">.</span>
+</code></pre></div><p>これは難儀そう…とdebian/controlを眺めると「Easy to use and reliable cross compiler environment for building Windows and Linux binary gems.」との説明文。ということはこれ、要らないのでは？外す。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Could not find gem <span style="color:#e6db74">&#39;rake-compiler (~&gt; 0.9.4)&#39;</span> in any of the gem sources listed in your Gemfile.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Package: rake-compiler
+Version: 1.0.5-1
+</code></pre></div><p>なんだよもー。これもバージョン外してやってみよう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/bin/ruby2.5 /usr/bin/rspec --pattern ./spec/<span style="color:#ae81ff">\*\*</span>/<span style="color:#ae81ff">\*</span>_spec.rb --format documentation failed
+ERROR: Test <span style="color:#e6db74">&#34;ruby2.5&#34;</span> failed. Exiting.
+dh_auto_install: dh_ruby --install /build/ruby-serverengine-2.1.0/debian/ruby-serverengine returned exit code <span style="color:#ae81ff">1</span>
+make: *** <span style="color:#f92672">[</span>debian/rules:6: binary<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">1</span>
+</code></pre></div><p>うーん、どこかのテストがエラーになるな。1個ずつやってみよう。。。。あれ、エラー吐いてるのにテストが問題ないとなるのもあるね…。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ServerEngine::Supervisor
+  initialize error
+  when :log<span style="color:#f92672">=</span>IO option is given
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:32.253000 <span style="color:#75715e">#27406]  INFO -- : Received graceful stop</span>
+    can start
+  when :logger option is given
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:33.055374 <span style="color:#75715e">#27406]  INFO -- : Received graceful stop</span>
+    uses specified logger instance
+  when both :logger and :log options are given
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:33.857608 <span style="color:#75715e">#27406]  INFO -- : Received graceful stop</span>
+    start ignoring :log
+  when using signal as command_sender
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:34.664887 <span style="color:#75715e">#27574]  INFO -- : Received graceful stop</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:34.862993 <span style="color:#75715e">#27406]  INFO -- : Server finished with status 0</span>
+    start and graceful stop
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:35.671015 <span style="color:#75715e">#27594]  INFO -- : Received immediate stop</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:35.870587 <span style="color:#75715e">#27406]  INFO -- : Server finished with status 0</span>
+    immediate stop
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:36.678895 <span style="color:#75715e">#27615]  INFO -- : Received graceful restart</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:37.477583 <span style="color:#75715e">#27615]  INFO -- : Received graceful stop</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:37.879210 <span style="color:#75715e">#27406]  INFO -- : Server finished with status 0</span>
+    graceful restart
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:38.686002 <span style="color:#75715e">#27654]  INFO -- : Received immediate restart</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:39.489342 <span style="color:#75715e">#27654]  INFO -- : Received graceful stop</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:39.886976 <span style="color:#75715e">#27406]  INFO -- : Server finished with status 0</span>
+    immediate restart
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:40.691983 <span style="color:#75715e">#27688]  INFO -- : Received reload</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:40.692981 <span style="color:#75715e">#27688]  INFO -- : Received graceful stop</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:40.892738 <span style="color:#75715e">#27406]  INFO -- : Server finished with status 0</span>
+    reload
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in <span style="color:#e6db74">`</span>run<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in <span style="color:#e6db74">`</span>run<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in <span style="color:#e6db74">`</span>block in start_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in <span style="color:#e6db74">`</span>fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in <span style="color:#e6db74">`</span>start_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:195:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in <span style="color:#e6db74">`</span>block in start_supervisor<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:41.398888 #27406]  INFO -- : Server finished unexpectedly with status 1
+</span><span style="color:#e6db74">Unexpected error error test
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in <span style="color:#e6db74">`</span>block in fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in <span style="color:#e6db74">`</span>fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in <span style="color:#e6db74">`</span>reboot_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in <span style="color:#e6db74">`</span>block in start_supervisor<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:42.401104 #27406]  INFO -- : Server finished unexpectedly with status 1
+</span><span style="color:#e6db74">Unexpected error error test
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in <span style="color:#e6db74">`</span>block in fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in <span style="color:#e6db74">`</span>fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in <span style="color:#e6db74">`</span>reboot_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in <span style="color:#e6db74">`</span>block in start_supervisor<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:43.400219 #27406]  INFO -- : Server finished with status 1
+</span><span style="color:#e6db74">    auto restart in limited ratio
+</span><span style="color:#e6db74">  when using pipe as command_sender
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:44.204850 #27757]  INFO -- : Received graceful stop
+</span><span style="color:#e6db74">#&lt;Thread:0x000055ddba860f40@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+</span><span style="color:#e6db74">/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers&#39;</span>: undefined method <span style="color:#e6db74">`</span>chomp<span style="color:#e6db74">&#39; for nil:NilClass (NoMethodError)
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:44.408173 #27406]  INFO -- : Server finished with status 0
+</span><span style="color:#e6db74">    start and graceful stop
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:45.215304 #27780]  INFO -- : Received immediate stop
+</span><span style="color:#e6db74">#&lt;Thread:0x000055ddba97e760@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+</span><span style="color:#e6db74">/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers&#39;</span>: undefined method <span style="color:#e6db74">`</span>chomp<span style="color:#e6db74">&#39; for nil:NilClass (NoMethodError)
+</span><span style="color:#e6db74">    immediate stop
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:45.414819 #27406]  INFO -- : Server finished with status 0
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:46.220865 #27799]  INFO -- : Received graceful restart
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:47.024452 #27799]  INFO -- : Received graceful stop
+</span><span style="color:#e6db74">#&lt;Thread:0x000055ddba9fa6f8@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+</span><span style="color:#e6db74">/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers&#39;</span>: undefined method <span style="color:#e6db74">`</span>chomp<span style="color:#e6db74">&#39; for nil:NilClass (NoMethodError)
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:47.421282 #27406]  INFO -- : Server finished with status 0
+</span><span style="color:#e6db74">    graceful restart
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:48.227456 #27837]  INFO -- : Received immediate restart
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:49.029153 #27837]  INFO -- : Received graceful stop
+</span><span style="color:#e6db74">#&lt;Thread:0x000055ddbaaa8af0@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+</span><span style="color:#e6db74">/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers&#39;</span>: undefined method <span style="color:#e6db74">`</span>chomp<span style="color:#e6db74">&#39; for nil:NilClass (NoMethodError)
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:49.429525 #27406]  INFO -- : Server finished with status 0
+</span><span style="color:#e6db74">    immediate restart
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:50.238952 #27872]  INFO -- : Received reload
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:50.240958 #27872]  INFO -- : Received graceful stop
+</span><span style="color:#e6db74">#&lt;Thread:0x000055ddba9cc2a8@/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:81 run&gt; terminated with exception (report_on_exception is true):
+</span><span style="color:#e6db74">/build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:83:in `block in install_signal_handlers&#39;</span>: undefined method <span style="color:#e6db74">`</span>chomp<span style="color:#e6db74">&#39; for nil:NilClass (NoMethodError)
+</span><span style="color:#e6db74">I, [2019-04-03T14:37:50.439080 #27406]  INFO -- : Server finished with status 0
+</span><span style="color:#e6db74">    reload
+</span><span style="color:#e6db74">Unexpected error error test
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in `run&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in `run&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in `block in start_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in <span style="color:#e6db74">`</span>block in fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in <span style="color:#e6db74">`</span>fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in `start_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:195:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor&#39;</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:50.943666 <span style="color:#75715e">#27406]  INFO -- : Server finished unexpectedly with status 1</span>
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in <span style="color:#e6db74">`</span>run<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in <span style="color:#e6db74">`</span>run<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in <span style="color:#e6db74">`</span>block in start_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in <span style="color:#e6db74">`</span>fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in <span style="color:#e6db74">`</span>start_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in `reboot_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor&#39;</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:51.944788 <span style="color:#75715e">#27406]  INFO -- : Server finished unexpectedly with status 1</span>
+Unexpected error error test
+  /build/ruby-serverengine-2.1.0/spec/server_worker_context.rb:223:in <span style="color:#e6db74">`</span>run<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/worker.rb:81:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/embedded_server.rb:26:in <span style="color:#e6db74">`</span>run<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/server.rb:128:in `main&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:269:in <span style="color:#e6db74">`</span>block in start_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:134:in `block in fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in <span style="color:#e6db74">`</span>fork<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/process_manager.rb:126:in `fork&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:260:in <span style="color:#e6db74">`</span>start_server<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:307:in `reboot_server&#39;</span>
+  /build/ruby-serverengine-2.1.0/lib/serverengine/supervisor.rb:208:in <span style="color:#e6db74">`</span>main<span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">  /build/ruby-serverengine-2.1.0/spec/supervisor_spec.rb:10:in `block in start_supervisor&#39;</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:37:52.946855 <span style="color:#75715e">#27406]  INFO -- : Server finished with status 1</span>
+    auto restart in limited ratio
 
-<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=ai0 --git-component=from-ghostscript
-</code></pre>
 
-<ul>
-<li>対象となるtarballはpoppler-data_0.4.9.orig-from-ghostscript.tar.xzとpoppler-data_0.4.9.orig-ai0.tar.gzとしてpristine-tarブランチにコミットされている</li>
-<li>multiple tarballは orig.tarball-<name>.tar.[g|x]gという形で保持されているので、<name>の部分だけを指定</li>
-</ul>
+<span style="color:#ae81ff">1</span> deprecation warning total
+Deprecation Warnings:
 
-<p>&hellip;というところまでは分かったのだけど、現状ではエラーになる。<del>理由は<code>指定される対象のtarballはtar.gzしか想定していない</code>ため</del>&hellip;。なんてこった。（追記：正確には、デフォルトで指定されているcompressionオプション＝gzip以外を見ない。これを変更するにはgbp.confで指定すればいいのだけど、全てのorig.tarballのcompression指定になってしまうので、multiple upstream tarballでcompressionが混在しているパターンの場合は必ずエラーになってしまう&hellip;）</p>
+Finished in 24.13 seconds <span style="color:#f92672">(</span>files took 0.26415 seconds to load<span style="color:#f92672">)</span>
+<span style="color:#ae81ff">28</span> examples, <span style="color:#ae81ff">0</span> failures
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ServerEngine::MultiThreadServer
+I, <span style="color:#f92672">[</span>2019-04-03T14:44:36.057152 <span style="color:#75715e">#3330]  INFO -- : Received reload</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:44:37.558054 <span style="color:#75715e">#3330]  INFO -- : Received graceful stop</span>
+  scale up
+I, <span style="color:#f92672">[</span>2019-04-03T14:44:38.560735 <span style="color:#75715e">#3330]  INFO -- : Received graceful restart</span>
+I, <span style="color:#f92672">[</span>2019-04-03T14:44:40.061600 <span style="color:#75715e">#3330]  INFO -- : Received graceful stop</span>
+  scale down
+/usr/bin/ruby2.5 /usr/bin/rspec --pattern ./spec/<span style="color:#ae81ff">\*\*</span>/multi_process<span style="color:#ae81ff">\*</span>_spec.rb --format documentation failed
+ERROR: Test <span style="color:#e6db74">&#34;ruby2.5&#34;</span> failed. Exiting.
+</code></pre></div><p><code>spec/multi_process_server_spec.rb</code>がコケてる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    it <span style="color:#e6db74">&#39;raises SystemExit when all workers exit with specified code by unrecoverable_exit_codes&#39;</span> <span style="color:#66d9ef">do</span>
+      pending <span style="color:#e6db74">&#34;unrecoverable_exit_codes supported only for multi process workers&#34;</span> <span style="color:#66d9ef">if</span> impl_class <span style="color:#f92672">==</span> <span style="color:#66d9ef">ServerEngine</span><span style="color:#f92672">::</span><span style="color:#66d9ef">MultiThreadServer</span>
+      pending <span style="color:#e6db74">&#34;Windows environment does not support fork&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">ServerEngine</span><span style="color:#f92672">.</span>windows? <span style="color:#f92672">&amp;&amp;</span> impl_class <span style="color:#f92672">==</span> <span style="color:#66d9ef">ServerEngine</span><span style="color:#f92672">::</span><span style="color:#66d9ef">MultiProcessServer</span>
 
-<pre><code>$ gbp buildpackage --git-pbuilder  --git-pristine-tar --git-ignore-branch --git-component=from-ghostscript
-(snip)
-gbp:error: Error creating poppler-data_0.4.9.orig-from-ghostscript.tar.gz: Pristine-tar couldn't checkout &quot;poppler-data_0.4.9.orig-from-ghostscript.tar.gz&quot;: fatal: Path 'poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta' does not exist in 'refs/heads/pristine-tar'
-pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghostscript.tar.gz.delta failed
-</code></pre>
+      config <span style="color:#f92672">=</span> {<span style="color:#e6db74">workers</span>: <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">log_stdout</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">log_stderr</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">unrecoverable_exit_codes</span>: <span style="color:#f92672">[</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span><span style="color:#f92672">]</span>}
 
-<p>仕方がないので、gbp使わないでリリースしましたよ。えぇ。</p>
+      s <span style="color:#f92672">=</span> impl_class<span style="color:#f92672">.</span>new(<span style="color:#66d9ef">TestExitWorker</span>) { config<span style="color:#f92672">.</span>dup }
+      raised_error <span style="color:#f92672">=</span> <span style="color:#66d9ef">nil</span>
+      t <span style="color:#f92672">=</span> <span style="color:#66d9ef">Thread</span><span style="color:#f92672">.</span>new <span style="color:#66d9ef">do</span>
+        <span style="color:#66d9ef">begin</span>
+          s<span style="color:#f92672">.</span>main
+        <span style="color:#66d9ef">rescue</span> <span style="color:#66d9ef">SystemExit</span> <span style="color:#f92672">=&gt;</span> e
+          raised_error <span style="color:#f92672">=</span> e
+        <span style="color:#66d9ef">end</span>
+      <span style="color:#66d9ef">end</span>
+
+      wait_for_fork
+      test_state(<span style="color:#e6db74">:worker_run</span>)<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>
+      t<span style="color:#f92672">.</span>join
+
+      test_state(<span style="color:#e6db74">:worker_stop</span>)<span style="color:#f92672">.</span>to_i<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+      raised_error<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#75715e"># 4th process&#39;s exit status</span>
+    <span style="color:#66d9ef">end</span>
+
+    it <span style="color:#e6db74">&#39;raises SystemExit immediately when a worker exits if stop_immediately_at_unrecoverable_exit specified&#39;</span> <span style="color:#66d9ef">do</span>
+      pending <span style="color:#e6db74">&#34;unrecoverable_exit_codes supported only for multi process workers&#34;</span> <span style="color:#66d9ef">if</span> impl_class <span style="color:#f92672">==</span> <span style="color:#66d9ef">ServerEngine</span><span style="color:#f92672">::</span><span style="color:#66d9ef">MultiThreadServer</span>
+      pending <span style="color:#e6db74">&#34;Windows environment does not support fork&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">ServerEngine</span><span style="color:#f92672">.</span>windows? <span style="color:#f92672">&amp;&amp;</span> impl_class <span style="color:#f92672">==</span> <span style="color:#66d9ef">ServerEngine</span><span style="color:#f92672">::</span><span style="color:#66d9ef">MultiProcessServer</span>
+
+      config <span style="color:#f92672">=</span> {<span style="color:#e6db74">workers</span>: <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">log_stdout</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">log_stderr</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">unrecoverable_exit_codes</span>: <span style="color:#f92672">[</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span><span style="color:#f92672">]</span>, <span style="color:#e6db74">stop_immediately_at_unrecoverable_exit</span>: <span style="color:#66d9ef">true</span>}
+
+      s <span style="color:#f92672">=</span> impl_class<span style="color:#f92672">.</span>new(<span style="color:#66d9ef">TestExitWorker</span>) { config<span style="color:#f92672">.</span>dup }
+      raised_error <span style="color:#f92672">=</span> <span style="color:#66d9ef">nil</span>
+      t <span style="color:#f92672">=</span> <span style="color:#66d9ef">Thread</span><span style="color:#f92672">.</span>new <span style="color:#66d9ef">do</span>
+        <span style="color:#66d9ef">begin</span>
+          s<span style="color:#f92672">.</span>main
+        <span style="color:#66d9ef">rescue</span> <span style="color:#66d9ef">SystemExit</span> <span style="color:#f92672">=&gt;</span> e
+          raised_error <span style="color:#f92672">=</span> e
+        <span style="color:#66d9ef">end</span>
+      <span style="color:#66d9ef">end</span>
+
+      wait_for_fork
+      test_state(<span style="color:#e6db74">:worker_run</span>)<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>
+      t<span style="color:#f92672">.</span>join
+
+      test_state(<span style="color:#e6db74">:worker_stop</span>)<span style="color:#f92672">.</span>to_i<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>
+      test_state(<span style="color:#e6db74">:worker_finished</span>)<span style="color:#f92672">.</span>to_i<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>
+      raised_error<span style="color:#f92672">.</span>should_not be_nil
+      raised_error<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>should <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> <span style="color:#75715e"># 1st process&#39;s exit status</span>
+    <span style="color:#66d9ef">end</span>
+</code></pre></div><p>うーん。とりあえず該当のテストを無効にしておくか。</p>
 
 					
 				</div>
@@ -121,24 +413,114 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/04/29/%E9%81%85%E3%80%85%E3%81%A8%E3%81%97%E3%81%A6%E9%80%B2%E3%81%BE%E3%81%9A/">遅々として進まず</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Apr 29, 2018
+								Tue, Apr 2, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
-							<a href="/tags/etc">etc</a>
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>ubuntu-keyringのunblockが進まないので<a href="https://lists.debian.org/debian-release/2019/04/msg00039.html">ping</a>。tomoyo-toolsは<a href="https://lists.debian.org/debian-release/2019/04/msg00040.html">閉じた</a>。</li>
+<li>itamaeのバグの話がlaunchpadに上がってるのを見たので、<a href="https://tracker.debian.org/news/1037156/accepted-itamae-1910-2-source-into-unstable/">Debian側に報告&amp;修正してアップロードした</a>。どうせあっちでは何もやらんでしょ…。あとでunblockもしとかないと。忘れそうだ…</li>
+<li>itamaeのバージョンが古いので、新しいのを作業…と依存関係で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926236">ruby-fluentd-loggerのパッケージ申請を登録</a>。あらかた終わったけど、テスト実行どうやるんだっけ…。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Mar 31, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://tracker.debian.org/news/1036912/accepted-snapper-083-1-source-into-unstable/">snapper</a>をアップデートした</li>
+<li><a href="https://tracker.debian.org/news/1036925/accepted-fonts-sawarabi-mincho-20190317-1-source-into-unstable/">fonts-sawarabi-mincho</a>をアップデートした</li>
+<li><a href="https://tracker.debian.org/news/1036914/accepted-ruby-aruba-0149-1-source-into-unstable/">ruby-aruba</a>をアップデートした</li>
+<li><a href="https://tracker.debian.org/news/1036928/accepted-libuninameslist-20190305-1-source-into-unstable/">libuninameslist</a>をアップデートした</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/03/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Mar 30, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
 						
 								 , 
-							<a href="/tags/debian">debian</a>
+							<a href="/tags/unblock">unblock</a>
 						
 					</small>
 				</div>
@@ -147,33 +529,7 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>Samsung SSDに/homeを移そうとコピーを実施したが、一晩経っても10GBぐらいしか進まず。これはいくらなんでも遅すぎる&hellip;ということでファームウェアを更新することを決める。</p>
-
-<p><a href="http://www.samsung.com/semiconductor/minisite/ssd/download/tools/">http://www.samsung.com/semiconductor/minisite/ssd/download/tools/</a> にてファームウェアのisoファイルを取得、マウントしてimgファイルを取り出してさらにそれをマウントしてファイルを取り出し、FreeDOSのブータブルUSBメモリにコピーしてファームウェアのアップデートを行った。以前よりはマシになったが、それでも遅い&hellip;。</p>
-
-<hr />
-
-<p>古いThinkPad X121eにFedora28Betaを入れたのだが、何故かパスワードが通らなくなっていたので、今度はArchLinuxを入れてみようとする。インストールドキュメントに従ってインストール&hellip;したのだけど、全く起動してこない。何故だ。何度か試したが変わらず。いや、正確には一度だけgrubが起動してくるまでにはなったが、指定されてるUUIDのパーティション見えないよ？というので結局起動せず。</p>
-
-<p>次にUbuntu18.04 Server版を入れる&hellip;jaistミラーから落としたら中身がdebian-installerで変わってない？途中のpartitionerのところ（47%までは進んだ）で進まなくなってしまったので中断して、改めてUbuntu.comから落としたら、こちらのイメージは独自インストーラー版に変わっていた。こちらを試したかったのよね、シンプルでいい感じですね&hellip;とインストールは特にエラーも無く終わったのだけど、やっぱりoperating system not foundで変わらず。何故だ&hellip;。</p>
-
-<p>で、Debian9.4のインストーラーでやったら、普通にインストール終わり→起動したので、これにArchを上書きして完了。パーティションテーブルがおかしかったのだろうけど、d-iがなんとかしてくれた、という感じ。</p>
-
-<p>めも
-* d-iのメッセージ、〜のロードは「〜の読み込み」でいい気がする
-* あと全体通して読み返してみたい所</p>
-
-<hr />
-
-<p>Archはpacstrapとかarch-chrootとか変わったものがあるんだな―という感想。<a href="https://git.archlinux.org/arch-install-scripts.git/">https://git.archlinux.org/arch-install-scripts.git/</a> にスクリプトがあるようだ。debootstrapよりも技巧的。なにか参考にできる部分があると良いな、ということでメモを残す。</p>
-
-<hr />
-
-<p>poppler-dataのアップデートが出てた。Fedoraではどうやらpoppler-dataじゃなくて素のAdobe CMapデータをパッケージにしているようなのを先日見かけたので、それを伝えるべく<a href="https://lists.freedesktop.org/archives/poppler/2018-April/012999.html">popplerのメーリングリストでのupstreamのAdobeがアップデートしたよ、という私からのメール</a>には一切反応せず、か。相変わらずだな、popplerの人は&hellip;。multiple upstream tarballの為にどうgitで扱うべか、という感じで未だにVCSには登録してない。</p>
-
-<p>&hellip;debian/changelogの記述間違えた。。。</p>
-
-<p>あと libmojolicious-plugin-assetpack-perl もアップデートしておいた。</p>
+						<p><a href="https://lists.debian.org/debian-release/2019/03/msg01174.html">jcodingsのunblock</a>を出した</p>
 
 					
 				</div>
@@ -186,21 +542,27 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/04/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/26/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E5%89%8A%E9%99%A4%E3%81%AB%E5%AF%84%E3%81%9B%E3%81%A6/">サポート終了コンポーネントのアーカイブ削除に寄せて</a></h3>
 						<small><span class="label label-primary">
 							
-								Mon, Apr 2, 2018
+								Tue, Mar 26, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/release">release</a>
 						
 					</small>
 				</div>
@@ -209,26 +571,19 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>debootstrapはNMUしてたら「普通にアップロードしてよ」と言われ、確認したらrepositoryの権限も貰っていた&hellip;昔に追加されたのかな？とりあえず、アップロード→regression直しの繰り返しをしている。ツールとしての性格上致し方がないが、package外での利用が考慮漏れしてた。
-
+						<p>先日、ミラーアーカイブからDebian7とDebian8のサポート終了コンポーネントが削除されました。すると、Docker使ってる人やCircleCI使ってる人が「ぎゃー！」と叫び始めたという。どうも背景を理解されてる方は少ないようなので、簡単にざっと説明を書きました（ユーザーならともかく、イメージを提供するベンダー側は把握しておいてほしいですけどね…）。</p>
+<p>ベースイメージとしてDebian8 &ldquo;jessie&quot;を使っているという前提で話をします。</p>
 <ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=844118#10">ダウンロード済みの.debファイルを使うようにするパッチも投げた</a>。これで手元ではかかる時間が半分に減ったので、できれば入れたいところ。</li>
-<li>その前に既存のpatchを一掃する作業が待っているわけですが&hellip;。</li>
-</ul></li>
-<li>書き忘れていたが <a href="https://tracker.debian.org/news/940647/accepted-xfonts-jisx0213-020040511-7-source-all-into-unstable/">xfonts-jisx0213パッケージを木下さんの了解を得てfonts-team配下に移動して更新</a>。</li>
-<li>tiarraパッケージをexperimentalに放置してたので<a href="https://tracker.debian.org/news/940648/accepted-tiarra-20100212r39209-7-source-all-into-unstable/">unstableに上げた</a></li>
-<li><a href="https://tracker.debian.org/news/939922/accepted-jcodings-1028-1-source-all-into-unstable/">jcodingsパッケージをアップデート</a>。<a href="https://tracker.debian.org/news/944791/accepted-jcodings-1029-1-source-all-into-unstable/">その２</a></li>
-<li><a href="https://tracker.debian.org/news/940144/accepted-jruby-joni-2116-1-source-all-into-unstable/">jruby-joniパッケージ</a></li>
-<li><a href="https://tracker.debian.org/news/940343/accepted-fonts-sawarabi-mincho-20180315-1-source-all-into-unstable/">fonts-sawarabi-minchoパッケージ</a></li>
-<li><a href="https://tracker.debian.org/news/944419/accepted-sphinx-intl-0911-1-source-amd64-into-unstable/">sphinx-intlパッケージをアップデート</a>、patchを入れ忘れていたので<a href="https://tracker.debian.org/news/944433/accepted-sphinx-intl-0911-2-source-amd64-into-unstable/">再度アップロード</a></li>
-</ul>
-
-<hr />
-
+<li>Debian8はDebian9のリリースに伴って<code>「oldstable」（旧安定版）</code>という扱いになっています。oldstableはstableに比べて限定されたサポートの提供となります。そりゃぁでっかいリポジトリを複数バージョンに渡って長期間メンテナンスなんて難しいですからね。oldstable使ってる時点で色々制限が出てくる、ってもんです。ベストプラクティスとしては「<strong>ベースイメージのDebianはstableを使おう</strong>」です。
 <ul>
-<li>xfonts-* パッケージを fonts-team で引き受けるべく ITA したのだけど、気力が足りなくて作業していない。</li>
+<li>え？Ubuntu LTSだってでっかいリポジトリで長期間サポートしてるじゃん、って？…彼らは2000パッケージぐらいのmainコンポーネントはサポートしてるけど、その他の50000パッケージぐらいのuniverseはコミュニティに寄るサポート≒Debianその他から持ってくるよ、という状態なんですよ。知らなかったでしょ？</li>
 </ul>
+</li>
+<li><code>jessie-updates</code>コンポーネントが無くてビルドがー！という人：<code>-updates</code>は「stableにおけるパッケージのうち、定期的な更新が必要なものを提供」という位置づけなので、<strong>jessieがoldstableになった時点で死んでます</strong>。外しちゃえばいいです。</li>
+<li><strong>(追記)</strong> <code>http://security.debian.org/debian-security jessie/updates mainも削除…はしちゃダメです！</code> その行は<code>セキュリティアップデートの取得</code>です（取得先サーバーがsecurity.debian.orgでしょ？) たしかに<code>jessie/updates</code>というところだけを見たら削除したくなるかもしれませんが、LTSサポートのセキュリティアップデートが降ってくるのを消したらアカンですよ…。</li>
+<li><code>jessie-backports</code>が無くなってギャー！という人：<code>-backports</code>は「stableへの新しいバージョンの移植」という位置づけのコンポーネントなので、<strong>jessieがoldstableになった時点で死んでます</strong>。なんで使ってんの？ということです。そもそも新しいバージョンが必要だ、というならoldstable使ってる時点で前提がおかしいですよ？まずはstableに移行しましょう</li>
+</ul>
+<p>Debian9がでて早２年近く、そろそろDebian10の足音も聞こえてるので、開発側としてはいまさらDebian8に固執してほしくはない、というのが正直な所。ベースイメージのバージョン移行は計画的に…。</p>
 
 					
 				</div>
@@ -241,21 +596,27 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/03/24/debootstrap-bug-triage/">debootstrap bug triage</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Mar 24, 2018
+								Sun, Mar 24, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/unblock">unblock</a>
 						
 					</small>
 				</div>
@@ -265,31 +626,12 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 					<br>
 					
 						<ul>
-<li><p>ここしばらくの作業はdebootstrapのbug triageを中心。</p>
-
+<li>tomoyo-toolsも一応<a href="https://lists.debian.org/debian-release/2019/03/msg00905.html">unblockを出した</a>。通らないかもしれないけど、一応そこまでdiffがでかくないよ―というアピール。
 <ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=563647">manpageの不備にはパッチ提案</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=698677">エラーメッセージの不備にもパッチ提案</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861343">mawk固定でダメじゃん</a>には、意味あるかな〜と思ってパッチ出したけど「意味ないじゃん、このパッチ」とやっぱりツッコミが。</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866401">ダウンロードエラーのメッセージが情報量０</a>には提案パッチ出したけど、それ意味なくね？のツッコミが。もうちょっと続ける予定。</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=872059">昔と同じ挙動にしてよ</a>には「パッチ当てるの反対の人〜？」と質問だけ流した。</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890419">libvirt-lxcで動かすパッチ</a>にはpatchタグがついてなかったので追加。</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=877855">&ndash;second-stageで指定したコンポーネント情報が欠落</a>は挙動を確認して該当のソースを提示してコメント。</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707033">/homeをvfatなパーティションでマウントしてるとエラー出る</a>は再現できないのでunreproducibleタグ</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=731859">variant=fakechrootが動かない</a>も再現できないのでunreproducibleタグ</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=684520">Android+busyboxで動かない</a>は情報量少なすぎなのでmoreinfoタグ</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync指定があるがsync -fの方がいい</a>も理由がわからないのでmoreinfoタグ</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">Ubuntuのchroot作ろうとしてるのにdeb.debian.orgがリポジトリ指定されちゃう</a>のを登録</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891393">Ubuntuのchroot作ろうとしてエラーになる</a>のは登録したらLinuxカーネルパッケージのメンテナからamd64だと過去のカーネルと非互換性があるから、というのを教えてもらった</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=700368">apt-moveで作ったリポジトリだとエラーになる</a>のは「SHA1は既に過去のものなので、このために対応する必要あるのかな？」というコメント入れて重要度下げた</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=640992">ChrootでもProxy設定引き継いで欲しい</a>はパッと見でわかるようにタイトルを変えた</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=627073">ダウンロード時にどこからダウンロードしたのか表示して欲しい</a>は「なんで？」とコメントしてmoreinfoタグ</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">blankonというdistro対応して</a>はパッチのリンクが全部死んでたのでmoreinfoタグ</li>
-
-<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=893713">udebに不要なスクリプトファイルがあるよね</a>を登録</p></li>
-
-<li><p>TriageではなくNMUを既に準備したのは <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=864734">Bug#864734</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=586158">Bug#586158</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=718632">Bug#718632</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=754318">Bug#754318</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=762431">Bug#762431</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806780">Bug#806780</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=833525">Bug#833525</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=732628">Bug#732628</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=734324">Bug#734324</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=775444">Bug#775444</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Bug#798562</a>、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Bug#798564</a>。大半はpatchが登録してあったのでそれを進めてるだけ。ただ、regressionが怖いので小分けにしてNMUし、10日ごとに投入していく予定。先は長い。</p></li>
-</ul></li>
+<li>→ダメだった。そらそーか。</li>
+</ul>
+</li>
+<li>squid-deb-proxyは問い合わせてみたが特に反応がないが、週末だったので<code>--deleyed 3</code>でアップロードした。</li>
 </ul>
 
 					
@@ -303,21 +645,33 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/03/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Mar 7, 2018
+								Sat, Mar 23, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/unblock">unblock</a>
+						
+								 , 
+							<a href="/tags/bts">bts</a>
+						
+								 , 
+							<a href="/tags/release">release</a>
 						
 					</small>
 				</div>
@@ -326,35 +680,356 @@ pristine-tar: git show refs/heads/pristine-tar:poppler-data_0.4.9.orig-from-ghos
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li><p><a href="https://tracker.debian.org/news/938331">nailgunがjrubyビルドをぶっ壊してたのが見つかったので修正した</a>。</p>
+						<p>今回は<code>ubuntu-keyring</code>パッケージを題材に「full freeze期間に入ってしまったが、unstableにあるパッケージをリリース対象＝testingに入れたい」場合の手順をメモしてみました。</p>
+<hr>
+<p>まず、testingにあるバージョンとunstableにあるバージョンの差分（diff）を生成します。今だと<code>git diff</code>でも良さそうな気はするのですが、慣例的にはソースパッケージに対して<code>debdiff</code>を使って作ります。ソースパッケージを<code>dget</code>コマンドで取得し、<code>.dsc</code>ファイルに対して<code>debdiff</code>コマンドを実行しています。ソースパッケージのURLは<a href="https://tracker.debian.org/pkg/ubuntu-keyring">distro tracker</a>からコピペしていますが、別のやり方もあるでしょう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ dget http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-4.dsc <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       http://deb.debian.org/debian/pool/main/u/ubuntu-keyring/ubuntu-keyring_2018.09.18.1-5.dsc
+$ debdiff ubuntu-keyring_2018.09.18.1-4.dsc ubuntu-keyring_2018.09.18.1-5.dsc &gt; ubuntu-keyring.diff
+</code></pre></div><p>diffが出来たので、これを元に<code>unblockリクエスト</code>をバグ登録します。ツールとしては<code>reportbug</code>コマンドを使うとウィザード形式で行ってくれるので間違いがなくて楽です。reportbugは<code>reportbug &lt;package&gt;</code>という形でパッケージを指定してバグ登録するのですが、今回のような場合はリリース関連の調整をトラッキングするための疑似パッケージ(psuedo package)である<code>release.debian.org</code>を指定します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ reportbug release.debian.org
+Detected character set: UTF-8
+Please change your locale <span style="color:#66d9ef">if</span> this is incorrect.
 
-<ul>
-<li>どうやら maven-debian-helper を使ってる場合は Depends: ${maven:Depends} しないとキチンと依存関係が書かれないようだった。気づいてなかった&hellip;あと、debian/install で指定した以外のファイルも maven-debian-helper が勝手にインストールするようだ</li>
-</ul></li>
+Using <span style="color:#e6db74">&#39;Hideki Yamane &lt;henrich@debian.org&gt;&#39;</span> as your from address.
+Will send report to Debian <span style="color:#f92672">(</span>per lsb_release<span style="color:#f92672">)</span>.
+What sort of request is this? <span style="color:#f92672">(</span>If none of these things mean anything to you, or you are trying to report a bug in an existing package, please press Enter to exit reportbug.<span style="color:#f92672">)</span>
 
-<li><p>debootstrapをNMUでuploadした。deleyed/10なので10日待つ。</p>
+<span style="color:#ae81ff">1</span> binnmu      binNMU requests
+<span style="color:#ae81ff">2</span> britney     testing migration script bugs
+<span style="color:#ae81ff">3</span> other       None of the other options
+<span style="color:#ae81ff">4</span> rm          Stable/Testing removal requests
+<span style="color:#ae81ff">5</span> stretch-pu  stretch proposed updates requests
+<span style="color:#ae81ff">6</span> transition  transition tracking
+<span style="color:#ae81ff">7</span> unblock     unblock requests
 
-<pre><code>debootstrap (1.0.93+nmu1) unstable; urgency=medium
+Choose the request type:
+</code></pre></div><p>今回行いたいのはunblockなので<code>&quot;7&quot;</code>を選びます。続けて対象となるパッケージ名（今回は<code>ubuntu-keyring</code>）を入力します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Choose the request type: <span style="color:#ae81ff">7</span>
+Please enter the name of the package: ubuntu-keyring
+Checking status database...
+Latest version seems to be 2018.09.18.1-1, is this the proper one ? <span style="color:#f92672">[</span>Y|n|?<span style="color:#f92672">]</span>?
+</code></pre></div><p>最新バージョンのチェックが行われます…あれ？間違ってますね。なんでだろう？このバージョンはtestingにも無いんですが…謎だ。仕方がないので<code>&quot;n&quot;</code>を入力して現在の最新版である<code>2018.09.18.1-5</code>を入力。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Latest version seems to be 2018.09.18.1-1, is this the proper one ? <span style="color:#f92672">[</span>Y|n|?<span style="color:#f92672">]</span>? n
+Please enter the version of the package: 2018.09.18.1-5
+</code></pre></div><p>するとテンプレートが埋められて雛形が出来上がり、<code>sensible-editor</code>で指定されたエディタが立ち上がります</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Subject: unblock: ubuntu-keyring/2018.09.18.1-5
+Package: release.debian.org
+User: release.debian.org@packages.debian.org
+Usertags: unblock
+Severity: normal
+
+Please unblock package ubuntu-keyring
+
+(explain the reason for the unblock here)
+
+(include/attach the debdiff against the package in testing)
+
+unblock ubuntu-keyring/2018.09.18.1-5
+
+-- System Information:
+Debian Release: buster/sid
+  APT prefers unstable
+  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
+Architecture: amd64 (x86_64)
+
+Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
+Kernel taint flags: TAINT_OOT_MODULE, TAINT_UNSIGNED_MODULE
+Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/dash
+Init: systemd (via /run/systemd/system)
+LSM: AppArmor: enabled
+</code></pre></div><p><code>(include/attach the debdiff against the package in testing)</code>の所を消して、先程作ったdiffを貼り付け、<code>(explain the reason for the unblock here)</code>のところに理由を書いて送ります。出来上がりはこんな感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Package: release.debian.org
+Severity: normal
+User: release.debian.org@packages.debian.org
+Usertags: unblock
+
+ Please unblock package ubuntu-keyring
+
+ * This update fixes file removal at maintainer script, and also deals with symlink
+   removal that the package in testing doesn&#39;t create properly as below
+
+&gt;&gt;      # force remove garbage that was created by previous version, oh moron...
+&gt;&gt;      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
+
+ * ubuntu-keyring is leaf package, no package will be affected with this
+   change if there would be a regression ;)
+
+&gt;&gt; $ apt-rdepends -r ubuntu-keyring
+&gt;&gt; ubuntu-keyring
+&gt;&gt;  Reverse Depends: ubuntu-archive-keyring (2018.09.18.1-5)
+
+ ubuntu-archive-keyring is just a transitional package.
+
+
+ Here&#39;s a debdiff.
+
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/changelog ubuntu-keyring-2018.09.18.1/debian/changelog
+--- ubuntu-keyring-2018.09.18.1/debian/changelog	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/changelog	2019-03-12 01:40:45.000000000 +0900
+@@ -1,3 +1,16 @@
++ubuntu-keyring (2018.09.18.1-5) unstable; urgency=medium
++
++  * debian/*.post{inst,rm}
++    - use apt-config(8)&#39;s Dir::Etc::trustedparts and fix keyring removal error.
++      Thanks to Linda Lapinlampi &lt;linda@lindalap.fi&gt; and
++      Hiroyuki YAMAMORI &lt;h-yamamo@db3.so-net.ne.jp&gt; (Closes: #922176, #922177)
++  * debian/ubuntu-dbgsym-keyring.templates
++    - add ubuntu-dbgsym-keyring.gpg (See #922348)
++  * debian/control
++    - add Rules-Requires-Root: no
++
++ -- Hideki Yamane &lt;henrich@debian.org&gt;  Tue, 12 Mar 2019 01:40:45 +0900
++
+ ubuntu-keyring (2018.09.18.1-4) unstable; urgency=medium
  
-* Non-maintainer Upload.
-* Use force_md5 for breezy, dapper and edgy (Closes: #659360, #676373)
-Now you can create Ubuntu breezy/dapper/edgy chroot.
-* Add Suggests: ubuntu-archive-keyring for debootstraping Ubuntu on Debian.
-When you fetch Ubuntu packages ubuntu-archive-keyring is necessary.
-(Closes: #736995)
-* Change repository URI for old Ubuntu releases (Closes: #676370, #839073)
-Archived Ubuntu releases are at old-releases.ubuntu.com/ubuntu
-* Set correct keyring and default mirror for old debian releases.
-Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
-(Closes: #891404, #600647, #792729)
+   * debian/control
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/control ubuntu-keyring-2018.09.18.1/debian/control
+--- ubuntu-keyring-2018.09.18.1/debian/control	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/control	2019-03-12 01:40:45.000000000 +0900
+@@ -8,6 +8,7 @@
+ Homepage: https://launchpad.net/ubuntu/+source/ubuntu-keyring
+ Vcs-Git: https://salsa.debian.org/debian/ubuntu-keyring.git
+ Vcs-Browser: https://salsa.debian.org/debian/ubuntu-keyring
++Rules-Requires-Root: no
  
--- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 05 Mar 2018 22:28:22 +0900
-</code></pre></li>
+ Package: ubuntu-archive-keyring
+ Architecture: all
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
+@@ -5,15 +5,26 @@
+ case &#34;$1&#34; in
+     install|configure)
+ 
++      # force remove garbage that was created by previous version, oh moron...
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive\,\ ubuntu-cloud-removed-keys.gpg
++
++
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
++
++      # once clean up keyrings
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-removed-keys.gpg&#34;
++
+       . /usr/share/debconf/confmodule
+       db_version 2.0
+       db_get ubuntu-cloud-keyring/keyring
+ 
+       if [ -n &#34;$RET&#34; ]; then
+-        for keyring in &#34;$RET&#34;
++        selected=$(echo &#34;$RET&#34; | sed -e &#39;s/, /\n/g&#39;)
++        echo &#34;$selected&#34; | while read keyring
+         do
+-          rm -f /etc/apt/trusted.gpg.d/&#34;$keyring&#34;.gpg
+-          ln -sf /usr/share/keyrings/&#34;$keyring&#34;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &#34;/usr/share/keyrings/${keyring}.gpg&#34; &#34;$TRUSTEDPARTS&#34;
+         done
+       fi
+ 
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-cloud-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
+@@ -5,9 +5,12 @@
+ case &#34;$1&#34; in
+     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+ 
+-        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cloud-archive.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloud-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloud-keyring.gpg
++        TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++        eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
++
++        rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-cloud-archive.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-cloud-removed-keys.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-cloud-keyring.gpg&#34;
+ 
+     ;;
+     *)
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
+@@ -5,15 +5,28 @@
+ case &#34;$1&#34; in
+     install|configure)
+ 
++      # remove garbage that was created by previous version, oh moron...
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg\,\ *
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg\,\ *
++
++
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
++
++      # once clean up keyrings
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&#34;
++
+       . /usr/share/debconf/confmodule
+       db_version 2.0
+       db_get ubuntu-dbgsym-keyring/keyring
+ 
+       if [ -n &#34;$RET&#34; ]; then
+-        for keyring in &#34;$RET&#34;
++        selected=$(echo &#34;$RET&#34; | sed -e &#39;s/, /\n/g&#39;)
++        echo &#34;$selected&#34; | while read keyring
+         do
+-          rm -f /etc/apt/trusted.gpg.d/&#34;$keyring&#34;.gpg
+-          ln -sf /usr/share/keyrings/&#34;$keyring&#34;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &#34;/usr/share/keyrings/${keyring}.gpg&#34; &#34;$TRUSTEDPARTS&#34;
+         done
+       fi
+ 
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
+@@ -5,9 +5,12 @@
+ case &#34;$1&#34; in
+     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+ 
+-        rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-2016-dbgsym.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-dbgsym-keyring.gpg
++        TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++        eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
++
++        rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2016-dbgsym.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-dbgsym-removed-keys.gpg&#34; \
++              &#34;${TRUSTEDPARTS}ubuntu-dbgsym-keyring.gpg&#34;
+ 
+     ;;
+     *)
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-dbgsym-keyring.templates	2019-03-12 01:40:45.000000000 +0900
+@@ -1,6 +1,6 @@
+ Template: ubuntu-dbgsym-keyring/keyring
+ Type: multiselect
+-Choices: ubuntu-keyring-2016-dbgsym, ubuntu-dbgsym-removed-keys
++Choices: ubuntu-dbgsym-keyring, ubuntu-keyring-2016-dbgsym, ubuntu-dbgsym-removed-keys
+ Default:
+ _Description: Trusted GPG keyring for package authentication
+  If you want to use the Ubuntu dbgsym archive in place of the Debian archive in
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postinst	2019-03-12 01:40:45.000000000 +0900
+@@ -12,15 +12,27 @@
+               /etc/apt/trusted.gpg.d/ubuntu-archive-removed-keys.gpg
+       fi
+ 
++      # and also remove garbage that was created by previous version.
++      # oh moron...
++      rm -f /etc/apt/trusted.gpg.d/ubuntu-keyring-201[28]-archive\,\ *
++
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
++
++      # once clean up keyrings
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&#34;
++
+       . /usr/share/debconf/confmodule
+       db_version 2.0
+       db_get ubuntu-keyring/keyring
+ 
+       if [ -n &#34;$RET&#34; ]; then
+-        for keyring in &#34;$RET&#34;
++        selected=$(echo &#34;$RET&#34; | sed -e &#39;s/, /\n/g&#39;)
++        echo &#34;$selected&#34; | while read keyring
+         do
+-          rm -f /etc/apt/trusted.gpg.d/&#34;$keyring&#34;.gpg
+-          ln -sf /usr/share/keyrings/&#34;$keyring&#34;.gpg /etc/apt/trusted.gpg.d/
++          ln -sf &#34;/usr/share/keyrings/${keyring}.gpg&#34; &#34;$TRUSTEDPARTS&#34;
+         done
+       fi
+ 
+diff -Nru ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm
+--- ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-02-07 00:26:23.000000000 +0900
++++ ubuntu-keyring-2018.09.18.1/debian/ubuntu-keyring.postrm	2019-03-12 01:40:45.000000000 +0900
+@@ -5,14 +5,17 @@
+ case &#34;$1&#34; in
+     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+ 
+-        rm -f /etc/apt/trusted.gpg.d/ubuntu-archive-keyring.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-archive-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-archive.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-keyring.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-cloudimage-removed-keys.gpg \
+-              /etc/apt/trusted.gpg.d/ubuntu-master-keyring.gpg
++      TRUSTEDPARTS=&#34;/etc/apt/trusted.gpg.d/&#34;
++      eval &#34;$(apt-config shell TRUSTEDPARTS Dir::Etc::trustedparts/d)&#34;
++
++      rm -f &#34;${TRUSTEDPARTS}ubuntu-archive-keyring.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-archive-removed-keys.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2018-archive.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-keyring-2012-cdimage.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-cloudimage-keyring.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-cloudimage-removed-keys.gpg&#34; \
++            &#34;${TRUSTEDPARTS}ubuntu-master-keyring.gpg&#34;
+ 
+     ;;
+     *)
 
-<li><p>もういっちょdebootstrapのNMUを準備。上のがtestingに落ちたら即アップロード予定。</p></li>
-</ul>
+unblock ubuntu-keyring/2018.09.18.1-5
 
+-- System Information:
+Debian Release: buster/sid
+  APT prefers unstable
+  APT policy: (500, &#39;unstable&#39;), (1, &#39;experimental&#39;)
+Architecture: amd64 (x86_64)
+
+Kernel: Linux 4.19.0-3-amd64 (SMP w/4 CPU cores)
+Kernel taint flags: TAINT_OOT_MODULE, TAINT_UNSIGNED_MODULE
+Locale: LANG=ja_JP.UTF-8, LC_CTYPE=ja_JP.UTF-8 (charmap=UTF-8), LANGUAGE=ja_JP.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/dash
+Init: systemd (via /run/systemd/system)
+LSM: AppArmor: enabled
+</code></pre></div><p>できたらエディタから抜けて<code>&quot;y&quot;</code>で送信します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Report will be sent to Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
+Submit this report on release.debian.org <span style="color:#f92672">(</span>e to edit<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Y|n|a|c|e|i|l|m|p|q|d|t|s|?<span style="color:#f92672">]</span>? y
+</code></pre></div><p>SMTPサーバーへの通信が行われ、特に問題なければ完了メッセージがでてきます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Connecting to mysmtp.example.jp:587 via SMTP...
+
+Bug report submitted to: Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
+Copies sent to:
+  Debian Bug Tracking System &lt;submit@bugs.debian.org&gt;
+  Hideki Yamane &lt;henrich@debian.org&gt;
+
+If you want to provide additional information, please wait to receive the bug tracking number via email; you may <span style="color:#66d9ef">then</span> send any extra information to n@bugs.debian.org <span style="color:#f92672">(</span>e.g.
+nnnnnn@bugs.debian.org<span style="color:#f92672">)</span>, where n is the bug number. Normally you will receive an acknowledgement via email including the bug report number within an hour; <span style="color:#66d9ef">if</span> you haven<span style="color:#960050;background-color:#1e0010">&#39;</span>t received a
+confirmation, <span style="color:#66d9ef">then</span> the bug reporting process failed at some point <span style="color:#f92672">(</span>reportbug or MTA failure, BTS maintenance, etc.<span style="color:#f92672">)</span>.
+</code></pre></div><p>送信完了しました。しばらくするとBTSから番号が付与された完了通知が届きますので、あとはそれを確認すればよいでしょう。今回は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350">Bug#925350</a>でした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Thank you for filing a new Bug report with Debian.
+
+You can follow progress on this Bug here: 925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350.
+
+This is an automatically generated reply to let you know your message
+has been received.
+
+Your message is being forwarded to the package maintainers and other
+interested parties for their attention; they will reply in due course.
+
+Your message has been sent to the package maintainer(s):
+ Debian Release Team &lt;debian-release@lists.debian.org&gt;
+
+If you wish to submit further information on this problem, please
+send it to 925350@bugs.debian.org.
+
+Please do not send mail to owner@bugs.debian.org unless you wish
+to report a problem with the Bug-tracking system.
+
+-- 
+925350: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925350
+Debian Bug Tracking System
+Contact owner@bugs.debian.org with problems
+</code></pre></div>
 					
 				</div>
 			</div>
@@ -366,17 +1041,20 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/03/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Mar 4, 2018
+								Thu, Mar 21, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -389,10 +1067,7 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>sylpheedパッケージの更新を放り込んだ</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=346388">sylpheedがJPilotサポートを既に落としてたので関連バグを閉じた</a></li>
-</ul>
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=925048">debootstrapにバグレポート来てた</a>から確認したが、報告者がミスってるだけだった…</p>
 
 					
 				</div>
@@ -405,17 +1080,20 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/03/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Mar 3, 2018
+								Mon, Mar 18, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -428,15 +1106,7 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>ここしばらくの作業とか。</p>
-
-<ul>
-<li>林さんの依頼で<a href="https://salsa.debian.org/debian/libhinawa">libhinawaをインポート</a></li>
-<li>birdfontが新しいvalacでコンパイルできない問題をupstreamに報告したら対応してもらえたので、<a href="https://tracker.debian.org/news/937423">更新してアップロード</a></li>
-<li><a href="https://tracker.debian.org/news/936899">libmojo-rabbitmq-client-perlパッケージをアップロード</a></li>
-<li><a href="https://tracker.debian.org/news/936895">libmojolicious-plugin-assetpack-perlパッケージをアップロード</a></li>
-<li>debootstrapパッケージと戯れたり。</li>
-</ul>
+						<p>RCバグでunstableにuploadされてNEW queue待ちのがあったようなので、タグ付けした。</p>
 
 					
 				</div>
@@ -449,17 +1119,20 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/03/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Feb 24, 2018
+								Sat, Mar 16, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -472,50 +1145,7 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>ここしばらくの作業とか。</p>
-
-<ul>
-<li><a href="https://tracker.debian.org/news/935657">jruby-joniパッケージを更新</a></li>
-<li>sphinx-intlパッケージ更新を目論んだが、チームメンテナンスにするためにsalsaに追加依頼。
-
-<ul>
-<li><a href="https://github.com/sphinx-doc/sphinx-intl/pull/21">reproducible buildパッチをupstreamにforward</a></li>
-</ul></li>
-<li>林さんの依頼でrepositoryをインポート
-
-<ul>
-<li><a href="https://salsa.debian.org/input-method-team/fcitx-imlist">fcitx-imlist</a>、アイコン追加。</li>
-<li><a href="https://salsa.debian.org/debian/groonga">groonga</a>、アイコン追加。</li>
-<li><a href="https://salsa.debian.org/debian/groonga-normalizer-mysql">groonga-normalizer-mysql</a></li>
-<li><a href="https://salsa.debian.org/debian/gntp-send">gntp-send</a></li>
-<li><a href="https://salsa.debian.org/debian/growl-for-linux">growl-for-linux</a></li>
-<li><a href="https://salsa.debian.org/debian/hal-flash">hal-flash</a></li>
-</ul></li>
-<li>倉敷さんの依頼でrepositoryをインポート
-
-<ul>
-<li><a href="https://salsa.debian.org/debian/goldencheetah">goldencheetah</a></li>
-<li><a href="https://salsa.debian.org/debian/yaskkserv">yaskkserv</a></li>
-</ul></li>
-<li>リポジトリをインポート
-
-<ul>
-<li><a href="https://salsa.debian.org/debian/tomoyo-tools">tomoyo-tools</a></li>
-<li><a href="https://salsa.debian.org/debian/riece">riece</a></li>
-</ul></li>
-</ul>
-
-<hr />
-
-<p>salsaは二要素認証にしていたのだが、何故かこれが動かなくなった。Laptopでは動作するがこれは困る&hellip;とメーリングリストで訪ねてみた所、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=889665">systemd(udev) のバグ修正</a>のサイドエフェクトで別パッケージ(libu2f-udev)が明示的に必要になった、ということだった。さらにFirefoxでもU2F使えるよ、という話も得られて塞翁が馬。</p>
-
-<hr />
-
-<p>salsaのCIでpiupartsを動かしたかったのだけど、どうもdocker上だとfailする。debootstrapがコケる、ということでBTS調べてlxcとかのパッチなどとマージして変更を加えてみた&hellip;のだけど、どうもlxcはテストしたけどlibvirt-lxcはどうなのかという確証が得られなくて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890867">docker向けだけにしてパッチを投げた</a>。</p>
-
-<p>BTSに投稿されてるのを何とかマージして整頓できないかな、ということでFedoraやArchでコケるよ問題のパッチを<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890418">検証してプッシュしてみた</a>のと、Ubuntuなどの派生distroでコケるぜ、みたいな話を追いかけてみたり。その間で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891009">別の問題（fallbackする先が間違ってしまう）</a>を見つけたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816892">sync -fするのはどうか、という話に首を突っ込んでみたり</a>。</p>
-
-<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798562">Kaliをサポートするためにコードをシェアできないのかね？というのにパッチ</a>したり、その上で<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798564">Kaliサポートの追加のパッチ</a>投げたり、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764851">謎の派生distroの追加要求に「まだ希望してる？」と問いかけたり</a>、Ubuntuで何も言わずにfailするので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=736995">Suggests: ubuntu-archive-keyring 追加してみるのはどうか？を改めて押したり</a>。</p>
+						<p>RCバグつぶし出来ないかなーと眺めて、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=867682">squid-deb-proxy-clientにパッチを送っておいた</a>。</p>
 
 					
 				</div>
@@ -528,136 +1158,6 @@ Now you can fetch popato/woody/sarge/etch/lenny/squeeze if you want.
 		
 	
 
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Feb 14, 2018
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/932687">rieceパッケージを更新</a></li>
-<li><a href="https://tracker.debian.org/news/932971">tiarraパッケージの修正が不十分で動かなかったのでもう一度修正してexperimentalへ</a></li>
-<li><a href="https://tracker.debian.org/news/932972">tomoyo-toolsパッケージを更新</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/02/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Feb 12, 2018
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/932275">mirmonパッケージを更新</a></li>
-<li><a href="https://tracker.debian.org/news/932269">sylpheedパッケージを更新</a>、<a href="https://salsa.debian.org/sylpheed-team/sylpheed/merge_requests/1">Merge Requestもやってみる</a></li>
-<li><a href="https://tracker.debian.org/news/932417">loquiパッケージを更新</a></li>
-</ul>
-
-<hr />
-
-<p>shutterのアップデートが放置されてたので、やってもいい？と聞いてみた。</p>
-
-<pre><code>shutter (0.94-1) UNRELEASED; urgency=medium
-
-  * Team upload
-
-  [ gregor herrmann ]
-  * Add libnet-oauth-perl to Recommends.
-    Needed by the Dropbox module. (LP: #1372050)
-
-  [ Hideki Yamane ]
-  * New upstream release (Closes: #887887)
-  * deian/control
-    - s/perlmagick/libimage-magick-perl/ (Closes: #789236)
-    - set Build-Depends: debhelper (&gt;= 11)
-    - set Standards-Version: 4.1.3
-  * debian/watch
-    - update to version 4
-  * debian/compat
-    - set 11
-  * debian/patches
-    - drop 0002-Force-utf8-for-retrieved-window-name-from-Gtk2.patch, merged
-      upstream
-    - drop 0003-Fix-error-on-executing-xdg-email.patch, merged upstream
-    - drop insecure_use_of_system.patch, merged upstream
-    - drop CVE-2016-10081.patch, merged upstream
-    - refresh fix-perl-system-calls
-
- -- Hideki Yamane &lt;henrich@debian.org&gt;  Mon, 12 Feb 2018 09:30:17 +0900
-</code></pre>
-
-<p>で、OK出たので<a href="https://tracker.debian.org/news/932299">アップロード</a></p>
-
-<hr />
-
-<p>チェック作業中にxfonts-*なパッケージを削除する必要があったので作業してたら、気になるメッセージ。</p>
-
-<pre><code>xfonts-75dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
-warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
-warning: /usr/share/fonts/X11/75dpi does not exist or is not a directory
-
-
-xfonts-100dpi (1:1.0.4+nmu1) の設定ファイルを削除しています ...
-warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
-warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
-</code></pre>
-
-<p>うーん、xfontsなパッケージ見てみるほうがいいかもしれない。GitLabの機能を使えば、X strike forceとsub projectを共有できたりするのかしら？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
 
         
 	</div>
@@ -950,6 +1450,7 @@ warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -964,7 +1465,7 @@ warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -973,18 +1474,10 @@ warning: /usr/share/fonts/X11/100dpi does not exist or is not a directory
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

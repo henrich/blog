@@ -1,41 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://henrich.github.io/blog/categories/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://henrich.github.io/blog/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://henrich.github.io/blog/post/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://henrich.github.io/blog/tags/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/tags/debian/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/categories/debian/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/post/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/tags/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2019/08/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2019/06/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2019/06/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -79,20 +88,18 @@
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/2019/05/15/ossummit-japan-2019%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%AB%E5%BF%9C%E5%8B%9F/</loc>
-    <lastmod>2019-05-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://henrich.github.io/blog/tags/oss/</loc>
     <lastmod>2019-05-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/categories/oss/</loc>
     <lastmod>2019-05-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/2019/05/15/ossummit-japan-2019%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%AB%E5%BF%9C%E5%8B%9F/</loc>
+    <lastmod>2019-05-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -103,13 +110,11 @@
   <url>
     <loc>https://henrich.github.io/blog/categories/pc/</loc>
     <lastmod>2019-05-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/tags/writing/</loc>
     <lastmod>2019-05-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -215,7 +220,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/unblock/</loc>
     <lastmod>2019-03-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -226,7 +230,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/release/</loc>
     <lastmod>2019-03-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -242,7 +245,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/bts/</loc>
     <lastmod>2019-03-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -273,7 +275,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/license/</loc>
     <lastmod>2019-03-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -304,7 +305,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/debianjp/</loc>
     <lastmod>2019-03-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -315,7 +315,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/dd/</loc>
     <lastmod>2019-02-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -341,7 +340,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/munin/</loc>
     <lastmod>2019-02-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -487,7 +485,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/debootstrap/</loc>
     <lastmod>2019-01-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -498,7 +495,6 @@
   <url>
     <loc>https://henrich.github.io/blog/categories/tips/</loc>
     <lastmod>2019-01-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -524,7 +520,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/patch/</loc>
     <lastmod>2018-12-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -535,7 +530,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/rcbug/</loc>
     <lastmod>2018-12-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -606,7 +600,6 @@
   <url>
     <loc>https://henrich.github.io/blog/categories/floss/</loc>
     <lastmod>2018-10-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -665,25 +658,23 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/tags/fedora/</loc>
+    <lastmod>2018-05-05T14:40:09+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2018/05/05/fedora28%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%92%E8%A6%8B%E3%81%A6/</loc>
     <lastmod>2018-05-05T14:40:09+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://henrich.github.io/blog/tags/fedora/</loc>
-    <lastmod>2018-05-05T14:40:09+09:00</lastmod>
-    <priority>0</priority>
+    <loc>https://henrich.github.io/blog/tags/vyos/</loc>
+    <lastmod>2018-05-04T12:03:23+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/2018/05/04/vyos%E3%82%92%E3%82%82%E3%81%86%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E7%9C%BA%E3%82%81%E3%82%8B/</loc>
     <lastmod>2018-05-04T12:03:23+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://henrich.github.io/blog/tags/vyos/</loc>
-    <lastmod>2018-05-04T12:03:23+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -704,7 +695,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/etc/</loc>
     <lastmod>2018-04-29T22:23:46+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -810,7 +800,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/git/</loc>
     <lastmod>2018-01-28T09:16:36+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -881,7 +870,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/gpg/</loc>
     <lastmod>2017-12-17T17:42:42+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1107,13 +1095,11 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/event/</loc>
     <lastmod>2017-09-17T20:14:49+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://henrich.github.io/blog/tags/infra/</loc>
     <lastmod>2017-09-17T20:14:49+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1199,7 +1185,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/todo/</loc>
     <lastmod>2017-08-17T06:26:14+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1353,6 +1338,16 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/2017/07/02/cvs%E3%81%8B%E3%82%89git%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C/</loc>
+    <lastmod>2017-07-02T17:16:43+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://henrich.github.io/blog/tags/proposal/</loc>
+    <lastmod>2017-07-02T17:16:43+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2017/07/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
     <lastmod>2017-07-02T08:08:23+09:00</lastmod>
   </url>
@@ -1360,12 +1355,6 @@
   <url>
     <loc>https://henrich.github.io/blog/2017/07/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/</loc>
     <lastmod>2017-07-01T08:28:22+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://henrich.github.io/blog/tags/proposal/</loc>
-    <lastmod>2017-06-30T23:48:25+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1404,6 +1393,11 @@
   </url>
   
   <url>
+    <loc>https://henrich.github.io/blog/2017/06/26/lintian-systemd-service-file-missing/</loc>
+    <lastmod>2017-06-26T20:46:16+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://henrich.github.io/blog/2016/02/13/iso%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%A6emergency-mode%E3%81%A7%E8%B5%B7%E5%8B%95/</loc>
     <lastmod>2016-02-13T00:00:00+09:00</lastmod>
   </url>
@@ -1411,7 +1405,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/trouble/</loc>
     <lastmod>2016-02-13T00:00:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1427,7 +1420,6 @@
   <url>
     <loc>https://henrich.github.io/blog/tags/upstream/</loc>
     <lastmod>2015-11-15T00:00:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

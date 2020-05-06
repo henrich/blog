@@ -73,28 +73,24 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<p>色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな
-* カーネル内のドライバ
-* カーネルのソースに含まれているtools/hv内のデーモン</p>
-
+			<p>色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな</p>
+<ul>
+<li>カーネル内のドライバ</li>
+<li>カーネルのソースに含まれているtools/hv内のデーモン</li>
+</ul>
 <p>ドライバについては、Jessieの3.16のに4.0ベースのとかをそのままbackportして大丈夫なのかな。ビルドできれば影響範囲はhvドライバのみに収まるような気もする。とりあえず、今のカーネルのをそのまま使うでも使えるっぽい。</p>
-
 <p>デーモンについては<a href="http://yamanxworld.blogspot.jp/2015/02/hyper-v-and-linuxfreebsd.html">こちらにまとめられている</a>が、RHEL/Fedora系統だとhyperv-daemonsメタパッケージに依存している各パッケージで提供しているようだ（はて、デーモンごとにパッケージが細分化されていて、なぜかライセンスも別パッケージになってる…？）。Ubuntuはバージョンごとに色々違うようだ。さて、どうするかな…と思ったが、hyperv-daemonsパッケージでいいかな、と。あとはsystemdサービスをFedoraからパチってきた。それから調整、っと。。。</p>
-
-<p>dh-systemdは以下の理由から使わない方向で、installファイルでコピーするだけにした
-* そもそものパッケージの構成が複雑でdh使ってないので dh $@ &ndash;with systemd が指定できない
-* パッケージ名とサービス名が違う（サービスが３つもある）</p>
-
+<p>dh-systemdは以下の理由から使わない方向で、installファイルでコピーするだけにした</p>
+<ul>
+<li>そもそものパッケージの構成が複雑でdh使ってないので dh $@ &ndash;with systemd が指定できない</li>
+<li>パッケージ名とサービス名が違う（サービスが３つもある）</li>
+</ul>
 <p>途中までで、とりあえず<a href="bugs.debian.org/cgi-bin/bugreport.cgi?bug=782761">無くならないようにパッチを投げておく</a>。</p>
-
 <p>あとはdescriptionをまともにする</p>
-
 <p>実際にHyper-V上のDebianで動作を確認する…ってどうやるんだ？Azureでいいか。</p>
-
 <p>Azureで仮想マシンを作る…ってそのままだとギャラリーにはDebianイメージ無いので、VMDepotという
 ここで有志が作っているイメージを使わせてもらう。とはいえ、どの程度の信頼性が置けるものかというものはあるけども。
 ログインしたらshellが/bin/shだった。chshして、bash-completion入れて、upgradeしてrebootして再度。。。って妙にrebootに時間がかかるな。繋がらない？</p>
-
 <pre><code>sudo systemctl start Failed to get D-Bus connection: No such file or directory
 Failed to get D-Bus connection: No such file or directory
 Failed to get D-Bus connection: No such file or directory
@@ -103,17 +99,12 @@ Failed to get D-Bus connection: No such file or directory
 Failed to get D-Bus connection: No such file or directory
 Failed to get D-Bus connection: No such file or directory
 Failed to get D-Bus connection: No such file or directory
-</code></pre>
-
-<p>あれ。service見当たらないな…手動で起動した。これはパッケージを直す必要があるなぁ。
+</code></pre><p>あれ。service見当たらないな…手動で起動した。これはパッケージを直す必要があるなぁ。
 でも、３つのサービスのうち、一つが起動しない。ってserviceファイルに/dev/vmbus/hv_fcopyが必要って書いたけど/dev/vmbusが無いんだな。これはHyper-VだとあってAzureだと無いのか、それともVMDepotのJessieがアレで見つからないのか？→CentOSベースのをAzureで立ち上げたが同様に/dev/vmbusは無い。はて、Hyper-VとAzureのは若干違うのか、それとも元にしたFedoraのがアレなのか。皿に検索すると<a href="http://dpdk.org/dev/patchwork/patch/2989/">何かへのパッチの投稿</a>が見つかった、がこれだと「/sys/bus/vmbus」って書いてあるけど、こっちが正解じゃない？…いや<a href="http://www.serverphorums.com/read.php?12,1049452">/dev/vmbusがある</a>のもあるな。。。</p>
-
 <p>README.Debianも追加したほうが良いかな？こんな感じで…</p>
-
 <pre><code>If you want to change screen resolution, please add &quot;video=hyperv_fb:vertical x horizontal&quot; to GRUB_CMDLINE_LINUX in /etc/default/grub and run update-grub
 e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
 </code></pre>
-
 		</div>
 	</div>
 	<div class="row">
@@ -128,7 +119,7 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -136,10 +127,6 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,17 +57,21 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/20/initfamrs-tools%E3%81%AE%E3%83%90%E3%82%B0%E3%82%92%E8%B8%8F%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F/">initfamrs-toolsのバグを踏んでいた</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Thu, Dec 20, 2018
+								Sat, Apr 20, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -80,25 +84,401 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>先日btrfsが破滅して入れ直しをしたThinkPad、久々に再起動してみたらkernel panicに。？？？と思って一つ前のカーネルで試すとそちらもkernel panic。最後に一番古いカーネルでbootを試したら上手くいった。</p>
+						<p>fluentdのrubyサポートバージョンについて、<a href="https://github.com/fluent/fluentd/issues/2380?fbclid=IwAR2GhPl7EEX5m-bTf4GbfTzc3yex5N-2bHReQ5B07-tdP6QnQ_Oqz-upo0w">各distroではこうなんだから、もう切っちゃっても良いんじゃない？</a>というのを書いてきた。まぁ、継続されても別に問題はないんだけど。</p>
+<hr>
+<p>で、パッケージング。通ったり通らなかったりするテストを落として、名前がかぶるテストを名前変えて、ようやく100%通るように。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#f92672">-------------------------------------------------------------------------------</span>
+<span style="color:#ae81ff">2705</span> tests, <span style="color:#ae81ff">10932</span> assertions, <span style="color:#ae81ff">0</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">0</span> pendings, <span style="color:#ae81ff">0</span> omissions, <span style="color:#ae81ff">0</span> notifications  
+<span style="color:#ae81ff">100</span><span style="color:#f92672">%</span> passed
+<span style="color:#f92672">-------------------------------------------------------------------------------</span>
+<span style="color:#ae81ff">3</span><span style="color:#f92672">.</span><span style="color:#ae81ff">13</span> tests<span style="color:#f92672">/</span>s, <span style="color:#ae81ff">12</span><span style="color:#f92672">.</span><span style="color:#ae81ff">67</span> assertions<span style="color:#f92672">/</span>s
+rake aborted!
+</code></pre></div><p>ちょ、なんで100% passedなのに<code>rake aborted!</code>なのよ？このために止まってる。</p>
 
-<p>？？？と思って調べてみると、どうやらinirdの行が存在してない…ってinitramfsなファイルがbootしたカーネル以外では存在してない！ということでinitramfsの作り方を調べて <code>sudo update-initramfs -c -k 4.9.0-3-amd64</code> のようにしてみる…が、何も起こらない。エラーも起きない。何か設定が必要だったりするのか？といろいろ探し回った末に奇妙なことを見つけた。</p>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
 
-<pre><code class="language-bash">$ LC_ALL=C ls -al /usr/sbin/update-initramfs*
-lrwxrwxrwx 1 root root    9 Oct 24 11:14 /usr/sbin/update-initramfs -&gt; /bin/true
--rwxr-xr-x 1 root root 7093 Jul 26 02:16 /usr/sbin/update-initramfs.distrib
-</code></pre>
 
-<p>あかんがなー！！！どうやらupdate-initramfs.distrib側が本体だろうな、と <code>sudo update-initramfs/distrib -c -k 4.9.0-3-amd64</code> のようにすると無事にイメージが作られたので、<code>update-grub</code> を実行して変更を反映、再起動すると無事起動できた。更に調べたところ</p>
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Apr 19, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>武藤さんに<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927263">rieceが起動しないバグ</a>を見つけてもらって、木下さんにも助力いただき対応策が分かったので適用して閉じた</p>
 
-<pre><code class="language-bash">$ dpkg -L initramfs-tools
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Apr 16, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>まずは<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926570">ruby-sigdumpパッケージが入った</a>。これでbuild用の独自chroot環境なくすのに一歩近づいた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Apr 15, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>残りのメモ。まだ長いなぁ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
+    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
+    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
+    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
+    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
+    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
+    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
+    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
+</code></pre></div>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/14/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Apr 14, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ひたすらbad smellを消す作業。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
+    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
+    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
+    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
+    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
+    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
+    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
+    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
+</code></pre></div><p>octiconsはやたら以前にupstreamブランチをマージしたけど、依存パッケージが多くなってしまっていてどうしたものか…</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
+    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+</code></pre></div><p><code>debian/copyright</code>が旧形式で書き直し必要だよ…後日。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Apr 13, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://trends.debian.net">trends.debian.net</a>より</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hideki Yamane &lt;henrich@debian.org&gt;
+
+    fontforge (U)        should switch to dh. Current build system: cdbs (source version: 1:20170731~dfsg-1)
+    fontforge (U)        git repository still hosted on alioth. Should move to salsa. (source version: 1:20170731~dfsg-1)
+    fonts-arphic-bsmi00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.10-17)
+    fonts-arphic-gbsn00lp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-arphic-gkai00mp (U) git repository still hosted on alioth. Should move to salsa. (source version: 2.11-15)
+    fonts-breip (U)      git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.1-1)
+    fonts-dejima-mincho (U) git repository still hosted on alioth. Should move to salsa. (source version: 227-15)
+    fonts-ipafont (U)    git repository still hosted on alioth. Should move to salsa. (source version: 00303-18)
+    fonts-kacst (U)      does not use a VCS for package maintenance. should switch to git on salsa. (source version: 2.01+mry-14)
+    fonts-kacst-one (U)  git repository still hosted on alioth. Should move to salsa. (source version: 5.0+svn11846-9)
+    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
+    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
+    fonts-kouzan-mouhitsu (U) git repository still hosted on alioth. Should move to salsa. (source version: 20170411-2)
+    fonts-motoya-l-cedar (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-motoya-l-maruberi (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.01-4)
+    fonts-oradano-mincho-gsrr (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.2018-1)
+    fonts-ricty-diminished (U) git repository still hosted on alioth. Should move to salsa. (source version: 4.1.1-1)
+    fonts-takao (U)      git repository still hosted on alioth. Should move to salsa. (source version: 00303.01-2)
+    libexport-attrs-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.0-1)
+    libmojolicious-plugin-renderfile-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.12-1)
+    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
+    libsql-tokenizer-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.24-2)
+    libtest-mock-time-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.1.7-1)
+    libtime-mock-perl (U) git repository still hosted on alioth. Should move to salsa. (source version: 0.0.2-2)
+    octicons (U)         git repository still hosted on alioth. Should move to salsa. (source version: 4.4.0-2)
+    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
+    ruby-twitter-text (U) git repository still hosted on alioth. Should move to salsa. (source version: 1.14.7+conformance-1)
+</code></pre></div><p>とりあえず以下を対処。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    libspiro (U)         git repository still hosted on alioth. Should move to salsa. (source version: 1:0.5.20150702-7)
+    fonts-kiloji (U)     git repository still hosted on alioth. Should move to salsa. (source version: 1:2.1.0-23)
+    fonts-konatu (U)     git repository still hosted on alioth. Should move to salsa. (source version: 20121218-8)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">    ruby-flexmock (U)    git repository still hosted on alioth. Should move to salsa. (source version: 2.0.4-1)
+</code></pre></div><p>はデータが古い？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/10/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Apr 10, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>fluentd</code>パッケージングでのテストエラー続き。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">? <span style="color:#e6db74">Encoding</span>: <span style="color:#66d9ef">US</span><span style="color:#f92672">-</span><span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span>
+<span style="color:#f92672">===============================================================================</span>
+: (<span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">005571</span>)
+    test: should output compressed file <span style="color:#66d9ef">when</span> compress option is <span style="color:#e6db74">gzip</span>:   F
+<span style="color:#f92672">===============================================================================</span>
+<span style="color:#e6db74">Failure</span>: test: should output compressed file <span style="color:#66d9ef">when</span> compress option is gzip(<span style="color:#66d9ef">FileOutputSecondaryTest</span><span style="color:#f92672">::</span>write)
+<span style="color:#e6db74">/build/</span>fluentd<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">.</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>plugin<span style="color:#f92672">/</span>test_out_secondary_file<span style="color:#f92672">.</span>rb:<span style="color:#ae81ff">129</span><span style="color:#e6db74">:in</span> <span style="color:#e6db74">`check_gzipped_result&#39;
+</span><span style="color:#e6db74">/build/fluentd-1.4.2/test/plugin/test_out_secondary_file.rb:154:in `</span>block (<span style="color:#ae81ff">2</span> levels) <span style="color:#66d9ef">in</span> <span style="color:#f92672">&lt;</span><span style="color:#e6db74">class</span>:<span style="color:#66d9ef">FileOutputSecondaryTest</span><span style="color:#f92672">&gt;</span><span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">     151:       path = d.instance.write(@chunk)
+</span><span style="color:#e6db74">     152: 
+</span><span style="color:#e6db74">     153:       assert_equal &#34;#{TMP_DIR}/out_file_test.0.gz&#34;, path
+</span><span style="color:#e6db74">  =&gt; 154:       check_gzipped_result(path, @es.to_msgpack_stream.force_encoding(&#39;</span><span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span><span style="color:#e6db74">&#39;))
+</span><span style="color:#e6db74">     155:     end
+</span><span style="color:#e6db74">     156: 
+</span><span style="color:#e6db74">     157:     test &#39;</span>should output plain text <span style="color:#66d9ef">when</span> compress option is default(text)<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">do</span>
+<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x92\xD7\x00\\\xAC\x83\x81\x04\x04</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\x9F\x81\xA3</span><span style="color:#e6db74">key</span><span style="color:#ae81ff">\xA5</span><span style="color:#e6db74">value&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">ASCII</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#66d9ef">BIT</span>) expected but was
+<span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x92\xD7\x00\\\xAC\x83\x81\x04\x04</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\x9F\x81\xA3</span><span style="color:#e6db74">key</span><span style="color:#ae81ff">\xA5</span><span style="color:#e6db74">value&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">US</span><span style="color:#f92672">-</span><span style="color:#66d9ef">ASCII</span>)
+
+<span style="color:#e6db74">diff</span>:
+  <span style="color:#960050;background-color:#1e0010">潰</span><span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">@</span>\<span style="color:#960050;background-color:#1e0010">ｬメ</span><span style="color:#f92672">^</span>D<span style="color:#f92672">^</span><span style="color:#66d9ef">DZ氈</span><span style="color:#960050;background-color:#1e0010">｣</span>key<span style="color:#960050;background-color:#1e0010">･</span>value
+</code></pre></div><p>文字列の比較のようだが、同じ様に見える…のにエンコーディングが違う？どこでこのエンコーディング指定してるのだろう？とTravis CIのログをみてなるほどーとなってパッチ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#66d9ef">Gem2Deb</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Rake</span><span style="color:#f92672">::</span><span style="color:#66d9ef">TestTask</span><span style="color:#f92672">.</span>new <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>t<span style="color:#f92672">|</span>
+    t<span style="color:#f92672">.</span>libs <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test&#39;</span><span style="color:#f92672">]</span>
+    t<span style="color:#f92672">.</span>test_files <span style="color:#f92672">=</span> <span style="color:#66d9ef">FileList</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test/**/*_test.rb&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">FileList</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;test/**/test_*.rb&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">+</span>   t<span style="color:#f92672">.</span>ruby_opts <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;-Eascii-8bit:ascii-8bit&#34;</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p>しかし、エラーがどうしても一つ潰せず、<a href="https://github.com/fluent/fluentd/issues/2375">upstreamにIssueを上げた</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/04/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Apr 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>fluentd</code>のビルド…テストがエラーになる。</p>
+<pre><code class="language-error" data-lang="error">2748 tests, 11159 assertions, 15 failures, 3 errors, 0 pendings, 0 omissions, 1 notifications
+</code></pre><p>という感じ。見ていく。</p>
+<pre><code class="language-error" data-lang="error">Failure: test: dump txt[--format=markdown --verbose --compact](TestFluentPluginConfigFormatter::arguments):
+  Exception raised:
+  Errno::ENOENT(&lt;No such file or directory @ realpath_rec - /build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates&gt;)
+/build/fluentd-1.4.2/test/command/test_plugin_config_formatter.rb:270:in `block (3 levels) in &lt;class:TestFluentPluginConfigFormatter&gt;'
+</code></pre><pre><code class="language-error" data-lang="error"># grep templates -r ./
 (snip)
-diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
-</code></pre>
-
-<p>ということで <code>pkgsel</code> なるパッケージがこれを実施したことが判明。
-じゃぁ、と <code>apt show pkgsel</code> しても出てこない…あ、これはudebだね、ということで<a href="https://packages.debian.org/sid/pkgsel">サイト</a>を確認…あたり。
-<code>apt source pkgsel</code> して <code>debian/changelog</code> をみたら <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912073">Bug#912073</a> を踏んでいたと判明。んもー。寝る前の貴重な時間が…</p>
+./lib/fluent/command/plugin_generator.rb:    (Pathname(__dir__) + &quot;../../../templates/new_gem&quot;).realpath
+./lib/fluent/command/plugin_config_formatter.rb:    (Pathname(__dir__) + &quot;../../../templates/plugin_config_formatter/#{name}&quot;).realpath
+</code></pre><p><code>/build/fluentd-1.4.2/templates</code>を見たいのに<code>/build/fluentd-1.4.2/debian/fluentd/usr/lib/ruby/templates</code>を参照しにいってるので、ここを直せば良い。<a href="https://salsa.debian.org/ruby-team/fluentd/blob/debian/sid/debian/patches/0004-move-templates-to-appropriate-path.patch">templatesをlib配下に持っていって相対パスをadjustする</a>のがよいかね。</p>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+/usr/lib/ruby/vendor_ruby/flexmock/core.rb:92: warning: instance variable @flexmock_closed not initialized
+</code></pre></div><p>とwarningが5万行も出ていたので、<code>ruby-flexmock</code>パッケージになにか問題が？と思って見てみると2年ほど更新が滞ってる。パッケージメンテナが降りてしまってるので、<a href="https://tracker.debian.org/news/1037732/accepted-ruby-flexmock-236-1-source-into-unstable/">自分を加えて更新してアップロードした</a>。</p>
+<hr>
+<p>psがない！というエラーが出ていたので、これは最小環境に<code>procps</code>パッケージが入ってないことによるものだったので、さくっと解決。</p>
+<hr>
+<p>しかしまだまだtest failureは続く…。</p>
 
 					
 				</div>
@@ -111,16 +491,16 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/08/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Thu, Dec 20, 2018
+								Mon, Apr 8, 2019
 							</span>&nbsp;in
 							
 								
@@ -137,15 +517,16 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li>水野さんの<a href="https://tracker.debian.org/news/1012874/accepted-silversearcher-ag-220-1-source-amd64-into-unstable/">silversearcher-agパッケージをアップロード</a>した。
-
+						<p>パッケージング、残りは<code>ruby-strptime</code>と<code>ruby-tzinfo-data</code>か、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=926621">ruby-strptimeのITP作業</a>した。<code>ruby-tzinfo-data</code>の方はtzdataを引っ張ってこれない環境だと必要なのでは？と判断して削る方向で…あ、<a href="https://bugs.debian.org/926623">ruby-parallel-tests</a>も追加。</p>
+<p>これで大体依存関係終わったかな…。</p>
 <ul>
-<li>あわせて<a href="https://salsa.debian.org/debian/silversearcher-ag">salsa.debian.orgにリポジトリを追加</a>し、権限を付与した</li>
-<li>さらに<a href="https://salsa.debian.org/debian/silversearcher-ag-el">silversearcher-ag-el</a>も追加</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/1013035/accepted-birdfont-2250-1-source-into-unstable/">birdfontパッケージをアップデート</a>した</li>
+<li><a href="https://bugs.debian.org/926266">ruby-cool.io</a></li>
+<li><a href="https://bugs.debian.org/926570">ruby-sigdump</a></li>
+<li><a href="https://bugs.debian.org/926572">ruby-serverengine</a></li>
+<li><a href="https://bugs.debian.org/926621">ruby-strptime</a></li>
+<li><a href="https://bugs.debian.org/926623">ruby-parallel-tests</a></li>
 </ul>
+<p>ここまで来て、ようやく<code>fluentd</code>のパッケージングに再度入れる。</p>
 
 					
 				</div>
@@ -158,16 +539,16 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/04/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sun, Dec 16, 2018
+								Sun, Apr 7, 2019
 							</span>&nbsp;in
 							
 								
@@ -184,15 +565,11 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li><a href="https://tracker.debian.org/news/1011722/accepted-ruby-rspec-instafail-100-4-source-into-unstable/">ruby-rspec-instafailパッケージをアップデート</a>した</li>
-<li><a href="https://tracker.debian.org/news/1011716/accepted-ruby-childprocess-090-1-source-into-unstable/">ruby-childprocessパッケージをアップデート</a>した</li>
-<li>twitterで不具合話を拾ったので、<a href="https://tracker.debian.org/news/1011713/accepted-fonts-unfonts-core-1102-080608-16-source-into-unstable/">fonts-unfonts-coreパッケージをアップデート</a>した
+						<p>先日<code>gem2deb</code>で変換した<code>ruby-dig-rb</code>を仕上げておこうとしてdescription書く際に<a href="https://github.com/jrochkind/dig_rb">サイト</a>を見て「ん？」と気付く。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Ruby 2.3.0 introduced #dig on Hash, Array, and Struct. With this gem, you can have dig on ruby pre 2.3.0, or any ruby lacking dig.
 
-<ul>
-<li>fontforgeコマンドの指定で <code>Open(&quot;UnDinaruLight.ttf&quot;)</code> のようにくくってやらないとエラーになることに気付くまでに時間を要してしまった…。</li>
-</ul></li>
-</ul>
+If you are writing an app and want to use dig in it you should probably just upgrade to ruby 2.3.0. But if you are writing a gem and want it to work with both MRI 2.3.0 and others (including JRuby 9.0.x), this gem is for you. This gem only adds #dig methods if they aren&#39;t already defined, so it&#39;s safe to use in code that is for all rubies, if run on MRI 2.3.0 you&#39;ll still be using native #dig, otherwise dig_rb&#39;s implementation.
+</code></pre></div><p>Ruby2.3で同じ機能を導入してるから、CRuby以外の実装で必要だ、という場合以外は不要だということか&hellip;。んでは無視しよう。<a href="https://github.com/fluent/fluentd/pull/2372">fluentdにはPR上げてみておいた</a>。</p>
 
 					
 				</div>
@@ -205,479 +582,6 @@ diverted by pkgsel to: /usr/sbin/update-initramfs.distrib
 		
 	
 
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/12/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Dec 15, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://tracker.debian.org/news/1011506/accepted-ruby-aruba-0146-3-source-into-unstable/">ruby-arubaパッケージをアップデート</a>した。</p>
-
-<p>autopkgtestが <code>debian/control</code> での <code>Testsuite: autopkgtest-pkg-ruby</code> 行を起点として実施される（実際は <code>debian/ruby-tests.rake</code> ファイルが実行されるのかな？）のだけど、この際に <code>gemspec</code> ファイルの中身が実行される。ところがここで <code>git</code> コマンドを使ってファイルの有無を確認するという形になってしまっていて、git への依存関係がないのでコケるという悲しい状態だった。</p>
-
-<pre><code class="language-Ruby">  s.files            = `git ls-files`.split(&quot;\n&quot;)
-  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
-  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
-</code></pre>
-
-<p>しかもどうやらこれはbundlerの雛形がそうなってるという…何なんだRuby。daiさんに Dir 使うというのを教えてもらってパッチを作って対処、<a href="https://bugs.debian.org/910953">Bug#910953</a>をクローズ。</p>
-
-<pre><code class="language-Ruby">diff --git a/aruba.gemspec b/aruba.gemspec
-index c6ac3e7..1581e98 100644
---- a/aruba.gemspec
-+++ b/aruba.gemspec
-@@ -40,9 +40,9 @@ With aruba &gt;= 1.0 there will be breaking changes. Make sure to read https://gith
- EOS
-   end
-
--  s.files            = `git ls-files`.split(&quot;\n&quot;)
--  s.test_files       = `git ls-files -- {spec,features}/*`.split(&quot;\n&quot;)
--  s.executables      = `git ls-files -- bin/*`.split(&quot;\n&quot;).map{ |f| File.basename(f) }
-+  s.files            = Dir['**/*'].reject { |f| f =~ %r{^debian/} }
-+  s.test_files       = Dir['spec/*,features/*']
-+  s.executables      = Dir['bin/*'].map{ |f| File.basename(f) }
-   s.rdoc_options     = [&quot;--charset=UTF-8&quot;]
-   s.require_path     = &quot;lib&quot;
- end
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/11/26/retrospective-2018-11-26/">Retrospective 2018 11 26</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Nov 26, 2018
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>すっかりかまけてしまったので、思い出しつつ何やったかとか…。</p>
-
-<ul>
-<li><a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a> のIPv6逆引きの設定変更を依頼されたので、さくらさんに依頼→受理された</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914448">eclipseパッケージの削除依頼が登録された</a>ため、依存するパッケージである<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=914566">Pleiadesも削除依頼が登録された</a>。正直複雑な心境。
-
-<ul>
-<li>Eclipseを再パッケージしなおせばいいのだろうが、どうやるのかさっぱりだよな…</li>
-</ul></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=909426">psphereパッケージを削除</a>。これは問題なし。</li>
-<li><a href="https://tracker.debian.org/news/1004788/accepted-fonts-sawarabi-mincho-20181115-1-source-into-unstable/">fonts-sawarabi-minchoパッケージを更新</a>、単にフォントファイルが指定位置にあるかを確認するだけというsmokeテストを追加。これ、フォントファイルとして認識できる（壊れてない）というのも追加したほうが本当は良さそう</li>
-<li>fonts-ibm-plexが追加された、というのを見て中身をチラ見したら<code>debian/upstream/metadata</code>ファイルが追加されてた。これは真似ると良さそう
-
-<ul>
-<li>その流れで他のパッケージの<code>debian/upstream/metadata</code>ファイル見てみたら、saneのがalioth指定したままだった…ので<a href="https://salsa.debian.org/debian/sane-backends/merge_requests/2">merge request</a></li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/1005906/accepted-snapper-081-1-source-into-unstable/">snapperパッケージの更新</a>。<a href="https://wiki.debian.org/UpstreamMetadata">Wiki</a>を参考にして、<code>debian/upstream/metadata</code>ファイルを追加してみた。
-
-<ul>
-<li>ついでにbackportsパッケージも生成。</li>
-<li>水野さんにmetadataの作り方をpingしておく</li>
-</ul></li>
-<li><a href="https://tracker.debian.org/news/1005996/accepted-libuninameslist-20180701-1-source-into-unstable/">libuninameslistパッケージの更新</a>。
-
-<ul>
-<li>しかし、<code>python binding</code>が有効になっていない…configure.acではpythonの所在を確認している。</li>
-<li>これも<code>metadata</code>作るか？</li>
-</ul></li>
-<li><a href="https://lists.debian.org/debian-devel/2018/11/msg00640.html">メールを投げてみる</a>→「unstableを快適にするのじゃなくて、freezeを改善する方に力入れようぜ！」というような反応。</li>
-</ul>
-
-<p>Todo の書き出しとか…。</p>
-
-<ul>
-<li><code>Natural Language Processing (Japanese) &lt;team+pkg-nlp-ja@tracker.debian.org&gt;</code> 配下になっているパッケージ、少なすぎ？と思ったら <code>&quot;Natural Language Processing (Japanese)&quot; &lt;team+pkgnlpja@tracker.debian.org&gt;</code> もあった。どっちの表記が正しいのだ？本来であればidentiferの部分で<code>-</code>が含まれていてもきちんと処理されるのが理想なはずだが。
-
-<ul>
-<li><a href="https://tracker.debian.org/teams/pkg-nlp-ja/">trackerページ</a>を作り直してみた。</li>
-</ul></li>
-<li>mecab-ipadicとか、辞書パッケージの統一した扱いを何とか…</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/10/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Oct 2, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>[jcodings]()と[jruby-joni]()のアップデート。jcodingsではメンテナアドレスを戻した際に書き間違えるというポカをやらかして、慌てて再アップロードした。jruby-joniはアップロード後にさらにupstreamが新しいバージョンを出しているようだったので、こちらは後日対処予定。</li>
-<li>os-autoinst、arm* やら mips* などでテストがコケるのだが何故だろう？と思って手元のBBBでテストしたが、qemuを起動している時にメモリサイズが足らなくてqemuが立ち上がらずにテストが実行できずにエラーになってしまった…builddの方は問題なく動作しているので、手元での問題。ログでwgetがらみのエラーが出てたところがあったので、build-dependsに追加してみたが、はてさて。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/10/01/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Oct 1, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>依頼を受けたので</p>
-
-<pre><code>$ dcut dm --uid 0xD22C1A883455D448 --allow fcitx-dbus-status fcitx-imlist gntp-send groonga growl-for-linux hal-flash libsylph sylfilter sylph-searcher sylpheed groonga-normalizer-mysql
-</code></pre>
-
-<p>として林さんのDM uploadを設定しておいた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/26/hp-elitebook-830-g5%E3%81%A7%E8%8B%A6%E3%81%97%E3%82%80/">HP Elitebook 830 G5で苦しむ</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Sep 26, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>debian-installerが何をやっても画面がブランクになってしまってDebianがインストールできないという。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Sep 25, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>birdfont</code>パッケージ、<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-i386&amp;ver=2.23.0-1&amp;stamp=1537307881&amp;raw=0">kfreebsd-i386</a>と<a href="https://buildd.debian.org/status/fetch.php?pkg=birdfont&amp;arch=kfreebsd-amd64&amp;ver=2.23.0-1&amp;stamp=1537300422&amp;raw=0">kfreebsd-amd64</a>で同じエラー…。</li>
-</ul>
-
-<pre><code class="language-make">rm debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf
-rm: cannot remove 'debian/birdfont/usr/share/birdfont/Roboto-Regular.ttf': No such file or directory
-make[1]: *** [debian/rules:20: override_dh_auto_install] Error 1
-</code></pre>
-
-<p>なぜエラーになるのか？ <code>debian/rules</code> をちょっと直して様子見するか？…と思ったが、既にdebian/patchesで削ったのを準備済みだったのでアップロードした</p>
-
-<ul>
-<li><code>vmdk-stream-converter</code> の tag push を忘れていた…</li>
-<li><code>libsql-splitstatement-perl</code> を更新</li>
-<li><code>libdbix-class-optimisticlocking-perl</code> を更新</li>
-<li><code>libdbix-class-schema-config-perl</code> は Perlのバージョンアップに伴ってだろうか、モジュールが欠けてたので追加。</li>
-</ul>
-
-<pre><code class="language-shell">$ cat debian/upstream/metadata
----
-Archive: CPAN
-Contact: Brian Phillips &lt;bphillips@cpan.org&gt;
-Name: DBIx-Class-OptimisticLocking
-Repository: http://github.com/brianphillips/dbix-class-optimisticlocking
-</code></pre>
-
-<p><code>debian/upstream/metadata</code> はこういうのを書くのかぁ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2018/09/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Sep 24, 2018
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-								 , 
-								<a href="/categories/floss">floss</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>os-autoinstパッケージを放置していたので、アップデート作業を実施。</p>
-
-<ul>
-<li>upstreamをpullしてdebian/sidブランチにmerge</li>
-<li>ビルド…するも、testでエラーが出る。しかもランダム。どうも test が serial に実施される前提で書かれていて、ある test での input file が別の test でも使われてたりする＆その test 実施後に削除されたりするので、順序によっては input file が存在しない、ということでエラーになったりするようだ。仕方がないので <code>--no-parallel</code> オプションを dh_auto_test につけて <code>make -j1</code> で実行されるようにする</li>
-<li>それでも 02-test_ocr.t だけがコケ続けたりする（上記の際にはごくごく稀にだが成功したりする…）。<code>t/02-test_ocr.t.log</code> を見てみる…。</li>
-</ul>
-
-<pre><code class="language-debug">FAIL: 02-test_ocr.t
-===================
-
-Use of uninitialized value in index at ../needle.pm line 44.
-Use of uninitialized value $bmwqemu::vars{&quot;PRJDIR&quot;} in addition (+) at ../needle.pm line 45.
-[2018-09-24T07:08:55.0584 UTC] [debug] MATCH(bootmenu-ocr.ref:1.00)
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-Tesseract Open Source OCR Engine v4.0.0-beta.4-50-g07acc with Leptonica
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 138
-Warning. Invalid resolution 0 dpi. Using 70 instead.
-Estimating resolution as 132
-#   Failed test 'multiple OCR regions'
-#   at ./02-test_ocr.t line 42.
-1..2
-# Looks like you failed 1 test of 2.
-FAIL 02-test_ocr.t (exit status: 1)
-</code></pre>
-
-<ul>
-<li>最初は <code>Warning. Invalid resolution 0 dpi. Using 70 instead.</code> というエラーメッセージからテストデータの png ファイルに解像度データが存在しないことが原因だろう…と推測して convert コマンドで <code>convert a.png -density 300 -units PixelsPerInch b.png</code> のようにして埋め込んだのだが、さっぱり出力が変わらない。</li>
-<li>ぐぐったところ<a href="https://blog.machine-powers.net/2018/08/02/learning-tesseract-command-utility/">「tesseractコマンドの実行時に、下記のメッセージが表示されますが、これは内部で使用している画像処理ライブラリ（Leptonica）の警告メッセージで無視して問題ないです。」</a>という説明のページを見つけてへたりこんだり。</li>
-<li>どうしたらいいのかなぁ、ということで、一体何が起きてるのかをprintデバッグしよう、と <code>Data::Dumper</code> を使う</li>
-</ul>
-
-<pre><code class="language-perl">use Data::Dumper;
-...
-print Dumper $ocr;
-</code></pre>
-
-<ul>
-<li>おかしな文字列が出てきていてどうしたものかと試行錯誤。で、「OCR で認識する部分がずれてたりする？」と思いつき、gimpで <code>t/data/bootmenu-ocr.png</code> を開き、認識してる文字列の座標を確認→ <code>t/data/bootmenu-ocr.ref.json</code> を調整→成功！</li>
-<li><code>make check-doc</code> でエラー。</li>
-</ul>
-
-<pre><code class="language-shell"># [ -z &quot;$(podspell testapi.pm | spell)&quot; ]
-# echo $?
-1
-# podspell testapi.pm | spell
-deselected
-VM
-kvm
-VM
-</code></pre>
-
-<ul>
-<li>これ、<code>spell</code> の問題じゃないの？とは思うけど、<code>sed</code> で削って対応。</li>
-<li>ビルドは問題なくできるようになったので、piuparts…と変なエラーが出たが、os-autoinstのパッケージには含まれてない問題なので無視（フォント絡みなので後で追わないといけない気もする…）。</li>
-</ul>
-
-<pre><code class="language-debug">5m12.7s ERROR: FAIL: Package purging left files on system:
-  /usr/local/share/fonts/        not owned
-  /usr/local/share/fonts/.uuid   not owned
-  /usr/share/fonts/      owned by: fonts-dejavu-core
-  /usr/share/fonts/.uuid         not owned
-  /usr/share/fonts/truetype/     owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/.uuid        not owned
-  /usr/share/fonts/truetype/dejavu/      owned by: fonts-dejavu-core
-  /usr/share/fonts/truetype/dejavu/.uuid         not owned
-</code></pre>
-
-<p>ということで <a href="https://bugs.debian.org/893645">Bug#893645</a>と<a href="https://bugs.debian.org/880791">Bug#880791</a>をcloseにしておいた。</p>
-
-<pre><code class="language-changelog"> os-autoinst (4.5.1527308405.8b586d5-1) unstable; urgency=medium
- .
-   * New upstream release
-   * debian/patches
-     - refresh patch
-     - add 0003-adjust-to-avoid-ocr-test-failure.patch (Closes: #893645)
-     - add 0004-avoid-make-check-doc-failure.patch
-     - add 0005-set-perl-path.patch to avoid lintian error
-   * debian/control
-     - add Build-Depends: libsocket-msghdr-perl, spell for test
-     - move Vcs-* to salsa.debian.org
-   * debian/rules
-     - set --no-parallel for dh_auto_test to avoid random test failure
-       (Closes: #880791)
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
 
         
 	</div>
@@ -970,6 +874,7 @@ VM
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -984,7 +889,7 @@ VM
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -993,18 +898,10 @@ VM
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

@@ -71,27 +71,17 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>libxmlbirdのビルド、*kfreeBSDなプラットフォームで<a href="https://buildd.debian.org/status/fetch.php?pkg=libxmlbird&amp;arch=kfreebsd-amd64&amp;ver=1.0.4-2&amp;stamp=1434758939">ビルド死んでる</a>のはscripts/bavala.pyでのバグかなぁ。あとdodo.pyもbsdで定義していたところがあったので、ちょっと見てみてkfreebsdな場合、というのを追加してワークアラウンドした。</p>
-
 <p>sparcでのビルド失敗は</p>
-
 <pre><code>Traceback (most recent call last):
   File &quot;/usr/bin/doit&quot;, line 5, in &lt;module&gt;
     from pkg_resources import load_entry_point
 ImportError: No module named pkg_resources
-</code></pre>
-
-<p>…なんでモジュールが無いというのか？</p>
-
+</code></pre><p>…なんでモジュールが無いというのか？</p>
 <p>ビルドログを比較するとsparcではpython-configparserが余分だな。余分なら「存在しない」エラーが起きなさそうなものだけど。。。
 さらにビルドログを比較して、パッケージのバージョンを比較するのはどうか…おぉ、<a href="https://tracker.debian.org/news/691093">python-doitのバージョンが違う</a>。sparcの方が新しい…ということでcowbuilder環境をアップデートしてビルドしたらamd64でも同じエラーでコケた。</p>
-
 <p>新しいバージョンになると</p>
-
 <pre><code>python-pkg-resources: /usr/lib/python2.7/dist-packages/pkg_resources.py
-</code></pre>
-
-<p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
-
+</code></pre><p>を必要とするっぽい。追加するとビルドできた。依存パッケージの方の変更なので、これCIしてないと気づかないよね。。。アップロード後に「FTBFSあるで」とバグレポートが来てたが、その後すぐに「incomingで直ってるのね」と。</p>
 <p>それからbirdfontもpython-doit使ってるのでこれも直した。</p>
 
 		</div>
@@ -108,7 +98,7 @@ ImportError: No module named pkg_resources
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -116,10 +106,6 @@ ImportError: No module named pkg_resources
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

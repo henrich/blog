@@ -74,24 +74,16 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>作業途中で夏から放置してた<a href="https://tracker.debian.org/news/1013364/accepted-ubuntu-keyring-20160513-2-source-into-unstable/">ubuntu-keyringパッケージをアップロード</a>。debconfを使って<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826558">デフォルトではtrusted GPG keyringとしては扱わないように変更</a>。</p>
-
 <p>さらにnew upstream release対応を手元で作成。Ubuntuでのrulesを見るとGPGファイルのチェックをしてたので、それを参考にしてautopkgtestを追加。いろいろGPGのオプションを指定する必要があった。</p>
-
 <ul>
 <li><code>--trusted-key &quot;$trusted_keyid&quot;</code> のようにして署名鍵を信頼しないとエラーになる。通常なら自分のtrustdbに追加されてる感じだけど、テスト環境にはそんなのはないし、fetchするのもネット環境必須になってしまうので。もう一つの解としてはローカルに落としておく、だけど、それは大仰かな。</li>
 <li><code>--no-auto-check-trustdb</code> を付けないとtrustdbのチェックにやたら時間がかかるので</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>先日、<a href="https://salsa.debian.org/ocaml-team/camlimages/commit/152b6a35c9ff24fd0ad96a2b3d1e5aab3e404055">camlimagesパッケージの変更をmerge request</a>したのだけど、最小なテスト作っても意図通りにならなかったな、ということだけ覚えていたのでメモしておく。何をどうやったのか、は思い出したら書こう…</p>
-
-<hr />
-
+<hr>
 <p><a href="https://tracker.debian.org/news/1013368/accepted-fonts-kanjistrokeorders-4002dfsg-1-source-into-unstable/">fonts-kanjistrokeordersパッケージをアップデート</a></p>
-
-<hr />
-
+<hr>
 <p>久々に<a href="https://lists.debian.or.jp/pipermail/debian-doc/2018-December/000078.html">installation guide訳を更新</a>。</p>
 
 		</div>
@@ -108,7 +100,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -116,10 +108,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

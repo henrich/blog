@@ -71,7 +71,6 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>昨日のfonttoolsの続き。conf.pyにモジュール読み込みを記述することで対応できた。</p>
-
 <pre><code>--- a/Doc/source/conf.py                     
 +++ b/Doc/source/conf.py                     
 @@ -20,6 +20,8 @@                            
@@ -82,16 +81,11 @@
 +sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../Lib')                
                                              
  # -- General configuration ------------------------------------------------
-</code></pre>
-
-<p>あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&hellip;）。</p>
-
+</code></pre><p>あとはdh_sphinxdocの使い方が間違っていたので修正（ビルドディレクトリを指定するものばかりだと&hellip;）。</p>
 <pre><code>override_dh_sphinxdoc:                       
         sphinx-build $(CURDIR)/Doc/source $(CURDIR)/debian/fonttools/usr/share/doc/fonttools/html/                                                                                     
         dh_sphinxdoc
-</code></pre>
-
-<p>色々変更をぶっ込んだので<a href="https://tracker.debian.org/news/866488">experimentalに</a>。で、アップロードしてからバグを閉じ忘れていたことに気づいた&hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&hellip;のでコマンドメールを別途。</p>
+</code></pre><p>色々変更をぶっ込んだので<a href="https://tracker.debian.org/news/866488">experimentalに</a>。で、アップロードしてからバグを閉じ忘れていたことに気づいた&hellip;のだが時既に遅し。cancelコマンドが働く前に入ってしまった&hellip;のでコマンドメールを別途。</p>
 
 		</div>
 	</div>
@@ -107,7 +101,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -115,10 +109,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

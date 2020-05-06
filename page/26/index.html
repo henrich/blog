@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
+	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +32,7 @@
     <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
 
     
-    <link href="https://henrich.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Forget me not..." />
 </head>
 <body lang="en">
     
@@ -57,17 +57,21 @@
 
     <div class="container">
         
-        
-            	
+            
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/23/git-repo%E3%81%A8dh-make/">git repoとdh-make</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Tue, Jun 23, 2015
+								Tue, Feb 5, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -80,35 +84,9 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>一度upstream tarballを元にdh-makeでパッケージを作った。
-で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。</p>
-
-<pre><code>git clone https://github.com/os-autoinst/os-autoinst.git
-cd os-autoinst
-git checkout 4.1
-git tag upstream/4.1
-git checkout -b debian
-cp -arp ../os-autoinst-4.1/debian ./
-git add debian
-git commit
-</code></pre>
-
-<p>debian/gbp.conf はこんな感じ。</p>
-
-<pre><code>[DEFAULT]
-debian-branch=debian
-
-gbp buildpackage
-</code></pre>
-
-<p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
-
-<pre><code>git config remote.pushdefault alioth 
-</code></pre>
-
-<ul>
-<li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
-<li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
+						<ul>
+<li><a href="https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/">ruby-arubaのアップデート</a></li>
+<li><a href="https://github.com/enkessler/childprocess/issues/146">ruby-childprocessのissue</a>に返信があったので、さらにコメント追記。</li>
 </ul>
 
 					
@@ -122,120 +100,20 @@ gbp buildpackage
 		
 	
 
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/22/proposed-updates%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AFstable%E3%81%AA%E3%81%AE%E3%81%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8D%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%AE%E3%81%8B/">proposed-updatesリポジトリを指定する際にはstableなのかコードネームなのか</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 22, 2015
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>proposed-updatesリポジトリにパッケージをアップロードする際、
-changelogのdistribution名を何にするのが良いのか？とふと思ったので、調べてみた。debian-releaseメーリングリストではstable派、jessie派が混ざっていたが、はて？この前まではstable-proposed-updatesが推奨じゃなかったのか？</p>
 
-<p>疑問が晴れなかったので<a href="https://lists.debian.org/debian-devel/2015/06/msg00305.html">debian-develに質問</a>したら「jessieとかって書くほうがいいんじゃない？」という示唆が。ふむふむ。でも「dchだとワーニング出るよね？」という指摘も。だよね。「んならバグファイルすれば？」というreplyがついていたので、そっかーと思って<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789587">登録しておいた。Bug#789587</a>です。</p>
-
-<p>しかし、jessie-proposed-updatesとかはダメなのかな？という新たな疑問が出てきてたので、それも投稿してみた。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
 	
-
-        
-            	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/19/gbp%E3%81%A8pbuilder%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3/">gbpとpbuilderのオプション</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, Jun 19, 2015
+								Sat, Feb 2, 2019
 							</span>&nbsp;in
-							
 							
 								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/trouble">trouble</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>gbp buildpackage --git-pbuilder-options=&quot;-sa&quot;
-</code></pre>
-
-<p>上記だとorig.tar.xzが.dscファイルに含まれないため、パッケージのアップロードが蹴られた。</p>
-
-<pre><code>sudo cowbuilder --build --debbuildopt=&quot;-sa&quot; libxmlbird_1.0.4-2.dsc
-</code></pre>
-
-<p>だとうまくいった。おかしいな、基本的に&ndash;git-pbuilder-optionsと&ndash;debbuildoptは等価ではないのか？</p>
-
-<pre><code>$ gbp buildpackage --git-tag --git-pbuilder-options=-sa
-gbp:info: Orig tarball 'libxmlbird_1.0.4.orig.tar.xz' not found at '../tarballs/'
-gbp:info: Exporting 'HEAD' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp'
-gbp:info: Moving '/home/henrich/src/pkg-fonts/build-area/libxmlbird-tmp' to '/home/henrich/src/pkg-fonts/build-area/libxmlbird-1.0.4'
-Building with cowbuilder for distribution sid
-I: using cowbuilder as pbuilder
-(snip)
-dpkg-source: info: building libxmlbird in libxmlbird_1.0.4-2.dsc
- dpkg-genchanges -S &gt;../libxmlbird_1.0.4-2_source.changes
-dpkg-genchanges: not including original source code in upload
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/06/reproducible-build%E5%AF%BE%E5%BF%9C%E4%BD%9C%E6%A5%AD/">reproducible build対応作業</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jun 6, 2015
-							</span>&nbsp;in
+								<a href="/categories/debian">debian</a>
 							
 							
 								
@@ -248,254 +126,10 @@ dpkg-genchanges: not including original source code in upload
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>JDのreproducible buildがエラーになってるのは<a href="https://wiki.debian.org/ReproducibleBuilds/TimestampsFromCPPMacros">DATEとかを展開するMacroが入ってるから</a>、ということでその部分を削除するパッチを追加してアップロード。無事成功しました。</p>
-
-<p>fonts-kilojiパッケージ、単にアーカイブから展開するだけなのに<a href="https://reproducible.debian.net/issues/unstable/timestamps_difference_by_unzip_issue.html">&ldquo;timestamps_difference_by_unzip&rdquo;でunreproducibleだった</a>のは「TZ=UTCを指定せよ」とのことなのでそうすることに。無事成功しました。</p>
-
-<p>jruby-joniパッケージは<a href="https://reproducible.debian.net/issues/unstable/user_in_java_jar_manifest_issue.html">Java .jar files contain user login in the <code>Built-By</code> of <code>MANIFEST.MF</code></a>てなことだったので、この辺りを削るパッチを追加することにしました。</p>
-
-<p>reproducible buildの旅はまだ続く。今度はgrcompilerパッケージ。</p>
-
-<pre><code>&gt; export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/buildflags.mk
-</code></pre>
-
-<p>という感じでhardeningもプラスしてみてどうなるのか、を見てみることにする…成功。</p>
-
-<p>birdfontについてもreproducible buildを。問題は「Embed build time」だそうで、ソースの行が示されていた。</p>
-
-<pre><code>&gt; def write_config (prefix):
-print (&quot;Writing Config.vala&quot;)
-
-vars = (('VERSION', VERSION),
-('BUILD_TIMESTAMP', time.asctime( time.localtime(time.time()))),
-('PREFIX', prefix),
-)
-</code></pre>
-
-<p>という感じで入ってるので、BUILD_TIMESTAMPの行を削除するパッチを追加。でもこれだけだとbuild failureになるので、libbirdfont/BirdFont.valaも修正。こちらも成功。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/02/twitter-text%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%A8%E3%81%8B/">twitter-textパッケージとか</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 2, 2015
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ruby-twitter-textのここ暫くのアップデートで、バージョン謎の「+conformance」が追加されている？と中身を見たらtest用に別のソースからのコードが必要になっているのでそれを放り込んでいるらしい。さらによくよく見ると、upstreamでは複数のtwitter-text-*パッケージが単一のtwitter-textに<a href="https://github.com/twitter/twitter-text-rb">まとめられていた</a>。
-これはtwitter-textパッケージから色々生成するほうがいいよね、ということで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787688">Todoをバグとして登録しておく</a>ことにした。</p>
-
-<p>あとはjcodingsをアップデートして放り込みなど。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/06/01/debian-policy%E3%81%AFi18n%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA/">Debian Policyはi18nできないかな</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jun 1, 2015
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<pre><code>$ po4a-gettextize -f sgml -m policy.sgml -l ja/policy.ja.sgml -p ja.po
-policy.sgml:178: (po4a::sgml)
-               不明なタグ HTTPSITE
-</code></pre>
-
-<p>で終わってしまう。httpsite自体は/usr/share/sgml/debiandoc/dtd/sgml/1.0/debiandoc.dtdで定義されている。po4aでサポートしているフォーマットを見ると、</p>
-
-<pre><code>$ po4a-gettextize --help-format
-有効フォーマット一覧:
-(snip)
-  - sgml: DebianDoc DTD と DocBook DTD。
-(snip)
-</code></pre>
-
-<p>とあり、明確にDebianDoc DTDをサポートしているはず、なんだけど。po4aのバグっぽい気がする。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/31/bash-completion%E3%81%A8%E3%81%8B/">bash-completionとか</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, May 31, 2015
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ほぼ寝込んでいたので、<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=787321">dcut のbash completion</a>をコピペで作って投げただけです。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/31/os-autoinst/">os-autoinst</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, May 31, 2015
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
-						
-								 , 
-							<a href="/tags/upstream">upstream</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>ITPして2年ぐらい放置していたos-autoinstが最近また気になったのでもう一度作業再開。手元ではパッケージができて動いたところまでは確認したので、<a href="http://bugs.debian.org/690244">RFPになっていたのをITPに戻しました</a>。</p>
-
-<p>ただ、openSUSEパッケージとFedoraパッケージとの差異を確認して吸収していかなければならないのと、そのままだとコマンドがエラーになっちゃってるのがあるので、その点を修正しなければいけないですな。</p>
-
-<p>あと、実際に放り込むとしたら、ライセンスは明確なんだけど著作権保持者が不明なので<a href="https://github.com/os-autoinst/os-autoinst/issues/261">issue作っておきました</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/31/%E3%81%BE%E3%81%A0%E3%81%BE%E3%81%A0developers-reference/">まだまだdevelopers-reference</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, May 31, 2015
-							</span>&nbsp;in
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>相変わらずdevelopers-referenceにちょっかいを出している。</p>
-
-<ul>
-<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=172892">Bug#172892</a>は既にCVSの時代じゃないだろう、ということでwontfixタグを勝手につけておいた。</li>
-<li><a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=540975">Bug#540975</a>は直っていたので閉じておいた。</li>
-<li><a href="http://bugs.debian.org/544135">Bug#544135</a>と<a href="http://bugs.debian.org/604193">Bug#604193</a>についてはパッチにコメントをした。</li>
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/106">Bug#918589</a>がマージされた。</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597</a>がマージされた。</li>
+<li>ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずは<a href="https://github.com/enkessler/childprocess/issues/146">issue登録</a>しておく。</li>
 </ul>
 
 					
@@ -509,24 +143,24 @@ policy.sgml:178: (po4a::sgml)
 		
 	
 
-        
-            	
+
+	
 		
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2015/05/30/hyper-v%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%A8%E3%81%8B/">Hyper-Vサポートまわりとか</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, May 30, 2015
+								Fri, Feb 1, 2019
 							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
 							
 							
 								
 							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/bts">BTS</a>
 						
 					</small>
 				</div>
@@ -535,46 +169,9 @@ policy.sgml:178: (po4a::sgml)
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>色々と便宜を図ってもらっているので、恩返ししないとなーと。LIS(Linux Integration Srevices)というのは、見ていくとこんな感じかな
-* カーネル内のドライバ
-* カーネルのソースに含まれているtools/hv内のデーモン</p>
-
-<p>ドライバについては、Jessieの3.16のに4.0ベースのとかをそのままbackportして大丈夫なのかな。ビルドできれば影響範囲はhvドライバのみに収まるような気もする。とりあえず、今のカーネルのをそのまま使うでも使えるっぽい。</p>
-
-<p>デーモンについては<a href="http://yamanxworld.blogspot.jp/2015/02/hyper-v-and-linuxfreebsd.html">こちらにまとめられている</a>が、RHEL/Fedora系統だとhyperv-daemonsメタパッケージに依存している各パッケージで提供しているようだ（はて、デーモンごとにパッケージが細分化されていて、なぜかライセンスも別パッケージになってる…？）。Ubuntuはバージョンごとに色々違うようだ。さて、どうするかな…と思ったが、hyperv-daemonsパッケージでいいかな、と。あとはsystemdサービスをFedoraからパチってきた。それから調整、っと。。。</p>
-
-<p>dh-systemdは以下の理由から使わない方向で、installファイルでコピーするだけにした
-* そもそものパッケージの構成が複雑でdh使ってないので dh $@ &ndash;with systemd が指定できない
-* パッケージ名とサービス名が違う（サービスが３つもある）</p>
-
-<p>途中までで、とりあえず<a href="bugs.debian.org/cgi-bin/bugreport.cgi?bug=782761">無くならないようにパッチを投げておく</a>。</p>
-
-<p>あとはdescriptionをまともにする</p>
-
-<p>実際にHyper-V上のDebianで動作を確認する…ってどうやるんだ？Azureでいいか。</p>
-
-<p>Azureで仮想マシンを作る…ってそのままだとギャラリーにはDebianイメージ無いので、VMDepotという
-ここで有志が作っているイメージを使わせてもらう。とはいえ、どの程度の信頼性が置けるものかというものはあるけども。
-ログインしたらshellが/bin/shだった。chshして、bash-completion入れて、upgradeしてrebootして再度。。。って妙にrebootに時間がかかるな。繋がらない？</p>
-
-<pre><code>sudo systemctl start Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-Failed to get D-Bus connection: No such file or directory
-</code></pre>
-
-<p>あれ。service見当たらないな…手動で起動した。これはパッケージを直す必要があるなぁ。
-でも、３つのサービスのうち、一つが起動しない。ってserviceファイルに/dev/vmbus/hv_fcopyが必要って書いたけど/dev/vmbusが無いんだな。これはHyper-VだとあってAzureだと無いのか、それともVMDepotのJessieがアレで見つからないのか？→CentOSベースのをAzureで立ち上げたが同様に/dev/vmbusは無い。はて、Hyper-VとAzureのは若干違うのか、それとも元にしたFedoraのがアレなのか。皿に検索すると<a href="http://dpdk.org/dev/patchwork/patch/2989/">何かへのパッチの投稿</a>が見つかった、がこれだと「/sys/bus/vmbus」って書いてあるけど、こっちが正解じゃない？…いや<a href="http://www.serverphorums.com/read.php?12,1049452">/dev/vmbusがある</a>のもあるな。。。</p>
-
-<p>README.Debianも追加したほうが良いかな？こんな感じで…</p>
-
-<pre><code>If you want to change screen resolution, please add &quot;video=hyperv_fb:vertical x horizontal&quot; to GRUB_CMDLINE_LINUX in /etc/default/grub and run update-grub
-e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
-</code></pre>
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">Bug#917388</a>がマージされた</li>
+</ul>
 
 					
 				</div>
@@ -586,6 +183,345 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
 			</div>
 		
 	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 31, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>JDimをビルドしたのでアップロードした。NEW queue待ち。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 28, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>JDimのITPを投げた。<a href="https://bugs.debian.org/920684">Bug#920684</a>が割り当てられました。</li>
+<li><a href="https://cdimage.debian.or.jp">cdimage.debian.or.jp</a>を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。</li>
+<li><a href="https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html">PublickeyのSSPL記事</a>について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。</li>
+<li><a href="https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org">Maintainer Dashboard</a>でsnapperのアップデートを見つけたので、<a href="https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/">放り込んだ</a>。
+<ul>
+<li>backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。</li>
+</ul>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 24, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://internet.watch.impress.co.jp/docs/news/1166054.html">Internetwatchの記事</a>の見出しが「「Debian GNU/Linux」に関する脆弱性が171件、第4四半期「JVN iPedia」への登録状況」と、Debianだけ危険みたいな感じだったので苦情を入れた。こんな感じ。</p>
+<pre><code>IPAの該当レポートについては、確かにDebianについての脆弱性数がトップであることは事実として記述されておりましたが、レポートの構成としてはサポートが終了するJava8、それからXSS脆弱性とバッファオーバーランについてが多くを占めています（それぞれ章立てされていました）。ここに全く触れていないことはどの様な意図があったのでしょうか。
+
+「3. 脆弱性対策情報の製品別登録状況」の項にてDebianの脆弱性数が述べられていますが、DebianやUbuntuそしてRed Hat Enterprise Linuxの様なLinuxディストリビューションはWindows Serverなどとは違ってOSのみだけではなくLibreOfficeなどのオフィススイート、Firefoxなどのブラウザ、Tomcatなどのミドルウェア、Apacheなどのサーバーなどを全て含んで提供されています。Debianでの配布ソフトウェアパッケージ数はおおよそ5〜6万です。その背景を把握せずに、単純に「脆弱性が多い」とだけ見出しに書かれるのは、大変遺憾であると同時に、記事の薄さを指摘せざるを得ません。
+
+今後の改善に期待したいと思います。失礼します。
+</code></pre>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jan 21, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597向けにMergeRequest</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832458">Bug#832458</a>での<code>CONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=m</code>はすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Jan 19, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">別途MergeRequestを作った</a></li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/ed1d855c885f6834a7e0f6a5e152802a2a61d304">Bug#918589向けパッチ</a>を作成、テストビルドは無事通った</li>
+<li><a href="https://salsa.debian.org/henrich/linux/commit/5b7a1313dbaf2eedb69d6e53d1fa20bbcf81c083">Bug#918114向けパッチ</a>を作った。</li>
+<li>ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 17, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>whizzytex</code>のパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 16, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>
+<p>昨日の<code>jd</code>パッケージの削除依頼が実行されてた。早いなー。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">ruby-bcatパッケージの削除</a>もその日のうちだったし。</p>
+</li>
+<li>
+<p>systemdの脆弱性の話で「gccの-fstack-clash-protectionオプション指定してるディストリビューションは影響受けない」という話があって「これ、適用しないの？」と聞いたら<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918914">該当のバグ登録</a>を教えてもらった。subscribeして様子見しよう。</p>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>パッケージのdebcont templateのレビューを反映した。なるほどなー</p>
+<ul>
+<li>既に翻訳版を送ってくれた方々に「こっちでお願い」を送った</li>
+</ul>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>、ubuntu-archive-keyringをtransitional package にすべきと言われてなるほどなーとなったので更新して再度<code>NEW queue</code>へ</p>
+</li>
+<li>
+<p><code>grcompiler</code>、4.2.7以降のがテストこけちゃうので<a href="https://github.com/silnrsi/grcompiler/issues/15">test failureをreport</a>した</p>
+</li>
+<li>
+<p><code>curl</code>が最新にならないかなぁ、というつぶやきを見かけたので、前のBTSのpushの意味も兼ねて<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919445">バグ登録した</a></p>
+</li>
+<li>
+<p><a href="https://tracker.debian.org/news/1021421/accepted-fonts-sawarabi-mincho-20190115-1-source-into-unstable/">fonts-sawarabi-minchoを更新</a></p>
+</li>
+<li>
+<p><code>nadoka</code>が古いままでwatchもエラーになっていたので、重い腰を上げて<a href="https://tracker.debian.org/news/1021441/accepted-nadoka-092-1-source-into-unstable/">更新しておいた</a>。前のメンテナの安井さんにも連絡済み。</p>
+</li>
+<li>
+<p><code>whizzytex</code>のパッチを取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</p>
+</li>
+<li>
+<p><code>jruby-joni</code>パッケージがFTBFSになってる？なぜだ… <code>org.jcodings.exception.CharacterPropertyException: invalid character property name &lt;graphemeclusterbreak=emodifier&gt;</code>と出てくるのでその辺りから検索したけど、よくわからんよね…<a href="https://github.com/jruby/joni/issues/40">issue登録</a>だけしておいた</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ grep emodifier -r ./
+./src/org/joni/Parser.java:        static final byte<span style="color:#f92672">[]</span>Grapheme_Cluster_Break_E_Modifier <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;graphemeclusterbreak=emodifier&#34;</span>.getBytes<span style="color:#f92672">()</span>;
+</code></pre></div></li>
+<li>
+<p>気になったのでgem2debのテンプレートから<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterを削除するMR</a>を送っておいた</p>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
 
         
 	</div>
@@ -874,6 +810,7 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
     
 </ul>
 
+
                 </div>
             </div>
         </div>
@@ -888,7 +825,7 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -897,18 +834,10 @@ e.g. GRUB_CMDLINE_LINUX=&quot;video=hyperv_fb:1280x1024&quot;
                     
                     
                     
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
                     
-                    
-                    
-                        <a href="https://henrich.github.io/blog/index.xml" target="_blank">
-                        <span class="sr-only">RSS feed</span>
-                        <i class="fas fa-rss-square fa-2x"></i></a>
                     
                 </div>
             </footer>

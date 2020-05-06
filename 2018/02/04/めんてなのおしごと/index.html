@@ -71,36 +71,32 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li><p>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</p>
-
+<li>sylph-searcher, sylfilter, libsylph, sylpheed の超カンタンCIを <code>debian/.gitlab-ci.yml</code> でセットアップしておいた</li>
+</ul>
 <pre><code>image: debian:sid
 
 before_script:
-- echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
+  - echo &quot;deb-src http://deb.debian.org/debian sid main&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp;  apt update -qq &amp;&amp; apt build-dep -y -qq &lt;package name&gt; &amp;&amp; apt install -y -qq dpkg-dev  
 
 build:
-script:
-- dpkg-buildpackage -us -uc -B
-</code></pre></li>
-
-<li><p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p></li>
-
-<li><p>あれ、libsylphでonigurumaが有効になってない？</p>
-
+  script:
+    - dpkg-buildpackage -us -uc -B
+</code></pre><ul>
+<li>
+<p><a href="https://tracker.debian.org/news/929833">sylpheed</a> 他をアップロード</p>
+</li>
+<li>
+<p>あれ、libsylphでonigurumaが有効になってない？</p>
+</li>
+</ul>
 <pre><code>libsylph 1.1.0
 
 OpenSSL       : yes
 iconv         : yes
 IPv6          : yes
 Oniguruma     : no
-</code></pre>
-
-<pre><code>checking whether Oniguruma is available... no
-</code></pre></li>
-</ul>
-
-<p>なんでだ？？</p>
-
+</code></pre><pre><code>checking whether Oniguruma is available... no
+</code></pre><p>なんでだ？？</p>
 <pre><code>AC_MSG_CHECKING([whether to use Oniguruma])
 if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
         AC_MSG_RESULT(yes)
@@ -120,15 +116,10 @@ if test &quot;$ac_cv_enable_oniguruma&quot; = yes; then
 else
         AC_MSG_RESULT(no)
 fi
-</code></pre>
-
-<p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
-
+</code></pre><p>ぬぬぬ？ libonig-devなソースのdebian/rulesを&hellip;</p>
 <pre><code>override_dh_install:
         $(RM) debian/tmp/usr/bin/onig-config
-</code></pre>
-
-<p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
+</code></pre><p>貴様かー！！！&hellip;しかし、pkg-config使ったほうが良いんじゃないか疑惑。</p>
 
 		</div>
 	</div>
@@ -144,7 +135,7 @@ fi
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -152,10 +143,6 @@ fi
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

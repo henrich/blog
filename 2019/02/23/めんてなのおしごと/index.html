@@ -77,32 +77,24 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p><a href="http://debian-mirror.sakura.ne.jp/munin/">debian-mirror.sakura.ne.jpでのmuninでの監視</a>で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。</p>
-
-<pre><code class="language-error">You don't have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
-</code></pre>
-
-<p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
-
-<pre><code class="language-shell"> $ sudo apt-get install libapache2-mod-fcgid
+<pre><code class="language-error" data-lang="error">You don't have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
+</code></pre><p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> $ sudo apt-get install libapache2-mod-fcgid
  $ sudo a2enmod rewrite
  $ sudo a2enmod fcgid
-</code></pre>
-
-<p>としてから<code>/etc/apache2/conf-enabled/munin.conf</code>を以下のように書き換え。</p>
-
-<pre><code class="language-diff">--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
-+++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
-@@ -11,7 +11,7 @@
- 
+</code></pre></div><p>としてから<code>/etc/apache2/conf-enabled/munin.conf</code>を以下のように書き換え。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -11,7 +11,7 @@
+</span><span style="color:#75715e"></span> 
  ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
  &lt;Location /munin-cgi/munin-cgi-graph&gt;
--        Require local
-+        Require all granted
-         &lt;IfModule mod_fcgid.c&gt;
+<span style="color:#f92672">-        Require local
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+        Require all granted
+</span><span style="color:#a6e22e"></span>         &lt;IfModule mod_fcgid.c&gt;
              SetHandler fcgid-script
          &lt;/IfModule&gt;
-</code></pre>
-
+</code></pre></div>
 		</div>
 	</div>
 	<div class="row">
@@ -117,7 +109,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -125,10 +117,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

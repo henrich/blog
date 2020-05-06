@@ -74,34 +74,28 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>今日のグルーミング作業。</p>
-
 <ul>
 <li>grcompiler&hellip;を見てみた。
-
 <ul>
 <li>upstreamがGitHubに移動していて新しいバージョンが出ていたのでimportして作業したのだが、testcaseがコケる&hellip;gitのmasterから取ってきてもコケる&hellip;これは一体？</li>
 <li>upstreamが<a href="https://github.com/silnrsi/grcompiler/tree/master/debian">debianディレクトリ追加してる&hellip;</a>困るなぁ。しかもoverride_dh_autotestでoverrideしてtest実行しないようにしてる&hellip;なんだこりゃ。</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://tracker.debian.org/news/858733">fonts-vlgothic</a></li>
 <li><a href="https://tracker.debian.org/news/858736">fonts-kacst-one</a></li>
 <li><a href="https://tracker.debian.org/news/858737">fonts-motoya-l-cedar</a></li>
 <li><a href="https://tracker.debian.org/news/858740">fonts-motoya-l-maruberi</a>
-
 <ul>
 <li>モトヤLマルベリ3・Lシーダ3が<a href="https://github.com/android/platform_frameworks_base/commit/cee5f2023b4e33c8f499e94a3d3cdb5e99d3a325#diff-11e31d35b6aedf3dbd0f80d77a74cd67">Androidのリポジトリから消えていた</a></li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+</ul>
+<hr>
 <p>mplusフォントのリポジトリ権限もらったので、bitmapの方はgitにしようかなーと思ったのだが、CVSの生データ持ってこないと変換できないよね&hellip;。shellアクセスできる範囲には無いっぽいし。<a href="https://osdn.net/cvs/view/mplus-fonts/">ダウンロード</a>でいけるのかな？</p>
-
 <pre><code>$ zcat /usr/share/doc/cvs2svn/examples/cvs2git-example.options.gz &gt; ./cvs2git.options
 $ vi cvs2git.options
 $ cvs2git --options=./cvs2git.options
-</code></pre>
-
-<p>などとやってみたが、必要な情報がtarballの中にはないようだ。<a href="https://osdn.net/docs-ja/SCM_Migration">サポートリクエスト</a>を出して欲しい、ということらしい。あとで問い合わせよう。</p>
+</code></pre><p>などとやってみたが、必要な情報がtarballの中にはないようだ。<a href="https://osdn.net/docs-ja/SCM_Migration">サポートリクエスト</a>を出して欲しい、ということらしい。あとで問い合わせよう。</p>
 
 		</div>
 	</div>
@@ -117,7 +111,7 @@ $ cvs2git --options=./cvs2git.options
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -125,10 +119,6 @@ $ cvs2git --options=./cvs2git.options
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

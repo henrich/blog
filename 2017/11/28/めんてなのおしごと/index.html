@@ -73,12 +73,12 @@
 			<ul>
 <li>libxmlbirdをアップデートしようとしてgit mergeしようと思ったらタグがない。で、upstreamにpingしたのが反映されたのでmergeして<a href="https://tracker.debian.org/news/890110">アップロード</a>。ついでにreproducible buildパッチを減らすべく<a href="https://github.com/johanmattssonm/xmlbird/pull/7">Pull Request</a>。人の褌で相撲を取るのは楽だわー</li>
 <li>ruby-serverspecパッケージで<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882515">「netstat使ってるからnet-toolsにSuggestsした」</a>というのを見かけて「後ろ向きだなぁ」と思ったのでちょっと調べた。
-
 <ul>
 <li>これ本当にnetstat呼んでるの？という疑問がでてgrepしたけど引っかからず。どうやらruby-specinfra側らしい。</li>
 <li>確かにnetstatを呼んでいた。。。んだけど、どうもおかしい。Debian8からss使うように変えてる？これはいかんでしょ。<code>I guess I am trying to understand which versions of Debian to support. Debian 6, 7, 8 all have ss by default.</code>という<a href="https://github.com/mizzy/specinfra/pull/453#issuecomment-125583639">発端のプルリクエスト</a>がそもそも間違っており、続いての<a href="https://github.com/mizzy/specinfra/pull/568">修正のプルリクエスト</a>も<code>I think jessie default command is ss.</code>と間違ってる&hellip;。</li>
 <li>厄介そうなのは上記が参照しているように、JessieのDockerイメージの方がiproute2使ってるっぽいんだよね、何でだよ&hellip;普通に直すとdockerのjessieでの動作を壊すことになる。それは避けたい。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
 		</div>
@@ -95,7 +95,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -103,10 +103,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

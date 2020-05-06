@@ -72,7 +72,6 @@
 			<br>
 			<p>一度upstream tarballを元にdh-makeでパッケージを作った。
 で、それを元にupstreamのgit repoにdebianディレクトリを追加する形を作ってみた。</p>
-
 <pre><code>git clone https://github.com/os-autoinst/os-autoinst.git
 cd os-autoinst
 git checkout 4.1
@@ -81,22 +80,14 @@ git checkout -b debian
 cp -arp ../os-autoinst-4.1/debian ./
 git add debian
 git commit
-</code></pre>
-
-<p>debian/gbp.conf はこんな感じ。</p>
-
+</code></pre><p>debian/gbp.conf はこんな感じ。</p>
 <pre><code>[DEFAULT]
 debian-branch=debian
 
 gbp buildpackage
-</code></pre>
-
-<p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
-
+</code></pre><p>これで出来た。終わり。(ここで色々.git/configいじった。aliothとしてgit repoを追加）</p>
 <pre><code>git config remote.pushdefault alioth 
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>.git/configでoriginじゃないのを追加するコマンドはなんだろう？</li>
 <li>dh-makeでgit repositoryに対応するにはどうすれば良いのだろう</li>
 </ul>
@@ -115,7 +106,7 @@ gbp buildpackage
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -123,10 +114,6 @@ gbp buildpackage
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

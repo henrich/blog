@@ -82,25 +82,17 @@
 <li><a href="https://tracker.debian.org/news/931645">jcodingsを更新</a>、salsa移行はまだ目処立たず。</li>
 <li><a href="https://tracker.debian.org/news/931659">nailgunを更新</a>、salsa移行はまだ目処立たず。</li>
 </ul>
-
-<hr />
-
+<hr>
 <ul>
-<li><p><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</p>
-
+<li><a href="https://tracker.debian.org/news/931537">xfonts-kappa20を更新</a>&hellip;したのだけど、CIが落ちる</li>
+</ul>
 <pre><code>make[1]: Entering directory '/builds/fonts-team/xfonts-kappa20'
 bdftopcf k20m.bdf | gzip -c9 -n &gt; pcf/k20m.pcf.gz
 /bin/sh: 1: cannot create pcf/k20m.pcf.gz: Directory nonexistent
 Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
-</code></pre></li>
-</ul>
-
-<p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
-
-<hr />
-
+</code></pre><p>確かにpcfディレクトリは存在していないし、作ってる形跡もない。なのに手元ではすんなり通る&hellip;何故だ。対応してCIは通るようになったが謎だ。<a href="https://tracker.debian.org/news/931538">上げ直した</a>。</p>
+<hr>
 <p>sylpheedパッケージをもう少し変更。dh-execの利用の際、installファイルがchmod +xしてなかったら動かなかったのにちょっとハマってしまった。あと、設定しておいた超simple CI設定はdepenencyが変わった時に追随できなくてコケるのであった。。。これも見直しが必要だ。</p>
-
 <pre><code>  * debian/control
     - add Build-Depends: dh-exec to modify icon files' name
   * debian/sylpheed.install
@@ -112,7 +104,6 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
   * debian/sylpheed-debian.xpm
     - menu system was already deprecated, drop it
 </code></pre>
-
 		</div>
 	</div>
 	<div class="row">
@@ -127,7 +118,7 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -135,10 +126,6 @@ Makefile:36: recipe for target 'pcf/k20m.pcf.gz' failed
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

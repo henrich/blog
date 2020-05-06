@@ -74,32 +74,41 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<ul>
-<li><p><a href="https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/">whizzytexパッケージをアップロード</a>。作業自体は以前にあらかたしていた。</p>
-
+<li>
+<p><a href="https://tracker.debian.org/news/1020603/accepted-whizzytex-133-01-source-into-unstable/">whizzytexパッケージをアップロード</a>。作業自体は以前にあらかたしていた。</p>
 <ul>
-<li>問題だったのは<code>autopkgtest</code>。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので<code>emacs --script test.el test.tex</code>のようにして<code>test.el</code>の中で以下のようにするなどした。</li>
+<li>
+<p>問題だったのは<code>autopkgtest</code>。ファイルを開くだけでwhizzytex-modeを実行しないとテストの意味がないので<code>emacs --script test.el test.tex</code>のようにして<code>test.el</code>の中で以下のようにするなどした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(find-file (<span style="color:#a6e22e">nth</span> <span style="color:#ae81ff">0</span> command-line-args-left))
+(whizzytex-mode <span style="color:#ae81ff">1</span>)
+</code></pre></div></li>
+<li>
+<p>その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの<code>testfile</code>ファイルにtypoがあって<code>test.tex</code>とすべきところを<code>test.txt</code>になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…</p>
+</li>
 </ul>
-
-<pre><code class="language-elisp">(find-file (nth 0 command-line-args-left))
-(whizzytex-mode 1)
-</code></pre>
-
+</li>
+<li>
+<p><a href="https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/">ruby-arubaパッケージをアップロード</a></p>
 <ul>
-<li>その後、どうやっても1つ目のテスト以外コケるな…と思ったら、もともとの<code>testfile</code>ファイルにtypoがあって<code>test.tex</code>とすべきところを<code>test.txt</code>になってて、存在しないファイルなのでコケるという…ターミナル中で実行した時はbashの補完だったから気づかなかったよ…</li>
-<li><a href="https://tracker.debian.org/news/1020620/accepted-ruby-aruba-0147-1-source-into-unstable/">ruby-arubaパッケージをアップロード</a></li>
-<li><code>ruby-bcat</code>への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。</li>
+<li>
+<p><code>ruby-bcat</code>への依存、ずっと前から要らなくなっていたようだ…見落としてた。これでCIが通るようになるはず。</p>
+<ul>
 <li>ん？ということは<code>ruby-bcat</code>をRMしてもいいんじゃないか。ざっくり<code>apt-rdepends</code>した結果では依存はないし、<a href="https://codesearch.debian.net/search?q=ruby-bcat&amp;perpkg=1">codesearch.debian.netの検索結果</a>もそれらしいものはない。<code>grep-dctrl</code>でも同様なので、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919248">RM依頼を登録</a></li>
 </ul>
-
-<pre><code class="language-bash">$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ grep-dctrl -FBuild-Depends ruby-bcat -sPackage /var/lib/apt/lists/*Sources
 Package: ruby-aruba
-</code></pre></li>
-
-<li><p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474">libmojo-ioloop-readwriteprocess-perlパッケージ</a>が入ってくれたので、手元の<code>os-autoinst</code>をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。</p></li>
-
-<li><p><code>ubuntu-keyring</code>パッケージの<code>debconf template</code>査読が返ってきてたので、mergeしないと…。</p></li>
-
-<li><p>だいぶ前に<a href="https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044">jdがクラッシュするよ、とlaunchpadの方でレポートがあった</a>（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、<a href="https://github.com/yama-natuki/JD/issues/15">パッケージにしたいなー</a>というのは伝えておいた。</p></li>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918474">libmojo-ioloop-readwriteprocess-perlパッケージ</a>が入ってくれたので、手元の<code>os-autoinst</code>をmaster HEADに更新。予想通りだが、i386でのエラーは変わらず…。</p>
+</li>
+<li>
+<p><code>ubuntu-keyring</code>パッケージの<code>debconf template</code>査読が返ってきてたので、mergeしないと…。</p>
+</li>
+<li>
+<p>だいぶ前に<a href="https://bugs.launchpad.net/ubuntu/+source/jd/+bug/1799044">jdがクラッシュするよ、とlaunchpadの方でレポートがあった</a>（けど、debianからsyncしてるだけだからあんまり見ないんだよね、launchpad…ログインするのも手間だし）のだけど、その後のreplyに何の返答もない。それでいて「Debian/Ubuntuのパッケージはメンテされてない」とか言いふらすのは止めてほしいよね…（こちらとしては、そもそも2ch（今は5chなんだっけ）の方で仕様変更が云々あって見ない＆使わない状態が続いてるのに加えて、upstreamに動きがないためにチェックする機会も無かったのだ）。で、forkだと思しきrepositoryの方では名称変更が検討されてたので、<a href="https://github.com/yama-natuki/JD/issues/15">パッケージにしたいなー</a>というのは伝えておいた。</p>
+</li>
 </ul>
 
 		</div>
@@ -116,7 +125,7 @@ Package: ruby-aruba
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -124,10 +133,6 @@ Package: ruby-aruba
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

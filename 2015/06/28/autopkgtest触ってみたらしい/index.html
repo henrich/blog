@@ -71,25 +71,20 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>Perlパッケージのautopkgtestについては<a href="https://pkg-perl.alioth.debian.org/autopkgtest.html">サイト</a>に記述がある。</p>
-
 <p>Testsuite: autopkgtest-pkg-perl</p>
-
 <p>をdebian/controlファイルに指定するだけで、debian/test以下で色々しなくても、/usr/share/pkg-perl-autopkgtest/*.d にあるテストを実行するそうな。このファイルはpkg-perl-autopkgtestパッケージにある（名前とテストスイートが一致してない…）</p>
-
-<p>実施されるテストは
-* smoke
-* use.t
-* syntax.t
-で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</p>
-
+<p>実施されるテストは</p>
+<ul>
+<li>smoke</li>
+<li>use.t</li>
+<li>syntax.t
+で、どうしてもエラーになるようであれば debian/tests/pkg-perl/SKIP に記載すれば良いようだ。</li>
+</ul>
 <p>実施についてはschrootを使った記述があるのだけれども、後述するようにうまくいかない。。。</p>
-
 <pre><code>$ sudo apt-get install sbuild
 $ sudo mkdir -p /srv/chroot/sid
 $ sudo sbuild-createchroot sid /srv/chroot/sid http://debian-mirror.sakura.ne.jp/debian
-</code></pre>
-
-<pre><code>[sid-amd64-sbuild]
+</code></pre><pre><code>[sid-amd64-sbuild]
 type=directory
 description=Debian sid/amd64 autobuilder
 directory=/srv/chroot/sid
@@ -99,23 +94,15 @@ profile=sbuild
 
 users=henrich
 root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
+</code></pre><pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
 adt-run [20:22:46]: version 3.14.3
 adt-run [20:22:46]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
 adt-virt-schroot requires ephemeral schroot sessions. Set a &quot;union-type&quot; or use a tarball schroot
 adt-run [20:22:46]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
-
+</code></pre><p>最初はunion-typeの指定エラーがでたのでこれを追加</p>
 <pre><code>#union-type=aufs
 #union-mount-options=br:/srv/chroot/test:/srv/chroot/sid=ro
-</code></pre>
-
-<p>とやってみたのだけど、</p>
-
+</code></pre><p>とやってみたのだけど、</p>
 <pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
 adt-run [20:23:06]: version 3.14.3
 adt-run [20:23:06]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-amd64-sbuild
@@ -126,10 +113,7 @@ Traceback (most recent call last):
     (key, val) = entry.split(&quot;=&quot;, 2)
 ValueError: too many values to unpack (expected 2)
 adt-run [20:23:06]: ERROR: testbed failed: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
-</code></pre>
-
-<p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
-
+</code></pre><p>うまくいかなかったので、pbuilderで作成したbase.tgzを使うことにしてみた。/etc/schroot/chroot.d/testはこんな感じ。</p>
 <pre><code>[sid-test]
 type=file
 description=test
@@ -140,9 +124,7 @@ profile=sbuild
 
 users=henrich
 root-users=henrich
-</code></pre>
-
-<pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
+</code></pre><pre><code>$ adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
 adt-run [18:52:38]: version 3.14.3
 adt-run [18:52:38]: command line: /usr/bin/adt-run libdbix-class-optimisticlocking-perl_0.02-1_amd64.changes --- schroot sid-test
 adt-run [18:52:41]: testbed dpkg architecture: amd64
@@ -156,9 +138,7 @@ Not enough random bytes available.  Please do some other work to give
 the OS a chance to collect more entropy! (Need 188 more bytes)
 gpg: /home/henrich/.cache/autopkgtest/trustdb.gpg: trustdb created
 gpg: key 0FB272FB marked as ultimately trusted
-</code></pre>
-
-<p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
+</code></pre><p>初回だけこれでひたすら待つ羽目になったが、これは動いた。</p>
 
 		</div>
 	</div>
@@ -174,7 +154,7 @@ gpg: key 0FB272FB marked as ultimately trusted
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -182,10 +162,6 @@ gpg: key 0FB272FB marked as ultimately trusted
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

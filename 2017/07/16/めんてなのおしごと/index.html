@@ -74,7 +74,6 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>今日のケアリスト。</p>
-
 <ul>
 <li><a href="https://tracker.debian.org/news/856538">xfonts-efont-unicode</a>、<a href="https://tracker.debian.org/news/856662">その２</a></li>
 <li><a href="https://tracker.debian.org/news/856566">xfonts-kaname</a>、<a href="https://tracker.debian.org/news/856663">その２</a></li>
@@ -85,24 +84,17 @@
 <li><a href="https://tracker.debian.org/news/856686">xfonts-ayu</a></li>
 <li><a href="https://tracker.debian.org/news/856690">fonts-horai-umefont</a></li>
 <li>xfonts-kappa20もアップロードしたが、<code>xfonts-kappa20_0.396-3.dsc: Does not match file already existing in the pool.</code>と言われてrejectされる&hellip;
-
 <ul>
 <li>恐らく推測ではあるが、oldstableに(epochが付かない)0.396-3があるので、poolにあるのとコンフリクトしてしまってるのだろう。これってDAKの問題？それともビルドしたファイルのファイル名が1:0.396-3にならないからgbpかdebhelperの問題？</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>xfonts-*はupstreamのMakefileがベタ書きでparallel buildがおかしいのが多い&hellip;のだけど、Makeの知識が乏しく書き直せない。今後の課題ではなかろうか(Todoということで&hellip;)。</p>
-
 <p>その他、ruby-interpriterのdropなど。なぜか<a href="https://packages.debian.org/sid/ruby2.1">ruby2.1がarm64のdeb-portsに残ってる</a>状況なのが不思議。</p>
-
-<hr />
-
+<hr>
 <p>apt-listchangesのdebconfメッセージを訳しておく&hellip;と思ったら、<a href="http://lists.debian.or.jp/pipermail/debian-doc/2017-July/000060.html">本体側のpo訳してた＼(^o^)／</a></p>
-
-<hr />
-
+<hr>
 <p>Selenium::Remote::Driverの作業がすごい昔で止まってるのがローカルのディスクで複数あって自分で混乱したので整理。最新版を追いかけられるよう、<a href="https://github.com/gempesaw/Selenium-Remote-Driver">GitHub</a>を見るようにする。以下、試行錯誤の結果。</p>
-
 <pre><code>$ dh-make-perl --cpan Selenium::Remote::Driver
 $ cd libselenium-remote-driver-perl
 
@@ -119,19 +111,11 @@ $ git remote add github https://github.com/gempesaw/Selenium-Remote-Driver.git
 $ git pull github
 $ git fetch
 $ git branch -u github/master upstream
-</code></pre>
-
-<pre><code class="language-git">
-------------------------------
-前に一応チェックした[screenfetchのLaunchPadへの報告](https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489)、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。
-
-</code></pre>
-
-<p>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
-```</p>
-
-<p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
-
+</code></pre><p><code>git checkout --orphan &lt;branch&gt;</code>はなかなか思いつかない&hellip;</p>
+<hr>
+<p>前に一応チェックした<a href="https://bugs.launchpad.net/ubuntu/+source/screenfetch/+bug/1612489">screenfetchのLaunchPadへの報告</a>、その後も特に反応なしなので腰を上げてアクセス可能なPOWERマシンにログインする。</p>
+<pre><code>$ ssh plummer.debian.org  -i /home/henrich/.ssh/debian-ssh-key
+</code></pre><p>こんな感じだけ（鍵は適当）。で、upstream masterを実行すると<code>CPU: 16x UnknownPOWER8E (raw)</code>と出てくる。POWER8E (raw)なところを捕まえればいいので、<a href="https://github.com/KittyKatt/screenFetch/pull/503">PRを送っておいた</a>。</p>
 <p>しかし、ただ単にDebianからsyncして持っていってるだけのUniverseリポジトリのパッケージ、LPに報告だけして肝心の作業しているDebianの方には送ってくれないんだもんなぁ。萎える。</p>
 
 		</div>
@@ -148,7 +132,7 @@ $ git branch -u github/master upstream
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -156,10 +140,6 @@ $ git branch -u github/master upstream
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

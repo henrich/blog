@@ -74,9 +74,7 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
-
 <p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
-
 <ul>
 <li>パッケージを分割した</li>
 <li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
@@ -84,27 +82,19 @@
 <li>autopkgtestをまともなものにした</li>
 <li>build時にもautopkgtest相当が動作するようにした</li>
 </ul>
-
 <p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
-
 <p>そしてアップロード後もエラーを踏む。</p>
-
 <pre><code>Source-only uploads to NEW are not allowed.
-</code></pre>
-
-<p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
-
-<hr />
-
+</code></pre><p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
+<hr>
 <ul>
 <li>淡々と<a href="https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/">jcodingsパッケージをアップデート</a>。</li>
 <li>grcompilerに<a href="https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/">投稿されてたパッチをマージ</a>。自分の作った地雷を踏むという失態を。
-
 <ul>
 <li>upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。</li>
-<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。
-<br /></li>
-</ul></li>
+<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。</li>
+</ul>
+</li>
 </ul>
 
 		</div>
@@ -121,7 +111,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -129,10 +119,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     

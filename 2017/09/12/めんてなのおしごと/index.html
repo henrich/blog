@@ -72,25 +72,22 @@
 			<br>
 			<ul>
 <li><a href="https://tracker.debian.org/news/871738">fonts-oradano-mincho-gsrrをアップロード</a>
-
 <ul>
 <li>フォントの内部バージョンがアーカイブ名と違っていた様子。次回に気をつけるか？</li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+</ul>
+<hr>
 <p><a href="https://tracker.debian.org/news/871748">gnome-todoをアップロードした</a>、のだけど、色々変更が多かったのでメモ</p>
-
 <ul>
 <li>build systemがautotoolsから<a href="http://mesonbuild.com">meson</a>に変わった。
-
 <ul>
 <li>Build-Depends: meson (&gt;= 0.41.0) が追加、autoconf周りをdropした。</li>
 <li>debian/rules で <code>dh $@  --with gnome --buildsystem=meson</code> のように<code>--buildsystem=meson</code> の指定が必要。</li>
 <li>依存関係は <code>meson.build</code> ファイルに書いてある&hellip;のだけど、どうも全体の指定ではなく、サブディレクトリにも置かれてるパターンがあるので、注意が必要だった。</li>
 <li>何か見落としがあるのかな？と思って dh_install &ndash;list-mising しようかと思ったら、今は <code>dh_missing --list-missing</code> のように <code>dh_missing</code> を使え、とのこと。適当なブランチで debian/rules に <code>override_dh_missing</code> で記述して実行したが漏れはなかった様子。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
 		</div>
@@ -107,7 +104,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-  Hideki Yamane ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.55.6 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
                     </p>
                 </div>
 
@@ -115,10 +112,6 @@
                 <div class="pull-right">
                     
                     
-                    
-                        <a href="https://twitter.com/henrich" target="_blank">
-                        <span class="sr-only">twitter profile</span>
-                        <i class="fab fa-twitter-square fa-2x"></i></a>
                     
                     
                     
