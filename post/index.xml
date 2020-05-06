@@ -9,10 +9,22 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
-    <lastBuildDate>Wed, 06 May 2020 19:10:07 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2020 19:15:47 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>すぐには直せないreproducible buildエラーを許容する</title>
+      <link>https://henrich.github.io/blog/2020/05/06/%E3%81%99%E3%81%90%E3%81%AB%E3%81%AF%E7%9B%B4%E3%81%9B%E3%81%AA%E3%81%84reproducible-build%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E8%A8%B1%E5%AE%B9%E3%81%99%E3%82%8B/</link>
+      <pubDate>Wed, 06 May 2020 19:15:47 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2020/05/06/%E3%81%99%E3%81%90%E3%81%AB%E3%81%AF%E7%9B%B4%E3%81%9B%E3%81%AA%E3%81%84reproducible-build%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E8%A8%B1%E5%AE%B9%E3%81%99%E3%82%8B/</guid>
+      <description>DebianパッケージがホストされているGitLabでGitLab CIをぐるぐると回すための設定としてSalsa Pipelineが提供されている。ざっというとdebian/salsa-ci.ymlという形で以下のような設定を保存・GitLab側で参照を指定してからgit pushするとDebianパッケージ用の各種ビルドテストが走ってくれる。
+--- include: - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml variables: SALSA_CI_DISABLE_BLHC: 1 SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 1 reprotest: allow_failure: true includeでは実行テストとその関係を規定、その上でvariablesでこのパッケージでは不要なテストをスキップしている。
+テストの中でreproducible buildsのテストが走るが、若干不安定であったり、直すまでに目処が立たなかったりすることが多い…のだけど、明示的にdisableにするのも微妙という位置づけであることが多い。そのため最後に「失敗してもヨシ！」と指定している。
+結構この「package archはallなのでany関連なテストは不要」「reprotestはallow_failureしたい」のコンビネーションが多いので、ファイルをコピーして追加することが多かったり。</description>
+    </item>
     
     <item>
       <title>FSFAPライセンス</title>

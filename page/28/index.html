@@ -64,10 +64,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/27/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/01/05/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Feb 27, 2019
+								Sat, Jan 5, 2019
 							</span>&nbsp;in
 							
 								
@@ -87,276 +87,29 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p><a href="https://tracker.debian.org/news/1032572/accepted-libhinawa-111-1-source-into-unstable/">libhinawaをアップロード</a>した。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, Feb 27, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので<a href="https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/">対応</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Feb 25, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949">birdfontの依存関係を微調整するバグレポート</a>が来てたので対応した。</p>
-<pre><code class="language-lintian" data-lang="lintian">W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
-</code></pre><p>とあったが、これはどっちに揃えるのが良いのだろうね？</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Feb 24, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやら<code>squid-deb-proxy-client</code>がおかしい。</p>
-<p>squid-deb-proxy-clientの中身を見てコマンドを実行。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">23443</span> ?        Ss     1:44  <span style="color:#ae81ff">\_</span> tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell
-<span style="color:#ae81ff">23450</span> pts/2    Ss     0:00      <span style="color:#ae81ff">\_</span> /bin/bash
-<span style="color:#ae81ff">22690</span> pts/2    S+     0:00      |   <span style="color:#ae81ff">\_</span> /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian
-<span style="color:#ae81ff">22691</span> pts/2    Z+     0:00      |       <span style="color:#ae81ff">\_</span> <span style="color:#f92672">[</span>avahi-browse<span style="color:#f92672">]</span> &lt;defunct&gt;
-</code></pre></div><p>というようになったので、試しに引数なしで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">23450</span> pts/2    Ss     0:00      <span style="color:#ae81ff">\_</span> /bin/bash
-<span style="color:#ae81ff">24148</span> pts/2    S+     0:00      |   <span style="color:#ae81ff">\_</span> /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover
-<span style="color:#ae81ff">24149</span> pts/2    Z+     0:00      |       <span style="color:#ae81ff">\_</span> <span style="color:#f92672">[</span>avahi-browse<span style="color:#f92672">]</span> &lt;defunct&gt;
-</code></pre></div><p>おお、defunct…。</p>
-<p>この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 23, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/munin">munin</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="http://debian-mirror.sakura.ne.jp/munin/">debian-mirror.sakura.ne.jpでのmuninでの監視</a>で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。</p>
-<pre><code class="language-error" data-lang="error">You don't have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
-</code></pre><p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> $ sudo apt-get install libapache2-mod-fcgid
- $ sudo a2enmod rewrite
- $ sudo a2enmod fcgid
-</code></pre></div><p>としてから<code>/etc/apache2/conf-enabled/munin.conf</code>を以下のように書き換え。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
-</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -11,7 +11,7 @@
-</span><span style="color:#75715e"></span> 
- ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
- &lt;Location /munin-cgi/munin-cgi-graph&gt;
-<span style="color:#f92672">-        Require local
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+        Require all granted
-</span><span style="color:#a6e22e"></span>         &lt;IfModule mod_fcgid.c&gt;
-             SetHandler fcgid-script
-         &lt;/IfModule&gt;
-</code></pre></div>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, Feb 17, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://github.com/knxm/mathlibre">MathLibre</a>をいじってて<code>live-build</code>パッケージでbusterサポートが抜けてたので<a href="https://salsa.debian.org/live-team/live-build/commit/f242323fa246840ba9581586ad78a8301629d84c">Merge Requestした</a>。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 16, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>JDimでの<a href="https://github.com/JDimproved/JDim/pull/33/commits/5712a514f4ad4bfc1bcb71fabb74153f7af53c40">Debian向けの開発環境説明を修正</a>した。</li>
-<li>partman-lvmの修正がregressionを起こしてrevertされたので<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2">再チャレンジ</a></li>
+						<p>倉敷さんの<code>goldencheetah</code>パッケージの状況をヒアリング。</p>
+<ul>
+<li><code>libusb0.1</code>に依存しているが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470">libusb0.1はもう古いからDebianから消したいよね</a>という動きがある。</li>
+<li>でも<code>goldencheetah</code>側としては<a href="https://groups.google.com/forum/#!msg/golden-cheetah-developers/EQxEEIQbRXc/ZSeSOBF8AwAJ">「マルチプラットフォーム対応してるので、壊したくないよね」</a>なので<code>libusb1.0</code>に動くのは消極的</li>
+<li><a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat</a>という「libusb1.0のwrapperで0.1相当の動きをする」のがあるから、これを使えば？という流れはある。
+<ul>
+<li>ただし、<code>goldencheetah</code>では「使うようにしよう」というPRが来ているものの実装はされてない感じ</li>
+<li>Debian側も<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810470#194">deadからhalf-deadになるだけじゃね？というコメント</a>もある。
+<ul>
+<li>個人的にはhalf-deadならいいじゃん、と思うけど…</li>
+</ul>
+</li>
+<li>ちなみに<code>libusb-compat</code>はDebianではパッケージになっていない</li>
+</ul>
+</li>
+<li>ついでの気晴らしにdebianディレクトリ以下をレビューしてmerge requestを送った。要点は以下の感じ
+<ul>
+<li>最新の<code>dh12</code>に更新、不要になったファイルやオプションを消す</li>
+<li>insecureなgitプロトコルやhttpをhttpsに置き換え</li>
+<li><code>debian/watch</code>はv4形式にして簡易に書ける</li>
+</ul>
+</li>
+<li>cosmetic changesなわけだけど、パッケージの「メンテナンス」ってそんなもんですよ、っと。これが最初の「パッケージング」だと色々と技術的にどう対処するか？の問題を解く感じになる。</li>
 </ul>
 
 					
@@ -376,52 +129,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/01/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Feb 9, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-								 , 
-							<a href="/tags/dd">DD</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>groonga 9.0.0 を deleyed 3 でアップロードした。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Feb 9, 2019
+								Sat, Jan 5, 2019
 							</span>&nbsp;in
 							
 								
@@ -438,11 +149,14 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/120">CONFIG_IMX_THERMAL</a>がマージされた</li>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/121">CONFIG_ARM_ARMADA_37XX_CPUFREQ</a>がマージされた</li>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/122">CONFIG_LEDS_PCA963X</a>は「アーキテクチャ限定したほうが良いんじゃね？」というサジェスチョン。</li>
-<li>jdimをstretch-backportsにアップロードした。これもNEW行きかな？入ったらjdを削除依頼しないと。</li>
+						<p><a href="https://nthykier.wordpress.com/2019/01/04/debhelper-compat-12-is-now-released/">“debhelper-compat (= 12)” is now released</a>を読む。<code>Rules-Requires-Root support when the field is set and dpkg-dev notifies debhelper that it supports the feature (requires dpkg-dev from Debian buster).  Besides removing the need for (fake)root it can also remove about 3 invocations of debian/rules.</code>との記述。<code>Rules-Requires-Root: no</code>のようにするとfakerootの起動とdebian/rulesの呼び出しが無くなって早くなるぜ、ということらしい。</p>
+<p>試しに<code>dpkg-dev</code>をBuild-Dependsにしてみたら</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">E: os-autoinst source: build-depends-on-build-essential-package-without-using-version dpkg-dev <span style="color:#f92672">[</span>build-depends: dpkg-dev<span style="color:#f92672">]</span>
+</code></pre></div><p>あら。。。<code>dpkg-dev 1.19.0</code>からサポートのようなので修正。しかし、ビルドにroot権限が必要なパッケージのほうが少なさそうだから、これは<code>no</code>をデフォルトにして<code>Rules-Requires-Root: yes</code>を明示的に宣言させるほうが良くないかね？と思ったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=793404#81">質問してみた</a>→やはりそのようだ。しかし、それを実装するとなると対応パッケージが多数になってしまうだろうという懸念がある模様。</p>
+<hr>
+<ul>
+<li>上記の変更その他を加えて<a href="https://tracker.debian.org/news/1017677/accepted-os-autoinst-4515273084058b586d5-3-source-into-unstable/">os-autoinstパッケージをアップロード</a>。<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910463">RCバグ</a>は<code>severity</code>を下げておいた。</li>
+<li><code>debootstrap</code>パッケージ、夏に作業して放置してたMergeRequestを変更を追加して<a href="https://salsa.debian.org/installer-team/debootstrap/merge_requests/21#00b94c53ad826b3090c6fd9524b609958d9ec7a9">Mergeした</a>。<code>git rebase</code>なんて初めて使ったぞ。反応を様子見してから月曜にでもアップロードするかな。</li>
 </ul>
 
 					
@@ -462,10 +176,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/01/04/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, Feb 8, 2019
+								Fri, Jan 4, 2019
 							</span>&nbsp;in
 							
 								
@@ -485,8 +199,552 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
+						<p>倉敷さんがビルドマシンが家のNASで遅いという話をしていたので、CloudGarageさんの開発者支援制度でお借りしているホストを一台セットアップして渡した。外堀を埋める方向。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/04/debootstrap%E3%82%92%E9%80%9F%E3%81%8F%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF/">debootstrapを速くするには</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jan 4, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+								 , 
+								<a href="/categories/tips">tips</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/debootstrap">debootstrap</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>debootstrap</code>は最低限のDebian環境の作成に使われるツール。<code>pbuilder</code>や<code>cowbuilder</code>（とその環境を使う<code>piuparts</code>）などのツールの裏側でも動くし、<code>docker</code>イメージの裏側もコイツ。ちなみに環境構築にはリポジトリから必要なパッケージを取得してくるので、それなりに時間がかかる（しかも最初は<code>apt</code>も使えないので<code>wget</code>で取得するんだぜ？）。うーむ。</p>
+<p>で、どうやって時間を短縮するか？というと、以下のような選択肢がある。</p>
+<ol>
+<li>ローカルミラーをセットアップしてそれを参照する</li>
+<li>ローカルプロキシをセットアップしてそれを参照する</li>
+<li>ローカルキャッシュをセットアップしてそれを参照する</li>
+</ol>
+<ul>
+<li>1のミラーはまるっとDebianリポジトリをコピーするやり方。
+<ul>
+<li>クライアントが何十台、スペックによっては何百台とかあっても対応できる</li>
+<li>どのパッケージでもLAN内にあるので取得が早い</li>
+<li>でも、ミラーを構築するには最低でも数百GBのディスクを使うことになるし、更新も追随するとなるとそれなりにトラフィックが生じる</li>
+<li>ぶっちゃけオーバースペックすぎる。牛刀をもって鶏頭を裂く、的な。</li>
+<li>あと、必ずそのミラー参照するようになるので、Laptopで作って移動したときには面倒になるかも</li>
+<li>構築するなら<code>ftpsync</code>使おうね。他のツールはダメダメ。</li>
+</ul>
+</li>
+<li>2のプロキシは<code>squid</code>などのサーバーを立てるやり方。
+<ul>
+<li>取得したパッケージだけをキャッシュするのでディスク容量がミラーより格段に少なくて済む</li>
+<li>ミラーと同様に複数のマシンからも参照可能</li>
+<li><code>debootstrap 1.0.96</code>から<code>squid-deb-proxy-client</code>をインストールしておくと、<code>squid-deb-proxy</code>で立ち上げたプロキシサーバーを自動的に参照するようになる。<code>apt-cacher</code>などだと一々プロキシがどこにあるのかを指定しないといけないので、<code>squid-deb-proxy</code>マジおすすめ</li>
+</ul>
+</li>
+<li>3のキャッシュは<code>--cache-dir</code>オプションを使って、適当なところにキャッシュしておいたdebパッケージを参照するやり方。`
+<ul>
+<li><code>debootstrap 1.0.97</code>から実装済み。一台だけでやるならこれで十分。</li>
+<li><code>--cache-dir=/home/henrich/tmp/cachedir</code>というように、このオプションでは絶対パスで参照するのが必要。<code>~/tmp/cachedir</code>の様な指定はできない。</li>
+</ul>
+</li>
+</ul>
+<p>あと、リポジトリのミラーは<code>debootstrap 1.0.85</code>から<a href="https://deb.debian.org">deb.debian.org</a>を参照するようになっている。これはFastly提供のCDNだけど、個人的には自分が運用している<a href="http://debian-mirror.sakura.ne.jp">debian-mirror.sakura.ne.jp</a>を使っている。これは異常があったらすぐ気付くように、というドッグフーディングの側面もあるが、利用者がそんなに多くないので快適だということもある。もっと使っていいのよ？</p>
+<p>最後に、記述時の最新である<code>debootstrap 1.0.112</code>はMr.FAIこと<code>Thomas Lange</code>さんのハックによってパッケージ依存関係の最適化（これも<code>apt</code>が使われてはいない）が図られているので、随分と時間が短縮されている。</p>
+<p><strong>結論：debootstrap 1.0.112以降を使おう</strong>。<code>debootstrap</code>はshell script＋embedded perlコードというアレなやつなので、環境依存が極小であり、どのバージョンでも動くよ。バグがあったら教えてくださいな。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/04/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Fri, Jan 4, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Ultimate Debian Databaseの<a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;done=only&amp;rc=1&amp;flastmod=ign&amp;flastmodval=5&amp;sortby=last_modified&amp;sorto=asc&amp;ctags=1&amp;cdeferred=1&amp;caffected=1&amp;cautormtime=1&amp;cmissingbuilds=1&amp;">Bug search Cleaner view</a>から。</p>
+<ul>
+<li>xfce4関連パッケージがメンテナアドレスがaliothの消滅に伴う無効化されたもので、experimentalでは直ってるというしょーもない状態だったので状況を調査。
+<ul>
+<li>どうやら4.13というupstreamではdevelopment releaseな奴でアップデートしたからunstableに放り込むのがためらわれてるようだ</li>
+<li>fedoraとxubuntuはそれでも4.13リリースをぶち込んだ模様。</li>
+<li>というのを踏まえて「どーする？」という質問を投げた→「わかってる、4.14がリリースされたらそれを入れる」という回答。んーしばらくは放置か…。</li>
+</ul>
+</li>
+<li>uglifyjsのFTBFS、experimentalでは直ってるよ、という話
+<ul>
+<li>semver（セマンティックバージョニング）でわかるように大幅に変更されてるから、依存関係で不具合でるんじゃね？という理由でexperimentalに隔離されているようだ</li>
+<li>では、ということでお手軽に<code>apr-rdependes</code>で依存パッケージの確認
+<ul>
+<li>emscriptenは内部に古い古いuglifyjs持ってるみたい…</li>
+<li>lavaはソース落としてみたけど、バージョン指定の情報は特に無し。</li>
+<li>node-grunt-contrib-uglifyは新しいバージョンならサポートしてる</li>
+<li>node-uglifyjs-webpack-pluginも新しいバージョンならサポートしてる</li>
+<li>ruby-uglifierも新しいバージョンならサポートしている</li>
+</ul>
+</li>
+<li>というのを踏まえると、node-grunt-contrib-uglify、node-uglifyjs-webpack-plugin、ruby-uglifierを最新バージョンにしてexperimentalに上げる、がいいのかな。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>powermockがJava9ではビルドできないけど、新しいupstreamバージョンならOKよ、という話
+<ul>
+<li>やってみようとしたらビルドシステムからまるっと変わっていて（maven→gradle）、どうしようかな、というところ。gradle全然使ったこと無いのよね…
+<ul>
+<li><a href="https://wiki.debian.org/Java/Packaging/Gradle">Debian Wikiのページ</a>にあった。<code>gradle-debian-helper</code>パッケージをBuild-Dependsに加えて、<code>debian/rules</code>で<code>dh $@ -with buildsystem=gradle</code>&hellip;って間違ってるやん<code>--buildsystem=gradle</code>だよね…。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">*</span> What went wrong<span style="color:#f92672">:</span>
+A problem occurred configuring root project <span style="color:#960050;background-color:#1e0010">&#39;</span>powermock<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">.</span>
+<span style="color:#f92672">&gt;</span> Could not resolve all files <span style="color:#66d9ef">for</span> configuration <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">:</span>classpath<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>propdeps<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">7</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>  
+         project <span style="color:#f92672">:</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>   
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>      
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">jfrog</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bintray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>bintray<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>   
+   <span style="color:#f92672">&gt;</span> Could not resolve net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span>   
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>    
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of net<span style="color:#f92672">.</span><span style="color:#a6e22e">researchgate</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>release<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span>  
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>     
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span> 
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>        
+      <span style="color:#f92672">&gt;</span> No cached version of com<span style="color:#f92672">.</span><span style="color:#a6e22e">github</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jengelman</span><span style="color:#f92672">.</span><span style="color:#a6e22e">gradle</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span>shadow<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">4</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>  
+   <span style="color:#f92672">&gt;</span> Could not resolve org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>      
+         project <span style="color:#f92672">:</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of org<span style="color:#f92672">.</span><span style="color:#a6e22e">shipkit</span><span style="color:#f92672">:</span>shipkit<span style="color:#f92672">:</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">31</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+   <span style="color:#f92672">&gt;</span> Could not resolve ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">.</span>
+     Required by<span style="color:#f92672">:</span>
+         project <span style="color:#f92672">:</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+      <span style="color:#f92672">&gt;</span> No cached version of ru<span style="color:#f92672">.</span><span style="color:#a6e22e">vyarus</span><span style="color:#f92672">:</span>gradle<span style="color:#f92672">-</span>animalsniffer<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span> available <span style="color:#66d9ef">for</span> offline mode<span style="color:#f92672">.</span>
+</code></pre></div><p>エラーに出ている足りないパッケージについて、適当にパッケージ名を付けて<code>Build-Depends</code>に指定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> pbuilder-satisfydepends-dummy : Depends: gradle-bintray-plugin which is a virtual package and is not provided by any available package
+                                 Depends: gradle-release which is a virtual package and is not provided by any available package
+                                 Depends: gradle-shadow which is a virtual package and is not provided by any available package
+                                 Depends: gradle-shipkit which is a virtual package and is not provided by any available package
+                                 Depends: gradle-animalsniffer-plugin which is a virtual package and is not provided by any available package
+</code></pre></div><ul>
+<li><code>gradle-propdeps-plugin</code>はパッケージがあったので追加。</li>
+<li><code>gradle-animalsniffer-plugin</code>は<a href="https://github.com/xvik/gradle-animalsniffer-plugin">https://github.com/xvik/gradle-animalsniffer-plugin</a>かららしい。
+<ul>
+<li>で、これは<code>animalsniffer</code>に依存している。<code>libanimal-sniffer-java</code>パッケージがあるのでこれだな。</li>
+<li>注意点が書いてある<code>「Use version 1.17 (toolVersion=1.17) if you need to run on java 9, but note that 1.17 can't be used on java 8 (and that's why it is not set by default)」</code>→Java11でbusterはリリースされるので1.17が必要</li>
+<li><code>libanimal-sniffer-java</code> は1.16なので、まずコイツのアップデートが必要…。</li>
+<li><code>$ apt-rdepends -r libanimal-sniffer-java</code>の結果は何もなかったので、ぶっ込んでも大丈夫じゃないかな。</li>
+</ul>
+</li>
+<li><code>gradle-shipkit</code>は<a href="https://github.com/mockito/shipkit">https://github.com/mockito/shipkit</a>だな</li>
+<li><code>gradle-shadow</code>は<a href="https://github.com/johnrengelman/shadow">https://github.com/johnrengelman/shadow</a></li>
+<li><code>gradle-release</code>は<a href="https://github.com/researchgate/gradle-release">https://github.com/researchgate/gradle-release</a></li>
+<li><code>gradle-bintray-plugin</code>は<a href="https://github.com/bintray/gradle-bintray-plugin">https://github.com/bintray/gradle-bintray-plugin</a></li>
+</ul>
+<hr>
+<ul>
+<li>os-autoinstを<code>dh12</code>に上げたらビルドがコケるように。あれ？</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># root@hp:/build/os-autoinst-4.5.1527308405.8b586d5# find . -name &#39;*.pm&#39; -print</span>
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshXtermIPMI.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/vnc_base.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/localXvnc.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshX3270.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/sshVirtsh.pm
+./debian/os-autoinst/usr/libexec/os-autoinst/consoles/virtio_terminal.pm
+</code></pre></div><p>おいおい。何故か<code>/usr/libexec</code>以下にインストールするようになっとるやん。<code>man debhelper</code>で答えを探す…見つけた。</p>
+<p><code>The build systems meson and autoconf no longer explicitly set the --libexecdir variable and thus relies on the build system default - which should be /usr/libexec (per FHS 3.0, adopted in Debian Policy 4.1.5).</code>ということで。どうやって直すかね。。。</p>
+<hr>
+<p>YubikeyでSSH接続しようとしたら謎のエラーがでて焦る。結局、手元の<code>~/.gnupg/private-keys-v1.d</code>のファイルが腐ってるというオチだったのだけど、絞り込むのも時間かかった…</p>
+<ul>
+<li>Yubikey側の異常を疑って、testing環境で接続→問題なし（これでYubikeyが壊れた疑惑はなくなった）</li>
+<li>異常がでたdesktopのunstable環境の問題を疑って、別のunstable環境なマシンで接続→問題なし（設定が全くしていなかったのでちょっと戸惑った、これでunstableだと壊れてるというパッケージ側の問題は無い）</li>
+<li>ユーザー環境の差異を疑って、テストユーザーを作って接続→問題なし（これでいつものユーザーのhome directoryの設定が問題だろうと絞り込めた）</li>
+<li>とりあえず<code>mv .gnupg bak.gnupg</code>などとして接続→問題なし（これで<code>.gnupg</code>以下のファイルのうちどれかがおかしい）</li>
+<li>ひたすら旧ディレクトリから１つずつディレクトリやファイルをコピーする→絞り込めた</li>
+</ul>
+<p>やれやれ。</p>
+<hr>
+<p>今日は成果が得られなかった一日。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/03/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jan 3, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906688">ruby-netrcパッケージのバグ</a>のtriage。どうもテストケースがbuilddだと問題になるようだ（これは後に間違いだと気付く）。<code>assert_equal File.join(Dir.pwd, '.netrc'), Netrc.default_path</code>が以下のような結果になる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#ae81ff">1</span>) <span style="color:#e6db74">Failure</span>:
+<span style="color:#66d9ef">TestNetrc</span><span style="color:#75715e">#test_missing_environment [/&lt;&lt;PKGBUILDDIR&gt;&gt;/test/test_netrc.rb:203]:</span>
+<span style="color:#f92672">---</span> expected
+<span style="color:#f92672">+++</span> actual
+<span style="color:#960050;background-color:#1e0010">@@</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">@@</span>
+<span style="color:#f92672">-</span><span style="color:#75715e"># encoding: ASCII-8BIT</span>
+<span style="color:#f92672">-</span><span style="color:#e6db74">&#34;/&lt;&lt;PKGBUILDDIR&gt;&gt;/.netrc&#34;</span>
+<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/build/.netrc&#34;</span>
+</code></pre></div><p><code>&lt;&lt;PKGBUILDDIR&gt;&gt;</code>なんて変わった値が放り込まれてしまっている?…と思ったら、これは「builddでのログ出力で置き換えてるだけ」なのか。手元でビルドする時は<code>cowbuilder</code>でやってしまっていたので、<code>sbuild</code>環境を用意するのにも時間が&hellip;あれ？<code>sbuild</code>でも普通にビルドできちゃった。というか、builddでも以前にビルド自体は出来てるのか…。はてな？</p>
+<p>バグレポートを再度よく読み、テスト部分を再確認。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_missing_environment</span>
+    nil_home <span style="color:#f92672">=</span> <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>, nil_home <span style="color:#f92672">=</span> nil_home, <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>
+    assert_equal <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>join(<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>pwd, <span style="color:#e6db74">&#39;.netrc&#39;</span>), <span style="color:#66d9ef">Netrc</span><span style="color:#f92672">.</span>default_path
+  <span style="color:#66d9ef">ensure</span>
+    <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>, nil_home <span style="color:#f92672">=</span> nil_home, <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p><code>default_path</code>でgrep…。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">.</span><span style="color:#a6e22e">default_path</span>
+    <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>join(<span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;NETRC&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">||</span> home_path, netrc_filename)
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p>あー、これだ。<code>NETRC</code>が存在しない場合に<code>home_path</code>、つまりは上記のエラーになる環境では<code>/build</code>が指定されてるのにもかかわらず、ビルドをしている<code>Dir.pwd</code>は別、ということだろうな。さて、どういうふうにして回避するかね…</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    p nil_home
+    p <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>
+    p <span style="color:#66d9ef">Netrc</span><span style="color:#f92672">.</span>home_path
+</code></pre></div><p>とすると</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#e6db74">&#34;/home/henrich&#34;</span>
+<span style="color:#66d9ef">nil</span>
+<span style="color:#e6db74">&#34;/build/ruby-netrc-0.11.0&#34;</span>
+</code></pre></div><p>が返る。あれ？予想と違う。<code>home_path</code>は<code>/build/ruby-netrc-0.11.0</code>なのか。<code>ENV[&quot;HOME&quot;]</code>が<code>nil</code>であっても問題なし、ということを言いたいとすれば以下のようにするのが良さそう</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#f92672">---</span> a<span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>test_netrc<span style="color:#f92672">.</span>rb
+<span style="color:#f92672">+++</span> b<span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>test_netrc<span style="color:#f92672">.</span>rb
+<span style="color:#960050;background-color:#1e0010">@@</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">7</span> <span style="color:#960050;background-color:#1e0010">@@</span>
+   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_missing_environment</span>
+     nil_home <span style="color:#f92672">=</span> <span style="color:#66d9ef">nil</span>
+     <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>, nil_home <span style="color:#f92672">=</span> nil_home, <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">-</span>    assert_equal <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>join(<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>pwd, <span style="color:#e6db74">&#39;.netrc&#39;</span>), <span style="color:#66d9ef">Netrc</span><span style="color:#f92672">.</span>default_path
+<span style="color:#f92672">+</span>    assert_equal <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>join(<span style="color:#66d9ef">Netrc</span><span style="color:#f92672">.</span>home_path, <span style="color:#e6db74">&#39;.netrc&#39;</span>), <span style="color:#66d9ef">Netrc</span><span style="color:#f92672">.</span>default_path
+   <span style="color:#66d9ef">ensure</span>
+     <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>, nil_home <span style="color:#f92672">=</span> nil_home, <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;HOME&#34;</span><span style="color:#f92672">]</span>
+   <span style="color:#66d9ef">end</span>
+</code></pre></div><p>でアップロードした。</p>
+<hr>
+<p>ruby-eventmachineパッケージのFTBFSがpendingに１０ヶ月ぐらいなったままなので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=816640#26">質問した</a>。→どうやらsegfaultするという問題があるらしい。うーむ。</p>
+<hr>
+<p>os-autoinstを直せるかな、と思ってビルドするも</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">The following packages have unmet dependencies:
+ libopencv-imgcodecs3.2 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package
+
+ libvtk6.3 : Depends: gdal-abi-2-3-0 which is a virtual package and is not provided by any available package 
+</code></pre></div><p>げぇ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Package: libgdal20
+Version: 2.4.0+dfsg-1
+Priority: optional
+Section: libs
+Source: gdal
+Maintainer: Debian GIS Project &lt;pkg-grass-devel@lists.alioth.debian.org&gt;
+Installed-Size: 20.2 MB
+Provides: gdal-abi-2-4-0
+</code></pre></div><p>こいつか…。<a href="https://release.debian.org/transitions/html/gdal-2-4-0.html">Transition tracker</a>を見る限り、ここ１時間でビルドされたりしてるので、今日はたまたまあたってしまった、という感じか。</p>
+<hr>
+<p><a href="https://tracker.debian.org/news/1016843/accepted-fonts-monapo-20170722-2-source-into-unstable/">fonts-monapoパッケージをアップデート</a>。upstreamが配布しなくなってた。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Jan 2, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ubuntu-keyringパッケージの変更の続き。build時にもファイルチェックをするようにしたり。shellscriptでは<code>tempdir=`mktemp -d`</code>のようにしてtempdirを指定したのだけど、makeでは<code>$$tempdir</code>が空になるので、<code>$(CURDIR)/debian/tmp</code> 決め打ちで逃げた…どうやるのがいいんでしょうねぇ？</p>
+<p>autopkgtest実施時にパッケージの分割・リネームの結果、パッケージリポジトリに該当のパッケージがなくてパッケージを引っ張ってこようとしてエラーとなるという予想外のエラー。気付くまでにまたしても時間を要した。とりあえず<code>sudo cowbuilder --login --inputfile a.deb --inputfile b.deb --save-after-exec</code>としてchroot環境に入り<code>apt install /buildd/a.deb /buildd/b.deb</code>などとしてローカル環境に加えて様子見→エラー解消。やれやれ。しかし、これを失念してその後で<code>piuparts</code>でパッケージチェックしたらdebconf関連ファイルがそのまま残ってるぞ、というエラーになって苦悶した（<code>sudo cowbuilder --create</code>しなおして対処）。</p>
+<ul>
+<li>パッケージを分割した</li>
+<li>インストールするkeyringをUbuntuのパッケージを参考にして変更した</li>
+<li>debconfで質問される <code>/etc/apt/trusted.gpg.d</code> にsymlinkを張るkeyringをUbuntuのパッケージを参考に調整した</li>
+<li>autopkgtestをまともなものにした</li>
+<li>build時にもautopkgtest相当が動作するようにした</li>
+</ul>
+<p>今回の変更はこんな感じか。パッケージ分割で新しいバイナリパッケージが増えるから<a href="https://ftp-master.debian.org/new.html">NEW queue</a>待ちに。どれだけかかるのかな。。</p>
+<p>そしてアップロード後もエラーを踏む。</p>
+<pre><code>Source-only uploads to NEW are not allowed.
+</code></pre><p>なんと、そうだったのか。最近は<code>arch=all</code>パッケージとかも手元でビルドしたバイナリではなくbuilddでビルドしたものを、と思って<code>git-buildpackage</code>のオプションで<code>--git-pbuilder-options=&quot;--source-only-changes&quot;</code>などとしていたのが仇に。</p>
+<hr>
+<ul>
+<li>淡々と<a href="https://tracker.debian.org/news/1016437/accepted-jcodings-1042-1-source-into-unstable/">jcodingsパッケージをアップデート</a>。</li>
+<li>grcompilerに<a href="https://tracker.debian.org/news/1016599/accepted-grcompiler-42-7-source-into-unstable/">投稿されてたパッチをマージ</a>。自分の作った地雷を踏むという失態を。
+<ul>
+<li>upstreamが4.3を出してるのだけど、これをマージした所ビルドも通らない代物だったのでそのまま放置してたのを忘れてパッチを当ててビルドが通らないものとして悩んでしまった。一旦debian/4.2ブランチを作ってこっちに。</li>
+<li>で、全部終わってpushしようとしたらrejectされる…って他のメンテナが変更を加えてた。変更を<code>git format-patch</code>して一旦逃してから全削除→<code>git clone</code>して当て直し。そしてメンテナの作業ミスを見つけて直すなども。やれやれ。</li>
+</ul>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/01/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jan 1, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>ubuntu-keyringパッケージの変更の続き。Ubuntu側と内容を合わせる形に変更で、パッケージを増やしたり。<code>.install</code>ファイルの指定が微妙でインストールされるファイルが被ってしまう問題、<code>[0-9]*</code>で数字だけ指定されるかと思ったら、そうでなかった。。。</p>
+<pre><code>keyrings/ubuntu-keyring-[0-9]*[!a-z]-archive.gpg      usr/share/keyrings/
+</code></pre><p>というようにした。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Dec 31, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/patch">patch</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
 						<ul>
-<li>groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。</li>
+<li><a href="https://henrich.github.io/blog/2018/12/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">先日のMerge Request</a>に「amd64 specificで指定してるけど、これi386でも動くんじゃない？」というコメントがメンテナから来たので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/92/diffs?commit_id=629e0562f2416eea4a477ea12b83a73347da86e2">x86指定に変更した</a>→マージされました。</li>
+<li>昨日の<a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ruby-loofahパッケージの更新で脆弱性修正</a>したのだが、Debian9 &ldquo;stretch&quot;では変更をbackportしないといけない（まぁ、Debian Security Advisoryを出すほどでもない＝no-dsaと見なされる可能性もあるけど）。根本的な変更はword１個消すだけ＋XSS対策の追加コードだけだったので、<a href="https://salsa.debian.org/ruby-team/ruby-loofah/commits/debian/stretch">作業して</a>セキュリティチームに連絡だけしといた。</li>
+<li>なんかKernelで問題が起きてるぞ、これは意図的なのか？というバグレポートを横目で見たので、以前の省電力化Kernel configパッチの影響であり<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=917906#8">意図的なものだということだけを伝えるreply</a>をした（changelogにきちんと書いたんだがな…）。その際、大元のFedoraでの変更をしたRHの人にCC入れておいた。</li>
+<li><a href="https://tracker.debian.org/news/1015820/accepted-ubuntu-keyring-201809181-1-source-into-unstable/">ubuntu-keyringパッケージを最新に更新</a>。もうちょっと待とうかとも思ったのだけど、testが壊れたものをアップロードしてたのと前のアップロードの鍵はチェックでfailする謎の状態だったので。
+<ul>
+<li>次はUbuntu側とパッケージ名を合わせる変更を入れ込むかね…</li>
+</ul>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2018/12/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Dec 30, 2018
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/rcbug">RCbug</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://udd.debian.org/bugs/?release=buster_and_sid&amp;merged=ign&amp;rtbuster-will-remove=ign&amp;rtbuster-can-defer=ign&amp;autoremovals=ign&amp;deferred=ign&amp;fnewer=ign&amp;fnewerval=30&amp;rc=1&amp;cpopcon=1&amp;chints=1&amp;ctags=1&amp;cclaimed=1&amp;cdeferred=1&amp;caffected=1&amp;crttags=1&amp;sortby=last_modified&amp;sorto=asc&amp;#results">Debian10 &ldquo;buster&quot;リリースの障害となるRelease Criticalバグ一覧</a>から簡単に直せそうなのを探して作業。</p>
+<ul>
+<li>ruby-slimパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=895500#16">New upstream version導入でFTBFS修正</a></li>
+<li>ruby-sinatra-contribパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=911869#12">New upstream version導入でFTBFS修正</a></li>
+<li>ruby-loofahパッケージ、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912398#14">New upstream version導入でCVE修正</a></li>
 </ul>
 
 					
