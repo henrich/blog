@@ -64,6 +64,116 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2020/05/06/lintian-brush%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">Lintian Brushを試してみる</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 6, 2020
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Debian パッケージは一旦作ると、依存関係などの大幅な変更以外は<a href="https://www.debian.org/doc/debian-policy/">Debian Policy</a>の更新に従ってチマチマとした修正をすることがほとんどです。気がついたところは手直しをするわけですが、些細な問題については見逃していることが多く、この発見と修正を自動化できるとメンテナは楽ができます。Policyに追随するツールとしては<code>lintian</code>がありますが、解釈不要な機械的な変更については<code>lintian-brush</code>というツールが利用できます。最近まで存在は知っていたものの利用はしていなかったので試してみました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt install lintian-brush
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
+$ cd package-dir
+$ lintian-brush 
+Lintian tags fixed: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;file-contains-trailing-whitespace&#39;</span>, <span style="color:#e6db74">&#39;out-of-date-standards-version&#39;</span>, <span style="color:#e6db74">&#39;field-name-typo-dep5-copyright&#39;</span><span style="color:#f92672">}</span>
+$
+</code></pre></div><p>どうやら3つほど問題を発見して修正をかけてくれたようです。変更点はgitにコミットされていました。</p>
+<pre><code class="language-git" data-lang="git">ommit 2aab55f3d809396ab8250014cc082210662d327a (HEAD -&gt; master)
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Update standards version to 4.5.0, no changes needed.
+    
+    Fixes: lintian: out-of-date-standards-version
+    See-also: https://lintian.debian.org/tags/out-of-date-standards-version.html
+
+commit bfdc944abb5485e8c0ba1361a74f0dfd632722ca
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Fix field name typos in debian/copyright.
+    
+    Fixes: lintian: field-name-typo-dep5-copyright
+    See-also: https://lintian.debian.org/tags/field-name-typo-dep5-copyright.html
+
+commit f78f21cc22c1f9749f412fbd8a874711c6cbee6c
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:01 2020 +0900
+
+    Trim trailing whitespace.
+    
+    Fixes: lintian: file-contains-trailing-whitespace
+    See-also: https://lintian.debian.org/tags/file-contains-trailing-whitespace.html
+</code></pre><p>内容をちょっと見てみます。</p>
+<pre><code class="language-git" data-lang="git">commit bfdc944abb5485e8c0ba1361a74f0dfd632722ca
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Fix field name typos in debian/copyright.
+    
+    Fixes: lintian: field-name-typo-dep5-copyright
+    See-also: https://lintian.debian.org/tags/field-name-typo-dep5-copyright.html
+
+diff --git a/debian/changelog b/debian/changelog
+index 833204f..148cbe4 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,6 +1,7 @@
+ fonts-kanjistrokeorders (4.002~dfsg-4) UNRELEASED; urgency=medium
+ 
+   * Trim trailing whitespace.
++  * Fix field name typos in debian/copyright.
+ 
+  -- Hideki Yamane &lt;henrich@debian.org&gt;  Wed, 06 May 2020 18:43:01 +0900
+ 
+diff --git a/debian/copyright b/debian/copyright
+index 0f08c52..26f22f2 100644
+--- a/debian/copyright
++++ b/debian/copyright
+@@ -1,7 +1,7 @@
+ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+ Upstream-Name: ttf-kanjistrokeorders
+ Source: https://www.nihilist.org.uk/
+-Upstream-contact: Tim Eyre &lt;mail |at| nihilist (dot) org (dot) uk&gt;
++Upstream-Contact: Tim Eyre &lt;mail |at| nihilist (dot) org (dot) uk&gt;
+ 
+ Files: KanjiStrokeOrders_v*.ttf readme_en_*.txt
+ Copyright: 2004-2018, Ulrich Apel, the AAAA project and the Wadoku project
+@@ -34,4 +34,3 @@ Copyright: 2008-2019, Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;
+ License: GPL-3
+  On Debian systems the full text of the GNU General Public License Version 3
+  can be found in the `/usr/share/common-licenses/GPL-3' file.
+</code></pre><p>&hellip;？となりましたがよくよく見てみると<code>Upstream-contact</code>フィールドが<code>Upstream-Contact</code>フィールドとCが大文字に修正されてます。こんなの気づかねぇよ…(´・ω・｀)</p>
+<p>とまぁ、手動作業では見つけられないような重箱の隅も直せていいツールですね。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/08/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -581,52 +691,6 @@ dpkg: アーカイブ /tmp/apt-dpkg-install-72mWan/34-thunderbird_1%3a60.7.1-1_a
 </li>
 <li><a href="https://tracker.debian.org/news/1039985/accepted-jruby-joni-2127-1-source-into-unstable/">jruby-joniパッケージをアップデートした</a></li>
 <li>その他、フリーズ中でアップロードしないほうがいいかな、と思ったのは更新したのをgitリポジトリにアップロードするに止めた</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, May 17, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://tracker.debian.org/news/1039927/accepted-ruby-parallel-tests-2290-1-source-into-unstable/">ruby-parallel-testsパッケージをアップデート</a></li>
-<li><a href="https://tracker.debian.org/news/1039928/accepted-ruby-serverengine-211-1-source-into-unstable/">ruby-serverengineパッケージをアップデート</a>
-<ul>
-<li>今見たら<a href="https://ci.debian.net/data/autopkgtest/testing/amd64/r/ruby-serverengine/2385536/log.gz">ciがコケてる</a>…要調査だ。</li>
-</ul>
-</li>
 </ul>
 
 					

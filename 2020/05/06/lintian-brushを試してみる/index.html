@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Lintian Brushを試してみる">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Lintian Brushを試してみる &middot; Forget me not...</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://henrich.github.io/blog//css/theme/simplex.css">
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/solid.js" integrity="sha384-F4BRNf3onawQt7LDHDJm/hwm3wBtbLIfGk1VSB/3nn3E+7Rox1YpYcKJMsmHBJIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/regular.js" integrity="sha384-V+AkgA1cZ+p3DRK63AHCaXvO68V7B5eHoxl7QVN21zftbkFn/sGAIVR7vmQL3Zhp" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/brands.js" integrity="sha384-VLgz+MgaFCnsFLiBwE3ItNouuqbWV2ZnIqfsA6QRHksEAQfgbcoaQ4PP0ZeS0zS5" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/fontawesome.js" integrity="sha384-treYPdjUrP4rW5q82SnECO7TPVAz4bpas16yuE9F5o7CeBn2YYw1yr5oC8s8Mf8t" crossorigin="anonymous"></script>
+
+   	
+   	<link rel="stylesheet" href="https://henrich.github.io/blog//css/style.css">
+
+
+    
+    <script src="https://henrich.github.io/blog//js/jquery.min-2.1.4.js"></script>
+    <script src="https://henrich.github.io/blog//js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Forget me not..." />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://henrich.github.io/blog/">Forget me not...</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://henrich.github.io/blog/">Home</a></li>
+                    <li><a href="https://henrich.github.io/blog//post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Lintian Brushを試してみる</h3>
+				<span class="label label-primary">Wed, May 6, 2020</span> in
+				
+				
+					
+					<a href="/tags/debian">debian</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>Debian パッケージは一旦作ると、依存関係などの大幅な変更以外は<a href="https://www.debian.org/doc/debian-policy/">Debian Policy</a>の更新に従ってチマチマとした修正をすることがほとんどです。気がついたところは手直しをするわけですが、些細な問題については見逃していることが多く、この発見と修正を自動化できるとメンテナは楽ができます。Policyに追随するツールとしては<code>lintian</code>がありますが、解釈不要な機械的な変更については<code>lintian-brush</code>というツールが利用できます。最近まで存在は知っていたものの利用はしていなかったので試してみました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt install lintian-brush
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
+$ cd package-dir
+$ lintian-brush 
+Lintian tags fixed: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;file-contains-trailing-whitespace&#39;</span>, <span style="color:#e6db74">&#39;out-of-date-standards-version&#39;</span>, <span style="color:#e6db74">&#39;field-name-typo-dep5-copyright&#39;</span><span style="color:#f92672">}</span>
+$
+</code></pre></div><p>どうやら3つほど問題を発見して修正をかけてくれたようです。変更点はgitにコミットされていました。</p>
+<pre><code class="language-git" data-lang="git">ommit 2aab55f3d809396ab8250014cc082210662d327a (HEAD -&gt; master)
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Update standards version to 4.5.0, no changes needed.
+    
+    Fixes: lintian: out-of-date-standards-version
+    See-also: https://lintian.debian.org/tags/out-of-date-standards-version.html
+
+commit bfdc944abb5485e8c0ba1361a74f0dfd632722ca
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Fix field name typos in debian/copyright.
+    
+    Fixes: lintian: field-name-typo-dep5-copyright
+    See-also: https://lintian.debian.org/tags/field-name-typo-dep5-copyright.html
+
+commit f78f21cc22c1f9749f412fbd8a874711c6cbee6c
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:01 2020 +0900
+
+    Trim trailing whitespace.
+    
+    Fixes: lintian: file-contains-trailing-whitespace
+    See-also: https://lintian.debian.org/tags/file-contains-trailing-whitespace.html
+</code></pre><p>内容をちょっと見てみます。</p>
+<pre><code class="language-git" data-lang="git">commit bfdc944abb5485e8c0ba1361a74f0dfd632722ca
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Fix field name typos in debian/copyright.
+    
+    Fixes: lintian: field-name-typo-dep5-copyright
+    See-also: https://lintian.debian.org/tags/field-name-typo-dep5-copyright.html
+
+diff --git a/debian/changelog b/debian/changelog
+index 833204f..148cbe4 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,6 +1,7 @@
+ fonts-kanjistrokeorders (4.002~dfsg-4) UNRELEASED; urgency=medium
+ 
+   * Trim trailing whitespace.
++  * Fix field name typos in debian/copyright.
+ 
+  -- Hideki Yamane &lt;henrich@debian.org&gt;  Wed, 06 May 2020 18:43:01 +0900
+ 
+diff --git a/debian/copyright b/debian/copyright
+index 0f08c52..26f22f2 100644
+--- a/debian/copyright
++++ b/debian/copyright
+@@ -1,7 +1,7 @@
+ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+ Upstream-Name: ttf-kanjistrokeorders
+ Source: https://www.nihilist.org.uk/
+-Upstream-contact: Tim Eyre &lt;mail |at| nihilist (dot) org (dot) uk&gt;
++Upstream-Contact: Tim Eyre &lt;mail |at| nihilist (dot) org (dot) uk&gt;
+ 
+ Files: KanjiStrokeOrders_v*.ttf readme_en_*.txt
+ Copyright: 2004-2018, Ulrich Apel, the AAAA project and the Wadoku project
+@@ -34,4 +34,3 @@ Copyright: 2008-2019, Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;
+ License: GPL-3
+  On Debian systems the full text of the GNU General Public License Version 3
+  can be found in the `/usr/share/common-licenses/GPL-3' file.
+</code></pre><p>&hellip;？となりましたがよくよく見てみると<code>Upstream-contact</code>フィールドが<code>Upstream-Contact</code>フィールドとCが大文字に修正されてます。こんなの気づかねぇよ…(´・ω・｀)</p>
+<p>とまぁ、手動作業では見つけられないような重箱の隅も直せていいツールですね。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="https://gohugo.io/">Hugo</a> - version: 0.69.2 ~ <a href="https://henrich.github.io/blog//license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

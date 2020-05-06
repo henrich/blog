@@ -9,10 +9,21 @@
     <managingEditor>henrich@debian.org (Hideki Yamane)</managingEditor>
     <webMaster>henrich@debian.org (Hideki Yamane)</webMaster>
     <copyright>&amp;copy; 2015  Hideki Yamane</copyright>
-    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2020 18:46:01 +0900</lastBuildDate>
     
 	<atom:link href="https://henrich.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Lintian Brushを試してみる</title>
+      <link>https://henrich.github.io/blog/2020/05/06/lintian-brush%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Wed, 06 May 2020 18:46:01 +0900</pubDate>
+      <author>henrich@debian.org (Hideki Yamane)</author>
+      <guid>https://henrich.github.io/blog/2020/05/06/lintian-brush%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</guid>
+      <description>Debian パッケージは一旦作ると、依存関係などの大幅な変更以外はDebian Policyの更新に従ってチマチマとした修正をすることがほとんどです。気がついたところは手直しをするわけですが、些細な問題については見逃していることが多く、この発見と修正を自動化できるとメンテナは楽ができます。Policyに追随するツールとしてはlintianがありますが、解釈不要な機械的な変更についてはlintian-brushというツールが利用できます。最近まで存在は知っていたものの利用はしていなかったので試してみました。
+$ sudo apt install lintian-brush (snip) $ cd package-dir $ lintian-brush Lintian tags fixed: {&amp;#39;file-contains-trailing-whitespace&amp;#39;, &amp;#39;out-of-date-standards-version&amp;#39;, &amp;#39;field-name-typo-dep5-copyright&amp;#39;} $ どうやら3つほど問題を発見して修正をかけてくれたようです。変更点はgitにコミットされていました。
+ommit 2aab55f3d809396ab8250014cc082210662d327a (HEAD -&amp;gt; master)Author: Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;Date: Wed May 6 18:43:12 2020 +0900Update standards version to 4.5.0, no changes needed.Fixes: lintian: out-of-date-standards-versionSee-also: https://lintian.debian.org/tags/out-of-date-standards-version.htmlcommit bfdc944abb5485e8c0ba1361a74f0dfd632722caAuthor: Hideki Yamane &amp;lt;henrich@debian.org&amp;gt;Date: Wed May 6 18:43:12 2020 +0900Fix field name typos in debian/copyright.Fixes: lintian: field-name-typo-dep5-copyrightSee-also: https://lintian.</description>
+    </item>
     
     <item>
       <title>めんてなのおしごと</title>
