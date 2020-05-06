@@ -64,6 +64,79 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2020/05/06/fsfap%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9/">FSFAPライセンス</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 6, 2020
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://spdx.org/licenses/FSFAP.html">FSFAPライセンス(FSF All Permissive License)</a>というライセンスがあった。AppStreamのmetadataに使われたりするらしい。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2020/05/06/debhelper-compat-level13%E3%81%A7%E3%81%AE%E6%B0%97%E3%81%A5%E3%81%8D/">debhelper Compat level13での気づき</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 6, 2020
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>debhelper-compat 13</code> では <code>dh_missing</code> が強制的に enable になる。これによってパッケージにインストールされていなかったファイルを洗い出せた。
+なお「意図的にインストールしたくないファイル」（.laなど）は <code>debian/not-installed</code> というファイルに記述しておけば良い。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2020/05/06/lintian-brush%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">Lintian Brushを試してみる</a></h3>
 						<small><span class="label label-primary">
 							
@@ -602,109 +675,6 @@ dpkg: アーカイブ /tmp/apt-dpkg-install-72mWan/34-thunderbird_1%3a60.7.1-1_a
 	
 
 
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sun, May 19, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>docker.io</code>パッケージがアップデートされたのを見て、パッケージ情報見てたらupstreamのサイトが移動してたので<a href="https://salsa.debian.org/docker-team/docker/merge_requests/1">MergeRequestだした</a>
-<ul>
-<li>マージされた</li>
-</ul>
-</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, May 18, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>git-buildpackage</code>のサンプル<code>gbp.conf</code>の設定が<code>bzip2</code>使っていたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929141">xzに置き換えパッチ</a>だした
-<ul>
-<li>マージされた</li>
-</ul>
-</li>
-<li><code>unblock: ubuntu-keyring/2018.09.18.1-5</code>が通った、が指摘を受けてた点は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929165">別バグとしてファイルされた</a>。見直さないとな…</li>
-<li><a href="https://tracker.debian.org/news/1039981/accepted-sphinx-intl-0912-1-source-into-unstable/">sphinx-intlパッケージをアップデートした</a>
-<ul>
-<li>1.0.0が最新、となっているもののmasterブランチにはタグが見当たらないので<a href="https://github.com/sphinx-doc/sphinx-intl/issues/32">Issue立てといた</a></li>
-</ul>
-</li>
-<li><a href="https://tracker.debian.org/news/1039984/accepted-jcodings-1044-1-source-into-unstable/">jcodingsパッケージをアップデートした</a>。
-<ul>
-<li><code>debian/libjcodings-java.poms</code>で<code>--no-parent</code>オプションを使えばいいのを発見して<code>debian/patches</code>はdropした。なんで今まで気づいてなかったんだ。</li>
-</ul>
-</li>
-<li><a href="https://tracker.debian.org/news/1039985/accepted-jruby-joni-2127-1-source-into-unstable/">jruby-joniパッケージをアップデートした</a></li>
-<li>その他、フリーズ中でアップロードしないほうがいいかな、と思ったのは更新したのをgitリポジトリにアップロードするに止めた</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
         
 	</div>
     <div class="container">
@@ -975,7 +945,16 @@ dpkg: アーカイブ /tmp/apt-dpkg-install-72mWan/34-thunderbird_1%3a60.7.1-1_a
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/27/">27</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/28/">28</a></li>
     
     
     <li class="page-item">
@@ -983,7 +962,7 @@ dpkg: アーカイブ /tmp/apt-dpkg-install-72mWan/34-thunderbird_1%3a60.7.1-1_a
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/27/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/28/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

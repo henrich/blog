@@ -64,10 +64,280 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/27/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Wed, Feb 6, 2019
+								Wed, Feb 27, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://tracker.debian.org/news/1032572/accepted-libhinawa-111-1-source-into-unstable/">libhinawaをアップロード</a>した。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/27/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Feb 27, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>先日のbirdfontの修正に漏れがあった（linksが修正されてなかった）ので<a href="https://tracker.debian.org/news/1032575/accepted-birdfont-2250-3-source-into-unstable/">対応</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Feb 25, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=922949">birdfontの依存関係を微調整するバグレポート</a>が来てたので対応した。</p>
+<pre><code class="language-lintian" data-lang="lintian">W: birdfont source: inconsistent-appstream-metadata-license resources/linux/birdfont.appdata.xml (gpl-3.0+ != gpl-3+)
+</code></pre><p>とあったが、これはどっちに揃えるのが良いのだろうね？</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Feb 24, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>いつの頃からかデスクトップのapt updateがまともに働かなくなった。どうやら<code>squid-deb-proxy-client</code>がおかしい。</p>
+<p>squid-deb-proxy-clientの中身を見てコマンドを実行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">23443</span> ?        Ss     1:44  <span style="color:#ae81ff">\_</span> tmux -u -2 -f /usr/share/byobu/profiles/tmuxrc new-session -n - /usr/bin/byobu-shell
+<span style="color:#ae81ff">23450</span> pts/2    Ss     0:00      <span style="color:#ae81ff">\_</span> /bin/bash
+<span style="color:#ae81ff">22690</span> pts/2    S+     0:00      |   <span style="color:#ae81ff">\_</span> /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover http://deb.debian.org/debian
+<span style="color:#ae81ff">22691</span> pts/2    Z+     0:00      |       <span style="color:#ae81ff">\_</span> <span style="color:#f92672">[</span>avahi-browse<span style="color:#f92672">]</span> &lt;defunct&gt;
+</code></pre></div><p>というようになったので、試しに引数なしで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">23450</span> pts/2    Ss     0:00      <span style="color:#ae81ff">\_</span> /bin/bash
+<span style="color:#ae81ff">24148</span> pts/2    S+     0:00      |   <span style="color:#ae81ff">\_</span> /usr/bin/python /usr/share/squid-deb-proxy-client/apt-avahi-discover
+<span style="color:#ae81ff">24149</span> pts/2    Z+     0:00      |       <span style="color:#ae81ff">\_</span> <span style="color:#f92672">[</span>avahi-browse<span style="color:#f92672">]</span> &lt;defunct&gt;
+</code></pre></div><p>おお、defunct…。</p>
+<p>この後、どうやらlaptopでもapt-cacher-ngが動いていて、こちらを消したら動くようになった。釈然としないので再度追試とかしてみるか…</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 23, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/munin">munin</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="http://debian-mirror.sakura.ne.jp/munin/">debian-mirror.sakura.ne.jpでのmuninでの監視</a>で、ちゃんと動いてなかったのを放置していたのを直そうと思い立った。</p>
+<pre><code class="language-error" data-lang="error">You don't have permission to access /munin-cgi/munin-cgi-graph/sakura.ne.jp/debian-mirror.sakura.ne.jp/apache_volume-pinpoint=1550237708,1550928908.png on this server.
+</code></pre><p>ということなので、いろいろ調べて <a href="http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI">http://munin-monitoring.org/wiki/MuninConfigurationMasterCGI</a> を見てから</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> $ sudo apt-get install libapache2-mod-fcgid
+ $ sudo a2enmod rewrite
+ $ sudo a2enmod fcgid
+</code></pre></div><p>としてから<code>/etc/apache2/conf-enabled/munin.conf</code>を以下のように書き換え。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">--- /tmp/munin.conf     2019-02-23 23:06:32.694400917 +0900
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ /etc/apache2/conf-enabled/munin.conf        2019-02-23 23:06:41.302614319 +0900
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -11,7 +11,7 @@
+</span><span style="color:#75715e"></span> 
+ ScriptAlias /munin-cgi/munin-cgi-graph /usr/lib/munin/cgi/munin-cgi-graph
+ &lt;Location /munin-cgi/munin-cgi-graph&gt;
+<span style="color:#f92672">-        Require local
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+        Require all granted
+</span><span style="color:#a6e22e"></span>         &lt;IfModule mod_fcgid.c&gt;
+             SetHandler fcgid-script
+         &lt;/IfModule&gt;
+</code></pre></div>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Feb 17, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://github.com/knxm/mathlibre">MathLibre</a>をいじってて<code>live-build</code>パッケージでbusterサポートが抜けてたので<a href="https://salsa.debian.org/live-team/live-build/commit/f242323fa246840ba9581586ad78a8301629d84c">Merge Requestした</a>。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 16, 2019
 							</span>&nbsp;in
 							
 								
@@ -85,8 +355,8 @@
 					<br>
 					
 						<ul>
-<li>gem2debのテンプレートで<a href="https://salsa.debian.org/ruby-team/gem2deb/merge_requests/2">ruby-interpreterが入ってたのを削除するパッチがマージされた</a>。リリースはまだ。</li>
-<li><a href="https://tracker.debian.org/news/1028017/accepted-ubuntu-keyring-201809181-4-source-into-unstable/">ubuntu-keyringパッケージのdebconf poの更新</a>を取り込んだ。これ、次回からMerge Requestの方が良いような…</li>
+<li>JDimでの<a href="https://github.com/JDimproved/JDim/pull/33/commits/5712a514f4ad4bfc1bcb71fabb74153f7af53c40">Debian向けの開発環境説明を修正</a>した。</li>
+<li>partman-lvmの修正がregressionを起こしてrevertされたので<a href="https://salsa.debian.org/installer-team/partman-lvm/merge_requests/2">再チャレンジ</a></li>
 </ul>
 
 					
@@ -106,10 +376,52 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/09/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Tue, Feb 5, 2019
+								Sat, Feb 9, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/dd">DD</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>groonga 9.0.0 を deleyed 3 でアップロードした。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/02/09/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, Feb 9, 2019
 							</span>&nbsp;in
 							
 								
@@ -127,8 +439,10 @@
 					<br>
 					
 						<ul>
-<li><a href="https://tracker.debian.org/news/1027626/accepted-ruby-aruba-0148-1-source-into-unstable/">ruby-arubaのアップデート</a></li>
-<li><a href="https://github.com/enkessler/childprocess/issues/146">ruby-childprocessのissue</a>に返信があったので、さらにコメント追記。</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/120">CONFIG_IMX_THERMAL</a>がマージされた</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/121">CONFIG_ARM_ARMADA_37XX_CPUFREQ</a>がマージされた</li>
+<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/122">CONFIG_LEDS_PCA963X</a>は「アーキテクチャ限定したほうが良いんじゃね？」というサジェスチョン。</li>
+<li>jdimをstretch-backportsにアップロードした。これもNEW行きかな？入ったらjdを削除依頼しないと。</li>
 </ul>
 
 					
@@ -148,10 +462,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/02/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/02/08/dd%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">DDのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Sat, Feb 2, 2019
+								Fri, Feb 8, 2019
 							</span>&nbsp;in
 							
 								
@@ -160,6 +474,9 @@
 							
 								
 							<a href="/tags/debian">debian</a>
+						
+								 , 
+							<a href="/tags/dd">DD</a>
 						
 					</small>
 				</div>
@@ -169,310 +486,7 @@
 					<br>
 					
 						<ul>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/106">Bug#918589</a>がマージされた。</li>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597</a>がマージされた。</li>
-<li>ruby-childprocessパッケージ、upstreamが1.0.0を出してたので追随しようとしたらエラーになった。まずは<a href="https://github.com/enkessler/childprocess/issues/146">issue登録</a>しておく。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/02/01/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Feb 1, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">Bug#917388</a>がマージされた</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jan 31, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>JDimをビルドしたのでアップロードした。NEW queue待ち。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 28, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>JDimのITPを投げた。<a href="https://bugs.debian.org/920684">Bug#920684</a>が割り当てられました。</li>
-<li><a href="https://cdimage.debian.or.jp">cdimage.debian.or.jp</a>を先日9.7へのリンクに更新したけど、背景画像がhttpを参照しててmixed contentsになっていたので修正しといた。</li>
-<li><a href="https://www.publickey1.jp/blog/19/mongodbsspldebianfedorarhelmongodb.html">PublickeyのSSPL記事</a>について、Chrisの発言はftpmaster teamとしての発言である旨などを指摘して修正してもらった。</li>
-<li><a href="https://udd.debian.org/dmd.cgi?email1=henrich%40debian.org">Maintainer Dashboard</a>でsnapperのアップデートを見つけたので、<a href="https://tracker.debian.org/news/1025268/accepted-snapper-082-1-source-into-unstable/">放り込んだ</a>。
-<ul>
-<li>backportsを忘れないうちに準備しておこう…と思ったら、なんかビルドできないな。なんでだっけな&hellip;あぁ、backportsを加えてないからか。と気付くまでに時間を要した。</li>
-</ul>
-</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/24/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jan 24, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://internet.watch.impress.co.jp/docs/news/1166054.html">Internetwatchの記事</a>の見出しが「「Debian GNU/Linux」に関する脆弱性が171件、第4四半期「JVN iPedia」への登録状況」と、Debianだけ危険みたいな感じだったので苦情を入れた。こんな感じ。</p>
-<pre><code>IPAの該当レポートについては、確かにDebianについての脆弱性数がトップであることは事実として記述されておりましたが、レポートの構成としてはサポートが終了するJava8、それからXSS脆弱性とバッファオーバーランについてが多くを占めています（それぞれ章立てされていました）。ここに全く触れていないことはどの様な意図があったのでしょうか。
-
-「3. 脆弱性対策情報の製品別登録状況」の項にてDebianの脆弱性数が述べられていますが、DebianやUbuntuそしてRed Hat Enterprise Linuxの様なLinuxディストリビューションはWindows Serverなどとは違ってOSのみだけではなくLibreOfficeなどのオフィススイート、Firefoxなどのブラウザ、Tomcatなどのミドルウェア、Apacheなどのサーバーなどを全て含んで提供されています。Debianでの配布ソフトウェアパッケージ数はおおよそ5〜6万です。その背景を把握せずに、単純に「脆弱性が多い」とだけ見出しに書かれるのは、大変遺憾であると同時に、記事の薄さを指摘せざるを得ません。
-
-今後の改善に期待したいと思います。失礼します。
-</code></pre>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/21/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, Jan 21, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://salsa.debian.org/kernel-team/linux/merge_requests/107">Bug#912597向けにMergeRequest</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832458">Bug#832458</a>での<code>CONFIG_SND_SOC_INTEL_BYT_MAX98090_MACH=m</code>はすでにdeprecatedで代わりの奴が有効になっているのをコメント追加。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Sat, Jan 19, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>experimental用に作業してマージされたパッチだけど、buster用にもいれたほうがいいかな、とおもったので<a href="https://salsa.debian.org/kernel-team/linux/merge_requests/105">別途MergeRequestを作った</a></li>
-<li><a href="https://salsa.debian.org/henrich/linux/commit/ed1d855c885f6834a7e0f6a5e152802a2a61d304">Bug#918589向けパッチ</a>を作成、テストビルドは無事通った</li>
-<li><a href="https://salsa.debian.org/henrich/linux/commit/5b7a1313dbaf2eedb69d6e53d1fa20bbcf81c083">Bug#918114向けパッチ</a>を作った。</li>
-<li>ubuntu-keyringパッケージがいつまで待ってもNEW queueから出てこないので、ftpmasterにお手紙→入った</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/01/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jan 17, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><code>whizzytex</code>のパッチをもうひとつ取り込み忘れてたので作業。まだtestingに前のが落ちてないので待ち。</li>
+<li>groongaとhinawa-utilsのアップロードが何故か上手くいかないようなので代理作業。</li>
 </ul>
 
 					
@@ -763,7 +777,18 @@
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/27/">27</a></li>
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/28/">28</a></li>
     
     
     <li class="page-item">
@@ -771,7 +796,7 @@
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/27/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/28/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

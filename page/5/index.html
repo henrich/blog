@@ -64,6 +64,109 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/19/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, May 19, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>docker.io</code>パッケージがアップデートされたのを見て、パッケージ情報見てたらupstreamのサイトが移動してたので<a href="https://salsa.debian.org/docker-team/docker/merge_requests/1">MergeRequestだした</a>
+<ul>
+<li>マージされた</li>
+</ul>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/18/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Sat, May 18, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li><code>git-buildpackage</code>のサンプル<code>gbp.conf</code>の設定が<code>bzip2</code>使っていたので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929141">xzに置き換えパッチ</a>だした
+<ul>
+<li>マージされた</li>
+</ul>
+</li>
+<li><code>unblock: ubuntu-keyring/2018.09.18.1-5</code>が通った、が指摘を受けてた点は<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929165">別バグとしてファイルされた</a>。見直さないとな…</li>
+<li><a href="https://tracker.debian.org/news/1039981/accepted-sphinx-intl-0912-1-source-into-unstable/">sphinx-intlパッケージをアップデートした</a>
+<ul>
+<li>1.0.0が最新、となっているもののmasterブランチにはタグが見当たらないので<a href="https://github.com/sphinx-doc/sphinx-intl/issues/32">Issue立てといた</a></li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1039984/accepted-jcodings-1044-1-source-into-unstable/">jcodingsパッケージをアップデートした</a>。
+<ul>
+<li><code>debian/libjcodings-java.poms</code>で<code>--no-parent</code>オプションを使えばいいのを発見して<code>debian/patches</code>はdropした。なんで今まで気づいてなかったんだ。</li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1039985/accepted-jruby-joni-2127-1-source-into-unstable/">jruby-joniパッケージをアップデートした</a></li>
+<li>その他、フリーズ中でアップロードしないほうがいいかな、と思ったのは更新したのをgitリポジトリにアップロードするに止めた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
@@ -452,97 +555,6 @@ Priority: optional
 	
 
 
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Apr 25, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927914">glibcの令和対応パッチをupstreamから取ってきてペタペタした</a>
-<ul>
-<li>対応されたのでbusterは対応になるだろう。stretchどうするかねぇ</li>
-</ul>
-</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927857">openjdk8での令和対応をBTSに登録した</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927857">icuでの令和対応をBTSに登録した</a></li>
-</ul>
-<hr>
-<p>OpenChainのワーキンググループでツールの話を聞いてきたので、どんな感じかなーと<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924659">fosslogyのWNPPバグ</a>を覗いてみた。</p>
-<p>ついでに<a href="https://github.com/spdx/tools">SPDXのtool</a>のパッケージングが出来ないかを色々と。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Apr 23, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>jessieのstable-updatesリポジトリ削除でaptのエラー→jessieを利用してたコンテナ環境がビルド失敗という話題があったが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927776">「stretchではstable-updatesは削除しないで」というバグをファイルしておいた</a>。関係する人たちとかにも伝えておいたほうが良いだろうということで、<a href="https://discuss.circleci.com/t/fyi-asking-debian-ftpmasters-to-not-remove-obsolete-stable-updates-repo-from-mirror/29944">CircleCI側でも告知しておいた</a></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
         
 	</div>
     <div class="container">
@@ -819,7 +831,16 @@ Priority: optional
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/27/">27</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/28/">28</a></li>
     
     
     <li class="page-item">
@@ -827,7 +848,7 @@ Priority: optional
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/27/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/28/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

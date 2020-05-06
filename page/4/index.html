@@ -64,10 +64,193 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/17/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2020/05/06/fsfap%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9/">FSFAPライセンス</a></h3>
 						<small><span class="label label-primary">
 							
-								Fri, May 17, 2019
+								Wed, May 6, 2020
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><a href="https://spdx.org/licenses/FSFAP.html">FSFAPライセンス(FSF All Permissive License)</a>というライセンスがあった。AppStreamのmetadataに使われたりするらしい。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2020/05/06/debhelper-compat-level13%E3%81%A7%E3%81%AE%E6%B0%97%E3%81%A5%E3%81%8D/">debhelper Compat level13での気づき</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 6, 2020
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><code>debhelper-compat 13</code> では <code>dh_missing</code> が強制的に enable になる。これによってパッケージにインストールされていなかったファイルを洗い出せた。
+なお「意図的にインストールしたくないファイル」（.laなど）は <code>debian/not-installed</code> というファイルに記述しておけば良い。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2020/05/06/lintian-brush%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">Lintian Brushを試してみる</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, May 6, 2020
+							</span>&nbsp;in
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Debian パッケージは一旦作ると、依存関係などの大幅な変更以外は<a href="https://www.debian.org/doc/debian-policy/">Debian Policy</a>の更新に従ってチマチマとした修正をすることがほとんどです。気がついたところは手直しをするわけですが、些細な問題については見逃していることが多く、この発見と修正を自動化できるとメンテナは楽ができます。Policyに追随するツールとしては<code>lintian</code>がありますが、解釈不要な機械的な変更については<code>lintian-brush</code>というツールが利用できます。最近まで存在は知っていたものの利用はしていなかったので試してみました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt install lintian-brush
+<span style="color:#f92672">(</span>snip<span style="color:#f92672">)</span>
+$ cd package-dir
+$ lintian-brush 
+Lintian tags fixed: <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;file-contains-trailing-whitespace&#39;</span>, <span style="color:#e6db74">&#39;out-of-date-standards-version&#39;</span>, <span style="color:#e6db74">&#39;field-name-typo-dep5-copyright&#39;</span><span style="color:#f92672">}</span>
+$
+</code></pre></div><p>どうやら3つほど問題を発見して修正をかけてくれたようです。変更点はgitにコミットされていました。</p>
+<pre><code class="language-git" data-lang="git">ommit 2aab55f3d809396ab8250014cc082210662d327a (HEAD -&gt; master)
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Update standards version to 4.5.0, no changes needed.
+    
+    Fixes: lintian: out-of-date-standards-version
+    See-also: https://lintian.debian.org/tags/out-of-date-standards-version.html
+
+commit bfdc944abb5485e8c0ba1361a74f0dfd632722ca
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Fix field name typos in debian/copyright.
+    
+    Fixes: lintian: field-name-typo-dep5-copyright
+    See-also: https://lintian.debian.org/tags/field-name-typo-dep5-copyright.html
+
+commit f78f21cc22c1f9749f412fbd8a874711c6cbee6c
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:01 2020 +0900
+
+    Trim trailing whitespace.
+    
+    Fixes: lintian: file-contains-trailing-whitespace
+    See-also: https://lintian.debian.org/tags/file-contains-trailing-whitespace.html
+</code></pre><p>内容をちょっと見てみます。</p>
+<pre><code class="language-git" data-lang="git">commit bfdc944abb5485e8c0ba1361a74f0dfd632722ca
+Author: Hideki Yamane &lt;henrich@debian.org&gt;
+Date:   Wed May 6 18:43:12 2020 +0900
+
+    Fix field name typos in debian/copyright.
+    
+    Fixes: lintian: field-name-typo-dep5-copyright
+    See-also: https://lintian.debian.org/tags/field-name-typo-dep5-copyright.html
+
+diff --git a/debian/changelog b/debian/changelog
+index 833204f..148cbe4 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,6 +1,7 @@
+ fonts-kanjistrokeorders (4.002~dfsg-4) UNRELEASED; urgency=medium
+ 
+   * Trim trailing whitespace.
++  * Fix field name typos in debian/copyright.
+ 
+  -- Hideki Yamane &lt;henrich@debian.org&gt;  Wed, 06 May 2020 18:43:01 +0900
+ 
+diff --git a/debian/copyright b/debian/copyright
+index 0f08c52..26f22f2 100644
+--- a/debian/copyright
++++ b/debian/copyright
+@@ -1,7 +1,7 @@
+ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+ Upstream-Name: ttf-kanjistrokeorders
+ Source: https://www.nihilist.org.uk/
+-Upstream-contact: Tim Eyre &lt;mail |at| nihilist (dot) org (dot) uk&gt;
++Upstream-Contact: Tim Eyre &lt;mail |at| nihilist (dot) org (dot) uk&gt;
+ 
+ Files: KanjiStrokeOrders_v*.ttf readme_en_*.txt
+ Copyright: 2004-2018, Ulrich Apel, the AAAA project and the Wadoku project
+@@ -34,4 +34,3 @@ Copyright: 2008-2019, Hideki Yamane (Debian-JP) &lt;henrich@debian.or.jp&gt;
+ License: GPL-3
+  On Debian systems the full text of the GNU General Public License Version 3
+  can be found in the `/usr/share/common-licenses/GPL-3' file.
+</code></pre><p>&hellip;？となりましたがよくよく見てみると<code>Upstream-contact</code>フィールドが<code>Upstream-Contact</code>フィールドとCが大文字に修正されてます。こんなの気づかねぇよ…(´・ω・｀)</p>
+<p>とまぁ、手動作業では見つけられないような重箱の隅も直せていいツールですね。</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/08/12/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Aug 12, 2019
 							</span>&nbsp;in
 							
 								
@@ -84,15 +267,90 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<ul>
-<li><a href="https://tracker.debian.org/news/1039927/accepted-ruby-parallel-tests-2290-1-source-into-unstable/">ruby-parallel-testsパッケージをアップデート</a></li>
-<li><a href="https://tracker.debian.org/news/1039928/accepted-ruby-serverengine-211-1-source-into-unstable/">ruby-serverengineパッケージをアップデート</a>
+						<p>超久々にパッケージをアップデートした。</p>
 <ul>
-<li>今見たら<a href="https://ci.debian.net/data/autopkgtest/testing/amd64/r/ruby-serverengine/2385536/log.gz">ciがコケてる</a>…要調査だ。</li>
+<li><a href="https://tracker.debian.org/news/1053943/accepted-ruby-parallel-tests-2292-1-source-into-unstable/">ruby-parallel-tests</a>
+<ul>
+<li>&lsquo;&lsquo;<a href="https://gemwatch.debian.net/parallel_tests">https://gemwatch.debian.net/parallel_tests</a> failed: 500 Internal Server Error'&lsquo;などと言われるが普通にアクセスできる…なぜだ。</li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1053961/accepted-ruby-sigdump-024-2-source-into-unstable/">ruby-sigdump</a>
+<ul>
+<li>debciが<a href="https://ci.debian.net/packages/r/ruby-sigdump/testing/amd64/">fail&hellip;</a> …なのだけど対象バージョンが'&lsquo;n/a&rsquo;'。無視してよい？</li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1053968/accepted-ruby-serverengine-211-2-source-into-unstable/">ruby-serverengine</a>
+<ul>
+<li>debciが<a href="https://ci.debian.net/packages/r/ruby-serverengine/unstable/amd64/">fail&hellip;</a></li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1053976/accepted-ruby-strptime-023-2-source-into-unstable/">ruby-strptime</a>
+<ul>
+<li>debciが<a href="https://ci.debian.net/packages/r/ruby-strptime/testing/amd64/">fail&hellip;</a>…だけど、&lsquo;&lsquo;E: Package &lsquo;ruby-strptime&rsquo; has no installation candidate'&lsquo;とあるだけだから無視可能そう。</li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1053946/accepted-fonts-misaki-20190603-1-source-into-unstable/">fonts-misaki</a>
+<ul>
+<li>不要な実行bitが立ってる</li>
+</ul>
+</li>
+<li><a href="https://tracker.debian.org/news/1053970/accepted-libuninameslist-20190701-1-source-into-unstable/">libuninameslist</a></li>
+<li><a href="https://tracker.debian.org/news/1053972/accepted-birdfont-2270-1-source-into-unstable/">birdfont</a></li>
+<li><a href="https://tracker.debian.org/news/1053987/accepted-fonts-kanjistrokeorders-4002dfsg-2-source-into-unstable/">fonts-kanjistrokeorders</a></li>
+<li><a href="https://tracker.debian.org/news/1054030/accepted-jdim-020-1-source-into-unstable/">jdim</a>、<a href="https://tracker.debian.org/news/1054062/accepted-jdim-020-2-source-into-unstable/">jdimその２</a>
+<ul>
+<li>変更点はPullRequest済み。</li>
 </ul>
 </li>
 </ul>
+<p>ruby-serverengineのは以下の問題。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">mv lib <span style="color:#f92672">.</span>gem2deb<span style="color:#f92672">.</span>lib
+<span style="color:#66d9ef">RUBYLIB</span><span style="color:#f92672">=.</span> <span style="color:#66d9ef">GEM_PATH</span><span style="color:#f92672">=</span> ruby2<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">-</span>S rake <span style="color:#f92672">-</span>f debian<span style="color:#f92672">/</span>ruby<span style="color:#f92672">-</span>tests<span style="color:#f92672">.</span>rake
+<span style="color:#e6db74">/usr/</span>bin<span style="color:#f92672">/</span>ruby2<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">/</span>usr<span style="color:#f92672">/</span>bin<span style="color:#f92672">/</span>rspec <span style="color:#f92672">--</span>pattern <span style="color:#f92672">.</span>/spec<span style="color:#f92672">/</span>\<span style="color:#f92672">*</span>\<span style="color:#f92672">*/</span>\<span style="color:#f92672">*</span>_spec<span style="color:#f92672">.</span>rb <span style="color:#f92672">--</span>format documentation
 
+<span style="color:#f92672">[!]</span> <span style="color:#66d9ef">There</span> was an error parsing <span style="color:#e6db74">`Gemfile`</span>: 
+<span style="color:#f92672">[!]</span> <span style="color:#66d9ef">There</span> was an error <span style="color:#66d9ef">while</span> loading <span style="color:#e6db74">`serverengine.gemspec`</span>: cannot load such file <span style="color:#f92672">--</span> <span style="color:#e6db74">/tmp/</span>autopkgtest<span style="color:#f92672">-</span>lxc<span style="color:#f92672">.</span><span style="color:#ae81ff">1</span>jlmt47i<span style="color:#f92672">/</span>downtmp<span style="color:#f92672">/</span>build<span style="color:#f92672">.</span>eOn<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>serverengine<span style="color:#f92672">/</span>version
+<span style="color:#66d9ef">Does</span> it try to require a relative path? <span style="color:#66d9ef">That</span><span style="color:#e6db74">&#39;s been removed in Ruby 1.9. Bundler cannot continue.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> #  from /tmp/autopkgtest-lxc.1jlmt47i/downtmp/build.eOn/src/serverengine.gemspec:1
+</span><span style="color:#e6db74"> #  -------------------------------------------
+</span><span style="color:#e6db74"> &gt;  require File.expand_path &#39;</span>lib<span style="color:#f92672">/</span>serverengine<span style="color:#f92672">/</span>version<span style="color:#e6db74">&#39;, File.dirname(__FILE__)
+</span><span style="color:#e6db74"> #  
+</span><span style="color:#e6db74"> #  -------------------------------------------
+</span><span style="color:#e6db74">. Bundler cannot continue.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> #  from /tmp/autopkgtest-lxc.1jlmt47i/downtmp/build.eOn/src/Gemfile:2
+</span><span style="color:#e6db74"> #  -------------------------------------------
+</span><span style="color:#e6db74"> #  source &#39;</span><span style="color:#e6db74">https</span>:<span style="color:#e6db74">//</span>rubygems<span style="color:#f92672">.</span>org<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+ <span style="color:#f92672">&gt;</span>  gemspec
+ <span style="color:#75715e">#  -------------------------------------------</span>
+<span style="color:#66d9ef">Run</span> <span style="color:#e6db74">`bundle install`</span> to install missing gems
+<span style="color:#e6db74">/usr/</span>bin<span style="color:#f92672">/</span>ruby2<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">/</span>usr<span style="color:#f92672">/</span>bin<span style="color:#f92672">/</span>rspec <span style="color:#f92672">--</span>pattern <span style="color:#f92672">.</span>/spec<span style="color:#f92672">/</span>\<span style="color:#f92672">*</span>\<span style="color:#f92672">*/</span>\<span style="color:#f92672">*</span>_spec<span style="color:#f92672">.</span>rb <span style="color:#f92672">--</span>format documentation failed
+</code></pre></div><p>Java系パッケージはCIが有効にできないので問い合わせ、Perl系パッケージは何故かautopkgtestでlxcなtestbed関連でfailureになるのでお預け。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">autopkgtest <span style="color:#f92672">[</span>15:34:19<span style="color:#f92672">]</span>: test autodep8-perl: <span style="color:#f92672">[</span>-----------------------
+bash: line 0: cd: /tmp/autopkgtest-lxc.5hqs7t01/downtmp/build.dc3/src: No such file or directory
+autopkgtest <span style="color:#f92672">[</span>15:34:19<span style="color:#f92672">]</span>: test autodep8-perl: -----------------------<span style="color:#f92672">]</span>
+Unexpected error:
+Traceback <span style="color:#f92672">(</span>most recent call last<span style="color:#f92672">)</span>:
+  File <span style="color:#e6db74">&#34;/usr/share/autopkgtest/lib/VirtSubproc.py&#34;</span>, line 738, in mainloop
+    command<span style="color:#f92672">()</span>
+  File <span style="color:#e6db74">&#34;/usr/share/autopkgtest/lib/VirtSubproc.py&#34;</span>, line 667, in command
+    r <span style="color:#f92672">=</span> f<span style="color:#f92672">(</span>c, ce<span style="color:#f92672">)</span>
+  File <span style="color:#e6db74">&#34;/usr/share/autopkgtest/lib/VirtSubproc.py&#34;</span>, line 605, in cmd_copyup
+    copyupdown<span style="color:#f92672">(</span>c, ce, True<span style="color:#f92672">)</span>
+  File <span style="color:#e6db74">&#34;/usr/share/autopkgtest/lib/VirtSubproc.py&#34;</span>, line 490, in copyupdown
+    copyupdown_internal<span style="color:#f92672">(</span>ce<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>, c<span style="color:#f92672">[</span>1:<span style="color:#f92672">]</span>, upp<span style="color:#f92672">)</span>
+  File <span style="color:#e6db74">&#34;/usr/share/autopkgtest/lib/VirtSubproc.py&#34;</span>, line 515, in copyupdown_internal
+    copyup_shareddir<span style="color:#f92672">(</span>sd<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>, sd<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>, dirsp, downtmp_host<span style="color:#f92672">)</span>
+  File <span style="color:#e6db74">&#34;/usr/share/autopkgtest/lib/VirtSubproc.py&#34;</span>, line 429, in copyup_shareddir
+    shutil.copy<span style="color:#f92672">(</span>tb, host<span style="color:#f92672">)</span>
+  File <span style="color:#e6db74">&#34;/usr/lib/python3.7/shutil.py&#34;</span>, line 248, in copy
+    copyfile<span style="color:#f92672">(</span>src, dst, follow_symlinks<span style="color:#f92672">=</span>follow_symlinks<span style="color:#f92672">)</span>
+  File <span style="color:#e6db74">&#34;/usr/lib/python3.7/shutil.py&#34;</span>, line 120, in copyfile
+    with open<span style="color:#f92672">(</span>src, <span style="color:#e6db74">&#39;rb&#39;</span><span style="color:#f92672">)</span> as fsrc:
+FileNotFoundError: <span style="color:#f92672">[</span>Errno 2<span style="color:#f92672">]</span> No such file or directory: <span style="color:#e6db74">&#39;/tmp/autopkgtest-lxc.5hqs7t01/downtmp/autodep8-perl-stdout&#39;</span>
+autopkgtest <span style="color:#f92672">[</span>15:34:20<span style="color:#f92672">]</span>: ERROR: testbed failure: unexpected eof from the testbed
+</code></pre></div>
 					
 				</div>
 			</div>
@@ -110,88 +368,10 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/16/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/06/15/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Thu, May 16, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://tracker.debian.org/news/1039893/accepted-fonts-sawarabi-mincho-20190515-1-source-into-unstable/">fonts-sawarabi-minchoをアップデート</a></p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/15/ossummit-japan-2019%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E3%81%AB%E5%BF%9C%E5%8B%9F/">OSSummit Japan 2019ボランティアスタッフに応募</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, May 15, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/oss">oss</a>
-							
-							
-								
-							<a href="/tags/oss">oss</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><a href="https://events.linuxfoundation.org/events/open-source-summit-japan-2019/attend/about/">OSSummit Japan 2019</a>のボランティアスタッフに応募しておいた。DebConfの移動があるので初日だけ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/13/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, May 13, 2019
+								Sat, Jun 15, 2019
 							</span>&nbsp;in
 							
 								
@@ -209,236 +389,26 @@
 					<br>
 					
 						<ul>
-<li><a href="https://debconf19.debconf.org/">DebConf19</a>に向けて思いつきのCfPを投げた</li>
-<li><a href="https://www.gnu.org/software/guix/blog/2019/gnu-guix-1.0.0-released/">GUIX</a>の売り文句が素晴らしいのでホントかなー？と思ってVMを立ち上げるもいきなりぶっ壊れててまともに動かせない様に見えるので涙した。</li>
+<li>先日<code>delayed/5 queue</code>にいれたpython-arucoがtestingに落ちないので「？」と思ってたのだが、<code>debian/changelog</code>ファイルにきちんとclose書き忘れていた…仕方がないので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929714">closeメール</a>を送ったりした。いかんいかん。unblockもしないとダメかな。</li>
+<li>報告者が数年放置のRCバグがあったので２週間前ぐらいに「どうなってんの？」とつついたが、二人目の報告者しか反応せず。こちらも<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866758">closeしといた</a></li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/08/%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">ライターのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, May 8, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/pc">pc</a>
-							
-							
-								
-							<a href="/tags/writing">writing</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>検証用にHDD 2TB「Seagate IronWolf 3.5」を一つ購入した…。PCのバックアップ体制をきちんと整理しておかねば、という思いが強まった。
-そして「2.5/3.5インチSATA HDDエンクロージャーの不具合」についても問い合わせ。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/07/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, May 7, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li><a href="https://bugs.debian.org/926623">ruby-parallel-tests</a>、<a href="https://bugs.debian.org/926572">ruby-serverengine</a>、<a href="https://bugs.debian.org/926621">ruby-strptime</a>がリポジトリに入った。<code>fluentd</code>に向けてだいぶ進んだ。</li>
-<li><a href="https://lists.debian.org/debian-devel/2019/05/msg00044.html">令和対応状況メール</a>を投げた</li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928410">「ppc64elのインストールに失敗した〜」メール</a>を見たあとで、たまたまちょうどそのVPSサービス提供してるところがツイートしてたのを見つけたので「手助けしてくれへん？」と訪ねたら返事が来た。とはいえ、キャパオーバーしてるので別の人に「頼めんかなぁ？」と打診メールを→「オッケー」と来たのでバトンを渡した。</li>
-<li>jdのbackports削除依頼を出した。</li>
-<li>byobuの依存関係のパッケージ名が古かったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928600">パッチ出した</a></li>
+<hr>
+<p>久々にダウンロードしたパッケージが壊れている、というのを体験。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">thunderbird (1:60.7.1-1) で (1:60.7.0-1 に) 上書き展開しています ...
+dpkg-deb (サブプロセス): アーカイブメンバーを伸張しています: lzma エラー: 圧縮データが壊れています
+dpkg-deb: エラー: &lt;伸張&gt; subprocess returned error exit status 2
+dpkg: アーカイブ /tmp/apt-dpkg-install-72mWan/34-thunderbird_1%3a60.7.1-1_amd64.deb の処理中にエラーが発生しました (--unpack):
+ &#39;./usr/lib/thunderbird/libxul.so&#39; の展開済みデータを &#39;/usr/lib/thunderbird/libxul.so.dpkg-new&#39; にコピーできません: ファイルまたは
+ストリームの予期しない終わりです
+</code></pre></div><p><code>apt clean</code>して対処。</p>
+<hr>
+<ul>
+<li>自前の<code>debian/.gitlab-ci.yml</code>から<a href="https://salsa.debian.org/salsa-ci-team/pipeline/">salsa-ciチームのpipeline</a>を使う方向に転換した。gitlabのCI設定を変更して<code>debian/salsa-ci.yml</code>を参照するようにし、ファイルには以下の３行を書くだけで、ビルドから<code>piuparts</code>, <code>lintian</code>, <code>reproducible test</code>, <code>autopkgtest</code>, <code>blhc</code>の５つのテストが走る。</li>
 </ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/05/06/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Mon, May 6, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>firefox-esrでの証明書問題でoldstable向けに騒いでたのが居たので、<a href="https://lists.debian.org/debian-lts/2019/05/msg00016.html">LTSメーリングリストにmentionを飛ばして</a>、コマンドメールでfixedバージョンを追加しておいた。</li>
-<li>gsの修正がunblock依頼が出てなかったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927429#42">つついた</a></li>
-<li>linux-image-4.19.0-4-amd64で、Xがまともに立ち上がらない件、複数のバグレポートが上がっていたのでもう一つの方に「あっちも同じ問題じゃね？」とだけコメントしたらマージしてくれた様子。あとは次のリリースで加わるといいね。</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-
-	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Apr 30, 2019
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/debian">debian</a>
-							
-							
-								
-							<a href="/tags/debian">debian</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p>手元の日経Linux誌見たらPPA指定が必要になっていた<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928217">aobookのITP</a>登録してuploadしといた。現実逃避だけど。</p>
-<hr>
-<p><a href="https://togetter.com/li/1342936">「OpenJDK 11.0.3/8u212 LTS以降でのリリースノートや脆弱性の追い方」</a>は一読しただけでは理解が追いつかないな…。</p>
-<hr>
-<p><code>debian/watch</code>のOSDNでの書き方は下記が良いらしい。うーん、RSS必死に見てたのは不要だったか…</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">https://osdn.net/projects/@PACKAGE@/releases/rss \
- https://osdn.net/projects/@PACKAGE@/downloads/\d*/@PACKAGE@-@ANY_VERSION@@ARCHIVE_EXT@/ debian uupdate
-</code></pre></div><p><code>uscan</code>にバグ登録したほうが良いか</p>
-<hr>
-<p><a href="https://blogs.apache.org/foundation/entry/the-apache-software-foundation-expands">ASFがGitHubに移行してた</a>。</p>
-<hr>
-<p><a href="https://tracker.debian.org/news/1039012/accepted-fonts-ipaexfont-00401-1-source-into-unstable/">IPAexフォントのアップデート</a>を放り込んだ。</p>
-<p>upstreamの方に確認したいことがあったので、<a href="https://www.ipa.go.jp/about/inquiry_index_0.html">問い合わせページ</a>から以下のような問い合わせを送った</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">IPAフォントならびにIPAexフォントをLinuxディストリビューション Debianにてパッケージとして配布しています。
-
-問１）IPAフォントならびにIPAexフォントの問題・要望報告先としてOSDNにプロジェクト https://ja.osdn.net/projects/ipafonts/ を開設されていますが、こちらに報告をしても全く反応がありません。今回のIPAexフォントの配布もこちらで実施されてないようです
-- こちらのプロジェクトは活動しているのでしょうか
-- していないとしたら、どこで誰に連絡をすればよいのでしょうか
-- GitHub等に移行はできないでしょうか。
-
-問２）IPAexフォントの配布ページがバージョンごとに毎回URLが変更されており、機械的に新しいバージョンが出ているかのチェックがしずらいのですが、何故この様な形にしているのでしょうか（以前の https://ipafont.ipa.go.jp/old/ipafont/download.html であれば問題なく確認が出来ましたので、改悪と言えます）。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">include</span>:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
 </code></pre></div><hr>
-<p><code>openjdk-11</code>パッケージの中身をチェックしようと<code>debcheckout</code>コマンドで落としたのだが、どうにもおかしい。<code>git checkout &lt;tag&gt;</code>として古いバージョンなのに令和対応がされてる、というように見えてしまう。悩んだ結果、<code>openjdk-11</code>パッケージのリポジトリは<code>debian</code>ディレクトリ以下の保守しかしておらず、<code>debcheckout</code>コマンドがおせっかいにもtarballを落としてきてたという。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ debcheckout openjdk-11
-declared git repository at https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
-git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11 openjdk-11 ...
-Cloning into <span style="color:#e6db74">&#39;openjdk-11&#39;</span>...
-remote: Counting objects: 722, <span style="color:#66d9ef">done</span>. 
-remote: Compressing objects: 100% <span style="color:#f92672">(</span>706/706<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>. 
-remote: Total <span style="color:#ae81ff">722</span> <span style="color:#f92672">(</span>delta 422<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">103</span> <span style="color:#f92672">(</span>delta 10<span style="color:#f92672">)</span>
-Receiving objects: 100% <span style="color:#f92672">(</span>722/722<span style="color:#f92672">)</span>, 824.71 KiB | 241.00 KiB/s, <span style="color:#66d9ef">done</span>.
-Resolving deltas: 100% <span style="color:#f92672">(</span>422/422<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
-repository only contains the debian directory, using apt-get source 
-パッケージリストを読み込んでいます... 完了   
-注意: <span style="color:#e6db74">&#39;openjdk-11&#39;</span> パッケージは以下の場所の <span style="color:#e6db74">&#39;Git&#39;</span> バージョン制御システムで保守されています:
-https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
-パッケージの最新の <span style="color:#f92672">(</span>まだリリースされていないかもしれない<span style="color:#f92672">)</span> 更新を取得するには、
-git clone https://git.launchpad.net/~openjdk/ubuntu/+source/openjdk/+git/openjdk -b openjdk-11
-を使用してください。
-75.8 MB のソースアーカイブを取得する必要があります。
-取得:1 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 <span style="color:#f92672">(</span>dsc<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>4,692 B<span style="color:#f92672">]</span>
-取得:2 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 <span style="color:#f92672">(</span>tar<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>75.4 MB<span style="color:#f92672">]</span>
-取得:3 http://debian-mirror.sakura.ne.jp/debian sid/main openjdk-11 11.0.3+7-4 <span style="color:#f92672">(</span>diff<span style="color:#f92672">)</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">414</span> kB<span style="color:#f92672">]</span>
-75.8 MB を 1分 32秒 で取得しました <span style="color:#f92672">(</span><span style="color:#ae81ff">824</span> kB/s<span style="color:#f92672">)</span>
-</code></pre></div><p>仕方がないのでsnapshot.debian.orgから落としてきてgrepした結果、11.0.3+7-1から令和対応、ということが判明。</p>
-<hr>
-<p>その他、令和対応情報まとめてた。unicode-dataでリビルド必要なの確認（すでにbinNMU依頼済みだったらしい）、FTBFSなのにパッチ書いたりとか。</p>
-<hr>
-<p><code>/etc/mtab</code>は<code>/proc/self/mounts</code>だが、これはどこで出来てるのか？というと<a href="http://blog.keshi.org/hogememo/2013/10/28/about-debian-wheezy-etc-mtab">/etc/init.d/checkroot.sh らしい</a>→<code>initscripts</code>パッケージだから入ってないのもあるんじゃない？（少なくともdebootstrapした環境にはない）と思って新しくインストールしてみた</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Package: initscripts
-Version: 2.94-4
-Priority: optional
-</code></pre></div><p>だから無くても仕方がない…が、新規にbusterを入れた環境でも<code>/etc/mtab</code>がsymlinkとして存在する！なんだこれは。grepしたが、パッケージのメンテナスクリプトで触ってる風味でもない…systemdだろうか？…見つからずに大まかにgrepしなおしたら<code>/usr/lib/tmpfiles.d/debian.conf</code>とかいうのに記述があった。systemdパッケージの一部らしい。</p>
-<p>ということは</p>
-<ul>
-<li><code>initscripts</code>または<code>systemd</code>が入ってると<code>/etc/mtab</code>は<code>/proc/self/mounts</code>へのsymlinkとして生成される。</li>
-<li><code>openrc</code>などではどうなるのだろう？…と思ったら<code>initscripts</code>が引っ張られて入ったので問題なし。</li>
-<li>上書きされるのだから、debootstrapで記述しても問題ないのでは？</li>
-<li>過去の<code>initscripts</code>では<code>/etc/mtab</code>は<code>/proc/mounts</code>を指してるらしい</li>
-</ul>
-<p>という感想だったので、パッチ作った→速攻ボコボコにされた。</p>
 
 					
 				</div>
@@ -457,10 +427,10 @@ Priority: optional
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/25/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/06/05/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Thu, Apr 25, 2019
+								Wed, Jun 5, 2019
 							</span>&nbsp;in
 							
 								
@@ -478,17 +448,15 @@ Priority: optional
 					<br>
 					
 						<ul>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927914">glibcの令和対応パッチをupstreamから取ってきてペタペタした</a>
+<li>python-aruco、ちょいと <code>debian/rules</code> いじって不要そうなのを削ったらビルド自体は通った。なんであんなやり方してたのだろう？ それよりは同じ<code>override</code>ルールが２度に渡って書いてある方も気になったが、手は加えなかった。</li>
+<li><a href="https://bugs.debian.org/929720">hklのFTBFS</a>に<code>unreproducible</code>タグつけて来た</li>
+<li>php7で動かねぇ、という<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929575">simpleidパッケージのバグ</a>、<code>fixed-upstream</code>タグは着けるが、testingからは削除バグを登録しておいた。
 <ul>
-<li>対応されたのでbusterは対応になるだろう。stretchどうするかねぇ</li>
+<li>即座に削除が実施された。stableはまた別口なのでもう１個登録してね、と言われたので見様見真似で登録</li>
 </ul>
 </li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927857">openjdk8での令和対応をBTSに登録した</a></li>
-<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927857">icuでの令和対応をBTSに登録した</a></li>
+<li>直ってるsqlalchemyがunblockまだなのでZigoを突つく</li>
 </ul>
-<hr>
-<p>OpenChainのワーキンググループでツールの話を聞いてきたので、どんな感じかなーと<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924659">fosslogyのWNPPバグ</a>を覗いてみた。</p>
-<p>ついでに<a href="https://github.com/spdx/tools">SPDXのtool</a>のパッケージングが出来ないかを色々と。</p>
 
 					
 				</div>
@@ -507,10 +475,10 @@ Priority: optional
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="https://henrich.github.io/blog/2019/04/23/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+					<h3><a href="https://henrich.github.io/blog/2019/05/31/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
 						<small><span class="label label-primary">
 							
-								Tue, Apr 23, 2019
+								Fri, May 31, 2019
 							</span>&nbsp;in
 							
 								
@@ -528,7 +496,171 @@ Priority: optional
 					<br>
 					
 						<ul>
-<li>jessieのstable-updatesリポジトリ削除でaptのエラー→jessieを利用してたコンテナ環境がビルド失敗という話題があったが、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927776">「stretchではstable-updatesは削除しないで」というバグをファイルしておいた</a>。関係する人たちとかにも伝えておいたほうが良いだろうということで、<a href="https://discuss.circleci.com/t/fyi-asking-debian-ftpmasters-to-not-remove-obsolete-stable-updates-repo-from-mirror/29944">CircleCI側でも告知しておいた</a></li>
+<li>インストールガイドのアップデートやりかけを見つけたのでpushしておいた</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/30/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, May 30, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>報告者が2年ほど放置しているので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=866758">バグを閉じるのはどうか？とsuggestion</a></li>
+<li>snapのCVE、<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928052">タグ付けと修正コミットへのリンク</a>を。修正はどうしたもんかねぇ</li>
+<li>mass rebuildでFTBFS報告があったが、ちょうどアップロードしたところのやつだったので<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929719">閉じた</a>
+<ul>
+<li>mass rebuildどうやるか情報確認しておくか…<a href="https://wiki.debian.org/qa.debian.org/ArchiveTesting">これ</a>かな？</li>
+</ul>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/28/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, May 28, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>
+<p>fontconfigのRCバグ、直ってるよという報告者の話があったのに閉じてなかったので<a href="https://bugs.debian.org/927153">閉じた</a></p>
+</li>
+<li>
+<p>jrubyのCVEバグだが、rubygem由来でパッチそのものがあったので<a href="https://bugs.debian.org/925987">適用して閉じた</a></p>
+</li>
+<li>
+<p>snapdのCVEバグ、あとで確認しよう…</p>
+</li>
+<li>
+<p><a href="https://bugs.debian.org/927942">gucharmapのFTBFS</a>、unicode-data 12.0由来なので弄ってビルド通るようにしてアップロードした</p>
+</li>
+<li>
+<p>ghostscriptのunblockをメンテナに代わって<a href="https://bugs.debian.org/929422">実施してあげた</a></p>
+</li>
+<li>
+<p><a href="https://bugs.debian.org/925555">Linuxパッケージのバグ</a>、upstreamで直ってたのでタグ付け</p>
+</li>
+<li>
+<p>リリースノートをいじる</p>
+<ul>
+<li>CDがメディアとして挙げられてるが、基本DVDメディアになったので<a href="https://salsa.debian.org/ddp-team/release-notes/merge_requests/23">そのあたり</a></li>
+<li>httpsで繋がるところは<a href="https://salsa.debian.org/ddp-team/release-notes/merge_requests/24">httpsに直した</a>。
+<ul>
+<li>ビルドがうまくいってないところが出てきちゃう、とあったので一部revert</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>notoフォントパッケージのバグじゃない？という<a href="https://bugs.debian.org/929128">問い合わせ</a>に対応</p>
+</li>
+<li>
+<p>firmware-atherosパッケージ変、というのがあったので<a href="https://bugs.debian.org/929307">replyしてみた</a></p>
+</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+
+	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="https://henrich.github.io/blog/2019/05/20/%E3%82%81%E3%82%93%E3%81%A6%E3%81%AA%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8/">めんてなのおしごと</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, May 20, 2019
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/debian">debian</a>
+							
+							
+								
+							<a href="/tags/debian">debian</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<ul>
+<li>1.0.0がmasterにマージされたので、<a href="https://tracker.debian.org/news/1040085/accepted-sphinx-intl-100-1-source-into-unstable/">sphinx-intlパッケージをアップデートした</a></li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929115">酷いバグレポート</a>を見かけたので閉じておいた。</li>
 </ul>
 
 					
@@ -817,7 +949,16 @@ Priority: optional
         
     
     
-    <li class="page-item"><a class="page-link" href="/blog/page/27/">27</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/blog/page/28/">28</a></li>
     
     
     <li class="page-item">
@@ -825,7 +966,7 @@ Priority: optional
     </li>
     
     <li class="page-item">
-        <a href="/blog/page/27/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/page/28/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
